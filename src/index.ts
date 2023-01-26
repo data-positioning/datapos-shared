@@ -5,8 +5,6 @@
  * @license ISC
  */
 
-// import { ContentAudit } from '@datapos/datapos-engine-core';
-
 import type { DataConnector } from './dataConnector';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

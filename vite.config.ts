@@ -17,7 +17,7 @@ export default defineConfig({
             entry: resolve(__dirname, 'src/index.ts'),
             name: 'DataPosEngine',
             formats: ['es'],
-            fileName: (format) => `datapos-engine.${format}.js`
+            fileName: (format) => `datapos-engine-support.${format}.js`
         }
         // minify: 'esbuild'
     },

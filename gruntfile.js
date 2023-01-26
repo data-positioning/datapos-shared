@@ -1,7 +1,7 @@
 /**
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
- * @file datapos-engine/gruntfile.js
+ * @file datapos-engine-support/gruntfile.js
  * @license ISC
  */
 
@@ -16,7 +16,6 @@ module.exports = (grunt) => {
             lint: { args: ['WARNING: Lint is NOT implemented.'], cmd: 'echo' },
             npmPublish: { args: ['publish'], cmd: 'npx' },
             outdated: { args: ['npm', 'outdated'], cmd: 'npx' },
-            updateEngineCore: { args: ['install', '@datapos/datapos-engine-core@latest'], cmd: 'npm' }
         },
         shell: {
             build: {
@@ -40,5 +39,4 @@ module.exports = (grunt) => {
     grunt.registerTask('npmPublish', ['run:npmPublish']); // cmd+shift+n.
     grunt.registerTask('release', ['gitadd', 'bump', 'shell:build', 'run:npmPublish']); // cmd+shift+r.
     grunt.registerTask('synchronise', ['gitadd', 'bump']); // cmd+shift+s.
-    grunt.registerTask('updateApplicationDependencies', ['forceOn', 'run:outdated', 'run:updateEngineCore']); // cmd+shift+u.
 };
