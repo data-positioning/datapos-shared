@@ -1,22 +1,19 @@
 /**
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
- * @file datapos-engine-support/src/errorData.ts
+ * @file datapos-engine-support/src/nodeConnector.ts
  * @license ISC
  */
 
+// ...
+import type { Connector } from './connector';
+
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Declarations
+// Node Connector
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ErrorData {
-    body: ErrorDataBody;
-    statusCode?: number;
-    statusText?: string;
+export interface NodeConnectorConstructor {
+    new (): NodeConnector;
 }
 
-export interface ErrorDataBody {
-    context?: string;
-    message: string;
-    stack?: string;
-}
+export interface NodeConnector extends Connector {}

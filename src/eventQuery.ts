@@ -1,22 +1,14 @@
 /**
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
- * @file datapos-engine-support/src/errorData.ts
+ * @file datapos-engine-support/src/eventQuery.ts
  * @license ISC
  */
 
+import type { Component } from './component';
+
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Declarations
+// EventQuery
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ErrorData {
-    body: ErrorDataBody;
-    statusCode?: number;
-    statusText?: string;
-}
-
-export interface ErrorDataBody {
-    context?: string;
-    message: string;
-    stack?: string;
-}
+interface EventQuery extends Component {}

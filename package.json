@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-engine-support",
     "author": "Jonathan Terrell <terrell.jm@gmail.com>",
     "license": "ISC",
-    "version": "0.0.2",
+    "version": "0.0.3",
     "files": [
         "dist"
     ],
@@ -14,6 +14,7 @@
     },
     "types": "./dist/types/index.d.ts",
     "dependencies": {
+        "csv-parse": "^5.3.3"
     },
     "devDependencies": {
         "grunt": "^1.5.3",
