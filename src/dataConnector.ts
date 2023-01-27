@@ -145,7 +145,7 @@ interface FileInfo {
 // Data Connector - Write Interface
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-interface DataConnectorWriteInterface {
+export interface DataConnectorWriteInterface {
     connector: DataConnector;
 }
 
