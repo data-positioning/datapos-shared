@@ -48,9 +48,9 @@ export interface DataConnector extends Connector {
 // Data Connector - Describe
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-type ConnectionDescription = { fileEntries: Record<string, FileEntry>; objectTypes: Record<string, ObjectType> };
+export type ConnectionDescription = { fileEntries: Record<string, FileEntry>; objectTypes: Record<string, ObjectType> };
 
-interface FileEntry {
+export interface FileEntry {
     description?: string;
     fields: Record<string, Field>;
     folderIds: string[];
@@ -58,7 +58,7 @@ interface FileEntry {
     summary?: string;
 }
 
-interface ObjectType {
+export interface ObjectType {
     description?: string;
     fields: Record<string, Field>;
     folderIds: string[];
@@ -73,7 +73,7 @@ interface Field {
     maxLength?: number;
 }
 
-interface DataType {
+export interface DataType {
     maximumLength?: number;
     objectName?: string;
     storageTypeId: DataStorageTypeId;
@@ -153,7 +153,7 @@ export interface DataConnectorWriteInterface {
 // Data Connector - Enumerations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-enum DataStorageTypeId {
+export enum DataStorageTypeId {
     Binary = 'binary',
     Boolean = 'boolean',
     Byte = 'byte',
