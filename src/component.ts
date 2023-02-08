@@ -5,7 +5,7 @@
  * @license ISC
  */
 
-// ...
+// Engine Dependencies
 import type { FirebaseTimestamp } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -20,12 +20,20 @@ export interface Component {
 // Component - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ComponentConfig {
+interface ComponentConfig {
     firstCreatedAt: FirebaseTimestamp;
     id?: string;
     lastUpdatedAt: FirebaseTimestamp;
     statusId: ComponentStatusId;
     typeId: ComponentTypeId;
+}
+
+export interface PrimaryComponentConfig extends ComponentConfig {
+    categoryId: string;
+    label: string;
+    reference: string;
+    summary: string;
+    version: string;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

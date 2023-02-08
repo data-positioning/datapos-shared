@@ -5,7 +5,7 @@
  * @license ISC
  */
 
-// ...
+// Engine Dependencies
 import type { DPAFileSystemFileHandle } from '.';
 import type { Component } from './component';
 import type { DataFormatId, DataUsageTypeId, ParsedValue, PreviewField, ValueDelimiterId } from './connectionEntry';

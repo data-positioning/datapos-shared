@@ -5,8 +5,8 @@
  * @license ISC
  */
 
-// ...
-import { ComponentItem } from '.';
+// Engine Dependencies
+import type { ComponentItem } from '.';
 import type { Connector } from './connector';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

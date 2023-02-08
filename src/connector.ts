@@ -5,7 +5,8 @@
  * @license ISC
  */
 
-// ...
+// Engine Dependencies
+import type { PrimaryComponentConfig } from '.';
 import type { Plugin, PluginItem } from './plugin';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -19,6 +20,24 @@ export interface Connector extends Plugin {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connector - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+interface Implementation {
+    activeConnectionCount: number;
+    canDescribe: boolean;
+    id: string;
+    authMethodId: ConnectorAuthMethodId;
+    label: string;
+    maxConnectionCount: number;
+    params: Record<string, string>[];
+}
+
+export interface ConnectorConfig extends PrimaryComponentConfig {
+    implementations: Implementation[];
+    label: string;
+    logo: string;
+    logoWidth: string;
+    usageId: ConnectorUsageId;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connector - Item

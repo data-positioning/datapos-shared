@@ -5,7 +5,7 @@
  * @license ISC
  */
 
-// ...
+// Engine Dependencies
 import type { Progress, CallbackProperties } from '.';
 import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, ConnectionItem } from './connection';
 import type { ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
