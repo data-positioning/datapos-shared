@@ -30,7 +30,6 @@ interface ComponentConfig {
 
 export interface PrimaryComponentConfig extends ComponentConfig {
     categoryId: string;
-    if: string;
     label: string;
     reference: string;
     summary: string;
