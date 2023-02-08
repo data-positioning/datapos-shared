@@ -6,7 +6,7 @@
  */
 
 // Engine Dependencies
-import type { FirebaseTimestamp } from '.';
+import type { ComponentStatusId, ComponentTypeId, FirebaseTimestamp } from '.';
 import type { ComponentItem, Component } from './component';
 import type { ConnectionEntry } from './connectionEntry';
 import type { ConnectorImplementation, ConnectorItem } from './connector';
@@ -21,7 +21,13 @@ interface Connection extends Component {}
 // Connection - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// TODO
+export interface ComponentConfig {
+    firstCreatedAt: FirebaseTimestamp;
+    id?: string;
+    lastUpdatedAt: FirebaseTimestamp;
+    statusId: ComponentStatusId;
+    typeId: ComponentTypeId;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection - Item

@@ -39,3 +39,14 @@ export enum ComponentTypeId {
     NodeConnector = 'nodeConnector',
     UsageKit = 'usageKit'
 }
+
+export enum ComponentStatusId {
+    Proposed = 'proposed',
+    UnderReview = 'under-review',
+    PreAlpha = 'pre-alpha',
+    Alpha = 'alpha',
+    Beta = 'beta',
+    ReleaseCandidate = 'release-candidate',
+    GeneralAvailability = 'general-availability',
+    Unavailable = 'unavailable'
+}
