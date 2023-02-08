@@ -33,9 +33,7 @@ interface Implementation {
 
 export interface ConnectorConfig extends PrimaryComponentConfig {
     implementations: Implementation[];
-    label: string;
     logo: string;
-    logoWidth: string;
     usageId: ConnectorUsageId;
 }
 
