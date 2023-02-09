@@ -30,9 +30,9 @@ interface ComponentConfig {
 
 export interface PrimaryComponentConfig extends ComponentConfig {
     categoryId: string;
+    description:string;
     label: string;
     reference: string;
-    summary: string;
     version: string;
 }
 
