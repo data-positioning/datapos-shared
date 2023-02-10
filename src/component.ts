@@ -20,7 +20,7 @@ export interface Component {
 // Component - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-interface ComponentConfig {
+export interface ComponentConfig {
     firstCreatedAt: FirebaseTimestamp;
     id: string;
     lastUpdatedAt: FirebaseTimestamp;
