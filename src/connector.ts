@@ -97,7 +97,7 @@ const connectorStatuses: Record<string, ConnectorStatus> = {
 };
 export const lookupConnectorStatus = (id: string): ConnectorStatus => (connectorStatuses[id] ? connectorStatuses[id] : { color: '#984ea3', label: id });
 
-enum ConnectorUsageId {
+export enum ConnectorUsageId {
     Bidirectional = 'bidirectional',
     Destination = 'destination',
     Node = 'node',
