@@ -22,7 +22,7 @@ export interface Component {
 
 interface ComponentConfig {
     firstCreatedAt: FirebaseTimestamp;
-    id?: string;
+    id: string;
     lastUpdatedAt: FirebaseTimestamp;
     statusId: ComponentStatusId;
     typeId: ComponentTypeId;
@@ -30,7 +30,7 @@ interface ComponentConfig {
 
 export interface PrimaryComponentConfig extends ComponentConfig {
     categoryId: string;
-    description:string;
+    description: string;
     label: string;
     reference: string;
     version: string;
