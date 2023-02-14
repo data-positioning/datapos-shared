@@ -62,11 +62,11 @@ export enum ComponentTypeId {
 
 export enum ComponentStatusId {
     Proposed = 'proposed',
-    UnderReview = 'under-review',
-    PreAlpha = 'pre-alpha',
+    UnderReview = 'underReview',
+    PreAlpha = 'preAlpha',
     Alpha = 'alpha',
     Beta = 'beta',
-    ReleaseCandidate = 'release-candidate',
-    GeneralAvailability = 'general-availability',
+    ReleaseCandidate = 'releaseCandidate',
+    GeneralAvailability = 'generalAvailability',
     Unavailable = 'unavailable'
 }
