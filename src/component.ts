@@ -59,6 +59,7 @@ export enum ComponentTypeId {
     ContextModel = 'contextModel',
     DataConnector = 'dataConnector',
     NodeConnector = 'nodeConnector',
+    ResultTemplate = 'resultTemplate',
     UsageKit = 'usageKit'
 }
 
