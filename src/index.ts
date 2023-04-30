@@ -38,7 +38,7 @@ export interface Progress {
 
 export * from './component';
 
-export * from './plugin';
+// export * from './plugin';
 export * from './connector';
 export * from './dataConnector';
 export * from './nodeConnector';
@@ -49,6 +49,10 @@ export * from './connectionEntry';
 export * from './sourceView';
 
 export * from './eventQuery';
+
+export * from './reportTemplate';
+
+export * from './usageKit';
 
 export * from './errorData';
 export * from './utilities';
