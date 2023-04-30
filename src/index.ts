@@ -38,7 +38,7 @@ export interface Progress {
 
 export * from './component';
 
-// export * from './plugin';
+export * from './plugin';
 export * from './connector';
 export * from './dataConnector';
 export * from './nodeConnector';
