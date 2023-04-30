@@ -1,7 +1,7 @@
 /**
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
- * @file datapos-engine-support/src/reportTemplate.ts
+ * @file datapos-engine-support/src/resultTemplate.ts
  * @license ISC
  */
 
@@ -12,6 +12,6 @@ import type { PrimaryComponentConfig } from '.';
 // Report Template - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ReportTemplateConfig extends PrimaryComponentConfig {
+export interface ResultTemplateConfig extends PrimaryComponentConfig {
     placeholder?: string;
 }
