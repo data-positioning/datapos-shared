@@ -6,17 +6,15 @@
 classDiagram
     direction TB
 
-    Component <|-- Connection
-    Component <|-- Connector
-    Component <|-- EventQuery
-    Component <|-- SourceView
-    Connector <|-- DataConnector
-    Connector <|-- NodeConnector
-
     class Component {
         <<interface>>
         id : string
     }
+
+    Component <|-- Connection
+    Component <|-- Connector
+    Component <|-- EventQuery
+    Component <|-- SourceView
 
     class Connection {
         <<interface>>
@@ -26,6 +24,9 @@ classDiagram
         <<interface>>
         version : string
     }
+
+    Connector <|-- DataConnector
+    Connector <|-- NodeConnector
 
     class DataConnector {
         <<interface>>
@@ -62,10 +63,6 @@ classDiagram
 
     class SourceView {
         <<interface>>
-        properties :  SourceViewProperties
-        preview :  SourceViewPreview
-        contentAudit :  SourceViewContentAudit
-        relationshipsAudit :  SourceViewRelationshipsAudit
     }
 ```
 
@@ -75,9 +72,6 @@ classDiagram
 classDiagram
     direction TB
 
-    ComponentConfig <|-- PrimaryComponentConfig
-    PrimaryComponentConfig <|-- ConnectorConfig
-    PrimaryComponentConfig <|-- UsageKitConfig
 
     class ComponentConfig {
         <<interface>>
@@ -90,6 +84,8 @@ classDiagram
         typeId :  ComponentTypeId
     }
 
+    ComponentConfig <|-- PrimaryComponentConfig
+
     class PrimaryComponentConfig {
         <<interface>>
         categoryId :  string
@@ -99,16 +95,13 @@ classDiagram
         version :  string
     }
 
+    PrimaryComponentConfig <|-- ConnectorConfig
+
     class ConnectorConfig {
         <<interface>>
         implementations :  Implementation[]
         logo :  string
         usageId :  ConnectorUsageId
-    }
-
-    class UsageKitConfig {
-        <<interface>>
-        placeholder? :  string
     }
 ```
 
