@@ -332,6 +332,10 @@ classDiagram
 ```mermaid
 classDiagram
     direction TB
+
+    class EventQuery {
+        <<interface>>
+    }
 ```
 
 ## Source View Class
@@ -341,15 +345,16 @@ classDiagram
     direction TB
 
     class Record {
-        placeholder? : string
+        <<interface>>
     }
 
     class PreviewField {
-        placeholder? : string
+        <<interface>>
     }
 
     class SourceView {
-        properties : SourceViewProperties
+         <<interface>>
+       properties : SourceViewProperties
         preview : SourceViewPreview
         contentAudit : SourceViewContentAudit
         relationshipsAudit : SourceViewRelationshipsAudit
@@ -360,6 +365,7 @@ classDiagram
     SourceView "1" --> "*" SourceViewProperties
 
     class SourceViewProperties {
+        <<interface>>
         connectionId? : string
         folderPath? : string
         fileExtension? : string
@@ -375,6 +381,7 @@ classDiagram
     %%SourceView "1" --> "*" SourceViewPreview
 
     class SourceViewPreview {
+        <<interface>>
         asAt : number
         commentPrefixId? : string
         dataFormatId : DataFormatId
@@ -403,6 +410,7 @@ classDiagram
     %%SourceView "1" --> "*" SourceViewContentAudit
 
     class SourceViewContentAudit {
+        <<interface>>
         asAt : number
         fields : SourceViewContentAuditField[]
         lineCount : number
@@ -413,6 +421,7 @@ classDiagram
     PreviewField <|-- SourceViewContentAuditField
 
     class SourceViewContentAuditField {
+        <<interface>>
         dataTypeId?: DataTypeId;
         id?: string;
         invalidValueCount: number;
@@ -426,6 +435,6 @@ classDiagram
     %%SourceView "1" --> "*" SourceViewRelationshipsAudit
 
     class SourceViewRelationshipsAudit {
-        placeholder? : string
+        <<interface>>
     }
 ```
