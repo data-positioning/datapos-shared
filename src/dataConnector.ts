@@ -10,7 +10,7 @@
 import type { Progress, CallbackProperties } from '.';
 import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, ConnectionItem } from './connection';
 import type { ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
-import { DataUsageTypeId } from './connectionEntry';
+import { DataUsageId } from './connectionEntry';
 import type { Connector } from './connector';
 import type { SourceViewProperties } from './sourceView';
 
@@ -79,7 +79,7 @@ export interface DataType {
     maximumLength?: number;
     objectName?: string;
     storageTypeId: DataStorageTypeId;
-    usageTypeId: DataUsageTypeId;
+    usageTypeId: DataUsageId;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -179,36 +179,36 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
     // See: https://www.odata.org/documentation/odata-version-2-0/overview/
     switch (type) {
         case 'Edm.Binary':
-            return { storageTypeId: DataStorageTypeId.Binary, usageTypeId: DataUsageTypeId.Binary };
+            return { storageTypeId: DataStorageTypeId.Binary, usageTypeId: DataUsageId.Binary };
         case 'Edm.Boolean':
-            return { storageTypeId: DataStorageTypeId.Boolean, usageTypeId: DataUsageTypeId.Boolean };
+            return { storageTypeId: DataStorageTypeId.Boolean, usageTypeId: DataUsageId.Boolean };
         case 'Edm.Byte':
-            return { storageTypeId: DataStorageTypeId.Byte, usageTypeId: DataUsageTypeId.WholeNumber };
+            return { storageTypeId: DataStorageTypeId.Byte, usageTypeId: DataUsageId.WholeNumber };
         case 'Edm.DateTime':
-            return { storageTypeId: DataStorageTypeId.DateTime, usageTypeId: DataUsageTypeId.DateTime };
+            return { storageTypeId: DataStorageTypeId.DateTime, usageTypeId: DataUsageId.DateTime };
         case 'Edm.DateTimeOffset':
-            return { storageTypeId: DataStorageTypeId.DateTimeOffset, usageTypeId: DataUsageTypeId.DateTimeOffset };
+            return { storageTypeId: DataStorageTypeId.DateTimeOffset, usageTypeId: DataUsageId.DateTimeOffset };
         case 'Edm.Decimal':
-            return { storageTypeId: DataStorageTypeId.Decimal, usageTypeId: DataUsageTypeId.DecimalNumber };
+            return { storageTypeId: DataStorageTypeId.Decimal, usageTypeId: DataUsageId.DecimalNumber };
         case 'Edm.Double':
-            return { storageTypeId: DataStorageTypeId.Double, usageTypeId: DataUsageTypeId.DecimalNumber };
+            return { storageTypeId: DataStorageTypeId.Double, usageTypeId: DataUsageId.DecimalNumber };
         case 'Edm.Guid':
-            return { storageTypeId: DataStorageTypeId.String, usageTypeId: DataUsageTypeId.String };
+            return { storageTypeId: DataStorageTypeId.String, usageTypeId: DataUsageId.String };
         case 'Edm.Int16':
-            return { storageTypeId: DataStorageTypeId.Int16, usageTypeId: DataUsageTypeId.WholeNumber };
+            return { storageTypeId: DataStorageTypeId.Int16, usageTypeId: DataUsageId.WholeNumber };
         case 'Edm.Int32':
-            return { storageTypeId: DataStorageTypeId.Int32, usageTypeId: DataUsageTypeId.WholeNumber };
+            return { storageTypeId: DataStorageTypeId.Int32, usageTypeId: DataUsageId.WholeNumber };
         case 'Edm.Int64':
-            return { storageTypeId: DataStorageTypeId.Int64, usageTypeId: DataUsageTypeId.WholeNumber };
+            return { storageTypeId: DataStorageTypeId.Int64, usageTypeId: DataUsageId.WholeNumber };
         case 'Edm.SByte':
-            return { storageTypeId: DataStorageTypeId.Int8, usageTypeId: DataUsageTypeId.WholeNumber };
+            return { storageTypeId: DataStorageTypeId.Int8, usageTypeId: DataUsageId.WholeNumber };
         case 'Edm.Single':
-            return { storageTypeId: DataStorageTypeId.Single, usageTypeId: DataUsageTypeId.DecimalNumber };
+            return { storageTypeId: DataStorageTypeId.Single, usageTypeId: DataUsageId.DecimalNumber };
         case 'Edm.String':
-            return { maximumLength, storageTypeId: DataStorageTypeId.String, usageTypeId: DataUsageTypeId.String };
+            return { maximumLength, storageTypeId: DataStorageTypeId.String, usageTypeId: DataUsageId.String };
         case 'Edm.Time':
-            return { storageTypeId: DataStorageTypeId.Time, usageTypeId: DataUsageTypeId.Time };
+            return { storageTypeId: DataStorageTypeId.Time, usageTypeId: DataUsageId.Time };
         default:
-            return { storageTypeId: DataStorageTypeId.Unknown, usageTypeId: DataUsageTypeId.Unknown };
+            return { storageTypeId: DataStorageTypeId.Unknown, usageTypeId: DataUsageId.Unknown };
     }
 };
