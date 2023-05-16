@@ -1,14 +1,29 @@
 # Data Positioning Engine Support
 
-## Component Class Hierarchy
+## Component Class Hierarchies
 
 ```mermaid
 classDiagram
-    direction TB
+    direction LR
+
+    class ComponentConfig {
+        <<interface>>
+    }
+
+    ComponentConfig <|-- PrimaryComponentConfig
+
+    class PrimaryComponentConfig {
+        <<interface>>
+    }
+
+    PrimaryComponentConfig <|-- ConnectorConfig
+
+    class ConnectorConfig {
+        <<interface>>
+    }
 
     class Component {
         <<interface>>
-        id : string
     }
 
     Component <|-- Connection
@@ -22,40 +37,7 @@ classDiagram
 
     class Connector {
         <<interface>>
-        version : string
     }
-
-    Connector <|-- DataConnector
-    Connector <|-- NodeConnector
-
-    class DataConnector {
-        <<interface>>
-        abortController? :  AbortController
-        readonly connectionItem :  ConnectionItem
-        abort?() void
-        authenticate?() Window
-        describe?() Promise~ConnectionDescription~
-        getCreateInterface?() DataConnectorCreateInterface
-        getPreviewInterface?() DataConnectorPreviewInterface
-        getReadInterface?() DataConnectorReadInterface
-        getWriteInterface?() DataConnectorWriteInterface
-        retrieveEntries?() Promise~ConnectionEntriesPage~
-    }
-
-    class NodeConnector {
-        <<interface>>
-        deleteNodeItem() Promise~void~
-        getNodeItem() Promise~NodeItem~
-        listNodeItems() Promise~NodeItem[]~
-        upsertNodeItem() Promise~NodeItem~
-        getNodeItemProperties() Promise~NodeItemProperties~
-        upsertNodeItemProperties() Promise~NodeItemProperties~
-        clearNodeItemData() Promise~void~
-        countNodeItemData() Promise~number~
-        determineNodeItemData() Promise~unknown~
-        insertNodeItemData() Promise~void~
-        retrieveNodeItemData() Promise~NodeDataPageResults~
-   }
 
     class EventQuery {
         <<interface>>
@@ -66,12 +48,11 @@ classDiagram
     }
 ```
 
-## Component Configuration Class Hierarchy
+## Connector Classes
 
 ```mermaid
 classDiagram
     direction TB
-
 
     class ComponentConfig {
         <<interface>>
@@ -105,7 +86,7 @@ classDiagram
     }
 ```
 
-## Component Item Class Hierarchy
+## Connector Classes
 
 ```mermaid
 classDiagram
@@ -155,6 +136,57 @@ classDiagram
         statusId :  string
         usageId :  ConnectorUsageId
     }
+```
+
+## Connector Classes
+
+```mermaid
+classDiagram
+    direction TB
+
+    class Component {
+        <<interface>>
+        id : string
+    }
+
+    Component <|-- Connector
+
+    class Connector {
+        <<interface>>
+        version : string
+    }
+
+    Connector <|-- DataConnector
+    Connector <|-- NodeConnector
+
+    class DataConnector {
+        <<interface>>
+        abortController? :  AbortController
+        readonly connectionItem :  ConnectionItem
+        abort?() void
+        authenticate?() Window
+        describe?() Promise~ConnectionDescription~
+        getCreateInterface?() DataConnectorCreateInterface
+        getPreviewInterface?() DataConnectorPreviewInterface
+        getReadInterface?() DataConnectorReadInterface
+        getWriteInterface?() DataConnectorWriteInterface
+        retrieveEntries?() Promise~ConnectionEntriesPage~
+    }
+
+    class NodeConnector {
+        <<interface>>
+        deleteNodeItem() Promise~void~
+        getNodeItem() Promise~NodeItem~
+        listNodeItems() Promise~NodeItem[]~
+        upsertNodeItem() Promise~NodeItem~
+        getNodeItemProperties() Promise~NodeItemProperties~
+        upsertNodeItemProperties() Promise~NodeItemProperties~
+        clearNodeItemData() Promise~void~
+        countNodeItemData() Promise~number~
+        determineNodeItemData() Promise~unknown~
+        insertNodeItemData() Promise~void~
+        retrieveNodeItemData() Promise~NodeDataPageResults~
+   }
 ```
 
 ## Connection Entry Class
