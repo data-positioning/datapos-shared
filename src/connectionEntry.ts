@@ -39,7 +39,7 @@ export interface ConnectionEntryPreview {
 export type ParsedValue = boolean | number | string | null;
 
 export interface PreviewField {
-    dataUsageTypeId?: DataUsageId;
+    dataTypeId?: DataTypeId;
     id?: string;
     label?: string;
     previewValues?: PreviewValue[];
@@ -76,7 +76,7 @@ export enum DataFormatId {
     XML = 'xml'
 }
 
-export enum DataUsageId {
+export enum DataTypeId {
     Binary = 'binary',
     Boolean = 'boolean',
     Date = 'date',

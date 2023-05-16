@@ -208,7 +208,7 @@ classDiagram
 
     class PreviewField {
         <<interface>>
-        dataUsageTypeId? :  DataUsageId
+        dataTypeId? :  DataTypeId
         id? :  string
         label? :  string
         previewValues? :  PreviewValue[]
@@ -257,7 +257,7 @@ classDiagram
         XML
     }
 
-    class DataUsageId {
+    class DataTypeId {
         <<enumeration>>
         Binary
         Boolean
