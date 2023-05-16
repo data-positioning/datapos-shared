@@ -234,6 +234,11 @@ classDiagram
         File
         Folder
     }
+```
+
+```mermaid
+classDiagram
+    direction TB
 
     class DataFormatId {
         <<enumeration>>
@@ -246,11 +251,6 @@ classDiagram
         XLSX
         XML
     }
-```
-
-```mermaid
-classDiagram
-    direction TB
 
     class DataUsageTypeId {
         <<enumeration>>
