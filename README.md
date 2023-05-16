@@ -39,6 +39,17 @@ classDiagram
         <<interface>>
     }
 
+    Connector <|-- DataConnector
+    Connector <|-- NodeConnector
+
+    class DataConnector {
+        <<interface>>
+    }
+
+    class NodeConnector {
+        <<interface>>
+   }
+
     class EventQuery {
         <<interface>>
     }
