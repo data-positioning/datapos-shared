@@ -21,7 +21,7 @@ interface SourceView extends Component {
     relationshipsAudit: SourceViewRelationshipsAudit;
 }
 
-export interface SourceViewProperties extends Record<string, unknown> {
+export interface SourceViewProperties {
     connectionId?: string;
     folderPath?: string;
     fileExtension?: string;

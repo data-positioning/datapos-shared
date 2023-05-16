@@ -321,6 +321,12 @@ classDiagram
 classDiagram
     direction TB
 
+    class Component {
+        <<interface>>
+    }
+
+    Component <|-- EventQuery
+
     class EventQuery {
         <<interface>>
     }
@@ -331,6 +337,12 @@ classDiagram
 ```mermaid
 classDiagram
     direction TB
+
+    class Component {
+        <<interface>>
+    }
+
+    Component <|-- SourceView
 
     class Record {
         <<interface>>
@@ -408,15 +420,17 @@ classDiagram
 
     PreviewField <|-- SourceViewContentAuditField
 
+    SourceViewPreview "1" --> "*" PreviewField
+
     class SourceViewContentAuditField {
         <<interface>>
-        dataTypeId?: DataTypeId;
-        id?: string;
-        invalidValueCount: number;
-        missingValueCount: number;
-        uniqueValueCount: number;
-        validValueCount: number;
-        values: Record<string, number>;
+        dataTypeId? : DataTypeId
+        id? : string
+        invalidValueCount : number
+        missingValueCount : number
+        uniqueValueCount : number
+        validValueCount : number
+        values : Record~number~
     }
 
     SourceViewProperties "1" --> "*" SourceViewRelationshipsAudit
