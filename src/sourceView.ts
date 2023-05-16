@@ -6,15 +6,15 @@
  */
 
 // Engine Dependencies
-import type { DPAFileSystemFileHandle } from '.';
 import type { Component } from './component';
+import type { DPAFileSystemFileHandle } from '.';
 import type { DataFormatId, DataTypeId, ParsedValue, PreviewField, ValueDelimiterId } from './connectionEntry';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-interface SourceView extends Component {
+export interface SourceView extends Component {
     properties: SourceViewProperties;
     preview: SourceViewPreview;
     contentAudit: SourceViewContentAudit;

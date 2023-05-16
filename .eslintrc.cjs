@@ -8,13 +8,13 @@
 /* eslint-env node */
 
 module.exports = {
-    root: true,
     extends: ['eslint:recommended'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 'latest'
     },
     plugins: ['@typescript-eslint', 'import'],
+    root: true,
     rules: {
         'no-unused-vars': 'warn',
         'sort-imports': ['warn', { allowSeparatedGroups: true, ignoreCase: true, memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'] }]
