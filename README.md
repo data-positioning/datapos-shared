@@ -216,17 +216,11 @@ classDiagram
     }
 ```
 
-```mermaid
-classDiagram
-    direction RL
-```
-
-<div style="display:flex; justify-content: space-around;width:100%">
-<div>
+## Connection Entry Enumerations
 
 ```mermaid
 classDiagram
-    direction RL
+    direction TB
 
     class ConnectionEntryPreviewTypeId {
         <<enumeration>>
@@ -254,12 +248,9 @@ classDiagram
     }
 ```
 
-</div> 
-<div>
-
 ```mermaid
 classDiagram
-    direction RL
+    direction TB
 
     class DataUsageTypeId {
         <<enumeration>>
@@ -291,6 +282,3 @@ classDiagram
         VerticalBar
     }
 ```
-
-</div>
-</div>
