@@ -6,12 +6,12 @@
  */
 
 // Engine Dependencies
-import type { PrimaryComponentConfig } from '.';
+import type { ComponentConfig } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Report Template - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ResultTemplateConfig extends PrimaryComponentConfig {
+export interface ResultTemplateConfig extends ComponentConfig {
     placeholder?: string;
 }

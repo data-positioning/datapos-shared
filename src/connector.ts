@@ -7,7 +7,7 @@
 
 // Engine Dependencies
 import type { PluginItem } from './plugin';
-import type { Component, PrimaryComponentConfig } from '.';
+import type { Component, ComponentConfig } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connector
@@ -21,7 +21,7 @@ export interface Connector extends Component {
 // Connector - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ConnectorConfig extends PrimaryComponentConfig {
+export interface ConnectorConfig extends ComponentConfig {
     implementations: Implementation[];
     logo: string;
     usageId: ConnectorUsageId;

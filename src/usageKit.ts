@@ -6,12 +6,12 @@
  */
 
 // Engine Dependencies
-import type { PrimaryComponentConfig } from '.';
+import type { ComponentConfig } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Usage Kit - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface UsageKitConfig extends PrimaryComponentConfig {
+export interface UsageKitConfig extends ComponentConfig {
     placeholder?: string;
 }

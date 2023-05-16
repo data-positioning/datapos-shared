@@ -30,13 +30,13 @@ export interface ComponentConfig {
     typeId: ComponentTypeId;
 }
 
-export interface PrimaryComponentConfig extends ComponentConfig {
-    categoryId: string;
-    description: string;
-    label: string;
-    reference: string;
-    version: string;
-}
+// export interface PrimaryComponentConfig extends ComponentConfig {
+//     categoryId: string;
+//     description: string;
+//     label: string;
+//     reference: string;
+//     version: string;
+// }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Component - Item
