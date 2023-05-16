@@ -219,6 +219,14 @@ classDiagram
 ```mermaid
 classDiagram
     direction RL
+```
+
+<div style="display:flex; justify-content: space-around;width:100%">
+<div>
+
+```mermaid
+classDiagram
+    direction RL
 
     class ConnectionEntryPreviewTypeId {
         <<enumeration>>
@@ -244,6 +252,14 @@ classDiagram
         XLSX
         XML
     }
+```
+
+</div> 
+<div>
+
+```mermaid
+classDiagram
+    direction RL
 
     class DataUsageTypeId {
         <<enumeration>>
@@ -276,4 +292,5 @@ classDiagram
     }
 ```
 
-</style>
+</div>
+</div>
