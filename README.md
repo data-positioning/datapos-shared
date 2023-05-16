@@ -168,7 +168,7 @@ classDiagram
 
 ```mermaid
 classDiagram
-    direction TB
+    direction LR
 
     class ConnectionEntry {
         <<interface>>
@@ -189,6 +189,9 @@ classDiagram
         typeId? :  ConnectionEntryTypeId
     }
 
+    ConnectionEntryPreview "1" --> "*" ParsedValue
+    ConnectionEntryPreview "1" --> "*" PreviewField
+
     class ConnectionEntryPreview {
         <<interface>>
         data :  ParsedValue[][] | Uint8Array
@@ -198,13 +201,13 @@ classDiagram
 
     class ParsedValue {
         <<type>>
-        boolean | number | string | null
+        boolean
+        number
+        string
+        null
     }
-```
 
-```mermaid
-classDiagram
-    direction TB
+    PreviewField "1" --> "*" PreviewValue
 
     class PreviewField {
         <<interface>>
@@ -285,5 +288,108 @@ classDiagram
         Underscore
         UnitSeparator
         VerticalBar
+    }
+```
+
+## Entity Event Class
+
+```mermaid
+classDiagram
+    direction TB
+```
+
+## Source View Class
+
+```mermaid
+classDiagram
+    direction TB
+
+    class Record {
+        placeholder? : string
+    }
+
+    class PreviewField {
+        placeholder? : string
+    }
+
+    class SourceView {
+        properties : SourceViewProperties
+        preview : SourceViewPreview
+        contentAudit : SourceViewContentAudit
+        relationshipsAudit : SourceViewRelationshipsAudit
+    }
+
+    Record <|-- SourceViewProperties
+
+    SourceView "1" --> "*" SourceViewProperties
+
+    class SourceViewProperties {
+        connectionId? : string
+        folderPath? : string
+        fileExtension? : string
+        fileHandle? : DPAFileSystemFileHandle
+        fileId? : string
+        fileName? : string
+        preview? : SourceViewPreview
+        contentAudit? : SourceViewContentAudit
+        relationshipsAudit? : SourceViewRelationshipsAudit
+    }
+
+    SourceViewProperties "1" --> "*" SourceViewPreview
+    %%SourceView "1" --> "*" SourceViewPreview
+
+    class SourceViewPreview {
+        asAt : number
+        commentPrefixId? : string
+        dataFormatId : DataFormatId
+        fields? : PreviewField[]
+        encodingConfidenceLevel? : number
+        encodingId? : string
+        hasHeaderLine? : boolean
+        lineDelimiterId? : string
+        linesToSkipBeforeHeader? : number
+        linesToSkipAfterHeader? : number
+        linesToSkipAtEndOfFile? : number
+        previewSize : number
+        quoteEscapeCharacterId? : string
+        quoteMarkId? : string
+        records? : ParsedValue[][]
+        skipEmptyLines? : boolean
+        skipLinesWithEmptyValues? : boolean
+        skipLinesWithErrors? : boolean
+        text? : string
+        totalSize? : number
+        valueDelimiterId? : ValueDelimiterId
+        valueTrimMethodId? : string
+    }
+
+    SourceViewProperties "1" --> "*" SourceViewContentAudit
+    %%SourceView "1" --> "*" SourceViewContentAudit
+
+    class SourceViewContentAudit {
+        asAt : number
+        fields : SourceViewContentAuditField[]
+        lineCount : number
+    }
+
+    SourceViewContentAudit "1" --> "*" SourceViewContentAuditField
+
+    PreviewField <|-- SourceViewContentAuditField
+
+    class SourceViewContentAuditField {
+        dataTypeId?: DataTypeId;
+        id?: string;
+        invalidValueCount: number;
+        missingValueCount: number;
+        uniqueValueCount: number;
+        validValueCount: number;
+        values: Record<string, number>;
+    }
+
+    SourceViewProperties "1" --> "*" SourceViewRelationshipsAudit
+    %%SourceView "1" --> "*" SourceViewRelationshipsAudit
+
+    class SourceViewRelationshipsAudit {
+        placeholder? : string
     }
 ```

@@ -50,9 +50,9 @@ export * from './sourceView';
 
 export * from './eventQuery';
 
-export * from './resultTemplate';
+// export * from './resultTemplate';
 
-export * from './usageKit';
+// export * from './usageKit';
 
 export * from './errorData';
 export * from './utilities';
