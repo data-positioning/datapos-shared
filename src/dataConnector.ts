@@ -1,8 +1,9 @@
 /**
+ * @file datapos-engine-support/src/dataConnector.ts
+ * @description
+ * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
- * @file datapos-engine-support/src/dataConnector.ts
- * @license ISC
  */
 
 // Engine Dependencies
@@ -16,10 +17,6 @@ import type { SourceViewProperties } from './sourceView';
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Data Connector
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export interface DataConnectorConstructor {
-    new (connectionItem: ConnectionItem): DataConnector;
-}
 
 export interface DataConnector extends Connector {
     abortController?: AbortController;
@@ -43,6 +40,10 @@ export interface DataConnector extends Connector {
         properties: ConnectionEntriesRetrievalProperties,
         folderChildEntryCountCallback?: (folderChildEntryCount: CallbackProperties) => void
     ): Promise<ConnectionEntriesPage>;
+}
+
+export interface DataConnectorConstructor {
+    new (connectionItem: ConnectionItem): DataConnector;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -1,8 +1,9 @@
 /**
+ * @file datapos-engine-support/src/nodeConnector.ts
+ * @description
+ * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
- * @file datapos-engine-support/src/nodeConnector.ts
- * @license ISC
  */
 
 // Engine Dependencies
@@ -12,20 +13,6 @@ import type { Connector } from './connector';
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Node Connector
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export enum NodeItemTypeId {
-    Dimension = 'dimension',
-    Entity = 'entity',
-    EventQuery = 'eventQuery',
-    SourceView = 'sourceView',
-    Workbook = 'workbook'
-}
-
-export enum NodeDataTypeId {
-    Data = 'data',
-    Events = 'events',
-    Facts = 'facts'
-}
 
 export interface NodeConnector extends Connector {
     // Node Item(s) - Delete List & Upsert
@@ -58,9 +45,17 @@ export interface NodeConnectorConstructor {
     new (): NodeConnector;
 }
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Node Connector -
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 export type NodeItem = ComponentItem;
 
 export type NodeItemProperties = Record<string, unknown>;
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Node Connector -
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface NodeQuery {
     select: NodeQueryColumns;
@@ -85,8 +80,30 @@ export interface NodeQueryExpressionValue {
     value: boolean | number | string | null | unknown;
 }
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Node Connector -
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 export interface NodeDataPageResults {
     after?: number;
     before?: number;
     data: Record<string, unknown>[];
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Node Connector - Enumerations
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export enum NodeDataTypeId {
+    Data = 'data',
+    Events = 'events',
+    Facts = 'facts'
+}
+
+export enum NodeItemTypeId {
+    Dimension = 'dimension',
+    Entity = 'entity',
+    EventQuery = 'eventQuery',
+    SourceView = 'sourceView',
+    Workbook = 'workbook'
 }

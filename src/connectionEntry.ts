@@ -2,7 +2,7 @@
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
  * @file datapos-engine-support/src/connectionEntry.ts
- * @license ISC
+ * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
  */
 
 // Engine Dependencies
@@ -42,7 +42,12 @@ export interface PreviewField {
     dataUsageTypeId?: DataUsageTypeId;
     id?: string;
     label?: string;
-    previewValues?: { id: string; label: string }[];
+    previewValues?: PreviewValue[];
+}
+
+interface PreviewValue {
+    id: string;
+    label: string;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

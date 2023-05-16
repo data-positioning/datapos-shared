@@ -2,7 +2,7 @@
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
  * @file datapos-engine-support/src/connector.ts
- * @license ISC
+ * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
  */
 
 // Engine Dependencies
@@ -21,6 +21,12 @@ export interface Connector extends Plugin {
 // Connector - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+export interface ConnectorConfig extends PrimaryComponentConfig {
+    implementations: Implementation[];
+    logo: string;
+    usageId: ConnectorUsageId;
+}
+
 interface Implementation {
     activeConnectionCount: number;
     canDescribe: boolean;
@@ -29,12 +35,6 @@ interface Implementation {
     label: string;
     maxConnectionCount: number;
     params: Record<string, string>[];
-}
-
-export interface ConnectorConfig extends PrimaryComponentConfig {
-    implementations: Implementation[];
-    logo: string;
-    usageId: ConnectorUsageId;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

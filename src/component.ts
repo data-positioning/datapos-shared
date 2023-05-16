@@ -2,7 +2,7 @@
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
  * @file datapos-engine-support/src/component.ts
- * @license ISC
+ * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
  */
 
 // Engine Dependencies
@@ -21,9 +21,9 @@ export interface Component {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface ComponentConfig {
-    firstCreatedAt: FirebaseTimestamp;
     id: string;
     label?: string;
+    firstCreatedAt: FirebaseTimestamp;
     lastUpdatedAt: FirebaseTimestamp;
     logo?: string;
     statusId: ComponentStatusId;

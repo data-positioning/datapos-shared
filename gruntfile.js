@@ -2,7 +2,7 @@
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
  * @file datapos-engine-support/gruntfile.js
- * @license ISC
+ * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
  */
 
 module.exports = (grunt) => {
@@ -15,7 +15,7 @@ module.exports = (grunt) => {
             identifyLicensesUsingNLF: { args: ['nlf', '-d'], cmd: 'npx' },
             lint: { args: ['WARNING: Lint is NOT implemented.'], cmd: 'echo' },
             npmPublish: { args: ['publish'], cmd: 'npx' },
-            outdated: { args: ['npm', 'outdated'], cmd: 'npx' },
+            outdated: { args: ['npm', 'outdated'], cmd: 'npx' }
         },
         shell: {
             build: {
