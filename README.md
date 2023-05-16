@@ -10,13 +10,7 @@ classDiagram
         <<interface>>
     }
 
-    ComponentConfig <|-- PrimaryComponentConfig
-
-    class PrimaryComponentConfig {
-        <<interface>>
-    }
-
-    PrimaryComponentConfig <|-- ConnectorConfig
+    ComponentConfig <|-- ConnectorConfig
 
     class ConnectorConfig {
         <<interface>>
@@ -76,21 +70,15 @@ classDiagram
         typeId :  ComponentTypeId
     }
 
-    ComponentConfig <|-- PrimaryComponentConfig
+    ComponentConfig <|-- ConnectorConfig
 
-    class PrimaryComponentConfig {
+    class ConnectorConfig {
         <<interface>>
         categoryId :  string
         description :  string
         label :  string
         reference :  string
         version :  string
-    }
-
-    PrimaryComponentConfig <|-- ConnectorConfig
-
-    class ConnectorConfig {
-        <<interface>>
         implementations :  Implementation[]
         logo :  string
         usageId :  ConnectorUsageId
