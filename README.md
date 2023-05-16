@@ -81,34 +81,34 @@ classDiagram
 
     class ComponentConfig {
         <<interface>>
-        id string
-        label? string
-        firstCreatedAt FirebaseTimestamp
-        lastUpdatedAt FirebaseTimestamp
-        logo? string
-        statusId ComponentStatusId
-        typeId ComponentTypeId
+        id :  string
+        label? :  string
+        firstCreatedAt :  FirebaseTimestamp
+        lastUpdatedAt :  FirebaseTimestamp
+        logo? :  string
+        statusId :  ComponentStatusId
+        typeId :  ComponentTypeId
     }
 
     class PrimaryComponentConfig {
         <<interface>>
-        categoryId string
-        description string
-        label string
-        reference string
-        version string
+        categoryId :  string
+        description :  string
+        label :  string
+        reference :  string
+        version :  string
     }
 
     class ConnectorConfig {
         <<interface>>
-        implementations Implementation[]
-        logo string
-        usageId ConnectorUsageId
+        implementations :  Implementation[]
+        logo :  string
+        usageId :  ConnectorUsageId
     }
 
     class UsageKitConfig {
         <<interface>>
-        placeholder? string;
+        placeholder? :  string
     }
 ```
 
@@ -124,95 +124,100 @@ classDiagram
 
     class ConnectionItem {
         <<interface>>
-        authorization? Record~ConnectionItemAuthorization~
-        connectorItem ConnectorItem
-        implementation ConnectorImplementation
-        implementationId? string
-        notation? string
-        verifiedAt? FirebaseTimestamp
+        authorization? :  Record~ConnectionItemAuthorization~
+        connectorItem :  ConnectorItem
+        implementation :  ConnectorImplementation
+        implementationId? :  string
+        notation? :  string
+        verifiedAt? :  FirebaseTimestamp
     }
 
     class ComponentItem {
         <<interface>>
-        firstCreatedAt FirebaseTimestamp
-        id string
-        lastUpdatedAt FirebaseTimestamp
-        summary? string
-        typeId ComponentTypeId
+        firstCreatedAt :  FirebaseTimestamp
+        id :  string
+        lastUpdatedAt :  FirebaseTimestamp
+        summary? :  string
+        typeId :  ComponentTypeId
     }
 
     class PluginItem {
         <<interface>>
-        categoryLabel string
-        label string
-        reference string
-        version string
+        categoryLabel :  string
+        label :  string
+        reference :  string
+        version :  string
     }
 
     class ConnectorItem {
         <<interface>>
-        activeConnectionCount number
-        canDescribe boolean
-        categoryId string
-        hasOnlyAuthImplementations boolean
-        implementations ConnectorImplementation[]
-        logo string
-        logoWidth string
-        maxConnectionCount number
-        statusId string
-        usageId ConnectorUsageId
+        activeConnectionCount :  number
+        canDescribe :  boolean
+        categoryId :  string
+        hasOnlyAuthImplementations :  boolean
+        implementations :  ConnectorImplementation[]
+        logo :  string
+        logoWidth :  string
+        maxConnectionCount :  number
+        statusId :  string
+        usageId :  ConnectorUsageId
     }
 ```
 
-## Connection Entry Class Hierarchy
+## Connection Entry Class
 
 ```mermaid
 classDiagram
-    direction RL
+    direction TB
 
     class ConnectionEntry {
         <<interface>>
-        childEntryCount? number
-        folderPath? string
-        encodingId? string
-        extension? string
-        handle? DPAFileSystemFileHandle
-        id? string
-        label? string
-        lastModifiedAt? number
-        mimeType? string
-        name? string
-        params? Record~unknown~
-        paramsString? string
-        referenceId? string
-        size? number
-        typeId? ConnectionEntryTypeId
+        childEntryCount? :  number
+        folderPath? :  string
+        encodingId? :  string
+        extension? :  string
+        handle? :  DPAFileSystemFileHandle
+        id? :  string
+        label? :  string
+        lastModifiedAt? :  number
+        mimeType? :  string
+        name? :  string
+        params? :  Record~unknown~
+        paramsString? :  string
+        referenceId? :  string
+        size? :  number
+        typeId? :  ConnectionEntryTypeId
     }
 
     class ConnectionEntryPreview {
         <<interface>>
-        data ParsedValue[][] | Uint8Array
-        fields PreviewField[]
-        typeId ConnectionEntryPreviewTypeId
+        data :  ParsedValue[][] | Uint8Array
+        fields :  PreviewField[]
+        typeId :  ConnectionEntryPreviewTypeId
     }
 
     class ParsedValue {
         <<type>>
         boolean | number | string | null
     }
+```
+
+```mermaid
+classDiagram
+    direction TB
 
     class PreviewField {
         <<interface>>
-        dataUsageTypeId? DataUsageTypeId
-        id? string
-        label? string
-        previewValues? PreviewValue[]
+        dataUsageTypeId? :  DataUsageTypeId
+        id? :  string
+        label? :  string
+        previewValues? :  PreviewValue[]
     }
 
     class PreviewValue {
         <<interface>>
-        id string
-        label string
+        id :  string
+        label :  string
     }
 ```
 
