@@ -42,13 +42,13 @@ export interface ComponentConfig {
 // Component - Item
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ComponentItem {
-    firstCreatedAt: FirebaseTimestamp;
-    id: string;
-    lastUpdatedAt: FirebaseTimestamp;
-    summary?: string;
-    typeId: ComponentTypeId;
-}
+// export interface ComponentItem {
+//     firstCreatedAt: FirebaseTimestamp;
+//     id: string;
+//     lastUpdatedAt: FirebaseTimestamp;
+//     summary?: string;
+//     typeId: ComponentTypeId;
+// }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Component - Enumerations

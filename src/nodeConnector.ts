@@ -7,7 +7,7 @@
  */
 
 // Engine Dependencies
-import type { ComponentItem } from '.';
+// import type { ComponentItem } from '.';
 import type { Connector } from './connector';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -17,9 +17,9 @@ import type { Connector } from './connector';
 export interface NodeConnector extends Connector {
     // Node Item(s) - Delete List & Upsert
     deleteNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<void>;
-    getNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<NodeItem>;
-    listNodeItems(nodeItemTypeId?: NodeItemTypeId): Promise<NodeItem[]>;
-    upsertNodeItem(nodeItemTypeId: NodeItemTypeId, nodeItem: NodeItem | Partial<NodeItem>, id?: string): Promise<NodeItem>;
+    // getNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<NodeItem>;
+    // listNodeItems(nodeItemTypeId?: NodeItemTypeId): Promise<NodeItem[]>;
+    // upsertNodeItem(nodeItemTypeId: NodeItemTypeId, nodeItem: NodeItem | Partial<NodeItem>, id?: string): Promise<NodeItem>;
 
     // Node Item Properties - Get & Upsert
     getNodeItemProperties(nodeItemTypeId: NodeItemTypeId, id: string): Promise<NodeItemProperties>;
@@ -49,7 +49,7 @@ export interface NodeConnectorConstructor {
 // Node Connector -
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export type NodeItem = ComponentItem;
+// export type NodeItem = ComponentItem;
 
 export type NodeItemProperties = Record<string, unknown>;
 

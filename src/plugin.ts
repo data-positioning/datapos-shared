@@ -6,7 +6,7 @@
  */
 
 // Engine Dependencies
-import type { Component, ComponentItem } from './component';
+import type { Component } from './component';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Plugin
@@ -18,9 +18,9 @@ export interface Plugin extends Component {}
 // Plugin - Item
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface PluginItem extends ComponentItem {
-    categoryLabel: string;
-    label: string;
-    reference: string;
-    version: string;
-}
+// export interface PluginItem extends ComponentItem {
+//     categoryLabel: string;
+//     label: string;
+//     reference: string;
+//     version: string;
+// }

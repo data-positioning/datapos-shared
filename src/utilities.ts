@@ -7,7 +7,7 @@
 
 // Engine Dependencies
 import type { ErrorData } from './errorData';
-import type { ConnectionItem } from './connection';
+// import type { ConnectionItem } from './connection';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Utilities - Extract
@@ -151,7 +151,8 @@ export const lookupMimeTypeForFileExtension = (extension: string): string => {
  * @param vendorRefreshURI
  * @returns The connection access token.
  */
-export const establishVendorAccessToken = async (connectionItem: ConnectionItem, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
+// export const establishVendorAccessToken = async (connectionItem: ConnectionItem, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
+export const establishVendorAccessToken = async (connectionItem: any, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
     let accessToken;
 
     // If the current dropbox access token expires within 5 minutes then refresh it and return the new one, otherwise return the current one.

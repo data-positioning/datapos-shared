@@ -6,7 +6,7 @@
  */
 
 // Engine Dependencies
-import type { PluginItem } from './plugin';
+// import type { PluginItem } from './plugin';
 import type { Component, ComponentConfig } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -41,18 +41,18 @@ interface Implementation {
 // Connector - Item
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ConnectorItem extends PluginItem {
-    activeConnectionCount: number;
-    canDescribe: boolean;
-    categoryId: string;
-    hasOnlyAuthImplementations: boolean;
-    implementations: ConnectorImplementation[];
-    logo: string;
-    logoWidth: string;
-    maxConnectionCount: number;
-    statusId: string;
-    usageId: ConnectorUsageId;
-}
+// export interface ConnectorItem extends PluginItem {
+//     activeConnectionCount: number;
+//     canDescribe: boolean;
+//     categoryId: string;
+//     hasOnlyAuthImplementations: boolean;
+//     implementations: ConnectorImplementation[];
+//     logo: string;
+//     logoWidth: string;
+//     maxConnectionCount: number;
+//     statusId: string;
+//     usageId: ConnectorUsageId;
+// }
 
 export interface ConnectorImplementation {
     activeConnectionCount: number;

@@ -8,7 +8,7 @@
 
 // Engine Dependencies
 import type { Progress, CallbackProperties } from '.';
-import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, ConnectionItem } from './connection';
+import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties } from './connection';
 import type { ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
 import { DataTypeId } from './connectionEntry';
 import type { Connector } from './connector';
@@ -20,7 +20,7 @@ import type { SourceViewProperties } from './sourceView';
 
 export interface DataConnector extends Connector {
     abortController?: AbortController;
-    readonly connectionItem: ConnectionItem;
+    // readonly connectionItem: ConnectionItem;
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
     describe?(
@@ -43,7 +43,7 @@ export interface DataConnector extends Connector {
 }
 
 export interface DataConnectorConstructor {
-    new (connectionItem: ConnectionItem): DataConnector;
+    // new (connectionItem: ConnectionItem): DataConnector;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

@@ -2,14 +2,14 @@
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
  * @file datapos-engine-support/src/connection.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
+ * @license ISC
  */
 
 // Engine Dependencies
 import type { ComponentStatusId, ComponentTypeId, FirebaseTimestamp } from '.';
-import type { ComponentItem, Component } from './component';
+import type { Component } from './component';
 import type { ConnectionEntry } from './connectionEntry';
-import type { ConnectorImplementation, ConnectorItem } from './connector';
+import type { ConnectorImplementation } from './connector';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection
@@ -25,14 +25,14 @@ interface Connection extends Component {}
 // Connection - Item
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ConnectionItem extends ComponentItem {
-    authorization?: Record<string, ConnectionItemAuthorization>;
-    connectorItem: ConnectorItem;
-    implementation: ConnectorImplementation;
-    implementationId?: string;
-    notation?: string;
-    verifiedAt?: FirebaseTimestamp;
-}
+// export interface ConnectionItem extends ComponentItem {
+//     authorization?: Record<string, ConnectionItemAuthorization>;
+//     connectorItem: ConnectorItem;
+//     implementation: ConnectorImplementation;
+//     implementationId?: string;
+//     notation?: string;
+//     verifiedAt?: FirebaseTimestamp;
+// }
 
 interface ConnectionItemAuthorization {
     access_token: string; // Dropbox.
