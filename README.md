@@ -7,16 +7,15 @@ classDiagram
     direction TB
 
     Component <|-- Connection
-    Component <|-- Plugin
+    Component <|-- Connector
     Component <|-- EventQuery
     Component <|-- SourceView
-    Plugin <|-- Connector
     Connector <|-- DataConnector
     Connector <|-- NodeConnector
 
     class Component {
         <<interface>>
-        id: string
+        id : string
     }
 
     class Connection {
@@ -25,13 +24,13 @@ classDiagram
 
     class Connector {
         <<interface>>
-        version: string
+        version : string
     }
 
     class DataConnector {
         <<interface>>
-        abortController? AbortController
-        readonly connectionItem ConnectionItem
+        abortController? :  AbortController
+        readonly connectionItem :  ConnectionItem
         abort?() void
         authenticate?() Window
         describe?() Promise~ConnectionDescription~
@@ -57,20 +56,16 @@ classDiagram
         retrieveNodeItemData() Promise~NodeDataPageResults~
    }
 
-    class Plugin {
-        <<interface>>
-    }
-
     class EventQuery {
         <<interface>>
     }
 
     class SourceView {
         <<interface>>
-        properties SourceViewProperties
-        preview SourceViewPreview
-        contentAudit SourceViewContentAudit
-        relationshipsAudit SourceViewRelationshipsAudit
+        properties :  SourceViewProperties
+        preview :  SourceViewPreview
+        contentAudit :  SourceViewContentAudit
+        relationshipsAudit :  SourceViewRelationshipsAudit
     }
 ```
 
@@ -248,6 +243,36 @@ classDiagram
         XLS
         XLSX
         XML
+    }
+
+    class DataUsageTypeId {
+        <<enumeration>>
+        Binary
+        Boolean
+        Date
+        DateTime
+        DateTimeOffset
+        DecimalNumber
+        Object
+        String
+        Time
+        Unknown
+        WholeNumber
+    }
+
+    class ValueDelimiterId {
+        <<enumeration>>
+        Colon
+        Comma
+        ExclamationMark
+        Other
+        RecordSeparator
+        Semicolon,
+        Space
+        Tab
+        Underscore
+        UnitSeparator
+        VerticalBar
     }
 ```
 

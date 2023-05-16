@@ -6,14 +6,14 @@
  */
 
 // Engine Dependencies
-import type { PrimaryComponentConfig } from '.';
-import type { Plugin, PluginItem } from './plugin';
+import type { PluginItem } from './plugin';
+import type { Component, PrimaryComponentConfig } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connector
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface Connector extends Plugin {
+export interface Connector extends Component {
     version: string;
 }
 
