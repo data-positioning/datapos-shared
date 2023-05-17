@@ -4,7 +4,7 @@ Includes TypeScript declarations used by the Data Positioning engine, as well as
 
 ## Component Configuration Classes
 
-The following diagram details the component configuration class hierarchy, showcasing the relationships and inheritance structure between different **Component Configuration** classes.
+The following diagram illustrates the component configuration class hierarchy, showcasing the relationships and inheritance structure between different **Component Configuration** classes.
 
 ```mermaid
 classDiagram
@@ -72,7 +72,7 @@ classDiagram
 
 ## Component Classes
 
-The following diagram details the component class hierarchy, showcasing the relationships and inheritance structure between different **Component** classes.
+The following diagram illustrates the component class hierarchy, showcasing the relationships and inheritance structure between different **Component** classes.
 
 ```mermaid
 classDiagram
@@ -117,7 +117,7 @@ classDiagram
 
 ## Connector Classes
 
-The following diagram details the connector class hierarchies, showcasing the relationships and inheritance structure between different **Connector Configuration** and **Connector** classes.
+The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Connector Configuration** and **Connector** classes.
 
 ```mermaid
 classDiagram
@@ -407,11 +407,11 @@ classDiagram
 
     SourceViewContentAudit "1" --> "*" SourceViewContentAuditField
 
-    class PreviewField {
-        <<interface>>
-    }
+    %%class PreviewField {
+    %%    <<interface>>
+    %%}
 
-    PreviewField <|-- SourceViewContentAuditField
+    %%PreviewField <|-- SourceViewContentAuditField
 
     %%SourceViewPreview "1" --> "*" PreviewField
 
