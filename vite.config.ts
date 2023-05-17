@@ -10,7 +10,7 @@ import { dirname } from 'path';
 import dts from 'vite-plugin-dts';
 import { fileURLToPath } from 'url';
 import { resolve } from 'path';
-import wasm from 'vite-plugin-wasm';
+import wasm from 'vite-plugin-wasm'; // TODO: Is this needed?
 
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = dirname(__filename);
@@ -24,12 +24,6 @@ export default defineConfig({
             formats: ['es'],
             fileName: (format) => `datapos-engine-support.${format}.js`
         }
-        // minify: 'esbuild'
     },
     plugins: [wasm(), dts()]
-    // resolve: {
-    //     alias: {
-    //         '@/': new URL('./src/', import.meta.url).pathname
-    //     }
-    // }
 });
