@@ -117,7 +117,7 @@ classDiagram
 
 ## Connector Classes
 
-The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Connector Configuration** and **Connector** classes.
+The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Connector Configuration** and **Connector** classes and detailing referenced enumeration types.
 
 ```mermaid
 classDiagram
@@ -183,6 +183,48 @@ classDiagram
         insertNodeItemData() Promise~void~
         retrieveNodeItemData() Promise~NodeDataPageResults~
    }
+```
+
+```mermaid
+classDiagram
+    direction TB
+
+    class ConnectorAuthMethodId {
+        <<enumeration>>
+        APIKey
+        Disabled
+        OAuth2
+        None
+    }
+
+    class ConnectorCategory {
+        <<enumeration>>
+        Application
+        CuratedDataset
+        Database
+        FileStore
+    }
+
+    class ConnectorStatus {
+        <<enumeration>>
+        Alpha
+        Beta
+        GeneralAvailability
+        PreAlpha
+        Proposed
+        ReleaseCandidate
+        Unavailable
+        UnderReview
+    }
+
+    class ConnectorUsageId {
+        <<enumeration>>
+        Bidirectional
+        Destination
+        Node
+        Source
+        None
+    }
 ```
 
 ## Connection Entry Classes
