@@ -7,6 +7,7 @@
 
 /* eslint-env node */
 
+// Framework/Vendor Dependencies
 const {
     auditDependencies,
     checkDependencies,
