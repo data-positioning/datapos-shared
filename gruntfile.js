@@ -5,6 +5,8 @@
  * @copyright 2023 Jonathan Terrell
  */
 
+/* eslint-env node */
+
 module.exports = (grunt) => {
     // Initialise configuration.
     grunt.initConfig({
