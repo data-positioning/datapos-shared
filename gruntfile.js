@@ -7,18 +7,30 @@
 
 /* eslint-env node */
 
+const {
+    auditDependencies,
+    checkDependencies,
+    identifyLicenses,
+    logNotImplementedMessage,
+    migrateDependencies,
+    lintCode,
+    publishToNPM,
+    updateDependency,
+    updateDevDependency
+} = require('@datapos/datapos-operations/commonHelpers');
+
 module.exports = (grunt) => {
     // Initialise configuration.
     grunt.initConfig({
-        bump: { options: { commitFiles: ['-a'], commitMessage: 'Release v%VERSION%', pushTo: 'origin' } },
+        bump: { options: { commitFiles: ['-a'], commitMessage: 'v%VERSION%', pushTo: 'origin' } },
         gitadd: { task: { options: { all: true } } },
-        run: {
-            identifyLicensesUsingLicenseChecker: { args: ['license-checker', '--production', '--json', '--out', 'LICENSES.json'], cmd: 'npx' },
-            identifyLicensesUsingNLF: { args: ['nlf', '-d'], cmd: 'npx' },
-            lint: { args: ['WARNING: Lint is NOT implemented.'], cmd: 'echo' },
-            npmPublish: { args: ['publish'], cmd: 'npx' },
-            outdated: { args: ['npm', 'outdated'], cmd: 'npx' }
-        },
+        // run: {
+        //     identifyLicensesUsingLicenseChecker: { args: ['license-checker', '--production', '--json', '--out', 'LICENSES.json'], cmd: 'npx' },
+        //     identifyLicensesUsingNLF: { args: ['nlf', '-d'], cmd: 'npx' },
+        //     lint: { args: ['WARNING: Lint is NOT implemented.'], cmd: 'echo' },
+        //     npmPublish: { args: ['publish'], cmd: 'npx' },
+        //     outdated: { args: ['npm', 'outdated'], cmd: 'npx' }
+        // },
         shell: {
             build: {
                 command: ['vite build', 'mkdir dist/types', 'mv dist/*.d.ts dist/types/'].join('&&')
@@ -29,16 +41,47 @@ module.exports = (grunt) => {
     // Load external tasks.
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('grunt-git');
-    grunt.loadNpmTasks('grunt-run');
+    // grunt.loadNpmTasks('grunt-run');
     grunt.loadNpmTasks('grunt-shell');
 
+    // Register local tasks.
+    grunt.registerTask('auditDependencies', function () {
+        auditDependencies(grunt, this);
+    });
+    grunt.registerTask('checkDependencies', function () {
+        checkDependencies(grunt, this);
+    });
+    grunt.registerTask('identifyLicenses', function () {
+        identifyLicenses(grunt, this);
+    });
+    grunt.registerTask('lintCode', function () {
+        lintCode(grunt, this, ['*.js']);
+    });
+    grunt.registerTask('logNotImplementedMessage', (taskName) => logNotImplementedMessage(taskName));
+    grunt.registerTask('migrateDependencies', function () {
+        migrateDependencies(grunt, this);
+    });
+    grunt.registerTask('publishToNPM', function () {
+        publishToNPM(grunt, this);
+    });
+    grunt.registerTask('updateDependency', function (updateTypeId) {
+        updateDependency(grunt, this, updateTypeId);
+    });
+    grunt.registerTask('updateDevDependency', function (updateTypeId) {
+        updateDevDependency(grunt, this, updateTypeId);
+    });
+
     // Register standard repository management tasks.
-    grunt.registerTask('forceOn', () => grunt.option('force', true));
-    grunt.registerTask('forceOff', () => grunt.option('force', false));
-    grunt.registerTask('build', ['shell:build']); // cmd+shift+b.
-    grunt.registerTask('identifyLicenses', ['run:identifyLicensesUsingLicenseChecker', 'run:identifyLicensesUsingNLF']); // cmd+shift+i.
-    grunt.registerTask('lint', ['run:lint']); // cmd+shift+l.
-    grunt.registerTask('npmPublish', ['run:npmPublish']); // cmd+shift+n.
-    grunt.registerTask('release', ['gitadd', 'bump', 'shell:build', 'run:npmPublish']); // cmd+shift+r.
-    grunt.registerTask('synchronise', ['gitadd', 'bump']); // cmd+shift+s.
+    grunt.registerTask('audit', ['auditDependencies']); // alt+ctrl+shift+a.
+    grunt.registerTask('build', ['shell:build']); // alt+ctrl+shift+b.
+    grunt.registerTask('check', ['checkDependencies']); // alt+ctrl+shift+c.
+    grunt.registerTask('document', ['identifyLicenses']); // alt+ctrl+shift+d.
+    grunt.registerTask('format', ['logNotImplementedMessage:Format']); // alt+ctrl+shift+f.
+    grunt.registerTask('lint', ['lintCode']); // alt+ctrl+shift+l.
+    grunt.registerTask('migrate', ['migrateDependencies']); // alt+ctrl+shift+m.
+    grunt.registerTask('publish', ['publishToNPM']); // alt+ctrl+shift+p.
+    grunt.registerTask('release', ['gitadd', 'bump', 'build', 'run:npmPublish']); // alt+ctrl+shift+r.
+    grunt.registerTask('synchronise', ['gitadd', 'bump']); // alt+ctrl+shift+s.
+    grunt.registerTask('test', ['logNotImplementedMessage:Test']); // alt+ctrl+shift+t.
+    grunt.registerTask('update', ['logNotImplementedMessage:Update']); // alt+ctrl+shift+u.
 };

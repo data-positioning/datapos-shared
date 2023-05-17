@@ -11,4 +11,4 @@ import type { Component } from './component';
 // EventQuery
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-interface EventQuery extends Component {}
+export interface EventQuery extends Component {}

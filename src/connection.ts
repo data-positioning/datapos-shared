@@ -6,10 +6,10 @@
  */
 
 // Engine Dependencies
-import type { ComponentStatusId, ComponentTypeId, FirebaseTimestamp } from '.';
 import type { Component } from './component';
 import type { ConnectionEntry } from './connectionEntry';
 import type { ConnectorImplementation } from './connector';
+import type { ComponentStatusId, ComponentTypeId, FirebaseTimestamp } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection
