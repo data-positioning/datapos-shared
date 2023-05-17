@@ -1,8 +1,8 @@
 /**
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
  * @file datapos-engine-support/src/connection.ts
  * @license ISC
+ * @author Jonathan Terrell <terrell.jm@gmail.com>
+ * @copyright 2023 Jonathan Terrell
  */
 
 // Engine Dependencies
