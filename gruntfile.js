@@ -24,13 +24,6 @@ module.exports = (grunt) => {
     grunt.initConfig({
         bump: { options: { commitFiles: ['-a'], commitMessage: 'v%VERSION%', pushTo: 'origin' } },
         gitadd: { task: { options: { all: true } } },
-        // run: {
-        //     identifyLicensesUsingLicenseChecker: { args: ['license-checker', '--production', '--json', '--out', 'LICENSES.json'], cmd: 'npx' },
-        //     identifyLicensesUsingNLF: { args: ['nlf', '-d'], cmd: 'npx' },
-        //     lint: { args: ['WARNING: Lint is NOT implemented.'], cmd: 'echo' },
-        //     npmPublish: { args: ['publish'], cmd: 'npx' },
-        //     outdated: { args: ['npm', 'outdated'], cmd: 'npx' }
-        // },
         shell: {
             build: {
                 command: ['vite build', 'mkdir dist/types', 'mv dist/*.d.ts dist/types/'].join('&&')
@@ -41,7 +34,6 @@ module.exports = (grunt) => {
     // Load external tasks.
     grunt.loadNpmTasks('grunt-bump');
     grunt.loadNpmTasks('grunt-git');
-    // grunt.loadNpmTasks('grunt-run');
     grunt.loadNpmTasks('grunt-shell');
 
     // Register local tasks.
