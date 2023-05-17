@@ -47,7 +47,7 @@ classDiagram
 classDiagram
     direction LR
 
-    class ComponentStatusId {
+    class ComponentTypeId {
         <<enumeration>>
         Connection
         ContextModel
