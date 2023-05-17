@@ -1,6 +1,10 @@
 # Data Positioning Engine Support
 
-## Component Class Hierarchies
+Includes TypeScript declarations used by the Data Positioning engine, as well as utilities that provide assistance when utilizing the engine.
+
+## Component Configuration Classes
+
+The following diagram details the component configuration class hierarchy, showcasing the relationships and inheritance structure between different **Component Configuration** classes.
 
 ```mermaid
 classDiagram
@@ -8,22 +12,76 @@ classDiagram
 
     class ComponentConfig {
         <<interface>>
+        id :  string
+        label? :  string
+        firstCreatedAt :  FirebaseTimestamp
+        lastUpdatedAt :  FirebaseTimestamp
+        logo? :  string
+        statusId :  ComponentStatusId
+        typeId :  ComponentTypeId
     }
 
-    ComponentConfig <|-- ConnectorConfig
+    class ConnectionConfig {
+        <<interface>>
+    }
 
     class ConnectorConfig {
         <<interface>>
     }
 
-    class Component {
+    class EventQueryConfig {
         <<interface>>
     }
 
-    Component <|-- Connection
-    Component <|-- Connector
-    Component <|-- EventQuery
-    Component <|-- SourceView
+    class SourceViewConfig {
+        <<interface>>
+    }
+
+    ComponentConfig <|-- ConnectionConfig
+    ComponentConfig <|-- ConnectorConfig
+    ComponentConfig <|-- EventQueryConfig
+    ComponentConfig <|-- SourceViewConfig
+```
+
+```mermaid
+classDiagram
+    direction LR
+
+    class ComponentStatusId {
+        <<enumeration>>
+        Connection
+        ContextModel
+        DataConnector
+        NodeConnector
+        ResultTemplate
+        UsageKit
+    }
+
+    class ComponentStatusId {
+        <<enumeration>>
+        Proposed
+        UnderReview
+        PreAlpha
+        Alpha
+        Beta
+        ReleaseCandidate
+        GeneralAvailability
+        Unavailable
+    }
+```
+
+## Component Classes
+
+The following diagram details the component class hierarchy, showcasing the relationships and inheritance structure between different **Component** classes.
+
+```mermaid
+classDiagram
+    direction LR
+
+    class Component {
+        <<interface>>
+        id : string
+    }
 
     class Connection {
         <<interface>>
@@ -32,9 +90,6 @@ classDiagram
     class Connector {
         <<interface>>
     }
-
-    Connector <|-- DataConnector
-    Connector <|-- NodeConnector
 
     class DataConnector {
         <<interface>>
@@ -51,23 +106,25 @@ classDiagram
     class SourceView {
         <<interface>>
     }
+
+    Component <|-- Connection
+    Component <|-- Connector
+    Connector <|-- DataConnector
+    Connector <|-- NodeConnector
+    Component <|-- EventQuery
+    Component <|-- SourceView
 ```
 
 ## Connector Classes
 
+The following diagram details the connector class hierarchies, showcasing the relationships and inheritance structure between different **Connector Configuration** and **Connector** classes.
+
 ```mermaid
 classDiagram
-    direction TB
+    direction LR
 
     class ComponentConfig {
         <<interface>>
-        id :  string
-        label? :  string
-        firstCreatedAt :  FirebaseTimestamp
-        lastUpdatedAt :  FirebaseTimestamp
-        logo? :  string
-        statusId :  ComponentStatusId
-        typeId :  ComponentTypeId
     }
 
     ComponentConfig <|-- ConnectorConfig
@@ -83,69 +140,9 @@ classDiagram
         logo :  string
         usageId :  ConnectorUsageId
     }
-```
-
-## Connector Classes
-
-```mermaid
-classDiagram
-    direction TB
-
-    ComponentItem <|-- ConnectionItem
-    ComponentItem <|-- PluginItem
-    PluginItem <|-- ConnectorItem
-
-    class ConnectionItem {
-        <<interface>>
-        authorization? :  Record~ConnectionItemAuthorization~
-        connectorItem :  ConnectorItem
-        implementation :  ConnectorImplementation
-        implementationId? :  string
-        notation? :  string
-        verifiedAt? :  FirebaseTimestamp
-    }
-
-    class ComponentItem {
-        <<interface>>
-        firstCreatedAt :  FirebaseTimestamp
-        id :  string
-        lastUpdatedAt :  FirebaseTimestamp
-        summary? :  string
-        typeId :  ComponentTypeId
-    }
-
-    class PluginItem {
-        <<interface>>
-        categoryLabel :  string
-        label :  string
-        reference :  string
-        version :  string
-    }
-
-    class ConnectorItem {
-        <<interface>>
-        activeConnectionCount :  number
-        canDescribe :  boolean
-        categoryId :  string
-        hasOnlyAuthImplementations :  boolean
-        implementations :  ConnectorImplementation[]
-        logo :  string
-        logoWidth :  string
-        maxConnectionCount :  number
-        statusId :  string
-        usageId :  ConnectorUsageId
-    }
-```
-
-## Connector Classes
-
-```mermaid
-classDiagram
-    direction TB
 
     class Component {
         <<interface>>
-        id : string
     }
 
     Component <|-- Connector
@@ -188,7 +185,9 @@ classDiagram
    }
 ```
 
-## Connection Entry Class
+## Connection Entry Classes
+
+The following diagram illustrates the connection entry class hierarchy, showcasing the relationships and inheritance structure between different **Connection Entry** classes and detailing referenced enumeration types.
 
 ```mermaid
 classDiagram
@@ -247,8 +246,6 @@ classDiagram
         label :  string
     }
 ```
-
-## Connection Entry Enumerations
 
 ```mermaid
 classDiagram
@@ -317,9 +314,11 @@ classDiagram
 
 ## Entity Event Class
 
+...
+
 ```mermaid
 classDiagram
-    direction TB
+    direction LR
 
     class Component {
         <<interface>>
@@ -334,6 +333,8 @@ classDiagram
 
 ## Source View Class
 
+...
+
 ```mermaid
 classDiagram
     direction TB
@@ -342,27 +343,15 @@ classDiagram
         <<interface>>
     }
 
-    Component <|-- SourceView
-
-    class Record {
-        <<interface>>
-    }
-
-    class PreviewField {
-        <<interface>>
-    }
-
     class SourceView {
-         <<interface>>
-       properties : SourceViewProperties
+        <<interface>>
+        properties : SourceViewProperties
         preview : SourceViewPreview
         contentAudit : SourceViewContentAudit
         relationshipsAudit : SourceViewRelationshipsAudit
     }
 
-    Record <|-- SourceViewProperties
-
-    SourceView "1" --> "*" SourceViewProperties
+    Component <|-- SourceView
 
     class SourceViewProperties {
         <<interface>>
@@ -376,9 +365,6 @@ classDiagram
         contentAudit? : SourceViewContentAudit
         relationshipsAudit? : SourceViewRelationshipsAudit
     }
-
-    SourceViewProperties "1" --> "*" SourceViewPreview
-    %%SourceView "1" --> "*" SourceViewPreview
 
     class SourceViewPreview {
         <<interface>>
@@ -406,8 +392,11 @@ classDiagram
         valueTrimMethodId? : string
     }
 
+    SourceView "1" --> "*" SourceViewProperties
+
+    SourceViewProperties "1" --> "*" SourceViewPreview
+
     SourceViewProperties "1" --> "*" SourceViewContentAudit
-    %%SourceView "1" --> "*" SourceViewContentAudit
 
     class SourceViewContentAudit {
         <<interface>>
@@ -418,9 +407,13 @@ classDiagram
 
     SourceViewContentAudit "1" --> "*" SourceViewContentAuditField
 
+    class PreviewField {
+        <<interface>>
+    }
+
     PreviewField <|-- SourceViewContentAuditField
 
-    SourceViewPreview "1" --> "*" PreviewField
+    %%SourceViewPreview "1" --> "*" PreviewField
 
     class SourceViewContentAuditField {
         <<interface>>
@@ -434,7 +427,6 @@ classDiagram
     }
 
     SourceViewProperties "1" --> "*" SourceViewRelationshipsAudit
-    %%SourceView "1" --> "*" SourceViewRelationshipsAudit
 
     class SourceViewRelationshipsAudit {
         <<interface>>

@@ -30,40 +30,23 @@ export interface ComponentConfig {
     typeId: ComponentTypeId;
 }
 
-// export interface PrimaryComponentConfig extends ComponentConfig {
-//     categoryId: string;
-//     description: string;
-//     label: string;
-//     reference: string;
-//     version: string;
-// }
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Component - Item
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// export interface ComponentItem {
-//     firstCreatedAt: FirebaseTimestamp;
-//     id: string;
-//     lastUpdatedAt: FirebaseTimestamp;
-//     summary?: string;
-//     typeId: ComponentTypeId;
-// }
-
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Component - Enumerations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export enum ComponentTypeId {
+    /* eslint-disable no-unused-vars */
     Connection = 'connection',
     ContextModel = 'contextModel',
     DataConnector = 'dataConnector',
     NodeConnector = 'nodeConnector',
     ResultTemplate = 'resultTemplate',
     UsageKit = 'usageKit'
+    /* eslint-enable no-unused-vars */
 }
 
 export enum ComponentStatusId {
+    /* eslint-disable no-unused-vars */
     Proposed = 'proposed',
     UnderReview = 'under-review',
     PreAlpha = 'pre-alpha',
@@ -72,4 +55,5 @@ export enum ComponentStatusId {
     ReleaseCandidate = 'release-candidate',
     GeneralAvailability = 'general-availability',
     Unavailable = 'unavailable'
+    /* eslint-enable no-unused-vars */
 }
