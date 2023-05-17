@@ -12,6 +12,4 @@ import type { ComponentConfig } from '.';
 // Usage Kit - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface UsageKitConfig extends ComponentConfig {
-    placeholder?: string;
-}
+export interface UsageKitConfig extends ComponentConfig {}

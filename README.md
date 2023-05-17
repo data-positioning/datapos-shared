@@ -493,6 +493,6 @@ Lookup
 
 -   lookupMimeTypeForFileExtension
 
-Vendor
+Security
 
 -   establishVendorAccessToken

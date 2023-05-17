@@ -12,6 +12,4 @@ import type { ComponentConfig } from '.';
 // Report Template - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ResultTemplateConfig extends ComponentConfig {
-    placeholder?: string;
-}
+export interface ResultTemplateConfig extends ComponentConfig {}

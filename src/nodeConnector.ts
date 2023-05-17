@@ -6,7 +6,6 @@
  */
 
 // Engine Dependencies
-// import type { ComponentItem } from '.';
 import type { Connector } from './connector';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -94,15 +93,19 @@ export interface NodeDataPageResults {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export enum NodeDataTypeId {
+    /* eslint-disable no-unused-vars */
     Data = 'data',
     Events = 'events',
     Facts = 'facts'
+    /* eslint-enable no-unused-vars */
 }
 
 export enum NodeItemTypeId {
+    /* eslint-disable no-unused-vars */
     Dimension = 'dimension',
     Entity = 'entity',
     EventQuery = 'eventQuery',
     SourceView = 'sourceView',
     Workbook = 'workbook'
+    /* eslint-enable no-unused-vars */
 }
