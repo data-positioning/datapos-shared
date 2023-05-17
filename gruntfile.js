@@ -5,8 +5,6 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-/* eslint-env node */
-
 // Framework/Vendor Dependencies
 const {
     auditDependencies,
@@ -16,7 +14,6 @@ const {
     migrateDependencies,
     lintCode,
     publishToNPM,
-    updateDependency,
     updateDevDependency
 } = require('@datapos/datapos-operations/commonHelpers');
 
@@ -57,14 +54,11 @@ module.exports = (grunt) => {
     grunt.registerTask('publishToNPM', function () {
         publishToNPM(grunt, this);
     });
-    grunt.registerTask('updateDependency', function (updateTypeId) {
-        updateDependency(grunt, this, updateTypeId);
-    });
     grunt.registerTask('updateDevDependency', function (updateTypeId) {
         updateDevDependency(grunt, this, updateTypeId);
     });
 
-    // Register standard repository management tasks.
+    // Register common repository management tasks. These tasks are all invoked by VSCode keyboard shortcuts identified in the comments.
     grunt.registerTask('audit', ['auditDependencies']); // alt+ctrl+shift+a.
     grunt.registerTask('build', ['shell:build']); // alt+ctrl+shift+b.
     grunt.registerTask('check', ['checkDependencies']); // alt+ctrl+shift+c.≤
@@ -76,5 +70,5 @@ module.exports = (grunt) => {
     grunt.registerTask('release', ['gitadd', 'bump', 'build', 'publishToNPM']); // alt+ctrl+shift+r.
     grunt.registerTask('synchronise', ['gitadd', 'bump']); // alt+ctrl+shift+s.
     grunt.registerTask('test', ['logNotImplementedMessage:Test']); // alt+ctrl+shift+t.
-    grunt.registerTask('update', ['logNotImplementedMessage:Update']); // alt+ctrl+shift+u.
+    grunt.registerTask('update', ['updateDevDependency:operations']); // alt+ctrl+shift+u.
 };

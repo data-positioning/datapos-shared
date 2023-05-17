@@ -5,8 +5,6 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-/* eslint-env node */
-
 module.exports = {
     env: {
         browser: true,
