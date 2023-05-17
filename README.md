@@ -477,11 +477,22 @@ classDiagram
 
 ## Utilities
 
+Extraction
+
 -   extractDirectoryPathFromEntryPath
 -   extractExtensionFromEntryPath
 -   extractLastFolderNameFromFolderPath
+
+Formatting
+
 -   formatNumberAsDecimalNumber
 -   formatNumberAsStorageSize
 -   formatNumberAsWholeNumber
+
+Lookup
+
 -   lookupMimeTypeForFileExtension
+
+Vendor
+
 -   establishVendorAccessToken
