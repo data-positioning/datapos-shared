@@ -1,18 +1,17 @@
 /**
  * @file datapos-engine-support/src/dataConnector.ts
- * @description
  * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
  */
 
 // Engine Dependencies
-import type { Progress, CallbackProperties } from '.';
+import type { Connector } from './connector';
+import { DataTypeId } from './connectionEntry';
+import type { SourceViewProperties } from './sourceView';
+import type { CallbackProperties, Progress } from '.';
 import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties } from './connection';
 import type { ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
-import { DataTypeId } from './connectionEntry';
-import type { Connector } from './connector';
-import type { SourceViewProperties } from './sourceView';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Data Connector
@@ -156,6 +155,7 @@ export interface DataConnectorWriteInterface {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export enum DataStorageTypeId {
+    /* eslint-disable no-unused-vars */
     Binary = 'binary',
     Boolean = 'boolean',
     Byte = 'byte',
@@ -173,6 +173,7 @@ export enum DataStorageTypeId {
     String = 'string',
     Time = 'time',
     Unknown = 'unknown'
+    /* eslint-enable no-unused-vars */
 }
 
 export const convertODataTypeToDataType = (type: string, maximumLength?: number): DataType => {

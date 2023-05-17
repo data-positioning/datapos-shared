@@ -46,9 +46,9 @@ export * from './nodeConnector';
 export * from './connection';
 export * from './connectionEntry';
 
-export * from './sourceView';
-
 export * from './eventQuery';
+
+export * from './sourceView';
 
 export * from './resultTemplate';
 

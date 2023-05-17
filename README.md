@@ -474,3 +474,14 @@ classDiagram
         <<interface>>
     }
 ```
+
+## Utilities
+
+extractDirectoryPathFromEntryPath
+extractExtensionFromEntryPath
+extractLastFolderNameFromFolderPath
+formatNumberAsDecimalNumber
+formatNumberAsStorageSize
+formatNumberAsWholeNumber
+lookupMimeTypeForFileExtension
+establishVendorAccessToken
