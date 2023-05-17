@@ -45,7 +45,7 @@ classDiagram
 
 ```mermaid
 classDiagram
-    direction LR
+    direction TB
 
     class ComponentTypeId {
         <<enumeration>>
