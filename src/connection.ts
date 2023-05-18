@@ -41,3 +41,40 @@ interface ConnectionAuthorization {
     token_type: string; // Dropbox.
     uid: string; // Dropbox.
 }
+
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Connection - Description
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export type ConnectionDescription = { fileEntries: Record<string, FileEntry>; objectTypes: Record<string, ObjectType> };
+
+export interface FileEntry {
+    description?: string;
+    fields: Record<string, Field>;
+    folderIds: string[];
+    label?: string;
+    summary?: string;
+}
+
+export interface ObjectType {
+    description?: string;
+    fields: Record<string, Field>;
+    folderIds: string[];
+    label?: string;
+    summary?: string;
+}
+
+interface Field {
+    dataType: DataType;
+    isIgnored: boolean;
+    label: string;
+    maxLength?: number;
+}
+
+export interface DataType {
+    maximumLength?: number;
+    objectName?: string;
+    storageTypeId: DataStorageTypeId;
+    usageTypeId: DataTypeId;
+}

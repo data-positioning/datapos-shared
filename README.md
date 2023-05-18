@@ -84,13 +84,13 @@ classDiagram
     class ComponentTypeId {
         <<enumeration>>
         Connection
-        Connector*
+        Connector**
         ContextModel
-        DataConnector*
+        DataConnector**
         Dimension
         Entity
         EventQuery
-        NodeConnector*
+        NodeConnector**
         SourceView
         ViewTemplate
         UsageKit
@@ -162,16 +162,19 @@ classDiagram
         retrieveNodeItemData() Promise~NodeDataPageResults~
     }
 
-    %%ComponentConfig <|-- ConnectorConfig
     ConnectorConfig "1" --> "*" ConnectorImplementation
-    %%Component <|-- Connector
     Connector <|-- DataConnector
+    DataConnector .. ConnectionDescription
     DataConnector .. DataConnectorCreateInterface
     DataConnector .. DataConnectorPreviewInterface
     DataConnector .. DataConnectorReadInterface
     DataConnector .. DataConnectorWriteInterface
     Connector <|-- NodeConnector
 ```
+
+## Connector Enumerations/Types
+
+...
 
 ```mermaid
 classDiagram
@@ -200,6 +203,48 @@ classDiagram
         Node
         Source
         None
+    }
+
+    class DataStorageTypeId {
+        <<enumeration>>
+        Binary
+        Boolean
+        Byte
+        Date
+        DateTime
+        DateTimeOffset
+        Decimal
+        Double
+        Int8
+        Int16
+        Int32
+        Int64
+        Object
+        Single
+        String
+        Time
+        Unknown
+    }
+```
+
+```mermaid
+classDiagram
+    direction TB
+
+    class NodeDataTypeId {
+            <<enumeration>>
+            Data
+            Events
+            Facts
+    }
+
+    class NodeItemTypeId {
+            <<enumeration>>
+            Dimension
+            Entity
+            EventQuery
+            SourceView
+            Workbook
     }
 ```
 

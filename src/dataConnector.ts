@@ -6,11 +6,11 @@
  */
 
 // Engine Dependencies
-import type { ConnectionConfig } from './connection';
 import type { Connector } from './connector';
 import { DataTypeId } from './connectionEntry';
 import type { SourceViewProperties } from './sourceView';
 import type { CallbackProperties, Progress } from '.';
+import type { ConnectionConfig, ConnectionDescription, DataType } from './connection';
 import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -43,42 +43,6 @@ export interface DataConnector extends Connector {
 
 export interface DataConnectorConstructor {
     new (connectionConfig: ConnectionConfig): DataConnector;
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Data Connector - Describe
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export type ConnectionDescription = { fileEntries: Record<string, FileEntry>; objectTypes: Record<string, ObjectType> };
-
-export interface FileEntry {
-    description?: string;
-    fields: Record<string, Field>;
-    folderIds: string[];
-    label?: string;
-    summary?: string;
-}
-
-export interface ObjectType {
-    description?: string;
-    fields: Record<string, Field>;
-    folderIds: string[];
-    label?: string;
-    summary?: string;
-}
-
-interface Field {
-    dataType: DataType;
-    isIgnored: boolean;
-    label: string;
-    maxLength?: number;
-}
-
-export interface DataType {
-    maximumLength?: number;
-    objectName?: string;
-    storageTypeId: DataStorageTypeId;
-    usageTypeId: DataTypeId;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
