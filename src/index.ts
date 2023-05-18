@@ -50,7 +50,7 @@ export * from './eventQuery';
 
 export * from './sourceView';
 
-export * from './resultTemplate';
+export * from './viewTemplate';
 
 export * from './usageKit';
 

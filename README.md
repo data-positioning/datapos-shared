@@ -12,61 +12,58 @@ classDiagram
 
     class ComponentConfig {
         <<interface>>
-        id :  string
-        label? :  string
-        firstCreatedAt :  FirebaseTimestamp
-        lastUpdatedAt :  FirebaseTimestamp
-        logo? :  string
-        statusId :  ComponentStatusId
-        typeId :  ComponentTypeId
-    }
-
-    class ConnectionConfig {
-        <<interface>>
-    }
-
-    class ConnectorConfig {
-        <<interface>>
-    }
-
-    class EventQueryConfig {
-        <<interface>>
-    }
-
-    class SourceViewConfig {
-        <<interface>>
+        id : string
+        label : string
+        description : string
+        firstCreatedAt : FirebaseTimestamp
+        lastUpdatedAt : FirebaseTimestamp
+        logo? : string
+        statusId : string
+        typeId : ComponentTypeId
     }
 
     ComponentConfig <|-- ConnectionConfig
     ComponentConfig <|-- ConnectorConfig
+    ConnectorConfig <|-- DataConnectorConfig
+    ConnectorConfig <|-- NodeConnectorConfig
+    ComponentConfig <|-- ContextModelConfig
+    ComponentConfig <|-- DimensionConfig
+    ComponentConfig <|-- EntityConfig
     ComponentConfig <|-- EventQueryConfig
     ComponentConfig <|-- SourceViewConfig
+    ComponentConfig <|-- UsageKitConfig
+    ComponentConfig <|-- ViewTemplateConfig
 ```
 
 ```mermaid
 classDiagram
     direction TB
 
+    class ComponentStatus {
+        <<type>>
+        alpha
+        beta
+        generalAvailability
+        preAlpha
+        proposed
+        releaseCandidate
+        unavailable
+        underReview
+    }
+
     class ComponentTypeId {
         <<enumeration>>
         Connection
+        Connector
         ContextModel
         DataConnector
+        Dimension
+        Entity
+        EventQuery
         NodeConnector
-        ResultTemplate
+        SourceView
+        ViewTemplate
         UsageKit
-    }
-
-    class ComponentStatusId {
-        <<enumeration>>
-        Proposed
-        UnderReview
-        PreAlpha
-        Alpha
-        Beta
-        ReleaseCandidate
-        GeneralAvailability
-        Unavailable
     }
 ```
 
@@ -127,33 +124,26 @@ classDiagram
         <<interface>>
     }
 
-    ComponentConfig <|-- ConnectorConfig
-
     class ConnectorConfig {
         <<interface>>
-        categoryId :  string
-        description :  string
-        label :  string
-        reference :  string
-        version :  string
-        implementations :  Implementation[]
-        logo :  string
-        usageId :  ConnectorUsageId
+        categoryId : string
+        description : string
+        label : string
+        reference : string
+        version : string
+        implementations : ConnectorImplementation[]
+        logo : string
+        usageId : ConnectorUsageId
     }
 
     class Component {
         <<interface>>
     }
 
-    Component <|-- Connector
-
     class Connector {
         <<interface>>
         version : string
     }
-
-    Connector <|-- DataConnector
-    Connector <|-- NodeConnector
 
     class DataConnector {
         <<interface>>
@@ -182,7 +172,12 @@ classDiagram
         determineNodeItemData() Promise~unknown~
         insertNodeItemData() Promise~void~
         retrieveNodeItemData() Promise~NodeDataPageResults~
-   }
+    }
+
+    ComponentConfig <|-- ConnectorConfig
+    Component <|-- Connector
+    Connector <|-- DataConnector
+    Connector <|-- NodeConnector
 ```
 
 ```mermaid
@@ -496,3 +491,22 @@ Lookup
 Security
 
 -   establishVendorAccessToken
+
+## Repository Management Commands
+
+The following list details the common repository management commands implementation for this project. For more details, please refer to the [Grunt](https://gruntjs.com/) configuration file (gruntfile.js) in this project.
+
+| Name        | Key Code         | Notes                                                                                                                                                                                                       |
+| ----------- | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| Audit       | alt+ctrl+shift+a | Audit the project's dependencies for known security vulnerabilities.                                                                                                                                        |
+| Build       | alt+ctrl+shift+b | Build the package using Vite build.                                                                                                                                                                         |
+| Check       | alt+ctrl+shift+c | List the dependencies in the project that are outdated.                                                                                                                                                     |
+| Document    | alt+ctrl+shift+d | Identify the licenses of the project's dependencies.                                                                                                                                                        |
+| Format      | alt+ctrl+shift+f | NOT implemented.                                                                                                                                                                                            |
+| Lint        | alt+ctrl+shift+l | Check the code for potential errors and enforces coding styles.                                                                                                                                             |
+| Migrate     | alt+ctrl+shift+l | Install the latest version of outdated dependencies.                                                                                                                                                        |
+| Publish     | alt+ctrl+shift+n | Publishes the package to the [npm](https://www.npmjs.com/) registry. This action will publish the last synchronised version. Use the command line command 'npm publish' when publishing for the first time. |
+| Release     | alt+ctrl+shift+r | Synchronise the local repository with the main GitHub repository and deploy the package to the Firebase hosting servers.                                                                                    |
+| Synchronise | alt+ctrl+shift+s | Synchronise the local repository with the main GitHub repository.                                                                                                                                           |
+| Test        | alt+ctrl+shift+l | NOT implemented.                                                                                                                                                                                            |
+| Update      | alt+ctrl+shift+l | Install the latest version of outdated Data Position package dependencies.                                                                                                                                  |
