@@ -35,6 +35,38 @@ classDiagram
     ComponentConfig <|-- ViewTemplateConfig
 ```
 
+```mermaid
+classDiagram
+    direction TB
+
+    class ComponentStatusId {
+        <<type>>
+        alpha
+        beta
+        generalAvailability
+        preAlpha
+        proposed
+        releaseCandidate
+        unavailable
+        underReview
+    }
+
+    class ComponentTypeId {
+        <<enumeration>>
+        Connection
+        Connector**
+        ContextModel
+        DataConnector**
+        Dimension
+        Entity
+        EventQuery
+        NodeConnector**
+        SourceView
+        ViewTemplate
+        UsageKit
+    }
+```
+
 ## Component Instance Classes
 
 The following diagram illustrates the component class hierarchy, showcasing the relationships and inheritance structure between different **Component** classes.
@@ -104,42 +136,6 @@ classDiagram
     Component <|-- SourceView
     Component <|-- UsageKit
     Component <|-- ViewTemplate
-```
-
-## Component Enumerations/Types
-
-...
-
-```mermaid
-classDiagram
-    direction TB
-
-    class ComponentStatusId {
-        <<type>>
-        alpha
-        beta
-        generalAvailability
-        preAlpha
-        proposed
-        releaseCandidate
-        unavailable
-        underReview
-    }
-
-    class ComponentTypeId {
-        <<enumeration>>
-        Connection
-        Connector**
-        ContextModel
-        DataConnector**
-        Dimension
-        Entity
-        EventQuery
-        NodeConnector**
-        SourceView
-        ViewTemplate
-        UsageKit
-    }
 ```
 
 ## Connector Configuration Classes
