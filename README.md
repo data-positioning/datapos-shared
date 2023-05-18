@@ -84,13 +84,13 @@ classDiagram
     class ComponentTypeId {
         <<enumeration>>
         Connection
-        Connector
+        Connector*
         ContextModel
-        DataConnector
+        DataConnector*
         Dimension
         Entity
         EventQuery
-        NodeConnector
+        NodeConnector*
         SourceView
         ViewTemplate
         UsageKit
