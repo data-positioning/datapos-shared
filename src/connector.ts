@@ -13,7 +13,7 @@ import type { Component, ComponentConfig } from './component';
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface Connector extends Component {
-    version: string;
+    config: ConnectorConfig;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -21,7 +21,7 @@ export interface Connector extends Component {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface ConnectorConfig extends ComponentConfig {
-    categoryId: string;
+    categoryId: ConnectorCategory;
     implementations: ConnectorImplementation[];
     logo: string;
     reference: string;
@@ -29,7 +29,7 @@ export interface ConnectorConfig extends ComponentConfig {
     version: string;
 }
 
-interface ConnectorImplementation {
+export interface ConnectorImplementation {
     activeConnectionCount: number;
     canDescribe: boolean;
     id: string;

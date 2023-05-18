@@ -6,12 +6,12 @@
  */
 
 // Engine Dependencies
+import type { ConnectionConfig } from './connection';
 import type { Connector } from './connector';
 import { DataTypeId } from './connectionEntry';
 import type { SourceViewProperties } from './sourceView';
 import type { CallbackProperties, Progress } from '.';
-import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties } from './connection';
-import type { ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
+import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Data Connector
@@ -19,7 +19,7 @@ import type { ConnectionEntry, ConnectionEntryPreview } from './connectionEntry'
 
 export interface DataConnector extends Connector {
     abortController?: AbortController;
-    // readonly connectionItem: ConnectionItem;
+    readonly connectionConfig: ConnectionConfig;
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
     describe?(
@@ -42,7 +42,7 @@ export interface DataConnector extends Connector {
 }
 
 export interface DataConnectorConstructor {
-    // new (connectionItem: ConnectionItem): DataConnector;
+    new (connectionConfig: ConnectionConfig): DataConnector;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
