@@ -175,59 +175,7 @@ classDiagram
     ConnectorConfig "1" --> "*" ConnectorImplementation
 ```
 
-## Data Connector Instance Classes
-
-The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Data Connector** classes and detailing referenced enumeration types.
-
-```mermaid
-classDiagram
-    direction LR
-
-    class DataConnector {
-        <<interface>>
-        abortController? :  AbortController
-        abort?() void
-        authenticate?() Window
-        describe?() Promise~ConnectionDescription~
-        getCreateInterface?() DataConnectorCreateInterface
-        getPreviewInterface?() DataConnectorPreviewInterface
-        getReadInterface?() DataConnectorReadInterface
-        getWriteInterface?() DataConnectorWriteInterface
-        retrieveEntries?() Promise~ConnectionEntriesPage~
-    }
-
-    DataConnector .. ConnectionDescription
-    DataConnector .. DataConnectorCreateInterface
-    DataConnector .. DataConnectorPreviewInterface
-    DataConnector .. DataConnectorReadInterface
-    DataConnector .. DataConnectorWriteInterface
-```
-
-## Node Connector Instance Classes
-
-The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Node Connector** classes and detailing referenced enumeration types.
-
-```mermaid
-classDiagram
-    direction LR
-
-    class NodeConnector {
-        <<interface>>
-        deleteNodeItem() Promise~void~
-        getNodeItem() Promise~NodeItem~
-        listNodeItems() Promise~NodeItem[]~
-        upsertNodeItem() Promise~NodeItem~
-        getNodeItemProperties() Promise~NodeItemProperties~
-        upsertNodeItemProperties() Promise~NodeItemProperties~
-        clearNodeItemData() Promise~void~
-        countNodeItemData() Promise~number~
-        determineNodeItemData() Promise~unknown~
-        insertNodeItemData() Promise~void~
-        retrieveNodeItemData() Promise~NodeDataPageResults~
-    }
-```
-
-## Connector Enumerations/Types
+## Connector Configuration Enumerations/Types
 
 ...
 
@@ -279,6 +227,58 @@ classDiagram
         String
         Time
         Unknown
+    }
+```
+
+## Data Connector Instance Classes
+
+The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Data Connector** classes and detailing referenced enumeration types.
+
+```mermaid
+classDiagram
+    direction LR
+
+    class DataConnector {
+        <<interface>>
+        abortController? :  AbortController
+        abort?() void
+        authenticate?() Window
+        describe?() Promise~ConnectionDescription~
+        getCreateInterface?() DataConnectorCreateInterface
+        getPreviewInterface?() DataConnectorPreviewInterface
+        getReadInterface?() DataConnectorReadInterface
+        getWriteInterface?() DataConnectorWriteInterface
+        retrieveEntries?() Promise~ConnectionEntriesPage~
+    }
+
+    DataConnector .. ConnectionDescription
+    DataConnector .. DataConnectorCreateInterface
+    DataConnector .. DataConnectorPreviewInterface
+    DataConnector .. DataConnectorReadInterface
+    DataConnector .. DataConnectorWriteInterface
+```
+
+## Node Connector Instance Classes
+
+The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Node Connector** classes and detailing referenced enumeration types.
+
+```mermaid
+classDiagram
+    direction LR
+
+    class NodeConnector {
+        <<interface>>
+        deleteNodeItem() Promise~void~
+        getNodeItem() Promise~NodeItem~
+        listNodeItems() Promise~NodeItem[]~
+        upsertNodeItem() Promise~NodeItem~
+        getNodeItemProperties() Promise~NodeItemProperties~
+        upsertNodeItemProperties() Promise~NodeItemProperties~
+        clearNodeItemData() Promise~void~
+        countNodeItemData() Promise~number~
+        determineNodeItemData() Promise~unknown~
+        insertNodeItemData() Promise~void~
+        retrieveNodeItemData() Promise~NodeDataPageResults~
     }
 ```
 
