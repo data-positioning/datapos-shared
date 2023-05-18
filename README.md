@@ -48,6 +48,51 @@ classDiagram
         config : ComponentConfig
     }
 
+    class Connection {
+        <<interface>>
+        config: ConnectionConfig;
+    }
+
+    class Connector {
+        <<interface>>
+        config: ConnectorConfig;
+    }
+
+    class ContextModel {
+        <<interface>>
+        config: ContextModelConfig;
+    }
+
+    class Dimension {
+        <<interface>>
+        config: DimensionConfig;
+    }
+
+    class Entity {
+        <<interface>>
+        config: EntityConfig;
+    }
+
+    class EventQuery {
+        <<interface>>
+        config: EventQueryConfig;
+    }
+
+    class SourceView {
+        <<interface>>
+        config: SourceViewConfig;
+    }
+
+    class UsageKit {
+        <<interface>>
+        config: UsageKitConfig;
+    }
+
+    class ViewTemplate {
+        <<interface>>
+        config: ViewTemplateConfig;
+    }
+
     Component <|-- Connection
     Component <|-- Connector
     Connector <|-- DataConnector
@@ -97,9 +142,9 @@ classDiagram
     }
 ```
 
-## Connector Configuration/Instance Classes
+## Connector Configuration Classes
 
-The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Connector Configuration** and **Connector** classes and detailing referenced enumeration types.
+The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Connector Configuration** classes and detailing referenced enumeration types.
 
 ```mermaid
 classDiagram
@@ -116,14 +161,8 @@ classDiagram
         version : string
     }
 
-    class Connector {
-        <<interface>>
-        config: ConnectorConfig;
-    }
-
     class ConnectorImplementation {
         <<interface>>
-
         activeConnectionCount : number
         canDescribe : boolean
         id : string
@@ -133,10 +172,20 @@ classDiagram
         params : Record~string~[]
     }
 
+    ConnectorConfig "1" --> "*" ConnectorImplementation
+```
+
+## Connector Instance Classes
+
+The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Connector** classes and detailing referenced enumeration types.
+
+```mermaid
+classDiagram
+    direction LR
+
     class DataConnector {
         <<interface>>
         abortController? :  AbortController
-        readonly connectionItem :  ConnectionItem
         abort?() void
         authenticate?() Window
         describe?() Promise~ConnectionDescription~
@@ -162,14 +211,11 @@ classDiagram
         retrieveNodeItemData() Promise~NodeDataPageResults~
     }
 
-    ConnectorConfig "1" --> "*" ConnectorImplementation
-    Connector <|-- DataConnector
     DataConnector .. ConnectionDescription
     DataConnector .. DataConnectorCreateInterface
     DataConnector .. DataConnectorPreviewInterface
     DataConnector .. DataConnectorReadInterface
     DataConnector .. DataConnectorWriteInterface
-    Connector <|-- NodeConnector
 ```
 
 ## Connector Enumerations/Types

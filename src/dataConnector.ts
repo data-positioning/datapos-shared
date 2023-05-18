@@ -19,7 +19,6 @@ import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, Conne
 
 export interface DataConnector extends Connector {
     abortController?: AbortController;
-    readonly connectionConfig: ConnectionConfig;
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
     describe?(
