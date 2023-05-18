@@ -171,10 +171,6 @@ classDiagram
     ConnectorConfig "1" --> "*" ConnectorImplementation
 ```
 
-## Connector Configuration Enumerations/Types
-
-...
-
 ```mermaid
 classDiagram
     direction TB
