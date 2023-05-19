@@ -535,6 +535,70 @@ classDiagram
     }
 ```
 
+## Other Classes
+
+```mermaid
+classDiagram
+    direction TB
+
+    class CallbackProperties {
+        <<interface>>
+    }
+
+    class DataStorageTypeId {
+        <<enumeration>>
+        Binary
+        Boolean
+        Byte
+        Date
+        DateTime
+        DateTimeOffset
+        Decimal
+        Double
+        Int8
+        Int16
+        Int32
+        Int64
+        Object
+        Single
+        String
+        Time
+        Unknown
+    }
+
+    class DataUsageTypeId {
+        <<enumeration>>
+        Binary
+        Boolean
+        Date
+        DateTime
+        DateTimeOffset
+        DecimalNumber
+        Object
+        String
+        Time
+        Unknown
+        WholeNumber
+    }
+
+    class DPAFileSystemFileHandle {
+        <<interface>>
+    }
+```
+
+```mermaid
+classDiagram
+    direction TB
+
+    class FirebaseTimestamp {
+        <<interface>>
+    }
+
+    class Progress {
+        <<interface>>
+    }
+```
+
 ## Utilities
 
 ### Conversion
@@ -560,32 +624,6 @@ classDiagram
 ### Security
 
 -   establishVendorAccessToken
-
-```mermaid
-classDiagram
-    direction TB
-
-    class DataStorageType {
-        <<enumeration>>
-        Binary
-        Boolean
-        Byte
-        Date
-        DateTime
-        DateTimeOffset
-        Decimal
-        Double
-        Int8
-        Int16
-        Int32
-        Int64
-        Object
-        Single
-        String
-        Time
-        Unknown
-    }
-```
 
 ## Repository Management Commands
 

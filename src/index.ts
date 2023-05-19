@@ -18,26 +18,7 @@ export interface CallbackProperties {
     value?: number;
 }
 
-export interface DPAFileSystemFileHandle {
-    readonly kind: 'file';
-    getFile(): Promise<File>;
-}
-
-export interface FirebaseTimestamp {
-    nanoseconds: number;
-    seconds: number;
-}
-
-export interface Progress {
-    id: string;
-    value: unknown;
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Declarations
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export enum DataStorageType {
+export enum DataStorageTypeId {
     /* eslint-disable no-unused-vars */
     Binary = 'binary',
     Boolean = 'boolean',
@@ -59,7 +40,7 @@ export enum DataStorageType {
     /* eslint-enable no-unused-vars */
 }
 
-export enum DataUsageType {
+export enum DataUsageTypeId {
     /* eslint-disable no-unused-vars */
     Binary = 'binary',
     Boolean = 'boolean',
@@ -73,6 +54,21 @@ export enum DataUsageType {
     Unknown = 'unknown',
     WholeNumber = 'wholeNumber'
     /* eslint-enable no-unused-vars */
+}
+
+export interface DPAFileSystemFileHandle {
+    readonly kind: 'file';
+    getFile(): Promise<File>;
+}
+
+export interface FirebaseTimestamp {
+    nanoseconds: number;
+    seconds: number;
+}
+
+export interface Progress {
+    id: string;
+    value: unknown;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

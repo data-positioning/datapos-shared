@@ -8,7 +8,7 @@
 // Engine Dependencies
 import type { Component, ComponentConfig } from './component';
 import { ConnectorConfig, ConnectorImplementation } from './connector';
-import { DataStorageType, DataUsageType, FirebaseTimestamp } from '.';
+import { DataStorageTypeId, DataUsageTypeId, FirebaseTimestamp } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection
@@ -42,7 +42,6 @@ interface ConnectionAuthorization {
     uid: string; // Dropbox.
 }
 
-
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection - Description
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -75,6 +74,6 @@ interface Field {
 export interface DataType {
     maximumLength?: number;
     objectName?: string;
-    storageTypeId: DataStorageType;
-    usageTypeId: DataUsageType;
+    storageTypeId: DataStorageTypeId;
+    usageTypeId: DataUsageTypeId;
 }
