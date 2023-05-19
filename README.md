@@ -340,6 +340,45 @@ The following diagram illustrates the connection class hierarchy, showcasing the
 ```mermaid
 classDiagram
     direction LR
+
+    class ConnectionConfig {
+        <<interface>>
+    }
+
+    class ConnectionAuthorisation {
+        <<interface>>
+    }
+
+    ConnectionConfig "1" --> "*" ConnectionAuthorisation
+
+    class Connection {
+        <<interface>>
+    }
+
+    class ConnectionDescription {
+        <<interface>>
+    }
+
+    class FileType {
+        <<interface>>
+    }
+
+    class ObjectType {
+        <<interface>>
+    }
+
+    class Field {
+        <<interface>>
+    }
+
+    class DataType {
+        <<interface>>
+    }
+
+    ConnectionDescription "1" --> "*" FileType
+    FileType "1" --> "*" Field
+    ConnectionDescription "1" --> "*" ObjectType
+    ObjectType "1" --> "*" Field
 ```
 
 ## Connection Entry Declarations
