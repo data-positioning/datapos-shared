@@ -63,10 +63,10 @@ export interface NodeItemDataPage {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface NodeQuery {
-    select: NodeQueryColumns;
+    select: NodeQuerySelect;
 }
 
-interface NodeQueryColumns {
+interface NodeQuerySelect {
     columns: NodeQueryColumn[];
 }
 
@@ -75,9 +75,11 @@ interface NodeQueryColumn {
 }
 
 export interface NodeQueryExpression {
-    expressions: NodeQueryExpression[];
+    expressions: NodeQueryExpressionItem[];
     type: string;
 }
+
+export interface NodeQueryExpressionItem {}
 
 export interface NodeQueryExpressionValue {
     dataItemName: string;

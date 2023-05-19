@@ -2,7 +2,7 @@
 
 Includes TypeScript declarations used by the Data Positioning engine, as well as utilities that provide assistance when utilizing the engine.
 
-## Component Configuration Classes
+## Component Configuration Declarations
 
 The following diagram illustrates the component configuration class hierarchy, showcasing the relationships and inheritance structure between different **Component Configuration** classes.
 
@@ -67,7 +67,7 @@ classDiagram
     }
 ```
 
-## Component Instance Classes
+## Component Instance Declarations
 
 The following diagram illustrates the component class hierarchy, showcasing the relationships and inheritance structure between different **Component** classes.
 
@@ -138,7 +138,7 @@ classDiagram
     Component <|-- ViewTemplate
 ```
 
-## Connector Configuration Classes
+## Connector Configuration Declarations
 
 The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Connector Configuration** classes and detailing referenced enumeration types.
 
@@ -201,7 +201,7 @@ classDiagram
     }
 ```
 
-## Data Connector Instance Classes
+## Data Connector Instance Declarations
 
 The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Data Connector** classes and detailing referenced enumeration types.
 
@@ -239,7 +239,7 @@ classDiagram
     DataConnector "1" --> "*" ConnectionEntriesPage
 ```
 
-## Node Connector Instance Classes
+## Node Connector Instance Declarations
 
 The following diagram illustrates the connector class hierarchies, showcasing the relationships and inheritance structure between different **Node Connector** classes and detailing referenced enumeration types.
 
@@ -282,24 +282,58 @@ classDiagram
 classDiagram
     direction TB
 
+    class NodeQuery {
+        <<interface>>
+    }
+
+    class NodeQuerySelect {
+        <<interface>>
+    }
+
+    class NodeQueryColumn {
+        <<interface>>
+    }
+
+    class NodeQueryExpression {
+        <<interface>>
+    }
+
+    class NodeQueryExpressionItem {
+        <<interface>>
+    }
+
+    class NodeQueryExpressionValue {
+        <<interface>>
+    }
+
+    NodeQuery "1" --> "1" NodeQuerySelect
+    NodeQuerySelect "1" --> "*" NodeQueryColumn
+    NodeQueryColumn "1" --> "1" NodeQueryExpression
+    NodeQueryExpression "1" --> "*" NodeQueryExpressionItem
+```
+
+```mermaid
+classDiagram
+    direction TB
+
     class NodeDataTypeId {
-            <<enumeration>>
-            Data
-            Events
-            Facts
+        <<enumeration>>
+        Data
+        Events
+        Facts
     }
 
     class NodeItemTypeId {
-            <<enumeration>>
-            Dimension
-            Entity
-            EventQuery
-            SourceView
-            Workbook
+        <<enumeration>>
+        Dimension
+        Entity
+        EventQuery
+        SourceView
+        Workbook
     }
 ```
 
-## Connection Classes
+## Connection Declarations
 
 The following diagram illustrates the connection class hierarchy, showcasing the relationships and inheritance structure between different **Connection** classes and detailing referenced enumeration types.
 
@@ -308,7 +342,7 @@ classDiagram
     direction LR
 ```
 
-## Connection Entry Classes
+## Connection Entry Declarations
 
 The following diagram illustrates the connection entry class hierarchy, showcasing the relationships and inheritance structure between different **Connection Entry** classes and detailing referenced enumeration types.
 
@@ -435,7 +469,7 @@ classDiagram
     }
 ```
 
-## Entity Event Classes
+## Entity Event Declarations
 
 ...
 
@@ -454,7 +488,7 @@ classDiagram
     }
 ```
 
-## Source View Classes
+## Source View Declarations
 
 ...
 
@@ -556,7 +590,7 @@ classDiagram
     }
 ```
 
-## Other Classes
+## Other Declarations
 
 ```mermaid
 classDiagram
