@@ -6,9 +6,9 @@
  */
 
 // Engine Dependencies
-import { FirebaseTimestamp } from '.';
 import type { Component, ComponentConfig } from './component';
 import { ConnectorConfig, ConnectorImplementation } from './connector';
+import { DataStorageType, DataUsageType, FirebaseTimestamp } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection
@@ -75,6 +75,6 @@ interface Field {
 export interface DataType {
     maximumLength?: number;
     objectName?: string;
-    storageTypeId: DataStorageTypeId;
-    usageTypeId: DataTypeId;
+    storageTypeId: DataStorageType;
+    usageTypeId: DataUsageType;
 }

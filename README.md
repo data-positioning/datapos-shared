@@ -199,27 +199,6 @@ classDiagram
         Source
         None
     }
-
-    class DataStorageType {
-        <<enumeration>>
-        Binary
-        Boolean
-        Byte
-        Date
-        DateTime
-        DateTimeOffset
-        Decimal
-        Double
-        Int8
-        Int16
-        Int32
-        Int64
-        Object
-        Single
-        String
-        Time
-        Unknown
-    }
 ```
 
 ## Data Connector Instance Classes
@@ -558,25 +537,55 @@ classDiagram
 
 ## Utilities
 
-Extraction
+### Conversion
+
+-   convertODataTypeToDataType
+
+### Extraction
 
 -   extractDirectoryPathFromEntryPath
 -   extractExtensionFromEntryPath
 -   extractLastFolderNameFromFolderPath
 
-Formatting
+### Formatting
 
 -   formatNumberAsDecimalNumber
 -   formatNumberAsStorageSize
 -   formatNumberAsWholeNumber
 
-Lookup
+### Lookup
 
 -   lookupMimeTypeForFileExtension
 
-Security
+### Security
 
 -   establishVendorAccessToken
+
+```mermaid
+classDiagram
+    direction TB
+
+    class DataStorageType {
+        <<enumeration>>
+        Binary
+        Boolean
+        Byte
+        Date
+        DateTime
+        DateTimeOffset
+        Decimal
+        Double
+        Int8
+        Int16
+        Int32
+        Int64
+        Object
+        Single
+        String
+        Time
+        Unknown
+    }
+```
 
 ## Repository Management Commands
 

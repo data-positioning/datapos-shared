@@ -6,8 +6,51 @@
  */
 
 // Engine Dependencies
+import { DataType } from './connection';
 import type { ErrorData } from './errorData';
-// import type { ConnectionItem } from './connection';
+import { DataStorageType, DataUsageType } from '.';
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Utilities - Extract
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export const convertODataTypeToDataType = (type: string, maximumLength?: number): DataType => {
+    // See: https://www.odata.org/documentation/odata-version-2-0/overview/
+    switch (type) {
+        case 'Edm.Binary':
+            return { storageTypeId: DataStorageType.Binary, usageTypeId: DataUsageType.Binary };
+        case 'Edm.Boolean':
+            return { storageTypeId: DataStorageType.Boolean, usageTypeId: DataUsageType.Boolean };
+        case 'Edm.Byte':
+            return { storageTypeId: DataStorageType.Byte, usageTypeId: DataUsageType.WholeNumber };
+        case 'Edm.DateTime':
+            return { storageTypeId: DataStorageType.DateTime, usageTypeId: DataUsageType.DateTime };
+        case 'Edm.DateTimeOffset':
+            return { storageTypeId: DataStorageType.DateTimeOffset, usageTypeId: DataUsageType.DateTimeOffset };
+        case 'Edm.Decimal':
+            return { storageTypeId: DataStorageType.Decimal, usageTypeId: DataUsageType.DecimalNumber };
+        case 'Edm.Double':
+            return { storageTypeId: DataStorageType.Double, usageTypeId: DataUsageType.DecimalNumber };
+        case 'Edm.Guid':
+            return { storageTypeId: DataStorageType.String, usageTypeId: DataUsageType.String };
+        case 'Edm.Int16':
+            return { storageTypeId: DataStorageType.Int16, usageTypeId: DataUsageType.WholeNumber };
+        case 'Edm.Int32':
+            return { storageTypeId: DataStorageType.Int32, usageTypeId: DataUsageType.WholeNumber };
+        case 'Edm.Int64':
+            return { storageTypeId: DataStorageType.Int64, usageTypeId: DataUsageType.WholeNumber };
+        case 'Edm.SByte':
+            return { storageTypeId: DataStorageType.Int8, usageTypeId: DataUsageType.WholeNumber };
+        case 'Edm.Single':
+            return { storageTypeId: DataStorageType.Single, usageTypeId: DataUsageType.DecimalNumber };
+        case 'Edm.String':
+            return { storageTypeId: DataStorageType.String, usageTypeId: DataUsageType.String, maximumLength };
+        case 'Edm.Time':
+            return { storageTypeId: DataStorageType.Time, usageTypeId: DataUsageType.Time };
+        default:
+            return { storageTypeId: DataStorageType.Unknown, usageTypeId: DataUsageType.Unknown };
+    }
+};
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Utilities - Extract

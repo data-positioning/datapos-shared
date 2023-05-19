@@ -34,6 +34,48 @@ export interface Progress {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declarations
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export enum DataStorageType {
+    /* eslint-disable no-unused-vars */
+    Binary = 'binary',
+    Boolean = 'boolean',
+    Byte = 'byte',
+    Date = 'date',
+    DateTime = 'dateTime',
+    DateTimeOffset = 'dateTimeOffset',
+    Decimal = 'decimal',
+    Double = 'double',
+    Int8 = 'int8',
+    Int16 = 'int16',
+    Int32 = 'int32',
+    Int64 = 'int64',
+    Object = 'object',
+    Single = 'single',
+    String = 'string',
+    Time = 'time',
+    Unknown = 'unknown'
+    /* eslint-enable no-unused-vars */
+}
+
+export enum DataUsageType {
+    /* eslint-disable no-unused-vars */
+    Binary = 'binary',
+    Boolean = 'boolean',
+    Date = 'date',
+    DateTime = 'dateTime',
+    DateTimeOffset = 'dateTimeOffset',
+    DecimalNumber = 'decimalNumber',
+    Object = 'object',
+    String = 'string',
+    Time = 'time',
+    Unknown = 'unknown',
+    WholeNumber = 'wholeNumber'
+    /* eslint-enable no-unused-vars */
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Components
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
