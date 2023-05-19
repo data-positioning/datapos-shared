@@ -7,10 +7,9 @@
 
 // Engine Dependencies
 import type { Connector } from './connector';
-import { DataTypeId } from './connectionEntry';
 import type { SourceViewProperties } from './sourceView';
 import type { CallbackProperties, Progress } from '.';
-import type { ConnectionConfig, ConnectionDescription, DataType } from './connection';
+import type { ConnectionConfig, ConnectionDescription } from './connection';
 import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -112,8 +111,3 @@ interface FileInfo {
 export interface DataConnectorWriteInterface {
     connector: DataConnector;
 }
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Data Connector - Enumerations
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-

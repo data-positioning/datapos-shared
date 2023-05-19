@@ -18,7 +18,7 @@ classDiagram
         firstCreatedAt : FirebaseTimestamp
         lastUpdatedAt : FirebaseTimestamp
         logo? : string
-        statusId : ComponentStatus
+        statusId : ComponentStatusId
         typeId : ComponentType
     }
 
@@ -39,7 +39,7 @@ classDiagram
 classDiagram
     direction TB
 
-    class ComponentStatus {
+    class ComponentStatusId {
         <<type>>
         alpha
         beta
@@ -153,7 +153,7 @@ classDiagram
         implementations : ConnectorImplementation[]
         logo : string
         reference : string
-        usageId : ConnectorUsage
+        usageId : ConnectorUsageId
         version : string
     }
 
@@ -162,7 +162,7 @@ classDiagram
         activeConnectionCount : number
         canDescribe : boolean
         id : string
-        authMethodId : ConnectorAuthMethod
+        authMethodId : ConnectorAuthMethodId
         label : string
         maxConnectionCount : number
         params : Record~string~[]
@@ -175,7 +175,7 @@ classDiagram
 classDiagram
     direction TB
 
-    class ConnectorAuthMethod {
+    class ConnectorAuthMethodId {
         <<enumeration>>
         APIKey
         Disabled
@@ -191,7 +191,7 @@ classDiagram
         fileStore
     }
 
-    class ConnectorUsage {
+    class ConnectorUsageId {
         <<enumeration>>
         Bidirectional
         Destination
@@ -207,7 +207,7 @@ The following diagram illustrates the connector class hierarchies, showcasing th
 
 ```mermaid
 classDiagram
-    direction LR
+    direction TD
 
     class DataConnector {
         <<interface>>
