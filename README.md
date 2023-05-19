@@ -207,7 +207,7 @@ The following diagram illustrates the connector class hierarchies, showcasing th
 
 ```mermaid
 classDiagram
-    direction TD
+    direction LR
 
     class DataConnector {
         <<interface>>
