@@ -231,6 +231,7 @@ classDiagram
     DataConnectorReadInterface -- DataConnectorReadInterfaceSettings
     DataConnector .. DataConnectorWriteInterface
     DataConnectorWriteInterface -- DataConnectorWriteInterfaceSettings
+    DataConnector "1" --> "*" ConnectionEntriesPage
 ```
 
 ## Node Connector Instance Classes
@@ -278,7 +279,7 @@ classDiagram
     }
 ```
 
-## Connection Class
+## Connection Classes
 
 The following diagram illustrates the connection class hierarchy, showcasing the relationships and inheritance structure between different **Connection** classes and detailing referenced enumeration types.
 
@@ -414,7 +415,7 @@ classDiagram
     }
 ```
 
-## Entity Event Class
+## Entity Event Classes
 
 ...
 
@@ -433,7 +434,7 @@ classDiagram
     }
 ```
 
-## Source View Class
+## Source View Classes
 
 ...
 
