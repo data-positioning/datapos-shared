@@ -209,6 +209,11 @@ The following diagram illustrates the connector class hierarchies, showcasing th
 classDiagram
     direction LR
 
+    class DataConnectorConstructor {
+        <<interface>>
+        connectionConfig : ConnectionConfig
+    }
+
     class DataConnector {
         <<interface>>
         abortController? :  AbortController

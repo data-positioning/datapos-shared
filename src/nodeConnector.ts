@@ -47,7 +47,7 @@ export interface NodeConnectorConstructor {
 // Node Connector -
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-// export type NodeItem = ComponentItem;
+export type NodeItem = ComponentItem;
 
 export type NodeItemProperties = Record<string, unknown>;
 
