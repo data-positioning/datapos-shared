@@ -7,8 +7,7 @@
 
 // Engine Dependencies
 import { DataType } from './connection';
-import type { ErrorData } from '.';
-import { DataStorageTypeId, DataUsageTypeId } from '.';
+import { DataStorageTypeId, DataUsageTypeId, type ErrorData } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Utilities - Extract
