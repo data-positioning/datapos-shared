@@ -18,8 +18,8 @@ classDiagram
         firstCreatedAt : FirebaseTimestamp
         lastUpdatedAt : FirebaseTimestamp
         logo? : string
-        statusId : ComponentStatusId
-        type : ComponentType
+        status : ComponentStatus
+        typeId : ComponentTypeId
     }
 
     ComponentConfig <|-- ConnectorConfig
@@ -39,7 +39,7 @@ classDiagram
 classDiagram
     direction TB
 
-    class ComponentStatusId {
+    class ComponentStatus {
         <<type>>
         alpha
         beta
@@ -51,7 +51,7 @@ classDiagram
         underReview
     }
 
-    class ComponentType {
+    class ComponentTypeId {
         <<enumeration>>
         Connection
         Connector **

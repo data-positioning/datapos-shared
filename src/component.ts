@@ -27,16 +27,16 @@ export interface ComponentConfig {
     firstCreatedAt: FirebaseTimestamp;
     lastUpdatedAt: FirebaseTimestamp;
     logo?: string;
-    statusId: ComponentStatusId;
-    type: ComponentType;
+    status: ComponentStatus;
+    typeId: ComponentTypeId;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Component - Enumerations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export type ComponentStatusId = { color?: string; label: string };
-const componentStatuses: Record<string, ComponentStatusId> = {
+export type ComponentStatus = { color?: string; label: string };
+const componentStatuses: Record<string, ComponentStatus> = {
     alpha: { color: '#d62728', label: 'alpha' },
     beta: { color: '#8c564b', label: 'beta' },
     generalAvailability: { label: '' },
@@ -46,9 +46,9 @@ const componentStatuses: Record<string, ComponentStatusId> = {
     unavailable: { color: '#d62728', label: 'unavailable' },
     underReview: { color: '#666666', label: 'under-review' }
 };
-export const lookupComponentStatus = (id: string): ComponentStatusId => (componentStatuses[id] ? componentStatuses[id] : { color: '#984ea3', label: id });
+export const lookupComponentStatus = (id: string): ComponentStatus => (componentStatuses[id] ? componentStatuses[id] : { color: '#984ea3', label: id });
 
-export enum ComponentType {
+export enum ComponentTypeId {
     /* eslint-disable no-unused-vars */
     Connection = 'connection',
     Connector = 'connector', // TODO: Need all of these?
