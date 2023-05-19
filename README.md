@@ -22,10 +22,10 @@ classDiagram
         type : ComponentType
     }
 
-    ComponentConfig <|-- ConnectionConfig
     ComponentConfig <|-- ConnectorConfig
     ConnectorConfig <|-- DataConnectorConfig
     ConnectorConfig <|-- NodeConnectorConfig
+    ComponentConfig <|-- ConnectionConfig
     ComponentConfig <|-- ContextModelConfig
     ComponentConfig <|-- DimensionConfig
     ComponentConfig <|-- EntityConfig
@@ -508,7 +508,64 @@ classDiagram
     }
 ```
 
-## Entity Event Declarations
+## Context Model Declarations
+
+...
+
+```mermaid
+classDiagram
+    direction LR
+
+    class Component {
+        <<interface>>
+    }
+
+    Component <|-- ContextModel
+
+    class ContextModel {
+        <<interface>>
+    }
+```
+
+## Dimension Declarations
+
+...
+
+```mermaid
+classDiagram
+    direction LR
+
+    class Component {
+        <<interface>>
+    }
+
+    Component <|-- Dimension
+
+    class Dimension {
+        <<interface>>
+    }
+```
+
+## Entity Declarations
+
+...
+
+```mermaid
+classDiagram
+    direction LR
+
+    class Component {
+        <<interface>>
+    }
+
+    Component <|-- Entity
+
+    class Entity {
+        <<interface>>
+    }
+```
+
+## Event Query Declarations
 
 ...
 
@@ -629,6 +686,44 @@ classDiagram
     }
 ```
 
+## Usage Kit Declarations
+
+...
+
+```mermaid
+classDiagram
+    direction LR
+
+    class Component {
+        <<interface>>
+    }
+
+    Component <|-- UsageKit
+
+    class UsageKit {
+        <<interface>>
+    }
+```
+
+## View Template Declarations
+
+...
+
+```mermaid
+classDiagram
+    direction LR
+
+    class Component {
+        <<interface>>
+    }
+
+    Component <|-- ViewTemplate
+
+    class ViewTemplate {
+        <<interface>>
+    }
+```
+
 ## Other Declarations
 
 ```mermaid
@@ -683,6 +778,20 @@ classDiagram
 ```mermaid
 classDiagram
     direction TB
+
+    class ErrorData {
+            <<interface>>
+        body : ErrorDataBody
+        statusCode? : number
+        statusText? : string
+    }
+
+    class ErrorDataBody {
+            <<interface>>
+        context? : string
+        message : string
+        stack? : string
+    }
 
     class FirebaseTimestamp {
         <<interface>>

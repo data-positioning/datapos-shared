@@ -61,6 +61,18 @@ export interface DPAFileSystemFileHandle {
     getFile(): Promise<File>;
 }
 
+export interface ErrorData {
+    body: ErrorDataBody;
+    statusCode?: number;
+    statusText?: string;
+}
+
+export interface ErrorDataBody {
+    context?: string;
+    message: string;
+    stack?: string;
+}
+
 export interface FirebaseTimestamp {
     nanoseconds: number;
     seconds: number;
@@ -92,7 +104,6 @@ export * from './viewTemplate';
 
 export * from './usageKit';
 
-export * from './errorData';
 export * from './utilities';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
