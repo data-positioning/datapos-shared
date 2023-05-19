@@ -6,18 +6,23 @@
  */
 
 // Engine Dependencies
+import { ConnectionConfig } from './connection';
 import type { Connector } from './connector';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Node Connector
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+export interface NodeConnectorConstructor {
+    new (connectionConfig: ConnectionConfig): NodeConnector;
+}
+
 export interface NodeConnector extends Connector {
     // Node Item(s) - Delete List & Upsert
     deleteNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<void>;
-    // getNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<NodeItem>;
-    // listNodeItems(nodeItemTypeId?: NodeItemTypeId): Promise<NodeItem[]>;
-    // upsertNodeItem(nodeItemTypeId: NodeItemTypeId, nodeItem: NodeItem | Partial<NodeItem>, id?: string): Promise<NodeItem>;
+    getNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<NodeItem>;
+    listNodeItems(nodeItemTypeId?: NodeItemTypeId): Promise<NodeItem[]>;
+    upsertNodeItem(nodeItemTypeId: NodeItemTypeId, nodeItem: NodeItem | Partial<NodeItem>, id?: string): Promise<NodeItem>;
 
     // Node Item Properties - Get & Upsert
     getNodeItemProperties(nodeItemTypeId: NodeItemTypeId, id: string): Promise<NodeItemProperties>;
@@ -36,23 +41,25 @@ export interface NodeConnector extends Connector {
         query?: NodeQuery,
         before?: number,
         after?: number
-    ): Promise<NodeDataPageResults>;
-}
-
-export interface NodeConnectorConstructor {
-    new (): NodeConnector;
+    ): Promise<NodeItemDataPage>;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Node Connector -
+// Node Connector - Item
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export type NodeItem = ComponentItem;
+export interface NodeItem {}
 
 export type NodeItemProperties = Record<string, unknown>;
 
+export interface NodeItemDataPage {
+    after?: number;
+    before?: number;
+    data: Record<string, unknown>[];
+}
+
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Node Connector -
+// Node Connector - Query
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface NodeQuery {
@@ -76,16 +83,6 @@ export interface NodeQueryExpressionValue {
     dataItemName: string;
     type: string;
     value: boolean | number | string | null | unknown;
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Node Connector -
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export interface NodeDataPageResults {
-    after?: number;
-    before?: number;
-    data: Record<string, unknown>[];
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

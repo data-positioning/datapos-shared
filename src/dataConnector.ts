@@ -16,6 +16,10 @@ import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, Conne
 // Data Connector
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+export interface DataConnectorConstructor {
+    new (connectionConfig: ConnectionConfig): DataConnector;
+}
+
 export interface DataConnector extends Connector {
     abortController?: AbortController;
     abort?(): void;
@@ -37,10 +41,6 @@ export interface DataConnector extends Connector {
         properties: ConnectionEntriesRetrievalProperties,
         folderChildEntryCountCallback?: (folderChildEntryCount: CallbackProperties) => void
     ): Promise<ConnectionEntriesPage>;
-}
-
-export interface DataConnectorConstructor {
-    new (connectionConfig: ConnectionConfig): DataConnector;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

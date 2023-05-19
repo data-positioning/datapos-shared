@@ -259,8 +259,23 @@ classDiagram
         countNodeItemData() Promise~number~
         determineNodeItemData() Promise~unknown~
         insertNodeItemData() Promise~void~
-        retrieveNodeItemData() Promise~NodeDataPageResults~
+        retrieveNodeItemData() Promise~NodeItemDataPage~
     }
+
+    class NodeItem {
+        <<interface>>
+    }
+
+    class NodeItemProperties {
+        <<interface>>
+    }
+
+    class NodeItemDataPage {
+        <<interface>>}
+
+    NodeConnector .. NodeItem
+    NodeConnector .. NodeItemProperties
+    NodeConnector .. NodeItemDataPage
 ```
 
 ```mermaid
