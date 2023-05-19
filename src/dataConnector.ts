@@ -117,7 +117,7 @@ export interface DataConnectorWriteInterface {
 // Data Connector - Enumerations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export enum DataStorageTypeId {
+export enum DataStorageType {
     /* eslint-disable no-unused-vars */
     Binary = 'binary',
     Boolean = 'boolean',

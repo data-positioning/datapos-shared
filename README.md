@@ -19,7 +19,7 @@ classDiagram
         lastUpdatedAt : FirebaseTimestamp
         logo? : string
         statusId : ComponentStatus
-        typeId : ComponentTypeId
+        typeId : ComponentType
     }
 
     ComponentConfig <|-- ConnectionConfig
@@ -51,7 +51,7 @@ classDiagram
         underReview
     }
 
-    class ComponentTypeId {
+    class ComponentType {
         <<enumeration>>
         Connection
         Connector **
@@ -153,7 +153,7 @@ classDiagram
         implementations : ConnectorImplementation[]
         logo : string
         reference : string
-        usageId : ConnectorUsageId
+        usageId : ConnectorUsage
         version : string
     }
 
@@ -162,7 +162,7 @@ classDiagram
         activeConnectionCount : number
         canDescribe : boolean
         id : string
-        authMethodId : ConnectorAuthMethodId
+        authMethodId : ConnectorAuthMethod
         label : string
         maxConnectionCount : number
         params : Record~string~[]
@@ -175,7 +175,7 @@ classDiagram
 classDiagram
     direction TB
 
-    class ConnectorAuthMethodId {
+    class ConnectorAuthMethod {
         <<enumeration>>
         APIKey
         Disabled
@@ -191,7 +191,7 @@ classDiagram
         fileStore
     }
 
-    class ConnectorUsageId {
+    class ConnectorUsage {
         <<enumeration>>
         Bidirectional
         Destination
@@ -200,7 +200,7 @@ classDiagram
         None
     }
 
-    class DataStorageTypeId {
+    class DataStorageType {
         <<enumeration>>
         Binary
         Boolean

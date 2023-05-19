@@ -25,7 +25,7 @@ export interface ConnectorConfig extends ComponentConfig {
     implementations: ConnectorImplementation[];
     logo: string;
     reference: string;
-    usageId: ConnectorUsageId;
+    usageId: ConnectorUsage;
     version: string;
 }
 
@@ -33,7 +33,7 @@ export interface ConnectorImplementation {
     activeConnectionCount: number;
     canDescribe: boolean;
     id: string;
-    authMethodId: ConnectorAuthMethodId; // TODO: Checked
+    authMethodId: ConnectorAuthMethod; // TODO: Checked
     label: string;
     maxConnectionCount: number; // TODO: Checked
     params: Record<string, string>[];
@@ -43,7 +43,7 @@ export interface ConnectorImplementation {
 // Connector - Enumerations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export enum ConnectorAuthMethodId {
+export enum ConnectorAuthMethod {
     /* eslint-disable no-unused-vars */
     APIKey = 'apiKey',
     Disabled = 'disabled',
@@ -61,7 +61,7 @@ const componentCategories: Record<string, ConnectorCategory> = {
 };
 export const lookupConnectorCategory = (id: string): ConnectorCategory => (componentCategories[id] ? componentCategories[id] : { label: id });
 
-export enum ConnectorUsageId {
+export enum ConnectorUsage {
     /* eslint-disable no-unused-vars */
     Bidirectional = 'bidirectional',
     Destination = 'destination',

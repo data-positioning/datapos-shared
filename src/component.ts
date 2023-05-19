@@ -28,7 +28,7 @@ export interface ComponentConfig {
     lastUpdatedAt: FirebaseTimestamp;
     logo?: string;
     statusId: ComponentStatus;
-    typeId: ComponentTypeId;
+    typeId: ComponentType;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -48,7 +48,7 @@ const componentStatuses: Record<string, ComponentStatus> = {
 };
 export const lookupComponentStatus = (id: string): ComponentStatus => (componentStatuses[id] ? componentStatuses[id] : { color: '#984ea3', label: id });
 
-export enum ComponentTypeId {
+export enum ComponentType {
     /* eslint-disable no-unused-vars */
     Connection = 'connection',
     Connector = 'connector', // TODO: Need all of these?
