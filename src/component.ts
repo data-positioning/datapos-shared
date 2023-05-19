@@ -27,7 +27,7 @@ export interface ComponentConfig {
     firstCreatedAt: FirebaseTimestamp;
     lastUpdatedAt: FirebaseTimestamp;
     logo?: string;
-    statusId: string;
+    statusId: ComponentStatus;
     typeId: ComponentTypeId;
 }
 

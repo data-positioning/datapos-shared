@@ -18,7 +18,7 @@ classDiagram
         firstCreatedAt : FirebaseTimestamp
         lastUpdatedAt : FirebaseTimestamp
         logo? : string
-        statusId : string
+        statusId : ComponentStatus
         typeId : ComponentTypeId
     }
 
@@ -39,7 +39,7 @@ classDiagram
 classDiagram
     direction TB
 
-    class ComponentStatusId {
+    class ComponentStatus {
         <<type>>
         alpha
         beta
@@ -54,13 +54,13 @@ classDiagram
     class ComponentTypeId {
         <<enumeration>>
         Connection
-        Connector**
+        Connector **
         ContextModel
-        DataConnector**
+        DataConnector **
         Dimension
         Entity
         EventQuery
-        NodeConnector**
+        NodeConnector **
         SourceView
         ViewTemplate
         UsageKit
@@ -245,9 +245,13 @@ classDiagram
 
     DataConnector .. ConnectionDescription
     DataConnector .. DataConnectorCreateInterface
+    DataConnectorCreateInterface -- DataConnectorCreateInterfaceSettings
     DataConnector .. DataConnectorPreviewInterface
+    DataConnectorPreviewInterface -- DataConnectorPreviewInterfaceSettings
     DataConnector .. DataConnectorReadInterface
+    DataConnectorReadInterface -- DataConnectorReadInterfaceSettings
     DataConnector .. DataConnectorWriteInterface
+    DataConnectorWriteInterface -- DataConnectorWriteInterfaceSettings
 ```
 
 ## Node Connector Instance Classes
