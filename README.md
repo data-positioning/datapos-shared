@@ -224,13 +224,13 @@ classDiagram
 
     DataConnector .. ConnectionDescription
     DataConnector .. DataConnectorCreateInterface
-    DataConnectorCreateInterface -- DataConnectorCreateInterfaceSettings
+    DataConnectorCreateInterface "1" --> "1" DataConnectorCreateInterfaceSettings
     DataConnector .. DataConnectorPreviewInterface
-    DataConnectorPreviewInterface -- DataConnectorPreviewInterfaceSettings
+    DataConnectorPreviewInterface "1" --> "1" DataConnectorPreviewInterfaceSettings
     DataConnector .. DataConnectorReadInterface
-    DataConnectorReadInterface -- DataConnectorReadInterfaceSettings
+    DataConnectorReadInterface "1" --> "1" DataConnectorReadInterfaceSettings
     DataConnector .. DataConnectorWriteInterface
-    DataConnectorWriteInterface -- DataConnectorWriteInterfaceSettings
+    DataConnectorWriteInterface "1" --> "1" DataConnectorWriteInterfaceSettings
     DataConnector "1" --> "*" ConnectionEntriesPage
 ```
 
