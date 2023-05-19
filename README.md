@@ -343,10 +343,25 @@ classDiagram
 
     class ConnectionConfig {
         <<interface>>
+        authorization? : Record~ConnectionAuthorization~
+        connectorId: string
+        connectorConfig: ConnectorConfig
+        implementation: ConnectorImplementation
+        implementationId? : string
+        notation? : string
+        verifiedAt? : FirebaseTimestamp
     }
 
     class ConnectionAuthorisation {
         <<interface>>
+        access_token : string
+        account_id : string
+        expires_at : number
+        expires_in : number
+        refresh_token : string
+        scope : string
+        token_type : string
+        uid : string
     }
 
     ConnectionConfig "1" --> "*" ConnectionAuthorisation

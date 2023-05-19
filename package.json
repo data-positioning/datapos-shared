@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-engine-support",
     "author": "Jonathan Terrell <terrell.jm@gmail.com>",
     "license": "ISC",
-    "version": "0.0.107",
+    "version": "0.0.108",
     "files": [
         "dist"
     ],
@@ -17,7 +17,7 @@
         "csv-parse": "^5.3.10"
     },
     "devDependencies": {
-        "@datapos/datapos-operations": "^0.1.58",
+        "@datapos/datapos-operations": "^0.1.63",
         "@typescript-eslint/eslint-plugin": "^5.59.6",
         "@typescript-eslint/parser": "^5.59.6",
         "eslint": "^8.40.0",
@@ -28,7 +28,7 @@
         "grunt-shell": "^4.0.0",
         "prettier": "^2.8.8",
         "typescript": "^5.0.4",
-        "vite": "^4.3.7",
+        "vite": "^4.3.8",
         "vite-plugin-dts": "^2.3.0",
         "vite-plugin-wasm": "^3.2.2"
     }
