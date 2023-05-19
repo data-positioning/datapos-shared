@@ -19,7 +19,7 @@ classDiagram
         lastUpdatedAt : FirebaseTimestamp
         logo? : string
         statusId : ComponentStatusId
-        typeId : ComponentType
+        type : ComponentType
     }
 
     ComponentConfig <|-- ConnectionConfig
@@ -149,7 +149,7 @@ classDiagram
 
     class ConnectorConfig {
         <<interface>>
-        categoryId : ConnectorCategory
+        category : ConnectorCategory
         implementations : ConnectorImplementation[]
         logo : string
         reference : string
