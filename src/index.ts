@@ -110,15 +110,15 @@ export * from './utilities';
 // Engine
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface Engine {
-    dataConnectors: Record<string, DataConnector>;
-    storageURLPrefix: string;
-}
+// export interface Engine {
+//     dataConnectors: Record<string, DataConnector>;
+//     storageURLPrefix: string;
+// }
 
-const engine: Engine = {
-    dataConnectors: {},
-    storageURLPrefix: ''
-};
+// const engine: Engine = {
+//     dataConnectors: {},
+//     storageURLPrefix: ''
+// };
 
 // export const initialise = (storageURLPrefix: string) => {
 //     engine.storageURLPrefix = storageURLPrefix;
@@ -134,4 +134,4 @@ const engine: Engine = {
 //     }
 // };
 
-export const useEngine = () => engine;
+// export const useEngine = () => engine;
