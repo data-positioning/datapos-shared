@@ -6,7 +6,7 @@
  */
 
 // Dependencies - Engine
-import type { DPAFileSystemFileHandle } from '.';
+import type { DPAFileSystemFileHandle, DataUsageTypeId } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection Entry
@@ -39,7 +39,7 @@ export interface ConnectionEntryPreview {
 export type ParsedValue = boolean | number | string | null;
 
 export interface PreviewField {
-    dataTypeId?: DataTypeId;
+    dataUsageTypeId?: DataUsageTypeId;
     id?: string;
     label?: string;
     previewValues?: PreviewValue[];
@@ -91,20 +91,6 @@ export enum DataFormatId {
     XLS = 'xls',
     XLSX = 'xlsx',
     XML = 'xml'
-}
-
-export enum DataTypeId {
-    Binary = 'binary',
-    Boolean = 'boolean',
-    Date = 'date',
-    DateTime = 'dateTime',
-    DateTimeOffset = 'dateTimeOffset',
-    DecimalNumber = 'decimalNumber',
-    Object = 'object',
-    String = 'string',
-    Time = 'time',
-    Unknown = 'unknown',
-    WholeNumber = 'wholeNumber'
 }
 
 export enum ValueDelimiterId {

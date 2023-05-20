@@ -453,7 +453,7 @@ classDiagram
 
     class PreviewField {
         <<interface>>
-        dataTypeId? :  DataTypeId
+        dataTypeId? :  DataUsageTypeId
         id? :  string
         label? :  string
         previewValues? :  PreviewValue[]
@@ -498,21 +498,6 @@ classDiagram
         XLS
         XLSX
         XML
-    }
-
-    class DataTypeId {
-        <<enumeration>>
-        Binary
-        Boolean
-        Date
-        DateTime
-        DateTimeOffset
-        DecimalNumber
-        Object
-        String
-        Time
-        Unknown
-        WholeNumber
     }
 
     class ValueDelimiterId {
@@ -693,7 +678,7 @@ classDiagram
 
     class SourceViewContentAuditField {
         <<interface>>
-        dataTypeId? : DataTypeId
+        dataUsageTypeId? : DataUsageTypeId
         id? : string
         invalidValueCount : number
         missingValueCount : number
