@@ -7,8 +7,8 @@
 
 // Dependencies - Engine
 import type { Component } from './component';
-import type { DPAFileSystemFileHandle } from '.';
-import type { DataFormatId, DataUsageTypeId, ParsedValue, PreviewField, ValueDelimiterId } from './connectionEntry';
+import type { DataFormatId, ParsedValue, PreviewField, ValueDelimiterId } from './connectionEntry';
+import type { DPAFileSystemFileHandle, DataUsageTypeId } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View

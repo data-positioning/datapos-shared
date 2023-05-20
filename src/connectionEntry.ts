@@ -6,7 +6,7 @@
  */
 
 // Dependencies - Engine
-import type { DPAFileSystemFileHandle, DataUsageTypeId } from '.';
+import type { DataUsageTypeId, DPAFileSystemFileHandle } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection Entry
