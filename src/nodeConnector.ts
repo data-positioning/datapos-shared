@@ -5,7 +5,7 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-// Engine Dependencies
+// Dependencies - Engine
 import { ConnectionConfig } from './connection';
 import type { Connector } from './connector';
 

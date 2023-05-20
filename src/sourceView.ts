@@ -5,7 +5,7 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-// Engine Dependencies
+// Dependencies - Engine
 import type { Component } from './component';
 import type { DPAFileSystemFileHandle } from '.';
 import type { DataFormatId, DataTypeId, ParsedValue, PreviewField, ValueDelimiterId } from './connectionEntry';

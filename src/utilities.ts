@@ -5,7 +5,7 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-// Engine Dependencies
+// Dependencies - Engine
 import { DataType } from './connection';
 import { DataStorageTypeId, DataUsageTypeId, type ErrorData } from '.';
 

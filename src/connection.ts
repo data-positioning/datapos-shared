@@ -5,7 +5,7 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-// Engine Dependencies
+// Dependencies - Engine
 import type { Component, ComponentConfig } from './component';
 import { ConnectorConfig, ConnectorImplementation } from './connector';
 import { DataStorageTypeId, DataUsageTypeId, FirebaseTimestamp } from '.';
@@ -24,7 +24,6 @@ export interface Connection extends Component {
 
 export interface ConnectionConfig extends ComponentConfig {
     authorization?: Record<string, ConnectionAuthorization>;
-    connectorId: string;
     connectorConfig: ConnectorConfig;
     implementation: ConnectorImplementation;
     implementationId?: string;

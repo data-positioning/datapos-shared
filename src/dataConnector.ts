@@ -5,7 +5,7 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-// Engine Dependencies
+// Dependencies - Engine
 import type { Connector } from './connector';
 import type { SourceViewProperties } from './sourceView';
 import type { CallbackProperties, Progress } from '.';
