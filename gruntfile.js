@@ -49,7 +49,7 @@ module.exports = (grunt) => {
         identifyLicenses(grunt, this);
     });
     grunt.registerTask('lintCode', function () {
-        lintCode(grunt, this, ['*.js']);
+        lintCode(grunt, this, ['*.cjs', '*.js', '**/*.ts']);
     });
     grunt.registerTask('logNotImplementedMessage', (taskName) => logNotImplementedMessage(taskName));
     grunt.registerTask('migrateDependencies', function () {
