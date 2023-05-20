@@ -5,9 +5,6 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-// Dependencies - Engine
-import type { DataConnector } from './dataConnector';
-
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Declarations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -105,33 +102,3 @@ export * from './viewTemplate';
 export * from './usageKit';
 
 export * from './utilities';
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Engine
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// export interface Engine {
-//     dataConnectors: Record<string, DataConnector>;
-//     storageURLPrefix: string;
-// }
-
-// const engine: Engine = {
-//     dataConnectors: {},
-//     storageURLPrefix: ''
-// };
-
-// export const initialise = (storageURLPrefix: string) => {
-//     engine.storageURLPrefix = storageURLPrefix;
-
-//     try {
-//         // const contentAudit = ContentAudit.new();
-//         // console.log('contentAudit', contentAudit);
-//         // const ptr = contentAudit.get_utf8_in_buffer_pointer();
-//         // const columnCount = contentAudit.get_column_count();
-//         // console.log(1234, ptr, columnCount);
-//     } catch (error) {
-//         console.log(9999, error);
-//     }
-// };
-
-// export const useEngine = () => engine;
