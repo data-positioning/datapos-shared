@@ -2,6 +2,14 @@
 
 Includes TypeScript declarations used by the Data Positioning engine, as well as utilities that provide assistance when utilizing the engine.
 
+...
+
+## Installation
+
+```
+npm install --save-dev @datapos-engine-support
+```
+
 ## Component Configuration Declarations
 
 The following diagram illustrates the component configuration class hierarchy, showcasing the relationships and inheritance structure between different **Component Configuration** classes.
