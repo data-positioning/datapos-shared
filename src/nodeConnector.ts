@@ -7,7 +7,7 @@
 
 // Dependencies - Engine
 import { ConnectionConfig } from './connection';
-import type { Connector } from './connector';
+import type { Connector, ConnectorConfig } from './connector';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Node Connector
@@ -18,6 +18,12 @@ export interface NodeConnectorConstructor {
 }
 
 export interface NodeConnector extends Connector {
+    readonly abortController?: AbortController;
+    readonly config: ConnectorConfig;
+    readonly connectionConfig: ConnectionConfig;
+    readonly id: string;
+    readonly version: string;
+
     // Node Item(s) - Delete List & Upsert
     deleteNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<void>;
     getNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<NodeItem>;
@@ -48,7 +54,9 @@ export interface NodeConnector extends Connector {
 // Node Connector - Item
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface NodeItem {}
+export interface NodeItem {
+    placeholder: string;
+}
 
 export type NodeItemProperties = Record<string, unknown>;
 
@@ -79,7 +87,9 @@ export interface NodeQueryExpression {
     type: string;
 }
 
-export interface NodeQueryExpressionItem {}
+export interface NodeQueryExpressionItem {
+    placeholder: string;
+}
 
 export interface NodeQueryExpressionValue {
     dataItemName: string;

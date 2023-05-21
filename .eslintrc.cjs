@@ -10,11 +10,8 @@
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 module.exports = {
-    env: {
-        browser: true,
-        node: true
-    },
-    extends: ['eslint:recommended'],
+    env: { browser: true, node: true },
+    extends: ['eslint:recommended', 'plugin:@typescript-eslint/recommended'],
     parser: '@typescript-eslint/parser',
     parserOptions: {
         ecmaVersion: 'latest'
@@ -22,7 +19,6 @@ module.exports = {
     plugins: ['@typescript-eslint', 'import'],
     root: true,
     rules: {
-        'no-unused-vars': 'warn',
         'sort-imports': ['warn', { allowSeparatedGroups: true, ignoreCase: true, memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'] }]
     }
 };
