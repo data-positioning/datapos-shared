@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-engine-support",
     "author": "Jonathan Terrell <terrell.jm@gmail.com>",
     "license": "ISC",
-    "version": "0.0.122",
+    "version": "0.0.123",
     "files": [
         "dist"
     ],
