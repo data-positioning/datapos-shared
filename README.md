@@ -219,7 +219,6 @@ classDiagram
 
     class DataConnectorConstructor {
         <<interface>>
-        connectionConfig : ConnectionConfig
     }
 
     class DataConnector {

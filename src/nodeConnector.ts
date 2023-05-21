@@ -14,7 +14,7 @@ import type { Connector } from './connector';
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface NodeConnectorConstructor {
-    new (connectionConfig: ConnectionConfig): NodeConnector;
+    new (config: ConnectionConfig): NodeConnector;
 }
 
 export interface NodeConnector extends Connector {

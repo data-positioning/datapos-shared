@@ -17,7 +17,7 @@ import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, Conne
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface DataConnectorConstructor {
-    new (connectionConfig: ConnectionConfig): DataConnector;
+    new (config: ConnectionConfig): DataConnector;
 }
 
 export interface DataConnector extends Connector {
