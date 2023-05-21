@@ -18,7 +18,7 @@ export interface NodeConnectorConstructor {
 }
 
 export interface NodeConnector extends Connector {
-    abortController?: AbortController;
+    abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
     readonly id: string;
