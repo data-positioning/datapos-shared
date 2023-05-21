@@ -24,10 +24,14 @@ export interface Connector extends Component {
 
 export interface ConnectorConfig extends ComponentConfig {
     category: ConnectorCategory;
+    categoryId: string;
     implementations: ConnectorImplementation[];
     logo: string;
     reference: string;
     usageId: ConnectorUsageId;
+    vendorAccountURL?: string;
+    vendorDocumentationURL?: string;
+    vendorHomeURL?: string;
     version: string;
 }
 
