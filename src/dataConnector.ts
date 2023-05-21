@@ -21,7 +21,7 @@ export interface DataConnectorConstructor {
 }
 
 export interface DataConnector extends Connector {
-    readonly abortController?: AbortController;
+    abortController?: AbortController;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
     readonly id: string;
