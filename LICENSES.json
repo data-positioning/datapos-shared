@@ -1,18 +1,9 @@
 {
-  "@datapos/datapos-engine-support@0.0.55": {
+  "@datapos/datapos-engine-support@0.0.133": {
     "licenses": "ISC",
     "publisher": "Jonathan Terrell",
     "email": "terrell.jm@gmail.com",
     "path": "/Users/jonathanterrell/Data Positioning/GitHub/datapos-engine-support",
     "licenseFile": "/Users/jonathanterrell/Data Positioning/GitHub/datapos-engine-support/LICENSE"
-  },
-  "csv-parse@5.3.3": {
-    "licenses": "MIT",
-    "repository": "https://github.com/adaltas/node-csv",
-    "publisher": "David Worms",
-    "email": "david@adaltas.com",
-    "url": "https://www.adaltas.com",
-    "path": "/Users/jonathanterrell/Data Positioning/GitHub/datapos-engine-support/node_modules/csv-parse",
-    "licenseFile": "/Users/jonathanterrell/Data Positioning/GitHub/datapos-engine-support/node_modules/csv-parse/LICENSE"
   }
 }

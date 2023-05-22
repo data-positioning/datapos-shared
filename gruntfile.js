@@ -14,7 +14,7 @@ const {
     migrateDependencies,
     lintCode,
     publishPackageToNPM,
-    updateDependencies
+    updateDataPosDependencies
 } = require('@datapos/datapos-operations/commonHelpers');
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -54,8 +54,8 @@ module.exports = (grunt) => {
     grunt.registerTask('publishPackageToNPM', function () {
         publishPackageToNPM(grunt, this);
     });
-    grunt.registerTask('updateDependencies', function (updateTypeId) {
-        updateDependencies(grunt, this, updateTypeId);
+    grunt.registerTask('updateDataPosDependencies', function (updateTypeId) {
+        updateDataPosDependencies(grunt, this, updateTypeId);
     });
 
     // Register common repository management tasks. These tasks are all invoked by VSCode keyboard shortcuts identified in the comments.
@@ -70,5 +70,5 @@ module.exports = (grunt) => {
     grunt.registerTask('release', ['gitadd', 'bump', 'build', 'publishPackageToNPM']); // alt+ctrl+shift+r.
     grunt.registerTask('synchronise', ['gitadd', 'bump']); // alt+ctrl+shift+s.
     grunt.registerTask('test', ['logNotImplementedMessage:Test']); // alt+ctrl+shift+t.
-    grunt.registerTask('update', ['updateDependencies']); // alt+ctrl+shift+u.
+    grunt.registerTask('update', ['updateDataPosDependencies']); // alt+ctrl+shift+u.
 };
