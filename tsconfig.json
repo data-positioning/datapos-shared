@@ -19,5 +19,5 @@
         "target": "esnext",
         "useDefineForClassFields": true
     },
-    "include": ["vite.config.*", "src/**/*"]
+    "include": [".eslintrc.cjs", "vite.config.*", "src/**/*"]
 }
