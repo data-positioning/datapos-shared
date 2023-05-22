@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-engine-support",
     "author": "Jonathan Terrell <terrell.jm@gmail.com>",
     "license": "ISC",
-    "version": "0.0.134",
+    "version": "0.0.135",
     "files": [
         "dist"
     ],
@@ -15,11 +15,11 @@
     },
     "types": "./dist/types/index.d.ts",
     "devDependencies": {
-        "@datapos/datapos-operations": "^0.1.95",
+        "@datapos/datapos-operations": "^0.1.103",
         "@typescript-eslint/eslint-plugin": "^5.59.6",
         "@typescript-eslint/parser": "^5.59.6",
         "csv-parse": "^5.3.10",
-        "eslint": "^8.40.0",
+        "eslint": "^8.41.0",
         "eslint-plugin-import": "^2.27.5",
         "grunt": "^1.6.1",
         "grunt-bump": "^0.8.0",
