@@ -13,8 +13,8 @@ const {
     logNotImplementedMessage,
     migrateDependencies,
     lintCode,
-    publishToNPM,
-    updateDevDependency
+    publishPackageToNPM,
+    updateDependencies
 } = require('@datapos/datapos-operations/commonHelpers');
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -26,11 +26,7 @@ module.exports = (grunt) => {
     grunt.initConfig({
         bump: { options: { commitFiles: ['-a'], commitMessage: 'v%VERSION%', pushTo: 'origin' } },
         gitadd: { task: { options: { all: true } } },
-        shell: {
-            build: {
-                command: ['vite build', 'mkdir dist/types', 'mv dist/*.d.ts dist/types/'].join('&&')
-            }
-        }
+        shell: { build: { command: ['vite build', 'mkdir dist/types', 'mv dist/*.d.ts dist/types/'].join('&&') } }
     });
 
     // Load external tasks.
@@ -55,11 +51,11 @@ module.exports = (grunt) => {
     grunt.registerTask('migrateDependencies', function () {
         migrateDependencies(grunt, this);
     });
-    grunt.registerTask('publishToNPM', function () {
-        publishToNPM(grunt, this);
+    grunt.registerTask('publishPackageToNPM', function () {
+        publishPackageToNPM(grunt, this);
     });
-    grunt.registerTask('updateDevDependency', function (updateTypeId) {
-        updateDevDependency(grunt, this, updateTypeId);
+    grunt.registerTask('updateDependencies', function (updateTypeId) {
+        updateDependencies(grunt, this, updateTypeId);
     });
 
     // Register common repository management tasks. These tasks are all invoked by VSCode keyboard shortcuts identified in the comments.
@@ -70,9 +66,9 @@ module.exports = (grunt) => {
     grunt.registerTask('format', ['logNotImplementedMessage:Format']); // alt+ctrl+shift+f.
     grunt.registerTask('lint', ['lintCode']); // alt+ctrl+shift+l.
     grunt.registerTask('migrate', ['migrateDependencies']); // alt+ctrl+shift+m.
-    grunt.registerTask('publish', ['publishToNPM']); // alt+ctrl+shift+p.
-    grunt.registerTask('release', ['gitadd', 'bump', 'build', 'publishToNPM']); // alt+ctrl+shift+r.
+    grunt.registerTask('publish', ['publishPackageToNPM']); // alt+ctrl+shift+p.
+    grunt.registerTask('release', ['gitadd', 'bump', 'build', 'publishPackageToNPM']); // alt+ctrl+shift+r.
     grunt.registerTask('synchronise', ['gitadd', 'bump']); // alt+ctrl+shift+s.
     grunt.registerTask('test', ['logNotImplementedMessage:Test']); // alt+ctrl+shift+t.
-    grunt.registerTask('update', ['updateDevDependency:operations']); // alt+ctrl+shift+u.
+    grunt.registerTask('update', ['updateDependencies']); // alt+ctrl+shift+u.
 };
