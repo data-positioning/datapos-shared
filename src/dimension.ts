@@ -12,10 +12,14 @@ import type { Component, ComponentConfig } from './component';
 // Dimension
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface Dimension extends Component {}
+export interface Dimension extends Component {
+    placeholder: string;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Dimension - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface DimensionConfig extends ComponentConfig {}
+export interface DimensionConfig extends ComponentConfig {
+    placeholder: string;
+}

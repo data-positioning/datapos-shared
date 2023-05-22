@@ -7,7 +7,7 @@
 
 // Dependencies - Engine
 import { DataType } from './connection';
-import { DataStorageTypeId, DataUsageTypeId, type ErrorData } from '.';
+import { DataStorageTypeId, DataUsageTypeId } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Utilities - Extract
@@ -185,42 +185,42 @@ export const lookupMimeTypeForFileExtension = (extension: string): string => {
 // Utilities - Vendor Access Token
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-/**
- * Establish a vendor access token.
- * @param connectionItem
- * @param accountId
- * @param sessionAccessToken
- * @param vendorRefreshURI
- * @returns The connection access token.
- */
-// export const establishVendorAccessToken = async (connectionItem: ConnectionItem, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
-export const establishVendorAccessToken = async (connectionItem: any, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
-    let accessToken;
+// /**
+//  * Establish a vendor access token.
+//  * @param connectionItem
+//  * @param accountId
+//  * @param sessionAccessToken
+//  * @param vendorRefreshURI
+//  * @returns The connection access token.
+//  */
+// // export const establishVendorAccessToken = async (connectionItem: ConnectionItem, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
+// export const establishVendorAccessToken = async (connectionItem: any, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
+//     let accessToken;
 
-    // If the current dropbox access token expires within 5 minutes then refresh it and return the new one, otherwise return the current one.
-    if (connectionItem.authorization![''].expires_at - Date.now() < 300000) {
-        // TODO: Above is WRONG 'connectionItem.authorization!['']'. We need to know what authorisation.
-        const headers = {
-            'Account-Id': accountId,
-            Authorization: sessionAccessToken,
-            'Connection-Id': connectionItem.id
-        };
-        const response = await fetch(vendorRefreshURI, { headers });
-        if (!response.ok) {
-            const data: ErrorData = {
-                body: {
-                    context: 'establishVendorAccessToken',
-                    message: await response.text()
-                },
-                statusCode: response.status,
-                statusText: response.statusText
-            };
-            throw new Error('Unable to establish access token.|' + JSON.stringify(data));
-        }
-        accessToken = await response.text();
-    } else {
-        accessToken = connectionItem.authorization![''].access_token as string; // TODO: This is WRONG 'connectionItem.authorization!['']'. We need to know what authorisation.
-    }
+//     // If the current dropbox access token expires within 5 minutes then refresh it and return the new one, otherwise return the current one.
+//     if (connectionItem.authorization[''].expires_at - Date.now() < 300000) {
+//         // TODO: Above is WRONG 'connectionItem.authorization!['']'. We need to know what authorisation.
+//         const headers = {
+//             'Account-Id': accountId,
+//             Authorization: sessionAccessToken,
+//             'Connection-Id': connectionItem.id
+//         };
+//         const response = await fetch(vendorRefreshURI, { headers });
+//         if (!response.ok) {
+//             const data: ErrorData = {
+//                 body: {
+//                     context: 'establishVendorAccessToken',
+//                     message: await response.text()
+//                 },
+//                 statusCode: response.status,
+//                 statusText: response.statusText
+//             };
+//             throw new Error('Unable to establish access token.|' + JSON.stringify(data));
+//         }
+//         accessToken = await response.text();
+//     } else {
+//         accessToken = connectionItem.authorization[''].access_token as string; // TODO: This is WRONG 'connectionItem.authorization!['']'. We need to know what authorisation.
+//     }
 
-    return accessToken;
-};
+//     return accessToken;
+// };

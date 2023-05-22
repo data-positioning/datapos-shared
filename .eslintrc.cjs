@@ -19,6 +19,7 @@ module.exports = {
     plugins: ['@typescript-eslint', 'import'],
     root: true,
     rules: {
+        '@typescript-eslint/no-var-requires': 'warn',
         'sort-imports': ['warn', { allowSeparatedGroups: true, ignoreCase: true, memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'] }]
     }
 };

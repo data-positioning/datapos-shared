@@ -12,10 +12,14 @@ import type { Component, ComponentConfig } from './component';
 // Entity
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface Entity extends Component {}
+export interface Entity extends Component {
+    placeholder: string;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Entity - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface EntityConfig extends ComponentConfig {}
+export interface EntityConfig extends ComponentConfig {
+    placeholder: string;
+}

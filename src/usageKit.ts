@@ -12,10 +12,14 @@ import type { Component, ComponentConfig } from './component';
 // Usage Kit
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface UsageKit extends Component {}
+export interface UsageKit extends Component {
+    placeholder: string;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Usage Kit - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface UsageKitConfig extends ComponentConfig {}
+export interface UsageKitConfig extends ComponentConfig {
+    placeholder: string;
+}

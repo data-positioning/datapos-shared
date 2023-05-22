@@ -11,10 +11,14 @@ import type { Component, ComponentConfig } from './component';
 // Event Query
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface EventQuery extends Component {}
+export interface EventQuery extends Component {
+    placeholder: string;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Event Query - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface EventQueryConfig extends ComponentConfig {}
+export interface EventQueryConfig extends ComponentConfig {
+    placeholder: string;
+}

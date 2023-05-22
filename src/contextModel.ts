@@ -12,10 +12,14 @@ import type { Component, ComponentConfig } from './component';
 // Context Model
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ContextModel extends Component {}
+export interface ContextModel extends Component {
+    placeholder: string;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Context Model - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ContextModelConfig extends ComponentConfig {}
+export interface ContextModelConfig extends ComponentConfig {
+    placeholder: string;
+}

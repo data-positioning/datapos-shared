@@ -12,10 +12,14 @@ import type { Component, ComponentConfig } from './component';
 // View Template
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ViewTemplate extends Component {}
+export interface ViewTemplate extends Component {
+    placeholder: string;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // View Template - Config
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ViewTemplateConfig extends ComponentConfig {}
+export interface ViewTemplateConfig extends ComponentConfig {
+    placeholder: string;
+}
