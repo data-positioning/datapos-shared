@@ -7,17 +7,12 @@
 
 // Dependencies - Framework/Vendor
 import { defineConfig } from 'vite';
-import { dirname } from 'path';
 import dts from 'vite-plugin-dts';
-import { fileURLToPath } from 'url';
 import { resolve } from 'path';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Configuration
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = dirname(__filename);
 
 export default defineConfig({
     build: {
