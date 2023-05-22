@@ -7,7 +7,7 @@
 
 import { defineConfig } from 'vite';
 import { dirname } from 'path';
-// import dts from 'vite-plugin-dts';
+import dts from 'vite-plugin-dts';
 import { fileURLToPath } from 'url';
 import { resolve } from 'path';
 // import wasm from 'vite-plugin-wasm'; // TODO: Is this needed?
@@ -25,5 +25,6 @@ export default defineConfig({
             fileName: (format) => `datapos-engine-support.${format}.js`
         }
     },
-    plugins: []
+    // plugins: [wasm(), dts()]
+    plugins: [dts()]
 });
