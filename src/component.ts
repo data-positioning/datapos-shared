@@ -21,14 +21,14 @@ export interface Component {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface ComponentConfig {
-    id: string;
-    label: string;
     description: string;
     firstCreatedAt: FirebaseTimestamp;
+    id: string;
+    label: string;
     lastUpdatedAt: FirebaseTimestamp;
-    logo?: string;
-    statusId: string;
+    logo: string;
     status: ComponentStatus;
+    statusId: string;
     typeId: ComponentTypeId;
 }
 
