@@ -26,7 +26,6 @@ export interface ConnectionConfig extends ComponentConfig {
     authorisation?: Record<string, ConnectionAuthorization>;
     connectorConfig?: ConnectorConfig;
     connectorId: string;
-    connectorImplementation?: ConnectorImplementation;
     connectorImplementationId?: string;
     lastVerifiedAt?: FirebaseTimestamp;
     notation: string;
