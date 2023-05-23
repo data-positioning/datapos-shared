@@ -55,7 +55,7 @@ export interface NodeConnector extends Connector {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface NodeItem {
-    placeholder: string;
+    placeholder?: string;
 }
 
 export type NodeItemProperties = Record<string, unknown>;
@@ -88,7 +88,7 @@ export interface NodeQueryExpression {
 }
 
 export interface NodeQueryExpressionItem {
-    placeholder: string;
+    placeholder?: string;
 }
 
 export interface NodeQueryExpressionValue {

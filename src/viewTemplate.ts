@@ -13,7 +13,7 @@ import type { Component, ComponentConfig } from './component';
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface ViewTemplate extends Component {
-    placeholder: string;
+    placeholder?: string;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -21,5 +21,5 @@ export interface ViewTemplate extends Component {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface ViewTemplateConfig extends ComponentConfig {
-    placeholder: string;
+    placeholder?: string;
 }

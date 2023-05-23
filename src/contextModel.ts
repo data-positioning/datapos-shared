@@ -13,7 +13,7 @@ import type { Component, ComponentConfig } from './component';
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface ContextModel extends Component {
-    placeholder: string;
+    placeholder?: string;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -21,5 +21,5 @@ export interface ContextModel extends Component {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface ContextModelConfig extends ComponentConfig {
-    placeholder: string;
+    placeholder?: string;
 }
