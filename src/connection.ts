@@ -23,7 +23,7 @@ export interface Connection extends Component {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface ConnectionConfig extends ComponentConfig {
-    authorization?: Record<string, ConnectionAuthorization>;
+    authorisation?: Record<string, ConnectionAuthorization>;
     connectorConfig?: ConnectorConfig;
     connectorId: string;
     connectorImplementation?: ConnectorImplementation;
