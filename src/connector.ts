@@ -29,9 +29,9 @@ export interface ConnectorConfig extends ComponentConfig {
     logo: string;
     reference: string;
     usageId: ConnectorUsageId;
-    vendorAccountURL?: string;
-    vendorDocumentationURL?: string;
-    vendorHomeURL?: string;
+    vendorAccountURL: string;
+    vendorDocumentationURL: string;
+    vendorHomeURL: string;
     version: string;
 }
 
