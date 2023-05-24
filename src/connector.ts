@@ -26,7 +26,6 @@ export interface ConnectorConfig extends ComponentConfig {
     category: ConnectorCategory;
     categoryId: string;
     implementations: Record<string, ConnectorImplementation>;
-    // reference: string;
     usageId: ConnectorUsageId;
     vendorAccountURL: string;
     vendorDocumentationURL: string;
