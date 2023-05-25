@@ -7,7 +7,6 @@
 
 // Dependencies - Engine
 import type { Component, ComponentConfig } from './component';
-import { ConnectorConfig, ConnectorImplementation } from './connector';
 import { DataStorageTypeId, DataUsageTypeId, FirebaseTimestamp } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

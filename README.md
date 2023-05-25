@@ -20,13 +20,14 @@ classDiagram
 
     class ComponentConfig {
         <<interface>>
-        id : string
-        label : string
         description : string
         firstCreatedAt : FirebaseTimestamp
+        id : string
+        label : string
         lastUpdatedAt : FirebaseTimestamp
-        logo? : string
+        logo : string
         status : ComponentStatus
+        statusId : string
         typeId : ComponentTypeId
     }
 
@@ -352,11 +353,9 @@ classDiagram
         <<interface>>
         authorization? : Record~ConnectionAuthorization~
         connectorId: string
-        connectorConfig: ConnectorConfig
-        implementation: ConnectorImplementation
-        implementationId? : string
+        connectorImplementationId? : string
+        lastVerifiedAt? : FirebaseTimestamp
         notation? : string
-        verifiedAt? : FirebaseTimestamp
     }
 
     class ConnectionAuthorisation {
