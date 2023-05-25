@@ -27,19 +27,19 @@ export interface DataConnector extends Connector {
     readonly id: string;
     readonly version: string;
 
-    abort(): void;
-    authenticate(accountId: string, windowCenterX: number, windowCenterY: number): Window;
-    describe(
+    abort?(): void;
+    authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
+    describe?(
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         connectionEntryId: string | undefined,
         progressCallback: (progress: Progress) => void
     ): Promise<ConnectionDescription>;
-    getCreateInterface(): DataConnectorCreateInterface;
-    getPreviewInterface(): DataConnectorPreviewInterface;
-    getReadInterface(): DataConnectorReadInterface;
-    getWriteInterface(): DataConnectorWriteInterface;
-    retrieveEntries(
+    getCreateInterface?(): DataConnectorCreateInterface;
+    getPreviewInterface?(): DataConnectorPreviewInterface;
+    getReadInterface?(): DataConnectorReadInterface;
+    getWriteInterface?(): DataConnectorWriteInterface;
+    retrieveEntries?(
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         parentConnectionEntry: ConnectionEntry,
