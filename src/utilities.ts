@@ -73,9 +73,10 @@ export const extractFolderPathFromFilePath = (itemPath: string): string | undefi
  * @param itemPath
  * @returns
  */
-export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
+export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
-        const lastExtensionIndex = itemPath.lastIndexOf('.');
+        const lastSeparatorIndex = itemPath.lastIndexOf('/');
+        const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : 0);
         return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex) : itemPath;
     }
     return undefined;
@@ -86,10 +87,9 @@ export const extractFileExtensionFromFilePath = (itemPath: string): string | und
  * @param itemPath
  * @returns
  */
-export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
+export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
-        const lastSeparatorIndex = itemPath.lastIndexOf('/');
-        const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : 0);
+        const lastExtensionIndex = itemPath.lastIndexOf('.');
         if (lastExtensionIndex > -1) return itemPath.substring(lastExtensionIndex + 1);
     }
     return undefined;
