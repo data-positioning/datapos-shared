@@ -76,7 +76,7 @@ export const extractFolderPathFromFilePath = (itemPath: string): string | undefi
 export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastExtensionIndex = itemPath.lastIndexOf('.');
-        return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex - 1) : itemPath;
+        return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex) : itemPath;
     }
     return undefined;
 };
@@ -111,7 +111,6 @@ export const extractLastSegmentFromFolderPath = (folderPath: string): string | u
             lastSeparatorIndex = folderPath.lastIndexOf('/');
             lastCharacterIndex = folderPath.length;
         }
-        console.log(3333, folderPath, lastSeparatorIndex, lastCharacterIndex);
         return lastSeparatorIndex > -1 ? folderPath.substring(lastSeparatorIndex + 1, lastCharacterIndex) : folderPath;
     }
     return undefined;
