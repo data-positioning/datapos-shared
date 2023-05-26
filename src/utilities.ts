@@ -77,7 +77,6 @@ export const extractFileNameFromFilePath = (itemPath: string): string | undefine
     if (itemPath) {
         const lastSeparatorIndex = itemPath.lastIndexOf('/');
         const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : itemPath.length);
-        console.log(4444, itemPath, lastSeparatorIndex, lastExtensionIndex);
         return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex) : itemPath;
     }
     return undefined;
