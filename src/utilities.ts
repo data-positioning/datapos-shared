@@ -100,18 +100,18 @@ export const extractFileExtensionFromFilePath = (itemPath: string): string | und
  * @param folderPath The path of folder names separated by slashes ('/').
  * @returns The name of the last folder in the path, or undefined if path is empty.
  */
-export const extractLastSegmentFromFolderPath = (folderPath: string): string | undefined => {
-    if (folderPath) {
+export const extractLastSegmentFromPath = (path: string): string | undefined => {
+    if (path) {
         let lastSeparatorIndex;
         let lastCharacterIndex;
-        if (folderPath.endsWith('/')) {
-            lastSeparatorIndex = folderPath.lastIndexOf('/', folderPath.length - 2);
-            lastCharacterIndex = folderPath.length - 1;
+        if (path.endsWith('/')) {
+            lastSeparatorIndex = path.lastIndexOf('/', path.length - 2);
+            lastCharacterIndex = path.length - 1;
         } else {
-            lastSeparatorIndex = folderPath.lastIndexOf('/');
-            lastCharacterIndex = folderPath.length;
+            lastSeparatorIndex = path.lastIndexOf('/');
+            lastCharacterIndex = path.length;
         }
-        return lastSeparatorIndex > -1 ? folderPath.substring(lastSeparatorIndex + 1, lastCharacterIndex) : folderPath;
+        return lastSeparatorIndex > -1 ? path.substring(lastSeparatorIndex + 1, lastCharacterIndex) : path;
     }
     return undefined;
 };
