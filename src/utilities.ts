@@ -82,11 +82,11 @@ export const extractExtensionFromEntryPath = (itemPath: string): string | undefi
 };
 
 /**
- * Extract the last folder name from a path of folder names.
+ * Extract the last folder segment from a path of folder names.
  * @param folderPath The path of folder names separated by slashes ('/').
  * @returns The name of the last folder in the path, or undefined if path is empty.
  */
-export const extractLastFolderNameFromFolderPath = (folderPath: string): string | undefined => {
+export const extractLastFolderSegmentFromFolderPath = (folderPath: string): string | undefined => {
     if (folderPath) {
         let lastSeparatorIndex;
         let lastCharacterIndex;
