@@ -12,7 +12,7 @@ import type { DataUsageTypeId, DPAFileSystemFileHandle } from '.';
 // Connection Entry
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface SourceItem {
+export interface ConnectionEntryItem {
     childCount?: number;
     folderPath?: string;
     encodingId?: string;
@@ -27,7 +27,7 @@ export interface SourceItem {
     paramsString?: string; // TODO: What is this used for?
     // referenceId?: string;
     size?: number;
-    typeId?: SourceItemTypeId;
+    typeId?: ConnectionEntryTypeId;
 }
 
 export interface ConnectionEntryPreview {
@@ -56,7 +56,7 @@ interface PreviewValue {
 
 export interface ConnectionEntriesPage {
     cursor: string | number | undefined;
-    entries: SourceItem[];
+    entries: ConnectionEntryItem[];
     isMore: boolean;
     totalCount: number;
 }
@@ -77,7 +77,7 @@ export enum ConnectionEntryPreviewTypeId {
     Uint8Array = 'uint8Array'
 }
 
-export enum SourceItemTypeId {
+export enum ConnectionEntryTypeId {
     File = 'file',
     Folder = 'folder'
 }

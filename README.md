@@ -410,7 +410,7 @@ The following diagram illustrates the connection entry class hierarchy, showcasi
 classDiagram
     direction LR
 
-    class SourceItem {
+    class ConnectionEntryItem {
         <<interface>>
         childCount? :  number
         folderPath? :  string
@@ -426,7 +426,7 @@ classDiagram
         paramsString? :  string
         referenceId? :  string
         size? :  number
-        typeId? :  SourceItemTypeId
+        typeId? :  ConnectionEntryTypeId
     }
 
     ConnectionEntryPreview "1" --> "*" ParsedValue
@@ -475,7 +475,7 @@ classDiagram
         Uint8Array
     }
 
-    class SourceItemTypeId {
+    class ConnectionEntryTypeId {
         <<enumeration>>
         File
         Folder
