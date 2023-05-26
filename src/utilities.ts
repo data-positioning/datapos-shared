@@ -60,7 +60,7 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
  * @param itemPath
  * @returns
  */
-export const extractDirectoryPathFromEntryPath = (itemPath: string): string | undefined => {
+export const extractFolderPathFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastIndex = itemPath.lastIndexOf('/');
         if (lastIndex > -1) return itemPath.substring(0, lastIndex);
@@ -73,7 +73,7 @@ export const extractDirectoryPathFromEntryPath = (itemPath: string): string | un
  * @param itemPath
  * @returns
  */
-export const extractNameFromEntryPath = (itemPath: string): string | undefined => {
+export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastExtensionIndex = itemPath.lastIndexOf('.');
         return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex - 1) : itemPath;
@@ -86,7 +86,7 @@ export const extractNameFromEntryPath = (itemPath: string): string | undefined =
  * @param itemPath
  * @returns
  */
-export const extractExtensionFromEntryPath = (itemPath: string): string | undefined => {
+export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastExtensionIndex = itemPath.lastIndexOf('.');
         if (lastExtensionIndex > -1) return itemPath.substring(lastExtensionIndex + 1);
