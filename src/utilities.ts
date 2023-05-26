@@ -88,7 +88,8 @@ export const extractFileNameFromFilePath = (itemPath: string): string | undefine
  */
 export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
-        const lastExtensionIndex = itemPath.lastIndexOf('.');
+        const lastSeparatorIndex = itemPath.lastIndexOf('/');
+        const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : 0);
         if (lastExtensionIndex > -1) return itemPath.substring(lastExtensionIndex + 1);
     }
     return undefined;
