@@ -97,7 +97,7 @@ export const extractLastFolderNameFromFolderPath = (folderPath: string): string 
             lastSeparatorIndex = folderPath.lastIndexOf('/');
             lastCharacterIndex = folderPath.length;
         }
-        if (lastSeparatorIndex > -1) return folderPath.substring(lastSeparatorIndex + 1, lastCharacterIndex);
+        return lastSeparatorIndex > -1 ? folderPath.substring(lastSeparatorIndex + 1, lastCharacterIndex) : folderPath;
     }
     return undefined;
 };
