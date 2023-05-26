@@ -9,7 +9,7 @@
 import type { SourceViewProperties } from './sourceView';
 import type { CallbackProperties, Progress } from '.';
 import type { ConnectionConfig, ConnectionDescription } from './connection';
-import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
+import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, ConnectionEntryPreview } from './connectionEntry';
 import type { Connector, ConnectorConfig } from './connector';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -42,7 +42,6 @@ export interface DataConnector extends Connector {
     retrieveEntries?(
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
-        parentConnectionEntry: ConnectionEntry,
         properties: ConnectionEntriesRetrievalProperties,
         folderChildEntryCountCallback?: (folderChildEntryCount: CallbackProperties) => void
     ): Promise<ConnectionEntriesPage>;
