@@ -9,7 +9,7 @@
 import type { SourceViewProperties } from './sourceView';
 import type { CallbackProperties, Progress } from '.';
 import type { ConnectionConfig, ConnectionDescription } from './connection';
-import type { ConnectionEntriesPage, ConnectionEntriesRetrievalProperties, ConnectionEntryPreview } from './connectionEntry';
+import type { ConnectionEntriesPage, ConnectionEntryPreview } from './connectionEntry';
 import type { Connector, ConnectorConfig } from './connector';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -39,14 +39,16 @@ export interface DataConnector extends Connector {
     getPreviewInterface?(): DataConnectorPreviewInterface;
     getReadInterface?(): DataConnectorReadInterface;
     getWriteInterface?(): DataConnectorWriteInterface;
-    retrieveEntries?(
-        accountId: string | undefined,
-        sessionAccessToken: string | undefined,
-        properties: ConnectionEntriesRetrievalProperties,
-        folderChildEntryCountCallback?: (folderChildEntryCount: CallbackProperties) => void
-    ): Promise<ConnectionEntriesPage>;
+    retrieveEntries?(accountId: string | undefined, sessionAccessToken: string | undefined, settings: DataConnectorRetrieveEntriesSettings): Promise<ConnectionEntriesPage>;
 }
 
+export interface DataConnectorRetrieveEntriesSettings {
+    folderPath: string;
+    limit?: number;
+    offset?: number;
+    totalCount?: number;
+    folderChildEntryCountCallback?: (folderChildEntryCount: CallbackProperties) => void;
+}
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Data Connector - Create Interface
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
