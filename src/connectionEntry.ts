@@ -12,7 +12,7 @@ import type { DataUsageTypeId, DPAFileSystemFileHandle } from '.';
 // Connection Entry
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface ConnectionEntryItem {
+export interface ConnectionEntry {
     childCount?: number;
     folderPath?: string;
     encodingId?: string;
@@ -56,7 +56,7 @@ interface PreviewValue {
 
 export interface ConnectionEntriesPage {
     cursor: string | number | undefined;
-    entries: ConnectionEntryItem[];
+    entries: ConnectionEntry[];
     isMore: boolean;
     totalCount: number;
 }

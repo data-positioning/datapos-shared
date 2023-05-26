@@ -410,7 +410,7 @@ The following diagram illustrates the connection entry class hierarchy, showcasi
 classDiagram
     direction LR
 
-    class ConnectionEntryItem {
+    class ConnectionEntry {
         <<interface>>
         childCount? :  number
         folderPath? :  string
