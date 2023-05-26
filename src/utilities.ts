@@ -111,6 +111,7 @@ export const extractLastSegmentFromFolderPath = (folderPath: string): string | u
             lastSeparatorIndex = folderPath.lastIndexOf('/');
             lastCharacterIndex = folderPath.length;
         }
+        console.log(3333, folderPath, lastSeparatorIndex, lastCharacterIndex);
         return lastSeparatorIndex > -1 ? folderPath.substring(lastSeparatorIndex + 1, lastCharacterIndex) : folderPath;
     }
     return undefined;
