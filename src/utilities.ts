@@ -73,7 +73,7 @@ export const extractFolderPathFromFilePath = (itemPath: string): string | undefi
  * @param itemPath
  * @returns
  */
-export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
+export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastExtensionIndex = itemPath.lastIndexOf('.');
         return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex) : itemPath;
@@ -86,7 +86,7 @@ export const extractFileNameFromFilePath = (itemPath: string): string | undefine
  * @param itemPath
  * @returns
  */
-export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
+export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastSeparatorIndex = itemPath.lastIndexOf('/');
         const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : 0);
@@ -97,7 +97,7 @@ export const extractFileExtensionFromFilePath = (itemPath: string): string | und
 
 /**
  * Extract the last segment from a path.
- * @param folderPath The path of folder names separated by slashes ('/').
+ * @param path The path, with segments separated by slashes ('/'), from which the last segment is to be extracted.
  * @returns The name of the last folder in the path, or undefined if path is empty.
  */
 export const extractLastSegmentFromPath = (path: string): string | undefined => {
