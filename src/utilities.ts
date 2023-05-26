@@ -55,11 +55,6 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
 // Utilities - Extract
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-/**
- *
- * @param itemPath
- * @returns
- */
 export const extractFolderPathFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastIndex = itemPath.lastIndexOf('/');
@@ -68,11 +63,6 @@ export const extractFolderPathFromFilePath = (itemPath: string): string | undefi
     return undefined;
 };
 
-/**
- *
- * @param itemPath
- * @returns
- */
 export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastSeparatorIndex = itemPath.lastIndexOf('/');
@@ -82,11 +72,6 @@ export const extractFileNameFromFilePath = (itemPath: string): string | undefine
     return undefined;
 };
 
-/**
- *
- * @param itemPath
- * @returns
- */
 export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastExtensionIndex = itemPath.lastIndexOf('.');
@@ -95,11 +80,6 @@ export const extractFileExtensionFromFilePath = (itemPath: string): string | und
     return undefined;
 };
 
-/**
- * Extract the last segment from a path.
- * @param path The path, with segments separated by slashes ('/'), from which the last segment is to be extracted.
- * @returns The name of the last folder in the path, or undefined if path is empty.
- */
 export const extractLastSegmentFromPath = (path: string): string | undefined => {
     if (path) {
         let lastSeparatorIndex;
