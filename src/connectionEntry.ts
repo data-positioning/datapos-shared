@@ -14,12 +14,12 @@ import type { DataUsageTypeId, DPAFileSystemFileHandle } from '.';
 
 export interface ConnectionEntry {
     childCount?: number;
-    folderPath?: string;
+    folderPath: string;
     encodingId?: string;
     extension?: string;
     handle?: DPAFileSystemFileHandle; // TODO: Remove reference to 'FileSystemFileHandle' otherwise 'datapos-connector-node-browser' does not compile.
     id?: string;
-    label?: string;
+    label: string;
     lastModifiedAt?: number;
     mimeType?: string;
     name?: string;
@@ -27,7 +27,7 @@ export interface ConnectionEntry {
     paramsString?: string; // TODO: What is this used for?
     // referenceId?: string;
     size?: number;
-    typeId?: ConnectionEntryTypeId;
+    typeId: ConnectionEntryTypeId;
 }
 
 export interface ConnectionEntryPreview {
