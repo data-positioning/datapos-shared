@@ -58,16 +58,30 @@ export interface DPAFileSystemFileHandle {
     getFile(): Promise<File>;
 }
 
-export interface ErrorData {
-    body: ErrorDataBody;
-    statusCode?: number;
-    statusText?: string;
-}
+// export interface ErrorData {
+//     body: ErrorDataBody;
+//     statusCode?: number;
+//     statusText?: string;
+// }
 
-export interface ErrorDataBody {
-    context?: string;
-    message: string;
-    stack?: string;
+// export interface ErrorDataBody {
+//     context?: string;
+//     message: string;
+//     stack?: string;
+// }
+
+export class FetchResponseError extends Error {
+    bodyText: string;
+    status: number;
+    statusText: string;
+
+    constructor(message: string, status: number, statusText: string, bodyText: string) {
+        super(message);
+        this.name = 'FetchResponseError';
+        this.status = status;
+        this.statusText = statusText;
+        this.bodyText = bodyText;
+    }
 }
 
 export interface FirebaseTimestamp {
