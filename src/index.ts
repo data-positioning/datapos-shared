@@ -70,6 +70,16 @@ export interface DPAFileSystemFileHandle {
 //     stack?: string;
 // }
 
+export default class ContextualError extends Error {
+    context: string;
+
+    constructor(message: string, context: string) {
+        super(message);
+        this.name = 'ContextualError';
+        this.context = context;
+    }
+}
+
 export class FetchResponseError extends Error {
     bodyText: string;
     context: string;
