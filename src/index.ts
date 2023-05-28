@@ -72,12 +72,14 @@ export interface DPAFileSystemFileHandle {
 
 export class FetchResponseError extends Error {
     bodyText: string;
+    context: string;
     status: number;
     statusText: string;
 
-    constructor(message: string, status: number, statusText: string, bodyText: string) {
-        super(message);
+    constructor(context: string, status: number, statusText: string, bodyText: string) {
+        super('Fetch response error.');
         this.name = 'FetchResponseError';
+        this.context = context;
         this.status = status;
         this.statusText = statusText;
         this.bodyText = bodyText;
