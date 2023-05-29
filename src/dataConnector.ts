@@ -68,7 +68,7 @@ export interface DataConnectorPreviewInterface {
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         sourceViewConfig: SourceViewConfig,
-        previewInterfaceSettings: DataConnectorPreviewInterfaceSettings,
+        previewInterfaceSettings: DataConnectorPreviewInterfaceSettings
     ): Promise<ConnectionEntryPreview>;
 }
 
@@ -84,9 +84,9 @@ export interface DataConnectorReadInterface {
     connector: DataConnector;
     readFileEntry(
         connector: DataConnector,
-        sourceViewConfig: SourceViewConfig,
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
+        sourceViewConfig: SourceViewConfig,
         readInterfaceSettings: DataConnectorReadInterfaceSettings,
         csvParse: typeof import('csv-parse/browser/esm')
     ): Promise<void>;
