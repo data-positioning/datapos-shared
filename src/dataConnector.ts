@@ -67,8 +67,8 @@ export interface DataConnectorPreviewInterface {
         connector: DataConnector,
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
+        sourceViewConfig: SourceViewConfig,
         previewInterfaceSettings: DataConnectorPreviewInterfaceSettings,
-        sourceViewConfig: SourceViewConfig
     ): Promise<ConnectionEntryPreview>;
 }
 
