@@ -74,6 +74,9 @@ export interface DataConnectorPreviewInterface {
 
 export interface DataConnectorPreviewInterfaceSettings {
     chunkSize?: number;
+    fileExtension?: string;
+    fileName: string;
+    folderPath: string;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
