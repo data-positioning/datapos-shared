@@ -25,7 +25,7 @@ export interface ConnectionEntry {
     name?: string;
     params?: Record<string, unknown>; // TODO: What is this used for?
     paramsString?: string; // TODO: What is this used for?
-    // referenceId?: string;
+    referenceId?: string;
     size?: number;
     typeId: ConnectionEntryTypeId;
 }
