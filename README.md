@@ -604,7 +604,7 @@ classDiagram
 
     class SourceView {
         <<interface>>
-        properties : SourceViewProperties
+        properties : SourceViewConfig
         preview : SourceViewPreview
         contentAudit : SourceViewContentAudit
         relationshipsAudit : SourceViewRelationshipsAudit
@@ -612,7 +612,7 @@ classDiagram
 
     Component <|-- SourceView
 
-    class SourceViewProperties {
+    class SourceViewConfig {
         <<interface>>
         connectionId? : string
         folderPath? : string
@@ -651,11 +651,11 @@ classDiagram
         valueTrimMethodId? : string
     }
 
-    SourceView "1" --> "*" SourceViewProperties
+    SourceView "1" --> "*" SourceViewConfig
 
-    SourceViewProperties "1" --> "*" SourceViewPreview
+    SourceViewConfig "1" --> "*" SourceViewPreview
 
-    SourceViewProperties "1" --> "*" SourceViewContentAudit
+    SourceViewConfig "1" --> "*" SourceViewContentAudit
 
     class SourceViewContentAudit {
         <<interface>>
@@ -685,7 +685,7 @@ classDiagram
         values : Record~number~
     }
 
-    SourceViewProperties "1" --> "*" SourceViewRelationshipsAudit
+    SourceViewConfig "1" --> "*" SourceViewRelationshipsAudit
 
     class SourceViewRelationshipsAudit {
         <<interface>>

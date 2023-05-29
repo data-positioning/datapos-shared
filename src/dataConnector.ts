@@ -6,7 +6,7 @@
  */
 
 // Dependencies - Engine
-import type { SourceViewProperties } from './sourceView';
+import type { SourceViewConfig } from './sourceView';
 import type { CallbackProperties, Progress } from '.';
 import type { ConnectionConfig, ConnectionDescription } from './connection';
 import type { ConnectionEntriesPage, ConnectionEntryPreview } from './connectionEntry';
@@ -65,10 +65,10 @@ export interface DataConnectorPreviewInterface {
     connector: DataConnector;
     previewFileEntry(
         connector: DataConnector,
-        sourceViewProperties: SourceViewProperties,
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
-        previewInterfaceSettings: DataConnectorPreviewInterfaceSettings
+        previewInterfaceSettings: DataConnectorPreviewInterfaceSettings,
+        sourceViewConfig: SourceViewConfig
     ): Promise<ConnectionEntryPreview>;
 }
 
@@ -84,7 +84,7 @@ export interface DataConnectorReadInterface {
     connector: DataConnector;
     readFileEntry(
         connector: DataConnector,
-        sourceViewProperties: SourceViewProperties,
+        sourceViewConfig: SourceViewConfig,
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         readInterfaceSettings: DataConnectorReadInterfaceSettings,

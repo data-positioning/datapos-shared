@@ -15,13 +15,13 @@ import type { DataUsageTypeId, DPAFileSystemFileHandle } from '.';
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export interface SourceView extends Component {
-    properties: SourceViewProperties;
+    properties: SourceViewConfig;
     preview: SourceViewPreview;
     contentAudit: SourceViewContentAudit;
     relationshipsAudit: SourceViewRelationshipsAudit;
 }
 
-export interface SourceViewProperties {
+export interface SourceViewConfig {
     connectionId?: string;
     folderPath?: string;
     fileExtension?: string;
