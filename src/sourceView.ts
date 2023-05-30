@@ -24,7 +24,7 @@ export interface SourceView extends Component {
 export interface SourceViewConfig {
     connectionId?: string;
     folderPath?: string;
-    fileExtension?: string;
+    fileExtension?: Buffer;
     fileHandle?: DPAFileSystemFileHandle;
     fileId?: string;
     fileName?: string;
