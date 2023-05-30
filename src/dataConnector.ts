@@ -12,6 +12,8 @@ import type { ConnectionConfig, ConnectionDescription } from './connection';
 import type { ConnectionEntriesPage, ConnectionEntryPreview } from './connectionEntry';
 import type { Connector, ConnectorConfig } from './connector';
 
+import { type Callback, type Options, type Parser } from 'csv-parse';
+
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Data Connector
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -88,7 +90,7 @@ export interface DataConnectorReadInterface {
         sessionAccessToken: string | undefined,
         sourceViewConfig: SourceViewConfig,
         readInterfaceSettings: DataConnectorReadInterfaceSettings,
-        csvParse: typeof import('csv-parse/browser/esm')
+        csvParse: (options?: Options, callback?: Callback) => Parser // typeof import('csv-parse/browser/esm')
     ): Promise<void>;
 }
 
