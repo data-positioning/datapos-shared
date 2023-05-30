@@ -41,6 +41,7 @@ export interface SourceViewPreview {
     encodingConfidenceLevel?: number;
     encodingId?: string;
     hasHeaderLine?: boolean;
+    lineDelimiter: Buffer;
     lineDelimiterId?: string;
     linesToSkipBeforeHeader?: number;
     linesToSkipAfterHeader?: number;
@@ -54,6 +55,7 @@ export interface SourceViewPreview {
     skipLinesWithErrors?: boolean;
     text?: string;
     totalSize?: number;
+    valueDelimiter: Buffer;
     valueDelimiterId?: ValueDelimiterId;
     valueTrimMethodId?: string;
 }
