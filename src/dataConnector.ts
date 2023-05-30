@@ -12,6 +12,7 @@ import type { ConnectionConfig, ConnectionDescription } from './connection';
 import type { ConnectionEntriesPage, ConnectionEntryPreview } from './connectionEntry';
 import type { Connector, ConnectorConfig } from './connector';
 
+// Dependencies - Framework/Vendor
 import { type Callback, type Options, type Parser } from 'csv-parse';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -26,7 +27,6 @@ export interface DataConnector extends Connector {
     abortController?: AbortController;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
-    // readonly id: string;
     readonly version: string;
 
     abort?(): void;
@@ -90,18 +90,23 @@ export interface DataConnectorReadInterface {
         sessionAccessToken: string | undefined,
         sourceViewConfig: SourceViewConfig,
         readInterfaceSettings: DataConnectorReadInterfaceSettings,
-        csvParse: (options?: Options, callback?: Callback) => Parser // typeof import('csv-parse/browser/esm')
+        csvParse: (options?: Options, callback?: Callback) => Parser
     ): Promise<void>;
 }
 
 export interface DataConnectorReadInterfaceSettings {
-    chunk(records: { fieldInfos: FieldInfos[]; fieldValues: string[] }[]): void;
+    chunk(records: FieldData[]): void;
     chunkSize?: number;
     complete(info: FileInfo): void;
     error(error: unknown): void;
 }
 
-export interface FieldInfos {
+export interface FieldData {
+    fieldInfos: FieldInfo[];
+    fieldValues: string[];
+}
+
+export interface FieldInfo {
     isQuoted: boolean;
 }
 
