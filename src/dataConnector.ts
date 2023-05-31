@@ -111,8 +111,10 @@ export interface FieldInfo {
 }
 
 interface FileInfo {
+    byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;
+    invalidFieldLengthCount: number;
     lineCount: number;
     recordCount: number;
 }
