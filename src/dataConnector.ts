@@ -6,10 +6,11 @@
  */
 
 // Dependencies - Engine
+import type { ConnectionEntryDrilldownResult } from './connectionEntry';
+import type { ConnectionEntryPreview } from './sourceView';
 import type { SourceViewConfig } from './sourceView';
 import type { CallbackProperties, Progress } from '.';
 import type { ConnectionConfig, ConnectionDescription } from './connection';
-import type { ConnectionEntryDrilldownResult, ConnectionEntryPreview } from './connectionEntry';
 import type { Connector, ConnectorConfig } from './connector';
 
 // Dependencies - Framework/Vendor
