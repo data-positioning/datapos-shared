@@ -114,7 +114,8 @@ export type { ComponentConfig } from './component';
 export { ComponentTypeId } from './component';
 export { lookupComponentStatus } from './component';
 
-export type { ConnectorConfig, ConnectorUsageId } from './connector';
+export type { ConnectorConfig } from './connector';
+export { ConnectorUsageId } from './connector';
 export type {
     DataConnector,
     DataConnectorPreviewInterface,
