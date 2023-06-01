@@ -63,7 +63,7 @@ export interface SourceViewPreview {
 }
 
 // TODO: Duplicate...
-interface PreviewField {
+export interface PreviewField {
     dataUsageTypeId: DataUsageTypeId;
     id: string;
     label: string;

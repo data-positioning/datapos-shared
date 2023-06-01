@@ -139,7 +139,7 @@ export type {} from './entity';
 
 export type {} from './eventQuery';
 
-export type { SourceViewConfig, SourceViewPreview } from './sourceView';
+export type { PreviewField, SourceViewConfig, SourceViewPreview } from './sourceView';
 export { DataFormatId, ValueDelimiterId } from './sourceView';
 export { SourceViewContentAuditField } from './SourceViewContentAuditField';
 

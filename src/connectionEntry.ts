@@ -6,7 +6,7 @@
  */
 
 // Dependencies - Engine
-import type { DataUsageTypeId, DPAFileSystemFileHandle, ParsedValue } from '.';
+import type { DPAFileSystemFileHandle, ParsedValue } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection Entry
@@ -39,22 +39,7 @@ export interface ConnectionEntryDrilldownResult {
 
 export interface ConnectionEntryPreview {
     data: ParsedValue[][] | Uint8Array;
-    fields: PreviewField[];
     typeId: ConnectionEntryPreviewTypeId;
-}
-
-// TODO: Duplicate...
-interface PreviewField {
-    dataUsageTypeId: DataUsageTypeId;
-    id: string;
-    label: string;
-    previewValues: PreviewValue[];
-}
-
-// TODO: Duplicate...
-interface PreviewValue {
-    id: string;
-    label: string;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
