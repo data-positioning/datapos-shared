@@ -9,7 +9,7 @@
 import type { SourceViewConfig } from './sourceView';
 import type { CallbackProperties, Progress } from '.';
 import type { ConnectionConfig, ConnectionDescription } from './connection';
-import type { ConnectionEntriesPage, ConnectionEntryPreview } from './connectionEntry';
+import type { ConnectionEntryDrilldownResult, ConnectionEntryPreview } from './connectionEntry';
 import type { Connector, ConnectorConfig } from './connector';
 
 // Dependencies - Framework/Vendor
@@ -41,7 +41,11 @@ export interface DataConnector extends Connector {
     getPreviewInterface?(): DataConnectorPreviewInterface;
     getReadInterface?(): DataConnectorReadInterface;
     getWriteInterface?(): DataConnectorWriteInterface;
-    retrieveEntries?(accountId: string | undefined, sessionAccessToken: string | undefined, settings: DataConnectorRetrieveEntriesSettings): Promise<ConnectionEntriesPage>;
+    retrieveEntries?(
+        accountId: string | undefined,
+        sessionAccessToken: string | undefined,
+        settings: DataConnectorRetrieveEntriesSettings
+    ): Promise<ConnectionEntryDrilldownResult>;
 }
 
 export interface DataConnectorRetrieveEntriesSettings {

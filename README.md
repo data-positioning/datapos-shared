@@ -232,7 +232,7 @@ classDiagram
         getPreviewInterface?() DataConnectorPreviewInterface
         getReadInterface?() DataConnectorReadInterface
         getWriteInterface?() DataConnectorWriteInterface
-        retrieveEntries?() Promise~ConnectionEntriesPage~
+        retrieveEntries?() Promise~ConnectionEntryDrilldownResult~
     }
 
     DataConnector .. ConnectionDescription
@@ -244,7 +244,7 @@ classDiagram
     DataConnectorReadInterface "1" --> "1" DataConnectorReadInterfaceSettings
     DataConnector .. DataConnectorWriteInterface
     DataConnectorWriteInterface "1" --> "1" DataConnectorWriteInterfaceSettings
-    DataConnector "1" --> "*" ConnectionEntriesPage
+    DataConnector "1" --> "*" ConnectionEntryDrilldownResult
 ```
 
 ## Node Connector Instance Declarations

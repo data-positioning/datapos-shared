@@ -7,9 +7,8 @@
 
 // Dependencies - Engine
 import type { Component } from './component';
-import type { DPAFileSystemFileHandle } from '.';
+import type { ConnectionEntry, DPAFileSystemFileHandle, DataUsageTypeId } from '.';
 import { SourceViewContentAuditField } from './SourceViewContentAuditField';
-import type { DataFormatId, ParsedValue, PreviewField, ValueDelimiterId } from './connectionEntry';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View
@@ -32,6 +31,35 @@ export interface SourceViewConfig {
     preview?: SourceViewPreview;
     contentAudit?: SourceViewContentAudit;
     relationshipsAudit?: SourceViewRelationshipsAudit;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Connection - Retrieve Entries
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export interface ConnectionEntryPreview {
+    data: ParsedValue[][] | Uint8Array;
+    fields: PreviewField[];
+    typeId: ConnectionEntryPreviewTypeId;
+}
+
+export type ParsedValue = boolean | number | string | null;
+
+export interface PreviewField {
+    dataUsageTypeId: DataUsageTypeId;
+    id: string;
+    label: string;
+    previewValues: PreviewValue[];
+}
+
+interface PreviewValue {
+    id: string;
+    label: string;
+}
+export enum ConnectionEntryPreviewTypeId {
+    JSON = 'json',
+    Table = 'table',
+    Uint8Array = 'uint8Array'
 }
 
 export interface SourceViewPreview {
@@ -82,3 +110,28 @@ interface SourceViewRelationshipsAudit {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View - Enumerations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export enum DataFormatId {
+    DelimitedText = 'dtv',
+    EntityEvent = 'e/e',
+    JSON = 'json',
+    SPSS = 'spss',
+    Table = 'table',
+    XLS = 'xls',
+    XLSX = 'xlsx',
+    XML = 'xml'
+}
+
+export enum ValueDelimiterId {
+    Colon = ':',
+    Comma = ',',
+    ExclamationMark = '!',
+    Other = '',
+    RecordSeparator = '0x1E',
+    Semicolon = ';',
+    Space = ' ',
+    Tab = '\t',
+    Underscore = '_',
+    UnitSeparator = '0x1F',
+    VerticalBar = '|'
+}

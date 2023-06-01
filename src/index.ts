@@ -111,8 +111,7 @@ export interface Progress {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export type { ComponentConfig } from './component';
-export { ComponentTypeId } from './component';
-export { lookupComponentStatus } from './component';
+export { ComponentTypeId, lookupComponentStatus } from './component';
 
 export type { ConnectorConfig } from './connector';
 export { ConnectorUsageId } from './connector';
@@ -129,8 +128,8 @@ export type {
 export type {} from './nodeConnector';
 
 export type { ConnectionConfig } from './connection';
-export type { ConnectionEntriesPage, ConnectionEntry, ConnectionEntryPreview, ParsedValue } from './connectionEntry';
-export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, DataFormatId, ValueDelimiterId } from './connectionEntry';
+export type { ConnectionEntryDrilldownResult, ConnectionEntry } from './connectionEntry';
+export { ConnectionEntryTypeId } from './connectionEntry';
 
 export type {} from './dimension';
 
@@ -138,7 +137,8 @@ export type {} from './entity';
 
 export type {} from './eventQuery';
 
-export type { SourceViewConfig, SourceViewPreview } from './sourceView';
+export type { SourceViewConfig, SourceViewPreview, ConnectionEntryPreview, ParsedValue } from './sourceView';
+export { ConnectionEntryPreviewTypeId, DataFormatId, ValueDelimiterId } from './sourceView';
 export { SourceViewContentAuditField } from './SourceViewContentAuditField';
 
 export type { UsageKitConfig } from './usageKit';
