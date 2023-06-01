@@ -128,7 +128,7 @@ export type {} from './nodeConnector';
 
 export type { ConnectionConfig } from './connection';
 export type { ConnectionEntriesPage, ConnectionEntry, ConnectionEntryPreview, ParsedValue } from './connectionEntry';
-export type { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, DataFormatId, ValueDelimiterId } from './connectionEntry';
+export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, DataFormatId, ValueDelimiterId } from './connectionEntry';
 
 export type {} from './dimension';
 
