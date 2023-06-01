@@ -65,8 +65,8 @@ interface SourceViewContentAudit {
 }
 
 interface SourceViewContentAuditField extends PreviewField {
-    dataUsageTypeId?: DataUsageTypeId;
-    id?: string;
+    dataUsageTypeId: DataUsageTypeId;
+    id: string;
     invalidValueCount: number;
     missingValueCount: number;
     uniqueValueCount: number;

@@ -39,10 +39,10 @@ export interface ConnectionEntryPreview {
 export type ParsedValue = boolean | number | string | null;
 
 export interface PreviewField {
-    dataUsageTypeId?: DataUsageTypeId;
-    id?: string;
-    label?: string;
-    previewValues?: PreviewValue[];
+    dataUsageTypeId: DataUsageTypeId;
+    id: string;
+    label: string;
+    previewValues: PreviewValue[];
 }
 
 interface PreviewValue {
