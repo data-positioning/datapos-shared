@@ -8,7 +8,7 @@
 // Dependencies - Engine
 import type { Component } from './component';
 import type { DPAFileSystemFileHandle } from '.';
-import SourceViewContentAuditField from './SourceViewContentAuditField';
+import { SourceViewContentAuditField } from './SourceViewContentAuditField';
 import type { DataFormatId, ParsedValue, PreviewField, ValueDelimiterId } from './connectionEntry';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

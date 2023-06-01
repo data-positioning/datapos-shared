@@ -19,9 +19,9 @@ import { type Callback, type Options, type Parser } from 'csv-parse';
 // Data Connector
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface DataConnectorConstructor {
-    new (connectionConfig: ConnectionConfig): DataConnector;
-}
+// interface DataConnectorConstructor {
+//     new (connectionConfig: ConnectionConfig): DataConnector;
+// }
 
 export interface DataConnector extends Connector {
     abortController?: AbortController;
@@ -55,7 +55,7 @@ export interface DataConnectorRetrieveEntriesSettings {
 // Data Connector - Create Interface
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface DataConnectorCreateInterface {
+interface DataConnectorCreateInterface {
     connector: DataConnector;
 }
 
@@ -123,6 +123,6 @@ interface FileInfo {
 // Data Connector - Write Interface
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface DataConnectorWriteInterface {
+interface DataConnectorWriteInterface {
     connector: DataConnector;
 }

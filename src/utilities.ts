@@ -55,13 +55,13 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
 // Utilities - Extract
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export const extractFolderPathFromFilePath = (itemPath: string): string | undefined => {
-    if (itemPath) {
-        const lastIndex = itemPath.lastIndexOf('/');
-        if (lastIndex > -1) return itemPath.substring(0, lastIndex);
-    }
-    return undefined;
-};
+// export const extractFolderPathFromFilePath = (itemPath: string): string | undefined => {
+//     if (itemPath) {
+//         const lastIndex = itemPath.lastIndexOf('/');
+//         if (lastIndex > -1) return itemPath.substring(0, lastIndex);
+//     }
+//     return undefined;
+// };
 
 export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {

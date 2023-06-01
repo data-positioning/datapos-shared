@@ -5,18 +5,17 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-
 // Constants
 const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine
-import { DataUsageTypeId } from ".";
+import { DataUsageTypeId } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Column
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export default class Column {
+export class SourceViewContentAuditField {
     dataUsageTypeId: DataUsageTypeId;
     doCountIndividualValidValues: boolean;
     doCountPatterns: boolean;

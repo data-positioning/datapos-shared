@@ -47,7 +47,7 @@ export interface ConnectorImplementation {
 // Connector - Enumerations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export enum ConnectorAuthMethodId {
+enum ConnectorAuthMethodId {
     /* eslint-disable no-unused-vars */
     APIKey = 'apiKey',
     Disabled = 'disabled',
@@ -56,14 +56,14 @@ export enum ConnectorAuthMethodId {
     /* eslint-enable no-unused-vars */
 }
 
-export type ConnectorCategory = { label: string };
-const componentCategories: Record<string, ConnectorCategory> = {
-    application: { label: 'Application' },
-    curatedDataset: { label: 'Curated Dataset' },
-    database: { label: 'Database' },
-    fileStore: { label: 'File Store' }
-};
-export const lookupConnectorCategory = (id: string): ConnectorCategory => (componentCategories[id] ? componentCategories[id] : { label: id });
+type ConnectorCategory = { label: string };
+// const componentCategories: Record<string, ConnectorCategory> = {
+//     application: { label: 'Application' },
+//     curatedDataset: { label: 'Curated Dataset' },
+//     database: { label: 'Database' },
+//     fileStore: { label: 'File Store' }
+// };
+// export const lookupConnectorCategory = (id: string): ConnectorCategory => (componentCategories[id] ? componentCategories[id] : { label: id });
 
 export enum ConnectorUsageId {
     /* eslint-disable no-unused-vars */

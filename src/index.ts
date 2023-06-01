@@ -110,21 +110,54 @@ export interface Progress {
 // Components
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export * from './component';
+export type { ComponentConfig, ComponentTypeId } from './component';
+export { lookupComponentStatus } from './component';
 
-export * from './connector';
-export * from './dataConnector';
-export * from './nodeConnector';
+export type { ConnectorConfig, ConnectorUsageId } from './connector';
+export type {
+    DataConnector,
+    DataConnectorPreviewInterface,
+    DataConnectorPreviewInterfaceSettings,
+    DataConnectorRetrieveEntriesSettings,
+    DataConnectorReadInterface,
+    DataConnectorReadInterfaceSettings,
+    FieldData,
+    FieldInfo
+} from './dataConnector';
+export type {} from './nodeConnector';
 
-export * from './connection';
-export * from './connectionEntry';
+export type { ConnectionConfig } from './connection';
+export type {
+    ConnectionEntriesPage,
+    ConnectionEntry,
+    ConnectionEntryPreview,
+    ConnectionEntryPreviewTypeId,
+    ConnectionEntryTypeId,
+    DataFormatId,
+    ParsedValue,
+    ValueDelimiterId
+} from './connectionEntry';
 
-export * from './eventQuery';
+export type {} from './dimension';
 
-export * from './sourceView';
+export type {} from './entity';
 
-export * from './viewTemplate';
+export type {} from './eventQuery';
 
-export * from './usageKit';
+export type { SourceViewConfig, SourceViewPreview } from './sourceView';
+export { SourceViewContentAuditField } from './SourceViewContentAuditField';
 
-export * from './utilities';
+export type {} from './usageKit';
+
+export type {} from './viewTemplate';
+
+export {
+    convertODataTypeToDataType,
+    extractFileNameFromFilePath,
+    extractFileExtensionFromFilePath,
+    extractLastSegmentFromPath,
+    formatNumberAsDecimalNumber,
+    formatNumberAsStorageSize,
+    formatNumberAsWholeNumber,
+    lookupMimeTypeForFileExtension
+} from './utilities';
