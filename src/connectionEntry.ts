@@ -6,7 +6,7 @@
  */
 
 // Dependencies - Engine
-import type { DPAFileSystemFileHandle } from '.';
+import type { DataUsageTypeId, DPAFileSystemFileHandle } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection Entry
@@ -37,9 +37,34 @@ export interface ConnectionEntryDrilldownResult {
     totalCount: number;
 }
 
+export interface ConnectionEntryPreview {
+    data: (boolean | number | string | null)[][] | Uint8Array;
+    fields: PreviewField[];
+    typeId: ConnectionEntryPreviewTypeId;
+}
+
+// TODO: Duplicate...
+export interface PreviewField {
+    dataUsageTypeId: DataUsageTypeId;
+    id: string;
+    label: string;
+    previewValues: PreviewValue[];
+}
+
+// TODO: Duplicate...
+interface PreviewValue {
+    id: string;
+    label: string;
+}
+
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection Entry - Enumerations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export enum ConnectionEntryPreviewTypeId {
+    Table = 'table',
+    Uint8Array = 'uint8Array'
+}
 
 export enum ConnectionEntryTypeId {
     File = 'file',

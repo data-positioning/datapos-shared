@@ -7,8 +7,8 @@
 
 // Dependencies - Engine
 import type { Component } from './component';
-import type { ConnectionEntry, DPAFileSystemFileHandle, DataUsageTypeId } from '.';
 import { SourceViewContentAuditField } from './SourceViewContentAuditField';
+import type { DataUsageTypeId, DPAFileSystemFileHandle } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View
@@ -34,33 +34,8 @@ export interface SourceViewConfig {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Connection - Retrieve Entries
+// Source View - Preview
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export interface ConnectionEntryPreview {
-    data: ParsedValue[][] | Uint8Array;
-    fields: PreviewField[];
-    typeId: ConnectionEntryPreviewTypeId;
-}
-
-export type ParsedValue = boolean | number | string | null;
-
-export interface PreviewField {
-    dataUsageTypeId: DataUsageTypeId;
-    id: string;
-    label: string;
-    previewValues: PreviewValue[];
-}
-
-interface PreviewValue {
-    id: string;
-    label: string;
-}
-export enum ConnectionEntryPreviewTypeId {
-    JSON = 'json',
-    Table = 'table',
-    Uint8Array = 'uint8Array'
-}
 
 export interface SourceViewPreview {
     asAt: number;
@@ -77,7 +52,7 @@ export interface SourceViewPreview {
     previewSize: number;
     quoteEscapeCharacterId?: string;
     quoteMarkId?: string;
-    records?: ParsedValue[][];
+    records?: (boolean | number | string | null)[][];
     skipEmptyLines?: boolean;
     skipLinesWithEmptyValues?: boolean;
     skipLinesWithErrors?: boolean;
@@ -87,21 +62,31 @@ export interface SourceViewPreview {
     valueTrimMethodId?: string;
 }
 
+export interface PreviewField {
+    dataUsageTypeId: DataUsageTypeId;
+    id: string;
+    label: string;
+    previewValues: PreviewValue[];
+}
+
+interface PreviewValue {
+    id: string;
+    label: string;
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Source View - Content Audit
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 interface SourceViewContentAudit {
     asAt: number;
     fields: SourceViewContentAuditField[];
     lineCount: number;
 }
 
-// interface SourceViewContentAuditField extends PreviewField {
-//     dataUsageTypeId: DataUsageTypeId;
-//     id: string;
-//     invalidValueCount: number;
-//     missingValueCount: number;
-//     uniqueValueCount: number;
-//     validValueCount: number;
-//     values: Record<string, number>;
-// }
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Source View - Relationships Audit
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 interface SourceViewRelationshipsAudit {
     placeholder?: string;

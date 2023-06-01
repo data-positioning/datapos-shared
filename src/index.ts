@@ -128,8 +128,8 @@ export type {
 export type {} from './nodeConnector';
 
 export type { ConnectionConfig } from './connection';
-export type { ConnectionEntryDrilldownResult, ConnectionEntry } from './connectionEntry';
-export { ConnectionEntryTypeId } from './connectionEntry';
+export type { ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
+export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from './connectionEntry';
 
 export type {} from './dimension';
 
@@ -137,8 +137,8 @@ export type {} from './entity';
 
 export type {} from './eventQuery';
 
-export type { SourceViewConfig, SourceViewPreview, ConnectionEntryPreview, ParsedValue } from './sourceView';
-export { ConnectionEntryPreviewTypeId, DataFormatId, ValueDelimiterId } from './sourceView';
+export type { SourceViewConfig, SourceViewPreview } from './sourceView';
+export { DataFormatId, ValueDelimiterId } from './sourceView';
 export { SourceViewContentAuditField } from './SourceViewContentAuditField';
 
 export type { UsageKitConfig } from './usageKit';
