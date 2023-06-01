@@ -11,7 +11,7 @@ const MAX_INVALID_VALUE_COUNT = 100;
 // Dependencies - Engine
 import { DataUsageTypeId } from '.';
 
-// interface SourceViewContentAuditField extends PreviewField {
+// interface SourceViewContentAuditField extends SourceViewPreviewField {
 //     dataUsageTypeId: DataUsageTypeId;
 //     id: string;
 //     invalidValueCount: number;

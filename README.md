@@ -430,12 +430,12 @@ classDiagram
     }
 
     ConnectionEntryPreview "1" --> "*" ParsedValue
-    ConnectionEntryPreview "1" --> "*" PreviewField
+    ConnectionEntryPreview "1" --> "*" SourceViewPreviewField
 
     class ConnectionEntryPreview {
         <<interface>>
         data :  ParsedValue[][] | Uint8Array
-        fields :  PreviewField[]
+        fields :  SourceViewPreviewField[]
         typeId :  ConnectionEntryPreviewTypeId
     }
 
@@ -447,9 +447,9 @@ classDiagram
         null
     }
 
-    PreviewField "1" --> "*" PreviewValue
+    SourceViewPreviewField "1" --> "*" PreviewValue
 
-    class PreviewField {
+    class SourceViewPreviewField {
         <<interface>>
         dataTypeId? :  DataUsageTypeId
         id? :  string
@@ -630,7 +630,7 @@ classDiagram
         asAt : number
         commentPrefixId? : string
         dataFormatId : DataFormatId
-        fields? : PreviewField[]
+        fields? : SourceViewPreviewField[]
         encodingConfidenceLevel? : number
         encodingId? : string
         hasHeaderLine? : boolean
@@ -666,13 +666,13 @@ classDiagram
 
     SourceViewContentAudit "1" --> "*" SourceViewContentAuditField
 
-    %%class PreviewField {
+    %%class SourceViewPreviewField {
     %%    <<interface>>
     %%}
 
-    %%PreviewField <|-- SourceViewContentAuditField
+    %%SourceViewPreviewField <|-- SourceViewContentAuditField
 
-    %%SourceViewPreview "1" --> "*" PreviewField
+    %%SourceViewPreview "1" --> "*" SourceViewPreviewField
 
     class SourceViewContentAuditField {
         <<interface>>

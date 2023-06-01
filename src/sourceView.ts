@@ -41,7 +41,7 @@ export interface SourceViewPreview {
     asAt: number;
     commentPrefixId?: string;
     dataFormatId: DataFormatId;
-    fields?: PreviewField[];
+    fields?: SourceViewPreviewField[];
     encodingConfidenceLevel?: number;
     encodingId?: string;
     hasHeaderLine?: boolean;
@@ -62,7 +62,7 @@ export interface SourceViewPreview {
     valueTrimMethodId?: string;
 }
 
-export interface PreviewField {
+export interface SourceViewPreviewField {
     dataUsageTypeId: DataUsageTypeId;
     // id?: string;
     label: string;
