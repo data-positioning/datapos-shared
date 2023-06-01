@@ -47,7 +47,7 @@ export interface ConnectorImplementation {
 // Connector - Enumerations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-enum ConnectorAuthMethodId {
+export enum ConnectorAuthMethodId {
     /* eslint-disable no-unused-vars */
     APIKey = 'apiKey',
     Disabled = 'disabled',
