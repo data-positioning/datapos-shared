@@ -110,7 +110,8 @@ export interface Progress {
 // Components
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export type { ComponentConfig, ComponentTypeId } from './component';
+export type { ComponentConfig } from './component';
+export { ComponentTypeId } from './component';
 export { lookupComponentStatus } from './component';
 
 export type { ConnectorConfig, ConnectorUsageId } from './connector';
@@ -139,9 +140,9 @@ export type {} from './eventQuery';
 export type { SourceViewConfig, SourceViewPreview } from './sourceView';
 export { SourceViewContentAuditField } from './SourceViewContentAuditField';
 
-export type {} from './usageKit';
+export type { UsageKitConfig } from './usageKit';
 
-export type {} from './viewTemplate';
+export type { ViewTemplateConfig } from './viewTemplate';
 
 export {
     convertODataTypeToDataType,
