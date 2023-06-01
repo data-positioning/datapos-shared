@@ -7,8 +7,9 @@
 
 // Dependencies - Engine
 import type { Component } from './component';
+import type { DPAFileSystemFileHandle } from '.';
+import SourceViewContentAuditField from './SourceViewContentAuditField';
 import type { DataFormatId, ParsedValue, PreviewField, ValueDelimiterId } from './connectionEntry';
-import type { DataUsageTypeId, DPAFileSystemFileHandle } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View
@@ -64,15 +65,15 @@ interface SourceViewContentAudit {
     lineCount: number;
 }
 
-interface SourceViewContentAuditField extends PreviewField {
-    dataUsageTypeId: DataUsageTypeId;
-    id: string;
-    invalidValueCount: number;
-    missingValueCount: number;
-    uniqueValueCount: number;
-    validValueCount: number;
-    values: Record<string, number>;
-}
+// interface SourceViewContentAuditField extends PreviewField {
+//     dataUsageTypeId: DataUsageTypeId;
+//     id: string;
+//     invalidValueCount: number;
+//     missingValueCount: number;
+//     uniqueValueCount: number;
+//     validValueCount: number;
+//     values: Record<string, number>;
+// }
 
 interface SourceViewRelationshipsAudit {
     placeholder?: string;
