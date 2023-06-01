@@ -62,13 +62,15 @@ export interface SourceViewPreview {
     valueTrimMethodId?: string;
 }
 
-export interface PreviewField {
+// TODO: Duplicate...
+interface PreviewField {
     dataUsageTypeId: DataUsageTypeId;
     id: string;
     label: string;
     previewValues: PreviewValue[];
 }
 
+// TODO: Duplicate...
 interface PreviewValue {
     id: string;
     label: string;

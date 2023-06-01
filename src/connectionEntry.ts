@@ -44,7 +44,7 @@ export interface ConnectionEntryPreview {
 }
 
 // TODO: Duplicate...
-export interface PreviewField {
+interface PreviewField {
     dataUsageTypeId: DataUsageTypeId;
     id: string;
     label: string;
