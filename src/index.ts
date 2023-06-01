@@ -9,6 +9,8 @@
 // Declarations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
+export type ParsedValue = boolean | number | string | null;
+
 export interface CallbackProperties {
     error?: Error;
     index: number;

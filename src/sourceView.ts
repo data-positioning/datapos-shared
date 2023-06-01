@@ -8,7 +8,7 @@
 // Dependencies - Engine
 import type { Component } from './component';
 import { SourceViewContentAuditField } from './SourceViewContentAuditField';
-import type { DataUsageTypeId, DPAFileSystemFileHandle } from '.';
+import type { DataUsageTypeId, DPAFileSystemFileHandle, ParsedValue } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View
@@ -52,7 +52,7 @@ export interface SourceViewPreview {
     previewSize: number;
     quoteEscapeCharacterId?: string;
     quoteMarkId?: string;
-    records?: (boolean | number | string | null)[][];
+    records?: ParsedValue[][];
     skipEmptyLines?: boolean;
     skipLinesWithEmptyValues?: boolean;
     skipLinesWithErrors?: boolean;
