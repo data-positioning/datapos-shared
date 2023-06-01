@@ -62,19 +62,17 @@ export interface SourceViewPreview {
     valueTrimMethodId?: string;
 }
 
-// TODO: Duplicate...
 export interface PreviewField {
     dataUsageTypeId: DataUsageTypeId;
-    id?: string;
+    // id?: string;
     label: string;
-    previewValues: PreviewValue[];
+    // previewValues: PreviewValue[];
 }
 
-// TODO: Duplicate...
-interface PreviewValue {
-    id: string;
-    label: string;
-}
+// interface PreviewValue {
+//     id: string;
+//     label: string;
+// }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View - Content Audit
