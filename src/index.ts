@@ -42,7 +42,8 @@ export enum DataUsageTypeId {
     DecimalNumber = 4,
     Moment = 2,
     String = 5,
-    WholeNumber = 3
+    WholeNumber = 3,
+    Unknown = 0
 }
 
 export interface DPAFileSystemFileHandle {
