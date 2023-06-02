@@ -17,15 +17,15 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
     // See: https://www.odata.org/documentation/odata-version-2-0/overview/
     switch (type) {
         case 'Edm.Binary':
-            return { storageTypeId: DataStorageTypeId.Binary, usageTypeId: DataUsageTypeId.Unknown };
+            return { storageTypeId: DataStorageTypeId.Binary, usageTypeId: DataUsageTypeId.Unknown }; // Binary...
         case 'Edm.Boolean':
             return { storageTypeId: DataStorageTypeId.Boolean, usageTypeId: DataUsageTypeId.Boolean };
         case 'Edm.Byte':
             return { storageTypeId: DataStorageTypeId.Byte, usageTypeId: DataUsageTypeId.WholeNumber };
         case 'Edm.DateTime':
-            return { storageTypeId: DataStorageTypeId.DateTime, usageTypeId: DataUsageTypeId.Moment };
+            return { storageTypeId: DataStorageTypeId.DateTime, usageTypeId: DataUsageTypeId.Moment }; // DateTime...
         case 'Edm.DateTimeOffset':
-            return { storageTypeId: DataStorageTypeId.DateTimeOffset, usageTypeId: DataUsageTypeId.Moment };
+            return { storageTypeId: DataStorageTypeId.DateTimeOffset, usageTypeId: DataUsageTypeId.Moment }; // DateTimeOffset...
         case 'Edm.Decimal':
             return { storageTypeId: DataStorageTypeId.Decimal, usageTypeId: DataUsageTypeId.DecimalNumber };
         case 'Edm.Double':
@@ -45,7 +45,7 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
         case 'Edm.String':
             return { storageTypeId: DataStorageTypeId.String, usageTypeId: DataUsageTypeId.String, maximumLength };
         case 'Edm.Time':
-            return { storageTypeId: DataStorageTypeId.Time, usageTypeId: DataUsageTypeId.Moment };
+            return { storageTypeId: DataStorageTypeId.Time, usageTypeId: DataUsageTypeId.Moment }; // Time...
         default:
             return { storageTypeId: DataStorageTypeId.Unknown, usageTypeId: DataUsageTypeId.Unknown };
     }
