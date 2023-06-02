@@ -116,7 +116,7 @@ export class SourceViewContentAuditField {
             this.patterns[pattern] = (this.patterns[pattern] || 0) + 1;
         }
 
-        if (this.doCountIndividualValidValues) this.validValues[parsedValue] = (this.validValues[parsedValue] || 0) + 1;
+        if (this.doCountIndividualValidValues) this.validValues[String(parsedValue)] = (this.validValues[String(parsedValue)] || 0) + 1;
         this.validValueCount++;
         return parsedValue;
     }
