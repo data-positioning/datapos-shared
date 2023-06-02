@@ -86,7 +86,7 @@ export class SourceViewContentAuditField {
         return originalValue;
     }
 
-    addValidValue(originalValue: string, parsedValue: string, wholeDigitCount: number, decimalDigitCount: number) {
+    addValidValue(originalValue: string, parsedValue: string, wholeDigitCount?: number, decimalDigitCount?: number) {
         switch (this.dataUsageTypeId) {
             case DataUsageTypeId.String: {
                 parsedValue = originalValue;

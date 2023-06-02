@@ -38,17 +38,10 @@ export enum DataStorageTypeId {
 }
 
 export enum DataUsageTypeId {
-    // Binary = 'binary',
     Boolean = 1,
-    // Date = 'date',
-    // DateTime = 'dateTime',
-    // DateTimeOffset = 'dateTimeOffset',
     DecimalNumber = 4,
     Moment = 2,
-    // Object = 'object',
     String = 5,
-    // Time = 'time',
-    // Unknown = 'unknown',
     WholeNumber = 3
 }
 
