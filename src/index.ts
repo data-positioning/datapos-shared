@@ -18,7 +18,6 @@ export interface CallbackProperties {
 }
 
 export enum DataStorageTypeId {
-    /* eslint-disable no-unused-vars */
     Binary = 'binary',
     Boolean = 'boolean',
     Byte = 'byte',
@@ -36,23 +35,21 @@ export enum DataStorageTypeId {
     String = 'string',
     Time = 'time',
     Unknown = 'unknown'
-    /* eslint-enable no-unused-vars */
 }
 
 export enum DataUsageTypeId {
-    /* eslint-disable no-unused-vars */
-    Binary = 'binary',
-    Boolean = 'boolean',
-    Date = 'date',
-    DateTime = 'dateTime',
-    DateTimeOffset = 'dateTimeOffset',
-    DecimalNumber = 'decimalNumber',
-    Object = 'object',
-    String = 'string',
-    Time = 'time',
-    Unknown = 'unknown',
-    WholeNumber = 'wholeNumber'
-    /* eslint-enable no-unused-vars */
+    // Binary = 'binary',
+    Boolean = 1,
+    // Date = 'date',
+    // DateTime = 'dateTime',
+    // DateTimeOffset = 'dateTimeOffset',
+    DecimalNumber = 4,
+    Moment = 2,
+    // Object = 'object',
+    String = 5,
+    // Time = 'time',
+    // Unknown = 'unknown',
+    WholeNumber = 3
 }
 
 export interface DPAFileSystemFileHandle {

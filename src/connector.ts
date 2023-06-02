@@ -48,12 +48,10 @@ export interface ConnectorImplementation {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export enum ConnectorAuthMethodId {
-    /* eslint-disable no-unused-vars */
     APIKey = 'apiKey',
     Disabled = 'disabled',
     OAuth2 = 'oAuth2',
     None = 'none'
-    /* eslint-enable no-unused-vars */
 }
 
 type ConnectorCategory = { label: string };
@@ -66,11 +64,9 @@ type ConnectorCategory = { label: string };
 // export const lookupConnectorCategory = (id: string): ConnectorCategory => (componentCategories[id] ? componentCategories[id] : { label: id });
 
 export enum ConnectorUsageId {
-    /* eslint-disable no-unused-vars */
     Bidirectional = 'bidirectional',
     Destination = 'destination',
     Node = 'node',
     Source = 'source',
     None = 'none'
-    /* eslint-enable no-unused-vars */
 }

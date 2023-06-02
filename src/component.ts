@@ -50,7 +50,6 @@ const componentStatuses: Record<string, ComponentStatus> = {
 export const lookupComponentStatus = (id: string): ComponentStatus => (componentStatuses[id] ? componentStatuses[id] : { color: '#984ea3', label: id });
 
 export enum ComponentTypeId {
-    /* eslint-disable no-unused-vars */
     Connection = 'connection',
     Connector = 'connector', // TODO: Need all of these?
     ContextModel = 'contextModel',
@@ -62,5 +61,4 @@ export enum ComponentTypeId {
     SourceView = 'sourceView',
     ViewTemplate = 'viewTemplate',
     UsageKit = 'usageKit'
-    /* eslint-enable no-unused-vars */
 }
