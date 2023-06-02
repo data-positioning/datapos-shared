@@ -121,7 +121,7 @@ export class SourceViewContentAuditField {
         return parsedValue;
     }
 
-    addVoidValue() {
+    addVoidValue(): null {
         this.voidValueCount++;
         return null;
     }
