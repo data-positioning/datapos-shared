@@ -123,7 +123,7 @@ export class SourceViewContentAuditField {
 
     addVoidValue() {
         this.voidValueCount++;
-        return undefined;
+        return null;
     }
 
     finalise() {
