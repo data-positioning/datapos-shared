@@ -9,7 +9,7 @@
 // Declarations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export type ParsedValue = boolean | number | string | null;
+export type ParsedValue = bigint | boolean | number | string | null;
 
 export interface CallbackProperties {
     error?: Error;
