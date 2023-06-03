@@ -660,21 +660,21 @@ classDiagram
     class SourceViewContentAudit {
         <<interface>>
         asAt : number
-        fields : SourceViewContentAuditField[]
+        fields : ContentAuditField[]
         lineCount : number
     }
 
-    SourceViewContentAudit "1" --> "*" SourceViewContentAuditField
+    SourceViewContentAudit "1" --> "*" ContentAuditField
 
     %%class SourceViewPreviewField {
     %%    <<interface>>
     %%}
 
-    %%SourceViewPreviewField <|-- SourceViewContentAuditField
+    %%SourceViewPreviewField <|-- ContentAuditField
 
     %%SourceViewPreview "1" --> "*" SourceViewPreviewField
 
-    class SourceViewContentAuditField {
+    class ContentAuditField {
         <<interface>>
         dataUsageTypeId? : DataUsageTypeId
         id? : string

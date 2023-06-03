@@ -1,5 +1,5 @@
 /**
- * @file datapos-engine/src/SourceViewContentAuditField.ts
+ * @file datapos-engine/src/ContentAuditField.ts
  * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
@@ -10,30 +10,19 @@ const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine
 import { DataUsageTypeId } from '.';
-
-// interface SourceViewContentAuditField extends SourceViewPreviewField {
-//     dataUsageTypeId: DataUsageTypeId;
-//     id: string;
-//     invalidValueCount: number;
-//     missingValueCount: number;
-//     uniqueValueCount: number;
-//     validValueCount: number;
-//     values: Record<string, number>;
-// }
+import { Field } from './Field';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Column
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export class SourceViewContentAuditField {
-    dataUsageTypeId: DataUsageTypeId;
+export class ContentAuditField extends Field {
     doCountIndividualValidValues: boolean;
     doCountPatterns: boolean;
     invalidValueCount: number;
     invalidValues: { recordNumber: number; value: string }[];
     isRequired: boolean;
     isUnique: boolean;
-    label: string;
     maxDecimals: number;
     maxSize: number;
     maxValue: boolean | number | string | undefined;
@@ -46,8 +35,7 @@ export class SourceViewContentAuditField {
     voidValueCount: number;
 
     constructor(dataUsageTypeId: DataUsageTypeId, label: string) {
-        this.dataUsageTypeId = dataUsageTypeId;
-        this.label = label;
+        super(dataUsageTypeId, label);
         this.invalidValueCount = 0;
         this.invalidValues = [];
         this.isRequired = false;

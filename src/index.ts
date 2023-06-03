@@ -132,7 +132,7 @@ export type {} from './eventQuery';
 
 export type { SourceViewPreviewField, SourceViewConfig, SourceViewPreview } from './sourceView';
 export { DataFormatId, ValueDelimiterId } from './sourceView';
-export { SourceViewContentAuditField } from './SourceViewContentAuditField';
+export { ContentAuditField } from './ContentAuditField';
 
 export type { UsageKitConfig } from './usageKit';
 

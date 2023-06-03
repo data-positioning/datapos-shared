@@ -7,7 +7,7 @@
 
 // Dependencies - Engine
 import type { Component } from './component';
-import { SourceViewContentAuditField } from './SourceViewContentAuditField';
+import { ContentAuditField } from './ContentAuditField';
 import type { DataUsageTypeId, DPAFileSystemFileHandle, ParsedValue } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -80,7 +80,7 @@ export interface SourceViewPreviewField {
 
 interface SourceViewContentAudit {
     asAt: number;
-    fields: SourceViewContentAuditField[];
+    fields: ContentAuditField[];
     lineCount: number;
 }
 
