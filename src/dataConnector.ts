@@ -69,7 +69,7 @@ interface DataConnectorCreateInterface {
 
 export interface DataConnectorPreviewInterface {
     connector: DataConnector;
-    previewFileEntry(
+    previewEntry(
         connector: DataConnector,
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
@@ -88,7 +88,7 @@ export interface DataConnectorPreviewInterfaceSettings {
 
 export interface DataConnectorReadInterface {
     connector: DataConnector;
-    readFileEntry(
+    readEntry(
         connector: DataConnector,
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
