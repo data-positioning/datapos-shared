@@ -6,10 +6,10 @@
  */
 
 // Dependencies - Engine
-import type { Component } from './component';
+import type { Component } from '../component';
 import { ContentAuditColumn } from './ContentAuditColumn';
 import { PreviewColumn } from './PreviewColumn';
-import type { DPAFileSystemFileHandle, ParsedValue } from '.';
+import type { DPAFileSystemFileHandle, ParsedValue } from '..';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View

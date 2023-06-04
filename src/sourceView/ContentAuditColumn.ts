@@ -9,7 +9,7 @@
 const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine
-import { DataUsageTypeId } from '.';
+import { DataUsageTypeId } from '..';
 import { PreviewColumn } from './PreviewColumn';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

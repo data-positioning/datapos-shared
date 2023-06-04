@@ -68,8 +68,8 @@ export interface Progress {
 export type { ComponentConfig } from './component';
 export { ComponentTypeId, lookupComponentStatus } from './component';
 
-export type { ConnectorConfig } from './connector';
-export { ConnectorAuthMethodId, ConnectorUsageId } from './connector';
+export type { ConnectorConfig } from './connector/connector';
+export { ConnectorAuthMethodId, ConnectorUsageId } from './connector/connector';
 export type {
     DataConnector,
     DataConnectorFieldInfo,
@@ -79,12 +79,12 @@ export type {
     DataConnectorReadInterface,
     DataConnectorReadInterfaceSettings,
     DataConnectorRecord
-} from './dataConnector';
+} from './connector/dataConnector';
 export type {} from './nodeConnector';
 
-export type { ConnectionConfig } from './connection';
-export type { ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connectionEntry';
-export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from './connectionEntry';
+export type { ConnectionConfig } from './connection/connection';
+export type { ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connection/connectionEntry';
+export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from './connection/connectionEntry';
 
 export type {} from './dimension';
 
@@ -92,11 +92,11 @@ export type {} from './entity';
 
 export type {} from './eventQuery';
 
-export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './sourceView';
-export { DataFormatId, ValueDelimiterId } from './sourceView';
+export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './sourceView/sourceView';
+export { DataFormatId, ValueDelimiterId } from './sourceView/sourceView';
 
-export { PreviewColumn } from './PreviewColumn';
-export { ContentAuditColumn } from './ContentAuditColumn';
+export { PreviewColumn } from './sourceView/PreviewColumn';
+export { ContentAuditColumn } from './sourceView/ContentAuditColumn';
 
 export type { UsageKitConfig } from './usageKit';
 
