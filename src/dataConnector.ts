@@ -99,22 +99,22 @@ export interface DataConnectorReadInterface {
 }
 
 export interface DataConnectorReadInterfaceSettings {
-    chunk(records: FieldData[]): void;
+    chunk(records: DataConnectorRecord[]): void;
     chunkSize?: number;
-    complete(info: FileInfo): void;
+    complete(fileInfo: DataConnectorFileInfo): void;
     error(error: unknown): void;
 }
 
-export interface FieldData {
-    fieldInfos: FieldInfo[];
+export interface DataConnectorRecord {
+    fieldInfos: DataConnectorFieldInfo[];
     fieldValues: string[];
 }
 
-export interface FieldInfo {
+export interface DataConnectorFieldInfo {
     isQuoted: boolean;
 }
 
-interface FileInfo {
+interface DataConnectorFileInfo {
     byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;
