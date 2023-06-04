@@ -79,7 +79,7 @@ export interface SourceViewContentAudit {
 // Source View - Relationships Audit
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-interface SourceViewRelationshipsAudit {
+export interface SourceViewRelationshipsAudit {
     placeholder?: string;
 }
 
