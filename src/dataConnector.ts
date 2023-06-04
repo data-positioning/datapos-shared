@@ -102,7 +102,6 @@ export interface DataConnectorReadInterfaceSettings {
     chunk(records: DataConnectorRecord[]): void;
     chunkSize?: number;
     complete(fileInfo: DataConnectorFileInfo): void;
-    error(error: unknown): void;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
