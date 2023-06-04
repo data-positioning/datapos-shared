@@ -116,7 +116,7 @@ classDiagram
 
     class EventQuery {
         <<interface>>
-        config : EventQueryConfig;
+        config : EventQueryConfig
     }
 
     class SourceView {
@@ -159,10 +159,12 @@ classDiagram
     class ConnectorConfig {
         <<interface>>
         category : ConnectorCategory
+        categoryId : ConnectorCategoryId
         implementations : ConnectorImplementation[]
-        logo : string
-        reference : string
         usageId : ConnectorUsageId
+        vendorAccountURL : string
+        vendorDocumentationURL : string
+        vendorHomeURL : string
         version : string
     }
 
@@ -225,6 +227,9 @@ classDiagram
     class DataConnector {
         <<interface>>
         abortController? :  AbortController
+        readonly config : ConnectorConfig
+        readonly connectionConfig : ConnectionConfig
+        readonly version : string
         abort?() void
         authenticate?() Window
         describe?() Promise~ConnectionDescription~

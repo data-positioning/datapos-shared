@@ -37,9 +37,9 @@ export interface ConnectorImplementation {
     activeConnectionCount: number;
     canDescribe: boolean;
     id: string;
-    authMethodId: ConnectorAuthMethodId; // TODO: Checked
+    authMethodId: ConnectorAuthMethodId;
     label: string;
-    maxConnectionCount: number; // TODO: Checked
+    maxConnectionCount: number;
     params: Record<string, string>[];
 }
 
@@ -55,13 +55,13 @@ export enum ConnectorAuthMethodId {
 }
 
 type ConnectorCategory = { label: string };
-// const componentCategories: Record<string, ConnectorCategory> = {
-//     application: { label: 'Application' },
-//     curatedDataset: { label: 'Curated Dataset' },
-//     database: { label: 'Database' },
-//     fileStore: { label: 'File Store' }
-// };
-// export const lookupConnectorCategory = (id: string): ConnectorCategory => (componentCategories[id] ? componentCategories[id] : { label: id });
+const componentCategories: Record<string, ConnectorCategory> = {
+    application: { label: 'Application' },
+    curatedDataset: { label: 'Curated Dataset' },
+    database: { label: 'Database' },
+    fileStore: { label: 'File Store' }
+};
+export const lookupConnectorCategory = (id: string): ConnectorCategory => (componentCategories[id] ? componentCategories[id] : { label: id });
 
 export enum ConnectorUsageId {
     Bidirectional = 'bidirectional',

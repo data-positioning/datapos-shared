@@ -1,5 +1,5 @@
 /**
- * @file datapos-engine/src/ContentAuditField.ts
+ * @file datapos-engine/src/ContentAuditColumn.ts
  * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
  * @author Jonathan Terrell <terrell.jm@gmail.com>
  * @copyright 2023 Jonathan Terrell
@@ -10,13 +10,13 @@ const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine
 import { DataUsageTypeId } from '.';
-import { Field } from './Field';
+import { PreviewColumn } from './PreviewColumn';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Column
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export class ContentAuditField extends Field {
+export class ContentAuditColumn extends PreviewColumn {
     doCountIndividualValidValues: boolean;
     doCountPatterns: boolean;
     invalidValueCount: number;

@@ -7,8 +7,9 @@
 
 // Dependencies - Engine
 import type { Component } from './component';
-import { ContentAuditField } from './ContentAuditField';
-import type { DataUsageTypeId, DPAFileSystemFileHandle, ParsedValue } from '.';
+import { ContentAuditColumn } from './ContentAuditColumn';
+import { PreviewColumn } from './PreviewColumn';
+import type { DPAFileSystemFileHandle, ParsedValue } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View
@@ -22,12 +23,12 @@ export interface SourceView extends Component {
 }
 
 export interface SourceViewConfig {
-    connectionId?: string;
-    folderPath?: string;
+    connectionId: string;
+    folderPath: string;
     fileExtension?: string;
     fileHandle?: DPAFileSystemFileHandle;
     fileId?: string;
-    fileName?: string;
+    fileName: string;
     preview?: SourceViewPreview;
     contentAudit?: SourceViewContentAudit;
     relationshipsAudit?: SourceViewRelationshipsAudit;
@@ -39,40 +40,29 @@ export interface SourceViewConfig {
 
 export interface SourceViewPreview {
     asAt: number;
-    commentPrefixId?: string;
+    columns?: PreviewColumn[];
+    // commentPrefixId?: string;
     dataFormatId: DataFormatId;
-    fields?: SourceViewPreviewField[];
+    duration: number;
     encodingConfidenceLevel?: number;
     encodingId?: string;
     hasHeaderLine?: boolean;
-    lineDelimiterId?: string;
-    linesToSkipBeforeHeader?: number;
-    linesToSkipAfterHeader?: number;
-    linesToSkipAtEndOfFile?: number;
+    // lineDelimiterId?: string;
+    // linesToSkipBeforeHeader?: number;
+    // linesToSkipAfterHeader?: number;
+    // linesToSkipAtEndOfFile?: number;
     previewSize: number;
-    quoteEscapeCharacterId?: string;
-    quoteMarkId?: string;
+    // quoteEscapeCharacterId?: string;
+    // quoteMarkId?: string;
     records?: ParsedValue[][];
-    skipEmptyLines?: boolean;
-    skipLinesWithEmptyValues?: boolean;
-    skipLinesWithErrors?: boolean;
+    // skipEmptyLines?: boolean;
+    // skipLinesWithEmptyValues?: boolean;
+    // skipLinesWithErrors?: boolean;
     text?: string;
     totalSize?: number;
     valueDelimiterId?: ValueDelimiterId;
-    valueTrimMethodId?: string;
+    // valueTrimMethodId?: string;
 }
-
-export interface SourceViewPreviewField {
-    dataUsageTypeId: DataUsageTypeId;
-    // id?: string;
-    label: string;
-    // previewValues: PreviewValue[];
-}
-
-// interface PreviewValue {
-//     id: string;
-//     label: string;
-// }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View - Content Audit
@@ -80,7 +70,8 @@ export interface SourceViewPreviewField {
 
 interface SourceViewContentAudit {
     asAt: number;
-    fields: ContentAuditField[];
+    columns: ContentAuditColumn[];
+    duration: number;
     lineCount: number;
 }
 
