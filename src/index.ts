@@ -73,6 +73,7 @@ export { ConnectorAuthMethodId, ConnectorUsageId } from './connector';
 export type {
     DataConnector,
     DataConnectorFieldInfo,
+    DataConnectorFileInfo,
     DataConnectorPreviewInterface,
     DataConnectorPreviewInterfaceSettings,
     DataConnectorRetrieveEntriesSettings,

@@ -116,7 +116,7 @@ interface DataConnectorWriteInterface {
 // Data Connector - File/Record/Field Types
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-interface DataConnectorFileInfo {
+export interface DataConnectorFileInfo {
     byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;
