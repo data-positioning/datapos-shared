@@ -6,8 +6,8 @@
  */
 
 // Dependencies - Engine
-import type { Component, ComponentConfig } from './component';
-import { DataStorageTypeId, DataUsageTypeId, FirebaseTimestamp } from '.';
+import type { Component, ComponentConfig } from '../component';
+import { DataStorageTypeId, DataUsageTypeId, FirebaseTimestamp } from '..';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection
