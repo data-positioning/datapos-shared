@@ -110,13 +110,13 @@ export type { ConnectorConfig } from './connector';
 export { ConnectorAuthMethodId, ConnectorUsageId } from './connector';
 export type {
     DataConnector,
+    DataConnectorFieldInfo,
     DataConnectorPreviewInterface,
     DataConnectorPreviewInterfaceSettings,
     DataConnectorRetrieveEntriesSettings,
     DataConnectorReadInterface,
     DataConnectorReadInterfaceSettings,
-    FieldData,
-    FieldInfo
+    DataConnectorRecord
 } from './dataConnector';
 export type {} from './nodeConnector';
 

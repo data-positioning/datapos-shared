@@ -105,14 +105,17 @@ export interface DataConnectorReadInterfaceSettings {
     error(error: unknown): void;
 }
 
-export interface DataConnectorRecord {
-    fieldInfos: DataConnectorFieldInfo[];
-    fieldValues: string[];
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Data Connector - Write Interface
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+interface DataConnectorWriteInterface {
+    connector: DataConnector;
 }
 
-export interface DataConnectorFieldInfo {
-    isQuoted: boolean;
-}
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Data Connector - File/Record/Field Types
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 interface DataConnectorFileInfo {
     byteCount: number;
@@ -123,10 +126,11 @@ interface DataConnectorFileInfo {
     recordCount: number;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Data Connector - Write Interface
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+export interface DataConnectorRecord {
+    fieldInfos: DataConnectorFieldInfo[];
+    fieldValues: string[];
+}
 
-interface DataConnectorWriteInterface {
-    connector: DataConnector;
+export interface DataConnectorFieldInfo {
+    isQuoted: boolean;
 }
