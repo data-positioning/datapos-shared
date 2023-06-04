@@ -17,9 +17,6 @@ import type { DPAFileSystemFileHandle, ParsedValue } from '..';
 
 export interface SourceView extends Component {
     properties: SourceViewConfig;
-    preview: SourceViewPreview;
-    contentAudit: SourceViewContentAudit;
-    relationshipsAudit: SourceViewRelationshipsAudit;
 }
 
 export interface SourceViewConfig {
@@ -32,6 +29,7 @@ export interface SourceViewConfig {
     preview?: SourceViewPreview;
     contentAudit?: SourceViewContentAudit;
     relationshipsAudit?: SourceViewRelationshipsAudit;
+    totalSize?: number;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -40,7 +38,7 @@ export interface SourceViewConfig {
 
 export interface SourceViewPreview {
     asAt: number;
-    columns?: PreviewColumn[];
+    columns: PreviewColumn[];
     // commentPrefixId?: string;
     dataFormatId: DataFormatId;
     duration: number;
@@ -54,12 +52,11 @@ export interface SourceViewPreview {
     previewSize: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
-    records?: ParsedValue[][];
+    records: ParsedValue[][];
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;
-    text?: string;
-    totalSize?: number;
+    text: string;
     valueDelimiterId?: ValueDelimiterId;
     // valueTrimMethodId?: string;
 }
@@ -71,8 +68,12 @@ export interface SourceViewPreview {
 export interface SourceViewContentAudit {
     asAt: number;
     columns: ContentAuditColumn[];
+    commentLineCount: number;
+    emptyLineCount: number;
+    invalidFieldLengthCount: number;
     duration: number;
     lineCount: number;
+    recordCount: number;
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
