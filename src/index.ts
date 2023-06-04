@@ -68,8 +68,8 @@ export interface Progress {
 export type { ComponentConfig } from './component';
 export { ComponentTypeId, lookupComponentStatus } from './component';
 
-export type { ConnectorConfig } from './connector/connector';
-export { ConnectorAuthMethodId, ConnectorUsageId } from './connector/connector';
+export type { ConnectorConfig } from './connector';
+export { ConnectorAuthMethodId, ConnectorUsageId } from './connector';
 export type {
     DataConnector,
     DataConnectorFieldInfo,
@@ -82,7 +82,7 @@ export type {
 } from './connector/dataConnector';
 export type {} from './nodeConnector';
 
-export type { ConnectionConfig } from './connection/connection';
+export type { ConnectionConfig } from './connection';
 export type { ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connection/connectionEntry';
 export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from './connection/connectionEntry';
 
@@ -92,8 +92,8 @@ export type {} from './entity';
 
 export type {} from './eventQuery';
 
-export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './sourceView/sourceView';
-export { DataFormatId, ValueDelimiterId } from './sourceView/sourceView';
+export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './sourceView';
+export { DataFormatId, ValueDelimiterId } from './sourceView';
 
 export { PreviewColumn } from './sourceView/PreviewColumn';
 export { ContentAuditColumn } from './sourceView/ContentAuditColumn';

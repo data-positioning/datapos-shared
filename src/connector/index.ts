@@ -6,7 +6,7 @@
  */
 
 // Dependencies - Engine
-import { ConnectionConfig } from '../connection/connection';
+import { ConnectionConfig } from '../connection';
 import type { Component, ComponentConfig } from '../component';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

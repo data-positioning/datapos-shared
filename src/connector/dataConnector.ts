@@ -6,11 +6,11 @@
  */
 
 // Dependencies - Engine
-import type { SourceViewConfig } from '../sourceView/sourceView';
+import type { SourceViewConfig } from '../sourceView';
 import type { CallbackProperties, Progress } from '..';
-import type { ConnectionConfig, ConnectionDescription } from '../connection/connection';
+import type { ConnectionConfig, ConnectionDescription } from '../connection';
 import type { ConnectionEntryDrilldownResult, ConnectionEntryPreview } from '../connection/connectionEntry';
-import type { Connector, ConnectorConfig } from './connector';
+import type { Connector, ConnectorConfig } from '.';
 
 // Dependencies - Framework/Vendor
 import { type Callback, type Options, type Parser } from 'csv-parse';
