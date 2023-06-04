@@ -24,11 +24,11 @@ export interface SourceView extends Component {
 
 export interface SourceViewConfig {
     connectionId: string;
-    folderPath: string;
     fileExtension?: string;
     fileHandle?: DPAFileSystemFileHandle;
     fileId?: string;
     fileName: string;
+    folderPath: string;
     preview?: SourceViewPreview;
     contentAudit?: SourceViewContentAudit;
     relationshipsAudit?: SourceViewRelationshipsAudit;
@@ -68,7 +68,7 @@ export interface SourceViewPreview {
 // Source View - Content Audit
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-interface SourceViewContentAudit {
+export interface SourceViewContentAudit {
     asAt: number;
     columns: ContentAuditColumn[];
     duration: number;
