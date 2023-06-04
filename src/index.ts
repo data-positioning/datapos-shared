@@ -51,44 +51,6 @@ export interface DPAFileSystemFileHandle {
     getFile(): Promise<File>;
 }
 
-// export interface ErrorData {
-//     body: ErrorDataBody;
-//     statusCode?: number;
-//     statusText?: string;
-// }
-
-// export interface ErrorDataBody {
-//     context?: string;
-//     message: string;
-//     stack?: string;
-// }
-
-export default class ContextualError extends Error {
-    context: string;
-
-    constructor(message: string, context: string) {
-        super(message);
-        this.name = 'ContextualError';
-        this.context = context;
-    }
-}
-
-export class FetchResponseError extends Error {
-    bodyText: string;
-    context: string;
-    status: number;
-    statusText: string;
-
-    constructor(context: string, status: number, statusText: string, bodyText: string) {
-        super('Fetch response error.');
-        this.name = 'FetchResponseError';
-        this.context = context;
-        this.status = status;
-        this.statusText = statusText;
-        this.bodyText = bodyText;
-    }
-}
-
 export interface FirebaseTimestamp {
     nanoseconds: number;
     seconds: number;
@@ -139,6 +101,8 @@ export { ContentAuditColumn } from './ContentAuditColumn';
 export type { UsageKitConfig } from './usageKit';
 
 export type { ViewTemplateConfig } from './viewTemplate';
+
+export { ContextualError, FetchResponseError } from './errors';
 
 export {
     convertODataTypeToDataType,
