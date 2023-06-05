@@ -131,6 +131,15 @@ export const formatNumberAsStorageSize = (number?: number): string => {
     return `${formatNumberAsDecimalNumber(number / 1099511627776, 2, 0)} TB`;
 };
 
+export const formatNumberAsDuration = (number?: number): string => {
+    if (number === null || number === undefined) return '';
+    if (number < 1000) return `${formatNumberAsWholeNumber(number)} ms`;
+    if (number < 60000) return `${formatNumberAsDecimalNumber(number / 1000, 2, 0)} secs`;
+    if (number < 3600000) return `${formatNumberAsDecimalNumber(number / 60000, 2, 0)} mins`;
+    if (number < 86400000) return `${formatNumberAsDecimalNumber(number / 3600000, 2, 0)} hrs`;
+    return `${formatNumberAsDecimalNumber(number / 86400000, 2, 0)} days`;
+};
+
 export const formatNumberAsWholeNumber = (number?: number, locale = numberFormatterDefaultLocale): string => {
     if (number === null || number === undefined) return '';
     const formatterId = `${locale}decimal0.0`;
