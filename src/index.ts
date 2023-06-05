@@ -111,6 +111,7 @@ export {
     extractFileExtensionFromFilePath,
     extractLastSegmentFromPath,
     formatNumberAsDecimalNumber,
+    formatNumberAsDuration,
     formatNumberAsStorageSize,
     formatNumberAsWholeNumber,
     lookupMimeTypeForFileExtension
