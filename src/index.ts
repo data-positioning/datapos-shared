@@ -65,11 +65,11 @@ export interface Progress {
 // Components
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export type { ComponentConfig } from '@/component';
-export { ComponentTypeId, lookupComponentStatus } from '@/component';
+export type { ComponentConfig } from './component';
+export { ComponentTypeId, lookupComponentStatus } from './component';
 
-export type { ConnectorConfig } from '@/connector';
-export { ConnectorAuthMethodId, ConnectorUsageId } from '@/connector';
+export type { ConnectorConfig } from './connector/index';
+export { ConnectorAuthMethodId, ConnectorUsageId } from './connector/index';
 export type {
     DataConnector,
     DataConnectorFieldInfo,
@@ -80,30 +80,30 @@ export type {
     DataConnectorReadInterface,
     DataConnectorReadInterfaceSettings,
     DataConnectorRecord
-} from '@/connector/dataConnector';
-export type {} from '@/nodeConnector';
+} from './connector/dataConnector';
+export type {} from './nodeConnector';
 
-export type { ConnectionConfig } from '@/connection';
-export type { ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from '@/connection/connectionEntry';
-export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from '@/connection/connectionEntry';
+export type { ConnectionConfig } from './connection';
+export type { ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connection/connectionEntry';
+export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from './connection/connectionEntry';
 
-export type {} from '@/dimension';
+export type {} from './dimension';
 
-export type {} from '@/entity';
+export type {} from './entity';
 
-export type {} from '@/eventQuery';
+export type {} from './eventQuery';
 
-export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from '@/sourceView';
-export { DataFormatId, ValueDelimiterId } from '@/sourceView';
+export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './sourceView';
+export { DataFormatId, ValueDelimiterId } from './sourceView';
 
-export { PreviewColumn } from '@/sourceView/PreviewColumn';
-export { ContentAuditColumn } from '@/sourceView/ContentAuditColumn';
+export { PreviewColumn } from './sourceView/PreviewColumn';
+export { ContentAuditColumn } from './sourceView/ContentAuditColumn';
 
-export type { UsageKitConfig } from '@/usageKit';
+export type { UsageKitConfig } from './usageKit';
 
-export type { ViewTemplateConfig } from '@/viewTemplate';
+export type { ViewTemplateConfig } from './viewTemplate';
 
-export { ContextualError, FetchResponseError } from '@/errors';
+export { ContextualError, FetchResponseError } from './errors';
 
 export {
     convertODataTypeToDataType,
@@ -115,4 +115,4 @@ export {
     formatNumberAsStorageSize,
     formatNumberAsWholeNumber,
     lookupMimeTypeForFileExtension
-} from '@/utilities';
+} from './utilities';
