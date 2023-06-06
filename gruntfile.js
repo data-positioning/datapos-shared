@@ -27,7 +27,8 @@ module.exports = (grunt) => {
     grunt.initConfig({
         bump: { options: { commitFiles: ['-a'], commitMessage: 'v%VERSION%', pushTo: 'origin' } },
         gitadd: { task: { options: { all: true } } },
-        shell: { build: { command: ['vite build', 'mkdir dist/types', 'mv dist/*.d.ts dist/types/'].join('&&') } }
+        // shell: { build: { command: ['vite build', 'mkdir dist/types', 'mv dist/*.d.ts dist/types/'].join('&&') } }
+        shell: { build: { command: 'vite build' } }
     });
 
     // Load external tasks.
