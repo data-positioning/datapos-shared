@@ -24,5 +24,5 @@ export default defineConfig({
             fileName: (format) => `datapos-engine-support.${format}.js`
         }
     },
-    plugins: [dts()]
+    plugins: [dts({ outputDir: 'dist/types' })]
 });
