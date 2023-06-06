@@ -9,7 +9,7 @@
 const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine
-import { DataUsageTypeId } from '..';
+import { DataUsageTypeId, ParsedValue } from '..';
 import { PreviewColumn } from './PreviewColumn';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -68,13 +68,13 @@ export class ContentAuditColumn extends PreviewColumn {
         }
     }
 
-    addInvalidValue(originalValue: string, recordNumber: number) {
+    addInvalidValue(originalValue: string, recordNumber: number): string {
         if (this.invalidValues.length < MAX_INVALID_VALUE_COUNT) this.invalidValues.push({ recordNumber, value: originalValue });
         this.invalidValueCount++;
         return originalValue;
     }
 
-    addValidValue(originalValue: string, parsedValue: bigint | boolean | number | string | null, wholeDigitCount?: number, decimalDigitCount?: number) {
+    addValidValue(originalValue: string, parsedValue: bigint | boolean | number | string | null, wholeDigitCount?: number, decimalDigitCount?: number): ParsedValue {
         switch (this.dataUsageTypeId) {
             case DataUsageTypeId.String: {
                 parsedValue = originalValue;
@@ -114,13 +114,13 @@ export class ContentAuditColumn extends PreviewColumn {
         return null;
     }
 
-    finalise() {
+    finalise(): void {
         if (this.doCountIndividualValidValues) this.isUnique = this.validValueCount > 0 && this.validValueCount === Object.keys(this.validValues).length;
 
         if (this.voidValueCount === 0) this.isRequired = true;
     }
 
-    private determineNumericPattern(originalValue: string) {
+    private determineNumericPattern(originalValue: string): string {
         let pattern = '';
         for (let index = 0; index < originalValue.length; index++) {
             const char = originalValue.charAt(index);
@@ -133,7 +133,7 @@ export class ContentAuditColumn extends PreviewColumn {
         return pattern;
     }
 
-    private determineTextPattern(originalValue: string) {
+    private determineTextPattern(originalValue: string): string {
         let pattern = '';
         for (let index = 0; index < originalValue.length; index++) {
             const char = originalValue.charAt(index);
