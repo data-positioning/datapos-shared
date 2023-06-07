@@ -38,3 +38,19 @@ export class FetchResponseError extends Error {
         this.bodyText = bodyText;
     }
 }
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Errors - Operational
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export class OperationalError extends Error {
+    cause: unknown;
+    context: string;
+
+    constructor(message: string, context: string, cause: unknown) {
+        super(message);
+        this.name = 'OperationalError';
+        this.context = context;
+        this.cause = cause;
+    }
+}
