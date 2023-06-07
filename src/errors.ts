@@ -10,12 +10,13 @@
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export class ContextualError extends Error {
+    cause: unknown;
     context: string;
 
-    constructor(message: string, context: string) {
+    constructor(message: string, context: string, cause: unknown) {
         super(message);
-        this.name = 'ContextualError';
         this.context = context;
+        this.cause = cause;
     }
 }
 
@@ -36,21 +37,5 @@ export class FetchResponseError extends Error {
         this.status = status;
         this.statusText = statusText;
         this.bodyText = bodyText;
-    }
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Operational
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export class OperationalError extends Error {
-    cause: unknown;
-    context: string;
-
-    constructor(message: string, context: string, cause: unknown) {
-        super(message);
-        this.name = 'OperationalError';
-        this.context = context;
-        this.cause = cause;
     }
 }
