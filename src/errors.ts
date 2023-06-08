@@ -10,10 +10,10 @@
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export class ContextualError extends Error {
-    cause: unknown;
+    cause?: unknown;
     context: string;
 
-    constructor(message: string, context: string, cause: unknown) {
+    constructor(message: string, context: string, cause?: unknown) {
         super(message);
         this.context = context;
         this.cause = cause;
