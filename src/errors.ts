@@ -39,6 +39,7 @@ export class ContextualError extends Error {
 export class EngineError extends Error {
     cause?: unknown;
     context: string;
+    name: string;
 
     constructor(message: string, context: string, cause?: unknown) {
         super(message);
