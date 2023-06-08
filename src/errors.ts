@@ -26,14 +26,12 @@ export class ContextualError extends Error {
 
 export class FetchResponseError extends Error {
     bodyText: string;
-    context: string;
     status: number;
     statusText: string;
 
-    constructor(context: string, status: number, statusText: string, bodyText: string) {
-        super('Fetch response error.');
+    constructor(status: number, statusText: string, bodyText: string) {
+        super('Failed to return fetch response.');
         this.name = 'FetchResponseError';
-        this.context = context;
         this.status = status;
         this.statusText = statusText;
         this.bodyText = bodyText;
