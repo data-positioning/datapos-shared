@@ -41,7 +41,7 @@ export interface DataConnector extends Connector {
     getPreviewInterface?(): DataConnectorPreviewInterface;
     getReadInterface?(): DataConnectorReadInterface;
     getWriteInterface?(): DataConnectorWriteInterface;
-    retrieveEntries?(
+    retrieveConnectionEntries?(
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         settings: DataConnectorRetrieveEntriesSettings
@@ -69,7 +69,7 @@ interface DataConnectorCreateInterface {
 
 export interface DataConnectorPreviewInterface {
     connector: DataConnector;
-    previewEntry(
+    previewConnectionEntry(
         connector: DataConnector,
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
@@ -88,7 +88,7 @@ export interface DataConnectorPreviewInterfaceSettings {
 
 export interface DataConnectorReadInterface {
     connector: DataConnector;
-    readEntry(
+    readConnectionEntry(
         connector: DataConnector,
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
