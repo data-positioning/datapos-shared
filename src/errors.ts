@@ -107,9 +107,9 @@ export class FetchResponseError extends Error {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export class WorkerError extends Error {
-    cause: unknown;
+    cause?: unknown;
 
-    constructor(cause: unknown) {
+    constructor(cause?: unknown) {
         super('Engine error wrapper.');
         this.name = 'WorkerError';
         this.cause = cause;
