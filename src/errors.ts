@@ -29,17 +29,63 @@ export class AbortError extends Error {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Connector
+// Errors - Context
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export class ConnectorError extends Error {
-    cause?: unknown;
+export class ContextError extends Error {
     context?: string;
 
-    constructor(message: string, context?: string, cause?: unknown) {
+    constructor(message: string, context?: string) {
         super(message);
-        this.name = 'ConnectorError';
+        this.name = 'ContextError';
         this.context = context;
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Errors - Context - Backend
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export class BackendError extends ContextError {
+    constructor(message: string, context?: string, cause?: unknown) {
+        super(message, context);
+        this.name = 'BackendError';
+        this.cause = cause;
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Errors - Context - Connector
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export class ConnectorError extends ContextError {
+    constructor(message: string, context?: string, cause?: unknown) {
+        super(message, context);
+        this.name = 'ConnectorError';
+        this.cause = cause;
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Errors - Context - Engine
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export class EngineError extends ContextError {
+    constructor(message: string, context?: string, cause?: unknown) {
+        super(message, context);
+        this.name = 'EngineError';
+        this.cause = cause;
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Errors - Context - Frontend
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export class FrontendError extends ContextError {
+    constructor(message: string, context?: string, cause?: unknown) {
+        super(message, context);
+        this.name = 'FrontendError';
         this.cause = cause;
     }
 }
@@ -55,22 +101,6 @@ export class CoreError extends Error {
         super(message);
         this.name = 'CoreError';
         this.originalName = originalName;
-    }
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Engine
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export class EngineError extends Error {
-    cause?: unknown;
-    context?: string;
-
-    constructor(message: string, context?: string, cause?: unknown) {
-        super(message);
-        this.name = 'EngineError';
-        this.context = context;
-        this.cause = cause;
     }
 }
 
@@ -93,28 +123,10 @@ export class FetchResponseError extends Error {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Frontend
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export class FrontendError extends Error {
-    cause?: unknown;
-    context?: string;
-
-    constructor(message: string, context?: string, cause?: unknown) {
-        super(message);
-        this.name = 'FrontendError';
-        this.context = context;
-        this.cause = cause;
-    }
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Errors - Worker
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export class WorkerError extends Error {
-    cause?: unknown;
-
     constructor(cause?: unknown) {
         super('Engine error wrapper.');
         this.name = 'WorkerError';
