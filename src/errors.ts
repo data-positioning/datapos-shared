@@ -54,9 +54,9 @@ export class ConnectorError extends Error {
 
 export class ContextualError extends Error {
     cause?: unknown;
-    context: string;
+    context?: string;
 
-    constructor(message: string, context: string, cause?: unknown) {
+    constructor(message: string, context?: string, cause?: unknown) {
         super(message);
         this.name = 'ContextualError';
         this.context = context;
@@ -107,8 +107,11 @@ export class FetchResponseError extends Error {
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export class WorkerError extends Error {
-    constructor() {
+    cause: Error;
+
+    constructor(cause: Error) {
         super('Engine error wrapper.');
         this.name = 'WorkerError';
+        this.cause = cause;
     }
 }
