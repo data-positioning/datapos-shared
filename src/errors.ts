@@ -52,9 +52,7 @@ export class ContextError extends Error {
 
 export class BackendError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
-        const trueProto = new.target.prototype;
         super(message, context);
-        Object.setPrototypeOf(this, trueProto);
         this.name = 'BackendError';
         this.cause = cause;
     }
@@ -66,9 +64,7 @@ export class BackendError extends ContextError {
 
 export class ConnectorError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
-        const trueProto = new.target.prototype;
         super(message, context);
-        Object.setPrototypeOf(this, trueProto);
         this.name = 'ConnectorError';
         this.cause = cause;
     }
@@ -80,9 +76,7 @@ export class ConnectorError extends ContextError {
 
 export class EngineError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
-        const trueProto = new.target.prototype;
         super(message, context);
-        Object.setPrototypeOf(this, trueProto);
         this.name = 'EngineError';
         this.cause = cause;
     }
@@ -94,9 +88,7 @@ export class EngineError extends ContextError {
 
 export class FrontendError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
-        const trueProto = new.target.prototype;
         super(message, context);
-        Object.setPrototypeOf(this, trueProto);
         this.name = 'FrontendError';
         this.cause = cause;
     }
