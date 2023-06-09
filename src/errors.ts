@@ -23,9 +23,7 @@ export interface SerialisedErrorData {
 
 export class AbortError extends Error {
     constructor(message: string) {
-        const trueProto = new.target.prototype;
         super(message);
-        Object.setPrototypeOf(this, trueProto);
         this.name = 'AbortError';
     }
 }
@@ -38,9 +36,7 @@ export class ContextError extends Error {
     context?: string;
 
     constructor(message: string, context?: string) {
-        const trueProto = new.target.prototype;
         super(message);
-        Object.setPrototypeOf(this, trueProto);
         this.name = 'ContextError';
         this.context = context;
     }
@@ -50,7 +46,7 @@ export class ContextError extends Error {
 // Errors - Context - Backend
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export class BackendError extends ContextError {
+export class BackendContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
         this.name = 'BackendError';
@@ -62,7 +58,7 @@ export class BackendError extends ContextError {
 // Errors - Context - Connector
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export class ConnectorError extends ContextError {
+export class ConnectorContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
         this.name = 'ConnectorError';
@@ -74,7 +70,7 @@ export class ConnectorError extends ContextError {
 // Errors - Context - Engine
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export class EngineError extends ContextError {
+export class EngineContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
         this.name = 'EngineError';
@@ -86,7 +82,7 @@ export class EngineError extends ContextError {
 // Errors - Context - Frontend
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export class FrontendError extends ContextError {
+export class FrontendContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
         this.name = 'FrontendError';
@@ -102,9 +98,7 @@ export class CoreError extends Error {
     originalName: string;
 
     constructor(message: string, originalName: string) {
-        const trueProto = new.target.prototype;
         super(message);
-        Object.setPrototypeOf(this, trueProto);
         this.name = 'CoreError';
         this.originalName = originalName;
     }
@@ -120,9 +114,7 @@ export class FetchResponseError extends Error {
     statusText: string;
 
     constructor(status: number, statusText: string, bodyText: string) {
-        const trueProto = new.target.prototype;
         super('Failed to return fetch response.');
-        Object.setPrototypeOf(this, trueProto);
         this.name = 'FetchResponseError';
         this.status = status;
         this.statusText = statusText;
@@ -136,9 +128,7 @@ export class FetchResponseError extends Error {
 
 export class WorkerError extends Error {
     constructor(cause?: unknown) {
-        const trueProto = new.target.prototype;
         super('Engine error wrapper.');
-        Object.setPrototypeOf(this, trueProto);
         this.name = 'WorkerError';
         this.cause = cause;
     }
