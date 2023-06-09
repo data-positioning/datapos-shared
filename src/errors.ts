@@ -49,7 +49,7 @@ export class ContextError extends Error {
 export class BackendContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
-        this.name = 'BackendError';
+        this.name = 'BackendContextError';
         this.cause = cause;
     }
 }
@@ -61,7 +61,7 @@ export class BackendContextError extends ContextError {
 export class ConnectorContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
-        this.name = 'ConnectorError';
+        this.name = 'ConnectorContextError';
         this.cause = cause;
     }
 }
@@ -73,7 +73,7 @@ export class ConnectorContextError extends ContextError {
 export class EngineContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
-        this.name = 'EngineError';
+        this.name = 'EngineContextError';
         this.cause = cause;
     }
 }
@@ -85,7 +85,7 @@ export class EngineContextError extends ContextError {
 export class FrontendContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
-        this.name = 'FrontendError';
+        this.name = 'FrontendContextError';
         this.cause = cause;
     }
 }
