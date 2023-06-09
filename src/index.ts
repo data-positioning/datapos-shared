@@ -103,7 +103,7 @@ export type { UsageKitConfig } from './usageKit';
 
 export type { ViewTemplateConfig } from './viewTemplate';
 
-export { AbortError, ContextualError, EngineError, FetchResponseError } from './errors';
+export { AbortError, ConnectorError, ContextualError, EngineError, FetchResponseError } from './errors';
 
 export {
     convertODataTypeToDataType,
