@@ -39,11 +39,12 @@ export class ContextualError extends Error {
 export class EngineError extends Error {
     cause?: unknown;
     context: string;
-    name: string;
+    originalName: string;
 
     constructor(message: string, context: string, cause?: unknown) {
         super(message);
         this.name = 'EngineError';
+        this.originalName = 'EngineError'; // Saved copy of error name. The original name is lost during the serialization/deserialization process when passed through a Web Worker message.
         this.context = context;
         this.cause = cause;
     }
