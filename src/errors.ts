@@ -41,10 +41,20 @@ export class ConnectorError extends Error {
         this.name = 'ConnectorError';
         this.context = context;
         this.cause = cause;
-        if (Error.captureStackTrace) {
-            console.log('ConnectorError', 'Error.captureStackTrace');
-            Error.captureStackTrace(this, ConnectorError);
-        }
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Errors - Core
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export class CoreError extends Error {
+    originalName: string;
+
+    constructor(message: string, originalName: string) {
+        super(message);
+        this.name = 'CoreError';
+        this.originalName = originalName;
     }
 }
 
@@ -61,10 +71,6 @@ export class EngineError extends Error {
         this.name = 'EngineError';
         this.context = context;
         this.cause = cause;
-        if (Error.captureStackTrace) {
-            console.log('EngineError', 'Error.captureStackTrace');
-            Error.captureStackTrace(this, EngineError);
-        }
     }
 }
 
