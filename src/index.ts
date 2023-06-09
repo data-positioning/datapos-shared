@@ -11,11 +11,11 @@
 
 export type ParsedValue = bigint | boolean | number | string | null;
 
-export interface CallbackProperties {
-    error?: Error;
-    index: number;
-    value?: number;
-}
+// export interface CallbackProperties {
+//     error?: Error;
+//     index: number;
+//     value?: number;
+// }
 
 export enum DataStorageTypeId {
     Binary = 'binary',
@@ -56,10 +56,10 @@ export interface FirebaseTimestamp {
     seconds: number;
 }
 
-export interface Progress {
-    id: string;
-    value: unknown;
-}
+// export interface Progress {
+//     id: string;
+//     value: unknown;
+// }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Components
