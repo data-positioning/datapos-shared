@@ -34,9 +34,9 @@ export class AbortError extends Error {
 
 export class ConnectorError extends Error {
     cause?: unknown;
-    context: string;
+    context?: string;
 
-    constructor(message: string, context: string, cause?: unknown) {
+    constructor(message: string, context?: string, cause?: unknown) {
         super(message);
         this.name = 'ConnectorError';
         this.context = context;
