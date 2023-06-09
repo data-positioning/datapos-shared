@@ -103,7 +103,7 @@ export type { UsageKitConfig } from './usageKit';
 
 export type { ViewTemplateConfig } from './viewTemplate';
 
-export { AbortError, ConnectorError, CoreError, EngineError, FetchResponseError, FrontendError, type SerialisedErrorData, WorkerError } from './errors';
+export { AbortError, ConnectorError, ContextError, CoreError, EngineError, FetchResponseError, FrontendError, type SerialisedErrorData, WorkerError } from './errors';
 
 export {
     convertODataTypeToDataType,
