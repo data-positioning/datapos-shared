@@ -44,7 +44,7 @@ export class EngineError extends Error {
     constructor(message: string, context: string, cause?: unknown) {
         super(message);
         this.name = 'EngineError';
-        this.originalName = 'EngineError'; // Saved copy of error name. The original name is lost during the serialization/deserialization process when passed through a Web Worker message.
+        this.originalName = 'EngineError'; // Save copy of original error name as it will be lost during the serialization/deserialization process when passing a custom error through a web worker message.
         this.context = context;
         this.cause = cause;
     }
