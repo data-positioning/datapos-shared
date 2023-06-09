@@ -17,6 +17,26 @@ export class AbortError extends Error {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Errors - Connector
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export class ConnectorError extends Error {
+    cause?: unknown;
+    context: string;
+
+    constructor(message: string, context: string, cause?: unknown) {
+        super(message);
+        this.name = 'ConnectorError';
+        this.context = context;
+        this.cause = cause;
+        if (Error.captureStackTrace) {
+            console.log('Error.captureStackTrace');
+            Error.captureStackTrace(this, ConnectorError);
+        }
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Errors - Contextual
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -39,12 +59,10 @@ export class ContextualError extends Error {
 export class EngineError extends Error {
     cause?: unknown;
     context: string;
-    originalName: string;
 
     constructor(message: string, context: string, cause?: unknown) {
         super(message);
         this.name = 'EngineError';
-        this.originalName = 'EngineError'; // Save copy of original error name as it will be lost during the serialization/deserialization process when passing a custom error through a web worker message.
         this.context = context;
         this.cause = cause;
     }
