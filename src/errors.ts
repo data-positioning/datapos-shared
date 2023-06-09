@@ -49,22 +49,6 @@ export class ConnectorError extends Error {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Contextual
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export class ContextualError extends Error {
-    cause?: unknown;
-    context?: string;
-
-    constructor(message: string, context?: string, cause?: unknown) {
-        super(message);
-        this.name = 'ContextualError';
-        this.context = context;
-        this.cause = cause;
-    }
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Errors - Engine
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
@@ -99,6 +83,22 @@ export class FetchResponseError extends Error {
         this.status = status;
         this.statusText = statusText;
         this.bodyText = bodyText;
+    }
+}
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Errors - Frontend
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export class FrontendError extends Error {
+    cause?: unknown;
+    context?: string;
+
+    constructor(message: string, context?: string, cause?: unknown) {
+        super(message);
+        this.name = 'FrontendError';
+        this.context = context;
+        this.cause = cause;
     }
 }
 
