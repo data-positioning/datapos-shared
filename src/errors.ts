@@ -9,8 +9,8 @@
 // Declarations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export interface SerialisedError {
-    cause?: SerialisedError;
+export interface SerialisedErrorData {
+    cause?: SerialisedErrorData;
     context?: string;
     message: string;
     name: string;
