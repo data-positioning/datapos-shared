@@ -30,7 +30,7 @@ export class ConnectorError extends Error {
         this.context = context;
         this.cause = cause;
         if (Error.captureStackTrace) {
-            console.log('Error.captureStackTrace');
+            console.log('ConnectorError', 'Error.captureStackTrace');
             Error.captureStackTrace(this, ConnectorError);
         }
     }
@@ -65,6 +65,10 @@ export class EngineError extends Error {
         this.name = 'EngineError';
         this.context = context;
         this.cause = cause;
+        if (Error.captureStackTrace) {
+            console.log('EngineError', 'Error.captureStackTrace');
+            Error.captureStackTrace(this, EngineError);
+        }
     }
 }
 
