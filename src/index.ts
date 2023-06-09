@@ -105,6 +105,7 @@ export type { ViewTemplateConfig } from './viewTemplate';
 
 export {
     AbortError,
+    BackendContextError,
     ConnectorContextError,
     ContextError,
     CoreError,
