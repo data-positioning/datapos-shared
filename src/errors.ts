@@ -40,6 +40,7 @@ export class ConnectorError extends Error {
         super(message);
         this.name = 'ConnectorError';
         this.context = context;
+        console.log(99, this.context);
         this.cause = cause;
         if (Error.captureStackTrace) {
             console.log('ConnectorError', 'Error.captureStackTrace');
