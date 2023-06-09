@@ -70,9 +70,9 @@ export class ContextualError extends Error {
 
 export class EngineError extends Error {
     cause?: unknown;
-    context: string;
+    context?: string;
 
-    constructor(message: string, context: string, cause?: unknown) {
+    constructor(message: string, context?: string, cause?: unknown) {
         super(message);
         this.name = 'EngineError';
         this.context = context;
