@@ -7,13 +7,18 @@
 
 // Dependencies - Engine
 import type { SourceViewConfig } from '../sourceView';
-import type { CallbackProperties, Progress } from '..';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
 import type { ConnectionEntryDrilldownResult, ConnectionEntryPreview } from '../connection/connectionEntry';
 import type { Connector, ConnectorConfig } from '.';
 
 // Dependencies - Framework/Vendor
 import { type Callback, type Options, type Parser } from 'csv-parse';
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declarations
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+type CallbackData = Record<string, unknown>;
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Data Connector
@@ -35,7 +40,7 @@ export interface DataConnector extends Connector {
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         connectionEntryId: string | undefined,
-        progressCallback: (progress: Progress) => void
+        callback?: (data: CallbackData) => void
     ): Promise<ConnectionDescription>;
     getCreateInterface?(): DataConnectorCreateInterface;
     getPreviewInterface?(): DataConnectorPreviewInterface;
@@ -44,7 +49,8 @@ export interface DataConnector extends Connector {
     retrieveConnectionEntries?(
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
-        settings: DataConnectorRetrieveEntriesSettings
+        settings: DataConnectorRetrieveEntriesSettings,
+        callback?: (data: CallbackData) => void
     ): Promise<ConnectionEntryDrilldownResult>;
 }
 
@@ -53,7 +59,6 @@ export interface DataConnectorRetrieveEntriesSettings {
     limit?: number;
     offset?: number;
     totalCount?: number;
-    folderChildEntryCountCallback?: (folderChildEntryCount: CallbackProperties) => void;
 }
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Data Connector - Create Interface
@@ -74,7 +79,8 @@ export interface DataConnectorPreviewInterface {
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         sourceViewConfig: SourceViewConfig,
-        previewInterfaceSettings: DataConnectorPreviewInterfaceSettings
+        previewInterfaceSettings: DataConnectorPreviewInterfaceSettings,
+        callback?: (data: CallbackData) => void
     ): Promise<ConnectionEntryPreview>;
 }
 
@@ -94,7 +100,8 @@ export interface DataConnectorReadInterface {
         sessionAccessToken: string | undefined,
         sourceViewConfig: SourceViewConfig,
         readInterfaceSettings: DataConnectorReadInterfaceSettings,
-        csvParse: (options?: Options, callback?: Callback) => Parser
+        csvParse: (options?: Options, callback?: Callback) => Parser,
+        callback?: (data: CallbackData) => void
     ): Promise<void>;
 }
 

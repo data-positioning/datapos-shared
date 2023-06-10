@@ -9,8 +9,8 @@
 const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine
-import { DataUsageTypeId, ParsedValue } from '..';
 import { PreviewColumn } from './PreviewColumn';
+import { DataUsageTypeId, ParsedValue } from '..';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Column
