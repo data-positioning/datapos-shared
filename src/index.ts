@@ -60,6 +60,7 @@ export { ComponentTypeId, lookupComponentStatus } from './component';
 export type { ConnectorConfig } from './connector/index';
 export { ConnectorAuthMethodId, ConnectorUsageId } from './connector/index';
 export type {
+    CallbackData,
     DataConnector,
     DataConnectorFieldInfo,
     DataConnectorFileInfo,

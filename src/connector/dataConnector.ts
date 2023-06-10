@@ -18,7 +18,10 @@ import { type Callback, type Options, type Parser } from 'csv-parse';
 // Declarations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-type CallbackData = Record<string, unknown>;
+export interface CallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Data Connector
