@@ -43,7 +43,7 @@ export interface DataConnector extends Connector {
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         connectionEntryId: string | undefined,
-        callback?: (data: CallbackData) => void
+        callback: (data: CallbackData) => void
     ): Promise<ConnectionDescription>;
     getCreateInterface?(): DataConnectorCreateInterface;
     getPreviewInterface?(): DataConnectorPreviewInterface;
@@ -53,7 +53,7 @@ export interface DataConnector extends Connector {
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         settings: DataConnectorRetrieveEntriesSettings,
-        callback?: (data: CallbackData) => void
+        callback: (data: CallbackData) => void
     ): Promise<ConnectionEntryDrilldownResult>;
 }
 
@@ -83,7 +83,7 @@ export interface DataConnectorPreviewInterface {
         sessionAccessToken: string | undefined,
         sourceViewConfig: SourceViewConfig,
         previewInterfaceSettings: DataConnectorPreviewInterfaceSettings,
-        callback?: (data: CallbackData) => void
+        callback: (data: CallbackData) => void
     ): Promise<ConnectionEntryPreview>;
 }
 
@@ -104,7 +104,7 @@ export interface DataConnectorReadInterface {
         sourceViewConfig: SourceViewConfig,
         readInterfaceSettings: DataConnectorReadInterfaceSettings,
         csvParse: (options?: Options, callback?: Callback) => Parser,
-        callback?: (data: CallbackData) => void
+        callback: (data: CallbackData) => void
     ): Promise<void>;
 }
 
