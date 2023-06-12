@@ -49,7 +49,7 @@ export interface SourceViewPreview {
     // linesToSkipBeforeHeader?: number;
     // linesToSkipAfterHeader?: number;
     // linesToSkipAtEndOfFile?: number;
-    previewSize: number;
+    size: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
     records: ParsedValue[][];
