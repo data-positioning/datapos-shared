@@ -107,7 +107,7 @@ export type {} from './eventQuery';
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './sourceView';
-export { DataFormatId, getDataFormats, ValueDelimiterId } from './sourceView';
+export { DataFormatId, getDataFormats, getValueDelimiters, ValueDelimiterId } from './sourceView';
 
 export { PreviewColumn } from './sourceView/PreviewColumn';
 export { ContentAuditColumn } from './sourceView/ContentAuditColumn';
