@@ -85,7 +85,7 @@ export interface SourceViewRelationshipsAudit {
 }
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Source View - Enumerations
+// Source View - Enumerations - Data Format
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export enum DataFormatId {
@@ -119,6 +119,10 @@ export const getDataFormats = () => {
 
 export const lookupDataFormat = (id: string): DataFormat => (dataFormats[id] ? dataFormats[id] : { label: id });
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Source View - Enumerations - Value Delimiter
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 export enum ValueDelimiterId {
     Colon = ':',
     Comma = ',',
@@ -132,3 +136,26 @@ export enum ValueDelimiterId {
     UnitSeparator = '0x1F',
     VerticalBar = '|'
 }
+
+type ValueDelimiter = { label: string };
+const valueDelimiters: Record<string, ValueDelimiter> = {
+    ':': { label: 'Colon' },
+    ',': { label: 'Comma' },
+    '!': { label: 'Exclamation Mark' },
+    '': { label: 'Other' },
+    '0x1E': { label: 'Record Separator' },
+    ';': { label: 'Semicolon' },
+    ' ': { label: 'Space' },
+    '\t': { label: 'Tab' },
+    _: { label: 'Underscore' },
+    '0x1F': { label: 'Unit Separator' },
+    '|': { label: 'Vertical Bar' }
+};
+
+export const getValueDelimiters = () => {
+    const items = [];
+    for (const [key, value] of Object.entries(valueDelimiters)) items.push({ id: key, label: value.label });
+    return items.sort((first, second) => first.label.localeCompare(second.label));
+};
+
+export const lookupValueDelimiter = (id: string): DataFormat => (valueDelimiters[id] ? valueDelimiters[id] : { label: id });
