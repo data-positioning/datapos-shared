@@ -6,8 +6,8 @@
  */
 
 // Dependencies - Engine
-import { ConnectionConfig } from './connection';
-import type { Connector, ConnectorConfig } from './connector';
+import { ConnectionConfig } from '../connection';
+import type { Connector, ConnectorConfig } from './';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Node Connector

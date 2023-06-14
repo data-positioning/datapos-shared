@@ -57,6 +57,10 @@ export type ParsedValue = bigint | boolean | number | string | null;
 export type { ComponentConfig } from './component';
 export { ComponentTypeId, lookupComponentStatus } from './component';
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declarations - Component - Connector
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 export type { ConnectorConfig } from './connector/index';
 export { ConnectorAuthMethodId, ConnectorUsageId } from './connector/index';
 export type {
@@ -73,23 +77,50 @@ export type {
 } from './connector/dataConnector';
 export type {} from './nodeConnector';
 
-export type { ConnectionConfig } from './connection';
-export type { ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connection/connectionEntry';
-export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from './connection/connectionEntry';
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declarations - Component - Connection
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
+export type { ConnectionConfig, ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connection';
+export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from './connection';
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declarations - Component - Dimension
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export type {} from './dimension';
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declarations - Component - Entity
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 export type {} from './entity';
 
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declarations - Component - Event Query
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+
 export type {} from './eventQuery';
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declarations - Component - Source View
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './sourceView';
 export { DataFormatId, getDataFormats, ValueDelimiterId } from './sourceView';
 
 export { PreviewColumn } from './sourceView/PreviewColumn';
-export { ContentAuditColumn } from './sourceView/ContentAuditColumn';
+// export { ContentAuditColumn } from './sourceView/ContentAuditColumn';
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declarations - Component - Usage Kit
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export type { UsageKitConfig } from './usageKit';
+
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declarations - Component - View Template
+// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export type { ViewTemplateConfig } from './viewTemplate';
 

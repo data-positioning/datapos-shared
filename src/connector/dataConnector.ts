@@ -7,8 +7,7 @@
 
 // Dependencies - Engine
 import type { SourceViewConfig } from '../sourceView';
-import type { ConnectionConfig, ConnectionDescription } from '../connection';
-import type { ConnectionEntryDrilldownResult, ConnectionEntryPreview } from '../connection/connectionEntry';
+import type { ConnectionConfig, ConnectionDescription, ConnectionEntryDrilldownResult, ConnectionEntryPreview } from '../connection';
 import type { Connector, ConnectorConfig } from '.';
 
 // Dependencies - Framework/Vendor
