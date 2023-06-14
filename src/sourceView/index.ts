@@ -99,6 +99,26 @@ export enum DataFormatId {
     XML = 'xml'
 }
 
+type DataFormat = { label: string };
+const dataFormats: Record<string, DataFormat> = {
+    dtv: { label: 'Delimited Text' },
+    'e/e': { label: 'Entity/Event' },
+    json: { label: 'JSON' },
+    spss: { label: 'SPSS' },
+    table: { label: 'Table' },
+    xls: { label: 'XLS' },
+    xlsx: { label: 'XLSX' },
+    xml: { label: 'XML' }
+};
+
+export const getDataFormats = () => {
+    const items = [];
+    for (const [key, value] of Object.entries(dataFormats)) items.push({ id: key, label: value });
+    return items;
+};
+
+export const lookupDataFormat = (id: string): DataFormat => (dataFormats[id] ? dataFormats[id] : { label: id });
+
 export enum ValueDelimiterId {
     Colon = ':',
     Comma = ',',
