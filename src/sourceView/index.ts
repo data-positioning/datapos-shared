@@ -114,6 +114,7 @@ const dataFormats: Record<string, DataFormat> = {
 export const getDataFormats = () => {
     const items = [];
     for (const [key, value] of Object.entries(dataFormats)) items.push({ id: key, label: value.label });
+    console.log(1111, items);
     return items.sort((first, second) => first.label.localeCompare(second.label));
 };
 
