@@ -110,7 +110,7 @@ export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, Sourc
 export { DataFormatId, getDataFormats, ValueDelimiterId } from './sourceView';
 
 export { PreviewColumn } from './sourceView/PreviewColumn';
-// export { ContentAuditColumn } from './sourceView/ContentAuditColumn';
+export { ContentAuditColumn } from './sourceView/ContentAuditColumn';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Declarations - Component - Usage Kit
