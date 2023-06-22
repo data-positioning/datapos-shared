@@ -7,8 +7,8 @@
 
 // Dependencies - Engine
 import type { Component } from '../component';
-import { ContentAuditColumn } from './ContentAuditColumn';
-import { PreviewColumn } from './PreviewColumn';
+import type { ContentAuditColumn } from './ContentAuditColumn';
+import type { PreviewColumn } from './PreviewColumn';
 import type { DPAFileSystemFileHandle, ParsedValue } from '..';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

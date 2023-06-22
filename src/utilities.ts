@@ -6,7 +6,7 @@
  */
 
 // Dependencies - Engine
-import { DataType } from './connection';
+import type { DataType } from './connection';
 import { DataStorageTypeId, DataUsageTypeId } from '.';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

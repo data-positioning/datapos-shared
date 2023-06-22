@@ -11,7 +11,7 @@ import type { ConnectionConfig, ConnectionDescription, ConnectionEntryDrilldownR
 import type { Connector, ConnectorConfig } from '.';
 
 // Dependencies - Framework/Vendor
-import { type Callback, type Options, type Parser } from 'csv-parse';
+import type { Callback, Options, Parser } from 'csv-parse';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Declarations

@@ -7,8 +7,7 @@
 
 // Dependencies - Engine
 import type { Component, ComponentConfig } from '../component';
-import { DataStorageTypeId, DataUsageTypeId, FirebaseTimestamp } from '..';
-import type { DPAFileSystemFileHandle, ParsedValue } from '..';
+import type { DataStorageTypeId, DataUsageTypeId, DPAFileSystemFileHandle, FirebaseTimestamp, ParsedValue } from '..';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Connection
