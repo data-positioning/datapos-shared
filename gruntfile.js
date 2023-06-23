@@ -2,31 +2,17 @@
 const {
     auditDependencies,
     checkDependencies,
-    getNewVersion,
     identifyLicenses,
-    incrementVersionPatch,
     logNotImplementedMessage,
     migrateDependencies,
     lintCode,
     publishPackageToNPM,
-    updateDataPosDependencies
+    updateDataPosDependencies,
+    syncRepoWithGithub
 } = require('@datapos/datapos-operations/commonHelpers');
 
 // Configuration
 module.exports = (grunt) => {
-    // Set external task configuration.
-    grunt.initConfig({
-        shell: {
-            build: { command: 'vite build' },
-            commitAndPushToGitHub: {
-                command: () => ['git add .', `git commit -m "v${getNewVersion()}"`, 'git push origin main:main'].join('&&')
-            }
-        }
-    });
-
-    // Load external tasks.
-    grunt.loadNpmTasks('grunt-shell');
-
     // Register local tasks.
     grunt.registerTask('auditDependencies', function () {
         auditDependencies(grunt, this);
@@ -37,9 +23,6 @@ module.exports = (grunt) => {
     grunt.registerTask('identifyLicenses', function () {
         identifyLicenses(grunt, this);
     });
-    grunt.registerTask('incrementVersionPatch', function () {
-        incrementVersionPatch(grunt, this, 'package.json');
-    });
     grunt.registerTask('lintCode', function () {
         lintCode(grunt, this, ['*.cjs', '*.js', '**/*.ts']);
     });
@@ -49,6 +32,9 @@ module.exports = (grunt) => {
     });
     grunt.registerTask('publishPackageToNPM', function () {
         publishPackageToNPM(grunt, this);
+    });
+    grunt.registerTask('syncRepoWithGithub', function () {
+        syncRepoWithGithub(grunt, this, 'package.json');
     });
     grunt.registerTask('updateDataPosDependencies', function (updateTypeId) {
         updateDataPosDependencies(grunt, this, updateTypeId);
@@ -63,8 +49,8 @@ module.exports = (grunt) => {
     grunt.registerTask('lint', ['lintCode']); // alt+ctrl+shift+l.
     grunt.registerTask('migrate', ['migrateDependencies']); // alt+ctrl+shift+m.
     grunt.registerTask('publish', ['publishPackageToNPM']); // alt+ctrl+shift+p.
-    grunt.registerTask('release', ['incrementVersionPatch', 'shell:commitAndPushToGitHub', 'build', 'publishPackageToNPM']); // alt+ctrl+shift+r.
-    grunt.registerTask('synchronise', ['incrementVersionPatch', 'shell:commitAndPushToGitHub']); // alt+ctrl+shift+s.
+    grunt.registerTask('release', ['syncRepoWithGithub', 'build', 'publishPackageToNPM']); // alt+ctrl+shift+r.
+    grunt.registerTask('synchronise', ['syncRepoWithGithub']); // alt+ctrl+shift+s.
     grunt.registerTask('test', ['logNotImplementedMessage:Test']); // alt+ctrl+shift+t.
     grunt.registerTask('update', ['updateDataPosDependencies']); // alt+ctrl+shift+u.
 };
