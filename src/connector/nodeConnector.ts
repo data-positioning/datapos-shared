@@ -1,22 +1,13 @@
-/**
- * @file datapos-engine-support/src/nodeConnector.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
 // Dependencies - Engine
 import type { ConnectionConfig } from '../connection';
 import type { Connector, ConnectorConfig } from './';
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Node Connector
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Declaration - Node Connector Constructor
+interface NodeConnectorConstructor {
+    new (connectionConfig: ConnectionConfig): NodeConnector;
+}
 
-// interface NodeConnectorConstructor {
-//     new (connectionConfig: ConnectionConfig): NodeConnector;
-// }
-
+// Declaration - Node Connector
 export interface NodeConnector extends Connector {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
@@ -24,17 +15,14 @@ export interface NodeConnector extends Connector {
     readonly id: string;
     readonly version: string;
 
-    // Node Item(s) - Delete List & Upsert
     deleteNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<void>;
     getNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<NodeItem>;
     listNodeItems(nodeItemTypeId?: NodeItemTypeId): Promise<NodeItem[]>;
     upsertNodeItem(nodeItemTypeId: NodeItemTypeId, nodeItem: NodeItem | Partial<NodeItem>, id?: string): Promise<NodeItem>;
 
-    // Node Item Properties - Get & Upsert
     getNodeItemProperties(nodeItemTypeId: NodeItemTypeId, id: string): Promise<NodeItemProperties>;
     upsertNodeItemProperties(nodeItemTypeId: NodeItemTypeId, properties: NodeItemProperties, id?: string | Partial<NodeItemProperties>): Promise<NodeItemProperties>;
 
-    // Node Item Data - Clear, Count, Determine, Insert & Retrieve
     clearNodeItemData(nodeItemTypeId: NodeItemTypeId, collection: unknown): Promise<void>;
     countNodeItemData(nodeItemTypeId: NodeItemTypeId, collection: unknown): Promise<number>;
     determineNodeItemData(nodeItemTypeId: NodeItemTypeId, id: string, nodeDataTypeId: NodeDataTypeId, isToBeCleared: boolean): Promise<unknown>;
@@ -50,26 +38,36 @@ export interface NodeConnector extends Connector {
     ): Promise<NodeItemDataPage>;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Node Connector - Item
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+export enum NodeDataTypeId {
+    Data = 'data',
+    Events = 'events',
+    Facts = 'facts'
+}
 
+export enum NodeItemTypeId {
+    Dimension = 'dimension',
+    Entity = 'entity',
+    EventQuery = 'eventQuery',
+    SourceView = 'sourceView',
+    Workbook = 'workbook'
+}
+
+// Declaration - Node Item
 export interface NodeItem {
     placeholder?: string;
 }
 
+// Declaration - Node Item - Properties
 export type NodeItemProperties = Record<string, unknown>;
 
+// Declaration - Node Item - Data Page
 export interface NodeItemDataPage {
     after?: number;
     before?: number;
     data: Record<string, unknown>[];
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Node Connector - Query
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Node Query
 export interface NodeQuery {
     select: NodeQuerySelect;
 }
@@ -91,26 +89,8 @@ export interface NodeQueryExpressionItem {
     placeholder?: string;
 }
 
-export interface NodeQueryExpressionValue {
+interface NodeQueryExpressionValue {
     dataItemName: string;
     type: string;
     value: boolean | number | string | null | unknown;
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Node Connector - Enumerations
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export enum NodeDataTypeId {
-    Data = 'data',
-    Events = 'events',
-    Facts = 'facts'
-}
-
-export enum NodeItemTypeId {
-    Dimension = 'dimension',
-    Entity = 'entity',
-    EventQuery = 'eventQuery',
-    SourceView = 'sourceView',
-    Workbook = 'workbook'
 }
