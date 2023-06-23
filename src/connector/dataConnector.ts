@@ -8,7 +8,7 @@ import type { Connector, ConnectorConfig } from '.';
 import type { Callback, Options, Parser } from 'csv-parse';
 
 // Declaration - Data Connector Constructor
-export interface DataConnectorConstructor {
+interface DataConnectorConstructor {
     new (connectionConfig: ConnectionConfig): DataConnector;
 }
 

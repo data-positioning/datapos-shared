@@ -58,7 +58,6 @@ export type { ConnectorConfig } from './connector/index';
 export { ConnectorAuthMethodId, ConnectorUsageId } from './connector/index';
 export type {
     DataConnector,
-    DataConnectorConstructor,
     DataConnectorFieldInfo,
     DataConnectorFileInfo,
     DataConnectorPreviewInterface,
