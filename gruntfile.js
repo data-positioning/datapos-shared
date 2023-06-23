@@ -1,11 +1,3 @@
-/**
- * @file datapos-engine-support/gruntfile.js
- * @description Grunt configuration file.
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
 // Dependencies - Framework/Vendor
 const {
     auditDependencies,
@@ -18,16 +10,12 @@ const {
     updateDataPosDependencies
 } = require('@datapos/datapos-operations/commonHelpers');
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Configuration
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 module.exports = (grunt) => {
     // Set external task configuration.
     grunt.initConfig({
         bump: { options: { commitFiles: ['-a'], commitMessage: 'v%VERSION%', pushTo: 'origin' } },
         gitadd: { task: { options: { all: true } } },
-        // shell: { build: { command: ['vite build', 'mkdir dist/types', 'mv dist/*.d.ts dist/types/'].join('&&') } }
         shell: { build: { command: 'vite build' } }
     });
 
