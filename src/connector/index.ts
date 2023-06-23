@@ -1,27 +1,14 @@
-/**
- * @file datapos-engine-support/src/connector.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
 // Dependencies - Engine
 import type { ConnectionConfig } from '../connection';
 import type { Component, ComponentConfig } from '../component';
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Connector
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Connector
 export interface Connector extends Component {
     config: ConnectorConfig;
     connectionConfig: ConnectionConfig;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Connector - Config
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Connector Config
 export interface ConnectorConfig extends ComponentConfig {
     category: ConnectorCategory;
     categoryId: string;
@@ -42,10 +29,6 @@ export interface ConnectorImplementation {
     maxConnectionCount: number;
     params: Record<string, string>[];
 }
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Connector - Enumerations
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export enum ConnectorAuthMethodId {
     APIKey = 'apiKey',

@@ -1,18 +1,12 @@
-/**
- * @file datapos-engine-support/src/utilities.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
 // Dependencies - Engine
 import type { DataType } from './connection';
 import { DataStorageTypeId, DataUsageTypeId } from '.';
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Utilities - Extract
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
+// Module Variables
+const numberFormatterDefaultLocale = 'en-US';
+const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
 
+// Utility - Convert
 export const convertODataTypeToDataType = (type: string, maximumLength?: number): DataType => {
     // See: https://www.odata.org/documentation/odata-version-2-0/overview/
     switch (type) {
@@ -51,10 +45,7 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
     }
 };
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Utilities - Extract
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Utility - Extract
 // export const extractFolderPathFromFilePath = (itemPath: string): string | undefined => {
 //     if (itemPath) {
 //         const lastIndex = itemPath.lastIndexOf('/');
@@ -63,6 +54,7 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
 //     return undefined;
 // };
 
+// Utility - Extract
 export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastSeparatorIndex = itemPath.lastIndexOf('/');
@@ -72,6 +64,7 @@ export const extractFileNameFromFilePath = (itemPath: string): string | undefine
     return undefined;
 };
 
+// Utility - Extract
 export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastExtensionIndex = itemPath.lastIndexOf('.');
@@ -80,6 +73,7 @@ export const extractFileExtensionFromFilePath = (itemPath: string): string | und
     return undefined;
 };
 
+// Utility - Extract
 export const extractLastSegmentFromPath = (path: string): string | undefined => {
     if (path) {
         let lastSeparatorIndex;
@@ -96,13 +90,7 @@ export const extractLastSegmentFromPath = (path: string): string | undefined => 
     return undefined;
 };
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Utilities - Formatters - Number
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-const numberFormatterDefaultLocale = 'en-US';
-const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
-
+// Utility - Format Number
 export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, minimumFractionDigits = decimalPlaces, locale = numberFormatterDefaultLocale): string => {
     if (number === null || number === undefined) return '';
     const formatterId = `${locale}decimal${decimalPlaces}.${minimumFractionDigits}`;
@@ -121,6 +109,7 @@ export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, 
     return numberFormatter.format(number);
 };
 
+// Utility - Format Number
 export const formatNumberAsStorageSize = (number?: number): string => {
     if (number === null || number === undefined) return '';
     if (number === 1) return '1 byte';
@@ -131,6 +120,7 @@ export const formatNumberAsStorageSize = (number?: number): string => {
     return `${formatNumberAsDecimalNumber(number / 1099511627776, 2, 0)} TB`;
 };
 
+// Utility - Format Number
 export const formatNumberAsDuration = (number?: number): string => {
     if (number === null || number === undefined) return '';
     if (number < 1000) return `${formatNumberAsWholeNumber(number)} ms`;
@@ -144,6 +134,7 @@ export const formatNumberAsDuration = (number?: number): string => {
     return `${formatNumberAsDecimalNumber(number / 86400000, 2, 0)} days`;
 };
 
+// Utility - Format Number
 export const formatNumberAsWholeNumber = (number?: number, locale = numberFormatterDefaultLocale): string => {
     if (number === null || number === undefined) return '';
     const formatterId = `${locale}decimal0.0`;
@@ -162,16 +153,7 @@ export const formatNumberAsWholeNumber = (number?: number, locale = numberFormat
     return numberFormatter.format(number);
 };
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Utilities - Lookup
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-/**
- * Lookup the mime type for a given file extension. Objective is to identify a mime type that may document how the data in the file is structured.
- * There is no guarantee that the data will actually be structured in this format.
- * @param extension A file extension for which to lookup the mime type.
- * @returns The mime type.
- */
+// Utility - Lookup
 export const lookupMimeTypeForFileExtension = (extension: string): string => {
     switch (extension) {
         case 'csv':
@@ -188,18 +170,7 @@ export const lookupMimeTypeForFileExtension = (extension: string): string => {
     }
 };
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Utilities - Vendor Access Token
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-// /**
-//  * Establish a vendor access token.
-//  * @param connectionItem
-//  * @param accountId
-//  * @param sessionAccessToken
-//  * @param vendorRefreshURI
-//  * @returns The connection access token.
-//  */
+// Utility
 // // export const establishVendorAccessToken = async (connectionItem: ConnectionItem, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
 // export const establishVendorAccessToken = async (connectionItem: any, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
 //     let accessToken;

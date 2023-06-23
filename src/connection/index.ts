@@ -1,26 +1,13 @@
-/**
- * @file datapos-engine-support/src/connection.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
 // Dependencies - Engine
 import type { Component, ComponentConfig } from '../component';
 import type { DataStorageTypeId, DataUsageTypeId, DPAFileSystemFileHandle, FirebaseTimestamp, ParsedValue } from '..';
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Connection
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Connection
 export interface Connection extends Component {
     config: ConnectionConfig;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Connection - Config
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Connection Config
 export interface ConnectionConfig extends ComponentConfig {
     authorisation?: Record<string, ConnectionAuthorization>;
     connectorId: string;
@@ -40,10 +27,7 @@ interface ConnectionAuthorization {
     uid: string; // Dropbox.
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Connection - Description
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Connection Description
 export type ConnectionDescription = { fileEntries: Record<string, FileEntry>; objectTypes: Record<string, ObjectType> };
 
 export interface FileEntry {
@@ -76,10 +60,7 @@ export interface DataType {
     usageTypeId: DataUsageTypeId;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Connection Entry
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Connection Entry
 export interface ConnectionEntry {
     childCount?: number;
     folderPath: string;
@@ -109,10 +90,6 @@ export interface ConnectionEntryPreview {
     data: ParsedValue[][] | Uint8Array;
     typeId: ConnectionEntryPreviewTypeId;
 }
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Connection Entry - Enumerations
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 export enum ConnectionEntryPreviewTypeId {
     Table = 'table',

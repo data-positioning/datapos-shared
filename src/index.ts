@@ -1,10 +1,3 @@
-/**
- * @file datapos-engine-support/src/index.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Declarations
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
@@ -64,7 +57,6 @@ export { ComponentTypeId, lookupComponentStatus } from './component';
 export type { ConnectorConfig } from './connector/index';
 export { ConnectorAuthMethodId, ConnectorUsageId } from './connector/index';
 export type {
-    CallbackData,
     DataConnector,
     DataConnectorFieldInfo,
     DataConnectorFileInfo,
@@ -76,6 +68,12 @@ export type {
     DataConnectorRecord
 } from './connector/dataConnector';
 export type {} from './nodeConnector';
+
+// Declaration - Callback Data
+export interface CallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Declarations - Component - Connection

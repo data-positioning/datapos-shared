@@ -1,11 +1,5 @@
-/**
- * @file datapos-engine-support/src/dataConnector.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
 // Dependencies - Engine
+import type { CallbackData } from '..';
 import type { SourceViewConfig } from '../sourceView';
 import type { ConnectionConfig, ConnectionDescription, ConnectionEntryDrilldownResult, ConnectionEntryPreview } from '../connection';
 import type { Connector, ConnectorConfig } from '.';
@@ -13,23 +7,12 @@ import type { Connector, ConnectorConfig } from '.';
 // Dependencies - Framework/Vendor
 import type { Callback, Options, Parser } from 'csv-parse';
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Declarations
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export interface CallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Data Connector
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Data Connector Constructor
 // interface DataConnectorConstructor {
 //     new (connectionConfig: ConnectionConfig): DataConnector;
 // }
 
+// Declaration - Data Connector
 export interface DataConnector extends Connector {
     abortController?: AbortController;
     readonly config: ConnectorConfig;
@@ -56,24 +39,12 @@ export interface DataConnector extends Connector {
     ): Promise<ConnectionEntryDrilldownResult>;
 }
 
-export interface DataConnectorRetrieveEntriesSettings {
-    folderPath: string;
-    limit?: number;
-    offset?: number;
-    totalCount?: number;
-}
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Data Connector - Create Interface
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Data Connector - Create Interface
 interface DataConnectorCreateInterface {
     connector: DataConnector;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Data Connector - Preview Interface
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Data Connector - Preview Interface
 export interface DataConnectorPreviewInterface {
     connector: DataConnector;
     previewConnectionEntry(
@@ -90,10 +61,7 @@ export interface DataConnectorPreviewInterfaceSettings {
     chunkSize?: number;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Data Connector - Read Interface
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Data Connector - Read Interface
 export interface DataConnectorReadInterface {
     connector: DataConnector;
     readConnectionEntry(
@@ -112,19 +80,6 @@ export interface DataConnectorReadInterfaceSettings {
     chunkSize?: number;
     complete(fileInfo: DataConnectorFileInfo): void;
 }
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Data Connector - Write Interface
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-interface DataConnectorWriteInterface {
-    connector: DataConnector;
-}
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Data Connector - File/Record/Field Types
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
 export interface DataConnectorFileInfo {
     byteCount: number;
     commentLineCount: number;
@@ -141,4 +96,17 @@ export interface DataConnectorRecord {
 
 export interface DataConnectorFieldInfo {
     isQuoted: boolean;
+}
+
+// Declaration - Data Connector - Retrieve Entries Settings
+export interface DataConnectorRetrieveEntriesSettings {
+    folderPath: string;
+    limit?: number;
+    offset?: number;
+    totalCount?: number;
+}
+
+// Declaration - Data Connector - Write Interface
+interface DataConnectorWriteInterface {
+    connector: DataConnector;
 }
