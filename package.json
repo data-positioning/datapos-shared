@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-engine-support",
-    "version": "0.0.330",
+    "version": "0.0.331",
     "files": [
         "dist"
     ],
@@ -13,7 +13,7 @@
     },
     "types": "./dist/types/index.d.ts",
     "devDependencies": {
-        "@datapos/datapos-operations": "^0.1.168",
+        "@datapos/datapos-operations": "^0.1.169",
         "@typescript-eslint/eslint-plugin": "^5.60.0",
         "@typescript-eslint/parser": "^5.60.0",
         "csv-parse": "^5.4.0",

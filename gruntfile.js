@@ -1,4 +1,4 @@
-// Dependencies - Framework/Vendor
+// Dependencies - Operations
 const {
     auditDependencies,
     checkDependencies,
