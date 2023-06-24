@@ -1,8 +1,6 @@
 {
-  "@datapos/datapos-engine-support@0.0.308": {
-    "licenses": "ISC",
-    "publisher": "Jonathan Terrell",
-    "email": "terrell.jm@gmail.com",
+  "@datapos/datapos-engine-support@0.1.335": {
+    "licenses": "ISC*",
     "path": "/Users/jonathanterrell/Data Positioning/GitHub/datapos-engine-support",
     "licenseFile": "/Users/jonathanterrell/Data Positioning/GitHub/datapos-engine-support/LICENSE"
   }
