@@ -38,7 +38,7 @@ module.exports = (grunt) => {
         publishPackageToNPM(grunt, this);
     });
     grunt.registerTask('syncRepoWithGithub', function () {
-        syncRepoWithGithub(grunt, this, 'package.json');
+        syncRepoWithGithub(grunt, this, ['package.json']);
     });
     grunt.registerTask('updateDataPosDependencies', function (updateTypeId) {
         updateDataPosDependencies(grunt, this, updateTypeId);
