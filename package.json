@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-engine-support",
-    "version": "0.0.334",
+    "version": "0.1.335",
     "files": [
         "dist"
     ],
