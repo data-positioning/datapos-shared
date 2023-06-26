@@ -52,7 +52,8 @@ export const lookupComponentStatus = (id: string): ComponentStatus => (component
 export enum ComponentTypeId {
     Connection = 'connection',
     Connector = 'connector', // TODO: Need all of these?
-    ContextModel = 'contextModel',
+    Context = 'context',
+    ContextModel = 'contextModel', // TODO: Need all of these?
     DataConnector = 'dataConnector', // TODO: Need all of these?
     Dimension = 'dimension',
     Entity = 'entity',
