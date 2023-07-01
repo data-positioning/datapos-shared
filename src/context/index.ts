@@ -18,7 +18,9 @@ interface ContextModelReference {
 }
 
 export interface ModelConfig extends ComponentConfig {
+    dimensions: DimensionConfig[];
     entities: EntityConfig[];
+    views: ViewConfig[];
 }
 
 // Declarations - Dimension
