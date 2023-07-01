@@ -6,7 +6,7 @@ export interface ContextConfig extends ComponentConfig {
     focuses: ContextFocusReference[];
 }
 
-interface ContextFocusReference {
+export interface ContextFocusReference {
     id: string;
     label: string;
     models: ContextModelReference[];
