@@ -17,7 +17,6 @@ interface ContextModelReference {
     label: Record<string, string>;
 }
 
-export interface ModelConfig {
+export interface ModelConfig extends ComponentConfig {
     id: string;
-    label: Record<string, string>;
 }
