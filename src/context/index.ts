@@ -8,11 +8,11 @@ export interface ContextConfig extends ComponentConfig {
 
 export interface ContextFocusReference {
     id: string;
-    label: string;
+    label: Record<string, string>;
     models: ContextModelReference[];
 }
 
 interface ContextModelReference {
     id: string;
-    label: string;
+    label: Record<string, string>;
 }
