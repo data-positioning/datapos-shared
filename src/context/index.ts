@@ -21,6 +21,6 @@ export interface ModelConfig extends ComponentConfig {
     entities: EntityConfig[];
 }
 
-interface EntityConfig extends ComponentConfig {
+export interface EntityConfig extends ComponentConfig {
     placeholder: string;
 }
