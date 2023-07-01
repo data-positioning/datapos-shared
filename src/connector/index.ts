@@ -2,13 +2,13 @@
 import type { ConnectionConfig } from '../connection';
 import type { Component, ComponentConfig } from '../component';
 
-// Declaration - Connector
+// Declarations - Connector
 export interface Connector extends Component {
     config: ConnectorConfig;
     connectionConfig: ConnectionConfig;
 }
 
-// Declaration - Connector Config
+// Declarations - Connector Config
 export interface ConnectorConfig extends ComponentConfig {
     category: ConnectorCategory;
     categoryId: string;

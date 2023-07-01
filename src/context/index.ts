@@ -1,7 +1,7 @@
 // Dependencies - Engine
 import type { ComponentConfig } from '../component';
 
-// Declaration
+// Declarations
 export interface ContextConfig extends ComponentConfig {
     focuses: ContextFocusReference[];
 }
@@ -21,12 +21,12 @@ export interface ModelConfig extends ComponentConfig {
     entities: EntityConfig[];
 }
 
-// Declaration - Dimension
+// Declarations - Dimension
 export interface DimensionConfig extends ComponentConfig {
     placeholder: string;
 }
 
-// Declaration - Entity
+// Declarations - Entity
 export interface EntityConfig extends ComponentConfig {
     characteristics: EntityCharacteristicConfig[];
     computations: EntityComputationConfig[];
@@ -48,7 +48,7 @@ export interface EntityEventConfig {
     label: Record<string, Record<string, string>>;
 }
 
-// Declaration - View
+// Declarations - View
 export interface ViewConfig extends ComponentConfig {
     placeholder: string;
 }

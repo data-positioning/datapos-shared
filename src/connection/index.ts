@@ -2,12 +2,12 @@
 import type { Component, ComponentConfig } from '../component';
 import type { DataStorageTypeId, DataUsageTypeId, DPAFileSystemFileHandle, FirebaseTimestamp, ParsedValue } from '..';
 
-// Declaration - Connection
+// Declarations - Connection
 export interface Connection extends Component {
     config: ConnectionConfig;
 }
 
-// Declaration - Connection Config
+// Declarations - Connection Config
 export interface ConnectionConfig extends ComponentConfig {
     authorisation?: Record<string, ConnectionAuthorization>;
     connectorId: string;
@@ -27,7 +27,7 @@ interface ConnectionAuthorization {
     uid: string; // Dropbox.
 }
 
-// Declaration - Connection Description
+// Declarations - Connection Description
 export type ConnectionDescription = { fileEntries: Record<string, FileEntry>; objectTypes: Record<string, ObjectType> };
 
 export interface FileEntry {
@@ -60,7 +60,7 @@ export interface DataType {
     usageTypeId: DataUsageTypeId;
 }
 
-// Declaration - Connection Entry
+// Declarations - Connection Entry
 export interface ConnectionEntry {
     childCount?: number;
     folderPath: string;

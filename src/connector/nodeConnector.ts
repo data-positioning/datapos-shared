@@ -2,7 +2,7 @@
 import type { ConnectionConfig } from '../connection';
 import type { Connector, ConnectorConfig } from './';
 
-// Declaration - Node Connector
+// Declarations - Node Connector
 export interface NodeConnector extends Connector {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
@@ -47,22 +47,22 @@ export enum NodeItemTypeId {
     Workbook = 'workbook'
 }
 
-// Declaration - Node Item
+// Declarations - Node Item
 export interface NodeItem {
     placeholder?: string;
 }
 
-// Declaration - Node Item - Properties
+// Declarations - Node Item - Properties
 export type NodeItemProperties = Record<string, unknown>;
 
-// Declaration - Node Item - Data Page
+// Declarations - Node Item - Data Page
 export interface NodeItemDataPage {
     after?: number;
     before?: number;
     data: Record<string, unknown>[];
 }
 
-// Declaration - Node Query
+// Declarations - Node Query
 export interface NodeQuery {
     select: NodeQuerySelect;
 }
