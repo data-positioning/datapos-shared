@@ -86,7 +86,7 @@ export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from './connectio
 // Declarations - Component - Context
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
-export type { ContextConfig, ContextFocusReference } from './context';
+export type { ContextConfig, ContextFocusReference, ModelConfig } from './context';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Declarations - Component - Dimension
