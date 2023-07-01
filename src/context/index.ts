@@ -34,15 +34,18 @@ export interface EntityConfig extends ComponentConfig {
 }
 
 export interface EntityCharacteristicConfig {
-    placeholder: string;
+    id: string;
+    label: Record<string, string>;
 }
 
 export interface EntityComputationConfig {
-    placeholder: string;
+    id: string;
+    label: Record<string, string>;
 }
 
 export interface EntityEventConfig {
-    placeholder: string;
+    id: string;
+    label: Record<string, Record<string, string>>;
 }
 
 // Declaration - View
