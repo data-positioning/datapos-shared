@@ -18,5 +18,9 @@ interface ContextModelReference {
 }
 
 export interface ModelConfig extends ComponentConfig {
-    id: string;
+    entities: EntityConfig[];
+}
+
+interface EntityConfig extends ComponentConfig {
+    placeholder: string;
 }
