@@ -16,3 +16,8 @@ interface ContextModelReference {
     id: string;
     label: Record<string, string>;
 }
+
+export interface ModelConfig {
+    id: string;
+    label: Record<string, string>;
+}
