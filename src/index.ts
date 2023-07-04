@@ -1,10 +1,8 @@
 // Declarations - Component
-export type { ComponentConfig } from './component';
-export { ComponentTypeId, getComponentStatus } from './component';
+export { type ComponentConfig, ComponentTypeId, getComponentStatus } from './component';
 
 // Declarations - Component - Connector
-export type { ConnectorConfig } from './connector/index';
-export { ConnectorAuthMethodId, ConnectorUsageId } from './connector/index';
+export { ConnectorAuthMethodId, type ConnectorConfig, ConnectorUsageId } from './connector/index';
 export type {
     DataConnector,
     DataConnectorFieldInfo,

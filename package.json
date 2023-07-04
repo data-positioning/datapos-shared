@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-engine-support",
-    "version": "0.1.355",
+    "version": "0.1.356",
     "files": [
         "dist"
     ],
@@ -19,6 +19,7 @@
         "csv-parse": "^5.4.0",
         "eslint": "^8.43.0",
         "eslint-plugin-import": "^2.27.5",
+        "firebase": "^9.23.0",
         "grunt": "^1.6.1",
         "prettier": "^2.8.8",
         "typescript": "^5.1.3",
