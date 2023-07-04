@@ -1,6 +1,3 @@
-// Dependencies - Vendor
-import type { Timestamp } from 'firebase/firestore';
-
 // Declarations - Component
 export interface Component {
     config: ComponentConfig;
@@ -9,10 +6,10 @@ export interface Component {
 // Declarations - Component - Config
 export interface ComponentConfig {
     description: Record<string, string>;
-    firstCreatedAt: Timestamp;
+    firstCreatedAt: FirebaseTimestamp;
     id: string;
     label: Record<string, string>;
-    lastUpdatedAt: Timestamp;
+    lastUpdatedAt: FirebaseTimestamp;
     logo: string;
     status: ComponentStatus;
     statusId: string;
@@ -47,4 +44,10 @@ export enum ComponentTypeId {
     NodeConnector = 'nodeConnector',
     SourceView = 'sourceView',
     UsageKit = 'usageKit'
+}
+
+// Declarations - Firebase Timestamp
+export interface FirebaseTimestamp {
+    nanoseconds: number;
+    seconds: number;
 }
