@@ -98,31 +98,30 @@ export enum DataFormatId {
     XLSX = 'xlsx',
     XML = 'xml'
 }
-
-type DataFormat = { label: string };
-const dataFormats: Record<string, DataFormat> = {
-    dtv: { label: 'Delimited Text' },
-    'e/e': { label: 'Entity/Event' },
-    json: { label: 'JSON' },
-    spss: { label: 'SPSS' },
-    table: { label: 'Table' },
-    xls: { label: 'XLS' },
-    xlsx: { label: 'XLSX' },
-    xml: { label: 'XML' }
+type DataFormat = { id: string; label: string };
+type DataFormatConfig = { id: string; label: Record<string, string> };
+const dataFormats: DataFormatConfig[] = [
+    { id: 'dtv', label: { en: 'Delimited Text' } },
+    { id: 'e/e', label: { en: 'Entity/Event' } },
+    { id: 'json', label: { en: 'JSON' } },
+    { id: 'spss', label: { en: 'SPSS' } },
+    { id: 'table', label: { en: 'Table' } },
+    { id: ' xls', label: { en: 'XLS' } },
+    { id: ' xlsx', label: { en: 'XLSX' } },
+    { id: ' xml', label: { en: 'XML' } }
+];
+export const getDataFormat = (id: string, localeId = 'en'): DataFormat => {
+    const dataFormat = dataFormats.find((dataFormat) => dataFormat.id === id);
+    if (dataFormat) return { ...dataFormat, label: dataFormat.label[localeId] || dataFormat.label['en'] || id };
+    return { id, label: id };
 };
-
-export const getDataFormats = () => {
-    const items = [];
-    for (const [key, value] of Object.entries(dataFormats)) items.push({ id: key, label: value.label });
+export const getDataFormats = (localeId = 'en'): DataFormat[] => {
+    const items: DataFormat[] = [];
+    for (const dataFormat of dataFormats) items.push({ ...dataFormat, label: dataFormat.label[localeId] || dataFormat.label['en'] || dataFormat.id });
     return items.sort((first, second) => first.label.localeCompare(second.label));
 };
 
-export const lookupDataFormat = (id: string): DataFormat => (dataFormats[id] ? dataFormats[id] : { label: id });
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Source View - Enumerations - Value Delimiter
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declaration - Value Delimiter
 export enum ValueDelimiterId {
     Colon = ':',
     Comma = ',',
@@ -136,26 +135,28 @@ export enum ValueDelimiterId {
     UnitSeparator = '0x1F',
     VerticalBar = '|'
 }
-
-type ValueDelimiter = { label: string };
-const valueDelimiters: Record<string, ValueDelimiter> = {
-    ':': { label: 'Colon' },
-    ',': { label: 'Comma' },
-    '!': { label: 'Exclamation Mark' },
-    '': { label: 'Other' },
-    '0x1E': { label: 'Record Separator' },
-    ';': { label: 'Semicolon' },
-    ' ': { label: 'Space' },
-    '\t': { label: 'Tab' },
-    _: { label: 'Underscore' },
-    '0x1F': { label: 'Unit Separator' },
-    '|': { label: 'Vertical Bar' }
+type ValueDelimiter = { id: string; label: string };
+type ValueDelimiterConfig = { id: string; label: Record<string, string> };
+const valueDelimiters: ValueDelimiterConfig[] = [
+    { id: ':', label: { en: 'Colon' } },
+    { id: ',', label: { en: 'Comma' } },
+    { id: '!', label: { en: 'Exclamation Mark' } },
+    { id: '', label: { en: 'Other' } },
+    { id: '0x1E', label: { en: 'Record Separator' } },
+    { id: ';', label: { en: 'Semicolon' } },
+    { id: ' ', label: { en: 'Space' } },
+    { id: '\t', label: { en: 'Tab' } },
+    { id: '_', label: { en: 'Underscore' } },
+    { id: '0x1F', label: { en: 'Unit Separator' } },
+    { id: '|', label: { en: 'Vertical Bar' } }
+];
+export const getValueDelimiter = (id: string, localeId = 'en'): ValueDelimiter => {
+    const valueDelimiter = valueDelimiters.find((valueDelimiter) => valueDelimiter.id === id);
+    if (valueDelimiter) return { ...valueDelimiter, label: valueDelimiter.label[localeId] || valueDelimiter.label['en'] || id };
+    return { id, label: id };
 };
-
-export const getValueDelimiters = () => {
-    const items = [];
-    for (const [key, value] of Object.entries(valueDelimiters)) items.push({ id: key, label: value.label });
+export const getValueDelimiters = (localeId = 'en'): ValueDelimiter[] => {
+    const items: ValueDelimiter[] = [];
+    for (const valueDelimiter of valueDelimiters) items.push({ ...valueDelimiter, label: valueDelimiter.label[localeId] || valueDelimiter.label['en'] || valueDelimiter.id });
     return items.sort((first, second) => first.label.localeCompare(second.label));
 };
-
-export const lookupValueDelimiter = (id: string): DataFormat => (valueDelimiters[id] ? valueDelimiters[id] : { label: id });

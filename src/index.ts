@@ -1,6 +1,6 @@
 // Declarations - Component
 export type { ComponentConfig } from './component';
-export { ComponentTypeId, lookupComponentStatus } from './component';
+export { ComponentTypeId, getComponentStatus } from './component';
 
 // Declarations - Component - Connector
 export type { ConnectorConfig } from './connector/index';
@@ -24,12 +24,6 @@ export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from './connectio
 
 // Declarations - Component - Context
 export type { ContextConfig, ContextFocusReference, DimensionConfig, EntityConfig, ModelConfig, ViewConfig } from './context';
-
-// // Declarations - Component - Dimension
-// export type {} from './dimension';
-
-// // Declarations - Component - Entity
-// export type {} from './entity';
 
 // Declarations - Component - Event Query
 export type {} from './eventQuery';

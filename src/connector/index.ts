@@ -20,16 +20,18 @@ export interface ConnectorConfig extends ComponentConfig {
     version: string;
 }
 
+// Declarations - Connector Implementation
 export interface ConnectorImplementation {
     activeConnectionCount: number;
     canDescribe: boolean;
     id: string;
     authMethodId: ConnectorAuthMethodId;
-    label: string;
+    label: Record<string, string>;
     maxConnectionCount: number;
     params: Record<string, string>[];
 }
 
+// Declarations - Connector Auth Method
 export enum ConnectorAuthMethodId {
     APIKey = 'apiKey',
     Disabled = 'disabled',
@@ -37,15 +39,22 @@ export enum ConnectorAuthMethodId {
     None = 'none'
 }
 
-type ConnectorCategory = { label: string };
-const componentCategories: Record<string, ConnectorCategory> = {
-    application: { label: 'Application' },
-    curatedDataset: { label: 'Curated Dataset' },
-    database: { label: 'Database' },
-    fileStore: { label: 'File Store' }
+// Declarations - Connector Category
+type ConnectorCategory = { id: string; label: string };
+type ConnectorCategoryConfig = { id: string; label: Record<string, string> };
+const connectorCategories: ConnectorCategoryConfig[] = [
+    { id: 'application', label: { en: 'Application' } },
+    { id: 'curatedDataset', label: { en: 'Curated Dataset' } },
+    { id: 'database', label: { en: 'Database' } },
+    { id: 'fileStore', label: { en: 'File Store' } }
+];
+export const getConnectorCategory = (id: string, localeId = 'en'): ConnectorCategory => {
+    const connectorCategory = connectorCategories.find((connectorCategory) => connectorCategory.id === id);
+    if (connectorCategory) return { ...connectorCategory, label: connectorCategory.label[localeId] || connectorCategory.label['en'] || id };
+    return { id, label: id };
 };
-export const lookupConnectorCategory = (id: string): ConnectorCategory => (componentCategories[id] ? componentCategories[id] : { label: id });
 
+// Declarations - Connector Usage
 export enum ConnectorUsageId {
     Bidirectional = 'bidirectional',
     Destination = 'destination',

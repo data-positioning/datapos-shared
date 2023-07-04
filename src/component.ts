@@ -1,30 +1,17 @@
-/**
- * @file datapos-engine-support/src/component.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
 // Dependencies - Engine
 import type { FirebaseTimestamp } from '.';
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Component
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Component
 export interface Component {
     config: ComponentConfig;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Component - Config
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Component Config
 export interface ComponentConfig {
     description: string;
     firstCreatedAt: FirebaseTimestamp;
     id: string;
-    label: string;
+    label: Record<string, string>;
     lastUpdatedAt: FirebaseTimestamp;
     logo: string;
     status: ComponentStatus;
@@ -32,23 +19,26 @@ export interface ComponentConfig {
     typeId: ComponentTypeId;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Component - Enumerations
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
-export type ComponentStatus = { color?: string; label: string };
-const componentStatuses: Record<string, ComponentStatus> = {
-    alpha: { color: '#d62728', label: 'alpha' },
-    beta: { color: '#8c564b', label: 'beta' },
-    generalAvailability: { label: '' },
-    preAlpha: { color: '#d62728', label: 'pre-alpha' },
-    proposed: { color: '#666666', label: 'proposed' },
-    releaseCandidate: { color: '#ff7f0e', label: 'release-candidate' },
-    unavailable: { color: '#d62728', label: 'unavailable' },
-    underReview: { color: '#666666', label: 'under-review' }
+// Declarations - Component Status
+export type ComponentStatus = { id: string; color?: string; label: string };
+type ComponentStatusConfig = { id: string; color?: string; label: Record<string, string> };
+const componentStatuses: ComponentStatusConfig[] = [
+    { id: 'alpha', color: '#d62728', label: { en: 'alpha' } },
+    { id: 'beta', color: '#8c564b', label: { en: 'beta' } },
+    { id: 'generalAvailability', label: { en: '' } },
+    { id: 'preAlpha', color: '#d62728', label: { en: 'pre-alpha' } },
+    { id: 'proposed', color: '#666666', label: { en: 'proposed' } },
+    { id: 'releaseCandidate', color: '#ff7f0e', label: { en: 'release-candidate' } },
+    { id: 'unavailable', color: '#d62728', label: { en: 'unavailable' } },
+    { id: 'underReview', color: '#666666', label: { en: 'under-review' } }
+];
+export const getComponentStatus = (id: string, localeId = 'en'): ComponentStatus => {
+    const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
+    if (componentStatus) return { ...componentStatus, label: componentStatus.label[localeId] || componentStatus.label['en'] || id };
+    return { id, color: '#984ea3', label: id };
 };
-export const lookupComponentStatus = (id: string): ComponentStatus => (componentStatuses[id] ? componentStatuses[id] : { color: '#984ea3', label: id });
 
+// Declarations - Component Type
 export enum ComponentTypeId {
     Connection = 'connection',
     Connector = 'connector', // TODO: Need all of these?
