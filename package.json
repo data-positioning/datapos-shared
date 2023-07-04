@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-support",
-    "version": "0.1.366",
+    "version": "0.1.367",
     "files": [
         "dist"
     ],
@@ -8,10 +8,10 @@
     "exports": {
         ".": {
             "import": "./dist/datapos-support.es.js",
-            "types": "./dist/types/index.d.ts"
+            "types": "./dist/types/src/index.d.ts"
         }
     },
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/types/src/index.d.ts",
     "devDependencies": {
         "@datapos/datapos-operations": "^0.1.201",
         "@typescript-eslint/eslint-plugin": "^5.61.0",
