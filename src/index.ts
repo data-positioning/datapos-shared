@@ -2,7 +2,7 @@
 export { type ComponentConfig, ComponentTypeId, getComponentStatus } from './component';
 
 // Declarations - Component - Connector
-export { ConnectorAuthMethodId, type ConnectorConfig, ConnectorUsageId } from './connector/index';
+export { ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig, ConnectorUsageId } from './connector/index';
 export type {
     DataConnector,
     DataConnectorFieldInfo,
