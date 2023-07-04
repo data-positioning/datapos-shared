@@ -3,7 +3,7 @@ const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine - Support
 import { PreviewColumn } from './PreviewColumn';
-import { FieldUsageTypeId, type ParsedValue } from '../connection';
+import { FieldUsageTypeId, type ConnectionEntryParsedValue } from '../connection';
 
 // Declarations - Content Audit Column
 export class ContentAuditColumn extends PreviewColumn {
@@ -64,7 +64,7 @@ export class ContentAuditColumn extends PreviewColumn {
         return originalValue;
     }
 
-    addValidValue(originalValue: string, parsedValue: bigint | boolean | number | string | null, wholeDigitCount?: number, decimalDigitCount?: number): ParsedValue {
+    addValidValue(originalValue: string, parsedValue: bigint | boolean | number | string | null, wholeDigitCount?: number, decimalDigitCount?: number): ConnectionEntryParsedValue {
         switch (this.dataUsageTypeId) {
             case FieldUsageTypeId.String: {
                 parsedValue = originalValue;

@@ -9,7 +9,7 @@
 import type { Component } from '../component';
 import type { ContentAuditColumn } from './ContentAuditColumn';
 import type { PreviewColumn } from './PreviewColumn';
-import type { DPAFileSystemFileHandle, ParsedValue } from '../connection';
+import type { DPAFileSystemFileHandle, ConnectionEntryParsedValue } from '../connection';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View
@@ -52,7 +52,7 @@ export interface SourceViewPreview {
     size: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
-    records: ParsedValue[][];
+    records: ConnectionEntryParsedValue[][];
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;

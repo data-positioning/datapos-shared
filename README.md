@@ -434,17 +434,17 @@ classDiagram
         typeId? :  ConnectionEntryTypeId
     }
 
-    ConnectionEntryPreview "1" --> "*" ParsedValue
+    ConnectionEntryPreview "1" --> "*" ConnectionEntryParsedValue
     ConnectionEntryPreview "1" --> "*" SourceViewPreviewField
 
     class ConnectionEntryPreview {
         <<interface>>
-        data :  ParsedValue[][] | Uint8Array
+        data :  ConnectionEntryParsedValue[][] | Uint8Array
         fields :  SourceViewPreviewField[]
         typeId :  ConnectionEntryPreviewTypeId
     }
 
-    class ParsedValue {
+    class ConnectionEntryParsedValue {
         <<type>>
         boolean
         number
@@ -646,7 +646,7 @@ classDiagram
         previewSize : number
         quoteEscapeCharacterId? : string
         quoteMarkId? : string
-        records? : ParsedValue[][]
+        records? : ConnectionEntryParsedValue[][]
         skipEmptyLines? : boolean
         skipLinesWithEmptyValues? : boolean
         skipLinesWithErrors? : boolean

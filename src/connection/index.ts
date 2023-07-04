@@ -108,8 +108,9 @@ export interface ConnectionEntryDrilldownResult {
     isMore: boolean;
     totalCount: number;
 }
+export type ConnectionEntryParsedValue = bigint | boolean | number | string | null;
 export interface ConnectionEntryPreview {
-    data: ParsedValue[][] | Uint8Array;
+    data: ConnectionEntryParsedValue[][] | Uint8Array;
     typeId: ConnectionEntryPreviewTypeId;
 }
 export enum ConnectionEntryPreviewTypeId {
@@ -121,9 +122,8 @@ export enum ConnectionEntryTypeId {
     Folder = 'folder'
 }
 
+// Declarations - DPA File System File Handle
 export interface DPAFileSystemFileHandle {
     readonly kind: 'file';
     getFile(): Promise<File>;
 }
-
-export type ParsedValue = bigint | boolean | number | string | null;
