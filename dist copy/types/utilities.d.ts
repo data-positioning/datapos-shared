@@ -1,0 +1,10 @@
+import { type FieldDataType } from './connection';
+export declare const convertODataTypeToDataType: (type: string, maximumLength?: number) => FieldDataType;
+export declare const extractFileNameFromFilePath: (itemPath: string) => string | undefined;
+export declare const extractFileExtensionFromFilePath: (itemPath: string) => string | undefined;
+export declare const extractLastSegmentFromPath: (path: string) => string | undefined;
+export declare const formatNumberAsDecimalNumber: (number?: number, decimalPlaces?: number, minimumFractionDigits?: number, locale?: string) => string;
+export declare const formatNumberAsStorageSize: (number?: number) => string;
+export declare const formatNumberAsDuration: (number?: number) => string;
+export declare const formatNumberAsWholeNumber: (number?: number, locale?: string) => string;
+export declare const lookupMimeTypeForFileExtension: (extension: string) => string;
