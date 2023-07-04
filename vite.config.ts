@@ -11,8 +11,8 @@ export default defineConfig({
             entry: resolve('src/index.ts'),
             name: 'DataPosEngine',
             formats: ['es'],
-            fileName: (format) => `datapos-engine-support.${format}.js`
+            fileName: (format) => `datapos-support.${format}.js`
         }
     },
-    plugins: [dts({ outputDir: 'dist/types' })]
+    plugins: [dts({ outDir: 'dist/types' })]
 });

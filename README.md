@@ -7,7 +7,7 @@ Includes TypeScript declarations used by the Data Positioning engine, as well as
 ## Installation
 
 ```
-npm install --save-dev @datapos-engine-support
+npm install --save-dev @datapos-support
 ```
 
 ## Component Configuration Declarations
