@@ -1,14 +1,4 @@
-/**
- * @file datapos-engine-support/src/errors.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Declarations
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Serialised Error Data
 export interface SerialisedErrorData {
     cause?: SerialisedErrorData;
     context?: string;
@@ -17,10 +7,7 @@ export interface SerialisedErrorData {
     stack?: string;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Abort
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Abort Error
 export class AbortError extends Error {
     constructor(message: string) {
         super(message);
@@ -28,10 +15,7 @@ export class AbortError extends Error {
     }
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Context
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Context Error
 export class ContextError extends Error {
     context?: string;
 
@@ -42,10 +26,7 @@ export class ContextError extends Error {
     }
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Context - Backend
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Context Error - Backend
 export class BackendContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
@@ -54,10 +35,7 @@ export class BackendContextError extends ContextError {
     }
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Context - Connector
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations -Context Error - Connector
 export class ConnectorContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
@@ -66,10 +44,7 @@ export class ConnectorContextError extends ContextError {
     }
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Context - Engine
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Context Error - Engine
 export class EngineContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
@@ -78,10 +53,7 @@ export class EngineContextError extends ContextError {
     }
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Context - Frontend
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Context Error - Frontend
 export class FrontendContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
@@ -90,10 +62,7 @@ export class FrontendContextError extends ContextError {
     }
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Core
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Core Error
 export class CoreError extends Error {
     originalName: string;
 
@@ -104,10 +73,7 @@ export class CoreError extends Error {
     }
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Fetch Response
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Fetch Response Error
 export class FetchResponseError extends Error {
     bodyText: string;
     status: number;
@@ -122,10 +88,7 @@ export class FetchResponseError extends Error {
     }
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Errors - Worker
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Worker Error
 export class WorkerError extends Error {
     constructor(cause?: unknown) {
         super('Engine error wrapper.');
