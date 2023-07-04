@@ -1,4 +1,4 @@
-# Data Positioning Engine Support
+# Data Positioning Support
 
 Includes TypeScript declarations used by the Data Positioning engine, as well as utilities that provide assistance when utilizing the engine.
 
