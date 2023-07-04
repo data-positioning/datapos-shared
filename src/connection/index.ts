@@ -17,7 +17,6 @@ export interface ConnectionConfig extends ComponentConfig {
     lastVerifiedAt?: Timestamp;
     notation: string;
 }
-
 interface ConnectionAuthorization {
     access_token: string; // Dropbox.
     account_id: string; // Dropbox.
@@ -31,7 +30,6 @@ interface ConnectionAuthorization {
 
 // Declarations - Connection Description
 export type ConnectionDescription = { fileEntries: Record<string, FileEntry>; objectTypes: Record<string, ObjectType> };
-
 export interface FileEntry {
     description?: string;
     fields: Record<string, Field>;
@@ -39,7 +37,6 @@ export interface FileEntry {
     label?: string;
     summary?: string;
 }
-
 export interface ObjectType {
     description?: string;
     fields: Record<string, Field>;
@@ -47,19 +44,44 @@ export interface ObjectType {
     label?: string;
     summary?: string;
 }
-
 interface Field {
-    dataType: DataType;
+    dataType: FieldDataType;
     isIgnored: boolean;
     label: string;
     maxLength?: number;
 }
-
-export interface DataType {
+export interface FieldDataType {
     maximumLength?: number;
     objectName?: string;
-    storageTypeId: DataStorageTypeId;
-    usageTypeId: DataUsageTypeId;
+    storageTypeId: FieldStorageTypeId;
+    usageTypeId: FieldUsageTypeId;
+}
+export enum FieldStorageTypeId {
+    Binary = 'binary',
+    Boolean = 'boolean',
+    Byte = 'byte',
+    Date = 'date',
+    DateTime = 'dateTime',
+    DateTimeOffset = 'dateTimeOffset',
+    Decimal = 'decimal',
+    Double = 'double',
+    Int8 = 'int8',
+    Int16 = 'int16',
+    Int32 = 'int32',
+    Int64 = 'int64',
+    Object = 'object',
+    Single = 'single',
+    String = 'string',
+    Time = 'time',
+    Unknown = 'unknown'
+}
+export enum FieldUsageTypeId {
+    Boolean = 1,
+    DecimalNumber = 4,
+    Moment = 2,
+    String = 5,
+    WholeNumber = 3,
+    Unknown = 0
 }
 
 // Declarations - Connection Entry
@@ -80,56 +102,23 @@ export interface ConnectionEntry {
     size?: number;
     typeId: ConnectionEntryTypeId;
 }
-
 export interface ConnectionEntryDrilldownResult {
     cursor: string | number | undefined;
     entries: ConnectionEntry[];
     isMore: boolean;
     totalCount: number;
 }
-
 export interface ConnectionEntryPreview {
     data: ParsedValue[][] | Uint8Array;
     typeId: ConnectionEntryPreviewTypeId;
 }
-
 export enum ConnectionEntryPreviewTypeId {
     Table = 'table',
     Uint8Array = 'uint8Array'
 }
-
 export enum ConnectionEntryTypeId {
     File = 'file',
     Folder = 'folder'
-}
-
-export enum DataStorageTypeId {
-    Binary = 'binary',
-    Boolean = 'boolean',
-    Byte = 'byte',
-    Date = 'date',
-    DateTime = 'dateTime',
-    DateTimeOffset = 'dateTimeOffset',
-    Decimal = 'decimal',
-    Double = 'double',
-    Int8 = 'int8',
-    Int16 = 'int16',
-    Int32 = 'int32',
-    Int64 = 'int64',
-    Object = 'object',
-    Single = 'single',
-    String = 'string',
-    Time = 'time',
-    Unknown = 'unknown'
-}
-
-export enum DataUsageTypeId {
-    Boolean = 1,
-    DecimalNumber = 4,
-    Moment = 2,
-    String = 5,
-    WholeNumber = 3,
-    Unknown = 0
 }
 
 export interface DPAFileSystemFileHandle {

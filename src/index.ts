@@ -18,7 +18,7 @@ export type {} from './nodeConnector';
 
 // Declarations - Component - Connection
 export type { ConnectionConfig, ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connection';
-export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, DataStorageTypeId } from './connection';
+export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, FieldStorageTypeId } from './connection';
 
 // Declarations - Component - Context
 export type { ContextConfig, ContextFocusReference, DimensionConfig, EntityConfig, ModelConfig, ViewConfig } from './context';

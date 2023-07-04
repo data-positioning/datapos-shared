@@ -1,12 +1,12 @@
 // Dependencies - Engine - Support
-import type { DataUsageTypeId } from '../connection';
+import type { FieldUsageTypeId } from '../connection';
 
 // Declaration - Preview Column
 export class PreviewColumn {
-    dataUsageTypeId: DataUsageTypeId;
+    dataUsageTypeId: FieldUsageTypeId;
     label: string;
 
-    constructor(dataUsageTypeId: DataUsageTypeId, label: string) {
+    constructor(dataUsageTypeId: FieldUsageTypeId, label: string) {
         this.dataUsageTypeId = dataUsageTypeId;
         this.label = label;
     }

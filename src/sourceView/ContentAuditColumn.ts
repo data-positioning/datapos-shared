@@ -3,7 +3,7 @@ const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine - Support
 import { PreviewColumn } from './PreviewColumn';
-import { DataUsageTypeId, type ParsedValue } from '../connection';
+import { FieldUsageTypeId, type ParsedValue } from '../connection';
 
 // Declarations - Content Audit Column
 export class ContentAuditColumn extends PreviewColumn {
@@ -24,7 +24,7 @@ export class ContentAuditColumn extends PreviewColumn {
     validValues: Record<string, number>;
     voidValueCount: number;
 
-    constructor(dataUsageTypeId: DataUsageTypeId, label: string) {
+    constructor(dataUsageTypeId: FieldUsageTypeId, label: string) {
         super(dataUsageTypeId, label);
         this.invalidValueCount = 0;
         this.invalidValues = [];
@@ -47,11 +47,11 @@ export class ContentAuditColumn extends PreviewColumn {
         // this.groupSeparator = undefined;
 
         this.doCountIndividualValidValues =
-            this.dataUsageTypeId === DataUsageTypeId.Boolean || this.dataUsageTypeId === DataUsageTypeId.String || this.dataUsageTypeId === DataUsageTypeId.WholeNumber;
+            this.dataUsageTypeId === FieldUsageTypeId.Boolean || this.dataUsageTypeId === FieldUsageTypeId.String || this.dataUsageTypeId === FieldUsageTypeId.WholeNumber;
         this.doCountPatterns = true;
 
         switch (this.dataUsageTypeId) {
-            case DataUsageTypeId.String:
+            case FieldUsageTypeId.String:
                 this.maxValue = '';
                 this.minValue = '';
                 break;
@@ -66,7 +66,7 @@ export class ContentAuditColumn extends PreviewColumn {
 
     addValidValue(originalValue: string, parsedValue: bigint | boolean | number | string | null, wholeDigitCount?: number, decimalDigitCount?: number): ParsedValue {
         switch (this.dataUsageTypeId) {
-            case DataUsageTypeId.String: {
+            case FieldUsageTypeId.String: {
                 parsedValue = originalValue;
                 const length = originalValue.length;
                 if (this.maxSize) {
@@ -88,7 +88,7 @@ export class ContentAuditColumn extends PreviewColumn {
 
         if (this.doCountPatterns) {
             const pattern =
-                this.dataUsageTypeId === DataUsageTypeId.DecimalNumber || this.dataUsageTypeId == DataUsageTypeId.WholeNumber
+                this.dataUsageTypeId === FieldUsageTypeId.DecimalNumber || this.dataUsageTypeId == FieldUsageTypeId.WholeNumber
                     ? this.determineNumericPattern(originalValue)
                     : this.determineTextPattern(originalValue);
             this.patterns[pattern] = (this.patterns[pattern] || 0) + 1;

@@ -397,7 +397,7 @@ classDiagram
         <<interface>>
     }
 
-    class DataType {
+    class FieldDataType {
         <<interface>>
     }
 
@@ -456,7 +456,7 @@ classDiagram
 
     class SourceViewPreviewField {
         <<interface>>
-        dataTypeId? :  DataUsageTypeId
+        dataTypeId? :  FieldUsageTypeId
         id? :  string
         label? :  string
         previewValues? :  PreviewValue[]
@@ -681,7 +681,7 @@ classDiagram
 
     class ContentAuditField {
         <<interface>>
-        dataUsageTypeId? : DataUsageTypeId
+        dataUsageTypeId? : FieldUsageTypeId
         id? : string
         invalidValueCount : number
         missingValueCount : number
@@ -745,7 +745,7 @@ classDiagram
         <<interface>>
     }
 
-    class DataStorageTypeId {
+    class FieldStorageTypeId {
         <<enumeration>>
         Binary
         Boolean
@@ -766,7 +766,7 @@ classDiagram
         Unknown
     }
 
-    class DataUsageTypeId {
+    class FieldUsageTypeId {
         <<enumeration>>
         Binary
         Boolean
