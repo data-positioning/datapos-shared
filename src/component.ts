@@ -8,7 +8,7 @@ export interface Component {
 
 // Declarations - Component Config
 export interface ComponentConfig {
-    description: string;
+    description: Record<string, string>;
     firstCreatedAt: FirebaseTimestamp;
     id: string;
     label: Record<string, string>;
