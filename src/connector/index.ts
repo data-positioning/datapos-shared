@@ -1,4 +1,4 @@
-// Dependencies - Engine
+// Dependencies - Engine - Support
 import type { ConnectionConfig } from '../connection';
 import type { Component, ComponentConfig } from '../component';
 

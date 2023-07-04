@@ -1,22 +1,11 @@
-/**
- * @file datapos-engine/src/ContentAuditColumn.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
 // Constants
 const MAX_INVALID_VALUE_COUNT = 100;
 
-// Dependencies - Engine
-import { DataUsageTypeId } from '..';
-import type { ParsedValue } from '..';
+// Dependencies - Engine - Support
 import { PreviewColumn } from './PreviewColumn';
+import { DataUsageTypeId, type ParsedValue } from '../connection';
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Column
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Content Audit Column
 export class ContentAuditColumn extends PreviewColumn {
     doCountIndividualValidValues: boolean;
     doCountPatterns: boolean;

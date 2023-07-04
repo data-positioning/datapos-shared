@@ -1,6 +1,5 @@
-// Dependencies - Engine
-import type { Component, ComponentConfig } from '../component';
-import type { DataStorageTypeId, DataUsageTypeId, DPAFileSystemFileHandle, FirebaseTimestamp, ParsedValue } from '..';
+// Dependencies - Engine - Support
+import type { Component, ComponentConfig, FirebaseTimestamp } from '../component';
 
 // Declarations - Connection
 export interface Connection extends Component {
@@ -100,3 +99,39 @@ export enum ConnectionEntryTypeId {
     File = 'file',
     Folder = 'folder'
 }
+
+export enum DataStorageTypeId {
+    Binary = 'binary',
+    Boolean = 'boolean',
+    Byte = 'byte',
+    Date = 'date',
+    DateTime = 'dateTime',
+    DateTimeOffset = 'dateTimeOffset',
+    Decimal = 'decimal',
+    Double = 'double',
+    Int8 = 'int8',
+    Int16 = 'int16',
+    Int32 = 'int32',
+    Int64 = 'int64',
+    Object = 'object',
+    Single = 'single',
+    String = 'string',
+    Time = 'time',
+    Unknown = 'unknown'
+}
+
+export enum DataUsageTypeId {
+    Boolean = 1,
+    DecimalNumber = 4,
+    Moment = 2,
+    String = 5,
+    WholeNumber = 3,
+    Unknown = 0
+}
+
+export interface DPAFileSystemFileHandle {
+    readonly kind: 'file';
+    getFile(): Promise<File>;
+}
+
+export type ParsedValue = bigint | boolean | number | string | null;

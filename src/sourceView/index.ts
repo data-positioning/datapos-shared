@@ -5,11 +5,11 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-// Dependencies - Engine
+// Dependencies - Engine - Support
 import type { Component } from '../component';
 import type { ContentAuditColumn } from './ContentAuditColumn';
 import type { PreviewColumn } from './PreviewColumn';
-import type { DPAFileSystemFileHandle, ParsedValue } from '..';
+import type { DPAFileSystemFileHandle, ParsedValue } from '../connection';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 // Source View

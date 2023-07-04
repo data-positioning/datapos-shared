@@ -12,7 +12,7 @@ module.exports = {
     plugins: ['@typescript-eslint', 'import'],
     root: true,
     rules: {
-        'import/consistent-type-specifier-style': 'error',
+        // 'import/consistent-type-specifier-style': 'error',
         'import/no-duplicates': ['error', { 'prefer-inline': true }],
         'sort-imports': ['warn', { allowSeparatedGroups: true, ignoreCase: true, memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'] }],
 

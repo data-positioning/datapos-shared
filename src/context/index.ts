@@ -1,4 +1,4 @@
-// Dependencies - Engine
+// Dependencies - Engine - Support
 import type { ComponentConfig } from '../component';
 
 // Declarations - Context

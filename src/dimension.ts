@@ -5,7 +5,7 @@
  * @copyright 2023 Jonathan Terrell
  */
 
-// Dependencies - Engine
+// Dependencies - Engine - Support
 import type { Component, ComponentConfig } from './component';
 
 // ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------

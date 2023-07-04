@@ -20,7 +20,7 @@ export type {} from './nodeConnector';
 
 // Declarations - Component - Connection
 export type { ConnectionConfig, ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connection';
-export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId } from './connection';
+export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, DataStorageTypeId } from './connection';
 
 // Declarations - Component - Context
 export type { ContextConfig, ContextFocusReference, DimensionConfig, EntityConfig, ModelConfig, ViewConfig } from './context';
@@ -63,55 +63,3 @@ export {
     formatNumberAsWholeNumber,
     lookupMimeTypeForFileExtension
 } from './utilities';
-
-// Declarations -
-export enum DataStorageTypeId {
-    Binary = 'binary',
-    Boolean = 'boolean',
-    Byte = 'byte',
-    Date = 'date',
-    DateTime = 'dateTime',
-    DateTimeOffset = 'dateTimeOffset',
-    Decimal = 'decimal',
-    Double = 'double',
-    Int8 = 'int8',
-    Int16 = 'int16',
-    Int32 = 'int32',
-    Int64 = 'int64',
-    Object = 'object',
-    Single = 'single',
-    String = 'string',
-    Time = 'time',
-    Unknown = 'unknown'
-}
-
-// Declarations -
-export enum DataUsageTypeId {
-    Boolean = 1,
-    DecimalNumber = 4,
-    Moment = 2,
-    String = 5,
-    WholeNumber = 3,
-    Unknown = 0
-}
-
-// Declarations -
-export interface DPAFileSystemFileHandle {
-    readonly kind: 'file';
-    getFile(): Promise<File>;
-}
-
-// Declarations -
-export interface FirebaseTimestamp {
-    nanoseconds: number;
-    seconds: number;
-}
-
-// Declarations -
-export type ParsedValue = bigint | boolean | number | string | null;
-
-// Declarations - Callback Data
-export interface CallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
-}

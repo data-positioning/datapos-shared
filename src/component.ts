@@ -1,6 +1,3 @@
-// Dependencies - Engine
-import type { FirebaseTimestamp } from '.';
-
 // Declarations - Component
 export interface Component {
     config: ComponentConfig;
@@ -50,6 +47,10 @@ export enum ComponentTypeId {
     EventQuery = 'eventQuery',
     NodeConnector = 'nodeConnector', // TODO: Need all of these?
     SourceView = 'sourceView',
-    ViewTemplate = 'viewTemplate',
     UsageKit = 'usageKit'
+}
+
+export interface FirebaseTimestamp {
+    nanoseconds: number;
+    seconds: number;
 }

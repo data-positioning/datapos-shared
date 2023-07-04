@@ -1,5 +1,4 @@
-// Dependencies - Engine
-import type { CallbackData } from '..';
+// Dependencies - Engine - Support
 import type { SourceViewConfig } from '../sourceView';
 import type { ConnectionConfig, ConnectionDescription, ConnectionEntryDrilldownResult, ConnectionEntryPreview } from '../connection';
 import type { Connector, ConnectorConfig } from '.';
@@ -104,4 +103,10 @@ export interface DataConnectorRetrieveEntriesSettings {
 // Declarations - Data Connector - Write Interface
 interface DataConnectorWriteInterface {
     connector: DataConnector;
+}
+
+// Declarations - Callback Data
+export interface CallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
 }

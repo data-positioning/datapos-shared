@@ -1,6 +1,6 @@
-// Dependencies - Engine
-import type { DataType } from './connection';
-import { DataStorageTypeId, DataUsageTypeId } from '.';
+// Dependencies - Engine - Support
+import { DataUsageTypeId } from './connection';
+import { DataStorageTypeId, type DataType } from './connection';
 
 // Module Variables
 const numberFormatterDefaultLocale = 'en-US';
