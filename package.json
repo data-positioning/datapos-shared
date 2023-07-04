@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-support",
-    "version": "0.1.363",
+    "version": "0.1.364",
     "files": [
         "dist"
     ],
@@ -23,6 +23,6 @@
         "prettier": "^2.8.8",
         "typescript": "^5.1.6",
         "vite": "^4.3.9",
-        "vite-plugin-dts": "^3.0.3"
+        "vite-plugin-dts": "^2.3.0"
     }
 }
