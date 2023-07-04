@@ -1,7 +1,7 @@
 // Dependencies - Engine - Support
 import type { SourceViewConfig } from '../sourceView';
 import type { ConnectionConfig, ConnectionDescription, ConnectionEntryDrilldownResult, ConnectionEntryPreview } from '../connection';
-import type { Connector, ConnectorConfig } from '.';
+import type { Connector, ConnectorCallbackData, ConnectorConfig } from '.';
 
 // Dependencies - Framework/Vendor
 import type { Callback, Options, Parser } from 'csv-parse';
@@ -19,7 +19,7 @@ export interface DataConnector extends Connector {
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         connectionEntryId: string | undefined,
-        callback: (data: CallbackData) => void
+        callback: (data: ConnectorCallbackData) => void
     ): Promise<ConnectionDescription>;
     getCreateInterface?(): DataConnectorCreateInterface;
     getPreviewInterface?(): DataConnectorPreviewInterface;
@@ -29,7 +29,7 @@ export interface DataConnector extends Connector {
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
         settings: DataConnectorRetrieveEntriesSettings,
-        callback: (data: CallbackData) => void
+        callback: (data: ConnectorCallbackData) => void
     ): Promise<ConnectionEntryDrilldownResult>;
 }
 
@@ -47,10 +47,9 @@ export interface DataConnectorPreviewInterface {
         sessionAccessToken: string | undefined,
         sourceViewConfig: SourceViewConfig,
         previewInterfaceSettings: DataConnectorPreviewInterfaceSettings,
-        callback: (data: CallbackData) => void
+        callback: (data: ConnectorCallbackData) => void
     ): Promise<ConnectionEntryPreview>;
 }
-
 export interface DataConnectorPreviewInterfaceSettings {
     chunkSize?: number;
 }
@@ -65,10 +64,9 @@ export interface DataConnectorReadInterface {
         sourceViewConfig: SourceViewConfig,
         readInterfaceSettings: DataConnectorReadInterfaceSettings,
         csvParse: (options?: Options, callback?: Callback) => Parser,
-        callback: (data: CallbackData) => void
+        callback: (data: ConnectorCallbackData) => void
     ): Promise<void>;
 }
-
 export interface DataConnectorReadInterfaceSettings {
     chunk(records: DataConnectorRecord[]): void;
     chunkSize?: number;
@@ -82,12 +80,10 @@ export interface DataConnectorFileInfo {
     lineCount: number;
     recordCount: number;
 }
-
 export interface DataConnectorRecord {
     fieldInfos: DataConnectorFieldInfo[];
     fieldValues: string[];
 }
-
 export interface DataConnectorFieldInfo {
     isQuoted: boolean;
 }
@@ -103,10 +99,4 @@ export interface DataConnectorRetrieveEntriesSettings {
 // Declarations - Data Connector - Write Interface
 interface DataConnectorWriteInterface {
     connector: DataConnector;
-}
-
-// Declarations - Callback Data
-export interface CallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
 }

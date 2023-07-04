@@ -1,12 +1,12 @@
 // Dependencies - Engine - Support
 import type { Component, ComponentConfig } from './component';
 
-// Declaration - Event Query
+// Declarations - Event Query
 export interface EventQuery extends Component {
     placeholder?: string;
 }
 
-// Declaration - Event Query Config
+// Declarations - Event Query - Config
 export interface EventQueryConfig extends ComponentConfig {
     placeholder?: string;
 }

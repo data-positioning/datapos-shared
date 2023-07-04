@@ -9,7 +9,7 @@ export interface Connection extends Component {
     config: ConnectionConfig;
 }
 
-// Declarations - Connection Config
+// Declarations - Connection - Config
 export interface ConnectionConfig extends ComponentConfig {
     authorisation?: Record<string, ConnectionAuthorization>;
     connectorId: string;
@@ -28,7 +28,7 @@ interface ConnectionAuthorization {
     uid: string; // Dropbox.
 }
 
-// Declarations - Connection Description
+// Declarations - Connection - Description
 export type ConnectionDescription = { fileEntries: Record<string, FileEntry>; objectTypes: Record<string, ObjectType> };
 export interface FileEntry {
     description?: string;
@@ -84,7 +84,7 @@ export enum FieldUsageTypeId {
     Unknown = 0
 }
 
-// Declarations - Connection Entry
+// Declarations - Connection - Entry
 export interface ConnectionEntry {
     childCount?: number;
     folderPath: string;

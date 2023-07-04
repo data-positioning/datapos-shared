@@ -1,7 +1,7 @@
 // Dependencies - Engine - Support
 import type { FieldUsageTypeId } from '../connection';
 
-// Declaration - Preview Column
+// Declarations - Preview Column
 export class PreviewColumn {
     dataUsageTypeId: FieldUsageTypeId;
     label: string;

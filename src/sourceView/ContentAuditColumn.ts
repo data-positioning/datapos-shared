@@ -3,7 +3,7 @@ const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine - Support
 import { PreviewColumn } from './PreviewColumn';
-import { FieldUsageTypeId, type ConnectionEntryParsedValue } from '../connection';
+import { type ConnectionEntryParsedValue, FieldUsageTypeId } from '../connection';
 
 // Declarations - Content Audit Column
 export class ContentAuditColumn extends PreviewColumn {

@@ -6,7 +6,7 @@ import { type FieldDataType, FieldStorageTypeId } from './connection';
 const numberFormatterDefaultLocale = 'en-US';
 const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
 
-// Utility - Convert
+// Utilities - Convert
 export const convertODataTypeToDataType = (type: string, maximumLength?: number): FieldDataType => {
     // See: https://www.odata.org/documentation/odata-version-2-0/overview/
     switch (type) {
@@ -45,7 +45,7 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
     }
 };
 
-// Utility - Extract
+// Utilities - Extract
 // export const extractFolderPathFromFilePath = (itemPath: string): string | undefined => {
 //     if (itemPath) {
 //         const lastIndex = itemPath.lastIndexOf('/');
@@ -54,7 +54,7 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
 //     return undefined;
 // };
 
-// Utility - Extract
+// Utilities - Extract
 export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastSeparatorIndex = itemPath.lastIndexOf('/');
@@ -64,7 +64,7 @@ export const extractFileNameFromFilePath = (itemPath: string): string | undefine
     return undefined;
 };
 
-// Utility - Extract
+// Utilities - Extract
 export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastExtensionIndex = itemPath.lastIndexOf('.');
@@ -73,7 +73,7 @@ export const extractFileExtensionFromFilePath = (itemPath: string): string | und
     return undefined;
 };
 
-// Utility - Extract
+// Utilities - Extract
 export const extractLastSegmentFromPath = (path: string): string | undefined => {
     if (path) {
         let lastSeparatorIndex;
@@ -90,7 +90,7 @@ export const extractLastSegmentFromPath = (path: string): string | undefined => 
     return undefined;
 };
 
-// Utility - Format Number
+// Utilities - Format Number
 export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, minimumFractionDigits = decimalPlaces, locale = numberFormatterDefaultLocale): string => {
     if (number === null || number === undefined) return '';
     const formatterId = `${locale}decimal${decimalPlaces}.${minimumFractionDigits}`;
@@ -109,7 +109,7 @@ export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, 
     return numberFormatter.format(number);
 };
 
-// Utility - Format Number
+// Utilities - Format Number
 export const formatNumberAsStorageSize = (number?: number): string => {
     if (number === null || number === undefined) return '';
     if (number === 1) return '1 byte';
@@ -120,7 +120,7 @@ export const formatNumberAsStorageSize = (number?: number): string => {
     return `${formatNumberAsDecimalNumber(number / 1099511627776, 2, 0)} TB`;
 };
 
-// Utility - Format Number
+// Utilities - Format Number
 export const formatNumberAsDuration = (number?: number): string => {
     if (number === null || number === undefined) return '';
     if (number < 1000) return `${formatNumberAsWholeNumber(number)} ms`;
@@ -134,7 +134,7 @@ export const formatNumberAsDuration = (number?: number): string => {
     return `${formatNumberAsDecimalNumber(number / 86400000, 2, 0)} days`;
 };
 
-// Utility - Format Number
+// Utilities - Format Number
 export const formatNumberAsWholeNumber = (number?: number, locale = numberFormatterDefaultLocale): string => {
     if (number === null || number === undefined) return '';
     const formatterId = `${locale}decimal0.0`;
@@ -153,7 +153,7 @@ export const formatNumberAsWholeNumber = (number?: number, locale = numberFormat
     return numberFormatter.format(number);
 };
 
-// Utility - Lookup
+// Utilities - Lookup
 export const lookupMimeTypeForFileExtension = (extension: string): string => {
     switch (extension) {
         case 'csv':
@@ -170,7 +170,7 @@ export const lookupMimeTypeForFileExtension = (extension: string): string => {
     }
 };
 
-// Utility
+// Utilities
 // // export const establishVendorAccessToken = async (connectionItem: ConnectionItem, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
 // export const establishVendorAccessToken = async (connectionItem: any, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
 //     let accessToken;

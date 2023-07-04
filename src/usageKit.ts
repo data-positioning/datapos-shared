@@ -6,7 +6,7 @@ export interface UsageKit extends Component {
     placeholder?: string;
 }
 
-// Dependencies - Usage Kit Config
+// Dependencies - Usage Kit - Config
 export interface UsageKitConfig extends ComponentConfig {
     placeholder?: string;
 }

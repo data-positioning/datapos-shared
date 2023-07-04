@@ -8,7 +8,13 @@ export interface Connector extends Component {
     connectionConfig: ConnectionConfig;
 }
 
-// Declarations - Connector Config
+// Declarations - Connector - Callback Data
+export interface ConnectorCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
+
+// Declarations - Connector - Config
 export interface ConnectorConfig extends ComponentConfig {
     category: ConnectorCategory;
     categoryId: string;
@@ -19,8 +25,6 @@ export interface ConnectorConfig extends ComponentConfig {
     vendorHomeURL: string;
     version: string;
 }
-
-// Declarations - Connector Implementation
 export interface ConnectorImplementation {
     activeConnectionCount: number;
     canDescribe: boolean;
@@ -30,8 +34,6 @@ export interface ConnectorImplementation {
     maxConnectionCount: number;
     params: Record<string, string>[];
 }
-
-// Declarations - Connector Auth Method
 export enum ConnectorAuthMethodId {
     APIKey = 'apiKey',
     Disabled = 'disabled',
@@ -39,7 +41,7 @@ export enum ConnectorAuthMethodId {
     None = 'none'
 }
 
-// Declarations - Connector Category
+// Declarations - Connector - Category
 type ConnectorCategory = { id: string; label: string };
 type ConnectorCategoryConfig = { id: string; label: Record<string, string> };
 const connectorCategories: ConnectorCategoryConfig[] = [
@@ -54,7 +56,7 @@ export const getConnectorCategory = (id: string, localeId = 'en'): ConnectorCate
     return { id, label: id };
 };
 
-// Declarations - Connector Usage
+// Declarations - Connector - Usage
 export enum ConnectorUsageId {
     Bidirectional = 'bidirectional',
     Destination = 'destination',

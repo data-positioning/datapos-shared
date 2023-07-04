@@ -1,24 +1,15 @@
-/**
- * @file datapos-engine-support/src/sourceView.ts
- * @license ISC Licensed under the ISC license, Version 2.0. See the LICENSE.md file for details.
- * @author Jonathan Terrell <terrell.jm@gmail.com>
- * @copyright 2023 Jonathan Terrell
- */
-
 // Dependencies - Engine - Support
 import type { Component } from '../component';
 import type { ContentAuditColumn } from './ContentAuditColumn';
 import type { PreviewColumn } from './PreviewColumn';
-import type { DPAFileSystemFileHandle, ConnectionEntryParsedValue } from '../connection';
+import type { ConnectionEntryParsedValue, DPAFileSystemFileHandle } from '../connection';
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Source View
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Source View
 export interface SourceView extends Component {
     properties: SourceViewConfig;
 }
 
+// Declarations - Source View - Config
 export interface SourceViewConfig {
     connectionId: string;
     fileExtension?: string;
@@ -32,10 +23,7 @@ export interface SourceViewConfig {
     totalSize?: number;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Source View - Preview
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Source View - Config - Preview
 export interface SourceViewPreview {
     asAt: number;
     columns: PreviewColumn[];
@@ -61,10 +49,7 @@ export interface SourceViewPreview {
     // valueTrimMethodId?: string;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Source View - Content Audit
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Source View - Config - Content Audit
 export interface SourceViewContentAudit {
     asAt: number;
     columns: ContentAuditColumn[];
@@ -76,18 +61,12 @@ export interface SourceViewContentAudit {
     recordCount: number;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Source View - Relationships Audit
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Source View - Config - Relationships Audit
 export interface SourceViewRelationshipsAudit {
     placeholder?: string;
 }
 
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-// Source View - Enumerations - Data Format
-// ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
-
+// Declarations - Source View - Data Format
 export enum DataFormatId {
     DelimitedText = 'dtv',
     EntityEvent = 'e/e',
@@ -121,7 +100,7 @@ export const getDataFormats = (localeId = 'en'): DataFormat[] => {
     return items.sort((first, second) => first.label.localeCompare(second.label));
 };
 
-// Declaration - Value Delimiter
+// Declarations - Source View - Value Delimiter
 export enum ValueDelimiterId {
     Colon = ':',
     Comma = ',',
