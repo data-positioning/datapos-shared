@@ -19,7 +19,18 @@ interface ContextModelReference {
 
 // Declarations - Context - Dimension Config
 export interface DimensionConfig extends ComponentConfig {
-    placeholder: string;
+    id: string;
+    hierarchies: DimensionHierarchyConfig[];
+    label: Record<string, string>;
+}
+interface DimensionHierarchyConfig {
+    id: string;
+    label: Record<string, string>;
+    levels: DimensionLevelConfig[];
+}
+interface DimensionLevelConfig {
+    id: string;
+    label: Record<string, string>;
 }
 
 // Declarations - Context - Entity Config
