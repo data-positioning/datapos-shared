@@ -23,12 +23,12 @@ export interface DimensionConfig extends ComponentConfig {
     hierarchies: DimensionHierarchyConfig[];
     label: Record<string, string>;
 }
-interface DimensionHierarchyConfig {
+export interface DimensionHierarchyConfig {
     id: string;
     label: Record<string, string>;
     levels: DimensionLevelConfig[];
 }
-interface DimensionLevelConfig {
+export interface DimensionLevelConfig {
     id: string;
     label: Record<string, string>;
 }

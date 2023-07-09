@@ -21,7 +21,19 @@ export type { ConnectionConfig, ConnectionEntryDrilldownResult, ConnectionEntry,
 export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, FieldStorageTypeId } from './connection';
 
 // Declarations - Component - Context
-export type { ContextConfig, ContextFocusReference, DimensionConfig, EntityConfig, ModelConfig, ViewConfig } from './context';
+export type {
+    ContextConfig,
+    ContextFocusReference,
+    DimensionConfig,
+    DimensionHierarchyConfig,
+    DimensionLevelConfig,
+    EntityCharacteristicConfig,
+    EntityComputationConfig,
+    EntityConfig,
+    EntityEventConfig,
+    ModelConfig,
+    ViewConfig
+} from './context';
 
 // Declarations - Component - Event Query
 export type {} from './eventQuery';
