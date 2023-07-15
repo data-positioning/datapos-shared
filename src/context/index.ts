@@ -1,10 +1,9 @@
 import type { ComponentConfig } from '../component';
 
+// Config
 export interface ContextConfig extends ComponentConfig {
     focuses: ContextFocusReference[];
 }
-
-// Focus Reference
 export interface ContextFocusReference {
     id: string;
     label: Record<string, string>;
@@ -15,7 +14,7 @@ interface ContextModelReference {
     label: Record<string, string>;
 }
 
-// Dimension Config
+// Config - Dimension
 export interface DimensionConfig extends ComponentConfig {
     id: string;
     hierarchies: DimensionHierarchyConfig[];
@@ -31,7 +30,7 @@ export interface DimensionLevelConfig {
     label: Record<string, string>;
 }
 
-// Entity Config
+// Config - Entity
 export interface EntityConfig extends ComponentConfig {
     labelPlural: Record<string, string>;
     characteristics: EntityCharacteristicConfig[];
@@ -52,14 +51,14 @@ export interface EntityEventConfig {
     labelState: Record<string, string>;
 }
 
-// Model Config
+// Config - Model
 export interface ModelConfig extends ComponentConfig {
     dimensions: DimensionConfig[];
     entities: EntityConfig[];
     views: ViewConfig[];
 }
 
-// View Config
+// Config - View
 export interface ViewConfig extends ComponentConfig {
     placeholder: string;
 }

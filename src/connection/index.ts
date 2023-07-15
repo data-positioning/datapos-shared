@@ -1,12 +1,10 @@
-// Dependencies - Engine - Support
 import type { Component, ComponentConfig, FirebaseTimestamp } from '../component';
 
-// Declarations - Connection
 export interface Connection extends Component {
     config: ConnectionConfig;
 }
 
-// Declarations - Connection - Config
+// Config
 export interface ConnectionConfig extends ComponentConfig {
     authorisation?: Record<string, ConnectionAuthorization>;
     connectorId: string;
@@ -25,7 +23,7 @@ interface ConnectionAuthorization {
     uid: string; // Dropbox.
 }
 
-// Declarations - Connection - Description
+// Connection Description
 export type ConnectionDescription = { fileEntries: Record<string, FileEntry>; objectTypes: Record<string, ObjectType> };
 export interface FileEntry {
     description?: string;
@@ -81,7 +79,7 @@ export enum FieldUsageTypeId {
     Unknown = 0
 }
 
-// Declarations - Connection - Entry
+// Connection Entry
 export interface ConnectionEntry {
     childCount?: number;
     folderPath: string;
@@ -119,7 +117,7 @@ export enum ConnectionEntryTypeId {
     Folder = 'folder'
 }
 
-// Declarations - DPA File System File Handle
+// DPA File System File Handle
 export interface DPAFileSystemFileHandle {
     readonly kind: 'file';
     getFile(): Promise<File>;

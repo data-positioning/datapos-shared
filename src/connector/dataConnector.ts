@@ -1,12 +1,8 @@
-// Dependencies - Engine - Support
 import type { SourceViewConfig } from '../sourceView';
+import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription, ConnectionEntryDrilldownResult, ConnectionEntryPreview } from '../connection';
 import type { Connector, ConnectorCallbackData, ConnectorConfig } from '.';
 
-// Dependencies - Framework/Vendor
-import type { Callback, Options, Parser } from 'csv-parse';
-
-// Declarations - Data Connector
 export interface DataConnector extends Connector {
     abortController?: AbortController;
     readonly config: ConnectorConfig;
@@ -33,12 +29,12 @@ export interface DataConnector extends Connector {
     ): Promise<ConnectionEntryDrilldownResult>;
 }
 
-// Declarations - Data Connector - Create Interface
+// Create Interface
 interface DataConnectorCreateInterface {
     connector: DataConnector;
 }
 
-// Declarations - Data Connector - Preview Interface
+// Preview Interface
 export interface DataConnectorPreviewInterface {
     connector: DataConnector;
     previewConnectionEntry(
@@ -54,7 +50,7 @@ export interface DataConnectorPreviewInterfaceSettings {
     chunkSize?: number;
 }
 
-// Declarations - Data Connector - Read Interface
+// Read Interface
 export interface DataConnectorReadInterface {
     connector: DataConnector;
     readConnectionEntry(
@@ -88,7 +84,7 @@ export interface DataConnectorFieldInfo {
     isQuoted: boolean;
 }
 
-// Declarations - Data Connector - Retrieve Entries Settings
+// Retrieve Entries Settings
 export interface DataConnectorRetrieveEntriesSettings {
     folderPath: string;
     limit?: number;
@@ -96,7 +92,7 @@ export interface DataConnectorRetrieveEntriesSettings {
     totalCount?: number;
 }
 
-// Declarations - Data Connector - Write Interface
+// Write Interface
 interface DataConnectorWriteInterface {
     connector: DataConnector;
 }

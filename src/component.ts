@@ -2,6 +2,7 @@ export interface Component {
     config: ComponentConfig;
 }
 
+// Config
 export interface ComponentConfig {
     description: Record<string, string>;
     firstCreatedAt: FirebaseTimestamp;

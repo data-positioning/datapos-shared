@@ -1,20 +1,18 @@
-// Dependencies - Engine - Support
 import type { ConnectionConfig } from '../connection';
 import type { Component, ComponentConfig } from '../component';
 
-// Declarations - Connector
 export interface Connector extends Component {
     config: ConnectorConfig;
     connectionConfig: ConnectionConfig;
 }
 
-// Declarations - Connector - Callback Data
+// Callback
 export interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
 
-// Declarations - Connector - Config
+// Config
 export interface ConnectorConfig extends ComponentConfig {
     category: ConnectorCategory;
     categoryId: string;
@@ -41,7 +39,7 @@ export enum ConnectorAuthMethodId {
     None = 'none'
 }
 
-// Declarations - Connector - Category
+// Connector Category
 type ConnectorCategory = { id: string; label: string };
 type ConnectorCategoryConfig = { id: string; label: Record<string, string> };
 const connectorCategories: ConnectorCategoryConfig[] = [
@@ -56,7 +54,7 @@ export const getConnectorCategory = (id: string, localeId = 'en'): ConnectorCate
     return { id, label: id };
 };
 
-// Declarations - Connector - Usage
+// Connector Usage
 export enum ConnectorUsageId {
     Bidirectional = 'bidirectional',
     Destination = 'destination',
