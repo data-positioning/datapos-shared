@@ -1,9 +1,7 @@
-// Declarations - Component
 export interface Component {
     config: ComponentConfig;
 }
 
-// Declarations - Component - Config
 export interface ComponentConfig {
     description: Record<string, string>;
     firstCreatedAt: FirebaseTimestamp;
@@ -16,7 +14,7 @@ export interface ComponentConfig {
     typeId: ComponentTypeId;
 }
 
-// Declarations - Component - Status
+// Component Status
 export type ComponentStatus = { id: string; color?: string; label: string };
 type ComponentStatusConfig = { id: string; color?: string; label: Record<string, string> };
 const componentStatuses: ComponentStatusConfig[] = [
@@ -35,7 +33,7 @@ export const getComponentStatus = (id: string, localeId = 'en'): ComponentStatus
     return { id, color: '#984ea3', label: id };
 };
 
-// Declarations - Component - Type
+// Component Type
 export enum ComponentTypeId {
     Connection = 'connection',
     Context = 'context',
@@ -46,7 +44,7 @@ export enum ComponentTypeId {
     UsageKit = 'usageKit'
 }
 
-// Declarations - Firebase Timestamp
+// Firebase Timestamp
 export interface FirebaseTimestamp {
     nanoseconds: number;
     seconds: number;

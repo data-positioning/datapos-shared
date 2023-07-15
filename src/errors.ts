@@ -1,4 +1,3 @@
-// Declarations - Serialised Error Data
 export interface SerialisedErrorData {
     cause?: SerialisedErrorData;
     context?: string;
@@ -7,7 +6,7 @@ export interface SerialisedErrorData {
     stack?: string;
 }
 
-// Declarations - Abort Error
+// Errors - Abort
 export class AbortError extends Error {
     constructor(message: string) {
         super(message);
@@ -15,7 +14,7 @@ export class AbortError extends Error {
     }
 }
 
-// Declarations - Context Error
+// Errors - Context
 export class ContextError extends Error {
     context?: string;
 
@@ -25,8 +24,6 @@ export class ContextError extends Error {
         this.context = context;
     }
 }
-
-// Declarations - Context Error - Backend
 export class BackendContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
@@ -34,8 +31,6 @@ export class BackendContextError extends ContextError {
         this.cause = cause;
     }
 }
-
-// Declarations -Context Error - Connector
 export class ConnectorContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
@@ -43,8 +38,6 @@ export class ConnectorContextError extends ContextError {
         this.cause = cause;
     }
 }
-
-// Declarations - Context Error - Engine
 export class EngineContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
@@ -52,8 +45,6 @@ export class EngineContextError extends ContextError {
         this.cause = cause;
     }
 }
-
-// Declarations - Context Error - Frontend
 export class FrontendContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);
@@ -62,7 +53,7 @@ export class FrontendContextError extends ContextError {
     }
 }
 
-// Declarations - Core Error
+// Errors - Engine - Core
 export class CoreError extends Error {
     originalName: string;
 
@@ -73,7 +64,16 @@ export class CoreError extends Error {
     }
 }
 
-// Declarations - Fetch Response Error
+// Errors - Engine - Worker
+export class WorkerError extends Error {
+    constructor(cause?: unknown) {
+        super('Engine error wrapper.');
+        this.name = 'WorkerError';
+        this.cause = cause;
+    }
+}
+
+// Errors - Fetch Response
 export class FetchResponseError extends Error {
     bodyText: string;
     status: number;
@@ -85,14 +85,5 @@ export class FetchResponseError extends Error {
         this.status = status;
         this.statusText = statusText;
         this.bodyText = bodyText;
-    }
-}
-
-// Declarations - Worker Error
-export class WorkerError extends Error {
-    constructor(cause?: unknown) {
-        super('Engine error wrapper.');
-        this.name = 'WorkerError';
-        this.cause = cause;
     }
 }

@@ -1,8 +1,7 @@
-// Dependencies - Engine - Support
 import { FieldUsageTypeId } from './connection';
 import { type FieldDataType, FieldStorageTypeId } from './connection';
 
-// Module Variables
+// Variables
 const numberFormatterDefaultLocale = 'en-US';
 const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
 
