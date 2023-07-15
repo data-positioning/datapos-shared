@@ -1,8 +1,6 @@
-// Dependencies - Engine - Support
 import type { ConnectionConfig } from '../connection';
 import type { Connector, ConnectorConfig } from './';
 
-// Declarations - Node Connector
 export interface NodeConnector extends Connector {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
@@ -33,12 +31,25 @@ export interface NodeConnector extends Connector {
     ): Promise<NodeItemDataPage>;
 }
 
+// Node Data Type
 export enum NodeDataTypeId {
     Data = 'data',
     Events = 'events',
     Facts = 'facts'
 }
 
+//  Node Item
+export interface NodeItem {
+    placeholder?: string;
+}
+export type NodeItemProperties = Record<string, unknown>;
+export interface NodeItemDataPage {
+    after?: number;
+    before?: number;
+    data: Record<string, unknown>[];
+}
+
+// Node Item Type
 export enum NodeItemTypeId {
     Dimension = 'dimension',
     Entity = 'entity',
@@ -47,43 +58,23 @@ export enum NodeItemTypeId {
     Workbook = 'workbook'
 }
 
-// Declarations - Node Item
-export interface NodeItem {
-    placeholder?: string;
-}
-
-// Declarations - Node Item - Properties
-export type NodeItemProperties = Record<string, unknown>;
-
-// Declarations - Node Item - Data Page
-export interface NodeItemDataPage {
-    after?: number;
-    before?: number;
-    data: Record<string, unknown>[];
-}
-
-// Declarations - Node Query
+// Node Query
 export interface NodeQuery {
     select: NodeQuerySelect;
 }
-
 interface NodeQuerySelect {
     columns: NodeQueryColumn[];
 }
-
 interface NodeQueryColumn {
     expression: NodeQueryExpression;
 }
-
 export interface NodeQueryExpression {
     expressions: NodeQueryExpressionItem[];
     type: string;
 }
-
 export interface NodeQueryExpressionItem {
     placeholder?: string;
 }
-
 interface NodeQueryExpressionValue {
     dataItemName: string;
     type: string;
