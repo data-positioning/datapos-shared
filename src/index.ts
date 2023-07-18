@@ -51,14 +51,14 @@ export type { UsageKitConfig } from './usageKit';
 export {
     AbortError,
     BackendContextError,
-    ConnectorContextError,
     ContextError,
-    CoreError,
+    EngineConnectorContextError,
     EngineContextError,
+    EngineCoreError,
+    EngineWorkerError,
     FetchResponseError,
     FrontendContextError,
-    type SerialisedErrorData,
-    WorkerError
+    type SerialisedErrorData
 } from './errors';
 
 // Utilities
