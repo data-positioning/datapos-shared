@@ -5,6 +5,8 @@ const MAX_INVALID_VALUE_COUNT = 100;
 import { PreviewColumn } from './PreviewColumn';
 import { type ConnectionEntryParsedValue, FieldUsageTypeId } from '../connection';
 
+export type ParsedValue = bigint | boolean | number | string | null;
+
 // Declarations - Content Audit Column
 export class ContentAuditColumn extends PreviewColumn {
     doCountIndividualValidValues: boolean;
@@ -64,7 +66,7 @@ export class ContentAuditColumn extends PreviewColumn {
         return originalValue;
     }
 
-    addValidValue(originalValue: string, parsedValue: bigint | boolean | number | string | null, wholeDigitCount?: number, decimalDigitCount?: number): ConnectionEntryParsedValue {
+    addValidValue(originalValue: string, parsedValue: ParsedValue, wholeDigitCount?: number, decimalDigitCount?: number): ConnectionEntryParsedValue {
         switch (this.dataUsageTypeId) {
             case FieldUsageTypeId.String: {
                 parsedValue = originalValue;

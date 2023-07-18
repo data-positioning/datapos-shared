@@ -17,7 +17,7 @@ export type {
 export type {} from './nodeConnector';
 
 // Components - Connection
-export type { ConnectionConfig, ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connection';
+export type { ConnectionConfig, ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview, FieldUsageTypeId } from './connection';
 export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, FieldStorageTypeId } from './connection';
 
 // Components - Context
@@ -42,7 +42,7 @@ export type { EventQueryConfig } from './eventQuery';
 export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './sourceView';
 export { DataFormatId, getDataFormats, getValueDelimiters, ValueDelimiterId } from './sourceView';
 export { PreviewColumn } from './sourceView/PreviewColumn';
-export { ContentAuditColumn } from './sourceView/ContentAuditColumn';
+export { ContentAuditColumn, type ParsedValue } from './sourceView/ContentAuditColumn';
 
 // Components - Usage Kit
 export type { UsageKitConfig } from './usageKit';
