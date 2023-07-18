@@ -51,8 +51,8 @@ export type { UsageKitConfig } from './usageKit';
 export {
     AbortError,
     BackendContextError,
+    ConnectorContextError,
     ContextError,
-    EngineConnectorContextError,
     EngineContextError,
     EngineCoreError,
     EngineWorkerError,

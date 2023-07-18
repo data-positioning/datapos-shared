@@ -33,20 +33,22 @@ export class BackendContextError extends ContextError {
     }
 }
 
+// Errors - Connector
+export class ConnectorContextError extends ContextError {
+    constructor(message: string, context?: string, cause?: unknown) {
+        super(message, context);
+        this.name = 'ConnectorContextError';
+        this.cause = cause;
+    }
+}
+
 // Errors - Engine - Core
 export class EngineCoreError extends Error {
     originalName: string;
     constructor(message: string, originalName: string) {
         super(message);
-        this.name = 'CoreError';
+        this.name = 'EngineCoreError';
         this.originalName = originalName;
-    }
-}
-export class EngineConnectorContextError extends ContextError {
-    constructor(message: string, context?: string, cause?: unknown) {
-        super(message, context);
-        this.name = 'ConnectorContextError';
-        this.cause = cause;
     }
 }
 export class EngineContextError extends ContextError {
@@ -60,8 +62,8 @@ export class EngineContextError extends ContextError {
 // Errors - Engine - Worker
 export class EngineWorkerError extends Error {
     constructor(cause?: unknown) {
-        super('Engine error wrapper.');
-        this.name = 'WorkerError';
+        super('Engine worker error wrapper.');
+        this.name = 'EngineWorkerError';
         this.cause = cause;
     }
 }
