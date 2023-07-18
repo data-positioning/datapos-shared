@@ -1,7 +1,7 @@
 // Dependencies - Engine - Support
-import type { Component } from '../component';
 import type { ContentAuditColumn } from './ContentAuditColumn';
 import type { PreviewColumn } from './PreviewColumn';
+import type { Component, ComponentConfig } from '../component';
 import type { ConnectionEntryParsedValue, DPAFileSystemFileHandle } from '../connection';
 
 // Declarations - Source View
@@ -10,7 +10,7 @@ export interface SourceView extends Component {
 }
 
 // Declarations - Source View - Config
-export interface SourceViewConfig {
+export interface SourceViewConfig extends ComponentConfig {
     connectionId: string;
     fileExtension?: string;
     fileHandle?: DPAFileSystemFileHandle;
