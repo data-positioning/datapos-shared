@@ -17,8 +17,8 @@ export type {
 export type {} from './nodeConnector';
 
 // Components - Connection
-export type { ConnectionConfig, ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview, FieldUsageTypeId } from './connection';
-export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, FieldStorageTypeId } from './connection';
+export type { ConnectionConfig, ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connection';
+export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, FieldStorageTypeId, FieldUsageTypeId } from './connection';
 
 // Components - Context
 export type {
