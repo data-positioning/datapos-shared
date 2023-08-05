@@ -1,5 +1,5 @@
 // Common
-export interface CommonItem {
+export interface CommonItemConfig {
     id: string;
     label: string;
 }
