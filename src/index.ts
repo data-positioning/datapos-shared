@@ -1,3 +1,9 @@
+// Common
+export interface CommonItem {
+    id: string;
+    label: string;
+}
+
 // Components
 export { type ComponentConfig, ComponentTypeId, getComponentStatus } from './component';
 
