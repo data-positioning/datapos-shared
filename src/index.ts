@@ -29,16 +29,15 @@ export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, FieldStorageTypeId
 // Components - Context
 export type {
     ContextConfig,
-    ContextFocusReference,
-    DimensionConfig,
-    DimensionHierarchyConfig,
-    DimensionLevelConfig,
-    EntityCharacteristicConfig,
-    EntityComputationConfig,
-    EntityConfig,
-    EntityEventConfig,
-    ModelConfig,
-    ViewConfig
+    ContextModelConfig,
+    ContextDimensionConfig,
+    ContextDimensionHierarchyConfig,
+    ContextDimensionLevelConfig,
+    ContextEntityCharacteristicConfig,
+    ContextEntityComputationConfig,
+    ContextEntityConfig,
+    ContextEntityEventConfig,
+    ContextViewConfig
 } from './context';
 
 // Components - Event Query
