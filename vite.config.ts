@@ -1,18 +1,16 @@
-// Dependencies - Framework/Vendor
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
 
-// Configuration.
 export default defineConfig({
     build: {
-        target: 'ESNext',
         lib: {
             entry: resolve('src/index.ts'),
-            name: 'DataPosEngine',
+            name: 'DataPosSupport',
             formats: ['es'],
             fileName: (format) => `datapos-support.${format}.js`
-        }
+        },
+        target: 'ESNext'
     },
     plugins: [dts({ outDir: 'dist/types' })]
 });
