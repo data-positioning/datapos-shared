@@ -1,4 +1,4 @@
-# Data Positioning Support
+# Datapos - Share Core
 
 Includes TypeScript declarations used by the Data Positioning engine, as well as utilities that provide assistance when utilizing the engine.
 
