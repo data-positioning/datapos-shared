@@ -1,5 +1,4 @@
-import { FieldUsageTypeId } from './connection';
-import { type FieldDataType, FieldStorageTypeId } from './connection';
+import { type FieldDataType, FieldStorageTypeId, FieldUsageTypeId } from './connection';
 
 // Variables
 const numberFormatterDefaultLocale = 'en-US';
