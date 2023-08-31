@@ -2,8 +2,6 @@
 
 A TypeScript library of core declarations and utilities shared between Datapos applications and plugin components.
 
-...
-
 ## Installation
 
 ```
