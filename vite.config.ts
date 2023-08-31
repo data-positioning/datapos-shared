@@ -6,9 +6,9 @@ export default defineConfig({
     build: {
         lib: {
             entry: resolve('src/index.ts'),
-            name: 'DataPosSupport',
+            fileName: (format) => `datapos-share-core.${format}.js`,
             formats: ['es'],
-            fileName: (format) => `datapos-support.${format}.js`
+            name: 'DataposShareCore'
         },
         target: 'ESNext'
     },
