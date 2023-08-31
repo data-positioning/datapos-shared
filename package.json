@@ -1,7 +1,7 @@
 {
     "name": "@datapos/datapos-share-core",
     "private": false,
-    "version": "0.1.393",
+    "version": "0.1.394",
     "files": [
         "dist"
     ],
@@ -13,11 +13,13 @@
         }
     },
     "types": "./dist/types/src/index.d.ts",
+    "dependencies": {
+        "csv-parse": "^5.5.0"
+    },
     "devDependencies": {
         "@datapos/datapos-operations": "^0.1.231",
         "@typescript-eslint/eslint-plugin": "^6.5.0",
         "@typescript-eslint/parser": "^6.5.0",
-        "csv-parse": "^5.5.0",
         "eslint": "^8.48.0",
         "eslint-plugin-import": "^2.28.1",
         "prettier": "^3.0.3",
