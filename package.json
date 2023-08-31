@@ -1,7 +1,7 @@
 {
     "name": "@datapos/datapos-share-core",
     "private": false,
-    "version": "0.1.387",
+    "version": "0.1.388",
     "files": [
         "dist"
     ],
@@ -15,15 +15,15 @@
     "types": "./dist/types/src/index.d.ts",
     "devDependencies": {
         "@datapos/datapos-operations": "^0.1.228",
-        "@typescript-eslint/eslint-plugin": "^5.61.0",
-        "@typescript-eslint/parser": "^5.61.0",
-        "csv-parse": "^5.4.0",
-        "eslint": "^8.44.0",
-        "eslint-plugin-import": "^2.27.5",
-        "prettier": "^2.8.8",
-        "typescript": "^5.1.6",
-        "vite": "^4.3.9",
-        "vite-plugin-dts": "^3.0.3"
+        "@typescript-eslint/eslint-plugin": "^6.5.0",
+        "@typescript-eslint/parser": "^6.5.0",
+        "csv-parse": "^5.5.0",
+        "eslint": "^8.48.0",
+        "eslint-plugin-import": "^2.28.1",
+        "prettier": "^3.0.3",
+        "typescript": "^5.2.2",
+        "vite": "^4.4.9",
+        "vite-plugin-dts": "^3.5.3"
     },
     "scripts": {
         "audit": "npm audit",
@@ -36,6 +36,7 @@
         "release": "npm run build && npm run syncWithGitHub && npm run publishToNPM",
         "syncWithGitHub": "node -e \"require('@datapos/datapos-operations/commonHelpers').syncWithGitHub(['package.json'])\"",
         "test": "echo \"***** TEST SCRIPT NOT IMPLEMENTED. *****\"",
-        "updateDependencies": "echo \"***** UPDATE DEPENDENCIES SCRIPT NOT IMPLEMENTED. *****\""
+        "updateDependencies": "npm run updateOperations",
+        "updateOperations": "npm install --save-dev @datapos/datapos-operations@latest"
     }
 }
