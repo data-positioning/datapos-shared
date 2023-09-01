@@ -1,7 +1,7 @@
 {
     "name": "@datapos/datapos-share-core",
     "private": false,
-    "version": "0.1.395",
+    "version": "0.1.396",
     "files": [
         "dist"
     ],
@@ -17,7 +17,7 @@
         "csv-parse": "^5.5.0"
     },
     "devDependencies": {
-        "@datapos/datapos-operations": "^0.1.231",
+        "@datapos/datapos-operations": "^0.1.234",
         "@typescript-eslint/eslint-plugin": "^6.5.0",
         "@typescript-eslint/parser": "^6.5.0",
         "eslint": "^8.48.0",
@@ -36,7 +36,7 @@
         "lint": "npx eslint **/*.ts",
         "publishToNPM": "npm publish",
         "release": "npm run build && npm run syncWithGitHub && npm run publishToNPM",
-        "syncWithGitHub": "node -e \"require('@datapos/datapos-operations/scriptHelpers').syncWithGitHub(['package.json'])\"",
+        "syncWithGitHub": "node -e \"require('@datapos/datapos-operations/scriptHelpers').syncWithGitHub()\"",
         "test": "echo \"***** TEST SCRIPT NOT IMPLEMENTED. *****\"",
         "updateDependencies": "npm run updateOperations",
         "updateOperations": "npm install --save-dev @datapos/datapos-operations@latest"
