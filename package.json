@@ -1,7 +1,7 @@
 {
     "name": "@datapos/datapos-share-core",
     "private": false,
-    "version": "0.1.399",
+    "version": "0.1.400",
     "files": [
         "dist"
     ],
@@ -17,7 +17,7 @@
         "csv-parse": "^5.5.0"
     },
     "devDependencies": {
-        "@datapos/datapos-operations": "^0.1.235",
+        "@datapos/datapos-operations": "^0.1.255",
         "@typescript-eslint/eslint-plugin": "^6.5.0",
         "@typescript-eslint/parser": "^6.5.0",
         "eslint": "^8.48.0",
@@ -30,13 +30,14 @@
     "scripts": {
         "audit": "npm audit",
         "build": "npx vite build",
+        "bumpVersion": "node -e \"require('@datapos/datapos-operations/scriptHelpers').bumpVersion()\"",
         "check": "npm outdated",
         "document": "npx license-checker --production --json --out LICENSES.json",
         "format": "echo \"***** FORMAT SCRIPT NOT IMPLEMENTED. *****\"",
         "lint": "npx eslint **/*.ts",
         "publishToNPM": "npm publish",
         "release": "npm run syncWithGitHub && npm run build && npm run publishToNPM",
-        "syncWithGitHub": "node -e \"require('@datapos/datapos-operations/scriptHelpers').syncWithGitHub()\"",
+        "syncWithGitHub": "npm run bumpVersion && node -e \"require('@datapos/datapos-operations/scriptHelpers').syncWithGitHub()\"",
         "test": "echo \"***** TEST SCRIPT NOT IMPLEMENTED. *****\"",
         "updateDependencies": "npm run updateOperations",
         "updateOperations": "npm install --save-dev @datapos/datapos-operations@latest"
