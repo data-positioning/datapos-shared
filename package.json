@@ -1,7 +1,7 @@
 {
     "name": "@datapos/datapos-share-core",
     "private": false,
-    "version": "0.1.404",
+    "version": "0.1.405",
     "files": [
         "dist"
     ],

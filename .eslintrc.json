@@ -1,5 +1,5 @@
 {
-    "env": { "browser": true, "node": true, "es2022": true },
+    "env": { "browser": true, "node": true, "ES2022": true },
     "extends": ["eslint:recommended"],
     "ignorePatterns": ["/dist/**/*"],
     "overrides": [
