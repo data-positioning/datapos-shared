@@ -5,8 +5,8 @@
         "esModuleInterop": true,
         "isolatedModules": true,
         "jsx": "preserve",
-        "lib": ["esnext", "dom", "dom.iterable", "scripthost"],
-        "module": "esnext",
+        "lib": ["ESNext", "dom", "dom.iterable", "scripthost"],
+        "module": "ESNext",
         "moduleResolution": "node",
         "outDir": "dist",
         "paths": {
@@ -16,8 +16,8 @@
         "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
-        "target": "esnext",
+        "target": "ESNext",
         "useDefineForClassFields": true
     },
-    "include": [".eslintrc.cjs", "vite.config.*", "src/**/*"]
+    "include": ["vite.config.*", "src/**/*"]
 }
