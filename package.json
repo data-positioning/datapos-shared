@@ -1,7 +1,8 @@
 {
     "name": "@datapos/datapos-share-core",
+    "license": "ISC",
     "private": false,
-    "version": "0.1.406",
+    "version": "0.1.407",
     "files": [
         "dist"
     ],
@@ -13,13 +14,11 @@
         }
     },
     "types": "./dist/types/src/index.d.ts",
-    "dependencies": {
-        "csv-parse": "^5.5.0"
-    },
     "devDependencies": {
         "@datapos/datapos-operations": "^0.1.259",
         "@typescript-eslint/eslint-plugin": "^6.5.0",
         "@typescript-eslint/parser": "^6.5.0",
+        "csv-parse": "^5.5.0",
         "eslint": "^8.48.0",
         "eslint-plugin-import": "^2.28.1",
         "prettier": "^3.0.3",
@@ -31,9 +30,9 @@
         "audit": "npm audit",
         "build": "npx vite build",
         "bumpVersion": "node -e \"require('@datapos/datapos-operations/scriptHelpers').bumpVersion()\"",
-        "check": "npm outdated",
-        "document": "npx license-checker --production --json --out LICENSES.json",
-        "format": "echo \"***** FORMAT SCRIPT NOT IMPLEMENTED. *****\"",
+        "check": "npx npm-check-updates && npm outdated",
+        "document": "npx npm-license-crawler --onlyDirectDependencies --production --relativeLicensePath --json LICENSES.json",
+        "format": "prettier --write *.ts",
         "lint": "npx eslint **/*.ts",
         "publishToNPM": "npm publish",
         "release": "npm run syncWithGitHub && npm run build && npm run publishToNPM",
