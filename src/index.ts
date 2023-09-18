@@ -31,12 +31,11 @@ export type {
     ContextConfig,
     ContextModelConfig,
     ContextDimensionConfig,
-    ContextDimensionHierarchyConfig,
-    ContextDimensionLevelConfig,
     ContextEntityCharacteristicConfig,
     ContextEntityComputationConfig,
     ContextEntityConfig,
     ContextEntityEventConfig,
+    ContextHierarchyConfig,
     ContextViewConfig
 } from './context';
 

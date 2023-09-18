@@ -24,15 +24,10 @@ export interface ContextModelConfig extends ComponentConfig {
 // Config - Dimension
 export interface ContextDimensionConfig extends ComponentConfig {
     id: string;
-    hierarchies: ContextDimensionHierarchyConfig[];
+    hierarchies: ContextHierarchyConfig[];
     label: Record<string, string>;
 }
-export interface ContextDimensionHierarchyConfig {
-    id: string;
-    label: Record<string, string>;
-    levels: ContextDimensionLevelConfig[];
-}
-export interface ContextDimensionLevelConfig {
+export interface ContextHierarchyConfig extends ComponentConfig {
     id: string;
     label: Record<string, string>;
 }
