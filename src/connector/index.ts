@@ -14,14 +14,14 @@ export interface ConnectorCallbackData {
 
 // Config
 export interface ConnectorConfig extends ComponentConfig {
-    category: ConnectorCategory;
+    category?: ConnectorCategory;
     categoryId: string;
     implementations: Record<string, ConnectorImplementation>;
     usageId: ConnectorUsageId;
     vendorAccountURL: string;
     vendorDocumentationURL: string;
     vendorHomeURL: string;
-    version: string;
+    version?: string;
 }
 export interface ConnectorImplementation {
     activeConnectionCount: number;
