@@ -3,13 +3,13 @@ export interface Component {
 }
 
 export interface ComponentConfig {
-    description: Record<string, string>;
-    firstCreatedAt: FirebaseTimestamp;
+    description?: Record<string, string>;
+    firstCreatedAt?: FirebaseTimestamp;
     id: string;
     label: Record<string, string>;
-    lastUpdatedAt: FirebaseTimestamp;
-    logo: string;
-    status: ComponentStatus;
+    lastUpdatedAt?: FirebaseTimestamp;
+    logo?: string;
+    status?: ComponentStatus;
     statusId: string;
     typeId: ComponentTypeId;
 }
