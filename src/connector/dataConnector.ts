@@ -21,12 +21,6 @@ export interface DataConnector extends Connector {
     getPreviewInterface?(): DataConnectorPreviewInterface;
     getReadInterface?(): DataConnectorReadInterface;
     getWriteInterface?(): DataConnectorWriteInterface;
-    initialise?(
-        accountId: string | undefined,
-        sessionAccessToken: string | undefined,
-        settings: DataConnectorRetrieveEntriesSettings,
-        callback: (data: ConnectorCallbackData) => void
-    ): Promise<void>;
     retrieveConnectionEntries?(
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
