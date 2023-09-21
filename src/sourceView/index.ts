@@ -1,4 +1,3 @@
-// Dependencies - Engine - Support
 import type { ContentAuditColumn } from './ContentAuditColumn';
 import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';

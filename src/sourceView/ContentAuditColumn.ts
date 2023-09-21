@@ -1,4 +1,3 @@
-// Constants
 const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine - Support

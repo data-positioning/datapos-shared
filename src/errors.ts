@@ -51,6 +51,8 @@ export class EngineCoreError extends Error {
         this.originalName = originalName;
     }
 }
+
+// Errors - Engine - Context
 export class EngineContextError extends ContextError {
     constructor(message: string, context?: string, cause?: unknown) {
         super(message, context);

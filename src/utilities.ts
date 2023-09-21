@@ -1,12 +1,11 @@
 import { type FieldDataType, FieldStorageTypeId, FieldUsageTypeId } from './connection';
 
-// Variables
 const numberFormatterDefaultLocale = 'en-US';
 const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
 
 // Utilities - Convert
+// See: https://www.odata.org/documentation/odata-version-2-0/overview/.
 export const convertODataTypeToDataType = (type: string, maximumLength?: number): FieldDataType => {
-    // See: https://www.odata.org/documentation/odata-version-2-0/overview/
     switch (type) {
         case 'Edm.Binary':
             return { storageTypeId: FieldStorageTypeId.Binary, usageTypeId: FieldUsageTypeId.Unknown }; // Binary...
