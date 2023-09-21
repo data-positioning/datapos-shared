@@ -24,13 +24,13 @@ export interface ConnectorConfig extends ComponentConfig {
     version?: string;
 }
 export interface ConnectorImplementation {
-    activeConnectionCount: number;
-    canDescribe: boolean;
-    id: string;
+    activeConnectionCount?: number;
+    canDescribe?: boolean;
+    // id?: string;
     authMethodId: ConnectorAuthMethodId;
-    label: Record<string, string>;
+    label?: Record<string, string>;
     maxConnectionCount: number;
-    params: Record<string, string>[];
+    params?: Record<string, string>[];
 }
 export enum ConnectorAuthMethodId {
     APIKey = 'apiKey',
