@@ -52,14 +52,14 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
 // };
 
 // Utilities - Extract
-export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
-    if (itemPath) {
-        const lastSeparatorIndex = itemPath.lastIndexOf('/');
-        const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : itemPath.length);
-        return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex) : itemPath;
-    }
-    return undefined;
-};
+// export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
+//     if (itemPath) {
+//         const lastSeparatorIndex = itemPath.lastIndexOf('/');
+//         const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : itemPath.length);
+//         return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex) : itemPath;
+//     }
+//     return undefined;
+// };
 
 // Utilities - Extract
 export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
@@ -71,21 +71,21 @@ export const extractFileExtensionFromFilePath = (itemPath: string): string | und
 };
 
 // Utilities - Extract
-export const extractLastSegmentFromPath = (path: string): string | undefined => {
-    if (path) {
-        let lastSeparatorIndex;
-        let lastCharacterIndex;
-        if (path.endsWith('/')) {
-            lastSeparatorIndex = path.lastIndexOf('/', path.length - 2);
-            lastCharacterIndex = path.length - 1;
-        } else {
-            lastSeparatorIndex = path.lastIndexOf('/');
-            lastCharacterIndex = path.length;
-        }
-        return lastSeparatorIndex > -1 ? path.substring(lastSeparatorIndex + 1, lastCharacterIndex) : path;
-    }
-    return undefined;
-};
+// export const extractLastSegmentFromPath = (path: string): string | undefined => {
+//     if (path) {
+//         let lastSeparatorIndex;
+//         let lastCharacterIndex;
+//         if (path.endsWith('/')) {
+//             lastSeparatorIndex = path.lastIndexOf('/', path.length - 2);
+//             lastCharacterIndex = path.length - 1;
+//         } else {
+//             lastSeparatorIndex = path.lastIndexOf('/');
+//             lastCharacterIndex = path.length;
+//         }
+//         return lastSeparatorIndex > -1 ? path.substring(lastSeparatorIndex + 1, lastCharacterIndex) : path;
+//     }
+//     return undefined;
+// };
 
 // Utilities - Format Number
 export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, minimumFractionDigits = decimalPlaces, locale = numberFormatterDefaultLocale): string => {
