@@ -68,9 +68,7 @@ export {
 // Utilities
 export {
     convertODataTypeToDataType,
-    // extractFileNameFromFilePath,
     extractFileExtensionFromFilePath,
-    // extractLastSegmentFromPath,
     formatNumberAsDecimalNumber,
     formatNumberAsDuration,
     formatNumberAsStorageSize,
