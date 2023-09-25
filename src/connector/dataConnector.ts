@@ -31,7 +31,7 @@ interface DataConnectorCreateInterface {
 // Preview Interface
 export interface DataConnectorPreviewInterface {
     connector: DataConnector;
-    previewConnectionEntry(
+    previewEntry(
         connector: DataConnector,
         sourceViewConfig: SourceViewConfig,
         previewInterfaceSettings: DataConnectorPreviewInterfaceSettings,
@@ -45,7 +45,7 @@ export interface DataConnectorPreviewInterfaceSettings {
 // Read Interface
 export interface DataConnectorReadInterface {
     connector: DataConnector;
-    readConnectionEntry(
+    readEntry(
         connector: DataConnector,
         sourceViewConfig: SourceViewConfig,
         readInterfaceSettings: DataConnectorReadInterfaceSettings,
