@@ -23,7 +23,7 @@ export type {
 export type {} from './nodeConnector';
 
 // Components - Connection
-export type { ConnectionConfig, ConnectionEntryDrilldownResult, ConnectionEntry, ConnectionEntryPreview } from './connection';
+export type { ConnectionConfig, ConnectionEntry, ConnectionEntryPreview, RetrieveEntriesResponse } from './connection';
 export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, FieldStorageTypeId, FieldUsageTypeId } from './connection';
 
 // Components - Context
