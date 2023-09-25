@@ -90,8 +90,8 @@ export interface ConnectionEntry {
     lastModifiedAt?: number;
     mimeType?: string;
     name: string;
-    params?: Record<string, unknown>; // TODO: What is this used for?
-    paramsString?: string; // TODO: What is this used for?
+    // params?: Record<string, unknown>; // TODO: What is this used for?
+    // paramsString?: string; // TODO: What is this used for?
     size?: number;
     typeId: ConnectionEntryTypeId;
 }
