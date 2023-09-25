@@ -49,7 +49,7 @@ export interface DataConnectorReadInterface {
         connector: DataConnector,
         sourceViewConfig: SourceViewConfig,
         readInterfaceSettings: DataConnectorReadInterfaceSettings,
-        // csvParse: (options?: Options, callback?: Callback) => Parser,
+        csvParse: (options?: Options, callback?: Callback) => Parser,
         callback: (data: ConnectorCallbackData) => void
     ): Promise<void>;
 }
