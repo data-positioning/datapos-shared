@@ -41,6 +41,10 @@ export interface PreviewInterface {
 export interface PreviewInterfaceSettings {
     chunkSize?: number;
 }
+export interface PreviewEntryResponse {
+    error?: unknown;
+    result?: SourceViewConfig;
+}
 
 // Read Interface
 export interface ReadInterface {

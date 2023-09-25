@@ -19,6 +19,7 @@ export type {
     ListEntry,
     ListEntryDrilldownResult,
     ListEntryPreview,
+    PreviewEntryResponse,
     PreviewInterface,
     PreviewInterfaceSettings,
     ReadInterface,
