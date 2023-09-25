@@ -1,7 +1,7 @@
 import type { ContentAuditColumn } from './ContentAuditColumn';
 import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
-import type { ConnectionEntryParsedValue, DPAFileSystemFileHandle } from '../connection';
+import type { DPAFileSystemFileHandle, ListEntryParsedValue } from '../connector/dataConnector';
 
 // Declarations - Source View
 export interface SourceView extends Component {
@@ -39,7 +39,7 @@ export interface SourceViewPreview {
     size: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
-    records: ConnectionEntryParsedValue[][];
+    records: ListEntryParsedValue[][];
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;

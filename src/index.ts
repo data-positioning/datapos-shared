@@ -1,13 +1,13 @@
-// Common
+// Exports - Common
 export interface CommonItemConfig {
     id: string;
     label: string;
 }
 
-// Components
+// Exports - Components
 export { type ComponentConfig, ComponentTypeId, getComponentStatus } from './component';
 
-// Components - Connector
+// Exports - Components - Connector
 export { ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig, ConnectorUsageId } from './connector/index';
 export type {
     DataConnector,
@@ -28,11 +28,11 @@ export type {
 } from './connector/dataConnector';
 export type {} from './nodeConnector';
 
-// Components - Connection
+// Exports - Components - Connection
 export type { ConnectionConfig } from './connection';
 export { FieldStorageTypeId, FieldUsageTypeId } from './connection';
 
-// Components - Context
+// Exports - Components - Context
 export type {
     ContextConfig,
     ContextModelConfig,
@@ -45,19 +45,19 @@ export type {
     ContextViewConfig
 } from './context';
 
-// Components - Event Query
+// Exports - Components - Event Query
 export type { EventQueryConfig } from './eventQuery';
 
-//  Components - Source View
+// Exports - Components - Source View
 export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './sourceView';
 export { DataFormatId, getDataFormats, getValueDelimiters, ValueDelimiterId } from './sourceView';
 export { PreviewColumn } from './sourceView/PreviewColumn';
 export { ContentAuditColumn, type ParsedValue } from './sourceView/ContentAuditColumn';
 
-// Components - Usage Kit
+// Exports - Components - Usage Kit
 export type { UsageKitConfig } from './usageKit';
 
-// Errors
+// Exports - Errors
 export {
     AbortError,
     BackendContextError,
@@ -71,7 +71,7 @@ export {
     type SerialisedErrorData
 } from './errors';
 
-// Utilities
+// Exports - Utilities
 export {
     convertODataTypeToDataType,
     extractFileExtensionFromFilePath,
