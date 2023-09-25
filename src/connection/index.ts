@@ -86,14 +86,12 @@ export interface ConnectionEntry {
     encodingId?: string;
     extension?: string;
     handle?: DPAFileSystemFileHandle; // TODO: Remove reference to 'FileSystemFileHandle' otherwise 'datapos-connector-node-browser' does not compile.
-    id?: string;
     label: string;
     lastModifiedAt?: number;
     mimeType?: string;
     name: string;
     params?: Record<string, unknown>; // TODO: What is this used for?
     paramsString?: string; // TODO: What is this used for?
-    referenceId?: string;
     size?: number;
     typeId: ConnectionEntryTypeId;
 }
