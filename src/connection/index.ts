@@ -93,14 +93,14 @@ export interface ConnectionEntry {
     // params?: Record<string, unknown>; // TODO: What is this used for?
     // paramsString?: string; // TODO: What is this used for?
     size?: number;
-    typeId: ConnectionEntryTypeId;
+    typeId: ListEntryTypeId;
 }
 
-export interface RetrieveEntriesResponse {
+export interface ListEntriesResponse {
     error?: unknown;
-    result?: EntryDrilldownResult;
+    result?: ListEntryDrilldownResult;
 }
-export interface EntryDrilldownResult {
+export interface ListEntryDrilldownResult {
     cursor: string | number | undefined;
     entries: ConnectionEntry[];
     isMore: boolean;
@@ -108,15 +108,15 @@ export interface EntryDrilldownResult {
 }
 
 export type ConnectionEntryParsedValue = bigint | boolean | number | string | null;
-export interface ConnectionEntryPreview {
+export interface ListEntryPreview {
     data: ConnectionEntryParsedValue[][] | Uint8Array;
-    typeId: ConnectionEntryPreviewTypeId;
+    typeId: ListEntryPreviewTypeId;
 }
-export enum ConnectionEntryPreviewTypeId {
+export enum ListEntryPreviewTypeId {
     Table = 'table',
     Uint8Array = 'uint8Array'
 }
-export enum ConnectionEntryTypeId {
+export enum ListEntryTypeId {
     File = 'file',
     Folder = 'folder'
 }

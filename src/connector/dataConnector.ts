@@ -1,6 +1,6 @@
 import type { SourceViewConfig } from '../sourceView';
 import type { Callback, Options, Parser } from 'csv-parse';
-import type { ConnectionConfig, ConnectionDescription, EntryDrilldownResult, ConnectionEntryPreview } from '../connection';
+import type { ConnectionConfig, ConnectionDescription, ListEntryDrilldownResult, ListEntryPreview } from '../connection';
 import type { Connector, ConnectorCallbackData, ConnectorConfig } from '.';
 
 export interface DataConnector extends Connector {
@@ -20,7 +20,7 @@ export interface DataConnector extends Connector {
     getPreviewInterface?(): PreviewInterface;
     getReadInterface?(): ReadInterface;
     getWriteInterface?(): WriteInterface;
-    listEntries?(settings: ListEntriesSettings): Promise<EntryDrilldownResult>;
+    listEntries?(settings: ListEntriesSettings): Promise<ListEntryDrilldownResult>;
 }
 
 // Create Interface
@@ -36,7 +36,7 @@ export interface PreviewInterface {
         sourceViewConfig: SourceViewConfig,
         settings: PreviewInterfaceSettings,
         callback: (data: ConnectorCallbackData) => void
-    ): Promise<ConnectionEntryPreview>;
+    ): Promise<ListEntryPreview>;
 }
 export interface PreviewInterfaceSettings {
     chunkSize?: number;
