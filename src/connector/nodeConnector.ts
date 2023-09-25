@@ -3,8 +3,8 @@ import type { Connector, ConnectorConfig } from './';
 
 export interface NodeConnector extends Connector {
     abortController?: AbortController | undefined;
-    readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
+    readonly connectorConfig: ConnectorConfig;
     readonly id: string;
     readonly version: string;
 
@@ -78,5 +78,5 @@ export interface NodeQueryExpressionItem {
 interface NodeQueryExpressionValue {
     dataItemName: string;
     type: string;
-    value: boolean | number | string | null | unknown;
+    value: boolean | number | string | null | undefined;
 }
