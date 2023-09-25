@@ -13,18 +13,24 @@ export type {
     DataConnector,
     DataConnectorFieldInfo,
     DataConnectorFileInfo,
+    DataConnectorRecord,
+    ListEntriesResponse,
     ListEntriesSettings,
+    ListEntry,
+    ListEntryDrilldownResult,
+    ListEntryPreview,
+    ListEntryPreviewTypeId,
+    ListEntryTypeId,
     PreviewInterface,
     PreviewInterfaceSettings,
     ReadInterface,
-    ReadInterfaceSettings,
-    DataConnectorRecord
+    ReadInterfaceSettings
 } from './connector/dataConnector';
 export type {} from './nodeConnector';
 
 // Components - Connection
-export type { ConnectionConfig, ConnectionEntry, ListEntriesResponse, ListEntryDrilldownResult, ListEntryPreview } from './connection';
-export { FieldStorageTypeId, FieldUsageTypeId, ListEntryPreviewTypeId, ListEntryTypeId } from './connection';
+export type { ConnectionConfig } from './connection';
+export { FieldStorageTypeId, FieldUsageTypeId } from './connection';
 
 // Components - Context
 export type {
