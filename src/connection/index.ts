@@ -97,12 +97,18 @@ export interface ConnectionEntry {
     size?: number;
     typeId: ConnectionEntryTypeId;
 }
+
+export interface RetrieveEntriesResponse {
+    error?: unknown;
+    result?: ConnectionEntryDrilldownResult;
+}
 export interface ConnectionEntryDrilldownResult {
     cursor: string | number | undefined;
     entries: ConnectionEntry[];
     isMore: boolean;
     totalCount: number;
 }
+
 export type ConnectionEntryParsedValue = bigint | boolean | number | string | null;
 export interface ConnectionEntryPreview {
     data: ConnectionEntryParsedValue[][] | Uint8Array;
