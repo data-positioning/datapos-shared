@@ -2,8 +2,8 @@ import type { ConnectionConfig } from '../connection';
 import type { Component, ComponentConfig } from '../component';
 
 export interface Connector extends Component {
+    config: ConnectorConfig;
     connectionConfig: ConnectionConfig;
-    connectorConfig: ConnectorConfig;
 }
 
 // Callback
