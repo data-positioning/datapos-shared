@@ -20,7 +20,7 @@ export interface DataConnector extends Connector {
     getPreviewInterface?(): DataConnectorPreviewInterface;
     getReadInterface?(): DataConnectorReadInterface;
     getWriteInterface?(): DataConnectorWriteInterface;
-    retrieveConnectionEntries?(settings: DataConnectorRetrieveEntriesSettings, callback: (data: ConnectorCallbackData) => void): Promise<ConnectionEntryDrilldownResult>;
+    listEntries?(settings: DataConnectorRetrieveEntriesSettings, callback: (data: ConnectorCallbackData) => void): Promise<ConnectionEntryDrilldownResult>;
 }
 
 // Create Interface
