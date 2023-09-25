@@ -98,9 +98,9 @@ export interface ConnectionEntry {
 
 export interface RetrieveEntriesResponse {
     error?: unknown;
-    result?: ConnectionEntryDrilldownResult;
+    result?: EntryDrilldownResult;
 }
-export interface ConnectionEntryDrilldownResult {
+export interface EntryDrilldownResult {
     cursor: string | number | undefined;
     entries: ConnectionEntry[];
     isMore: boolean;

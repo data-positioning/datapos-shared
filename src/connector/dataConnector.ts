@@ -1,6 +1,6 @@
 import type { SourceViewConfig } from '../sourceView';
 import type { Callback, Options, Parser } from 'csv-parse';
-import type { ConnectionConfig, ConnectionDescription, ConnectionEntryDrilldownResult, ConnectionEntryPreview } from '../connection';
+import type { ConnectionConfig, ConnectionDescription, EntryDrilldownResult, ConnectionEntryPreview } from '../connection';
 import type { Connector, ConnectorCallbackData, ConnectorConfig } from '.';
 
 export interface DataConnector extends Connector {
@@ -16,44 +16,44 @@ export interface DataConnector extends Connector {
         connectionEntryId: string | undefined,
         callback: (data: ConnectorCallbackData) => void
     ): Promise<ConnectionDescription>;
-    getCreateInterface?(): DataConnectorCreateInterface;
-    getPreviewInterface?(): DataConnectorPreviewInterface;
-    getReadInterface?(): DataConnectorReadInterface;
-    getWriteInterface?(): DataConnectorWriteInterface;
-    listEntries?(settings: DataConnectorRetrieveEntriesSettings): Promise<ConnectionEntryDrilldownResult>;
+    getCreateInterface?(): CreateInterface;
+    getPreviewInterface?(): PreviewInterface;
+    getReadInterface?(): ReadInterface;
+    getWriteInterface?(): WriteInterface;
+    listEntries?(settings: ListEntriesSettings): Promise<EntryDrilldownResult>;
 }
 
 // Create Interface
-interface DataConnectorCreateInterface {
+interface CreateInterface {
     connector: DataConnector;
 }
 
 // Preview Interface
-export interface DataConnectorPreviewInterface {
+export interface PreviewInterface {
     connector: DataConnector;
     previewEntry(
         connector: DataConnector,
         sourceViewConfig: SourceViewConfig,
-        previewInterfaceSettings: DataConnectorPreviewInterfaceSettings,
+        settings: PreviewInterfaceSettings,
         callback: (data: ConnectorCallbackData) => void
     ): Promise<ConnectionEntryPreview>;
 }
-export interface DataConnectorPreviewInterfaceSettings {
+export interface PreviewInterfaceSettings {
     chunkSize?: number;
 }
 
 // Read Interface
-export interface DataConnectorReadInterface {
+export interface ReadInterface {
     connector: DataConnector;
     readEntry(
         connector: DataConnector,
         sourceViewConfig: SourceViewConfig,
-        readInterfaceSettings: DataConnectorReadInterfaceSettings,
+        settings: ReadInterfaceSettings,
         csvParse: (options?: Options, callback?: Callback) => Parser,
         callback: (data: ConnectorCallbackData) => void
     ): Promise<void>;
 }
-export interface DataConnectorReadInterfaceSettings {
+export interface ReadInterfaceSettings {
     chunk(records: DataConnectorRecord[]): void;
     chunkSize?: number;
     complete(fileInfo: DataConnectorFileInfo): void;
@@ -74,8 +74,8 @@ export interface DataConnectorFieldInfo {
     isQuoted: boolean;
 }
 
-// Retrieve Entries Settings
-export interface DataConnectorRetrieveEntriesSettings {
+// List Entries Settings
+export interface ListEntriesSettings {
     folderPath: string;
     limit?: number;
     offset?: number;
@@ -83,6 +83,6 @@ export interface DataConnectorRetrieveEntriesSettings {
 }
 
 // Write Interface
-interface DataConnectorWriteInterface {
+interface WriteInterface {
     connector: DataConnector;
 }

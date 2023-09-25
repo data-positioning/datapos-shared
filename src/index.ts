@@ -13,17 +13,17 @@ export type {
     DataConnector,
     DataConnectorFieldInfo,
     DataConnectorFileInfo,
-    DataConnectorPreviewInterface,
-    DataConnectorPreviewInterfaceSettings,
-    DataConnectorRetrieveEntriesSettings,
-    DataConnectorReadInterface,
-    DataConnectorReadInterfaceSettings,
+    ListEntriesSettings,
+    PreviewInterface,
+    PreviewInterfaceSettings,
+    ReadInterface,
+    ReadInterfaceSettings,
     DataConnectorRecord
 } from './connector/dataConnector';
 export type {} from './nodeConnector';
 
 // Components - Connection
-export type { ConnectionConfig, ConnectionEntry, ConnectionEntryDrilldownResult, ConnectionEntryPreview, RetrieveEntriesResponse } from './connection';
+export type { ConnectionConfig, ConnectionEntry, EntryDrilldownResult, ConnectionEntryPreview, RetrieveEntriesResponse } from './connection';
 export { ConnectionEntryPreviewTypeId, ConnectionEntryTypeId, FieldStorageTypeId, FieldUsageTypeId } from './connection';
 
 // Components - Context
