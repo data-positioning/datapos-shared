@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-share-core",
     "license": "ISC",
     "private": false,
-    "version": "0.1.429",
+    "version": "0.1.430",
     "files": [
         "dist"
     ],
@@ -33,7 +33,7 @@
         "check": "npx npm-check-updates && npm outdated",
         "document": "npx npm-license-crawler --onlyDirectDependencies --production --relativeLicensePath --json LICENSES.json",
         "format": "prettier --write *.ts",
-        "lint": "npx eslint **/*.ts",
+        "lint": "npx eslint src/**/*.ts",
         "publishToNPM": "npm publish",
         "release": "npm run syncWithGitHub && npm run build && npm run publishToNPM",
         "syncWithGitHub": "npm run bumpVersion && node -e \"require('@datapos/datapos-operations/scriptHelpers').syncWithGitHub()\"",
