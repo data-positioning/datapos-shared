@@ -19,13 +19,12 @@ export type {
     ListEntry,
     ListEntryDrilldownResult,
     ListEntryPreview,
-    ListEntryPreviewTypeId,
-    ListEntryTypeId,
     PreviewInterface,
     PreviewInterfaceSettings,
     ReadInterface,
     ReadInterfaceSettings
 } from './connector/dataConnector';
+export { ListEntryPreviewTypeId, ListEntryTypeId } from './connector/dataConnector';
 export type {} from './nodeConnector';
 
 // Exports - Components - Connection
