@@ -5,9 +5,8 @@ import type { Connector, ConnectorCallbackData, ConnectorConfig } from '.';
 
 export interface DataConnector extends Connector {
     abortController?: AbortController;
-    readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
-    readonly version: string;
+    readonly connectorConfig: ConnectorConfig;
 
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
