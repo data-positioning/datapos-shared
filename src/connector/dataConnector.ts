@@ -1,7 +1,8 @@
-import type { SourceViewConfig } from '../sourceView';
 import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
 import type { Connector, ConnectorCallbackData, ConnectorConfig } from '.';
+import type { ParsedValue, PreviewColumn } from '..';
+import type { SourceViewConfig, ValueDelimiterId } from '../sourceView';
 
 export interface DataConnector extends Connector {
     abortController?: AbortController;
@@ -39,6 +40,30 @@ export interface PreviewInterfaceSettings {
 export interface PreviewEntryResponse {
     error?: unknown;
     result?: SourceViewConfig;
+}
+
+// Declarations
+export interface Encoding {
+    id: string;
+    confidenceLevel?: number;
+}
+
+// Declarations
+export interface EncodingConfig {
+    id: string;
+    groupLabel: string;
+    label: string;
+    isDetectable: boolean;
+    isDecodable: boolean;
+}
+
+// Declarations
+export interface FileSchema {
+    columns: PreviewColumn[];
+    hasHeaderLine: boolean;
+    records: ParsedValue[][];
+    text: string;
+    valueDelimiterId: ValueDelimiterId;
 }
 
 // Read Interface
