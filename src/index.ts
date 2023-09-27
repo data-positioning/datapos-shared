@@ -1,5 +1,5 @@
-// Exports - Common
-export interface CommonItemConfig {
+// Exports - Base
+export interface BaseConfig {
     id: string;
     label: string;
 }
