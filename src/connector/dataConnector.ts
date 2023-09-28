@@ -107,7 +107,7 @@ export interface ListEntriesSettings {
 }
 
 // Connection Entry
-export interface ListEntry {
+export interface ListEntryConfig {
     childCount?: number;
     folderPath: string;
     encodingId?: string;
@@ -134,7 +134,7 @@ export interface ListEntriesResponse {
 }
 export interface ListEntryDrilldownResult {
     cursor: string | number | undefined;
-    entries: ListEntry[];
+    listEntryConfigs: ListEntryConfig[];
     isMore: boolean;
     totalCount: number;
 }

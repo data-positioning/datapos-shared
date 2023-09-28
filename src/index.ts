@@ -19,7 +19,7 @@ export type {
     FileSchema,
     ListEntriesResponse,
     ListEntriesSettings,
-    ListEntry,
+    ListEntryConfig,
     ListEntryDrilldownResult,
     ListEntryPreview,
     PreviewEntryResponse,
