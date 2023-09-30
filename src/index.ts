@@ -22,7 +22,7 @@ export type {
     ListEntryConfig,
     ListEntryDrilldownResult,
     ListEntryPreview,
-    PreviewEntryResponse,
+    PreviewListEntryResponse,
     PreviewInterface,
     PreviewInterfaceSettings,
     ReadInterface,

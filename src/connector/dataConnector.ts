@@ -37,7 +37,7 @@ export interface PreviewInterface {
 export interface PreviewInterfaceSettings {
     chunkSize?: number;
 }
-export interface PreviewEntryResponse {
+export interface PreviewListEntryResponse {
     error?: unknown;
     result?: SourceViewConfig;
 }
