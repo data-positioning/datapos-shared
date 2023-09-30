@@ -23,8 +23,8 @@ export type {
     ListEntryDrilldownResult,
     ListEntryPreview,
     PreviewListEntryResponse,
-    PreviewInterface,
-    PreviewInterfaceSettings,
+    PreviewListEntryInterface,
+    PreviewListEntryInterfaceSettings,
     ReadInterface,
     ReadInterfaceSettings
 } from './connector/dataConnector';
