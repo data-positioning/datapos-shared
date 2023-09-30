@@ -14,35 +14,40 @@ export class AbortError extends Error {
     }
 }
 
-// Errors - Context
-export class ContextError extends Error {
-    context?: string;
-    constructor(message: string, context?: string) {
-        super(message);
-        this.name = 'ContextError';
-        this.context = context;
-    }
-}
-
 // Errors - Backend
-export class BackendContextError extends ContextError {
+export class BackendError extends Error {
+    context?: string;
     constructor(message: string, context?: string, cause?: unknown) {
-        super(message, context);
-        this.name = 'BackendContextError';
+        super(message);
+        this.name = 'BackendError';
+        this.context = context;
         this.cause = cause;
     }
 }
 
 // Errors - Connector
-export class ConnectorContextError extends ContextError {
+export class ConnectorError extends Error {
+    context?: string;
     constructor(message: string, context?: string, cause?: unknown) {
-        super(message, context);
-        this.name = 'ConnectorContextError';
+        super(message);
+        this.name = 'ConnectorError';
+        this.context = context;
         this.cause = cause;
     }
 }
 
-// Errors - Engine - Core
+// Errors - Engine
+export class EngineError extends Error {
+    context?: string;
+    constructor(message: string, context?: string, cause?: unknown) {
+        super(message);
+        this.name = 'EngineError';
+        this.context = context;
+        this.cause = cause;
+    }
+}
+
+// Errors - Engine Core
 export class EngineCoreError extends Error {
     originalName: string;
     constructor(message: string, originalName: string) {
@@ -52,16 +57,7 @@ export class EngineCoreError extends Error {
     }
 }
 
-// Errors - Engine - Context
-export class EngineContextError extends ContextError {
-    constructor(message: string, context?: string, cause?: unknown) {
-        super(message, context);
-        this.name = 'EngineContextError';
-        this.cause = cause;
-    }
-}
-
-// Errors - Engine - Worker
+// Errors - Engine Worker
 export class EngineWorkerError extends Error {
     constructor(cause?: unknown) {
         super('Engine worker error wrapper.');
@@ -85,10 +81,12 @@ export class FetchResponseError extends Error {
 }
 
 // Errors - Frontend
-export class FrontendContextError extends ContextError {
+export class FrontendError extends Error {
+    context?: string;
     constructor(message: string, context?: string, cause?: unknown) {
-        super(message, context);
-        this.name = 'FrontendContextError';
+        super(message);
+        this.name = 'FrontendError';
+        this.context = context;
         this.cause = cause;
     }
 }
