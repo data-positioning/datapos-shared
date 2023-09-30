@@ -2,7 +2,7 @@ export interface SerialisedErrorData {
     cause?: SerialisedErrorData;
     context?: string;
     message: string;
-    name: string;
+    name?: string;
     stack?: string;
 }
 
