@@ -32,7 +32,7 @@ interface CreateInterface {
 // Preview Interface
 export interface PreviewInterface {
     connector: DataConnector;
-    previewEntry(connector: DataConnector, sourceViewConfig: SourceViewConfig, settings: PreviewInterfaceSettings): Promise<ListEntryPreview>;
+    previewListEntry(connector: DataConnector, sourceViewConfig: SourceViewConfig, settings: PreviewInterfaceSettings): Promise<ListEntryPreview>;
 }
 export interface PreviewInterfaceSettings {
     chunkSize?: number;
