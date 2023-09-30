@@ -67,6 +67,7 @@ export { AbortError, BackendError, ConnectorError, EngineError, EngineCoreError,
 export {
     convertODataTypeToDataType,
     extractFileExtensionFromFilePath,
+    extractFileNameFromFilePath,
     formatNumberAsDecimalNumber,
     formatNumberAsDuration,
     formatNumberAsStorageSize,
