@@ -36,11 +36,9 @@ export class ConnectorError extends Error {
 
 // Errors - Engine
 export class EngineError extends Error {
-    context?: string;
-    constructor(message: string, context?: string, cause?: unknown) {
+    constructor(message: string, cause?: unknown) {
         super(message);
         this.name = 'EngineError';
-        this.context = context;
         this.cause = cause;
     }
 }
