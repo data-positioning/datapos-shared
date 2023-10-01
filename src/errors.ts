@@ -27,11 +27,9 @@ export class BackendError extends Error {
 
 // Errors - Connector
 export class ConnectorError extends Error {
-    context?: string;
-    constructor(message: string, context?: string, cause?: unknown) {
+    constructor(message: string, cause?: unknown) {
         super(message);
         this.name = 'ConnectorError';
-        this.context = context;
         this.cause = cause;
     }
 }
