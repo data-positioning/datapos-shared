@@ -64,9 +64,10 @@ export class EngineWorkerError extends Error {
 
 // Errors - Fetch
 export class FetchError extends Error {
-    constructor(message: string) {
+    constructor(message: string, cause?: unknown) {
         super(message);
         this.name = 'FetchError';
+        this.cause = cause;
     }
 }
 
