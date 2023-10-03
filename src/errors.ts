@@ -62,17 +62,11 @@ export class EngineWorkerError extends Error {
     }
 }
 
-// Errors - Fetch Response
-export class FetchResponseError extends Error {
-    bodyText: string;
-    status: number;
-    statusText: string;
-    constructor(status: number, statusText: string, bodyText: string) {
-        super('Failed to return fetch response.');
-        this.name = 'FetchResponseError';
-        this.status = status;
-        this.statusText = statusText;
-        this.bodyText = bodyText;
+// Errors - Fetch
+export class FetchError extends Error {
+    constructor(message: string) {
+        super(message);
+        this.name = 'FetchError';
     }
 }
 
