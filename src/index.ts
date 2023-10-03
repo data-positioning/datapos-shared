@@ -61,7 +61,7 @@ export { ContentAuditColumn, type ParsedValue } from './sourceView/ContentAuditC
 export type { UsageKitConfig } from './usageKit';
 
 // Exports - Errors
-export { AbortError, BackendError, ConnectorError, EngineError, EngineCoreError, EngineWorkerError, FetchResponseError, FrontendError, type SerialisedErrorData } from './errors';
+export { AbortError, BackendError, ConnectorError, EngineError, EngineCoreError, EngineWorkerError, FetchError, FrontendError, type SerialisedErrorData } from './errors';
 
 // Exports - Utilities
 export {
