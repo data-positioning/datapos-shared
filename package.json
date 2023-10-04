@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-share-core",
     "license": "ISC",
     "private": false,
-    "version": "0.1.458",
+    "version": "0.1.459",
     "files": [
         "dist"
     ],
@@ -15,7 +15,7 @@
     },
     "types": "./dist/types/src/index.d.ts",
     "devDependencies": {
-        "@datapos/datapos-operations": "^0.1.259",
+        "@datapos/datapos-operations": "^0.1.339",
         "@typescript-eslint/eslint-plugin": "^6.5.0",
         "@typescript-eslint/parser": "^6.5.0",
         "csv-parse": "^5.5.0",
