@@ -113,6 +113,7 @@ export interface ListEntryConfig {
     encodingId?: string;
     extension?: string;
     handle?: DPAFileSystemFileHandle; // TODO: Remove reference to 'FileSystemFileHandle' otherwise 'datapos-connector-node-browser' does not compile.
+    id: string;
     label: string;
     lastModifiedAt?: number;
     mimeType?: string;
