@@ -37,6 +37,7 @@ export enum ComponentTypeId {
     Context = 'context',
     DataConnector = 'dataConnector',
     EventQuery = 'eventQuery',
+    ExplorationMethod = 'explorationMethod',
     NodeConnector = 'nodeConnector',
     SourceView = 'sourceView',
     UsageKit = 'usageKit'
