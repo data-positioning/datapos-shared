@@ -69,7 +69,7 @@ export interface FileSchema {
 // Read Interface
 export interface ReadInterface {
     connector: DataConnector;
-    readEntry(
+    read(
         connector: DataConnector,
         sourceViewConfig: SourceViewConfig,
         settings: ReadInterfaceSettings,
