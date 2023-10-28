@@ -26,7 +26,9 @@ export type {
     PreviewListEntryInterface,
     PreviewListEntryInterfaceSettings,
     ReadInterface,
-    ReadInterfaceSettings
+    ReadInterfaceSettings,
+    WriteInterface,
+    WriteInterfaceSettings
 } from './connector/dataConnector';
 export { ListEntryPreviewTypeId, ListEntryTypeId } from './connector/dataConnector';
 export type {} from './nodeConnector';

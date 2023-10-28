@@ -154,7 +154,11 @@ export interface DPAFileSystemFileHandle {
     getFile(): Promise<File>;
 }
 
-// Write Interface
-interface WriteInterface {
+export interface WriteInterface {
     connector: DataConnector;
+}
+export interface WriteInterfaceSettings {
+    chunk(records: DataConnectorRecord[]): void;
+    chunkSize?: number;
+    complete(fileInfo: DataConnectorFileInfo): void;
 }
