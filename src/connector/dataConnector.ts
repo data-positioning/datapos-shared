@@ -18,7 +18,7 @@ export interface DataConnector extends Connector {
         callback: (data: ConnectorCallbackData) => void
     ): Promise<ConnectionDescription>;
     getCreateInterface?(): CreateInterface;
-    getPreviewListEntryInterface?(): PreviewListEntryInterface;
+    getPreviewInterface?(): PreviewInterface;
     getReadInterface?(): ReadInterface;
     getWriteInterface?(): WriteInterface;
     listEntries?(settings: ListEntriesSettings): Promise<ListEntryDrilldownResult>;
@@ -30,11 +30,11 @@ interface CreateInterface {
 }
 
 // Preview Interface
-export interface PreviewListEntryInterface {
+export interface PreviewInterface {
     connector: DataConnector;
-    previewListEntry(connector: DataConnector, sourceViewConfig: SourceViewConfig, settings: PreviewListEntryInterfaceSettings): Promise<ListEntryPreview>;
+    previewListEntry(connector: DataConnector, sourceViewConfig: SourceViewConfig, settings: PreviewInterfaceSettings): Promise<ListEntryPreview>;
 }
-export interface PreviewListEntryInterfaceSettings {
+export interface PreviewInterfaceSettings {
     chunkSize?: number;
 }
 export interface PreviewListEntryResponse {
