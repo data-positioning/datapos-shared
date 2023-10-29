@@ -21,7 +21,7 @@ export interface DataConnector extends Connector {
     getPreviewInterface?(): PreviewInterface;
     getReadInterface?(): ReadInterface;
     getWriteInterface?(): WriteInterface;
-    listEntries?(settings: ListEntriesSettings): Promise<ListEntryDrilldownResult>;
+    listEntries?(settings: ListEntriesSettings): Promise<ListEntriesResult>;
 }
 
 // Create Interface
@@ -137,9 +137,9 @@ export interface ListEntryPreview {
 }
 export interface ListEntriesResponse {
     error?: unknown;
-    result?: ListEntryDrilldownResult;
+    result?: ListEntriesResult;
 }
-export interface ListEntryDrilldownResult {
+export interface ListEntriesResult {
     cursor: string | number | undefined;
     listEntryConfigs: ListEntryConfig[];
     isMore: boolean;
