@@ -34,7 +34,13 @@ export interface PreviewInterface {
     connector: DataConnector;
     preview(connector: DataConnector, sourceViewConfig: SourceViewConfig, settings: PreviewInterfaceSettings): Promise<ListEntryPreview>;
 }
-export interface PreviewInterfaceSettings {
+
+export interface InterfaceSettings {
+    accountId?: string;
+    sessionAccessToken?: string;
+}
+
+export interface PreviewInterfaceSettings extends InterfaceSettings {
     chunkSize?: number;
 }
 export interface PreviewResponse {
