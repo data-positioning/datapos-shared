@@ -21,7 +21,7 @@ export type {
     ListEntriesSettings,
     ListEntryConfig,
     ListEntriesResult,
-    ListEntryPreview,
+    Preview,
     PreviewResponse,
     PreviewInterface,
     PreviewInterfaceSettings,

@@ -32,7 +32,7 @@ interface CreateInterface {
 // Preview Interface
 export interface PreviewInterface {
     connector: DataConnector;
-    preview(connector: DataConnector, sourceViewConfig: SourceViewConfig, settings: PreviewInterfaceSettings): Promise<ListEntryPreview>;
+    preview(connector: DataConnector, sourceViewConfig: SourceViewConfig, settings: PreviewInterfaceSettings): Promise<Preview>;
 }
 
 export interface InterfaceSettings {
@@ -131,7 +131,7 @@ export interface ListEntryConfig {
 }
 
 export type ListEntryParsedValue = bigint | boolean | number | string | null;
-export interface ListEntryPreview {
+export interface Preview {
     data: ListEntryParsedValue[][] | Uint8Array;
     typeId: ListEntryPreviewTypeId;
 }
