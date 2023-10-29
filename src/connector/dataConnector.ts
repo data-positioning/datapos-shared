@@ -133,7 +133,7 @@ export interface ListEntryConfig {
 export type ListEntryParsedValue = bigint | boolean | number | string | null;
 export interface Preview {
     data: ListEntryParsedValue[][] | Uint8Array;
-    typeId: ListEntryPreviewTypeId;
+    typeId: PreviewTypeId;
 }
 export interface ListEntriesResponse {
     error?: unknown;
@@ -146,7 +146,7 @@ export interface ListEntriesResult {
     totalCount: number;
 }
 
-export enum ListEntryPreviewTypeId {
+export enum PreviewTypeId {
     Table = 'table',
     Uint8Array = 'uint8Array'
 }

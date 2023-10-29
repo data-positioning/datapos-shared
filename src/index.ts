@@ -30,7 +30,7 @@ export type {
     WriteInterface,
     WriteInterfaceSettings
 } from './connector/dataConnector';
-export { ListEntryPreviewTypeId, ListEntryTypeId } from './connector/dataConnector';
+export { PreviewTypeId, ListEntryTypeId } from './connector/dataConnector';
 export type {} from './nodeConnector';
 
 // Exports - Components - Connection
