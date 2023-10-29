@@ -68,6 +68,7 @@ export { AbortError, BackendError, ConnectorError, EngineError, EngineCoreError,
 // Exports - Utilities
 export {
     convertODataTypeToDataType,
+    establishVendorAccessToken,
     extractFileExtensionFromFilePath,
     formatNumberAsDecimalNumber,
     formatNumberAsDuration,
