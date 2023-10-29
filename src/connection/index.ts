@@ -6,10 +6,10 @@ export interface Connection extends Component {
 
 // Config
 export interface ConnectionConfig extends ComponentConfig {
-    authorisation?: Record<string, ConnectionAuthorization>;
+    authorisation: Record<string, ConnectionAuthorization>;
     connectorId: string;
     connectorImplementationId: string;
-    lastVerifiedAt?: FirebaseTimestamp;
+    lastVerifiedAt: FirebaseTimestamp; // Default: { nanoseconds: 0; seconds: 0; }
     notation: string;
 }
 interface ConnectionAuthorization {
