@@ -65,6 +65,9 @@ export type { UsageKitConfig } from './usageKit';
 // Exports - Errors
 export { AbortError, BackendError, ConnectorError, EngineError, EngineCoreError, EngineWorkerError, FetchError, FrontendError, type SerialisedErrorData } from './errors';
 
+// Exports - Node - Connector
+export type { NodeConnector } from './connector/nodeConnector';
+
 // Exports - Utilities
 export {
     convertODataTypeToDataType,
