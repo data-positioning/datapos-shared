@@ -26,7 +26,7 @@ export interface ConnectorConfig extends ComponentConfig {
 export interface ConnectorImplementation {
     activeConnectionCount?: number;
     canDescribe?: boolean;
-    // id?: string;
+    id?: string;
     authMethodId: ConnectorAuthMethodId;
     label?: Record<string, string>;
     maxConnectionCount: number;
