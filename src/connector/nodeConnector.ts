@@ -5,8 +5,6 @@ export interface NodeConnector extends Connector {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
-    readonly id: string;
-    readonly version: string;
 
     deleteNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<void>;
     getNodeItem(nodeItemTypeId: NodeItemTypeId, id: string): Promise<NodeItem>;
