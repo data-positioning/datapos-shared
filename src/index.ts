@@ -67,7 +67,16 @@ export { AbortError, BackendError, ConnectorError, EngineError, EngineCoreError,
 
 // Exports - Node - Connector
 export { NodeItemTypeId } from './connector/nodeConnector';
-export type { NodeConnector, NodeDataTypeId, NodeItem, NodeItemDataPage, NodeItemProperties, NodeQuery } from './connector/nodeConnector';
+export type {
+    NodeConnector,
+    NodeDataTypeId,
+    NodeItem,
+    NodeItemDataPage,
+    NodeItemProperties,
+    NodeQuery,
+    NodeQueryExpression,
+    NodeQueryExpressionValue
+} from './connector/nodeConnector';
 
 // Exports - Utilities
 export {

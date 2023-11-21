@@ -73,7 +73,7 @@ export interface NodeQueryExpression {
 export interface NodeQueryExpressionItem {
     placeholder?: string;
 }
-interface NodeQueryExpressionValue {
+export interface NodeQueryExpressionValue {
     dataItemName: string;
     type: string;
     value: boolean | number | string | null | undefined;
