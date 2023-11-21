@@ -66,17 +66,8 @@ export type { UsageKitConfig } from './usageKit';
 export { AbortError, BackendError, ConnectorError, EngineError, EngineCoreError, EngineWorkerError, FetchError, FrontendError, type SerialisedErrorData } from './errors';
 
 // Exports - Node - Connector
-export { NodeItemTypeId } from './connector/nodeConnector';
-export type {
-    NodeConnector,
-    NodeDataTypeId,
-    NodeItem,
-    NodeItemDataPage,
-    NodeItemProperties,
-    NodeQuery,
-    NodeQueryExpression,
-    NodeQueryExpressionValue
-} from './connector/nodeConnector';
+export { NodeDataTypeId, NodeItemTypeId } from './connector/nodeConnector';
+export type { NodeConnector, NodeItem, NodeItemDataPage, NodeItemProperties, NodeQuery, NodeQueryExpression, NodeQueryExpressionValue } from './connector/nodeConnector';
 
 // Exports - Utilities
 export {
