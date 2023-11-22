@@ -38,6 +38,7 @@ export enum NodeDataTypeId {
 
 //  Node Item
 export interface NodeItem {
+    id?: string; // TODO: Just added this?
     placeholder?: string;
 }
 export type NodeItemProperties = Record<string, unknown>;
