@@ -5,7 +5,7 @@ export interface BaseConfig {
 }
 
 // Exports - Components
-export { type ComponentConfig, ComponentTypeId, getComponentStatus } from './component';
+export { type ComponentConfig, type ComponentStatus, ComponentTypeId, getComponentStatus } from './component';
 
 // Exports - Components - Connector
 export { ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig, ConnectorUsageId } from './connector/index';
