@@ -60,7 +60,7 @@ export { ContentAuditColumn, type ParsedValue } from './dataView/ContentAuditCol
 export type { EventQueryConfig } from './eventQuery';
 
 // Exports - Components - Usage Kit
-export type { UsageKitConfig } from './usageKit';
+export type { TutorialConfig } from './usageKit';
 
 // Exports - Errors
 export { AbortError, BackendError, ConnectorError, EngineError, EngineCoreError, EngineWorkerError, FetchError, FrontendError, type SerialisedErrorData } from './errors';

@@ -4,6 +4,6 @@ export interface UsageKit extends Component {
     placeholder?: string;
 }
 
-export interface UsageKitConfig extends ComponentConfig {
+export interface TutorialConfig extends ComponentConfig {
     placeholder?: string;
 }
