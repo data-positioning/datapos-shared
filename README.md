@@ -40,6 +40,10 @@ The following diagram illustrates the connection entry class hierarchy, showcasi
 
 ...
 
+## Data View Declarations
+
+...
+
 ## Dimension Declarations
 
 ...
@@ -49,10 +53,6 @@ The following diagram illustrates the connection entry class hierarchy, showcasi
 ...
 
 ## Event Query Declarations
-
-...
-
-## Source View Declarations
 
 ...
 

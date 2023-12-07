@@ -50,14 +50,14 @@ export type {
     ContextViewConfig
 } from './context';
 
+// Exports - Components - Data View
+export type { DataViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './dataView';
+export { DataFormatId, getDataFormats, getValueDelimiters, ValueDelimiterId } from './dataView';
+export { PreviewColumn } from './dataView/PreviewColumn';
+export { ContentAuditColumn, type ParsedValue } from './dataView/ContentAuditColumn';
+
 // Exports - Components - Event Query
 export type { EventQueryConfig } from './eventQuery';
-
-// Exports - Components - Source View
-export type { SourceViewConfig, SourceViewContentAudit, SourceViewPreview, SourceViewRelationshipsAudit } from './sourceView';
-export { DataFormatId, getDataFormats, getValueDelimiters, ValueDelimiterId } from './sourceView';
-export { PreviewColumn } from './sourceView/PreviewColumn';
-export { ContentAuditColumn, type ParsedValue } from './sourceView/ContentAuditColumn';
 
 // Exports - Components - Usage Kit
 export type { UsageKitConfig } from './usageKit';

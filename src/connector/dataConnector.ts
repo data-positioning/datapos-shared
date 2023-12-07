@@ -2,7 +2,7 @@ import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
 import type { Connector, ConnectorCallbackData, ConnectorConfig } from '.';
 import type { ParsedValue, PreviewColumn } from '..';
-import type { SourceViewConfig, ValueDelimiterId } from '../sourceView';
+import type { DataViewConfig, ValueDelimiterId } from '../dataView';
 
 export interface DataConnector extends Connector {
     abortController?: AbortController;
@@ -32,7 +32,7 @@ interface CreateInterface {
 // Preview Interface
 export interface PreviewInterface {
     connector: DataConnector;
-    preview(connector: DataConnector, sourceViewConfig: SourceViewConfig, settings: PreviewInterfaceSettings): Promise<Preview>;
+    preview(connector: DataConnector, DataViewConfig: DataViewConfig, settings: PreviewInterfaceSettings): Promise<Preview>;
 }
 
 export interface InterfaceSettings {
@@ -45,7 +45,7 @@ export interface PreviewInterfaceSettings extends InterfaceSettings {
 }
 export interface PreviewResponse {
     error?: unknown;
-    result?: SourceViewConfig;
+    result?: DataViewConfig;
 }
 
 // Declarations
@@ -77,7 +77,7 @@ export interface ReadInterface {
     connector: DataConnector;
     read(
         connector: DataConnector,
-        sourceViewConfig: SourceViewConfig,
+        DataViewConfig: DataViewConfig,
         settings: ReadInterfaceSettings,
         csvParse: (options?: Options, callback?: Callback) => Parser,
         callback: (data: ConnectorCallbackData) => void

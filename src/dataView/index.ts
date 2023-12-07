@@ -3,13 +3,13 @@ import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
 import type { DPAFileSystemFileHandle, ListEntryParsedValue } from '../connector/dataConnector';
 
-// Declarations - Source View
+// Declarations - Data View
 export interface SourceView extends Component {
-    properties: SourceViewConfig;
+    properties: DataViewConfig;
 }
 
-// Declarations - Source View - Config
-export interface SourceViewConfig extends ComponentConfig {
+// Declarations - Data View - Config
+export interface DataViewConfig extends ComponentConfig {
     connectionId: string;
     fileExtension?: string;
     fileHandle?: DPAFileSystemFileHandle;
@@ -22,7 +22,7 @@ export interface SourceViewConfig extends ComponentConfig {
     totalSize?: number;
 }
 
-// Declarations - Source View - Config - Preview
+// Declarations - Data View - Config - Preview
 export interface SourceViewPreview {
     asAt: number;
     columns: PreviewColumn[];
@@ -48,7 +48,7 @@ export interface SourceViewPreview {
     // valueTrimMethodId?: string;
 }
 
-// Declarations - Source View - Config - Content Audit
+// Declarations - Data View - Config - Content Audit
 export interface SourceViewContentAudit {
     asAt: number;
     columns: ContentAuditColumn[];
@@ -60,12 +60,12 @@ export interface SourceViewContentAudit {
     recordCount: number;
 }
 
-// Declarations - Source View - Config - Relationships Audit
+// Declarations - Data View - Config - Relationships Audit
 export interface SourceViewRelationshipsAudit {
     placeholder?: string;
 }
 
-// Declarations - Source View - Data Format
+// Declarations - Data View - Data Format
 export enum DataFormatId {
     DelimitedText = 'dtv',
     EntityEvent = 'e/e',
@@ -99,7 +99,7 @@ export const getDataFormats = (localeId = 'en'): DataFormat[] => {
     return items.sort((first, second) => first.label.localeCompare(second.label));
 };
 
-// Declarations - Source View - Value Delimiter
+// Declarations - Data View - Value Delimiter
 export enum ValueDelimiterId {
     Colon = ':',
     Comma = ',',
