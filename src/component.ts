@@ -36,11 +36,11 @@ export enum ComponentTypeId {
     Connection = 'connection',
     Context = 'context',
     DataConnector = 'dataConnector',
+    DataView = 'dataView',
     EventQuery = 'eventQuery',
-    ExplorationMethod = 'explorationMethod',
     NodeConnector = 'nodeConnector',
-    SourceView = 'sourceView',
-    UsageKit = 'usageKit'
+    Presentation = 'presentation',
+    Tutorial = 'tutorial'
 }
 
 export interface FirebaseTimestamp {

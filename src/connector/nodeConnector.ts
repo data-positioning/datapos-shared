@@ -50,11 +50,10 @@ export interface NodeItemDataPage {
 
 // Node Item Type
 export enum NodeItemTypeId {
+    DataView = 'dataView',
     Dimension = 'dimension',
     Entity = 'entity',
-    EventQuery = 'eventQuery',
-    SourceView = 'sourceView',
-    Workbook = 'workbook'
+    EventQuery = 'eventQuery'
 }
 
 // Node Query

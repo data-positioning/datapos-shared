@@ -4,7 +4,7 @@ import type { Component, ComponentConfig } from '../component';
 import type { DPAFileSystemFileHandle, ListEntryParsedValue } from '../connector/dataConnector';
 
 // Declarations - Data View
-export interface SourceView extends Component {
+export interface DataView extends Component {
     properties: DataViewConfig;
 }
 
@@ -16,14 +16,14 @@ export interface DataViewConfig extends ComponentConfig {
     fileId?: string;
     fileName: string;
     folderPath: string;
-    preview?: SourceViewPreview;
-    contentAudit?: SourceViewContentAudit;
-    relationshipsAudit?: SourceViewRelationshipsAudit;
+    preview?: DataViewPreview;
+    contentAudit?: DataViewContentAudit;
+    relationshipsAudit?: DataViewRelationshipsAudit;
     totalSize?: number;
 }
 
 // Declarations - Data View - Config - Preview
-export interface SourceViewPreview {
+export interface DataViewPreview {
     asAt: number;
     columns: PreviewColumn[];
     // commentPrefixId?: string;
@@ -49,7 +49,7 @@ export interface SourceViewPreview {
 }
 
 // Declarations - Data View - Config - Content Audit
-export interface SourceViewContentAudit {
+export interface DataViewContentAudit {
     asAt: number;
     columns: ContentAuditColumn[];
     commentLineCount: number;
@@ -61,7 +61,7 @@ export interface SourceViewContentAudit {
 }
 
 // Declarations - Data View - Config - Relationships Audit
-export interface SourceViewRelationshipsAudit {
+export interface DataViewRelationshipsAudit {
     placeholder?: string;
 }
 
