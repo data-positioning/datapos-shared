@@ -8,7 +8,7 @@ export interface BaseConfig {
 export { type ComponentConfig, type ComponentStatus, ComponentTypeId, getComponentStatus } from './component';
 
 // Exports - Components - Connector
-export { ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig, ConnectorUsageId } from './connector/index';
+export { type Connector, ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig, ConnectorUsageId } from './connector';
 export type {
     DataConnector,
     DataConnectorFieldInfo,

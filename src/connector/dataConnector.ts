@@ -1,8 +1,8 @@
 import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
 import type { Connector, ConnectorCallbackData, ConnectorConfig } from '.';
-import type { ParsedValue, PreviewColumn } from '..';
 import type { DataViewConfig, ValueDelimiterId } from '../dataView';
+import type { ParsedValue, PreviewColumn } from '..';
 
 export interface DataConnector extends Connector {
     abortController?: AbortController;
