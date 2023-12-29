@@ -47,7 +47,8 @@ export type {
     ContextEntityConfig,
     ContextEntityEventConfig,
     ContextHierarchyConfig,
-    ContextViewConfig
+    ContextViewConfig,
+    Event
 } from './context';
 
 // Exports - Components - Data View

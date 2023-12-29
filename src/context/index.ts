@@ -57,3 +57,11 @@ export interface ContextEntityEventConfig {
 export interface ContextViewConfig extends ComponentConfig {
     placeholder: string;
 }
+
+// ...
+export interface Event {
+    id?: number;
+    entityId: string;
+    effDate: number;
+    typeId: string;
+}
