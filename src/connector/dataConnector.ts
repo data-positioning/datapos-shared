@@ -61,7 +61,7 @@ interface InsertInterface {
 // Types - Preview Interface
 export interface PreviewInterface {
     connector: DataConnector;
-    preview(connector: DataConnector, DataViewConfig: DataViewConfig, parameters: { chunkSize?: number }): Promise<{ error?: unknown; result?: Preview }>;
+    preview(connector: DataConnector, DataViewConfig: DataViewConfig, chunkSize?: number): Promise<{ error?: unknown; result?: Preview }>;
 }
 export interface Preview {
     data: ListEntryParsedValue[][] | Uint8Array;
