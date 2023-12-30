@@ -1,6 +1,6 @@
-import type { ContentAuditColumn } from './ContentAuditColumn';
 import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
+import type { ContentAuditColumn, ParsedValue } from './ContentAuditColumn';
 import type { DPAFileSystemFileHandle, ListEntryParsedValue } from '../connector/dataConnector';
 
 // Declarations - Data View
@@ -138,3 +138,27 @@ export const getValueDelimiters = (localeId = 'en'): ValueDelimiter[] => {
     for (const valueDelimiter of valueDelimiters) items.push({ ...valueDelimiter, label: valueDelimiter.label[localeId] || valueDelimiter.label['en'] || valueDelimiter.id });
     return items.sort((first, second) => first.label.localeCompare(second.label));
 };
+
+// Declarations
+export interface Encoding {
+    id: string;
+    confidenceLevel?: number;
+}
+
+// Declarations
+export interface EncodingConfig {
+    id: string;
+    groupLabel: string;
+    label: string;
+    isDetectable: boolean;
+    isDecodable: boolean;
+}
+
+// Declarations
+export interface FileSchema {
+    columns: PreviewColumn[];
+    hasHeaderLine: boolean;
+    records: ParsedValue[][];
+    text: string;
+    valueDelimiterId: ValueDelimiterId;
+}

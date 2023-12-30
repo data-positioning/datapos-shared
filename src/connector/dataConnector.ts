@@ -1,11 +1,10 @@
+import type { DataViewConfig } from '../dataView';
 import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
 import type { Connector, ConnectorCallbackData, ConnectorConfig } from '.';
-import type { DataViewConfig, ValueDelimiterId } from '../dataView';
-import type { ParsedValue, PreviewColumn } from '..';
 
 export interface DataConnector extends Connector {
-    abortController?: AbortController;
+    abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
 
@@ -18,61 +17,63 @@ export interface DataConnector extends Connector {
         callback: (data: ConnectorCallbackData) => void
     ): Promise<ConnectionDescription>;
     getCreateInterface?(): CreateInterface;
+    getDeleteInterface?(): DeleteInterface;
+    getDropInterface?(): DropInterface;
+    getInsertInterface?(): InsertInterface;
     getPreviewInterface?(): PreviewInterface;
     getReadInterface?(): ReadInterface;
+    getSelectInterface?(): SelectInterface;
+    getUpdateInterface?(): UpdateInterface;
     getWriteInterface?(): WriteInterface;
     listEntries?(settings: ListEntriesSettings): Promise<ListEntriesResult>;
 }
 
-// Create Interface
-interface CreateInterface {
-    connector: DataConnector;
-}
-
-// Preview Interface
-export interface PreviewInterface {
-    connector: DataConnector;
-    preview(connector: DataConnector, DataViewConfig: DataViewConfig, settings: PreviewInterfaceSettings): Promise<Preview>;
-}
-
-export interface InterfaceSettings {
+// Types - Common Interface Parameters
+interface CommonParameters {
     accountId?: string;
     sessionAccessToken?: string;
 }
 
-export interface PreviewInterfaceSettings extends InterfaceSettings {
-    chunkSize?: number;
-}
-export interface PreviewResponse {
-    error?: unknown;
-    result?: DataViewConfig;
+// Types - Create Interface
+interface CreateInterface {
+    connector: DataConnector;
+    create(connector: DataConnector, databaseName: string, tableName: string, typeId?: string, structure?: Record<string, unknown>): Promise<{ error?: unknown }>;
 }
 
-// Declarations
-export interface Encoding {
-    id: string;
-    confidenceLevel?: number;
+// Types - Delete Interface
+interface DeleteInterface {
+    connector: DataConnector;
+    drop(connector: DataConnector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
-// Declarations
-export interface EncodingConfig {
-    id: string;
-    groupLabel: string;
-    label: string;
-    isDetectable: boolean;
-    isDecodable: boolean;
+// Types - Drop Interface
+interface DropInterface {
+    connector: DataConnector;
+    drop(connector: DataConnector, databaseName: string, tableName: string): Promise<{ error?: unknown }>;
 }
 
-// Declarations
-export interface FileSchema {
-    columns: PreviewColumn[];
-    hasHeaderLine: boolean;
-    records: ParsedValue[][];
-    text: string;
-    valueDelimiterId: ValueDelimiterId;
+// Types - Insert Interface
+interface InsertInterface {
+    connector: DataConnector;
+    insert(connector: DataConnector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
-// Read Interface
+// Types - Preview Interface
+export interface PreviewInterface {
+    connector: DataConnector;
+    preview(connector: DataConnector, DataViewConfig: DataViewConfig, parameters: { chunkSize?: number }): Promise<{ error?: unknown; result?: Preview }>;
+}
+export interface Preview {
+    data: ListEntryParsedValue[][] | Uint8Array;
+    typeId: PreviewTypeId;
+}
+export type ListEntryParsedValue = bigint | boolean | number | string | null;
+export enum PreviewTypeId {
+    Table = 'table',
+    Uint8Array = 'uint8Array'
+}
+
+// Types - Read Interface
 export interface ReadInterface {
     connector: DataConnector;
     read(
@@ -104,15 +105,32 @@ export interface DataConnectorFieldInfo {
     isQuoted: boolean;
 }
 
-// List Entries Settings
+// Types - Select Interface
+export interface SelectInterface {
+    connector: DataConnector;
+    select(
+        connector: DataConnector,
+        databaseName: string,
+        tableName: string,
+        columnNames?: string[],
+        limit?: number,
+        offset?: number
+    ): Promise<{ error?: unknown; result?: Record<string, unknown>[] }>;
+}
+
+// Types - Update Interface
+interface UpdateInterface {
+    connector: DataConnector;
+    update(connector: DataConnector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+}
+
+// Types - List Entries Settings
 export interface ListEntriesSettings {
     folderPath: string;
     limit?: number;
     offset?: number;
     totalCount?: number;
 }
-
-// Connection Entry
 export interface ListEntryConfig {
     childCount?: number;
     folderPath: string;
@@ -129,12 +147,6 @@ export interface ListEntryConfig {
     size?: number;
     typeId: ListEntryTypeId;
 }
-
-export type ListEntryParsedValue = bigint | boolean | number | string | null;
-export interface Preview {
-    data: ListEntryParsedValue[][] | Uint8Array;
-    typeId: PreviewTypeId;
-}
 export interface ListEntriesResponse {
     error?: unknown;
     result?: ListEntriesResult;
@@ -145,26 +157,20 @@ export interface ListEntriesResult {
     isMore: boolean;
     totalCount: number;
 }
-
-export enum PreviewTypeId {
-    Table = 'table',
-    Uint8Array = 'uint8Array'
-}
 export enum ListEntryTypeId {
     File = 'file',
     Folder = 'folder'
 }
-
 export interface DPAFileSystemFileHandle {
     readonly kind: 'file';
     getFile(): Promise<File>;
 }
 
+// Types - Write Interface
+
 export interface WriteInterface {
     connector: DataConnector;
-}
-export interface WriteInterfaceSettings {
-    chunk(records: DataConnectorRecord[]): void;
-    chunkSize?: number;
-    complete(fileInfo: DataConnectorFileInfo): void;
+    open(): void;
+    write(): void;
+    close(): void;
 }

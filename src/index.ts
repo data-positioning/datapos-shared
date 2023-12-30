@@ -14,24 +14,24 @@ export type {
     DataConnectorFieldInfo,
     DataConnectorFileInfo,
     DataConnectorRecord,
-    Encoding,
-    EncodingConfig,
-    FileSchema,
     ListEntriesResponse,
     ListEntriesSettings,
     ListEntryConfig,
     ListEntriesResult,
     Preview,
-    PreviewResponse,
+    // PreviewResponse,
     PreviewInterface,
-    PreviewInterfaceSettings,
+    // PreviewParameters,
     ReadInterface,
     ReadInterfaceSettings,
-    WriteInterface,
-    WriteInterfaceSettings
+    WriteInterface
+    // WriteInterfaceSettings
 } from './connector/dataConnector';
 export { PreviewTypeId, ListEntryTypeId } from './connector/dataConnector';
-export type {} from './nodeConnector';
+
+// Exports - Node - Connector
+export { NodeDataTypeId, NodeItemTypeId } from './connector/nodeConnector';
+export type { NodeConnector, NodeItem, NodeItemDataPage, NodeItemProperties, NodeQuery, NodeQueryExpression, NodeQueryExpressionValue } from './connector/nodeConnector';
 
 // Exports - Components - Connection
 export type { ConnectionConfig } from './connection';
@@ -52,7 +52,7 @@ export type {
 } from './context';
 
 // Exports - Components - Data View
-export type { DataViewConfig, DataViewContentAudit, DataViewPreview, DataViewRelationshipsAudit } from './dataView';
+export type { DataViewConfig, DataViewContentAudit, DataViewPreview, DataViewRelationshipsAudit, Encoding, EncodingConfig, FileSchema } from './dataView';
 export { DataFormatId, getDataFormats, getValueDelimiters, ValueDelimiterId } from './dataView';
 export { PreviewColumn } from './dataView/PreviewColumn';
 export { ContentAuditColumn, type ParsedValue } from './dataView/ContentAuditColumn';
@@ -65,10 +65,6 @@ export type { TutorialConfig } from './usageKit';
 
 // Exports - Errors
 export { AbortError, BackendError, ConnectorError, EngineError, EngineCoreError, EngineWorkerError, FetchError, FrontendError, type SerialisedErrorData } from './errors';
-
-// Exports - Node - Connector
-export { NodeDataTypeId, NodeItemTypeId } from './connector/nodeConnector';
-export type { NodeConnector, NodeItem, NodeItemDataPage, NodeItemProperties, NodeQuery, NodeQueryExpression, NodeQueryExpressionValue } from './connector/nodeConnector';
 
 // Exports - Utilities
 export {
