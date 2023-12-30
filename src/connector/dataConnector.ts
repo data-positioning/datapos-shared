@@ -28,12 +28,6 @@ export interface DataConnector extends Connector {
     listEntries?(settings: ListEntriesSettings): Promise<ListEntriesResult>;
 }
 
-// Types - Common Interface Parameters
-interface CommonParameters {
-    accountId?: string;
-    sessionAccessToken?: string;
-}
-
 // Types - Create Interface
 interface CreateInterface {
     connector: DataConnector;
