@@ -29,7 +29,7 @@ const componentStatuses: ComponentStatusConfig[] = [
 export const getComponentStatus = (id: string, localeId = 'en'): ComponentStatus => {
     const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
     if (componentStatus) return { ...componentStatus, label: componentStatus.label[localeId] || componentStatus.label['en'] || id };
-    return { id, color: '#984ea3', label: id };
+    return { id, color: '#d62728', label: id };
 };
 
 export enum ComponentTypeId {
