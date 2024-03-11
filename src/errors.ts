@@ -85,7 +85,7 @@ export class FetchError extends Error {
 export class DataPosError extends Error {
     context?: string;
     data?: Record<string, unknown>;
-    constructor(message: string, context?: string, data?: Record<string, unknown>, cause?: DataPosError) {
+    constructor(message: string, context: string, data?: Record<string, unknown>, cause?: DataPosError) {
         super(message);
         this.name = 'DataPosError';
         this.context = context;
@@ -95,7 +95,7 @@ export class DataPosError extends Error {
 }
 
 export class FrontendError extends DataPosError {
-    constructor(message: string, context?: string, data?: Record<string, unknown>, cause?: DataPosError) {
+    constructor(message: string, context: string, data?: Record<string, unknown>, cause?: DataPosError) {
         super(message, context, data, cause);
         this.name = 'FrontendError';
     }
