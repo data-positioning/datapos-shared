@@ -71,13 +71,33 @@ export class FetchError extends Error {
     }
 }
 
-// Errors - Frontend
-export class FrontendError extends Error {
+// // Errors - Frontend
+// export class FrontendError extends Error {
+//     context?: string;
+//     constructor(message: string, context?: string, cause?: unknown) {
+//         super(message);
+//         this.name = 'FrontendError';
+//         this.context = context;
+//         this.cause = cause;
+//     }
+// }
+
+export class DataPosError extends Error {
     context?: string;
-    constructor(message: string, context?: string, cause?: unknown) {
+    data?: Record<string, unknown>;
+    constructor(message: string, context: string | undefined, data: Record<string, unknown> | undefined, stack: string | undefined, cause: DataPosError | undefined) {
         super(message);
-        this.name = 'FrontendError';
+        this.name = 'DataPosError';
         this.context = context;
+        this.data = data;
+        this.stack = stack;
         this.cause = cause;
+    }
+}
+
+export class FrontendError extends DataPosError {
+    constructor(message: string, context: string | undefined, data: Record<string, unknown> | undefined, stack: string | undefined, cause: DataPosError | undefined) {
+        super(message, context, data, stack, cause);
+        this.name = 'FrontendError';
     }
 }
