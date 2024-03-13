@@ -86,19 +86,19 @@ export class DataPosError extends Error {
     context?: string;
     data?: Record<string, unknown>;
     notation?: string;
-    constructor(message: string, context: string, data?: Record<string, unknown>, notation?: string, cause?: DataPosError) {
+    constructor(message: string, context: string, notation?: string, data?: Record<string, unknown>, cause?: DataPosError) {
         super(message);
         this.name = 'DataPosError';
         this.context = context;
+        this.notation = notation;
         this.data = data;
         this.cause = cause;
-        this.notation = notation;
     }
 }
 
 export class FrontendError extends DataPosError {
-    constructor(message: string, context: string, data?: Record<string, unknown>, notation?: string, cause?: DataPosError) {
-        super(message, context, data, notation, cause);
+    constructor(message: string, context: string, notation?: string, data?: Record<string, unknown>, cause?: DataPosError) {
+        super(message, context, notation, data, cause);
         this.name = 'FrontendError';
     }
 }
