@@ -79,9 +79,11 @@ export interface ReadInterface {
     ): Promise<void>;
 }
 export interface ReadInterfaceSettings {
+    accountId?: string;
     chunk(records: DataConnectorRecord[]): void;
     chunkSize?: number;
     complete(fileInfo: DataConnectorFileInfo): void;
+    sessionAccessToken?: string;
 }
 export interface DataConnectorFileInfo {
     byteCount: number;

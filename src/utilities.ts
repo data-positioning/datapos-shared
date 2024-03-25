@@ -1,4 +1,4 @@
-import type { InterfaceSettings } from './connector/dataConnector';
+import type { ReadInterfaceSettings } from './connector/dataConnector';
 import { type ConnectionConfig, type FieldDataType, FieldStorageTypeId, FieldUsageTypeId } from './connection';
 
 const numberFormatterDefaultLocale = 'en-US';
@@ -172,7 +172,7 @@ export const lookupMimeTypeForFileExtension = (extension: string): string => {
 
 // Utilities
 // // export const establishVendorAccessToken = async (connectionItem: ConnectionItem, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
-export const establishVendorAccessToken = async (connectionConfig: ConnectionConfig, settings: InterfaceSettings, vendorRefreshURI: string): Promise<string> => {
+export const establishVendorAccessToken = async (connectionConfig: ConnectionConfig, settings: ReadInterfaceSettings, vendorRefreshURI: string): Promise<string> => {
     let accessToken;
 
     // If the current dropbox access token expires within 5 minutes then refresh it and return the new one, otherwise return the current one.
