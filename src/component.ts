@@ -10,8 +10,8 @@ export interface ComponentConfig {
     lastUpdatedAt?: FirebaseTimestamp;
     logo?: string;
     status?: ComponentStatus;
-    statusId: string;
-    typeId: ComponentTypeId;
+    statusId?: string;
+    typeId?: ComponentTypeId;
 }
 
 export type ComponentStatus = { id: string; color?: string; label: string };
