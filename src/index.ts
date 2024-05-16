@@ -64,18 +64,7 @@ export type { EventQueryConfig } from './eventQuery';
 export type { TutorialConfig } from './usageKit';
 
 // Exports - Errors
-export {
-    AbortError,
-    BackendError,
-    ConnectorError,
-    DataPosError,
-    EngineError,
-    // EngineCoreError,
-    EngineWorkerError,
-    FetchError,
-    FrontendError,
-    type SerialisedErrorData
-} from './errors';
+export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, EngineWorkerError, FetchError, FrontendError } from './errors';
 
 // Exports - Utilities
 export {
