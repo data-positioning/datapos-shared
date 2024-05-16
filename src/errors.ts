@@ -72,16 +72,16 @@ export class EngineWorkerError extends Error {
     }
 }
 
-// Errors - Fetch
-export class FetchError extends Error {
-    notes?: string;
-    constructor(message: string, cause?: unknown, notes?: string) {
-        super(message);
-        this.name = 'FetchError';
-        this.cause = cause;
-        this.notes = notes;
-    }
-}
+// // Errors - Fetch
+// export class FetchError extends Error {
+//     notes?: string;
+//     constructor(message: string, cause?: unknown, notes?: string) {
+//         super(message);
+//         this.name = 'FetchError';
+//         this.cause = cause;
+//         this.notes = notes;
+//     }
+// }
 
 // // Errors - Frontend
 // export class FrontendError extends Error {
@@ -112,6 +112,13 @@ export class ConnectorError extends DataPosError {
     constructor(message: string, context: string, notes?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, notes, data, cause);
         this.name = 'ConnectorError';
+    }
+}
+
+export class FetchError extends DataPosError {
+    constructor(message: string, context: string, notes?: string, data?: Record<string, unknown>, cause?: unknown) {
+        super(message, context, notes, data, cause);
+        this.name = 'FetchError';
     }
 }
 
