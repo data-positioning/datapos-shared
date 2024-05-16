@@ -70,7 +70,7 @@ export {
     ConnectorError,
     DataPosError,
     EngineError,
-    EngineCoreError,
+    // EngineCoreError,
     EngineWorkerError,
     FetchError,
     FrontendError,
