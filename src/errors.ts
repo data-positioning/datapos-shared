@@ -3,6 +3,7 @@ export interface SerialisedErrorData {
     context?: string;
     message: string;
     name?: string;
+    notes?: string;
     stack?: string;
 }
 
