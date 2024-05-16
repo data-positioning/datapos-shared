@@ -1,6 +1,7 @@
 export interface SerialisedErrorData {
     cause?: SerialisedErrorData;
     context?: string;
+    data?: string;
     message: string;
     name?: string;
     notes?: string;
