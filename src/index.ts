@@ -10,10 +10,10 @@ export { type ComponentConfig, type ComponentStatus, ComponentTypeId, getCompone
 // Exports - Components - Connector
 export { ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig, ConnectorUsageId } from './connector';
 export type {
-    DataConnector,
-    DataConnectorFieldInfo,
-    DataConnectorFileInfo,
-    DataConnectorRecord,
+    Connector,
+    ConnectorFieldInfo,
+    ConnectorFileInfo,
+    ConnectorRecord,
     ListItemsResponse,
     ListItemsSettings,
     ConnectionItemConfig,
@@ -28,10 +28,6 @@ export type {
     // WriteInterfaceSettings
 } from './connector/dataConnector';
 export { PreviewTypeId, ConnectionItemTypeId } from './connector/dataConnector';
-
-// // Exports - Node - Connector
-// export { NodeDataTypeId, NodeItemTypeId } from './connector/nodeConnector';
-// export type { NodeConnector, NodeItem, NodeItemDataPage, NodeItemProperties, NodeQuery, NodeQueryExpression, NodeQueryExpressionValue } from './connector/nodeConnector';
 
 // Exports - Components - Connection
 export type { ConnectionConfig } from './connection';

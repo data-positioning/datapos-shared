@@ -3,7 +3,7 @@ import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
 import type { ConnectorCallbackData, ConnectorConfig } from '.';
 
-export interface DataConnector {
+export interface Connector {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
@@ -30,32 +30,32 @@ export interface DataConnector {
 
 // Types - Create Interface
 interface CreateInterface {
-    connector: DataConnector;
-    create(connector: DataConnector, databaseName: string, tableName: string, typeId?: string, structure?: Record<string, unknown>): Promise<{ error?: unknown }>;
+    connector: Connector;
+    create(connector: Connector, databaseName: string, tableName: string, typeId?: string, structure?: Record<string, unknown>): Promise<{ error?: unknown }>;
 }
 
 // Types - Delete Interface
 interface DeleteInterface {
-    connector: DataConnector;
-    drop(connector: DataConnector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+    connector: Connector;
+    drop(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Types - Drop Interface
 interface DropInterface {
-    connector: DataConnector;
-    drop(connector: DataConnector, databaseName: string, tableName: string): Promise<{ error?: unknown }>;
+    connector: Connector;
+    drop(connector: Connector, databaseName: string, tableName: string): Promise<{ error?: unknown }>;
 }
 
 // Types - Insert Interface
 interface InsertInterface {
-    connector: DataConnector;
-    insert(connector: DataConnector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+    connector: Connector;
+    insert(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Types - Preview Interface
 export interface PreviewInterface {
-    connector: DataConnector;
-    preview(connector: DataConnector, DataViewConfig: DataViewConfig, chunkSize?: number): Promise<{ error?: unknown; result?: Preview }>;
+    connector: Connector;
+    preview(connector: Connector, DataViewConfig: DataViewConfig, chunkSize?: number): Promise<{ error?: unknown; result?: Preview }>;
 }
 export interface Preview {
     data: ListEntryParsedValue[][] | Uint8Array;
@@ -69,9 +69,9 @@ export enum PreviewTypeId {
 
 // Types - Read Interface
 export interface ReadInterface {
-    connector: DataConnector;
+    connector: Connector;
     read(
-        connector: DataConnector,
+        connector: Connector,
         DataViewConfig: DataViewConfig,
         settings: ReadInterfaceSettings,
         csvParse: (options?: Options, callback?: Callback) => Parser,
@@ -80,12 +80,12 @@ export interface ReadInterface {
 }
 export interface ReadInterfaceSettings {
     accountId?: string;
-    chunk(records: DataConnectorRecord[]): void;
+    chunk(records: ConnectorRecord[]): void;
     chunkSize?: number;
-    complete(fileInfo: DataConnectorFileInfo): void;
+    complete(fileInfo: ConnectorFileInfo): void;
     sessionAccessToken?: string;
 }
-export interface DataConnectorFileInfo {
+export interface ConnectorFileInfo {
     byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;
@@ -93,19 +93,19 @@ export interface DataConnectorFileInfo {
     lineCount: number;
     recordCount: number;
 }
-export interface DataConnectorRecord {
-    fieldInfos: DataConnectorFieldInfo[];
+export interface ConnectorRecord {
+    fieldInfos: ConnectorFieldInfo[];
     fieldValues: string[];
 }
-export interface DataConnectorFieldInfo {
+export interface ConnectorFieldInfo {
     isQuoted: boolean;
 }
 
 // Types - Select Interface
 export interface SelectInterface {
-    connector: DataConnector;
+    connector: Connector;
     select(
-        connector: DataConnector,
+        connector: Connector,
         databaseName: string,
         tableName: string,
         columnNames?: string[],
@@ -116,8 +116,8 @@ export interface SelectInterface {
 
 // Types - Update Interface
 interface UpdateInterface {
-    connector: DataConnector;
-    update(connector: DataConnector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+    connector: Connector;
+    update(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Types - List Entries Settings
@@ -164,7 +164,7 @@ export interface DPAFileSystemFileHandle {
 
 // Types - Write Interface
 export interface WriteInterface {
-    connector: DataConnector;
+    connector: Connector;
     open(): void;
     write(): void;
     close(): void;

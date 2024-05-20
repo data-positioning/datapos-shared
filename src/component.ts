@@ -34,11 +34,10 @@ export const getComponentStatus = (id: string, localeId = 'en'): ComponentStatus
 
 export enum ComponentTypeId {
     Connection = 'connection',
+    Connector = 'connector',
     Context = 'context',
-    DataConnector = 'dataConnector',
     DataView = 'dataView',
     EventQuery = 'eventQuery',
-    NodeConnector = 'nodeConnector',
     Presentation = 'presentation',
     Tutorial = 'tutorial'
 }
