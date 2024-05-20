@@ -154,8 +154,8 @@ export interface ListEntriesResult {
     totalCount: number;
 }
 export enum ListEntryTypeId {
-    File = 'file',
-    Folder = 'folder'
+    Folder = 'folder',
+    Object = 'object'
 }
 export interface DPAFileSystemFileHandle {
     readonly kind: 'file';
@@ -163,7 +163,6 @@ export interface DPAFileSystemFileHandle {
 }
 
 // Types - Write Interface
-
 export interface WriteInterface {
     connector: DataConnector;
     open(): void;
