@@ -1,9 +1,9 @@
 import type { DataViewConfig } from '../dataView';
 import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
-import type { Connector, ConnectorCallbackData, ConnectorConfig } from '.';
+import type { ConnectorCallbackData, ConnectorConfig } from '.';
 
-export interface DataConnector extends Connector {
+export interface DataConnector {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
@@ -25,7 +25,7 @@ export interface DataConnector extends Connector {
     getSelectInterface?(): SelectInterface;
     getUpdateInterface?(): UpdateInterface;
     getWriteInterface?(): WriteInterface;
-    listEntries?(settings: ListEntriesSettings): Promise<ListEntriesResult>;
+    listItems?(settings: ListItemsSettings): Promise<ListItemsResult>;
 }
 
 // Types - Create Interface
@@ -121,7 +121,7 @@ interface UpdateInterface {
 }
 
 // Types - List Entries Settings
-export interface ListEntriesSettings {
+export interface ListItemsSettings {
     folderPath: string;
     limit?: number;
     offset?: number;
@@ -143,11 +143,11 @@ export interface ConnectionItemConfig {
     size?: number;
     typeId: ConnectionItemTypeId;
 }
-export interface ListEntriesResponse {
+export interface ListItemsResponse {
     error?: unknown;
-    result?: ListEntriesResult;
+    result?: ListItemsResult;
 }
-export interface ListEntriesResult {
+export interface ListItemsResult {
     cursor: string | number | undefined;
     connectionItemConfigs: ConnectionItemConfig[];
     isMore: boolean;

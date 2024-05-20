@@ -8,16 +8,16 @@ export interface BaseConfig {
 export { type ComponentConfig, type ComponentStatus, ComponentTypeId, getComponentStatus } from './component';
 
 // Exports - Components - Connector
-export { type Connector, ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig, ConnectorUsageId } from './connector';
+export { ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig, ConnectorUsageId } from './connector';
 export type {
     DataConnector,
     DataConnectorFieldInfo,
     DataConnectorFileInfo,
     DataConnectorRecord,
-    ListEntriesResponse,
-    ListEntriesSettings,
+    ListItemsResponse,
+    ListItemsSettings,
     ConnectionItemConfig,
-    ListEntriesResult,
+    ListItemsResult,
     Preview,
     // PreviewResponse,
     PreviewInterface,
@@ -29,9 +29,9 @@ export type {
 } from './connector/dataConnector';
 export { PreviewTypeId, ConnectionItemTypeId } from './connector/dataConnector';
 
-// Exports - Node - Connector
-export { NodeDataTypeId, NodeItemTypeId } from './connector/nodeConnector';
-export type { NodeConnector, NodeItem, NodeItemDataPage, NodeItemProperties, NodeQuery, NodeQueryExpression, NodeQueryExpressionValue } from './connector/nodeConnector';
+// // Exports - Node - Connector
+// export { NodeDataTypeId, NodeItemTypeId } from './connector/nodeConnector';
+// export type { NodeConnector, NodeItem, NodeItemDataPage, NodeItemProperties, NodeQuery, NodeQueryExpression, NodeQueryExpressionValue } from './connector/nodeConnector';
 
 // Exports - Components - Connection
 export type { ConnectionConfig } from './connection';

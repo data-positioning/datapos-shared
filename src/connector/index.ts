@@ -1,10 +1,10 @@
 import type { ConnectionConfig } from '../connection';
 import type { Component, ComponentConfig } from '../component';
 
-export interface Connector extends Component {
-    config: ConnectorConfig;
-    connectionConfig: ConnectionConfig;
-}
+// export interface Connector extends Component {
+//     config: ConnectorConfig;
+//     connectionConfig: ConnectionConfig;
+// }
 
 // Callback
 export interface ConnectorCallbackData {
