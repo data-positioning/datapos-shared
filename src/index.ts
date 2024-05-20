@@ -27,7 +27,7 @@ export type {
     WriteInterface
     // WriteInterfaceSettings
 } from './connector/dataConnector';
-export { PreviewTypeId, ListEntryTypeId } from './connector/dataConnector';
+export { PreviewTypeId, ConnectionItemTypeId } from './connector/dataConnector';
 
 // Exports - Node - Connector
 export { NodeDataTypeId, NodeItemTypeId } from './connector/nodeConnector';

@@ -141,7 +141,7 @@ export interface ListEntryConfig {
     // params?: Record<string, unknown>; // TODO: What is this used for?
     // paramsString?: string; // TODO: What is this used for?
     size?: number;
-    typeId: ListEntryTypeId;
+    typeId: ConnectionItemTypeId;
 }
 export interface ListEntriesResponse {
     error?: unknown;
@@ -153,7 +153,7 @@ export interface ListEntriesResult {
     isMore: boolean;
     totalCount: number;
 }
-export enum ListEntryTypeId {
+export enum ConnectionItemTypeId {
     Folder = 'folder',
     Object = 'object'
 }
