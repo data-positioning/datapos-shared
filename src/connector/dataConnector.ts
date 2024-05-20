@@ -127,7 +127,7 @@ export interface ListEntriesSettings {
     offset?: number;
     totalCount?: number;
 }
-export interface ListEntryConfig {
+export interface ConnectionItemConfig {
     childCount?: number;
     folderPath: string;
     encodingId?: string;
@@ -149,7 +149,7 @@ export interface ListEntriesResponse {
 }
 export interface ListEntriesResult {
     cursor: string | number | undefined;
-    listEntryConfigs: ListEntryConfig[];
+    connectionItemConfigs: ConnectionItemConfig[];
     isMore: boolean;
     totalCount: number;
 }

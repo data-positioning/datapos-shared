@@ -16,7 +16,7 @@ export type {
     DataConnectorRecord,
     ListEntriesResponse,
     ListEntriesSettings,
-    ListEntryConfig,
+    ConnectionItemConfig,
     ListEntriesResult,
     Preview,
     // PreviewResponse,
