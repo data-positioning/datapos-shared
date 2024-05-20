@@ -1,16 +1,10 @@
-// import type { ConnectionConfig } from '../connection';
-// import type { Component, ComponentConfig } from '../component';
+// Dependencies - Framework
 import type { ComponentConfig } from '../component';
-
-// export interface Connector extends Component {
-//     config: ConnectorConfig;
-//     connectionConfig: ConnectionConfig;
-// }
 import type { DataViewConfig } from '../dataView';
 import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
-// import type { ConnectorCallbackData, ConnectorConfig } from '.';
 
+// Interfaces/Types - Connector
 export interface Connector {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
@@ -21,7 +15,7 @@ export interface Connector {
     describe?(
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
-        connectionEntryId: string | undefined,
+        connectionItemId: string | undefined,
         callback: (data: ConnectorCallbackData) => void
     ): Promise<ConnectionDescription>;
     getCreateInterface?(): CreateInterface;
@@ -36,31 +30,31 @@ export interface Connector {
     listItems?(settings: ListItemsSettings): Promise<ListItemsResult>;
 }
 
-// Types - Create Interface
+// Interfaces/Types - Create Interface
 interface CreateInterface {
     connector: Connector;
     create(connector: Connector, databaseName: string, tableName: string, typeId?: string, structure?: Record<string, unknown>): Promise<{ error?: unknown }>;
 }
 
-// Types - Delete Interface
+// Interfaces/Types - Delete Interface
 interface DeleteInterface {
     connector: Connector;
     drop(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
-// Types - Drop Interface
+// Interfaces/Types - Drop Interface
 interface DropInterface {
     connector: Connector;
     drop(connector: Connector, databaseName: string, tableName: string): Promise<{ error?: unknown }>;
 }
 
-// Types - Insert Interface
+// Interfaces/Types - Insert Interface
 interface InsertInterface {
     connector: Connector;
     insert(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
-// Types - Preview Interface
+// Interfaces/Types - Preview Interface
 export interface PreviewInterface {
     connector: Connector;
     preview(connector: Connector, DataViewConfig: DataViewConfig, chunkSize?: number): Promise<{ error?: unknown; result?: Preview }>;
@@ -75,7 +69,7 @@ export enum PreviewTypeId {
     Uint8Array = 'uint8Array'
 }
 
-// Types - Read Interface
+// Interfaces/Types - Read Interface
 export interface ReadInterface {
     connector: Connector;
     read(
@@ -109,7 +103,7 @@ export interface ConnectorFieldInfo {
     isQuoted: boolean;
 }
 
-// Types - Select Interface
+// Interfaces/Types - Select Interface
 export interface SelectInterface {
     connector: Connector;
     select(
@@ -122,34 +116,18 @@ export interface SelectInterface {
     ): Promise<{ error?: unknown; result?: Record<string, unknown>[] }>;
 }
 
-// Types - Update Interface
+// Interfaces/Types - Update Interface
 interface UpdateInterface {
     connector: Connector;
     update(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
-// Types - List Entries Settings
+// Interfaces/Types - List Items Settings
 export interface ListItemsSettings {
     folderPath: string;
     limit?: number;
     offset?: number;
     totalCount?: number;
-}
-export interface ConnectionItemConfig {
-    childCount?: number;
-    folderPath: string;
-    encodingId?: string;
-    extension?: string;
-    handle?: DPAFileSystemFileHandle; // TODO: Remove reference to 'FileSystemFileHandle' otherwise 'datapos-connector-node-browser' does not compile.
-    id: string;
-    label: string;
-    lastModifiedAt?: number;
-    mimeType?: string;
-    name: string;
-    // params?: Record<string, unknown>; // TODO: What is this used for?
-    // paramsString?: string; // TODO: What is this used for?
-    size?: number;
-    typeId: ConnectionItemTypeId;
 }
 export interface ListItemsResponse {
     error?: unknown;
@@ -157,20 +135,16 @@ export interface ListItemsResponse {
 }
 export interface ListItemsResult {
     cursor: string | number | undefined;
-    connectionItemConfigs: ConnectionItemConfig[];
+    itemConfigs: ItemConfig[];
     isMore: boolean;
     totalCount: number;
-}
-export enum ConnectionItemTypeId {
-    Folder = 'folder',
-    Object = 'object'
 }
 export interface DPAFileSystemFileHandle {
     readonly kind: 'file';
     getFile(): Promise<File>;
 }
 
-// Types - Write Interface
+// Interfaces/Types - Write Interface
 export interface WriteInterface {
     connector: Connector;
     open(): void;
@@ -233,4 +207,26 @@ export enum ConnectorUsageId {
     Node = 'node',
     Source = 'source',
     None = 'none'
+}
+
+// Interfaces/Types -Item
+export interface ItemConfig {
+    childCount?: number;
+    folderPath: string;
+    encodingId?: string;
+    extension?: string;
+    handle?: DPAFileSystemFileHandle; // TODO: Remove reference to 'FileSystemFileHandle' otherwise 'datapos-connector-node-browser' does not compile.
+    id: string;
+    label: string;
+    lastModifiedAt?: number;
+    mimeType?: string;
+    name: string;
+    // params?: Record<string, unknown>; // TODO: What is this used for?
+    // paramsString?: string; // TODO: What is this used for?
+    size?: number;
+    typeId: ItemTypeId;
+}
+export enum ItemTypeId {
+    Folder = 'folder',
+    Object = 'object'
 }

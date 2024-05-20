@@ -14,9 +14,9 @@ export type {
     ConnectorFieldInfo,
     ConnectorFileInfo,
     ConnectorRecord,
+    ItemConfig,
     ListItemsResponse,
     ListItemsSettings,
-    ConnectionItemConfig,
     ListItemsResult,
     Preview,
     // PreviewResponse,
@@ -27,7 +27,7 @@ export type {
     WriteInterface
     // WriteInterfaceSettings
 } from './connector';
-export { PreviewTypeId, ConnectionItemTypeId } from './connector';
+export { PreviewTypeId, ItemTypeId } from './connector';
 
 // Exports - Components - Connection
 export type { ConnectionConfig } from './connection';

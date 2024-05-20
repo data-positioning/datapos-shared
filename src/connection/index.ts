@@ -1,10 +1,12 @@
+// Dependencies - Framework
 import type { Component, ComponentConfig, FirebaseTimestamp } from '../component';
 
+// Interfaces/Types - Connection
 export interface Connection extends Component {
     config: ConnectionConfig;
 }
 
-// Config
+// Interfaces/Types - Connection Configuration
 export interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorization>;
     connectorId: string;
@@ -23,9 +25,9 @@ interface ConnectionAuthorization {
     uid: string; // Dropbox.
 }
 
-// Connection Description
-export type ConnectionDescription = { fileEntries: Record<string, FileEntry>; objectTypes: Record<string, ObjectType> };
-export interface FileEntry {
+// Interfaces/Types - Connection Description
+export type ConnectionDescription = { itemEntries: Record<string, ItemEntry>; objectTypes: Record<string, ObjectType> };
+interface ItemEntry {
     description?: string;
     fields: Record<string, Field>;
     folderIds: string[];
