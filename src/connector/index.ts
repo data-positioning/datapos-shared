@@ -76,8 +76,8 @@ export interface ReadInterface {
         connector: Connector,
         DataViewConfig: DataViewConfig,
         settings: ReadInterfaceSettings,
-        csvParse: (options?: Options, callback?: Callback) => Parser | undefined,
-        callback: (data: ConnectorCallbackData) => void
+        callback: (data: ConnectorCallbackData) => void,
+        csvParse: (options?: Options, callback?: Callback) => Parser | undefined
     ): Promise<void>;
 }
 export interface ReadInterfaceSettings {
