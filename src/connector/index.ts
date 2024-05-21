@@ -124,7 +124,7 @@ interface UpdateInterface {
 
 // Interfaces/Types - List Items Settings
 export interface ListItemsSettings {
-    objectPath: string;
+    folderPath: string;
     limit?: number;
     offset?: number;
     totalCount?: number;
