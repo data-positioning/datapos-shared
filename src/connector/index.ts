@@ -76,7 +76,7 @@ export interface ReadInterface {
         connector: Connector,
         DataViewConfig: DataViewConfig,
         settings: ReadInterfaceSettings,
-        csvParse: (options?: Options, callback?: Callback) => Parser,
+        csvParse: (options?: Options, callback?: Callback) => Parser | undefined,
         callback: (data: ConnectorCallbackData) => void
     ): Promise<void>;
 }
@@ -122,7 +122,7 @@ interface UpdateInterface {
     update(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
-// Interfaces/Types - List Items Settings
+// Interfaces/Types - List Items
 export interface ListItemsSettings {
     folderPath: string;
     limit?: number;
