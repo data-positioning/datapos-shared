@@ -127,7 +127,7 @@
 //     offset?: number;
 //     totalCount?: number;
 // }
-// export interface ConnectionItemConfig {
+// export interface ItemConfig {
 //     childCount?: number;
 //     folderPath: string;
 //     encodingId?: string;
@@ -141,7 +141,7 @@
 //     // params?: Record<string, unknown>; // TODO: What is this used for?
 //     // paramsString?: string; // TODO: What is this used for?
 //     size?: number;
-//     typeId: ConnectionItemTypeId;
+//     typeId: ItemTypeId;
 // }
 // export interface ListItemsResponse {
 //     error?: unknown;
@@ -149,11 +149,11 @@
 // }
 // export interface ListItemsResult {
 //     cursor: string | number | undefined;
-//     connectionItemConfigs: ConnectionItemConfig[];
+//     itemConfigs: ItemConfig[];
 //     isMore: boolean;
 //     totalCount: number;
 // }
-// export enum ConnectionItemTypeId {
+// export enum ItemTypeId {
 //     Folder = 'folder',
 //     Object = 'object'
 // }

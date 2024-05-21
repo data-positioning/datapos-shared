@@ -15,7 +15,7 @@ export interface Connector {
     describe?(
         accountId: string | undefined,
         sessionAccessToken: string | undefined,
-        connectionItemId: string | undefined,
+        itemId: string | undefined,
         callback: (data: ConnectorCallbackData) => void
     ): Promise<ConnectionDescription>;
     getCreateInterface?(): CreateInterface;
@@ -84,10 +84,10 @@ export interface ReadInterfaceSettings {
     accountId?: string;
     chunk(records: ConnectorRecord[]): void;
     chunkSize?: number;
-    complete(fileInfo: ConnectorFileInfo): void;
+    complete(info: ObjectInfo): void;
     sessionAccessToken?: string;
 }
-export interface ConnectorFileInfo {
+export interface ObjectInfo {
     byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;
@@ -124,7 +124,7 @@ interface UpdateInterface {
 
 // Interfaces/Types - List Items Settings
 export interface ListItemsSettings {
-    folderPath: string;
+    objectPath: string;
     limit?: number;
     offset?: number;
     totalCount?: number;
@@ -209,7 +209,7 @@ export enum ConnectorUsageId {
     None = 'none'
 }
 
-// Interfaces/Types -Item
+// Interfaces/Types - Item
 export interface ItemConfig {
     childCount?: number;
     folderPath: string;

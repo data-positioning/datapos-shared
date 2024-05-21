@@ -1,7 +1,7 @@
 import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
 import type { ContentAuditColumn, ParsedValue } from './ContentAuditColumn';
-import type { DPAFileSystemFileHandle, ListEntryParsedValue } from '../connector/dataConnector';
+import type { DPAFileSystemFileHandle, ListEntryParsedValue } from '../connector';
 
 // Declarations - Data View
 export interface DataView extends Component {
@@ -11,11 +11,11 @@ export interface DataView extends Component {
 // Declarations - Data View - Config
 export interface DataViewConfig extends ComponentConfig {
     connectionId: string;
-    fileExtension?: string;
-    fileHandle?: DPAFileSystemFileHandle;
-    fileId?: string;
-    fileName: string;
     folderPath: string;
+    objectExtension?: string;
+    objectHandle?: DPAFileSystemFileHandle;
+    objectId?: string;
+    objectName: string;
     preview?: DataViewPreview;
     contentAudit?: DataViewContentAudit;
     relationshipsAudit?: DataViewRelationshipsAudit;
@@ -35,7 +35,7 @@ export interface DataViewPreview {
     // lineDelimiterId?: string;
     // linesToSkipBeforeHeader?: number;
     // linesToSkipAfterHeader?: number;
-    // linesToSkipAtEndOfFile?: number;
+    // linesToSkipAtEnd?: number;
     size: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
@@ -155,7 +155,7 @@ export interface EncodingConfig {
 }
 
 // Declarations
-export interface FileSchema {
+export interface ObjectSchema {
     columns: PreviewColumn[];
     hasHeaderLine: boolean;
     records: ParsedValue[][];

@@ -1,4 +1,4 @@
-import type { ReadInterfaceSettings } from './connector/dataConnector';
+import type { ReadInterfaceSettings } from './connector';
 import { type ConnectionConfig, type FieldDataType, FieldStorageTypeId, FieldUsageTypeId } from './connection';
 
 const numberFormatterDefaultLocale = 'en-US';
@@ -44,7 +44,7 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
 };
 
 // Utilities - Extract
-// export const extractFolderPathFromFilePath = (itemPath: string): string | undefined => {
+// export const extractFolderPathFromPath = (itemPath: string): string | undefined => {
 //     if (itemPath) {
 //         const lastIndex = itemPath.lastIndexOf('/');
 //         if (lastIndex > -1) return itemPath.substring(0, lastIndex);
@@ -55,7 +55,7 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
 // Utilities - Extract
 
 // TODO: Has errors.
-// export const extractFileNameFromFilePath = (itemPath: string): string | undefined => {
+// export const extractNameFromPath = (itemPath: string): string | undefined => {
 //     if (itemPath) {
 //         const lastSeparatorIndex = itemPath.lastIndexOf('/');
 //         const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : itemPath.length);
@@ -65,7 +65,7 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
 // };
 
 // Utilities - Extract
-export const extractFileExtensionFromFilePath = (itemPath: string): string | undefined => {
+export const extractExtensionFromPath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastExtensionIndex = itemPath.lastIndexOf('.');
         if (lastExtensionIndex > -1) return itemPath.substring(lastExtensionIndex + 1);
@@ -154,7 +154,7 @@ export const formatNumberAsWholeNumber = (number?: number, locale = numberFormat
 };
 
 // Utilities - Lookup
-export const lookupMimeTypeForFileExtension = (extension: string): string => {
+export const lookupMimeTypeForExtension = (extension: string): string => {
     switch (extension) {
         case 'csv':
             return 'text/csv';
@@ -171,13 +171,13 @@ export const lookupMimeTypeForFileExtension = (extension: string): string => {
 };
 
 // Utilities
-// // export const establishVendorAccessToken = async (connectionItem: ConnectionItem, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
+// // export const establishVendorAccessToken = async (item: Item, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
 export const establishVendorAccessToken = async (connectionConfig: ConnectionConfig, settings: ReadInterfaceSettings, vendorRefreshURI: string): Promise<string> => {
     let accessToken;
 
     // If the current dropbox access token expires within 5 minutes then refresh it and return the new one, otherwise return the current one.
     if (connectionConfig.authorisation[''].expires_at - Date.now() < 300000) {
-        // TODO: Above is WRONG 'connectionItem.authorization!['']'. We need to know what authorisation.
+        // TODO: Above is WRONG 'item.authorization!['']'. We need to know what authorisation.
         const headers: HeadersInit = {
             'Account-Id': settings.accountId || '',
             Authorization: settings.sessionAccessToken || '',
@@ -197,7 +197,7 @@ export const establishVendorAccessToken = async (connectionConfig: ConnectionCon
         }
         accessToken = await response.text();
     } else {
-        accessToken = connectionConfig.authorisation[''].access_token; // TODO: This is WRONG 'connectionItem.authorization!['']'. We need to know what authorisation.
+        accessToken = connectionConfig.authorisation[''].access_token; // TODO: This is WRONG 'item.authorization!['']'. We need to know what authorisation.
     }
 
     return accessToken;

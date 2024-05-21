@@ -2,7 +2,7 @@ const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine - Support
 import { FieldUsageTypeId } from '../connection';
-import type { ListEntryParsedValue } from '../connector/dataConnector';
+import type { ListEntryParsedValue } from '../connector';
 import { PreviewColumn } from './PreviewColumn';
 
 export type ParsedValue = bigint | boolean | number | string | null;

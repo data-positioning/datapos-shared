@@ -12,7 +12,7 @@ export { ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig
 export type {
     Connector,
     ConnectorFieldInfo,
-    ConnectorFileInfo,
+    ObjectInfo,
     ConnectorRecord,
     ItemConfig,
     ListItemsResponse,
@@ -48,7 +48,7 @@ export type {
 } from './context';
 
 // Exports - Components - Data View
-export type { DataViewConfig, DataViewContentAudit, DataViewPreview, DataViewRelationshipsAudit, Encoding, EncodingConfig, FileSchema } from './dataView';
+export type { DataViewConfig, DataViewContentAudit, DataViewPreview, DataViewRelationshipsAudit, Encoding, EncodingConfig, ObjectSchema } from './dataView';
 export { DataFormatId, getDataFormats, getValueDelimiters, ValueDelimiterId } from './dataView';
 export { PreviewColumn } from './dataView/PreviewColumn';
 export { ContentAuditColumn, type ParsedValue } from './dataView/ContentAuditColumn';
@@ -66,10 +66,10 @@ export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, En
 export {
     convertODataTypeToDataType,
     establishVendorAccessToken,
-    extractFileExtensionFromFilePath,
+    extractExtensionFromPath,
     formatNumberAsDecimalNumber,
     formatNumberAsDuration,
     formatNumberAsStorageSize,
     formatNumberAsWholeNumber,
-    lookupMimeTypeForFileExtension
+    lookupMimeTypeForExtension
 } from './utilities';
