@@ -2,30 +2,23 @@ import type { ConnectionConfig } from '../connection';
 import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
 import type { ContentAuditColumn, ParsedValue } from './ContentAuditColumn';
-import type { DPAFileSystemFileHandle, ItemConfig, ListEntryParsedValue } from '../connector';
+import type { ItemConfig, ListEntryParsedValue } from '../connector';
 
 // Declarations - Data View
 export interface DataView extends Component {
     properties: DataViewConfig;
 }
 
-// Declarations - Data View - Config
+// Declarations - Data View - Configuration
 export interface DataViewConfig extends ComponentConfig {
-    // connectionId: string;
     connectionConfig: ConnectionConfig;
     itemConfig: ItemConfig;
-    // folderPath: string;
-    // extension?: string;
-    // handle?: DPAFileSystemFileHandle;
-    // id: string;
-    // name: string;
     previewConfig?: DataViewPreviewConfig;
     contentAuditConfig?: DataViewContentAuditConfig;
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
-    // totalSize?: number;
 }
 
-// Declarations - Data View - Config - Preview
+// Declarations - Data View - Configuration - Preview
 export interface DataViewPreviewConfig {
     asAt: number;
     columns: PreviewColumn[];
@@ -52,7 +45,7 @@ export interface DataViewPreviewConfig {
     // valueTrimMethodId?: string;
 }
 
-// Declarations - Data View - Config - Content Audit
+// Declarations - Data View - Configuration - Content Audit
 export interface DataViewContentAuditConfig {
     asAt: number;
     columns: ContentAuditColumn[];
@@ -64,7 +57,7 @@ export interface DataViewContentAuditConfig {
     recordCount: number;
 }
 
-// Declarations - Data View - Config - Relationships Audit
+// Declarations - Data View - Configuration - Relationships Audit
 export interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
