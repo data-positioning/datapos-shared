@@ -27,7 +27,7 @@ export type {
     WriteInterface
     // WriteInterfaceSettings
 } from './connector';
-export { PreviewTypeId, ItemTypeId } from './connector';
+export { PreviewTypeId } from './connector';
 
 // Exports - Components - Connection
 export type { ConnectionConfig } from './connection';
