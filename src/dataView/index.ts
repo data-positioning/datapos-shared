@@ -1,7 +1,8 @@
+import type { ConnectionConfig } from '../connection';
 import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
 import type { ContentAuditColumn, ParsedValue } from './ContentAuditColumn';
-import type { DPAFileSystemFileHandle, ListEntryParsedValue } from '../connector';
+import type { DPAFileSystemFileHandle, ItemConfig, ListEntryParsedValue } from '../connector';
 
 // Declarations - Data View
 export interface DataView extends Component {
@@ -10,16 +11,18 @@ export interface DataView extends Component {
 
 // Declarations - Data View - Config
 export interface DataViewConfig extends ComponentConfig {
-    connectionId: string;
-    folderPath: string;
-    objectExtension?: string;
-    objectHandle?: DPAFileSystemFileHandle;
-    objectId: string;
-    objectName: string;
+    // connectionId: string;
+    connectionConfig: ConnectionConfig;
+    itemConfig: ItemConfig;
+    // folderPath: string;
+    // extension?: string;
+    // handle?: DPAFileSystemFileHandle;
+    // id: string;
+    // name: string;
     preview?: DataViewPreview;
     contentAudit?: DataViewContentAudit;
     relationshipsAudit?: DataViewRelationshipsAudit;
-    totalSize?: number;
+    // totalSize?: number;
 }
 
 // Declarations - Data View - Config - Preview
@@ -36,7 +39,7 @@ export interface DataViewPreview {
     // linesToSkipBeforeHeader?: number;
     // linesToSkipAfterHeader?: number;
     // linesToSkipAtEnd?: number;
-    size: number;
+    previewSize: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
     records: ListEntryParsedValue[][];
@@ -44,6 +47,7 @@ export interface DataViewPreview {
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;
     text: string;
+    totalSize: number;
     valueDelimiterId?: ValueDelimiterId;
     // valueTrimMethodId?: string;
 }
