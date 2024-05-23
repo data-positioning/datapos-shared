@@ -32,15 +32,14 @@ export interface DataViewPreviewConfig {
     // linesToSkipBeforeHeader?: number;
     // linesToSkipAfterHeader?: number;
     // linesToSkipAtEnd?: number;
-    previewSize: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
     records: ListEntryParsedValue[][];
+    size: number;
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;
     text: string;
-    totalSize: number;
     valueDelimiterId?: ValueDelimiterId;
     // valueTrimMethodId?: string;
 }
