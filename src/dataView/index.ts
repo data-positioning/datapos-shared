@@ -14,7 +14,7 @@ export interface DataViewConfig extends ComponentConfig {
     folderPath: string;
     objectExtension?: string;
     objectHandle?: DPAFileSystemFileHandle;
-    objectId?: string;
+    objectId: string;
     objectName: string;
     preview?: DataViewPreview;
     contentAudit?: DataViewContentAudit;

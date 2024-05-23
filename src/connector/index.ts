@@ -212,16 +212,16 @@ export enum ConnectorUsageId {
 // Interfaces/Types - Item
 export interface ItemConfig {
     childCount?: number;
+    encodingId?: string;
+    extension?: string;
     folderPath: string;
-    id: string;
+    handle?: DPAFileSystemFileHandle; // TODO: Remove reference to 'FileSystemFileHandle' otherwise 'datapos-connector-node-browser' does not compile.
+    id?: string;
     label: string;
+    lastModifiedAt?: number;
+    mimeType?: string;
     name: string;
-    objectEncodingId?: string;
-    objectExtension?: string;
-    objectHandle?: DPAFileSystemFileHandle; // TODO: Remove reference to 'FileSystemFileHandle' otherwise 'datapos-connector-node-browser' does not compile.
-    objectLastModifiedAt?: number;
-    objectMimeType?: string;
-    objectSize?: number;
+    size?: number;
     // params?: Record<string, unknown>; // TODO: What is this used for?
     // paramsString?: string; // TODO: What is this used for?
     typeId: ItemTypeId;
