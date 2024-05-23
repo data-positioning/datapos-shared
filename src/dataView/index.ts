@@ -19,9 +19,9 @@ export interface DataViewConfig extends ComponentConfig {
     // handle?: DPAFileSystemFileHandle;
     // id: string;
     // name: string;
-    preview?: DataViewPreviewConfig;
-    contentAudit?: DataViewContentAuditConfig;
-    relationshipsAudit?: DataViewRelationshipsAuditConfig;
+    previewConfig?: DataViewPreviewConfig;
+    contentAuditConfig?: DataViewContentAuditConfig;
+    relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
     // totalSize?: number;
 }
 
