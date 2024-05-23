@@ -19,14 +19,14 @@ export interface DataViewConfig extends ComponentConfig {
     // handle?: DPAFileSystemFileHandle;
     // id: string;
     // name: string;
-    preview?: DataViewPreview;
-    contentAudit?: DataViewContentAudit;
-    relationshipsAudit?: DataViewRelationshipsAudit;
+    preview?: DataViewPreviewConfig;
+    contentAudit?: DataViewContentAuditConfig;
+    relationshipsAudit?: DataViewRelationshipsAuditConfig;
     // totalSize?: number;
 }
 
 // Declarations - Data View - Config - Preview
-export interface DataViewPreview {
+export interface DataViewPreviewConfig {
     asAt: number;
     columns: PreviewColumn[];
     // commentPrefixId?: string;
@@ -53,7 +53,7 @@ export interface DataViewPreview {
 }
 
 // Declarations - Data View - Config - Content Audit
-export interface DataViewContentAudit {
+export interface DataViewContentAuditConfig {
     asAt: number;
     columns: ContentAuditColumn[];
     commentLineCount: number;
@@ -65,7 +65,7 @@ export interface DataViewContentAudit {
 }
 
 // Declarations - Data View - Config - Relationships Audit
-export interface DataViewRelationshipsAudit {
+export interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
 

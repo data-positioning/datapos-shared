@@ -48,7 +48,7 @@ export type {
 } from './context';
 
 // Exports - Components - Data View
-export type { DataViewConfig, DataViewContentAudit, DataViewPreview, DataViewRelationshipsAudit, Encoding, EncodingConfig, ObjectSchema } from './dataView';
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, Encoding, EncodingConfig, ObjectSchema } from './dataView';
 export { DataFormatId, getDataFormats, getValueDelimiters, ValueDelimiterId } from './dataView';
 export { PreviewColumn } from './dataView/PreviewColumn';
 export { ContentAuditColumn, type ParsedValue } from './dataView/ContentAuditColumn';
