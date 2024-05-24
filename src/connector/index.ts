@@ -1,8 +1,9 @@
 // Dependencies - Framework
 import type { ComponentConfig } from '../component';
-import type { DataViewConfig } from '../dataView';
+import type { DataViewPreviewConfig } from '../dataView';
 import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
+import { ParsedValue } from '..';
 
 // Interfaces/Types - Connector
 export interface Connector {
@@ -57,36 +58,33 @@ interface InsertInterface {
 // Interfaces/Types - Preview Interface
 export interface PreviewInterface {
     connector: Connector;
-    preview(connector: Connector, itemConfig: ItemConfig, chunkSize?: number): Promise<{ error?: unknown; result?: Preview }>;
+    preview(connector: Connector, itemConfig: ItemConfig, previewInterfaceSettings: PreviewInterfaceSettings): Promise<{ error?: unknown; result?: PreviewResult }>;
 }
-export interface Preview {
-    data: ListEntryParsedValue[][] | Uint8Array;
-    typeId: PreviewTypeId;
+export interface PreviewInterfaceSettings {
+    accountId?: string;
+    chunkSize?: number;
+    sessionAccessToken?: string;
 }
-export type ListEntryParsedValue = bigint | boolean | number | string | null;
-export enum PreviewTypeId {
-    Table = 'table',
-    Uint8Array = 'uint8Array'
+
+export interface PreviewResult {
+    data: ParsedValue[][] | Uint8Array;
+    typeId: 'table' | 'uint8Array';
 }
 
 // Interfaces/Types - Read Interface
 export interface ReadInterface {
     connector: Connector;
-    read(
-        connector: Connector,
-        DataViewConfig: DataViewConfig,
-        settings: ReadInterfaceSettings,
-        callback: (data: ConnectorCallbackData) => void,
-        csvParse: (options?: Options, callback?: Callback) => Parser | undefined
-    ): Promise<void>;
+    read(connector: Connector, itemConfig: ItemConfig, previewConfig: DataViewPreviewConfig, settings: ReadInterfaceSettings): Promise<void>;
 }
 export interface ReadInterfaceSettings {
     accountId?: string;
     chunk(records: ConnectorRecord[]): void;
     chunkSize?: number;
+    csvParse: (options?: Options, callback?: Callback) => Parser | undefined;
     complete(info: ObjectInfo): void;
     sessionAccessToken?: string;
 }
+
 export interface ObjectInfo {
     byteCount: number;
     commentLineCount: number;

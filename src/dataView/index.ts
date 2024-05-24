@@ -1,8 +1,8 @@
 import type { ConnectionConfig } from '../connection';
+import type { ItemConfig } from '../connector';
 import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
 import type { ContentAuditColumn, ParsedValue } from './ContentAuditColumn';
-import type { ItemConfig, ListEntryParsedValue } from '../connector';
 
 // Declarations - Data View
 export interface DataView extends Component {
@@ -34,7 +34,7 @@ export interface DataViewPreviewConfig {
     // linesToSkipAtEnd?: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
-    records: ListEntryParsedValue[][];
+    records: ParsedValue[][];
     size: number;
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
