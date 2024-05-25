@@ -44,15 +44,6 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
 };
 
 // Utilities - Extract
-// export const extractFolderPathFromPath = (itemPath: string): string | undefined => {
-//     if (itemPath) {
-//         const lastIndex = itemPath.lastIndexOf('/');
-//         if (lastIndex > -1) return itemPath.substring(0, lastIndex);
-//     }
-//     return undefined;
-// };
-
-// Utilities - Extract
 export const extractNameFromPath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastSeparatorIndex = itemPath.lastIndexOf('/');
@@ -70,23 +61,6 @@ export const extractExtensionFromPath = (itemPath: string): string | undefined =
     }
     return undefined;
 };
-
-// Utilities - Extract
-// export const extractLastSegmentFromPath = (path: string): string | undefined => {
-//     if (path) {
-//         let lastSeparatorIndex;
-//         let lastCharacterIndex;
-//         if (path.endsWith('/')) {
-//             lastSeparatorIndex = path.lastIndexOf('/', path.length - 2);
-//             lastCharacterIndex = path.length - 1;
-//         } else {
-//             lastSeparatorIndex = path.lastIndexOf('/');
-//             lastCharacterIndex = path.length;
-//         }
-//         return lastSeparatorIndex > -1 ? path.substring(lastSeparatorIndex + 1, lastCharacterIndex) : path;
-//     }
-//     return undefined;
-// };
 
 // Utilities - Format Number
 export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, minimumFractionDigits = decimalPlaces, locale = numberFormatterDefaultLocale): string => {
