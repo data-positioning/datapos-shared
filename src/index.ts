@@ -18,7 +18,7 @@ export type {
     ListItemsResponse,
     ListItemsSettings,
     ListItemsResult,
-    Preview,
+    PreviewResult,
     // PreviewResponse,
     PreviewInterface,
     // PreviewParameters,

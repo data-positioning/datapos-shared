@@ -1,9 +1,9 @@
 // Dependencies - Framework
 import type { ComponentConfig } from '../component';
 import type { DataViewPreviewConfig } from '../dataView';
+import type { ParsedValue } from '..';
 import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
-import { ParsedValue } from '..';
 
 // Interfaces/Types - Connector
 export interface Connector {
@@ -78,9 +78,10 @@ export interface ReadInterface {
 }
 export interface ReadInterfaceSettings {
     accountId?: string;
+    callback: (data: ConnectorCallbackData) => void;
     chunk(records: ConnectorRecord[]): void;
     chunkSize?: number;
-    csvParse: (options?: Options, callback?: Callback) => Parser | undefined;
+    csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
     complete(info: ObjectInfo): void;
     sessionAccessToken?: string;
 }
