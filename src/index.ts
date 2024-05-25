@@ -1,8 +1,8 @@
-// Exports - Base
-export interface BaseConfig {
-    id: string;
-    label: string;
-}
+// // Exports - Base
+// export interface BaseConfig {
+//     id: string;
+//     label: string;
+// }
 
 // Exports - Components
 export { type ComponentConfig, type ComponentStatus, ComponentTypeId, getComponentStatus } from './component';
