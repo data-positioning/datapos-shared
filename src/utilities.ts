@@ -53,16 +53,14 @@ export const convertODataTypeToDataType = (type: string, maximumLength?: number)
 // };
 
 // Utilities - Extract
-
-// TODO: Has errors.
-// export const extractNameFromPath = (itemPath: string): string | undefined => {
-//     if (itemPath) {
-//         const lastSeparatorIndex = itemPath.lastIndexOf('/');
-//         const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : itemPath.length);
-//         return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex) : itemPath;
-//     }
-//     return undefined;
-// };
+export const extractNameFromPath = (itemPath: string): string | undefined => {
+    if (itemPath) {
+        const lastSeparatorIndex = itemPath.lastIndexOf('/');
+        const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : itemPath.length);
+        return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex) : itemPath;
+    }
+    return undefined;
+};
 
 // Utilities - Extract
 export const extractExtensionFromPath = (itemPath: string): string | undefined => {

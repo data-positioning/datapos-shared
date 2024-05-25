@@ -64,6 +64,7 @@ export {
     convertODataTypeToDataType,
     establishVendorAccessToken,
     extractExtensionFromPath,
+    extractNameFromPath,
     formatNumberAsDecimalNumber,
     formatNumberAsDuration,
     formatNumberAsStorageSize,
