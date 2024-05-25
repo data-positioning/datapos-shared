@@ -16,16 +16,14 @@ export type {
     ConnectorRecord,
     ItemConfig,
     ListItemsResponse,
-    ListItemsSettings,
     ListItemsResult,
-    PreviewResult,
-    // PreviewResponse,
+    ListItemsSettings,
     PreviewInterface,
-    // PreviewParameters,
+    PreviewInterfaceSettings,
+    PreviewResult,
     ReadInterface,
     ReadInterfaceSettings,
     WriteInterface
-    // WriteInterfaceSettings
 } from './connector';
 
 // Exports - Components - Connection
