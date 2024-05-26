@@ -11,7 +11,7 @@ export interface ComponentConfig {
     logo?: string;
     status: ComponentStatus;
     statusId: string;
-    typeId: 'connection' | 'connector' | 'context' | 'dataView' | 'eventQuery' | 'presentation' | 'tutorial';
+    typeId: 'connection' | 'connector' | 'context' | 'contextModel' | 'dataView' | 'eventQuery' | 'presentation' | 'tutorial';
 }
 export interface FirebaseTimestamp {
     nanoseconds: number;
