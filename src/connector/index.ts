@@ -28,7 +28,7 @@ export interface Connector {
     getSelectInterface?(): SelectInterface;
     getUpdateInterface?(): UpdateInterface;
     getWriteInterface?(): WriteInterface;
-    listItems?(connector: Connector, callback: (data: ConnectorCallbackData) => void, settings: ListItemsSettings): Promise<ListItemsResult>;
+    listItems?(callback: (data: ConnectorCallbackData) => void, settings: ListItemsSettings): Promise<ListItemsResult>;
 }
 
 // Interfaces/Types - Create Interface
