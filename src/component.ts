@@ -4,14 +4,18 @@ export interface Component {
 
 export interface ComponentConfig {
     description?: Record<string, string>;
-    firstCreatedAt?: FirebaseTimestamp;
+    firstCreatedAt: FirebaseTimestamp;
     id: string;
     label: Record<string, string>;
-    lastUpdatedAt?: FirebaseTimestamp;
+    lastUpdatedAt: FirebaseTimestamp;
     logo?: string;
-    status?: ComponentStatus;
-    statusId?: string;
-    typeId?: ComponentTypeId;
+    status: ComponentStatus;
+    statusId: string;
+    typeId: 'connection' | 'connector' | 'context' | 'dataView' | 'eventQuery' | 'presentation' | 'tutorial';
+}
+export interface FirebaseTimestamp {
+    nanoseconds: number;
+    seconds: number;
 }
 
 export type ComponentStatus = { id: string; color?: string; label: string };
@@ -31,18 +35,3 @@ export const getComponentStatus = (id: string, localeId = 'en'): ComponentStatus
     if (componentStatus) return { ...componentStatus, label: componentStatus.label[localeId] || componentStatus.label['en'] || id };
     return { id, color: '#d62728', label: id };
 };
-
-export enum ComponentTypeId {
-    Connection = 'connection',
-    Connector = 'connector',
-    Context = 'context',
-    DataView = 'dataView',
-    EventQuery = 'eventQuery',
-    Presentation = 'presentation',
-    Tutorial = 'tutorial'
-}
-
-export interface FirebaseTimestamp {
-    nanoseconds: number;
-    seconds: number;
-}

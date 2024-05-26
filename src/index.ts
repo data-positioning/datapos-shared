@@ -5,7 +5,7 @@
 // }
 
 // Exports - Components
-export { type ComponentConfig, type ComponentStatus, ComponentTypeId, getComponentStatus } from './component';
+export { type ComponentConfig, type ComponentStatus, getComponentStatus } from './component';
 
 // Exports - Components - Connector
 export { ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig, ConnectorUsageId } from './connector';
