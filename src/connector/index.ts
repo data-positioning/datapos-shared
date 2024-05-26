@@ -28,7 +28,7 @@ export interface Connector {
     getSelectInterface?(): SelectInterface;
     getUpdateInterface?(): UpdateInterface;
     getWriteInterface?(): WriteInterface;
-    listItems?(settings: ListItemsSettings): Promise<ListItemsResult>;
+    listItems?(connector: Connector, callback: (data: ConnectorCallbackData) => void, settings: ListItemsSettings): Promise<ListItemsResult>;
 }
 
 // Interfaces/Types - Create Interface
@@ -58,7 +58,12 @@ interface InsertInterface {
 // Interfaces/Types - Preview Interface
 export interface PreviewInterface {
     connector: Connector;
-    preview(connector: Connector, itemConfig: ItemConfig, previewInterfaceSettings: PreviewInterfaceSettings): Promise<{ error?: unknown; result?: PreviewResult }>;
+    preview(
+        connector: Connector,
+        callback: (data: ConnectorCallbackData) => void,
+        itemConfig: ItemConfig,
+        previewInterfaceSettings: PreviewInterfaceSettings
+    ): Promise<{ error?: unknown; result?: PreviewResult }>;
 }
 export interface PreviewInterfaceSettings {
     accountId?: string;
@@ -74,11 +79,16 @@ export interface PreviewResult {
 // Interfaces/Types - Read Interface
 export interface ReadInterface {
     connector: Connector;
-    read(connector: Connector, itemConfig: ItemConfig, previewConfig: DataViewPreviewConfig, settings: ReadInterfaceSettings): Promise<void>;
+    read(
+        connector: Connector,
+        callback: (data: ConnectorCallbackData) => void,
+        itemConfig: ItemConfig,
+        previewConfig: DataViewPreviewConfig,
+        settings: ReadInterfaceSettings
+    ): Promise<void>;
 }
 export interface ReadInterfaceSettings {
     accountId?: string;
-    callback: (data: ConnectorCallbackData) => void;
     chunk(records: ConnectorRecord[]): void;
     chunkSize?: number;
     csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
