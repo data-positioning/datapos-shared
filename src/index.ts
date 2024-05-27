@@ -1,3 +1,6 @@
+// Dependencies - Vendor
+import { Timestamp } from 'firebase/firestore';
+
 // Exports - Components
 export { type ComponentConfig, type ComponentStatus, getComponentStatus } from './component';
 
@@ -54,6 +57,8 @@ export type { TutorialConfig } from './usageKit';
 
 // Exports - Errors
 export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, EngineWorkerError, FetchError, FrontendError } from './errors';
+
+export const DefaultTimestamp: Timestamp = new Timestamp(0, 0);
 
 // Exports - Utilities
 export {

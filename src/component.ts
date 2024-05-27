@@ -1,4 +1,4 @@
-import { Timestamp } from 'firebase/firestore';
+import type { Timestamp } from 'firebase/firestore';
 
 export interface Component {
     config: ComponentConfig;
@@ -19,7 +19,6 @@ export interface ComponentConfig {
 //     nanoseconds: number;
 //     seconds: number;
 // }
-export const DefaultTimestamp: Timestamp = new Timestamp(0, 0);
 
 export type ComponentStatus = { id: string; color?: string; label: string };
 type ComponentStatusConfig = { id: string; color?: string; label: Record<string, string> };
