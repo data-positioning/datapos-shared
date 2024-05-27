@@ -1,9 +1,12 @@
+// Dependencies - Vendor
 import type { Timestamp } from 'firebase/firestore';
 
+// Interfaces/Types - Component
 export interface Component {
     config: ComponentConfig;
 }
 
+// Interfaces/Types - Component Configuration
 export interface ComponentConfig {
     description?: Record<string, string>;
     firstCreatedAt: Timestamp;
@@ -15,11 +18,8 @@ export interface ComponentConfig {
     statusId: string;
     typeId: 'connection' | 'connector' | 'context' | 'contextModel' | 'dataView' | 'eventQuery' | 'presentation' | 'tutorial';
 }
-// export interface FirebaseTimestamp {
-//     nanoseconds: number;
-//     seconds: number;
-// }
 
+// Interfaces/Types - Component Status
 export type ComponentStatus = { id: string; color?: string; label: string };
 type ComponentStatusConfig = { id: string; color?: string; label: Record<string, string> };
 const componentStatuses: ComponentStatusConfig[] = [

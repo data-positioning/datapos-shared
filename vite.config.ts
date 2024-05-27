@@ -1,6 +1,7 @@
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import { resolve } from 'path';
+import { fileURLToPath, URL } from 'node:url';
 
 export default defineConfig({
     build: {
@@ -12,5 +13,8 @@ export default defineConfig({
         },
         target: 'ESNext'
     },
-    plugins: [dts({ outDir: 'dist/types' })]
+    plugins: [dts({ outDir: 'dist/types' })],
+    resolve: {
+        alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) }
+    }
 });

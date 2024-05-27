@@ -1,10 +1,13 @@
 // Dependencies - Vendor
 import { Timestamp } from 'firebase/firestore';
 
-// Exports - Components
+// Constants
+export const DefaultTimestamp: Timestamp = new Timestamp(0, 0);
+
+// Interfaces/Types - Component
 export { type ComponentConfig, type ComponentStatus, getComponentStatus } from './component';
 
-// Exports - Components - Connector
+// Interfaces/Types - Connector - Connection
 export type { ConnectorCallbackData, ConnectorConfig } from './connector';
 export type {
     Connector,
@@ -21,15 +24,12 @@ export type {
     ReadSettings,
     WriteInterface
 } from './connector';
+export { type ConnectionConfig, FieldStorageTypeId, FieldUsageTypeId } from './connector/connection';
 
-// Exports - Components - Connection
-export type { ConnectionConfig } from './connection';
-export { FieldStorageTypeId, FieldUsageTypeId } from './connection';
+// Interfaces/Types - Connector - Data Entry
+export type { DataEntryConfig } from './connector/dataEntry';
 
-// Exports - Components - Data Entry
-export type { DataEntryConfig } from './dataEntry';
-
-// Exports - Components - Context
+// Interfaces/Types - Context
 export type {
     ContextConfig,
     ContextModelConfig,
@@ -43,24 +43,22 @@ export type {
     Event
 } from './context';
 
-// Exports - Components - Data View
+// Interfaces/Types - Data View
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, Encoding, EncodingConfig, ObjectSchema } from './dataView';
 export { DataFormatId, getDataFormats, getValueDelimiters, ValueDelimiterId } from './dataView';
 export { PreviewColumn } from './dataView/PreviewColumn';
 export { ContentAuditColumn, type ParsedValue } from './dataView/ContentAuditColumn';
 
-// Exports - Components - Event Query
-export type { EventQueryConfig } from './eventQuery';
-
-// Exports - Components - Usage Kit
-export type { TutorialConfig } from './usageKit';
-
-// Exports - Errors
+// Interfaces/Types - Error
 export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, EngineWorkerError, FetchError, FrontendError } from './errors';
 
-export const DefaultTimestamp: Timestamp = new Timestamp(0, 0);
+// Interfaces/Types - Event Query
+export type { EventQueryConfig } from './eventQuery';
 
-// Exports - Utilities
+// Interfaces/Types - Tutorial
+export type { TutorialConfig } from './tutorial';
+
+// Utilities
 export {
     convertODataTypeToDataType,
     establishVendorAccessToken,

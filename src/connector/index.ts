@@ -6,33 +6,6 @@ import type { ParsedValue } from '../dataView/ContentAuditColumn';
 import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
 
-// Interfaces/Types - Connector Configuration
-export interface ConnectorConfig extends ComponentConfig {
-    category?: ConnectorCategory;
-    categoryId: string;
-    implementations: Record<string, ConnectorImplementation>;
-    usageId: 'bidirectional' | 'destination' | 'source';
-    vendorAccountURL: string;
-    vendorDocumentationURL: string;
-    vendorHomeURL: string;
-    version?: string;
-}
-export interface ConnectorImplementation {
-    activeConnectionCount?: number;
-    canDescribe?: boolean;
-    id?: string;
-    authMethodId: 'apiKey' | 'disabled' | 'oAuth2' | 'none';
-    label?: Record<string, string>;
-    maxConnectionCount: number;
-    params?: Record<string, string>[];
-}
-
-// Interfaces/Types - Connector Callback Data
-export interface ConnectorCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
-}
-
 // Interfaces/Types - Connector
 export interface Connector {
     abortController?: AbortController | undefined;
@@ -57,6 +30,33 @@ export interface Connector {
     getUpdateInterface?(): UpdateInterface;
     getWriteInterface?(): WriteInterface;
     list?(callback: (data: ConnectorCallbackData) => void, settings: ListSettings): Promise<ListResult>;
+}
+
+// Interfaces/Types - Connector Configuration
+export interface ConnectorConfig extends ComponentConfig {
+    category?: ConnectorCategory;
+    categoryId: string;
+    implementations: Record<string, ConnectorImplementation>;
+    usageId: 'bidirectional' | 'destination' | 'source';
+    vendorAccountURL: string;
+    vendorDocumentationURL: string;
+    vendorHomeURL: string;
+    version?: string;
+}
+interface ConnectorImplementation {
+    activeConnectionCount?: number;
+    canDescribe?: boolean;
+    id?: string;
+    authMethodId: 'apiKey' | 'disabled' | 'oAuth2' | 'none';
+    label?: Record<string, string>;
+    maxConnectionCount: number;
+    params?: Record<string, string>[];
+}
+
+// Interfaces/Types - Connector Callback Data
+export interface ConnectorCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
 }
 
 // Interfaces/Types - Create Interface
