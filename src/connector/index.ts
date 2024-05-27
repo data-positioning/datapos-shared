@@ -1,6 +1,6 @@
 // Dependencies - Framework
 import type { ComponentConfig } from '../component';
-import type { ConnectionItemConfig } from '../connectionItem';
+import type { ConnectionItemConfig } from '../connection';
 import type { DataViewPreviewConfig } from '../dataView';
 import type { ParsedValue } from '../dataView/ContentAuditColumn';
 import type { Callback, Options, Parser } from 'csv-parse';

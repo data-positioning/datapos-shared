@@ -29,30 +29,45 @@ interface ConnectionAuthorization {
 }
 
 // Interfaces/Types - Connection Description
-export type ConnectionDescription = { itemEntries: Record<string, ItemEntry>; objectTypes: Record<string, ObjectType> };
-interface ItemEntry {
-    description?: string;
-    fields: Record<string, Field>;
-    folderIds: string[];
-    label?: string;
-    summary?: string;
+export type ConnectionDescription = { connectionItemConfigs: ConnectionItemConfig; structures: StructureConfig[] };
+
+// Interfaces/Types - Connection Item Configuration
+export interface ConnectionItemConfig {
+    childCount?: number;
+    children?: ConnectionItemConfig[];
+    extension?: string;
+    fields: FieldConfig[];
+    folderPath: string;
+    handle?: {
+        readonly kind: 'file'; // DPA File System File Handle
+        getFile(): Promise<File>;
+    };
+    id?: string;
+    label: string;
+    lastModifiedAt?: number;
+    mimeType?: string;
+    name: string;
+    size?: number;
+    typeId: 'folder' | 'object';
 }
-export interface ObjectType {
-    description?: string;
-    fields: Record<string, Field>;
-    folderIds: string[];
-    label?: string;
-    summary?: string;
+
+// Interfaces/Types - Structure Configuration
+interface StructureConfig {
+    id: string;
+    fields: FieldDataType[];
 }
-interface Field {
+
+// Interfaces/Types - Field Configuration
+interface FieldConfig {
     dataType: FieldDataType;
     isIgnored: boolean;
     label: string;
     maxLength?: number;
 }
+
+// Interfaces/Types - Field Data Type
 export interface FieldDataType {
     maximumLength?: number;
-    objectName?: string;
     storageTypeId:
         | 'binary'
         | 'boolean'

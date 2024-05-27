@@ -1,5 +1,5 @@
 import type { ConnectionConfig } from '../connection';
-import type { ConnectionItemConfig } from '../connectionItem';
+import type { ConnectionItemConfig } from '../connection';
 import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
 import type { ContentAuditColumn, ParsedValue } from './ContentAuditColumn';
