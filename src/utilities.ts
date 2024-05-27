@@ -1,6 +1,6 @@
 // Dependencies - Framework
 import type { ReadSettings } from './connector';
-import { type ConnectionConfig, type FieldDataType, FieldStorageTypeId, FieldUsageTypeId } from './connection';
+import type { ConnectionConfig, FieldDataType } from './connection';
 
 // Constants
 const numberFormatterDefaultLocale = 'en-US';
@@ -11,37 +11,37 @@ const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
 export const convertODataTypeToDataType = (type: string, maximumLength?: number): FieldDataType => {
     switch (type) {
         case 'Edm.Binary':
-            return { storageTypeId: FieldStorageTypeId.Binary, usageTypeId: FieldUsageTypeId.Unknown }; // Binary...
+            return { storageTypeId: 'binary', usageTypeId: 'unknown' }; // Binary...
         case 'Edm.Boolean':
-            return { storageTypeId: FieldStorageTypeId.Boolean, usageTypeId: FieldUsageTypeId.Boolean };
+            return { storageTypeId: 'boolean', usageTypeId: 'boolean' };
         case 'Edm.Byte':
-            return { storageTypeId: FieldStorageTypeId.Byte, usageTypeId: FieldUsageTypeId.WholeNumber };
+            return { storageTypeId: 'byte', usageTypeId: 'wholeNumber' };
         case 'Edm.DateTime':
-            return { storageTypeId: FieldStorageTypeId.DateTime, usageTypeId: FieldUsageTypeId.Moment }; // DateTime...
+            return { storageTypeId: 'dateTime', usageTypeId: 'moment' }; // DateTime...
         case 'Edm.DateTimeOffset':
-            return { storageTypeId: FieldStorageTypeId.DateTimeOffset, usageTypeId: FieldUsageTypeId.Moment }; // DateTimeOffset...
+            return { storageTypeId: 'dateTimeOffset', usageTypeId: 'moment' }; // DateTimeOffset...
         case 'Edm.Decimal':
-            return { storageTypeId: FieldStorageTypeId.Decimal, usageTypeId: FieldUsageTypeId.DecimalNumber };
+            return { storageTypeId: 'decimal', usageTypeId: 'decimalNumber' };
         case 'Edm.Double':
-            return { storageTypeId: FieldStorageTypeId.Double, usageTypeId: FieldUsageTypeId.DecimalNumber };
+            return { storageTypeId: 'double', usageTypeId: 'decimalNumber' };
         case 'Edm.Guid':
-            return { storageTypeId: FieldStorageTypeId.String, usageTypeId: FieldUsageTypeId.String };
+            return { storageTypeId: 'string', usageTypeId: 'string' };
         case 'Edm.Int16':
-            return { storageTypeId: FieldStorageTypeId.Int16, usageTypeId: FieldUsageTypeId.WholeNumber };
+            return { storageTypeId: 'int16', usageTypeId: 'wholeNumber' };
         case 'Edm.Int32':
-            return { storageTypeId: FieldStorageTypeId.Int32, usageTypeId: FieldUsageTypeId.WholeNumber };
+            return { storageTypeId: 'int32', usageTypeId: 'wholeNumber' };
         case 'Edm.Int64':
-            return { storageTypeId: FieldStorageTypeId.Int64, usageTypeId: FieldUsageTypeId.WholeNumber };
+            return { storageTypeId: 'int64', usageTypeId: 'wholeNumber' };
         case 'Edm.SByte':
-            return { storageTypeId: FieldStorageTypeId.Int8, usageTypeId: FieldUsageTypeId.WholeNumber };
+            return { storageTypeId: 'int8', usageTypeId: 'wholeNumber' };
         case 'Edm.Single':
-            return { storageTypeId: FieldStorageTypeId.Single, usageTypeId: FieldUsageTypeId.DecimalNumber };
+            return { storageTypeId: 'single', usageTypeId: 'decimalNumber' };
         case 'Edm.String':
-            return { storageTypeId: FieldStorageTypeId.String, usageTypeId: FieldUsageTypeId.String, maximumLength };
+            return { storageTypeId: 'string', usageTypeId: 'string', maximumLength };
         case 'Edm.Time':
-            return { storageTypeId: FieldStorageTypeId.Time, usageTypeId: FieldUsageTypeId.Moment }; // Time...
+            return { storageTypeId: 'time', usageTypeId: 'moment' }; // Time...
         default:
-            return { storageTypeId: FieldStorageTypeId.Unknown, usageTypeId: FieldUsageTypeId.Unknown };
+            return { storageTypeId: 'unknown', usageTypeId: 'unknown' };
     }
 };
 
@@ -144,35 +144,35 @@ export const lookupMimeTypeForExtension = (extension: string): string => {
     }
 };
 
-// Utilities
-// // export const establishVendorAccessToken = async (item: Item, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
-export const establishVendorAccessToken = async (connectionConfig: ConnectionConfig, settings: ReadSettings, vendorRefreshURI: string): Promise<string> => {
-    let accessToken;
+// // Utilities
+// // // export const establishVendorAccessToken = async (item: Item, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
+// export const establishVendorAccessToken = async (connectionConfig: ConnectionConfig, settings: ReadSettings, vendorRefreshURI: string): Promise<string> => {
+//     let accessToken;
 
-    // If the current dropbox access token expires within 5 minutes then refresh it and return the new one, otherwise return the current one.
-    if (connectionConfig.authorisation[''].expires_at - Date.now() < 300000) {
-        // TODO: Above is WRONG 'item.authorization!['']'. We need to know what authorisation.
-        const headers: HeadersInit = {
-            'Account-Id': settings.accountId || '',
-            Authorization: settings.sessionAccessToken || '',
-            'Connection-Id': connectionConfig.id
-        };
-        const response = await fetch(vendorRefreshURI, { headers });
-        if (!response.ok) {
-            const data = {
-                body: {
-                    context: 'establishVendorAccessToken',
-                    message: await response.text()
-                },
-                statusCode: response.status,
-                statusText: response.statusText
-            };
-            throw new Error('Unable to establish access token.|' + JSON.stringify(data));
-        }
-        accessToken = await response.text();
-    } else {
-        accessToken = connectionConfig.authorisation[''].access_token; // TODO: This is WRONG 'item.authorization!['']'. We need to know what authorisation.
-    }
+//     // If the current dropbox access token expires within 5 minutes then refresh it and return the new one, otherwise return the current one.
+//     if (connectionConfig.authorisation[''].expires_at - Date.now() < 300000) {
+//         // TODO: Above is WRONG 'item.authorization!['']'. We need to know what authorisation.
+//         const headers: HeadersInit = {
+//             'Account-Id': settings.accountId || '',
+//             Authorization: settings.sessionAccessToken || '',
+//             'Connection-Id': connectionConfig.id
+//         };
+//         const response = await fetch(vendorRefreshURI, { headers });
+//         if (!response.ok) {
+//             const data = {
+//                 body: {
+//                     context: 'establishVendorAccessToken',
+//                     message: await response.text()
+//                 },
+//                 statusCode: response.status,
+//                 statusText: response.statusText
+//             };
+//             throw new Error('Unable to establish access token.|' + JSON.stringify(data));
+//         }
+//         accessToken = await response.text();
+//     } else {
+//         accessToken = connectionConfig.authorisation[''].access_token; // TODO: This is WRONG 'item.authorization!['']'. We need to know what authorisation.
+//     }
 
-    return accessToken;
-};
+//     return accessToken;
+// };

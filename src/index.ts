@@ -45,7 +45,6 @@ export type { Tutorial, TutorialConfig } from './tutorial';
 
 // Utilities
 export { convertODataTypeToDataType } from './utilities';
-export { establishVendorAccessToken } from './utilities';
 export { extractExtensionFromPath, extractNameFromPath } from './utilities';
 export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './utilities';
 export { getComponentStatus } from './component';

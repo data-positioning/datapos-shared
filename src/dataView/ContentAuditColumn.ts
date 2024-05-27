@@ -1,7 +1,6 @@
 const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine - Support
-import { FieldUsageTypeId } from '../connection';
 import { PreviewColumn } from './PreviewColumn';
 
 export type ParsedValue = bigint | boolean | number | string | null;
@@ -25,7 +24,7 @@ export class ContentAuditColumn extends PreviewColumn {
     validValues: Record<string, number>;
     voidValueCount: number;
 
-    constructor(dataUsageTypeId: FieldUsageTypeId, label: string) {
+    constructor(dataUsageTypeId: string, label: string) {
         super(dataUsageTypeId, label);
         this.invalidValueCount = 0;
         this.invalidValues = [];
@@ -47,12 +46,11 @@ export class ContentAuditColumn extends PreviewColumn {
         // this.decimalSeparator = undefined;
         // this.groupSeparator = undefined;
 
-        this.doCountIndividualValidValues =
-            this.dataUsageTypeId === FieldUsageTypeId.Boolean || this.dataUsageTypeId === FieldUsageTypeId.String || this.dataUsageTypeId === FieldUsageTypeId.WholeNumber;
+        this.doCountIndividualValidValues = this.dataUsageTypeId === 'boolean' || this.dataUsageTypeId === 'string' || this.dataUsageTypeId === 'wholeNumber';
         this.doCountPatterns = true;
 
         switch (this.dataUsageTypeId) {
-            case FieldUsageTypeId.String:
+            case 'string':
                 this.maxValue = '';
                 this.minValue = '';
                 break;
@@ -67,7 +65,7 @@ export class ContentAuditColumn extends PreviewColumn {
 
     addValidValue(originalValue: string, parsedValue: ParsedValue, wholeDigitCount?: number, decimalDigitCount?: number): ParsedValue {
         switch (this.dataUsageTypeId) {
-            case FieldUsageTypeId.String: {
+            case 'string': {
                 parsedValue = originalValue;
                 const length = originalValue.length;
                 if (this.maxSize) {
@@ -89,7 +87,7 @@ export class ContentAuditColumn extends PreviewColumn {
 
         if (this.doCountPatterns) {
             const pattern =
-                this.dataUsageTypeId === FieldUsageTypeId.DecimalNumber || this.dataUsageTypeId == FieldUsageTypeId.WholeNumber
+                this.dataUsageTypeId === 'decimalNumber' || this.dataUsageTypeId == 'wholeNumber'
                     ? this.determineNumericPattern(originalValue)
                     : this.determineTextPattern(originalValue);
             this.patterns[pattern] = (this.patterns[pattern] || 0) + 1;
