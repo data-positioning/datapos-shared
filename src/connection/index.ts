@@ -53,33 +53,23 @@ interface Field {
 export interface FieldDataType {
     maximumLength?: number;
     objectName?: string;
-    storageTypeId: FieldStorageTypeId;
-    usageTypeId: FieldUsageTypeId;
-}
-export enum FieldStorageTypeId {
-    Binary = 'binary',
-    Boolean = 'boolean',
-    Byte = 'byte',
-    Date = 'date',
-    DateTime = 'dateTime',
-    DateTimeOffset = 'dateTimeOffset',
-    Decimal = 'decimal',
-    Double = 'double',
-    Int8 = 'int8',
-    Int16 = 'int16',
-    Int32 = 'int32',
-    Int64 = 'int64',
-    Object = 'object',
-    Single = 'single',
-    String = 'string',
-    Time = 'time',
-    Unknown = 'unknown'
-}
-export enum FieldUsageTypeId {
-    Boolean = 1,
-    DecimalNumber = 4,
-    Moment = 2,
-    String = 5,
-    WholeNumber = 3,
-    Unknown = 0
+    storageTypeId:
+        | 'binary'
+        | 'boolean'
+        | 'byte'
+        | 'date'
+        | 'dateTime'
+        | 'dateTimeOffset'
+        | 'decimal'
+        | 'double'
+        | 'int8'
+        | 'int16'
+        | 'int32'
+        | 'int64'
+        | 'object'
+        | 'single'
+        | 'string'
+        | 'time'
+        | 'unknown';
+    usageTypeId: 'boolean' | 'decimalNumber' | 'moment' | 'string' | 'wholeNumber' | 'unknown';
 }

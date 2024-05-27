@@ -1,3 +1,4 @@
+// Errors - Data Positioning Error
 export class DataPosError extends Error {
     context?: string;
     data?: Record<string, unknown>;
@@ -12,6 +13,7 @@ export class DataPosError extends Error {
     }
 }
 
+// Errors - Abort Error
 export class AbortError extends DataPosError {
     constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
@@ -19,6 +21,7 @@ export class AbortError extends DataPosError {
     }
 }
 
+// Errors - Backend Error
 export class BackendError extends DataPosError {
     constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
@@ -26,6 +29,7 @@ export class BackendError extends DataPosError {
     }
 }
 
+// Errors - Connector Error
 export class ConnectorError extends DataPosError {
     constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
@@ -33,6 +37,7 @@ export class ConnectorError extends DataPosError {
     }
 }
 
+// Errors - Engine Error
 export class EngineError extends DataPosError {
     constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
@@ -40,13 +45,7 @@ export class EngineError extends DataPosError {
     }
 }
 
-export class EngineWorkerError extends DataPosError {
-    constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
-        super(message, context, originalStack, data, cause);
-        this.name = 'EngineWorkerError';
-    }
-}
-
+// Errors - Fetch Error
 export class FetchError extends DataPosError {
     constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
@@ -54,6 +53,7 @@ export class FetchError extends DataPosError {
     }
 }
 
+// Errors - Frontend Error
 export class FrontendError extends DataPosError {
     constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);

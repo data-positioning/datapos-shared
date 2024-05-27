@@ -1,6 +1,8 @@
+// Dependencies - Framework
 import type { ReadSettings } from './connector';
 import { type ConnectionConfig, type FieldDataType, FieldStorageTypeId, FieldUsageTypeId } from './connection';
 
+// Constants
 const numberFormatterDefaultLocale = 'en-US';
 const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
 

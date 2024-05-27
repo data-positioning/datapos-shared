@@ -8,16 +8,16 @@ export const DefaultTimestamp: Timestamp = new Timestamp(0, 0);
 export type { ComponentConfig, ComponentStatus } from './component';
 
 // Interfaces/Types - Connection
-export { type ConnectionConfig, FieldStorageTypeId, FieldUsageTypeId } from './connection';
+export { type ConnectionConfig } from './connection';
 
 // Interfaces/Types - Connection Item
 export type { ConnectionItemConfig } from './connectionItem';
 
 // Interfaces/Types - Connector
-export type { ConnectorCallbackData, ConnectorConfig } from './connector';
-export type { Connector, ConnectorFieldInfo, ObjectInfo, ConnectorRecord } from './connector';
-export type { ListResponse, ListResult, ListSettings } from './connector';
-export type { PreviewInterface, PreviewSettings, PreviewResult } from './connector';
+export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
+export type { ConnectorFieldInfo, ObjectInfo, ConnectorRecord } from './connector';
+export type { ListResult, ListSettings } from './connector';
+export type { PreviewInterface, PreviewResult, PreviewSettings } from './connector';
 export type { ReadInterface, ReadSettings } from './connector';
 export type { WriteInterface } from './connector';
 
@@ -32,7 +32,7 @@ export { PreviewColumn } from './dataView/PreviewColumn';
 export { ContentAuditColumn, type ParsedValue } from './dataView/ContentAuditColumn';
 
 // Interfaces/Types - Error
-export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, EngineWorkerError, FetchError, FrontendError } from './errors';
+export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
 
 // Interfaces/Types - Event Query
 export type { EventQueryConfig } from './eventQuery';
