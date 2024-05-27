@@ -89,7 +89,7 @@ export interface PreviewInterface {
     preview(
         connector: Connector,
         callback: (data: ConnectorCallbackData) => void,
-        dataEntryConfig: ConnectionItemConfig,
+        connectionItemConfig: ConnectionItemConfig,
         settings: PreviewSettings
     ): Promise<{ error?: unknown; result?: PreviewResult }>;
 }
@@ -109,7 +109,7 @@ export interface ReadInterface {
     read(
         connector: Connector,
         callback: (data: ConnectorCallbackData) => void,
-        dataEntryConfig: ConnectionItemConfig,
+        connectionItemConfig: ConnectionItemConfig,
         previewConfig: DataViewPreviewConfig,
         settings: ReadSettings
     ): Promise<void>;
@@ -171,7 +171,7 @@ export interface ListResponse {
 }
 export interface ListResult {
     cursor: string | number | undefined;
-    dataStoreConfigs: ConnectionItemConfig[];
+    connectionItemConfigs: ConnectionItemConfig[];
     isMore: boolean;
     totalCount: number;
 }

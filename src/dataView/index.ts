@@ -12,7 +12,7 @@ export interface DataView extends Component {
 // Declarations - Data View - Configuration
 export interface DataViewConfig extends ComponentConfig {
     connectionConfig: ConnectionConfig;
-    dataEntryConfig: ConnectionItemConfig;
+    connectionItemConfig: ConnectionItemConfig;
     previewConfig?: DataViewPreviewConfig;
     contentAuditConfig?: DataViewContentAuditConfig;
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
