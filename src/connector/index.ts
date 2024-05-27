@@ -1,10 +1,10 @@
 // Dependencies - Framework
 import type { ComponentConfig } from '../component';
-import type { DataEntryConfig } from '../dataEntry';
+import type { DataEntryConfig } from '../connector/dataEntry';
 import type { DataViewPreviewConfig } from '../dataView';
 import type { ParsedValue } from '../dataView/ContentAuditColumn';
 import type { Callback, Options, Parser } from 'csv-parse';
-import type { ConnectionConfig, ConnectionDescription } from '../connection';
+import type { ConnectionConfig, ConnectionDescription } from '../connector/connection';
 
 // Interfaces/Types - Connector
 export interface Connector {

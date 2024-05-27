@@ -1,4 +1,4 @@
-import type { FieldUsageTypeId } from '../connection';
+import type { FieldUsageTypeId } from '../connector/connection';
 
 export class PreviewColumn {
     dataUsageTypeId: FieldUsageTypeId;
