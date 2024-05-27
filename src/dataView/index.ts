@@ -1,5 +1,5 @@
 import type { ConnectionConfig } from '../connection';
-import type { ItemConfig } from '../connector';
+import type { DataEntryConfig } from '../dataEntry';
 import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
 import type { ContentAuditColumn, ParsedValue } from './ContentAuditColumn';
@@ -12,7 +12,7 @@ export interface DataView extends Component {
 // Declarations - Data View - Configuration
 export interface DataViewConfig extends ComponentConfig {
     connectionConfig: ConnectionConfig;
-    itemConfig: ItemConfig;
+    dataEntryConfig: DataEntryConfig;
     previewConfig?: DataViewPreviewConfig;
     contentAuditConfig?: DataViewContentAuditConfig;
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;

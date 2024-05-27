@@ -1,22 +1,25 @@
+import { Timestamp } from 'firebase/firestore';
+
 export interface Component {
     config: ComponentConfig;
 }
 
 export interface ComponentConfig {
     description?: Record<string, string>;
-    firstCreatedAt: FirebaseTimestamp;
+    firstCreatedAt: Timestamp;
     id: string;
     label: Record<string, string>;
-    lastUpdatedAt: FirebaseTimestamp;
+    lastUpdatedAt: Timestamp;
     logo?: string;
     status: ComponentStatus;
     statusId: string;
     typeId: 'connection' | 'connector' | 'context' | 'contextModel' | 'dataView' | 'eventQuery' | 'presentation' | 'tutorial';
 }
-export interface FirebaseTimestamp {
-    nanoseconds: number;
-    seconds: number;
-}
+// export interface FirebaseTimestamp {
+//     nanoseconds: number;
+//     seconds: number;
+// }
+export const DefaultTimestamp: Timestamp = new Timestamp(0, 0);
 
 export type ComponentStatus = { id: string; color?: string; label: string };
 type ComponentStatusConfig = { id: string; color?: string; label: Record<string, string> };

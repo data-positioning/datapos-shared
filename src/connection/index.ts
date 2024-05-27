@@ -1,5 +1,8 @@
+// Dependencies - Vendor
+import type { Timestamp } from 'firebase/firestore';
+
 // Dependencies - Framework
-import type { Component, ComponentConfig, FirebaseTimestamp } from '../component';
+import type { Component, ComponentConfig } from '../component';
 
 // Interfaces/Types - Connection
 export interface Connection extends Component {
@@ -11,7 +14,7 @@ export interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorization>;
     connectorId: string;
     connectorImplementationId: string;
-    lastVerifiedAt: FirebaseTimestamp; // Default: { nanoseconds: 0; seconds: 0; }
+    lastVerifiedAt: Timestamp;
     notation: string;
 }
 interface ConnectionAuthorization {

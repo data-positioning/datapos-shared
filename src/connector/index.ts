@@ -1,9 +1,37 @@
 // Dependencies - Framework
 import type { ComponentConfig } from '../component';
+import type { DataEntryConfig } from '../dataEntry';
 import type { DataViewPreviewConfig } from '../dataView';
-import type { ParsedValue } from '..';
+import type { ParsedValue } from '../dataView/ContentAuditColumn';
 import type { Callback, Options, Parser } from 'csv-parse';
 import type { ConnectionConfig, ConnectionDescription } from '../connection';
+
+// Interfaces/Types - Connector Configuration
+export interface ConnectorConfig extends ComponentConfig {
+    category?: ConnectorCategory;
+    categoryId: string;
+    implementations: Record<string, ConnectorImplementation>;
+    usageId: 'bidirectional' | 'destination' | 'source';
+    vendorAccountURL: string;
+    vendorDocumentationURL: string;
+    vendorHomeURL: string;
+    version?: string;
+}
+export interface ConnectorImplementation {
+    activeConnectionCount?: number;
+    canDescribe?: boolean;
+    id?: string;
+    authMethodId: 'apiKey' | 'disabled' | 'oAuth2' | 'none';
+    label?: Record<string, string>;
+    maxConnectionCount: number;
+    params?: Record<string, string>[];
+}
+
+// Interfaces/Types - Connector Callback Data
+export interface ConnectorCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
 
 // Interfaces/Types - Connector
 export interface Connector {
@@ -28,7 +56,7 @@ export interface Connector {
     getSelectInterface?(): SelectInterface;
     getUpdateInterface?(): UpdateInterface;
     getWriteInterface?(): WriteInterface;
-    listItems?(callback: (data: ConnectorCallbackData) => void, settings: ListItemsSettings): Promise<ListItemsResult>;
+    list?(callback: (data: ConnectorCallbackData) => void, settings: ListSettings): Promise<ListResult>;
 }
 
 // Interfaces/Types - Create Interface
@@ -61,16 +89,15 @@ export interface PreviewInterface {
     preview(
         connector: Connector,
         callback: (data: ConnectorCallbackData) => void,
-        itemConfig: ItemConfig,
-        previewInterfaceSettings: PreviewInterfaceSettings
+        dataEntryConfig: DataEntryConfig,
+        settings: PreviewSettings
     ): Promise<{ error?: unknown; result?: PreviewResult }>;
 }
-export interface PreviewInterfaceSettings {
+export interface PreviewSettings {
     accountId?: string;
     chunkSize?: number;
     sessionAccessToken?: string;
 }
-
 export interface PreviewResult {
     data: ParsedValue[][] | Uint8Array;
     typeId: 'table' | 'uint8Array';
@@ -82,17 +109,17 @@ export interface ReadInterface {
     read(
         connector: Connector,
         callback: (data: ConnectorCallbackData) => void,
-        itemConfig: ItemConfig,
+        dataEntryConfig: DataEntryConfig,
         previewConfig: DataViewPreviewConfig,
-        settings: ReadInterfaceSettings
+        settings: ReadSettings
     ): Promise<void>;
 }
-export interface ReadInterfaceSettings {
+export interface ReadSettings {
     accountId?: string;
     chunk(records: ConnectorRecord[]): void;
     chunkSize?: number;
-    csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
     complete(info: ObjectInfo): void;
+    csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
     sessionAccessToken?: string;
 }
 
@@ -131,26 +158,22 @@ interface UpdateInterface {
     update(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
-// Interfaces/Types - List Items
-export interface ListItemsSettings {
+// Interfaces/Types - List
+export interface ListSettings {
     folderPath: string;
     limit?: number;
     offset?: number;
     totalCount?: number;
 }
-export interface ListItemsResponse {
+export interface ListResponse {
     error?: unknown;
-    result?: ListItemsResult;
+    result?: ListResult;
 }
-export interface ListItemsResult {
+export interface ListResult {
     cursor: string | number | undefined;
-    itemConfigs: ItemConfig[];
+    dataStoreConfigs: DataEntryConfig[];
     isMore: boolean;
     totalCount: number;
-}
-export interface DPAFileSystemFileHandle {
-    readonly kind: 'file';
-    getFile(): Promise<File>;
 }
 
 // Interfaces/Types - Write Interface
@@ -159,39 +182,6 @@ export interface WriteInterface {
     open(): void;
     write(): void;
     close(): void;
-}
-
-// Callback
-export interface ConnectorCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
-}
-
-// Config
-export interface ConnectorConfig extends ComponentConfig {
-    category?: ConnectorCategory;
-    categoryId: string;
-    implementations: Record<string, ConnectorImplementation>;
-    usageId: ConnectorUsageId;
-    vendorAccountURL: string;
-    vendorDocumentationURL: string;
-    vendorHomeURL: string;
-    version?: string;
-}
-export interface ConnectorImplementation {
-    activeConnectionCount?: number;
-    canDescribe?: boolean;
-    id?: string;
-    authMethodId: ConnectorAuthMethodId;
-    label?: Record<string, string>;
-    maxConnectionCount: number;
-    params?: Record<string, string>[];
-}
-export enum ConnectorAuthMethodId {
-    APIKey = 'apiKey',
-    Disabled = 'disabled',
-    OAuth2 = 'oAuth2',
-    None = 'none'
 }
 
 // Connector Category
@@ -208,27 +198,3 @@ export const getConnectorCategory = (id: string, localeId = 'en'): ConnectorCate
     if (connectorCategory) return { ...connectorCategory, label: connectorCategory.label[localeId] || connectorCategory.label['en'] || id };
     return { id, label: id };
 };
-
-// Connector Usage
-export enum ConnectorUsageId {
-    Bidirectional = 'bidirectional',
-    Destination = 'destination',
-    Node = 'node',
-    Source = 'source',
-    None = 'none'
-}
-
-// Interfaces/Types - Item
-export interface ItemConfig {
-    childCount?: number;
-    extension?: string;
-    folderPath: string;
-    handle?: DPAFileSystemFileHandle;
-    id?: string;
-    label: string;
-    lastModifiedAt?: number;
-    mimeType?: string;
-    name: string;
-    size?: number;
-    typeId: 'folder' | 'object';
-}

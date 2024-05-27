@@ -1,34 +1,30 @@
-// // Exports - Base
-// export interface BaseConfig {
-//     id: string;
-//     label: string;
-// }
-
 // Exports - Components
 export { type ComponentConfig, type ComponentStatus, getComponentStatus } from './component';
 
 // Exports - Components - Connector
-export { ConnectorAuthMethodId, type ConnectorCallbackData, type ConnectorConfig, ConnectorUsageId } from './connector';
+export type { ConnectorCallbackData, ConnectorConfig } from './connector';
 export type {
     Connector,
     ConnectorFieldInfo,
     ObjectInfo,
     ConnectorRecord,
-    ItemConfig,
-    ListItemsResponse,
-    ListItemsResult,
-    ListItemsSettings,
+    ListResponse,
+    ListResult,
+    ListSettings,
     PreviewInterface,
-    PreviewInterfaceSettings,
+    PreviewSettings,
     PreviewResult,
     ReadInterface,
-    ReadInterfaceSettings,
+    ReadSettings,
     WriteInterface
 } from './connector';
 
 // Exports - Components - Connection
 export type { ConnectionConfig } from './connection';
 export { FieldStorageTypeId, FieldUsageTypeId } from './connection';
+
+// Exports - Components - Data Entry
+export type { DataEntryConfig } from './dataEntry';
 
 // Exports - Components - Context
 export type {

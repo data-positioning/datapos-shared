@@ -25,7 +25,7 @@
 //     getSelectInterface?(): SelectInterface;
 //     getUpdateInterface?(): UpdateInterface;
 //     getWriteInterface?(): WriteInterface;
-//     listItems?(settings: ListItemsSettings): Promise<ListItemsResult>;
+//     list?(settings: ListSettings): Promise<ListResult>;
 // }
 
 // // Types - Create Interface
@@ -73,12 +73,12 @@
 //     read(
 //         connector: Connector,
 //         DataViewConfig: DataViewConfig,
-//         settings: ReadInterfaceSettings,
+//         settings: ReadSettings,
 //         csvParse: (options?: Options, callback?: Callback) => Parser,
 //         callback: (data: ConnectorCallbackData) => void
 //     ): Promise<void>;
 // }
-// export interface ReadInterfaceSettings {
+// export interface ReadSettings {
 //     accountId?: string;
 //     chunk(records: ConnectorRecord[]): void;
 //     chunkSize?: number;
@@ -121,13 +121,13 @@
 // }
 
 // // Types - List Entries Settings
-// export interface ListItemsSettings {
+// export interface ListSettings {
 //     folderPath: string;
 //     limit?: number;
 //     offset?: number;
 //     totalCount?: number;
 // }
-// export interface ItemConfig {
+// export interface DataEntryConfig {
 //     childCount?: number;
 //     folderPath: string;
 //     encodingId?: string;
@@ -143,13 +143,13 @@
 //     size?: number;
 //     typeId: ItemTypeId;
 // }
-// export interface ListItemsResponse {
+// export interface ListResponse {
 //     error?: unknown;
-//     result?: ListItemsResult;
+//     result?: ListResult;
 // }
-// export interface ListItemsResult {
+// export interface ListResult {
 //     cursor: string | number | undefined;
-//     itemConfigs: ItemConfig[];
+//     itemConfigs: DataEntryConfig[];
 //     isMore: boolean;
 //     totalCount: number;
 // }
