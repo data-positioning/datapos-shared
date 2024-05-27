@@ -1,10 +1,10 @@
 // Dependencies - Framework
 import type { ComponentConfig } from '../component';
-import type { DataEntryConfig } from '../connector/dataEntry';
+import type { ConnectionItemConfig } from '../connectionItem';
 import type { DataViewPreviewConfig } from '../dataView';
 import type { ParsedValue } from '../dataView/ContentAuditColumn';
 import type { Callback, Options, Parser } from 'csv-parse';
-import type { ConnectionConfig, ConnectionDescription } from '../connector/connection';
+import type { ConnectionConfig, ConnectionDescription } from '../connection';
 
 // Interfaces/Types - Connector
 export interface Connector {
@@ -89,7 +89,7 @@ export interface PreviewInterface {
     preview(
         connector: Connector,
         callback: (data: ConnectorCallbackData) => void,
-        dataEntryConfig: DataEntryConfig,
+        dataEntryConfig: ConnectionItemConfig,
         settings: PreviewSettings
     ): Promise<{ error?: unknown; result?: PreviewResult }>;
 }
@@ -109,7 +109,7 @@ export interface ReadInterface {
     read(
         connector: Connector,
         callback: (data: ConnectorCallbackData) => void,
-        dataEntryConfig: DataEntryConfig,
+        dataEntryConfig: ConnectionItemConfig,
         previewConfig: DataViewPreviewConfig,
         settings: ReadSettings
     ): Promise<void>;
@@ -171,7 +171,7 @@ export interface ListResponse {
 }
 export interface ListResult {
     cursor: string | number | undefined;
-    dataStoreConfigs: DataEntryConfig[];
+    dataStoreConfigs: ConnectionItemConfig[];
     isMore: boolean;
     totalCount: number;
 }

@@ -1,5 +1,5 @@
-// Interfaces/Types - Data Entry Configuration
-export interface DataEntryConfig {
+// Interfaces/Types - Connection Item Configuration
+export interface ConnectionItemConfig {
     childCount?: number;
     extension?: string;
     folderPath: string;
@@ -13,7 +13,7 @@ export interface DataEntryConfig {
     typeId: 'folder' | 'object';
 }
 
-// Interfaces/Types - DPA File System Handle
+// Interfaces/Types - DPA File System File Handle
 interface DPAFileSystemFileHandle {
     readonly kind: 'file';
     getFile(): Promise<File>;

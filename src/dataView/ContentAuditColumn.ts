@@ -1,7 +1,7 @@
 const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Engine - Support
-import { FieldUsageTypeId } from '../connector/connection';
+import { FieldUsageTypeId } from '../connection';
 import { PreviewColumn } from './PreviewColumn';
 
 export type ParsedValue = bigint | boolean | number | string | null;

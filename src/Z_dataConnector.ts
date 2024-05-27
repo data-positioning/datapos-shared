@@ -127,7 +127,7 @@
 //     offset?: number;
 //     totalCount?: number;
 // }
-// export interface DataEntryConfig {
+// export interface ConnectionItemConfig {
 //     childCount?: number;
 //     folderPath: string;
 //     encodingId?: string;
@@ -149,7 +149,7 @@
 // }
 // export interface ListResult {
 //     cursor: string | number | undefined;
-//     itemConfigs: DataEntryConfig[];
+//     itemConfigs: ConnectionItemConfig[];
 //     isMore: boolean;
 //     totalCount: number;
 // }

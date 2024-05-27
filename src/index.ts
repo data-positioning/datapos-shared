@@ -5,43 +5,25 @@ import { Timestamp } from 'firebase/firestore';
 export const DefaultTimestamp: Timestamp = new Timestamp(0, 0);
 
 // Interfaces/Types - Component
-export { type ComponentConfig, type ComponentStatus, getComponentStatus } from './component';
+export type { ComponentConfig, ComponentStatus } from './component';
 
-// Interfaces/Types - Connector - Connection
+// Interfaces/Types - Connection
+export { type ConnectionConfig, FieldStorageTypeId, FieldUsageTypeId } from './connection';
+
+// Interfaces/Types - Connection Item
+export type { ConnectionItemConfig } from './connectionItem';
+
+// Interfaces/Types - Connector
 export type { ConnectorCallbackData, ConnectorConfig } from './connector';
-export type {
-    Connector,
-    ConnectorFieldInfo,
-    ObjectInfo,
-    ConnectorRecord,
-    ListResponse,
-    ListResult,
-    ListSettings,
-    PreviewInterface,
-    PreviewSettings,
-    PreviewResult,
-    ReadInterface,
-    ReadSettings,
-    WriteInterface
-} from './connector';
-export { type ConnectionConfig, FieldStorageTypeId, FieldUsageTypeId } from './connector/connection';
-
-// Interfaces/Types - Connector - Data Entry
-export type { DataEntryConfig } from './connector/dataEntry';
+export type { Connector, ConnectorFieldInfo, ObjectInfo, ConnectorRecord } from './connector';
+export type { ListResponse, ListResult, ListSettings } from './connector';
+export type { PreviewInterface, PreviewSettings, PreviewResult } from './connector';
+export type { ReadInterface, ReadSettings } from './connector';
+export type { WriteInterface } from './connector';
 
 // Interfaces/Types - Context
-export type {
-    ContextConfig,
-    ContextModelConfig,
-    ContextDimensionConfig,
-    ContextEntityCharacteristicConfig,
-    ContextEntityComputationConfig,
-    ContextEntityConfig,
-    ContextEntityEventConfig,
-    ContextHierarchyConfig,
-    ContextViewConfig,
-    Event
-} from './context';
+export type { ContextConfig, ContextModelConfig, ContextDimensionConfig, ContextEntityCharacteristicConfig, ContextEntityComputationConfig } from './context';
+export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from './context';
 
 // Interfaces/Types - Data View
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, Encoding, EncodingConfig, ObjectSchema } from './dataView';
@@ -55,18 +37,16 @@ export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, En
 // Interfaces/Types - Event Query
 export type { EventQueryConfig } from './eventQuery';
 
+// Interfaces/Types - Presentation
+export type { Presentation, PresentationConfig } from './presentation';
+
 // Interfaces/Types - Tutorial
-export type { TutorialConfig } from './tutorial';
+export type { Tutorial, TutorialConfig } from './tutorial';
 
 // Utilities
-export {
-    convertODataTypeToDataType,
-    establishVendorAccessToken,
-    extractExtensionFromPath,
-    extractNameFromPath,
-    formatNumberAsDecimalNumber,
-    formatNumberAsDuration,
-    formatNumberAsStorageSize,
-    formatNumberAsWholeNumber,
-    lookupMimeTypeForExtension
-} from './utilities';
+export { convertODataTypeToDataType } from './utilities';
+export { establishVendorAccessToken } from './utilities';
+export { extractExtensionFromPath, extractNameFromPath } from './utilities';
+export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './utilities';
+export { getComponentStatus } from './component';
+export { lookupMimeTypeForExtension } from './utilities';

@@ -1,3 +1,5 @@
+// Use NAMESPACES rather than SCHEMAS.
+
 // import type { ConnectionConfig } from '../connection';
 // import type { Connector, ConnectorConfig } from './';
 
