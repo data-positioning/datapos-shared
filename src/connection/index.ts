@@ -36,7 +36,7 @@ export interface ConnectionItemConfig {
     childCount?: number;
     children?: ConnectionItemConfig[];
     extension?: string;
-    fields: FieldConfig[];
+    fields?: FieldConfig[];
     folderPath: string;
     handle?: {
         readonly kind: 'file'; // DPA File System File Handle
