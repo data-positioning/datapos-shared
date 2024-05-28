@@ -9,12 +9,12 @@ export interface Component {
 // Interfaces/Types - Component Configuration
 export interface ComponentConfig {
     description?: Record<string, string>;
-    firstCreatedAt: Timestamp;
+    firstCreatedAt?: Timestamp;
     id: string;
     label: Record<string, string>;
-    lastUpdatedAt: Timestamp;
+    lastUpdatedAt?: Timestamp;
     logo?: string;
-    status: ComponentStatus;
+    status?: ComponentStatus;
     statusId: string;
     typeId: 'connection' | 'connector' | 'context' | 'contextModel' | 'dataView' | 'eventQuery' | 'presentation' | 'tutorial';
 }
