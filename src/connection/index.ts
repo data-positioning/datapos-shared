@@ -18,18 +18,15 @@ export interface ConnectionConfig extends ComponentConfig {
     notation: string;
 }
 interface ConnectionAuthorization {
-    access_token: string; // Dropbox.
-    account_id: string; // Dropbox.
-    expires_at: number; // Dropbox.
-    expires_in: number; // Dropbox.
-    refresh_token: string; // Dropbox.
+    accessToken: string; // Dropbox.
+    accountId: string; // Dropbox.
+    expiresAt: Timestamp; // Dropbox.
+    expiresIn: number; // Dropbox.
+    refreshToken: string; // Dropbox.
     scope: string; // Dropbox.
-    token_type: string; // Dropbox.
+    tokenType: string; // Dropbox.
     uid: string; // Dropbox.
 }
-
-// Interfaces/Types - Connection Description
-export type ConnectionDescription = { connectionItemConfigs: ConnectionItemConfig; structures: StructureConfig[] };
 
 // Interfaces/Types - Connection Item Configuration
 export interface ConnectionItemConfig {
@@ -38,37 +35,38 @@ export interface ConnectionItemConfig {
     extension?: string;
     fields?: FieldConfig[];
     folderPath: string;
-    handle?: {
-        readonly kind: 'file'; // DPA File System File Handle
-        getFile(): Promise<File>;
-    };
+    handle?: { readonly kind: 'file'; getFile(): Promise<File> }; // DPA File System File Handle
     id?: string;
     label: string;
-    lastModifiedAt?: number;
+    lastModifiedAt?: Timestamp;
     mimeType?: string;
     name: string;
     size?: number;
     typeId: 'folder' | 'object';
 }
 
-// Interfaces/Types - Structure Configuration
-interface StructureConfig {
-    id: string;
-    fields: FieldDataType[];
+// Interfaces/Types - Configuration Description
+export interface ConnectionDescription {
+    objects: { id: string; label: Record<string, string>; fields: FieldConfig[] }[];
+    structures: { id: string; label: Record<string, string>; fields: FieldConfig[] }[];
 }
 
 // Interfaces/Types - Field Configuration
-interface FieldConfig {
-    dataType: FieldDataType;
-    isIgnored: boolean;
-    label: string;
-    maxLength?: number;
-}
-
-// Interfaces/Types - Field Data Type
-export interface FieldDataType {
-    maximumLength?: number;
-    storageTypeId:
+export interface FieldConfig {
+    invalidValueCount?: number;
+    invalidValues?: string[];
+    isIgnored?: boolean;
+    isRequired?: boolean;
+    isUnique?: boolean;
+    label: Record<string, string>;
+    maxDecimals?: number;
+    maxSize?: number; // TODO: was 'maxLength?: number'.
+    maxValue?: string;
+    minDecimals?: number;
+    minSize?: number;
+    minValue?: string;
+    patterns?: Record<string, string>;
+    storageTypeId?:
         | 'binary'
         | 'boolean'
         | 'byte'
@@ -86,5 +84,8 @@ export interface FieldDataType {
         | 'string'
         | 'time'
         | 'unknown';
-    usageTypeId: 'boolean' | 'decimalNumber' | 'moment' | 'string' | 'wholeNumber' | 'unknown';
+    usageTypeId?: 'boolean' | 'decimalNumber' | 'moment' | 'string' | 'unknown' | 'wholeNumber';
+    validValueCount?: number;
+    validValues?: Record<string, string>;
+    voidValueCount?: number;
 }

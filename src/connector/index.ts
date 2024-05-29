@@ -14,12 +14,7 @@ export interface Connector {
 
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
-    describe?(
-        accountId: string | undefined,
-        sessionAccessToken: string | undefined,
-        itemId: string | undefined,
-        callback: (data: ConnectorCallbackData) => void
-    ): Promise<ConnectionDescription>;
+    describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
     getCreateInterface?(): CreateInterface;
     getDeleteInterface?(): DeleteInterface;
     getDropInterface?(): DropInterface;
@@ -69,6 +64,15 @@ interface CreateInterface {
 interface DeleteInterface {
     connector: Connector;
     drop(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+}
+
+// Interfaces/Types - Describe
+export interface DescribeSettings {
+    accountId: string | undefined;
+    sessionAccessToken: string | undefined;
+}
+export interface DescribeResult {
+    description: ConnectionDescription;
 }
 
 // Interfaces/Types - Drop Interface
@@ -164,10 +168,6 @@ export interface ListSettings {
     limit?: number;
     offset?: number;
     totalCount?: number;
-}
-export interface ListResponse {
-    error?: unknown;
-    result?: ListResult;
 }
 export interface ListResult {
     cursor: string | number | undefined;

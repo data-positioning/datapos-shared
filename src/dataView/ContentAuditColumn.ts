@@ -1,6 +1,6 @@
 const MAX_INVALID_VALUE_COUNT = 100;
 
-// Dependencies - Engine - Support
+// Dependencies - Framework
 import { PreviewColumn } from './PreviewColumn';
 
 export type ParsedValue = bigint | boolean | number | string | null;

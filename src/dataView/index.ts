@@ -1,15 +1,19 @@
-import type { ConnectionConfig } from '../connection';
+// Dependencies - Vendor
+import type { Timestamp } from 'firebase/firestore';
+
+// Dependencies - Framework
 import type { ConnectionItemConfig } from '../connection';
 import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
+import type { ConnectionConfig, FieldConfig } from '../connection';
 import type { ContentAuditColumn, ParsedValue } from './ContentAuditColumn';
 
-// Declarations - Data View
+// Interfaces/Types - Data View
 export interface DataView extends Component {
     properties: DataViewConfig;
 }
 
-// Declarations - Data View - Configuration
+// Interfaces/Types - Data View Configuration
 export interface DataViewConfig extends ComponentConfig {
     connectionConfig: ConnectionConfig;
     connectionItemConfig: ConnectionItemConfig;
@@ -18,12 +22,12 @@ export interface DataViewConfig extends ComponentConfig {
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
 }
 
-// Declarations - Data View - Configuration - Preview
+// Interfaces/Types - Data View - Preview Configuration
 export interface DataViewPreviewConfig {
-    asAt: number;
+    asAt: Timestamp;
     columns: PreviewColumn[];
     // commentPrefixId?: string;
-    dataFormatId: DataFormatId;
+    dataFormatId: 'dtv' | 'e/e' | 'json' | 'spss' | 'table' | 'xls' | 'xlsx' | 'xml';
     duration: number;
     encodingConfidenceLevel?: number;
     encodingId?: string;
@@ -40,11 +44,11 @@ export interface DataViewPreviewConfig {
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;
     text: string;
-    valueDelimiterId?: ValueDelimiterId;
+    valueDelimiterId?: ':' | ',' | '!' | '' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
     // valueTrimMethodId?: string;
 }
 
-// Declarations - Data View - Configuration - Content Audit
+// Interfaces/Types - Data View - Content Audit Configuration
 export interface DataViewContentAuditConfig {
     asAt: number;
     columns: ContentAuditColumn[];
@@ -56,22 +60,36 @@ export interface DataViewContentAuditConfig {
     recordCount: number;
 }
 
-// Declarations - Data View - Configuration - Relationships Audit
+// Interfaces/Types - Data View - Relationships Audit Configuration
 export interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
 
-// Declarations - Data View - Data Format
-export enum DataFormatId {
-    DelimitedText = 'dtv',
-    EntityEvent = 'e/e',
-    JSON = 'json',
-    SPSS = 'spss',
-    Table = 'table',
-    XLS = 'xls',
-    XLSX = 'xlsx',
-    XML = 'xml'
+// Interfaces/Types
+export interface Encoding {
+    id: string;
+    confidenceLevel?: number;
 }
+
+// Interfaces/Types
+export interface EncodingConfig {
+    id: string;
+    groupLabel: string;
+    label: string;
+    isDetectable: boolean;
+    isDecodable: boolean;
+}
+
+// Interfaces/Types
+export interface ObjectSchema {
+    fields: FieldConfig[];
+    hasHeaderLine: boolean;
+    records: ParsedValue[][];
+    text: string;
+    valueDelimiterId: ':' | ',' | '!' | '' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
+}
+
+// Utilities - Data Format
 type DataFormat = { id: string; label: string };
 type DataFormatConfig = { id: string; label: Record<string, string> };
 const dataFormats: DataFormatConfig[] = [
@@ -95,20 +113,7 @@ export const getDataFormats = (localeId = 'en'): DataFormat[] => {
     return items.sort((first, second) => first.label.localeCompare(second.label));
 };
 
-// Declarations - Data View - Value Delimiter
-export enum ValueDelimiterId {
-    Colon = ':',
-    Comma = ',',
-    ExclamationMark = '!',
-    Other = '',
-    RecordSeparator = '0x1E',
-    Semicolon = ';',
-    Space = ' ',
-    Tab = '\t',
-    Underscore = '_',
-    UnitSeparator = '0x1F',
-    VerticalBar = '|'
-}
+// Utilities - Value Delimiter
 type ValueDelimiter = { id: string; label: string };
 type ValueDelimiterConfig = { id: string; label: Record<string, string> };
 const valueDelimiters: ValueDelimiterConfig[] = [
@@ -134,27 +139,3 @@ export const getValueDelimiters = (localeId = 'en'): ValueDelimiter[] => {
     for (const valueDelimiter of valueDelimiters) items.push({ ...valueDelimiter, label: valueDelimiter.label[localeId] || valueDelimiter.label['en'] || valueDelimiter.id });
     return items.sort((first, second) => first.label.localeCompare(second.label));
 };
-
-// Declarations
-export interface Encoding {
-    id: string;
-    confidenceLevel?: number;
-}
-
-// Declarations
-export interface EncodingConfig {
-    id: string;
-    groupLabel: string;
-    label: string;
-    isDetectable: boolean;
-    isDecodable: boolean;
-}
-
-// Declarations
-export interface ObjectSchema {
-    columns: PreviewColumn[];
-    hasHeaderLine: boolean;
-    records: ParsedValue[][];
-    text: string;
-    valueDelimiterId: ValueDelimiterId;
-}

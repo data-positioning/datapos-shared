@@ -1,47 +1,43 @@
-// Dependencies - Framework
-import type { ReadSettings } from './connector';
-import type { ConnectionConfig, FieldDataType } from './connection';
-
 // Constants
 const numberFormatterDefaultLocale = 'en-US';
 const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
 
 // Utilities - Convert
 // See: https://www.odata.org/documentation/odata-version-2-0/overview/.
-export const convertODataTypeToDataType = (type: string, maximumLength?: number): FieldDataType => {
-    switch (type) {
+export const convertODataTypeIdToUsageTypeId = (oDataTypeId: string): string => {
+    switch (oDataTypeId) {
         case 'Edm.Binary':
-            return { storageTypeId: 'binary', usageTypeId: 'unknown' }; // Binary...
+            return 'unknown'; // Binary...
         case 'Edm.Boolean':
-            return { storageTypeId: 'boolean', usageTypeId: 'boolean' };
+            return 'boolean';
         case 'Edm.Byte':
-            return { storageTypeId: 'byte', usageTypeId: 'wholeNumber' };
+            return 'wholeNumber';
         case 'Edm.DateTime':
-            return { storageTypeId: 'dateTime', usageTypeId: 'moment' }; // DateTime...
+            return 'moment'; // DateTime...
         case 'Edm.DateTimeOffset':
-            return { storageTypeId: 'dateTimeOffset', usageTypeId: 'moment' }; // DateTimeOffset...
+            return 'moment'; // DateTimeOffset...
         case 'Edm.Decimal':
-            return { storageTypeId: 'decimal', usageTypeId: 'decimalNumber' };
+            return 'decimalNumber';
         case 'Edm.Double':
-            return { storageTypeId: 'double', usageTypeId: 'decimalNumber' };
+            return 'decimalNumber';
         case 'Edm.Guid':
-            return { storageTypeId: 'string', usageTypeId: 'string' };
+            return 'string';
         case 'Edm.Int16':
-            return { storageTypeId: 'int16', usageTypeId: 'wholeNumber' };
+            return 'wholeNumber';
         case 'Edm.Int32':
-            return { storageTypeId: 'int32', usageTypeId: 'wholeNumber' };
+            return 'wholeNumber';
         case 'Edm.Int64':
-            return { storageTypeId: 'int64', usageTypeId: 'wholeNumber' };
+            return 'wholeNumber';
         case 'Edm.SByte':
-            return { storageTypeId: 'int8', usageTypeId: 'wholeNumber' };
+            return 'wholeNumber';
         case 'Edm.Single':
-            return { storageTypeId: 'single', usageTypeId: 'decimalNumber' };
+            return 'decimalNumber';
         case 'Edm.String':
-            return { storageTypeId: 'string', usageTypeId: 'string', maximumLength };
+            return 'string';
         case 'Edm.Time':
-            return { storageTypeId: 'time', usageTypeId: 'moment' }; // Time...
+            return 'moment'; // Time...
         default:
-            return { storageTypeId: 'unknown', usageTypeId: 'unknown' };
+            return 'unknown';
     }
 };
 
