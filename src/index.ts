@@ -26,9 +26,8 @@ export type { ContextConfig, ContextModelConfig, ContextDimensionConfig, Context
 export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from './context';
 
 // Interfaces/Types - Data View
+export type { ParsedValue } from './dataView/ContentAuditColumn';
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, Encoding, EncodingConfig } from './dataView';
-export { PreviewColumn } from './dataView/PreviewColumn';
-export { ContentAuditColumn, type ParsedValue } from './dataView/ContentAuditColumn';
 
 // Interfaces/Types - Error
 export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
