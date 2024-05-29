@@ -21,7 +21,7 @@ export interface DataViewConfig extends ComponentConfig {
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
 }
 
-// Interfaces/Types - Data View - Preview Configuration
+// Interfaces/Types - Data View Preview Configuration
 export interface DataViewPreviewConfig {
     asAt: Timestamp;
     // commentPrefixId?: string;
@@ -47,7 +47,7 @@ export interface DataViewPreviewConfig {
     // valueTrimMethodId?: string;
 }
 
-// Interfaces/Types - Data View - Content Audit Configuration
+// Interfaces/Types - Data View Content Audit Configuration
 export interface DataViewContentAuditConfig {
     asAt: Timestamp;
     columns: ContentAuditColumn[];
@@ -59,18 +59,18 @@ export interface DataViewContentAuditConfig {
     recordCount: number;
 }
 
-// Interfaces/Types - Data View - Relationships Audit Configuration
+// Interfaces/Types - Data View Relationships Audit Configuration
 export interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
 
-// Interfaces/Types
+// Interfaces/Types - Encoding
 export interface Encoding {
     id: string;
     confidenceLevel?: number;
 }
 
-// Interfaces/Types
+// Interfaces/Types - Encoding Config
 export interface EncodingConfig {
     id: string;
     groupLabel: string;
