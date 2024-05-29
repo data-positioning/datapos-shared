@@ -2,10 +2,9 @@
 import type { Timestamp } from 'firebase/firestore';
 
 // Dependencies - Framework
+import type { ConnectionConfig } from '../connection';
 import type { ConnectionItemConfig } from '../connection';
-import type { PreviewColumn } from './PreviewColumn';
 import type { Component, ComponentConfig } from '../component';
-import type { ConnectionConfig, FieldConfig } from '../connection';
 import type { ContentAuditColumn, ParsedValue } from './ContentAuditColumn';
 
 // Interfaces/Types - Data View
@@ -25,9 +24,9 @@ export interface DataViewConfig extends ComponentConfig {
 // Interfaces/Types - Data View - Preview Configuration
 export interface DataViewPreviewConfig {
     asAt: Timestamp;
-    columns: PreviewColumn[];
     // commentPrefixId?: string;
-    dataFormatId: 'dtv' | 'e/e' | 'json' | 'spss' | 'table' | 'xls' | 'xlsx' | 'xml';
+    contentAudit?: DataViewContentAuditConfig;
+    dataFormatId: 'dtv' | 'e/e' | 'json' | 'jsonTable' | 'spss' | 'xls' | 'xlsx' | 'xml';
     duration: number;
     encodingConfidenceLevel?: number;
     encodingId?: string;
@@ -44,13 +43,13 @@ export interface DataViewPreviewConfig {
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;
     text: string;
-    valueDelimiterId?: ':' | ',' | '!' | '' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
+    valueDelimiterId?: ':' | ',' | '!' | '' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: What about this one "| ''"?
     // valueTrimMethodId?: string;
 }
 
 // Interfaces/Types - Data View - Content Audit Configuration
 export interface DataViewContentAuditConfig {
-    asAt: number;
+    asAt: Timestamp;
     columns: ContentAuditColumn[];
     commentLineCount: number;
     emptyLineCount: number;
@@ -111,7 +110,7 @@ const valueDelimiters: ValueDelimiterConfig[] = [
     { id: ':', label: { en: 'Colon' } },
     { id: ',', label: { en: 'Comma' } },
     { id: '!', label: { en: 'Exclamation Mark' } },
-    { id: '', label: { en: 'Other' } },
+    { id: '', label: { en: 'Other' } }, // TODO: Maybe set this to a 'not printing' or special ascii character when there is a user supplied delimited, rather than ''?
     { id: '0x1E', label: { en: 'Record Separator' } },
     { id: ';', label: { en: 'Semicolon' } },
     { id: ' ', label: { en: 'Space' } },
