@@ -80,15 +80,6 @@ export interface EncodingConfig {
     isDecodable: boolean;
 }
 
-// Interfaces/Types
-export interface ObjectSchema {
-    fields: FieldConfig[];
-    hasHeaderLine: boolean;
-    records: ParsedValue[][];
-    text: string;
-    valueDelimiterId: ':' | ',' | '!' | '' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
-}
-
 // Utilities - Data Format
 type DataFormat = { id: string; label: string };
 type DataFormatConfig = { id: string; label: Record<string, string> };
