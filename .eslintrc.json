@@ -5,7 +5,7 @@
         "ecmaVersion": "latest",
         "project": "./tsconfig.json"
     },
-    "plugins": ["@typescript-eslint", "import"],
+    "plugins": ["@typescript-eslint", "import", "sort-exports"],
     "rules": {
         "@typescript-eslint/consistent-type-imports": "warn",
         "@typescript-eslint/no-import-type-side-effects": "warn",
@@ -13,6 +13,7 @@
 
         "import/no-duplicates": "off",
         "sort-imports": ["warn", { "allowSeparatedGroups": true, "ignoreCase": true, "memberSyntaxSortOrder": ["none", "all", "single", "multiple"] }],
+        "sort-exports/sort-exports": ["off", { "ignoreCase": true }], // Does not support 'allowSeparatedGroups' as above. Turn on and off to check as required.
 
         "no-empty": "warn",
         "prefer-const": "warn"

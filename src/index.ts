@@ -2,7 +2,7 @@
 export { DefaultTimestamp } from './timestamp';
 
 // Interfaces/Types - Component
-export type { ComponentStatus, ComponentConfig } from './component';
+export type { ComponentConfig, ComponentStatus } from './component';
 
 // Interfaces/Types - Connection
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
@@ -11,10 +11,10 @@ export type { ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } f
 export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewInterface, PreviewResult, PreviewSettings } from './connector';
-export type { ReadInterface, ReadSummary, ReadSettings, ReadRecord } from './connector';
+export type { ReadInterface, ReadRecord, ReadSettings, ReadSummary } from './connector';
 
 // Interfaces/Types - Context
-export type { ContextConfig, ContextModelConfig, ContextDimensionConfig, ContextEntityCharacteristicConfig, ContextEntityComputationConfig } from './context';
+export type { ContextConfig, ContextDimensionConfig, ContextEntityCharacteristicConfig, ContextEntityComputationConfig, ContextModelConfig } from './context';
 export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from './context';
 
 // Interfaces/Types - Data View
