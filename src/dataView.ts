@@ -5,11 +5,6 @@ import type { Timestamp } from 'firebase/firestore';
 import type { ComponentConfig } from './component';
 import type { ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
 
-// // Interfaces/Types - Data View
-// export interface DataView extends Component {
-//     properties: DataViewConfig;
-// }
-
 // Interfaces/Types - Data View Configuration
 export interface DataViewConfig extends ComponentConfig {
     connectionConfig: ConnectionConfig;

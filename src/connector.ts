@@ -68,11 +68,11 @@ interface DeleteInterface {
 }
 
 // Interfaces/Types - Describe
-export interface DescribeSettings {
+interface DescribeSettings {
     accountId: string | undefined;
     sessionAccessToken: string | undefined;
 }
-export interface DescribeResult {
+interface DescribeResult {
     description: ConnectionDescription;
 }
 
@@ -121,14 +121,17 @@ export interface ReadInterface {
 }
 export interface ReadSettings {
     accountId?: string;
-    chunk(records: ConnectorRecord[]): void;
+    chunk(records: ReadRecord[]): void;
     chunkSize?: number;
-    complete(info: ObjectInfo): void;
+    complete(info: ReadSummary): void;
     csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
     sessionAccessToken?: string;
 }
-
-export interface ObjectInfo {
+export interface ReadRecord {
+    fieldQuotings: boolean[];
+    fieldValues: string[];
+}
+export interface ReadSummary {
     byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;
@@ -136,16 +139,9 @@ export interface ObjectInfo {
     lineCount: number;
     recordCount: number;
 }
-export interface ConnectorRecord {
-    fieldInfos: ConnectorFieldInfo[];
-    fieldValues: string[];
-}
-export interface ConnectorFieldInfo {
-    isQuoted: boolean;
-}
 
 // Interfaces/Types - Select Interface
-export interface SelectInterface {
+interface SelectInterface {
     connector: Connector;
     select(
         connector: Connector,
@@ -178,7 +174,7 @@ export interface ListResult {
 }
 
 // Interfaces/Types - Write Interface
-export interface WriteInterface {
+interface WriteInterface {
     connector: Connector;
     open(): void;
     write(): void;
@@ -194,7 +190,7 @@ const connectorCategories: ConnectorCategoryConfig[] = [
     { id: 'database', label: { en: 'Database' } },
     { id: 'fileStore', label: { en: 'File Store' } }
 ];
-export const getConnectorCategory = (id: string, localeId = 'en'): ConnectorCategory => {
+const getConnectorCategory = (id: string, localeId = 'en'): ConnectorCategory => {
     const connectorCategory = connectorCategories.find((connectorCategory) => connectorCategory.id === id);
     if (connectorCategory) return { ...connectorCategory, label: connectorCategory.label[localeId] || connectorCategory.label['en'] || id };
     return { id, label: id };

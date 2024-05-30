@@ -1,11 +1,6 @@
 // Dependencies - Vendor
 import type { Timestamp } from 'firebase/firestore';
 
-// Interfaces/Types - Component
-// export interface Component {
-//     config: ComponentConfig;
-// }
-
 // Interfaces/Types - Component Configuration
 export interface ComponentConfig {
     description?: Record<string, string>;

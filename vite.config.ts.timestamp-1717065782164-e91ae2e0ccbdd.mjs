@@ -1,0 +1,25 @@
+// vite.config.ts
+import { defineConfig } from "file:///Users/jonathanterrell/Data%20Positioning/GitHub/data-positioning/datapos-share-core/node_modules/vite/dist/node/index.js";
+import dts from "file:///Users/jonathanterrell/Data%20Positioning/GitHub/data-positioning/datapos-share-core/node_modules/vite-plugin-dts/dist/index.mjs";
+import { resolve } from "path";
+import { fileURLToPath, URL } from "node:url";
+var __vite_injected_original_import_meta_url = "file:///Users/jonathanterrell/Data%20Positioning/GitHub/data-positioning/datapos-share-core/vite.config.ts";
+var vite_config_default = defineConfig({
+  build: {
+    lib: {
+      entry: resolve("src/index.ts"),
+      fileName: (format) => `datapos-share-core.${format}.js`,
+      formats: ["es"],
+      name: "DataposShareCore"
+    },
+    target: "ESNext"
+  },
+  plugins: [dts({ outDir: "dist/types" })],
+  resolve: {
+    alias: { "@": fileURLToPath(new URL("./src", __vite_injected_original_import_meta_url)) }
+  }
+});
+export {
+  vite_config_default as default
+};
+//# sourceMappingURL=data:application/json;base64,ewogICJ2ZXJzaW9uIjogMywKICAic291cmNlcyI6IFsidml0ZS5jb25maWcudHMiXSwKICAic291cmNlc0NvbnRlbnQiOiBbImNvbnN0IF9fdml0ZV9pbmplY3RlZF9vcmlnaW5hbF9kaXJuYW1lID0gXCIvVXNlcnMvam9uYXRoYW50ZXJyZWxsL0RhdGEgUG9zaXRpb25pbmcvR2l0SHViL2RhdGEtcG9zaXRpb25pbmcvZGF0YXBvcy1zaGFyZS1jb3JlXCI7Y29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2ZpbGVuYW1lID0gXCIvVXNlcnMvam9uYXRoYW50ZXJyZWxsL0RhdGEgUG9zaXRpb25pbmcvR2l0SHViL2RhdGEtcG9zaXRpb25pbmcvZGF0YXBvcy1zaGFyZS1jb3JlL3ZpdGUuY29uZmlnLnRzXCI7Y29uc3QgX192aXRlX2luamVjdGVkX29yaWdpbmFsX2ltcG9ydF9tZXRhX3VybCA9IFwiZmlsZTovLy9Vc2Vycy9qb25hdGhhbnRlcnJlbGwvRGF0YSUyMFBvc2l0aW9uaW5nL0dpdEh1Yi9kYXRhLXBvc2l0aW9uaW5nL2RhdGFwb3Mtc2hhcmUtY29yZS92aXRlLmNvbmZpZy50c1wiO2ltcG9ydCB7IGRlZmluZUNvbmZpZyB9IGZyb20gJ3ZpdGUnO1xuaW1wb3J0IGR0cyBmcm9tICd2aXRlLXBsdWdpbi1kdHMnO1xuaW1wb3J0IHsgcmVzb2x2ZSB9IGZyb20gJ3BhdGgnO1xuaW1wb3J0IHsgZmlsZVVSTFRvUGF0aCwgVVJMIH0gZnJvbSAnbm9kZTp1cmwnO1xuXG5leHBvcnQgZGVmYXVsdCBkZWZpbmVDb25maWcoe1xuICAgIGJ1aWxkOiB7XG4gICAgICAgIGxpYjoge1xuICAgICAgICAgICAgZW50cnk6IHJlc29sdmUoJ3NyYy9pbmRleC50cycpLFxuICAgICAgICAgICAgZmlsZU5hbWU6IChmb3JtYXQpID0+IGBkYXRhcG9zLXNoYXJlLWNvcmUuJHtmb3JtYXR9LmpzYCxcbiAgICAgICAgICAgIGZvcm1hdHM6IFsnZXMnXSxcbiAgICAgICAgICAgIG5hbWU6ICdEYXRhcG9zU2hhcmVDb3JlJ1xuICAgICAgICB9LFxuICAgICAgICB0YXJnZXQ6ICdFU05leHQnXG4gICAgfSxcbiAgICBwbHVnaW5zOiBbZHRzKHsgb3V0RGlyOiAnZGlzdC90eXBlcycgfSldLFxuICAgIHJlc29sdmU6IHtcbiAgICAgICAgYWxpYXM6IHsgJ0AnOiBmaWxlVVJMVG9QYXRoKG5ldyBVUkwoJy4vc3JjJywgaW1wb3J0Lm1ldGEudXJsKSkgfVxuICAgIH1cbn0pO1xuIl0sCiAgIm1hcHBpbmdzIjogIjtBQUEwYSxTQUFTLG9CQUFvQjtBQUN2YyxPQUFPLFNBQVM7QUFDaEIsU0FBUyxlQUFlO0FBQ3hCLFNBQVMsZUFBZSxXQUFXO0FBSHlPLElBQU0sMkNBQTJDO0FBSzdULElBQU8sc0JBQVEsYUFBYTtBQUFBLEVBQ3hCLE9BQU87QUFBQSxJQUNILEtBQUs7QUFBQSxNQUNELE9BQU8sUUFBUSxjQUFjO0FBQUEsTUFDN0IsVUFBVSxDQUFDLFdBQVcsc0JBQXNCLE1BQU07QUFBQSxNQUNsRCxTQUFTLENBQUMsSUFBSTtBQUFBLE1BQ2QsTUFBTTtBQUFBLElBQ1Y7QUFBQSxJQUNBLFFBQVE7QUFBQSxFQUNaO0FBQUEsRUFDQSxTQUFTLENBQUMsSUFBSSxFQUFFLFFBQVEsYUFBYSxDQUFDLENBQUM7QUFBQSxFQUN2QyxTQUFTO0FBQUEsSUFDTCxPQUFPLEVBQUUsS0FBSyxjQUFjLElBQUksSUFBSSxTQUFTLHdDQUFlLENBQUMsRUFBRTtBQUFBLEVBQ25FO0FBQ0osQ0FBQzsiLAogICJuYW1lcyI6IFtdCn0K

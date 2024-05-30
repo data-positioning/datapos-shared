@@ -14,9 +14,7 @@ export type { ConnectionColumnConfig, ConnectionItemConfig } from './connection'
 export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewInterface, PreviewResult, PreviewSettings } from './connector';
-export type { ReadInterface, ReadSettings } from './connector';
-
-export type { ConnectorFieldInfo, ObjectInfo, ConnectorRecord } from './connector';
+export type { ReadInterface, ReadSummary, ReadSettings, ReadRecord } from './connector';
 
 // Interfaces/Types - Context
 export type { ContextConfig, ContextModelConfig, ContextDimensionConfig, ContextEntityCharacteristicConfig, ContextEntityComputationConfig } from './context';

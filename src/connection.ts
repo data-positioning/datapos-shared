@@ -4,11 +4,6 @@ import type { Timestamp } from 'firebase/firestore';
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
 
-// Interfaces/Types - Connection
-// export interface Connection extends Component {
-//     config: ConnectionConfig;
-// }
-
 // Interfaces/Types - Connection Configuration
 export interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorization>;
