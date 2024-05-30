@@ -8,7 +8,7 @@ export type { ComponentConfig, ComponentStatus } from './component';
 export type { ConnectionConfig } from './connection';
 
 // Interfaces/Types - Connection Item
-export type { ConnectionItemConfig } from './connection';
+export type { ConnectionColumnConfig, ConnectionItemConfig } from './connection';
 
 // Interfaces/Types - Connector
 export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
