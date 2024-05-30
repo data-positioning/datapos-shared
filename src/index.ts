@@ -32,6 +32,9 @@ export type { EventQueryConfig } from './eventQuery';
 // Interfaces/Types - Presentation
 export type { PresentationConfig } from './presentation';
 
+// Interfaces/Types - Timestamp
+export type { Timestamp } from './timestamp';
+
 // Interfaces/Types - Tutorial
 export type { TutorialConfig } from './tutorial';
 
