@@ -10,5 +10,5 @@ export const DefaultTimestamp: Timestamp = new FirebaseTimestamp(0, 0);
 // Facilitators - Convert Milliseconds to Timestamp
 export const convertMillisecondsToTimestamp = (milliseconds: number): Timestamp => FirebaseTimestamp.fromMillis(milliseconds);
 
-// Facilitators - Get Current TimeStamp
+// Facilitators - Get Current Timestamp
 export const getCurrentTimestamp = (): Timestamp => FirebaseTimestamp.now();

@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-share-core",
     "license": "ISC",
     "private": false,
-    "version": "0.1.565",
+    "version": "0.1.566",
     "type": "module",
     "files": [
         "dist"
@@ -16,18 +16,18 @@
     },
     "types": "./dist/types/src/index.d.ts",
     "peerDependencies": {
-        "firebase": "^10.12.1"
+        "firebase": "^10.12.2"
     },
     "devDependencies": {
         "@datapos/datapos-operations": "^0.1.482",
-        "@typescript-eslint/eslint-plugin": "^7.10.0",
-        "@typescript-eslint/parser": "^7.10.0",
+        "@typescript-eslint/eslint-plugin": "^7.11.0",
+        "@typescript-eslint/parser": "^7.11.0",
         "csv-parse": "^5.5.6",
         "eslint": "^8.57.0",
         "eslint-plugin-import": "^2.29.1",
         "prettier": "^3.2.5",
         "typescript": "^5.4.5",
-        "vite": "^5.2.11",
+        "vite": "^5.2.12",
         "vite-plugin-dts": "^3.9.1"
     },
     "scripts": {

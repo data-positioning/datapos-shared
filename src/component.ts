@@ -1,5 +1,5 @@
-// Dependencies - Vendor
-import type { Timestamp } from 'firebase/firestore';
+// Dependencies - Framework
+import type { Timestamp } from './timestamp';
 
 // Interfaces/Types - Component Configuration
 export interface ComponentConfig {

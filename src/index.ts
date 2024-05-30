@@ -2,13 +2,10 @@
 export { DefaultTimestamp } from './timestamp';
 
 // Interfaces/Types - Component
-export type { ComponentConfig, ComponentStatus } from './component';
+export type { ComponentStatus, ComponentConfig } from './component';
 
 // Interfaces/Types - Connection
-export type { ConnectionConfig } from './connection';
-
-// Interfaces/Types - Connection Item
-export type { ConnectionColumnConfig, ConnectionItemConfig } from './connection';
+export type { ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
 
 // Interfaces/Types - Connector
 export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
