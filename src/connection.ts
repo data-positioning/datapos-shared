@@ -2,12 +2,12 @@
 import type { Timestamp } from 'firebase/firestore';
 
 // Dependencies - Framework
-import type { Component, ComponentConfig } from '../component';
+import type { ComponentConfig } from './component';
 
 // Interfaces/Types - Connection
-export interface Connection extends Component {
-    config: ConnectionConfig;
-}
+// export interface Connection extends Component {
+//     config: ConnectionConfig;
+// }
 
 // Interfaces/Types - Connection Configuration
 export interface ConnectionConfig extends ComponentConfig {
@@ -31,9 +31,9 @@ interface ConnectionAuthorization {
 // Interfaces/Types - Connection Item Configuration
 export interface ConnectionItemConfig {
     childCount?: number;
+    columns?: ConnectionColumnConfig[];
     children?: ConnectionItemConfig[];
     extension?: string;
-    fields?: FieldConfig[];
     folderPath: string;
     handle?: { readonly kind: 'file'; getFile(): Promise<File> }; // DPA File System File Handle
     id?: string;
@@ -47,12 +47,11 @@ export interface ConnectionItemConfig {
 
 // Interfaces/Types - Configuration Description
 export interface ConnectionDescription {
-    objects: { id: string; label: Record<string, string>; fields: FieldConfig[] }[];
-    structures: { id: string; label: Record<string, string>; fields: FieldConfig[] }[];
+    objects: { id: string; label: Record<string, string>; columns: ConnectionColumnConfig[] }[];
 }
 
-// Interfaces/Types - Field Configuration
-export interface FieldConfig {
+// Interfaces/Types - Column Configuration
+export interface ConnectionColumnConfig {
     invalidValueCount?: number;
     invalidValues?: string[];
     isIgnored?: boolean;

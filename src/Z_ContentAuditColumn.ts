@@ -1,7 +1,7 @@
 const MAX_INVALID_VALUE_COUNT = 100;
 
 // Dependencies - Framework
-import { PreviewColumn } from './PreviewColumn';
+import { PreviewColumn } from './Z_PreviewColumn';
 
 export type ParsedValue = bigint | boolean | number | string | null;
 

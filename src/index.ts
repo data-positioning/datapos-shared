@@ -1,33 +1,29 @@
-// Dependencies - Vendor
-import { Timestamp } from 'firebase/firestore'; // See: https://firebase.google.com/docs/reference/js/firestore_.timestamp.md.
-
 // Constants
-export const DefaultTimestamp: Timestamp = new Timestamp(0, 0);
+export { DefaultTimestamp } from './timestamp';
 
 // Interfaces/Types - Component
 export type { ComponentConfig, ComponentStatus } from './component';
 
 // Interfaces/Types - Connection
-export { type ConnectionConfig } from './connection';
+export type { ConnectionConfig } from './connection';
 
 // Interfaces/Types - Connection Item
 export type { ConnectionItemConfig } from './connection';
 
 // Interfaces/Types - Connector
 export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
-export type { ConnectorFieldInfo, ObjectInfo, ConnectorRecord } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewInterface, PreviewResult, PreviewSettings } from './connector';
 export type { ReadInterface, ReadSettings } from './connector';
-export type { WriteInterface } from './connector';
+
+export type { ConnectorFieldInfo, ObjectInfo, ConnectorRecord } from './connector';
 
 // Interfaces/Types - Context
 export type { ContextConfig, ContextModelConfig, ContextDimensionConfig, ContextEntityCharacteristicConfig, ContextEntityComputationConfig } from './context';
 export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from './context';
 
 // Interfaces/Types - Data View
-export type { ParsedValue } from './dataView/ContentAuditColumn';
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, Encoding, EncodingConfig } from './dataView';
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, Encoding, EncodingConfig, ParsedValue } from './dataView';
 
 // Interfaces/Types - Error
 export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
@@ -36,18 +32,16 @@ export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, Fe
 export type { EventQueryConfig } from './eventQuery';
 
 // Interfaces/Types - Presentation
-export type { Presentation, PresentationConfig } from './presentation';
+export type { PresentationConfig } from './presentation';
 
 // Interfaces/Types - Tutorial
-export type { Tutorial, TutorialConfig } from './tutorial';
+export type { TutorialConfig } from './tutorial';
 
-export const convertMillisecondsToTimestamp = (milliseconds: number) => Timestamp.fromMillis(milliseconds);
-export const getCurrentTimestamp = () => Timestamp.now();
-
-// Utilities
-export { convertODataTypeIdToUsageTypeId } from './utilities';
-export { extractExtensionFromPath, extractNameFromPath } from './utilities';
-export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './utilities';
+// Facilitators
+export { convertODataTypeIdToUsageTypeId } from './facilitators';
 export { getComponentStatus } from './component';
-export { lookupMimeTypeForExtension } from './utilities';
+export { convertMillisecondsToTimestamp, getCurrentTimestamp } from './timestamp';
+export { extractExtensionFromPath, extractNameFromPath } from './facilitators';
+export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './facilitators';
 export { getDataFormats, getValueDelimiters } from './dataView';
+export { lookupMimeTypeForExtension } from './facilitators';

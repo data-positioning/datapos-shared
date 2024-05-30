@@ -2,9 +2,9 @@
 import type { Timestamp } from 'firebase/firestore';
 
 // Interfaces/Types - Component
-export interface Component {
-    config: ComponentConfig;
-}
+// export interface Component {
+//     config: ComponentConfig;
+// }
 
 // Interfaces/Types - Component Configuration
 export interface ComponentConfig {

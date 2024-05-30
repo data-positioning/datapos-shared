@@ -2,15 +2,13 @@
 import type { Timestamp } from 'firebase/firestore';
 
 // Dependencies - Framework
-import type { ConnectionConfig } from '../connection';
-import type { ConnectionItemConfig } from '../connection';
-import type { Component, ComponentConfig } from '../component';
-import type { ContentAuditColumn, ParsedValue } from './ContentAuditColumn';
+import type { ComponentConfig } from './component';
+import type { ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
 
-// Interfaces/Types - Data View
-export interface DataView extends Component {
-    properties: DataViewConfig;
-}
+// // Interfaces/Types - Data View
+// export interface DataView extends Component {
+//     properties: DataViewConfig;
+// }
 
 // Interfaces/Types - Data View Configuration
 export interface DataViewConfig extends ComponentConfig {
@@ -20,6 +18,9 @@ export interface DataViewConfig extends ComponentConfig {
     contentAuditConfig?: DataViewContentAuditConfig;
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
 }
+
+// Interfaces/Types - Parsed Value
+export type ParsedValue = bigint | boolean | number | string | null;
 
 // Interfaces/Types - Data View Preview Configuration
 export interface DataViewPreviewConfig {
@@ -50,7 +51,7 @@ export interface DataViewPreviewConfig {
 // Interfaces/Types - Data View Content Audit Configuration
 export interface DataViewContentAuditConfig {
     asAt: Timestamp;
-    columns: ContentAuditColumn[];
+    columns: ConnectionColumnConfig[];
     commentLineCount: number;
     emptyLineCount: number;
     invalidFieldLengthCount: number;
