@@ -19,7 +19,7 @@ export type ParsedValue = bigint | boolean | number | string | null;
 export interface DataViewPreviewConfig {
     asAt: Timestamp;
     // commentPrefixId?: string;
-    contentAudit?: DataViewContentAuditConfig;
+    columns?: ConnectionColumnConfig[];
     dataFormatId: 'dtv' | 'e/e' | 'json' | 'jsonTable' | 'spss' | 'xls' | 'xlsx' | 'xml';
     duration: number;
     encodingConfidenceLevel?: number;
