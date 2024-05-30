@@ -32,6 +32,7 @@ export interface DataViewPreviewConfig {
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
     records: ParsedValue[][];
+    recordCount: number;
     size: number;
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
