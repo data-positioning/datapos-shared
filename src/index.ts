@@ -5,7 +5,8 @@ export { DefaultTimestamp } from './timestamp';
 export type { ComponentConfig, ComponentStatus } from './component';
 
 // Interfaces/Types - Connection
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
+export type { ConnectionAuthorization, ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
+export type { ConnectionItemTypeId, DPAFileSystemFileHandle, StorageTypeId, UsageTypeId } from './connection';
 
 // Interfaces/Types - Connector
 export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';

@@ -10,7 +10,7 @@ export interface ConnectionConfig extends ComponentConfig {
     lastVerifiedAt: Timestamp;
     notation: string;
 }
-interface ConnectionAuthorization {
+export interface ConnectionAuthorization {
     accessToken: string; // Dropbox.
     accountId: string; // Dropbox.
     expiresAt: Timestamp; // Dropbox.
@@ -28,14 +28,14 @@ export interface ConnectionItemConfig {
     children?: ConnectionItemConfig[];
     extension?: string;
     folderPath: string;
-    handle?: { readonly kind: 'file'; getFile(): Promise<File> }; // DPA File System File Handle
+    handle?: DPAFileSystemFileHandle;
     id?: string;
     label: string;
     lastModifiedAt?: Timestamp;
     mimeType?: string;
     name: string;
     size?: number;
-    typeId: 'folder' | 'object';
+    typeId: ConnectionItemTypeId;
 }
 
 // Interfaces/Types - Configuration Description
@@ -52,32 +52,38 @@ export interface ConnectionColumnConfig {
     isUnique?: boolean;
     label: Record<string, string>;
     maxDecimals?: number;
-    maxSize?: number; // TODO: was 'maxLength?: number'.
+    maxSize?: number;
     maxValue?: string;
     minDecimals?: number;
     minSize?: number;
     minValue?: string;
     patterns?: Record<string, string>;
-    storageTypeId?:
-        | 'binary'
-        | 'boolean'
-        | 'byte'
-        | 'date'
-        | 'dateTime'
-        | 'dateTimeOffset'
-        | 'decimal'
-        | 'double'
-        | 'int8'
-        | 'int16'
-        | 'int32'
-        | 'int64'
-        | 'object'
-        | 'single'
-        | 'string'
-        | 'time'
-        | 'unknown';
-    usageTypeId?: 'boolean' | 'decimalNumber' | 'moment' | 'string' | 'unknown' | 'wholeNumber';
+    storageTypeId?: StorageTypeId;
+    usageTypeId?: UsageTypeId;
     validValueCount?: number;
     validValues?: Record<string, string>;
     voidValueCount?: number;
 }
+
+// Interfaces/Types - Basic
+export type ConnectionItemTypeId = 'folder' | 'object';
+export type DPAFileSystemFileHandle = { readonly kind: 'file'; getFile(): Promise<File> };
+export type StorageTypeId =
+    | 'binary'
+    | 'boolean'
+    | 'byte'
+    | 'date'
+    | 'dateTime'
+    | 'dateTimeOffset'
+    | 'decimal'
+    | 'double'
+    | 'int8'
+    | 'int16'
+    | 'int32'
+    | 'int64'
+    | 'object'
+    | 'single'
+    | 'string'
+    | 'time'
+    | 'unknown';
+export type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'string' | 'unknown' | 'wholeNumber';
