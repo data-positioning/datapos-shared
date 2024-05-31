@@ -20,7 +20,7 @@ export interface DataViewPreviewConfig {
     asAt: Timestamp;
     // commentPrefixId?: string;
     columnConfigs?: ConnectionColumnConfig[];
-    dataFormatId: 'dtv' | 'e/e' | 'json' | 'jsonTable' | 'spss' | 'xls' | 'xlsx' | 'xml';
+    dataFormatId: DataFormatId;
     duration: number;
     encodingConfidenceLevel?: number;
     encodingId?: string;
@@ -37,7 +37,7 @@ export interface DataViewPreviewConfig {
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;
     text: string;
-    valueDelimiterId?: ':' | ',' | '!' | '' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: What about this one "| ''"?
+    valueDelimiterId?: ValueDelimiterId;
     // valueTrimMethodId?: string;
 }
 
@@ -80,11 +80,11 @@ const dataFormats: DataFormatConfig[] = [
     { id: 'dtv', label: { en: 'Delimited Text' } },
     { id: 'e/e', label: { en: 'Entity/Event' } },
     { id: 'json', label: { en: 'JSON' } },
+    { id: 'jsonTable', label: { en: 'JSON Table' } },
     { id: 'spss', label: { en: 'SPSS' } },
-    { id: 'table', label: { en: 'Table' } },
-    { id: ' xls', label: { en: 'XLS' } },
-    { id: ' xlsx', label: { en: 'XLSX' } },
-    { id: ' xml', label: { en: 'XML' } }
+    { id: 'xls', label: { en: 'XLS' } },
+    { id: 'xlsx', label: { en: 'XLSX' } },
+    { id: 'xml', label: { en: 'XML' } }
 ];
 export const getDataFormat = (id: string, localeId = 'en'): DataFormat => {
     const dataFormat = dataFormats.find((dataFormat) => dataFormat.id === id);
@@ -104,7 +104,7 @@ const valueDelimiters: ValueDelimiterConfig[] = [
     { id: ':', label: { en: 'Colon' } },
     { id: ',', label: { en: 'Comma' } },
     { id: '!', label: { en: 'Exclamation Mark' } },
-    { id: '', label: { en: 'Other' } }, // TODO: Maybe set this to a 'not printing' or special ascii character when there is a user supplied delimited, rather than ''?
+    // { id: '', label: { en: 'Other' } }, // TODO: Maybe set this to a 'not printing' or special ascii character when there is a user supplied delimited, rather than ''?
     { id: '0x1E', label: { en: 'Record Separator' } },
     { id: ';', label: { en: 'Semicolon' } },
     { id: ' ', label: { en: 'Space' } },
@@ -123,3 +123,7 @@ export const getValueDelimiters = (localeId = 'en'): ValueDelimiter[] => {
     for (const valueDelimiter of valueDelimiters) items.push({ ...valueDelimiter, label: valueDelimiter.label[localeId] || valueDelimiter.label['en'] || valueDelimiter.id });
     return items.sort((first, second) => first.label.localeCompare(second.label));
 };
+
+// Interfaces/Types - Basic
+export type DataFormatId = 'dtv' | 'e/e' | 'json' | 'jsonTable' | 'spss' | 'xls' | 'xlsx' | 'xml';
+export type ValueDelimiterId = ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
