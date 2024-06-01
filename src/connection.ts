@@ -24,7 +24,7 @@ export interface ConnectionAuthorization {
 // Interfaces/Types - Connection Item Configuration
 export interface ConnectionItemConfig {
     childCount?: number;
-    columns?: ConnectionColumnConfig[];
+    columnsConfigs?: ConnectionColumnConfig[];
     children?: ConnectionItemConfig[];
     extension?: string;
     folderPath: string;

@@ -21,7 +21,7 @@ export interface DataViewPreviewConfig {
     // commentPrefixId?: string;
     columnConfigs?: ConnectionColumnConfig[];
     dataFormatId: DataFormatId;
-    duration: number;
+    duration?: number;
     encodingConfidenceLevel?: number;
     encodingId?: string;
     hasHeaderLine?: boolean;
@@ -31,12 +31,12 @@ export interface DataViewPreviewConfig {
     // linesToSkipAtEnd?: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
-    records: ParsedValue[][];
-    size: number;
+    records?: ParsedValue[][];
+    size?: number;
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;
-    text: string;
+    text?: string;
     valueDelimiterId?: ValueDelimiterId;
     // valueTrimMethodId?: string;
 }
