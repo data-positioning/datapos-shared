@@ -20,7 +20,7 @@ export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyCon
 
 // Interfaces/Types - Data View
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, Encoding, EncodingConfig, ParsedValue } from './dataView';
-export type { DataFormatId, ValueDelimiterId } from './dataView';
+export type { DataFormatId, LineDelimiterId, ValueDelimiterId } from './dataView';
 
 // Interfaces/Types - Error
 export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
