@@ -24,7 +24,7 @@ export interface DataViewPreviewConfig {
     duration?: number;
     encodingConfidenceLevel?: number;
     encodingId?: string;
-    hasHeaderLine?: boolean;
+    hasHeaders?: boolean;
     // lineDelimiterId?: string;
     // linesToSkipBeforeHeader?: number;
     // linesToSkipAfterHeader?: number;
