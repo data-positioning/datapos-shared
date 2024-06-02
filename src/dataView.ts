@@ -79,16 +79,17 @@ export const getDataFormat = (id: string, localeId = 'en'): DataFormat => {
 export const getDataFormats = (localeId = 'en'): DataFormat[] => {
     const items: DataFormat[] = [];
     for (const dataFormat of dataFormats) items.push({ ...dataFormat, label: dataFormat.label[localeId] || dataFormat.label['en'] || dataFormat.id });
-    return items.sort((first, second) => first.label.localeCompare(second.label));
+    // return items.sort((first, second) => first.label.localeCompare(second.label));
+    return items;
 };
 
 // Utilities - Record Delimiter
 type RecordDelimiter = { id: string; label: string };
 type RecordDelimiterConfig = { id: string; label: Record<string, string> };
 const recordDelimiters: RecordDelimiterConfig[] = [
-    { id: '\n', label: { en: 'Newline (Unix/Linux systems)' } },
-    { id: '\r', label: { en: 'Carriage Return (Older Macintosh systems)' } },
-    { id: '\r\n', label: { en: 'Carriage Return/Newline (Windows Systems)' } }
+    { id: '\n', label: { en: 'Newline' } },
+    { id: '\r', label: { en: 'Carriage Return' } },
+    { id: '\r\n', label: { en: 'Carriage Return/Newline' } }
 ];
 export const getRecordDelimiter = (id: string, localeId = 'en'): RecordDelimiter => {
     const recordDelimiter = recordDelimiters.find((recordDelimiter) => recordDelimiter.id === id);
@@ -98,7 +99,8 @@ export const getRecordDelimiter = (id: string, localeId = 'en'): RecordDelimiter
 export const getRecordDelimiters = (localeId = 'en'): RecordDelimiter[] => {
     const items: RecordDelimiter[] = [];
     for (const recordDelimiter of recordDelimiters) items.push({ ...recordDelimiter, label: recordDelimiter.label[localeId] || recordDelimiter.label['en'] || recordDelimiter.id });
-    return items.sort((first, second) => first.label.localeCompare(second.label));
+    // return items.sort((first, second) => first.label.localeCompare(second.label));
+    return items;
 };
 
 // Utilities - Value Delimiter
@@ -125,7 +127,8 @@ export const getValueDelimiter = (id: string, localeId = 'en'): ValueDelimiter =
 export const getValueDelimiters = (localeId = 'en'): ValueDelimiter[] => {
     const items: ValueDelimiter[] = [];
     for (const valueDelimiter of valueDelimiters) items.push({ ...valueDelimiter, label: valueDelimiter.label[localeId] || valueDelimiter.label['en'] || valueDelimiter.id });
-    return items.sort((first, second) => first.label.localeCompare(second.label));
+    // return items.sort((first, second) => first.label.localeCompare(second.label));
+    return items;
 };
 
 // Interfaces/Types - Basic
