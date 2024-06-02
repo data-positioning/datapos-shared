@@ -19,8 +19,8 @@ export type { ContextConfig, ContextDimensionConfig, ContextEntityCharacteristic
 export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from './context';
 
 // Interfaces/Types - Data View
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, Encoding, EncodingConfig, ParsedValue } from './dataView';
-export type { DataFormatId, LineDelimiterId, ValueDelimiterId } from './dataView';
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
+export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from './dataView';
 
 // Interfaces/Types - Error
 export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
@@ -43,5 +43,5 @@ export { getComponentStatus } from './component';
 export { convertMillisecondsToTimestamp, getCurrentTimestamp } from './timestamp';
 export { extractExtensionFromPath, extractNameFromPath } from './facilitators';
 export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './facilitators';
-export { getDataFormats, getValueDelimiters } from './dataView';
+export { getDataFormats, getRecordDelimiters, getValueDelimiters } from './dataView';
 export { lookupMimeTypeForExtension } from './facilitators';

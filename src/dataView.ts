@@ -25,12 +25,12 @@ export interface DataViewPreviewConfig {
     encodingConfidenceLevel?: number;
     encodingId?: string;
     hasHeaders?: boolean;
-    lineDelimiterId?: LineDelimiterId;
     // linesToSkipBeforeHeader?: number;
     // linesToSkipAfterHeader?: number;
     // linesToSkipAtEnd?: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
+    recordDelimiterId?: RecordDelimiterId;
     records?: ParsedValue[][];
     size?: number;
     // skipEmptyLines?: boolean;
@@ -58,21 +58,6 @@ export interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
 
-// Interfaces/Types - Encoding
-export interface Encoding {
-    id: string;
-    confidenceLevel?: number;
-}
-
-// Interfaces/Types - Encoding Config
-export interface EncodingConfig {
-    id: string;
-    groupLabel: string;
-    label: string;
-    isDetectable: boolean;
-    isDecodable: boolean;
-}
-
 // Utilities - Data Format
 type DataFormat = { id: string; label: string };
 type DataFormatConfig = { id: string; label: Record<string, string> };
@@ -94,6 +79,25 @@ export const getDataFormat = (id: string, localeId = 'en'): DataFormat => {
 export const getDataFormats = (localeId = 'en'): DataFormat[] => {
     const items: DataFormat[] = [];
     for (const dataFormat of dataFormats) items.push({ ...dataFormat, label: dataFormat.label[localeId] || dataFormat.label['en'] || dataFormat.id });
+    return items.sort((first, second) => first.label.localeCompare(second.label));
+};
+
+// Utilities - Record Delimiter
+type RecordDelimiter = { id: string; label: string };
+type RecordDelimiterConfig = { id: string; label: Record<string, string> };
+const recordDelimiters: RecordDelimiterConfig[] = [
+    { id: '\n', label: { en: 'Newline (Unix/Linux systems)' } },
+    { id: '\r', label: { en: 'Carriage Return (Older Macintosh systems)' } },
+    { id: '\r\n', label: { en: 'Carriage Return/Newline (Windows Systems)' } }
+];
+export const getRecordDelimiter = (id: string, localeId = 'en'): RecordDelimiter => {
+    const recordDelimiter = recordDelimiters.find((recordDelimiter) => recordDelimiter.id === id);
+    if (recordDelimiter) return { ...recordDelimiter, label: recordDelimiter.label[localeId] || recordDelimiter.label['en'] || id };
+    return { id, label: id };
+};
+export const getRecordDelimiters = (localeId = 'en'): RecordDelimiter[] => {
+    const items: RecordDelimiter[] = [];
+    for (const recordDelimiter of recordDelimiters) items.push({ ...recordDelimiter, label: recordDelimiter.label[localeId] || recordDelimiter.label['en'] || recordDelimiter.id });
     return items.sort((first, second) => first.label.localeCompare(second.label));
 };
 
@@ -126,5 +130,5 @@ export const getValueDelimiters = (localeId = 'en'): ValueDelimiter[] => {
 
 // Interfaces/Types - Basic
 export type DataFormatId = 'dtv' | 'e/e' | 'json' | 'jsonTable' | 'spss' | 'xls' | 'xlsx' | 'xml';
-export type LineDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
+export type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 export type ValueDelimiterId = ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
