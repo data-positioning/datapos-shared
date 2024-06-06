@@ -1,7 +1,7 @@
 // Dependencies - Framework
 import type { Timestamp } from './timestamp';
 
-// Interfaces/Types - Component Configuration
+// Classes/Interfaces/Types - Component Configuration
 export interface ComponentConfig {
     description?: Record<string, string>;
     firstCreatedAt?: Timestamp;
@@ -14,7 +14,7 @@ export interface ComponentConfig {
     typeId: 'connection' | 'connector' | 'context' | 'contextModel' | 'dataView' | 'eventQuery' | 'presentation' | 'tutorial';
 }
 
-// Interfaces/Types - Component Status
+// Classes/Interfaces/Types - Component Status
 export type ComponentStatus = { id: string; color?: string; label: string };
 type ComponentStatusConfig = { id: string; color?: string; label: Record<string, string> };
 const componentStatuses: ComponentStatusConfig[] = [
