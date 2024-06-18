@@ -1,4 +1,4 @@
-// Classes/Interfaces/Types - Serialised Error Data
+// Interfaces/Types - Serialised Error Data
 export interface SerialisedErrorData {
     cause?: SerialisedErrorData;
     context?: string;

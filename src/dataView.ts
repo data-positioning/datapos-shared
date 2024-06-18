@@ -3,7 +3,7 @@ import type { ComponentConfig } from './component';
 import type { Timestamp } from './timestamp';
 import type { ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
 
-// Classes/Interfaces/Types - Data View Configuration
+// Interfaces/Types - Data View Configuration
 export interface DataViewConfig extends ComponentConfig {
     connectionConfig: ConnectionConfig;
     connectionItemConfig: ConnectionItemConfig;
@@ -12,10 +12,10 @@ export interface DataViewConfig extends ComponentConfig {
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
 }
 
-// Classes/Interfaces/Types - Parsed Value
+// Interfaces/Types - Parsed Value
 export type ParsedValue = bigint | boolean | number | string | null;
 
-// Classes/Interfaces/Types - Data View Preview Configuration
+// Interfaces/Types - Data View Preview Configuration
 export interface DataViewPreviewConfig {
     asAt: Timestamp;
     // commentPrefixId?: string;
@@ -41,7 +41,7 @@ export interface DataViewPreviewConfig {
     // valueTrimMethodId?: string;
 }
 
-// Classes/Interfaces/Types - Data View Content Audit Configuration
+// Interfaces/Types - Data View Content Audit Configuration
 export interface DataViewContentAuditConfig {
     asAt: Timestamp;
     columns: ConnectionColumnConfig[];
@@ -53,7 +53,7 @@ export interface DataViewContentAuditConfig {
     recordCount: number;
 }
 
-// Classes/Interfaces/Types - Data View Relationships Audit Configuration
+// Interfaces/Types - Data View Relationships Audit Configuration
 export interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
@@ -131,7 +131,7 @@ export const getValueDelimiters = (localeId = 'en'): ValueDelimiter[] => {
     return items;
 };
 
-// Classes/Interfaces/Types - Basic
+// Interfaces/Types - Basic
 export type DataFormatId = 'dtv' | 'e/e' | 'json' | 'jsonTable' | 'spss' | 'xls' | 'xlsx' | 'xml';
 export type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 export type ValueDelimiterId = ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.

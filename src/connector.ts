@@ -7,7 +7,7 @@ import type { ConnectionItemConfig } from './connection';
 import type { ConnectionConfig, ConnectionDescription } from './connection';
 import type { DataViewPreviewConfig, ParsedValue } from './dataView';
 
-// Classes/Interfaces/Types - Connector
+// Interfaces/Types - Connector
 export interface Connector {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
@@ -28,7 +28,7 @@ export interface Connector {
     list?(callback: (data: ConnectorCallbackData) => void, settings: ListSettings): Promise<ListResult>;
 }
 
-// Classes/Interfaces/Types - Connector Configuration
+// Interfaces/Types - Connector Configuration
 export interface ConnectorConfig extends ComponentConfig {
     category?: ConnectorCategory;
     categoryId: string;
@@ -49,25 +49,25 @@ interface ConnectorImplementation {
     params?: Record<string, string>[];
 }
 
-// Classes/Interfaces/Types - Connector Callback Data
+// Interfaces/Types - Connector Callback Data
 export interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
 
-// Classes/Interfaces/Types - Create Interface
+// Interfaces/Types - Create Interface
 interface CreateInterface {
     connector: Connector;
     create(connector: Connector, databaseName: string, tableName: string, typeId?: string, structure?: Record<string, unknown>): Promise<{ error?: unknown }>;
 }
 
-// Classes/Interfaces/Types - Delete Interface
+// Interfaces/Types - Delete Interface
 interface DeleteInterface {
     connector: Connector;
     drop(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
-// Classes/Interfaces/Types - Describe
+// Interfaces/Types - Describe
 interface DescribeSettings {
     accountId: string | undefined;
     sessionAccessToken: string | undefined;
@@ -76,19 +76,19 @@ interface DescribeResult {
     description: ConnectionDescription;
 }
 
-// Classes/Interfaces/Types - Drop Interface
+// Interfaces/Types - Drop Interface
 interface DropInterface {
     connector: Connector;
     drop(connector: Connector, databaseName: string, tableName: string): Promise<{ error?: unknown }>;
 }
 
-// Classes/Interfaces/Types - Insert Interface
+// Interfaces/Types - Insert Interface
 interface InsertInterface {
     connector: Connector;
     insert(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
-// Classes/Interfaces/Types - Preview Interface
+// Interfaces/Types - Preview Interface
 export interface PreviewInterface {
     connector: Connector;
     preview(
@@ -108,7 +108,7 @@ export interface PreviewResult {
     typeId: 'table' | 'uint8Array';
 }
 
-// Classes/Interfaces/Types - Read Interface
+// Interfaces/Types - Read Interface
 export interface ReadInterface {
     connector: Connector;
     read(
@@ -140,7 +140,7 @@ export interface ReadSummary {
     recordCount: number;
 }
 
-// Classes/Interfaces/Types - Select Interface
+// Interfaces/Types - Select Interface
 interface SelectInterface {
     connector: Connector;
     select(
@@ -153,13 +153,13 @@ interface SelectInterface {
     ): Promise<{ error?: unknown; result?: Record<string, unknown>[] }>;
 }
 
-// Classes/Interfaces/Types - Update Interface
+// Interfaces/Types - Update Interface
 interface UpdateInterface {
     connector: Connector;
     update(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
-// Classes/Interfaces/Types - List
+// Interfaces/Types - List
 export interface ListSettings {
     folderPath: string;
     limit?: number;
@@ -173,7 +173,7 @@ export interface ListResult {
     totalCount: number;
 }
 
-// Classes/Interfaces/Types - Write Interface
+// Interfaces/Types - Write Interface
 interface WriteInterface {
     connector: Connector;
     open(): void;

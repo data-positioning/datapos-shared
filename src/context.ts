@@ -1,7 +1,7 @@
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
 
-// Classes/Interfaces/Types - Context Configuration
+// Interfaces/Types - Context Configuration
 export interface ContextConfig extends ComponentConfig {
     focuses: ContextFocusReference[];
 }

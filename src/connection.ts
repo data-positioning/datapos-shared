@@ -1,8 +1,8 @@
 // Dependencies - Framework
-import type { ComponentConfig } from './component';
 import type { Timestamp } from './timestamp';
+import type { ComponentConfig, ComponentItemTypeId } from './component';
 
-// Classes/Interfaces/Types - Connection Configuration
+// Interfaces/Types - Connection Configuration
 export interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorization>;
     connectorId: string;
@@ -21,7 +21,7 @@ export interface ConnectionAuthorization {
     uid: string; // Dropbox.
 }
 
-// Classes/Interfaces/Types - Connection Item Configuration
+// Interfaces/Types - Connection Item Configuration
 export interface ConnectionItemConfig {
     childCount?: number;
     columnsConfigs?: ConnectionColumnConfig[];
@@ -35,15 +35,15 @@ export interface ConnectionItemConfig {
     mimeType?: string;
     name: string;
     size?: number;
-    typeId: ConnectionItemTypeId;
+    typeId: ComponentItemTypeId;
 }
 
-// Classes/Interfaces/Types - Configuration Description
+// Interfaces/Types - Configuration Description
 export interface ConnectionDescription {
     objects: { id: string; label: Record<string, string>; columns: ConnectionColumnConfig[] }[];
 }
 
-// Classes/Interfaces/Types - Column Configuration
+// Interfaces/Types - Column Configuration
 export interface ConnectionColumnConfig {
     invalidValueCount?: number;
     invalidValues?: string[];
@@ -65,8 +65,7 @@ export interface ConnectionColumnConfig {
     voidValueCount?: number;
 }
 
-// Classes/Interfaces/Types - Basic
-export type ConnectionItemTypeId = 'folder' | 'object';
+// Interfaces/Types - Basic
 export type DPAFileSystemFileHandle = { readonly kind: 'file'; getFile(): Promise<File> };
 export type StorageTypeId =
     | 'binary'

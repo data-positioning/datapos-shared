@@ -1,41 +1,41 @@
 // Constants
 export { DefaultTimestamp } from './timestamp';
 
-// Classes/Interfaces/Types - Component
-export type { ComponentConfig, ComponentStatus } from './component';
+// Interfaces/Types - Component
+export type { ComponentConfig, ComponentItemTypeId, ComponentStatus } from './component';
 
-// Classes/Interfaces/Types - Connection
+// Interfaces/Types - Connection
 export type { ConnectionAuthorization, ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
-export type { ConnectionItemTypeId, DPAFileSystemFileHandle, StorageTypeId, UsageTypeId } from './connection';
+export type { DPAFileSystemFileHandle, StorageTypeId, UsageTypeId } from './connection';
 
-// Classes/Interfaces/Types - Connector
+// Interfaces/Types - Connector
 export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewInterface, PreviewResult, PreviewSettings } from './connector';
 export type { ReadInterface, ReadRecord, ReadSettings, ReadSummary } from './connector';
 
-// Classes/Interfaces/Types - Context
+// Interfaces/Types - Context
 export type { ContextConfig, ContextDimensionConfig, ContextEntityCharacteristicConfig, ContextEntityComputationConfig, ContextModelConfig } from './context';
 export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from './context';
 
-// Classes/Interfaces/Types - Data View
+// Interfaces/Types - Data View
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
 export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from './dataView';
 
-// Classes/Interfaces/Types - Error
+// Interfaces/Types - Error
 export type { SerialisedErrorData } from './errors';
 export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
 
-// Classes/Interfaces/Types - Event Query
+// Interfaces/Types - Event Query
 export type { EventQueryConfig } from './eventQuery';
 
-// Classes/Interfaces/Types - Presentation
-export type { PresentationConfig } from './presentation';
+// Interfaces/Types - Presentation Set
+export type { PresentationSet, PresentationSetConfig } from './presentationSet';
 
-// Classes/Interfaces/Types - Timestamp
+// Interfaces/Types - Timestamp
 export type { Timestamp } from './timestamp';
 
-// Classes/Interfaces/Types - Tutorial
+// Interfaces/Types - Tutorial
 export type { TutorialConfig } from './tutorial';
 
 // Facilitators
