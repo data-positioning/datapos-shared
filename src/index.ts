@@ -30,7 +30,7 @@ export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, Fe
 export type { EventQueryConfig } from './eventQuery';
 
 // Interfaces/Types - Presentation Set
-export type { PresentationSet, PresentationSetConfig } from './presentationSet';
+export type { PresentationSet, PresentationItemConfig, PresentationSetConfig } from './presentationSet';
 
 // Interfaces/Types - Timestamp
 export type { Timestamp } from './timestamp';
