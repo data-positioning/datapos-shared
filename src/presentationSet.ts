@@ -5,7 +5,7 @@ import type { ComponentConfig, ComponentItemTypeId } from './component';
 export interface PresentationSet {
     readonly config: PresentationSetConfig;
 
-    getIndex(): PresentationItemItemConfig[];
+    getIndex(): PresentationItemConfig[];
     render(id: string, renderTo: string | HTMLElement): Promise<void>;
 }
 
@@ -15,8 +15,8 @@ export interface PresentationSetConfig extends ComponentConfig {
 }
 
 // Interfaces/Types - Presentation Item Configuration
-export interface PresentationItemItemConfig {
-    children: PresentationItemItemConfig[];
+export interface PresentationItemConfig {
+    children: PresentationItemConfig[];
     id: string;
     label: string;
     typeId: ComponentItemTypeId;
