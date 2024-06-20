@@ -9,7 +9,7 @@ export type { ConnectionAuthorization, ConnectionColumnConfig, ConnectionConfig,
 export type { DPAFileSystemFileHandle, StorageTypeId, UsageTypeId } from './connection';
 
 // Interfaces/Types - Connector
-export type { Connector, ConnectorConfig } from './connector';
+export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewInterface, PreviewResult, PreviewSettings } from './connector';
 export type { ReadInterface, ReadRecord, ReadSettings, ReadSummary } from './connector';
