@@ -16,7 +16,7 @@ export interface IPresentorConfig extends ComponentConfig {
 
 // Interfaces/Types - Presentor Item Configuration
 export interface IPresentorItemConfig {
-    items: IPresentorItemConfig[];
+    items?: IPresentorItemConfig[];
     label: Record<string, string>;
     name: string;
     typeId: 'folder' | 'object'; // TODO: Maybe standardise.
