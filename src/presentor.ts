@@ -5,8 +5,8 @@ import type { ComponentConfig } from './component';
 export interface IPresentor {
     readonly config: IPresentorConfig;
 
-    getPresentation(id: string): IPresentation | undefined;
     list(path: string): IPresentorItemConfig[];
+    render(id: string, renderTo: string | HTMLElement): Promise<void>;
 }
 
 // Interfaces/Types - Presentor Configuration
