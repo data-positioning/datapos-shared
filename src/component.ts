@@ -11,11 +11,8 @@ export interface ComponentConfig {
     logo?: string;
     status?: ComponentStatus;
     statusId: string;
-    typeId: 'connection' | 'connector' | 'context' | 'contextModel' | 'dataView' | 'eventQuery' | 'presentation' | 'tutorial';
+    typeId: 'connection' | 'connector' | 'context' | 'contextModel' | 'dataView' | 'eventQuery' | 'presentor' | 'presentation' | 'tutorial'; // TODO: Review these.
 }
-
-// Interfaces/Types - Component Item Type Identifier
-export type ComponentItemTypeId = 'folder' | 'object';
 
 // Interfaces/Types - Component Status
 export type ComponentStatus = { id: string; color?: string; label: string };

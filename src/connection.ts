@@ -1,6 +1,6 @@
 // Dependencies - Framework
+import type { ComponentConfig } from './component';
 import type { Timestamp } from './timestamp';
-import type { ComponentConfig, ComponentItemTypeId } from './component';
 
 // Interfaces/Types - Connection Configuration
 export interface ConnectionConfig extends ComponentConfig {
@@ -25,18 +25,21 @@ export interface ConnectionAuthorization {
 export interface ConnectionItemConfig {
     childCount?: number;
     columnsConfigs?: ConnectionColumnConfig[];
-    children?: ConnectionItemConfig[];
     extension?: string;
     folderPath: string;
     handle?: DPAFileSystemFileHandle;
     id?: string;
+    items?: ConnectionItemConfig[];
     label: string;
     lastModifiedAt?: Timestamp;
     mimeType?: string;
     name: string;
     size?: number;
-    typeId: ComponentItemTypeId;
+    typeId: ConnectionItemTypeId;
 }
+
+// Interfaces/Types - Connection Item Type Identifier
+export type ConnectionItemTypeId = 'folder' | 'object';
 
 // Interfaces/Types - Configuration Description
 export interface ConnectionDescription {

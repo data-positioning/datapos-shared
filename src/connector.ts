@@ -3,8 +3,7 @@ import type { Callback, Options, Parser } from 'csv-parse';
 
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
-import type { ConnectionItemConfig } from './connection';
-import type { ConnectionConfig, ConnectionDescription } from './connection';
+import type { ConnectionConfig, ConnectionDescription, ConnectionItemConfig } from './connection';
 import type { DataViewPreviewConfig, ParsedValue } from './dataView';
 
 // Interfaces/Types - Connector
@@ -28,6 +27,12 @@ export interface Connector {
     list?(callback: (data: ConnectorCallbackData) => void, settings: ListSettings): Promise<ListResult>;
 }
 
+// Interfaces/Types - Connector Callback Data
+export interface ConnectorCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
+
 // Interfaces/Types - Connector Configuration
 export interface ConnectorConfig extends ComponentConfig {
     category?: ConnectorCategory;
@@ -47,12 +52,6 @@ interface ConnectorImplementation {
     label?: Record<string, string>;
     maxConnectionCount: number;
     params?: Record<string, string>[];
-}
-
-// Interfaces/Types - Connector Callback Data
-export interface ConnectorCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
 }
 
 // Interfaces/Types - Create Interface

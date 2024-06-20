@@ -141,7 +141,7 @@
 //     // params?: Record<string, unknown>; // TODO: What is this used for?
 //     // paramsString?: string; // TODO: What is this used for?
 //     size?: number;
-//     typeId: ComponentItemTypeId;
+//     typeId: ConnectionItemTypeId;
 // }
 // export interface ListResponse {
 //     error?: unknown;
@@ -153,7 +153,7 @@
 //     isMore: boolean;
 //     totalCount: number;
 // }
-// export enum ComponentItemTypeId {
+// export enum ConnectionItemTypeId {
 //     Folder = 'folder',
 //     Object = 'object'
 // }

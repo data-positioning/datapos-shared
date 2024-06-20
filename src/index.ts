@@ -2,14 +2,14 @@
 export { DefaultTimestamp } from './timestamp';
 
 // Interfaces/Types - Component
-export type { ComponentConfig, ComponentItemTypeId, ComponentStatus } from './component';
+export type { ComponentConfig, ComponentStatus } from './component';
 
 // Interfaces/Types - Connection
 export type { ConnectionAuthorization, ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
 export type { DPAFileSystemFileHandle, StorageTypeId, UsageTypeId } from './connection';
 
 // Interfaces/Types - Connector
-export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
+export type { Connector, ConnectorConfig } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewInterface, PreviewResult, PreviewSettings } from './connector';
 export type { ReadInterface, ReadRecord, ReadSettings, ReadSummary } from './connector';
@@ -29,11 +29,13 @@ export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, Fe
 // Interfaces/Types - Event Query
 export type { EventQueryConfig } from './eventQuery';
 
-// Interfaces/Types - Presentation Set
-export type { PresentationItemConfig, PresentationSet, PresentationSetConfig } from './presentationSet';
+// Interfaces/Types - Presentation
+
+// Interfaces/Types - Presentor
+export type { IPresentor, IPresentorConfig, IPresentorItemConfig } from './presentor';
 
 // Interfaces/Types - Timestamp
-export type { Timestamp } from './timestamp';
+export type { Timestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
 // Interfaces/Types - Tutorial
 export type { TutorialConfig } from './tutorial';
