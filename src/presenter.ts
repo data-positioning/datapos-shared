@@ -1,22 +1,22 @@
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
 
-// Interfaces/Types - Presentor
-export interface IPresentor {
-    readonly config: IPresentorConfig;
+// Interfaces/Types - Presenter
+export interface IPresenter {
+    readonly config: IPresenterConfig;
 
-    list(path: string): IPresentorItemConfig[];
+    list(path: string): IPresenterItemConfig[];
     render(id: string, renderTo: string | HTMLElement): Promise<void>;
 }
 
-// Interfaces/Types - Presentor Configuration
-export interface IPresentorConfig extends ComponentConfig {
-    index: IPresentorItemConfig[];
+// Interfaces/Types - Presenter Configuration
+export interface IPresenterConfig extends ComponentConfig {
+    index: IPresenterItemConfig[];
 }
 
-// Interfaces/Types - Presentor Item Configuration
-export interface IPresentorItemConfig {
-    items?: IPresentorItemConfig[];
+// Interfaces/Types - Presenter Item Configuration
+export interface IPresenterItemConfig {
+    items?: IPresenterItemConfig[];
     label: Record<string, string>;
     name: string;
     typeId: 'folder' | 'object'; // TODO: Maybe standardise.

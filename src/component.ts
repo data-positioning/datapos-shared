@@ -11,7 +11,7 @@ export interface ComponentConfig {
     logo?: string;
     status?: ComponentStatus;
     statusId: string;
-    typeId: 'connection' | 'connector' | 'context' | 'contextModel' | 'dataView' | 'eventQuery' | 'presentor' | 'presentation' | 'tutorial'; // TODO: Review these.
+    typeId: 'connection' | 'connector' | 'context' | 'contextModel' | 'dataView' | 'eventQuery' | 'presentation' | 'presenter' | 'tutorial'; // TODO: Review these.
 }
 
 // Interfaces/Types - Component Status
