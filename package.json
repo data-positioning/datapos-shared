@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-share-core",
     "license": "ISC",
     "private": false,
-    "version": "0.1.593",
+    "version": "0.1.594",
     "type": "module",
     "files": [
         "dist"
@@ -16,7 +16,7 @@
     },
     "types": "./dist/types/src/index.d.ts",
     "devDependencies": {
-        "@datapos/datapos-operations": "^0.1.569",
+        "@datapos/datapos-dev-operations": "^0.1.572",
         "@typescript-eslint/eslint-plugin": "^8.3.0",
         "@typescript-eslint/parser": "^8.3.0",
         "csv-parse": "^5.5.6",
@@ -31,16 +31,16 @@
     "scripts": {
         "audit": "npm audit",
         "build": "npx vite build",
-        "bumpVersion": "node -e \"require('@datapos/datapos-operations/scriptHelpers').bumpVersion()\"",
+        "bumpVersion": "node -e \"require('@datapos/datapos-dev-operations/scriptHelpers').bumpVersion()\"",
         "check": "npx npm-check-updates && npm outdated",
         "document": "npx npm-license-crawler --onlyDirectDependencies --production --relativeLicensePath --json LICENSES.json",
         "format": "prettier --write *.ts",
         "lint": "npx eslint **/*.ts",
         "publishToNPM": "npm publish",
         "release": "npm run syncWithGitHub && npm run build && npm run publishToNPM",
-        "syncWithGitHub": "npm run bumpVersion && node -e \"require('@datapos/datapos-operations/scriptHelpers').syncWithGitHub()\"",
+        "syncWithGitHub": "npm run bumpVersion && node -e \"require('@datapos/datapos-dev-operations/scriptHelpers').syncWithGitHub()\"",
         "test": "echo \"***** TEST SCRIPT NOT IMPLEMENTED. *****\"",
         "updateDependencies": "npm run updateOperations",
-        "updateOperations": "npm install --save-dev @datapos/datapos-operations@latest"
+        "updateOperations": "npm install --save-dev @datapos/datapos-dev-operations@latest"
     }
 }
