@@ -88,73 +88,75 @@ export const buildFetchError = async (response: { status: number; statusText: st
     return new FetchError(fetchMessage, context, undefined, { body: await response.text() });
 };
 
+export const doIt = () => {
+    console.log(1111, 'doIt');
+};
+
 // Utilities - Deserialise Error
 export const deserialiseError = (errorData: SerialisedErrorData): Error => {
-    return new Error('Override message');
-    // console.log(1111, errorData.name);
-    // switch (errorData.name) {
-    //     case 'AbortError':
-    //         return new AbortError(
-    //             errorData.message,
-    //             errorData.context,
-    //             errorData.originalStack,
-    //             errorData.data ? JSON.parse(errorData.data) : undefined,
-    //             errorData.cause ? deserialiseError(errorData.cause) : undefined
-    //         );
-    //     case 'BackendError':
-    //         console.log(2222, 'BACKEND');
-    //         return new BackendError(
-    //             errorData.message,
-    //             errorData.context,
-    //             errorData.originalStack,
-    //             errorData.data ? JSON.parse(errorData.data) : undefined,
-    //             errorData.cause ? deserialiseError(errorData.cause) : undefined
-    //         );
-    //     case 'ConnectorError':
-    //         return new ConnectorError(
-    //             errorData.message,
-    //             errorData.context,
-    //             errorData.originalStack,
-    //             errorData.data ? JSON.parse(errorData.data) : undefined,
-    //             errorData.cause ? deserialiseError(errorData.cause) : undefined
-    //         );
-    //     case 'DataPosError':
-    //         return new DataPosError(
-    //             errorData.message,
-    //             errorData.context,
-    //             errorData.originalStack,
-    //             errorData.data ? JSON.parse(errorData.data) : undefined,
-    //             errorData.cause ? deserialiseError(errorData.cause) : undefined
-    //         );
-    //     case 'EngineError':
-    //         return new EngineError(
-    //             errorData.message,
-    //             errorData.context,
-    //             errorData.originalStack,
-    //             errorData.data ? JSON.parse(errorData.data) : undefined,
-    //             errorData.cause ? deserialiseError(errorData.cause) : undefined
-    //         );
-    //     case 'FetchError':
-    //         return new FetchError(
-    //             errorData.message,
-    //             errorData.context,
-    //             errorData.originalStack,
-    //             errorData.data ? JSON.parse(errorData.data) : undefined,
-    //             errorData.cause ? deserialiseError(errorData.cause) : undefined
-    //         );
-    //     case 'FrontendError':
-    //         return new FetchError(
-    //             errorData.message,
-    //             errorData.context,
-    //             errorData.originalStack,
-    //             errorData.data ? JSON.parse(errorData.data) : undefined,
-    //             errorData.cause ? deserialiseError(errorData.cause) : undefined
-    //         );
-    //     default:
-    //         console.log(3333);
-    //         return new Error('Override message');
-    //     // return new Error(errorData.message);
-    // }
+    console.log(1111, errorData.name);
+    switch (errorData.name) {
+        case 'AbortError':
+            return new AbortError(
+                errorData.message,
+                errorData.context,
+                errorData.originalStack,
+                errorData.data ? JSON.parse(errorData.data) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'BackendError':
+            console.log(2222, 'BACKEND');
+            return new BackendError(
+                errorData.message,
+                errorData.context,
+                errorData.originalStack,
+                errorData.data ? JSON.parse(errorData.data) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'ConnectorError':
+            return new ConnectorError(
+                errorData.message,
+                errorData.context,
+                errorData.originalStack,
+                errorData.data ? JSON.parse(errorData.data) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'DataPosError':
+            return new DataPosError(
+                errorData.message,
+                errorData.context,
+                errorData.originalStack,
+                errorData.data ? JSON.parse(errorData.data) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'EngineError':
+            return new EngineError(
+                errorData.message,
+                errorData.context,
+                errorData.originalStack,
+                errorData.data ? JSON.parse(errorData.data) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'FetchError':
+            return new FetchError(
+                errorData.message,
+                errorData.context,
+                errorData.originalStack,
+                errorData.data ? JSON.parse(errorData.data) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'FrontendError':
+            return new FetchError(
+                errorData.message,
+                errorData.context,
+                errorData.originalStack,
+                errorData.data ? JSON.parse(errorData.data) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        default:
+            console.log(3333);
+            return new Error(errorData.message);
+    }
 };
 
 // Utilities - Format Error
