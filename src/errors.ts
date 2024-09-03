@@ -1,7 +1,7 @@
 // Interfaces/Types - Error Data
 export interface ErrorData extends Record<string, unknown> {
     cause?: unknown;
-    context?: string;
+    context?: { label: string };
     data?: Record<string, unknown>;
     error: Error;
     message: string;
@@ -21,10 +21,10 @@ export interface SerialisedErrorData {
 
 // Classes - Data Positioning Error
 export class DataPosError extends Error {
-    context?: string;
+    context?: { label: string };
     data?: Record<string, unknown>;
     originalStack?: string;
-    constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
+    constructor(message: string, context?: { label: string }, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message);
         this.name = 'DataPosError';
         this.context = context;
@@ -36,7 +36,7 @@ export class DataPosError extends Error {
 
 // Classes - Abort Error
 export class AbortError extends DataPosError {
-    constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
+    constructor(message: string, context?: { label: string }, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
         this.name = 'AbortError';
     }
@@ -44,7 +44,7 @@ export class AbortError extends DataPosError {
 
 // Classes - Backend Error
 export class BackendError extends DataPosError {
-    constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
+    constructor(message: string, context?: { label: string }, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
         this.name = 'BackendError';
     }
@@ -52,7 +52,7 @@ export class BackendError extends DataPosError {
 
 // Classes - Connector Error
 export class ConnectorError extends DataPosError {
-    constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
+    constructor(message: string, context?: { label: string }, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
         this.name = 'ConnectorError';
     }
@@ -60,7 +60,7 @@ export class ConnectorError extends DataPosError {
 
 // Classes - Engine Error
 export class EngineError extends DataPosError {
-    constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
+    constructor(message: string, context?: { label: string }, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
         this.name = 'EngineError';
     }
@@ -68,7 +68,7 @@ export class EngineError extends DataPosError {
 
 // Classes - Fetch Error
 export class FetchError extends DataPosError {
-    constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
+    constructor(message: string, context?: { label: string }, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
         this.name = 'FetchError';
     }
@@ -76,14 +76,14 @@ export class FetchError extends DataPosError {
 
 // Classes - Frontend Error
 export class FrontendError extends DataPosError {
-    constructor(message: string, context?: string, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
+    constructor(message: string, context?: { label: string }, originalStack?: string, data?: Record<string, unknown>, cause?: unknown) {
         super(message, context, originalStack, data, cause);
         this.name = 'FrontendError';
     }
 }
 
 // Utilities - Build Fetch Error
-export const buildFetchError = async (response: { status: number; statusText: string; text: () => Promise<string> }, message: string, context: string) => {
+export const buildFetchError = async (response: { status: number; statusText: string; text: () => Promise<string> }, message: string, context: { label: string }) => {
     const fetchMessage = `${message} Response status '${response.status}${response.statusText ? ` - ${response.statusText}` : ''}' received.`;
     return new FetchError(fetchMessage, context, undefined, { body: await response.text() });
 };
@@ -94,7 +94,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
         case 'AbortError':
             return new AbortError(
                 errorData.message,
-                errorData.context,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.originalStack,
                 errorData.data ? JSON.parse(errorData.data) : undefined,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
@@ -102,7 +102,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
         case 'BackendError':
             return new BackendError(
                 errorData.message,
-                errorData.context,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.originalStack,
                 errorData.data ? JSON.parse(errorData.data) : undefined,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
@@ -110,7 +110,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
         case 'ConnectorError':
             return new ConnectorError(
                 errorData.message,
-                errorData.context,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.originalStack,
                 errorData.data ? JSON.parse(errorData.data) : undefined,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
@@ -118,7 +118,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
         case 'DataPosError':
             return new DataPosError(
                 errorData.message,
-                errorData.context,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.originalStack,
                 errorData.data ? JSON.parse(errorData.data) : undefined,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
@@ -126,7 +126,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
         case 'EngineError':
             return new EngineError(
                 errorData.message,
-                errorData.context,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.originalStack,
                 errorData.data ? JSON.parse(errorData.data) : undefined,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
@@ -134,7 +134,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
         case 'FetchError':
             return new FetchError(
                 errorData.message,
-                errorData.context,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.originalStack,
                 errorData.data ? JSON.parse(errorData.data) : undefined,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
@@ -142,7 +142,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
         case 'FrontendError':
             return new FetchError(
                 errorData.message,
-                errorData.context,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.originalStack,
                 errorData.data ? JSON.parse(errorData.data) : undefined,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
@@ -153,8 +153,8 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
 };
 
 // Utilities - Format Error
-export const formatError = (sourceError?: unknown, context?: string, data?: Record<string, unknown>): ErrorData => {
-    let errorData;
+export const formatError = (sourceError?: unknown, context?: { label: string }, data?: Record<string, unknown>): ErrorData => {
+    let errorData: ErrorData;
     if (
         sourceError instanceof Error &&
         (sourceError.name === 'AbortError' ||
@@ -167,7 +167,8 @@ export const formatError = (sourceError?: unknown, context?: string, data?: Reco
     ) {
         const dataPosSourceError = sourceError as DataPosError;
         errorData = {
-            context: context ? (dataPosSourceError.context ? `${context} \u2190 ${dataPosSourceError.context}` : context) : dataPosSourceError.context,
+            // context: context ? (dataPosSourceError.context ? `${context} \u2190 ${dataPosSourceError.context}` : context) : dataPosSourceError.context,
+            context,
             data: { ...dataPosSourceError.data, ...data },
             error: dataPosSourceError,
             message: dataPosSourceError.message,
@@ -203,7 +204,7 @@ export const serialiseError = (error: unknown): SerialisedErrorData => {
         return {
             name: dataPosError.name,
             message: dataPosError.message,
-            context: dataPosError.context,
+            context: JSON.stringify(dataPosError.context),
             originalStack: dataPosError.stack,
             data: dataPosError.data ? JSON.stringify(dataPosError.data) : undefined,
             cause: dataPosError.cause ? serialiseError(dataPosError.cause) : undefined
