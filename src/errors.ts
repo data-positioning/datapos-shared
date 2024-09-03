@@ -91,6 +91,14 @@ export const buildFetchError = async (response: { status: number; statusText: st
 // Utilities - Deserialise Error
 export const deserialiseError = (errorData: SerialisedErrorData): Error => {
     switch (errorData.name) {
+        case 'BackendError':
+            return new BackendError(
+                errorData.message,
+                errorData.context,
+                errorData.originalStack,
+                errorData.data ? JSON.parse(errorData.data) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
         case 'ConnectorError':
             return new ConnectorError(
                 errorData.message,
