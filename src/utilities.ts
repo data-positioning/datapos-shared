@@ -2,7 +2,7 @@
 const numberFormatterDefaultLocale = 'en-US';
 const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
 
-// Facilitators - Convert - OData Type Identifier To Usage Type Identifier
+// Utilities - Convert - OData Type Identifier To Usage Type Identifier
 // See: https://www.odata.org/documentation/odata-version-2-0/overview/.
 export const convertODataTypeIdToUsageTypeId = (oDataTypeId: string): string => {
     switch (oDataTypeId) {
@@ -41,7 +41,7 @@ export const convertODataTypeIdToUsageTypeId = (oDataTypeId: string): string => 
     }
 };
 
-// Facilitators - Extract - Name From Path
+// Utilities - Extract - Name From Path
 export const extractNameFromPath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastSeparatorIndex = itemPath.lastIndexOf('/');
@@ -51,7 +51,7 @@ export const extractNameFromPath = (itemPath: string): string | undefined => {
     return undefined;
 };
 
-// Facilitators - Extract - Extension From Path
+// Utilities - Extract - Extension From Path
 export const extractExtensionFromPath = (itemPath: string): string | undefined => {
     if (itemPath) {
         const lastExtensionIndex = itemPath.lastIndexOf('.');
@@ -60,7 +60,7 @@ export const extractExtensionFromPath = (itemPath: string): string | undefined =
     return undefined;
 };
 
-// Facilitators - Format Number - As Decimal Number
+// Utilities - Format Number - As Decimal Number
 export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, minimumFractionDigits = decimalPlaces, locale = numberFormatterDefaultLocale): string => {
     if (number === null || number === undefined) return '';
     const formatterId = `${locale}decimal${decimalPlaces}.${minimumFractionDigits}`;
@@ -79,7 +79,7 @@ export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, 
     return numberFormatter.format(number);
 };
 
-// Facilitators - Format Number - As Storage Size
+// Utilities - Format Number - As Storage Size
 export const formatNumberAsStorageSize = (number?: number): string => {
     if (number === null || number === undefined) return '';
     if (number === 1) return '1 byte';
@@ -90,7 +90,7 @@ export const formatNumberAsStorageSize = (number?: number): string => {
     return `${formatNumberAsDecimalNumber(number / 1099511627776, 2, 0)} TB`;
 };
 
-// Facilitators - Format Number - As Duration
+// Utilities - Format Number - As Duration
 export const formatNumberAsDuration = (number?: number): string => {
     if (number === null || number === undefined) return '';
     if (number < 1000) return `${formatNumberAsWholeNumber(number)} ms`;
@@ -104,7 +104,7 @@ export const formatNumberAsDuration = (number?: number): string => {
     return `${formatNumberAsDecimalNumber(number / 86400000, 2, 0)} days`;
 };
 
-// Facilitators - Format Number - As Whole Number
+// Utilities - Format Number - As Whole Number
 export const formatNumberAsWholeNumber = (number?: number, locale = numberFormatterDefaultLocale): string => {
     if (number === null || number === undefined) return '';
     const formatterId = `${locale}decimal0.0`;
@@ -123,7 +123,7 @@ export const formatNumberAsWholeNumber = (number?: number, locale = numberFormat
     return numberFormatter.format(number);
 };
 
-// Facilitators - Lookup - Mime Type For Extension
+// Utilities - Lookup - Mime Type For Extension
 export const lookupMimeTypeForExtension = (extension: string): string => {
     switch (extension) {
         case 'csv':
@@ -140,7 +140,7 @@ export const lookupMimeTypeForExtension = (extension: string): string => {
     }
 };
 
-// // Facilitators - Establish Vendor Access Token
+// // Utilities - Establish Vendor Access Token
 // // // export const establishVendorAccessToken = async (item: Item, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {
 // export const establishVendorAccessToken = async (connectionConfig: ConnectionConfig, settings: ReadSettings, vendorRefreshURI: string): Promise<string> => {
 //     let accessToken;

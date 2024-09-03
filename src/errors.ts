@@ -1,3 +1,13 @@
+// Interfaces/Types - Error Data
+export interface ErrorData extends Record<string, unknown> {
+    cause?: unknown;
+    context?: string;
+    data?: Record<string, unknown>;
+    error: Error;
+    message: string;
+    stack?: string;
+}
+
 // Interfaces/Types - Serialised Error Data
 export interface SerialisedErrorData {
     cause?: SerialisedErrorData;
@@ -72,13 +82,13 @@ export class FrontendError extends DataPosError {
     }
 }
 
-// Facilitators - Build Fetch Error
+// Utilities - Build Fetch Error
 export const buildFetchError = async (response: { status: number; statusText: string; text: () => Promise<string> }, message: string, context: string) => {
     const fetchMessage = `${message} Response status '${response.status}${response.statusText ? ` - ${response.statusText}` : ''}' received.`;
     return new FetchError(fetchMessage, context, undefined, { body: await response.text() });
 };
 
-// Facilitators - Deserialise Error
+// Utilities - Deserialise Error
 export const deserialiseError = (errorData: SerialisedErrorData): Error => {
     switch (errorData.name) {
         case 'ConnectorError':
@@ -118,7 +128,40 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
     }
 };
 
-// Facilitators - Serialise Error
+// Utilities - Format Error
+export const formatError = (sourceError?: unknown, context?: string, data?: Record<string, unknown>): ErrorData => {
+    let errorData;
+    if (
+        sourceError instanceof Error &&
+        (sourceError.name === 'AbortError' ||
+            sourceError.name === 'ConnectorError' ||
+            sourceError.name === 'DataPosError' ||
+            sourceError.name === 'EngineError' ||
+            sourceError.name === 'FetchError')
+    ) {
+        const dataPosSourceError = sourceError as DataPosError;
+        errorData = {
+            context: context ? (dataPosSourceError.context ? `${context} \u2190 ${dataPosSourceError.context}` : context) : dataPosSourceError.context,
+            data: { ...dataPosSourceError.data, ...data },
+            error: dataPosSourceError,
+            message: dataPosSourceError.message,
+            stack: dataPosSourceError.stack,
+            cause: dataPosSourceError.cause
+        };
+    } else if (sourceError instanceof Error) {
+        errorData = { cause: sourceError.cause, context, data, error: sourceError, message: sourceError.message, stack: sourceError.stack };
+    } else if (sourceError) {
+        const error = new Error(String(sourceError));
+        errorData = { context, data, error, message: error.message };
+    } else {
+        const error = new Error('Unknown error');
+        errorData = { context, data, error, message: error.message };
+    }
+    if (!errorData.message.endsWith('.')) errorData.message = `${errorData.message}.`;
+    return errorData;
+};
+
+// Utilities - Serialise Error
 export const serialiseError = (error: unknown): SerialisedErrorData => {
     if (
         error instanceof DataPosError ||

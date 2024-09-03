@@ -1,5 +1,5 @@
 // Constants
-export { DefaultTimestamp } from './timestamp';
+export { DefaultTimestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
 // Interfaces/Types - Component
 export type { ComponentConfig, ComponentStatus } from './component';
@@ -23,7 +23,7 @@ export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig,
 export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from './dataView';
 
 // Interfaces/Types - Error
-export type { SerialisedErrorData } from './errors';
+export type { ErrorData, SerialisedErrorData } from './errors';
 export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
 
 // Interfaces/Types - Event Query
@@ -40,12 +40,12 @@ export type { Timestamp } from './timestamp'; // TODO: Review, do we need it now
 // Interfaces/Types - Tutorial
 export type { TutorialConfig } from './tutorial';
 
-// Facilitators
-export { convertODataTypeIdToUsageTypeId } from './facilitators';
+// Utilities
+export { convertODataTypeIdToUsageTypeId } from './utilities';
 export { getComponentStatus } from './component';
-export { convertMillisecondsToTimestamp, getCurrentTimestamp } from './timestamp';
-export { extractExtensionFromPath, extractNameFromPath } from './facilitators';
-export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './facilitators';
+export { convertMillisecondsToTimestamp, getCurrentTimestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
+export { extractExtensionFromPath, extractNameFromPath } from './utilities';
+export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './utilities';
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from './dataView';
-export { lookupMimeTypeForExtension } from './facilitators';
-export { buildFetchError, deserialiseError, serialiseError } from './errors';
+export { lookupMimeTypeForExtension } from './utilities';
+export { buildFetchError, deserialiseError, formatError, serialiseError } from './errors';
