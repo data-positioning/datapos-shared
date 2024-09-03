@@ -1,7 +1,7 @@
 // Interfaces/Types - Error Data
 export interface ErrorData extends Record<string, unknown> {
     cause?: unknown;
-    context?: { label: string };
+    context?: { label?: string };
     data?: Record<string, unknown>;
     error: Error;
     message: string;
