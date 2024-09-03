@@ -73,8 +73,8 @@ export class FrontendError extends DataPosError {
 }
 
 // Facilitators - Build Fetch Error
-export const buildFetchError = async (response: { status: string; statusText: string; text: () => Promise<string> }, message: string, context: string) => {
-    const fetchMessage = `${message} Response status '${response.status}${response.statusText ? ` - ${response.statusText}` : ''}' received.`; // TODO: Quote response status in other implementations.
+export const buildFetchError = async (response: { status: number; statusText: string; text: () => Promise<string> }, message: string, context: string) => {
+    const fetchMessage = `${message} Response status '${response.status}${response.statusText ? ` - ${response.statusText}` : ''}' received.`;
     return new FetchError(fetchMessage, context, undefined, { body: await response.text() });
 };
 
