@@ -48,4 +48,4 @@ export { extractExtensionFromPath, extractNameFromPath } from './utilities';
 export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './utilities';
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from './dataView';
 export { lookupMimeTypeForExtension } from './utilities';
-export { buildFetchError, deserialiseError, doIt, formatError, serialiseError } from './errors';
+export { buildFetchError, deserialiseError, formatError, serialiseError } from './errors';
