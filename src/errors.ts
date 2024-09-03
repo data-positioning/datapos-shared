@@ -90,6 +90,7 @@ export const buildFetchError = async (response: { status: number; statusText: st
 
 // Utilities - Deserialise Error
 export const deserialiseError = (errorData: SerialisedErrorData): Error => {
+    console.log(1111, errorData.name);
     switch (errorData.name) {
         case 'AbortError':
             return new AbortError(
@@ -100,6 +101,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
         case 'BackendError':
+            console.log(2222, 'BACKEND');
             return new BackendError(
                 errorData.message,
                 errorData.context,
@@ -148,6 +150,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
         default:
+            console.log(3333);
             return new Error(errorData.message);
     }
 };
