@@ -151,7 +151,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
             );
         default:
             console.log(3333);
-            return new Error(errorData.message);
+            return new Error('Override message');
     }
 };
 
