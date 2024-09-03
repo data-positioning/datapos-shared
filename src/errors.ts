@@ -153,7 +153,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
 };
 
 // Utilities - Format Error
-export const formatError = (sourceError?: unknown, context?: { label: string }, data?: Record<string, unknown>): ErrorData => {
+export const formatError = (sourceError?: unknown, context?: { label?: string }, data?: Record<string, unknown>): ErrorData => {
     let errorData: ErrorData;
     if (
         sourceError instanceof Error &&
