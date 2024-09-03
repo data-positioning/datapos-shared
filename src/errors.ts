@@ -91,6 +91,14 @@ export const buildFetchError = async (response: { status: number; statusText: st
 // Utilities - Deserialise Error
 export const deserialiseError = (errorData: SerialisedErrorData): Error => {
     switch (errorData.name) {
+        case 'AbortError':
+            return new AbortError(
+                errorData.message,
+                errorData.context,
+                errorData.originalStack,
+                errorData.data ? JSON.parse(errorData.data) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
         case 'BackendError':
             return new BackendError(
                 errorData.message,
@@ -124,6 +132,14 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
         case 'FetchError':
+            return new FetchError(
+                errorData.message,
+                errorData.context,
+                errorData.originalStack,
+                errorData.data ? JSON.parse(errorData.data) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'FrontendError':
             return new FetchError(
                 errorData.message,
                 errorData.context,
@@ -173,7 +189,13 @@ export const formatError = (sourceError?: unknown, context?: string, data?: Reco
 export const serialiseError = (error: unknown): SerialisedErrorData => {
     if (
         error instanceof DataPosError ||
-        (error instanceof Error && (error.name === 'AbortError' || error.name === 'BackendError' || error.name === 'ConnectorError' || error.name === 'FetchError'))
+        (error instanceof Error &&
+            (error.name === 'AbortError' ||
+                error.name === 'BackendError' ||
+                error.name === 'ConnectorError' ||
+                error.name === 'EngineError' ||
+                error.name === 'FetchError' ||
+                error.name === 'FrontendError'))
     ) {
         const dataPosError = error as DataPosError;
         return {
