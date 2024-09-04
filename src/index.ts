@@ -23,7 +23,7 @@ export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig,
 export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from './dataView';
 
 // Interfaces/Types - Error
-export type { ErrorData, SerialisedErrorData } from './errors';
+export type { ErrorContext, ErrorData, SerialisedErrorData } from './errors';
 export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
 
 // Interfaces/Types - Event Query
