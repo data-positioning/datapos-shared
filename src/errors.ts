@@ -70,8 +70,8 @@ export class EngineError extends DataPosError {
 
 // Classes - Fetch Error
 export class FetchError extends DataPosError {
-    constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
-        super(message, context, originalStack, cause);
+    constructor(message: string, context?: ErrorContext) {
+        super(message, context);
         this.name = 'FetchError';
     }
 }
@@ -87,7 +87,7 @@ export class FrontendError extends DataPosError {
 // Utilities - Build Fetch Error
 export const buildFetchError = async (response: { status: number; statusText: string; text: () => Promise<string> }, message: string, locator: string) => {
     const fetchMessage = `${message} Response status '${response.status}${response.statusText ? ` - ${response.statusText}` : ''}' received.`;
-    return new FetchError(fetchMessage, { fetchBody: await response.text(), locator }, undefined, undefined);
+    return new FetchError(fetchMessage, { fetchBody: await response.text(), locator });
 };
 
 // Utilities - Deserialise Error
@@ -129,12 +129,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
         case 'FetchError':
-            return new FetchError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
+            return new FetchError(errorData.message, errorData.context ? JSON.parse(errorData.context) : undefined);
         case 'FrontendError':
             return new FrontendError(
                 errorData.message,
