@@ -1,6 +1,6 @@
 // Interfaces/Types
 interface ErrorContext {
-    data?: Record<string, unknown>;
+    fetchBody?: string;
     locator?: string;
 }
 
@@ -87,7 +87,7 @@ export class FrontendError extends DataPosError {
 // Utilities - Build Fetch Error
 export const buildFetchError = async (response: { status: number; statusText: string; text: () => Promise<string> }, message: string, locator: string) => {
     const fetchMessage = `${message} Response status '${response.status}${response.statusText ? ` - ${response.statusText}` : ''}' received.`;
-    return new FetchError(fetchMessage, { locator }, undefined, { body: await response.text() });
+    return new FetchError(fetchMessage, { fetchBody: await response.text(), locator }, undefined, undefined);
 };
 
 // Utilities - Deserialise Error
@@ -136,7 +136,7 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
         case 'FrontendError':
-            return new FetchError(
+            return new FrontendError(
                 errorData.message,
                 errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.originalStack,
@@ -162,7 +162,6 @@ export const formatError = (sourceError?: unknown, context?: { locator?: string 
     ) {
         const dataPosSourceError = sourceError as DataPosError;
         errorData = {
-            // context: context ? (dataPosSourceError.context ? `${context} \u2190 ${dataPosSourceError.context}` : context) : dataPosSourceError.context,
             context,
             error: dataPosSourceError,
             message: dataPosSourceError.message,
