@@ -1,5 +1,5 @@
 // Interfaces/Types
-interface ErrorContext {
+export interface ErrorContext extends Record<string, unknown> {
     fetchBody?: string;
     locator?: string;
 }
