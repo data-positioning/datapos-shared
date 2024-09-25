@@ -1,3 +1,8 @@
+// Interfaces/Types - Package Configuration
+export interface PackageConfig {
+    version: string;
+}
+
 // Interfaces/Types - Package Data
 export interface PackageData {
     description: string;
