@@ -29,6 +29,9 @@ export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, Fe
 // Interfaces/Types - Event Query
 export type { EventQueryConfig } from './eventQuery';
 
+// Interfaces/Types - Package
+export type { PackageData } from './package';
+
 // Interfaces/Types - Presentation
 
 // Interfaces/Types - Presenter
