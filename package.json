@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-share-core",
     "license": "ISC",
     "private": false,
-    "version": "0.1.616",
+    "version": "0.1.617",
     "type": "module",
     "files": [
         "dist"
@@ -16,17 +16,17 @@
     },
     "types": "./dist/types/src/index.d.ts",
     "devDependencies": {
-        "@datapos/datapos-dev-operations": "^0.1.572",
-        "@typescript-eslint/eslint-plugin": "^8.3.0",
-        "@typescript-eslint/parser": "^8.3.0",
+        "@datapos/datapos-dev-operations": "^0.1.596",
+        "@typescript-eslint/eslint-plugin": "^8.7.0",
+        "@typescript-eslint/parser": "^8.7.0",
         "csv-parse": "^5.5.6",
         "eslint": "^8.57.0",
-        "eslint-plugin-import": "^2.29.1",
+        "eslint-plugin-import": "^2.30.0",
         "eslint-plugin-sort-exports": "^0.9.1",
         "prettier": "^3.3.3",
-        "typescript": "^5.5.4",
-        "vite": "^5.4.2",
-        "vite-plugin-dts": "^4.0.3"
+        "typescript": "^5.6.2",
+        "vite": "^5.4.8",
+        "vite-plugin-dts": "^4.2.2"
     },
     "scripts": {
         "audit": "npm audit",
