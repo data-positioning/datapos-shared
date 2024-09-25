@@ -29,6 +29,9 @@ export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, Fe
 // Interfaces/Types - Event Query
 export type { EventQueryConfig } from './eventQuery';
 
+// Interfaces/Types - Location
+export type { IPAddressLocation } from './location';
+
 // Interfaces/Types - Package
 export type { PackageConfig, PackageData } from './package';
 

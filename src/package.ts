@@ -1,5 +1,8 @@
 // Interfaces/Types - Package Configuration
 export interface PackageConfig {
+    id: string;
+    dependencyMap: { [name: string]: string };
+    dependencies: { name: string; repo: string; version: string }[];
     version: string;
 }
 
