@@ -41,7 +41,7 @@ export type { PackageConfig, PackageData } from './package';
 export type { IPresenter, IPresenterConfig, IPresenterItemConfig } from './presenter';
 
 // Interfaces/Types - Tutorial
-export type { SessionData } from './session';
+export type { ServiceData } from './service';
 
 // Interfaces/Types - Timestamp
 export type { Timestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?

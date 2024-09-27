@@ -1,5 +1,5 @@
-// Interfaces/Types - Session Data
-export interface SessionData {
+// Interfaces/Types - Service Data
+export interface ServiceData {
     label: string;
     monitorEvents: {
         [vendorId: string]: {
