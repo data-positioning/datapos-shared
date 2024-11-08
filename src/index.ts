@@ -32,7 +32,7 @@ export type { EventQueryConfig } from './eventQuery';
 // Interfaces/Types - Location
 export type { IPAddressLocation } from './location';
 
-export type { LocationData, MonitorWeekTimings } from './monitor';
+export type { LocationData, MonitorIssue, MonitorWeekSummary, MonitorWeekTimings, MonitorIssuesResult, MonitorTimingResult } from './monitor';
 
 // Interfaces/Types - Package
 export type { PackageConfig, PackageData } from './package';
