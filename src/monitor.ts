@@ -5,7 +5,7 @@ export type LocationData = { label: string; countryLabel: string; continentLabel
 export interface MonitorIssue {
     id: string;
     description: string;
-    duration: number; // In seconds.
+    durationSeconds: number;
     from: string;
     severity: 'outage' | 'minor_outage' | 'maintenance' | 'missing_data' | 'degraded_performance' | null;
     state: 'unresolved' | 'investigating' | 'identified' | 'monitoring' | 'resolved';
@@ -31,8 +31,8 @@ export interface GetMonitorIssuesResult {
 export interface MonitorTimingsByWeek {
     weekId: string;
     count: number;
-    totalDuration: number;
-    byLocation: ({ locationId: string; count: number; totalDuration: number } & LocationData)[];
+    totalDurationSeconds: number;
+    byLocation: ({ locationId: string; count: number; totalDurationSeconds: number } & LocationData)[];
 }
 
 // Interfaces/Types - Get Monitor Timings Result
