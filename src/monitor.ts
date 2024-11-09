@@ -27,12 +27,15 @@ export interface GetMonitorIssuesResult {
     byWeek: MonitorIssuesByWeek[];
 }
 
+// Interfaces/Types - Monitor Timings by Location
+export type MonitorTimingsByLocation = { locationId: string; count: number; totalDurationSeconds: number } & LocationData;
+
 // Interfaces/Types - Monitor Timings by Week
 export interface MonitorTimingsByWeek {
     weekId: string;
     count: number;
     totalDurationSeconds: number;
-    byLocation: ({ locationId: string; count: number; totalDurationSeconds: number } & LocationData)[];
+    byLocation: MonitorTimingsByLocation[];
 }
 
 // Interfaces/Types - Get Monitor Timings Result
