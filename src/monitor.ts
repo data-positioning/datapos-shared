@@ -14,10 +14,10 @@ export interface MonitorIssue {
         name: string;
     };
     duration: number; // In seconds.
-    severity: string | null;
+    severity: 'outage' | 'minor_outage' | 'maintenance' | 'missing_data' | 'degraded_performance' | null;
     startString: string;
     startStamp: number;
-    state: 'resolved' | 'unresolved';
+    state: 'unresolved' | 'investigating' | 'identified' | 'monitoring' | 'resolved';
 }
 
 // Interfaces/Types - Monitor Week Summary
