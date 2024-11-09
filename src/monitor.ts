@@ -15,9 +15,9 @@ export interface MonitorIssue {
 // Interfaces/Types - Monitor Issues by Week
 export interface MonitorIssuesByWeek {
     weekNumber: number;
-    durationSeconds: number;
     from: Date;
     to: Date;
+    totalDurationSeconds: number;
 }
 
 // Interfaces/Types - Get Monitor Issues Result
