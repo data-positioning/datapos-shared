@@ -7,16 +7,20 @@ export interface MonitorIssue {
     description: string;
     durationSeconds: number;
     from: string;
+    fromTimestamp?: number;
     severity: 'outage' | 'minor_outage' | 'maintenance' | 'missing_data' | 'degraded_performance' | null;
     state: 'unresolved' | 'investigating' | 'identified' | 'monitoring' | 'resolved';
     to: string;
+    toTimestamp?: number;
 }
 
 // Interfaces/Types - Monitor Issues by Week
 export interface MonitorIssuesByWeek {
     weekNumber: number;
     from: string;
+    fromTimestamp?: number;
     to: string;
+    toTimestamp?: number;
     totalDurationSeconds: number;
 }
 
