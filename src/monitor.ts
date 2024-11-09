@@ -1,5 +1,5 @@
 // Interfaces/Types - Location Data
-export type LocationData = { label: string; countryLabel: string; continentLabel: string };
+export type LocationData = { locationLabel: string; countryLabel: string; continentLabel: string };
 
 // Interfaces/Types - Monitor Issue
 export interface MonitorIssue {
