@@ -1,53 +1,42 @@
 // Interfaces/Types - Location Data
-export type LocationData = { country: string; label: string; continentLabel: string };
+export type LocationData = { label: string; countryLabel: string; continentLabel: string };
 
 // Interfaces/Types - Monitor Issue
 export interface MonitorIssue {
-    key: string;
-    name: string;
-    assigned_to: string | null;
-    endString: string;
-    endStamp: number;
-    environment: 'production';
-    created_by: {
-        kind: string;
-        name: string;
-    };
+    id: string;
+    description: string;
     duration: number; // In seconds.
+    from: string;
     severity: 'outage' | 'minor_outage' | 'maintenance' | 'missing_data' | 'degraded_performance' | null;
-    startString: string;
-    startStamp: number;
     state: 'unresolved' | 'investigating' | 'identified' | 'monitoring' | 'resolved';
+    to: string;
 }
 
-// Interfaces/Types - Monitor Week Summary
-export interface MonitorWeekSummary {
-    number: number;
-    startDate: Date;
-    startStamp: number;
-    endDate: Date;
-    endStamp: number;
+// Interfaces/Types - Monitor Issues by Week
+export interface MonitorIssuesByWeek {
+    weekNumber: number;
     durationSeconds: number;
+    from: Date;
+    to: Date;
 }
 
-// Interfaces/Types - Monitor Week Timings
-export interface MonitorWeekTimings {
-    weekId: string;
-    averageDuration: number;
-    count: number;
-    totalDuration: number;
-    timings: ({ locationId: string; averageDuration: number; count: number; totalDuration: number } & LocationData)[];
-}
-
-// Interfaces/Types - Monitor Issues Result
-export interface MonitorIssuesResult {
+// Interfaces/Types - Get Monitor Issues Result
+export interface GetMonitorIssuesResult {
     monitorId: string;
     issues: MonitorIssue[];
-    weeks: MonitorWeekSummary[];
+    byWeek: MonitorIssuesByWeek[];
 }
 
-// Interfaces/Types - Monitor Timings Result
-export interface MonitorTimingResult {
+// Interfaces/Types - Monitor Timings by Week
+export interface MonitorTimingsByWeek {
+    weekId: string;
+    count: number;
+    totalDuration: number;
+    byLocation: ({ locationId: string; count: number; totalDuration: number } & LocationData)[];
+}
+
+// Interfaces/Types - Get Monitor Timings Result
+export interface GetMonitorTimingsResult {
     monitorId: string;
-    timings: MonitorWeekTimings[];
+    byWeek: MonitorTimingsByWeek[];
 }
