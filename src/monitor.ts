@@ -34,8 +34,8 @@ export interface GetMonitorIssuesResult {
 // Interfaces/Types - Monitor Timings by Vendor
 // TODO
 
-// Interfaces/Types - Monitor Timings by Location
-export type MonitorTimingsByLocation = { locationId: string; count: number; totalDurationSeconds: number } & LocationData;
+// // Interfaces/Types - Monitor Timings by Location
+// export type MonitorTimingsByLocation = { locationId: string; count: number; totalDurationSeconds: number } & LocationData;
 
 // // Interfaces/Types - Monitor Timings by Week
 // export interface MonitorTimingsByWeek {
@@ -45,9 +45,11 @@ export type MonitorTimingsByLocation = { locationId: string; count: number; tota
 //     byLocation: MonitorTimingsByLocation[];
 // }
 
+export type LocationTimings = Record<string, [number, number]>;
+
 // Interfaces/Types - Get Monitor Timings Result
 export interface GetMonitorTimingsByWeekResult {
     monitorId: string;
     weekIds: string[];
-    weekValues: (Record<string, [number, number]> | null)[];
+    weekValues: (LocationTimings | null)[];
 }
