@@ -28,7 +28,6 @@ export interface MonitorIssuesByWeek {
 export interface GetMonitorIssuesResult {
     monitorId: string;
     issues: MonitorIssue[];
-    byWeek: MonitorIssuesByWeek[];
 }
 
 // Interfaces/Types - Monitor Timings by Vendor
