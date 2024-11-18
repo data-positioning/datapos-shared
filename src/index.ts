@@ -41,7 +41,7 @@ export type {
     MonitorTimingsByLocation,
     MonitorTimingsByWeek,
     GetMonitorIssuesResult,
-    GetMonitorTimingsByWeekResult
+    GetMonitorWeeklyTimingsResult
 } from './monitor';
 
 // Interfaces/Types - Package

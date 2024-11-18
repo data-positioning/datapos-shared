@@ -46,8 +46,8 @@ export interface MonitorTimingsByWeek {
 
 export type LocationTimings = Record<string, [number, number]>;
 
-// Interfaces/Types - Get Monitor Timings Result
-export interface GetMonitorTimingsByWeekResult {
+// Interfaces/Types - Get Monitor Weekly Timings Result
+export interface GetMonitorWeeklyTimingsResult {
     monitorId: string;
     weekIds: string[];
     weekValues: (LocationTimings | null)[];
