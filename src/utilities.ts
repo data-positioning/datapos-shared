@@ -79,6 +79,16 @@ export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, 
     return numberFormatter.format(number);
 };
 
+// Utilities - Format Number - As Size
+export const formatNumberAsSize = (number?: number): string => {
+    if (number === null || number === undefined) return '';
+    if (number < 1000) return formatNumberAsWholeNumber(number);
+    if (number < 1000000) return `${formatNumberAsDecimalNumber(number / 1000, 2, 0)} K`;
+    if (number < 1000000000) return `${formatNumberAsDecimalNumber(number / 1000000, 2, 0)} M`;
+    if (number < 1000000000000) return `${formatNumberAsDecimalNumber(number / 1000000000, 2, 0)} B`;
+    return `${formatNumberAsDecimalNumber(number / 1000000000000, 2, 0)} T`;
+};
+
 // Utilities - Format Number - As Storage Size
 export const formatNumberAsStorageSize = (number?: number): string => {
     if (number === null || number === undefined) return '';

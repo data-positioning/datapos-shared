@@ -66,7 +66,7 @@ export { convertODataTypeIdToUsageTypeId } from './utilities';
 export { getComponentStatus } from './component';
 export { convertMillisecondsToTimestamp, getCurrentTimestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 export { extractExtensionFromPath, extractNameFromPath } from './utilities';
-export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './utilities';
+export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './utilities';
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from './dataView';
 export { lookupMimeTypeForExtension } from './utilities';
 export { buildFetchError, deserialiseError, formatError, serialiseError } from './errors';
