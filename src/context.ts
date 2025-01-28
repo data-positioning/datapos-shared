@@ -3,20 +3,16 @@ import type { ComponentConfig } from './component';
 
 // Interfaces/Types - Context Configuration
 export interface ContextConfig extends ComponentConfig {
-    focuses: ContextFocusReference[];
-}
-interface ContextFocusReference {
-    id: string;
-    label: Record<string, string>;
-    models: ContextModelReference[];
-}
-interface ContextModelReference {
-    id: string;
-    label: Record<string, string>;
+    focuses: FocusConfig[];
 }
 
-// Config - Context Model
-export interface ContextModelConfig extends ComponentConfig {
+// Interfaces/Types - Focus Configuration
+export interface FocusConfig extends ComponentConfig {
+    models: ModelConfig[];
+}
+
+// Interfaces/Types - Model Configuration
+export interface ModelConfig extends ComponentConfig {
     dimensions: ContextDimensionConfig[];
     entities: ContextEntityConfig[];
     views: ContextViewConfig[];
