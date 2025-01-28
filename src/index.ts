@@ -15,8 +15,8 @@ export type { PreviewInterface, PreviewResult, PreviewSettings } from './connect
 export type { ReadInterface, ReadRecord, ReadSettings, ReadSummary } from './connector';
 
 // Interfaces/Types - Context
-export type { ContextConfig, ContextDimensionConfig, ContextEntityCharacteristicConfig, ContextEntityComputationConfig, ContextModelConfig } from './context';
-export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from './context';
+export type { ContextConfig, FocusConfig, ModelConfig, DimensionConfig, EntityCharacteristicConfig, EntityComputationConfig } from './context';
+export type { EntityConfig, EntityEventConfig, HierarchyConfig, ViewConfig, Event } from './context';
 
 // Interfaces/Types - Data View
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';

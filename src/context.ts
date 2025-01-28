@@ -13,45 +13,45 @@ export interface FocusConfig extends ComponentConfig {
 
 // Interfaces/Types - Model Configuration
 export interface ModelConfig extends ComponentConfig {
-    dimensions: ContextDimensionConfig[];
-    entities: ContextEntityConfig[];
-    views: ContextViewConfig[];
+    dimensions: DimensionConfig[];
+    entities: EntityConfig[];
+    views: ViewConfig[];
 }
 
 // Config - Dimension
-export interface ContextDimensionConfig extends ComponentConfig {
+export interface DimensionConfig extends ComponentConfig {
     id: string;
-    hierarchies: ContextHierarchyConfig[];
+    hierarchies: HierarchyConfig[];
     label: Record<string, string>;
 }
-export interface ContextHierarchyConfig extends ComponentConfig {
+export interface HierarchyConfig extends ComponentConfig {
     id: string;
     label: Record<string, string>;
 }
 
 // Config - Entity
-export interface ContextEntityConfig extends ComponentConfig {
+export interface EntityConfig extends ComponentConfig {
     labelPlural: Record<string, string>;
-    characteristics: ContextEntityCharacteristicConfig[];
-    computations: ContextEntityComputationConfig[];
-    events: ContextEntityEventConfig[];
+    characteristics: EntityCharacteristicConfig[];
+    computations: EntityComputationConfig[];
+    events: EntityEventConfig[];
 }
-export interface ContextEntityCharacteristicConfig {
+export interface EntityCharacteristicConfig {
     id: string;
     label: Record<string, string>;
 }
-export interface ContextEntityComputationConfig {
+export interface EntityComputationConfig {
     id: string;
     label: Record<string, string>;
 }
-export interface ContextEntityEventConfig {
+export interface EntityEventConfig {
     id: string;
     labelAction: Record<string, string>;
     labelState: Record<string, string>;
 }
 
 // Config - View
-export interface ContextViewConfig extends ComponentConfig {
+export interface ViewConfig extends ComponentConfig {
     placeholder: string;
 }
 
