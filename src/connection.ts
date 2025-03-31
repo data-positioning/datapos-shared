@@ -6,6 +6,7 @@ import type { Timestamp } from './timestamp';
 export interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorization>;
     connectorId: string;
+    connectorVersion: string;
     connectorImplementationId: string;
     lastVerifiedAt: Timestamp;
     notation: string;
