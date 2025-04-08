@@ -30,6 +30,7 @@ export interface ConnectionItemConfig {
     folderPath: string;
     handle?: DPAFileSystemFileHandle;
     id?: string;
+    itemHeight?: number;
     items?: ConnectionItemConfig[];
     label: string;
     lastModifiedAt?: Timestamp;
