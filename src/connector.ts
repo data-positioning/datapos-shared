@@ -39,9 +39,9 @@ export interface ConnectorConfig extends ComponentConfig {
     categoryId: string;
     implementations: Record<string, ConnectorImplementation>;
     usageId: 'bidirectional' | 'destination' | 'source';
-    vendorAccountURL: string;
-    vendorDocumentationURL: string;
-    vendorHomeURL: string;
+    vendorAccountURL?: string;
+    vendorDocumentationURL?: string;
+    vendorHomeURL?: string;
     version?: string;
 }
 interface ConnectorImplementation {
