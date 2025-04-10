@@ -1,13 +1,12 @@
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
+import type { ConnectorConfig } from './connector';
 import type { Timestamp } from './timestamp';
 
 // Interfaces/Types - Connection Configuration
 export interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorization>;
-    connectorId: string;
-    connectorVersion: string;
-    connectorImplementationId: string;
+    connectorConfig: ConnectorConfig;
     lastVerifiedAt: Timestamp;
     notation: string;
 }
