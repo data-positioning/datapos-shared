@@ -14,6 +14,7 @@ export interface Connector {
 
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
+    find(id: string): FindResult;
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
     getCreateInterface?(): CreateInterface;
     getDeleteInterface?(): DeleteInterface;
@@ -79,6 +80,11 @@ interface DescribeResult {
 interface DropInterface {
     connector: Connector;
     drop(connector: Connector, databaseName: string, tableName: string): Promise<{ error?: unknown }>;
+}
+
+// Interfaces/Types - Find Result
+interface FindResult {
+    folderPath: string;
 }
 
 // Interfaces/Types - Insert Interface
