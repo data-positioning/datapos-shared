@@ -15,7 +15,7 @@ export interface Connector {
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
-    find(id: string): FindResult | undefined;
+    find(id: string): Promise<FindResult | undefined>;
     getCreateInterface?(): CreateInterface;
     getDeleteInterface?(): DeleteInterface;
     getDropInterface?(): DropInterface;
