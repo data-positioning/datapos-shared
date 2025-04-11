@@ -83,7 +83,7 @@ interface DropInterface {
 }
 
 // Interfaces/Types - Find Result
-interface FindResult {
+export interface FindResult {
     folderPath: string;
 }
 
