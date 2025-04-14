@@ -93,7 +93,7 @@ export interface EstablishContainerSettings {
 
 // Interfaces/Types - Find
 export interface FindSettings {
-    container?: unknown;
+    containerId?: string;
     objectId: string;
 }
 export interface FindResult {
@@ -108,7 +108,7 @@ interface InsertInterface {
 
 // Interfaces/Types - List
 export interface ListSettings {
-    container?: unknown;
+    containerId?: string;
     folderPath: string;
     limit?: number;
     offset?: number;
