@@ -84,8 +84,8 @@ interface DropInterface {
 
 // Interfaces/Types - Find
 export interface FindSettings {
-    containerName: string;
-    objectName: string;
+    containerId: string;
+    objectId: string;
 }
 export interface FindResult {
     folderPath: string;
