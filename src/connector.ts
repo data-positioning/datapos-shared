@@ -57,13 +57,20 @@ interface ConnectorImplementation {
 }
 
 // Interfaces/Types - Create Interface
-interface CreateInterface {
+export interface CreateInterface {
     connector: Connector;
     create(connector: Connector, databaseName: string, tableName: string, typeId?: string, structure?: Record<string, unknown>): Promise<{ error?: unknown }>;
 }
+export interface CreateSettings {
+    accountId?: string;
+    sessionAccessToken?: string;
+}
+export interface CreateResult {
+    placeholder: string;
+}
 
 // Interfaces/Types - Delete Interface
-interface DeleteInterface {
+export interface DeleteInterface {
     connector: Connector;
     drop(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
@@ -78,9 +85,16 @@ interface DescribeResult {
 }
 
 // Interfaces/Types - Drop Interface
-interface DropInterface {
+export interface DropInterface {
     connector: Connector;
     drop(connector: Connector, databaseName: string, tableName: string): Promise<{ error?: unknown }>;
+}
+export interface DropSettings {
+    accountId?: string;
+    sessionAccessToken?: string;
+}
+export interface DropResult {
+    placeholder: string;
 }
 
 // Interfaces/Types - Establish Container
@@ -101,7 +115,7 @@ export interface FindResult {
 }
 
 // Interfaces/Types - Insert Interface
-interface InsertInterface {
+export interface InsertInterface {
     connector: Connector;
     insert(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
@@ -174,7 +188,7 @@ export interface ReadSummary {
 }
 
 // Interfaces/Types - Select Interface
-interface SelectInterface {
+export interface SelectInterface {
     connector: Connector;
     select(
         connector: Connector,
@@ -187,13 +201,13 @@ interface SelectInterface {
 }
 
 // Interfaces/Types - Update Interface
-interface UpdateInterface {
+export interface UpdateInterface {
     connector: Connector;
     update(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Interfaces/Types - Write Interface
-interface WriteInterface {
+export interface WriteInterface {
     connector: Connector;
     open(): void;
     write(): void;
