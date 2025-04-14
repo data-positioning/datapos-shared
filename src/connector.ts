@@ -85,10 +85,10 @@ interface DropInterface {
 
 // Interfaces/Types - Establish Container
 export interface EstablishContainerResult {
-    container: unknown;
+    id: string;
 }
 export interface EstablishContainerSettings {
-    id: string;
+    name: string;
 }
 
 // Interfaces/Types - Find
