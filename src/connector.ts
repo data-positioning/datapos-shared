@@ -97,7 +97,7 @@ export interface FindSettings {
     objectId: string;
 }
 export interface FindResult {
-    folderPath: string;
+    folderPath?: string;
 }
 
 // Interfaces/Types - Insert Interface
