@@ -148,6 +148,7 @@ export interface PreviewInterface {
 export interface PreviewSettings {
     accountId?: string;
     chunkSize?: number;
+    containerId?: string;
     sessionAccessToken?: string;
 }
 export interface PreviewResult {
@@ -171,6 +172,7 @@ export interface ReadSettings {
     chunk(records: ReadRecord[]): void;
     chunkSize?: number;
     complete(info: ReadSummary): void;
+    containerId?: string;
     csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
     sessionAccessToken?: string;
 }
