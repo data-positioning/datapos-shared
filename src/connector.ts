@@ -15,6 +15,7 @@ export interface Connector {
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
+    establishContainer?: (id: string) => Promise<unknown>;
     find?(findSettings: FindSettings): Promise<FindResult | undefined>;
     getCreateInterface?(): CreateInterface;
     getDeleteInterface?(): DeleteInterface;
@@ -85,7 +86,6 @@ interface DropInterface {
 // Interfaces/Types - Find
 export interface FindSettings {
     container?: unknown;
-    containerId?: string;
     objectId: string;
 }
 export interface FindResult {
@@ -101,7 +101,6 @@ interface InsertInterface {
 // Interfaces/Types - List
 export interface ListSettings {
     container?: unknown;
-    containerId?: string;
     folderPath: string;
     limit?: number;
     offset?: number;
