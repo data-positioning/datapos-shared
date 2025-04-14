@@ -82,7 +82,11 @@ interface DropInterface {
     drop(connector: Connector, databaseName: string, tableName: string): Promise<{ error?: unknown }>;
 }
 
-// Interfaces/Types - Find Result
+// Interfaces/Types - Find
+export interface FindSettings {
+    containerName: string;
+    objectName: string;
+}
 export interface FindResult {
     folderPath: string;
 }
@@ -91,6 +95,20 @@ export interface FindResult {
 interface InsertInterface {
     connector: Connector;
     insert(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+}
+
+// Interfaces/Types - List
+export interface ListSettings {
+    folderPath: string;
+    limit?: number;
+    offset?: number;
+    totalCount?: number;
+}
+export interface ListResult {
+    cursor: string | number | undefined;
+    connectionItemConfigs: ConnectionItemConfig[];
+    isMore: boolean;
+    totalCount: number;
 }
 
 // Interfaces/Types - Preview Interface
@@ -162,20 +180,6 @@ interface SelectInterface {
 interface UpdateInterface {
     connector: Connector;
     update(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
-}
-
-// Interfaces/Types - List
-export interface ListSettings {
-    folderPath: string;
-    limit?: number;
-    offset?: number;
-    totalCount?: number;
-}
-export interface ListResult {
-    cursor: string | number | undefined;
-    connectionItemConfigs: ConnectionItemConfig[];
-    isMore: boolean;
-    totalCount: number;
 }
 
 // Interfaces/Types - Write Interface
