@@ -52,7 +52,7 @@ interface ConnectorImplementation {
     id?: string;
     authMethodId: 'apiKey' | 'disabled' | 'oAuth2' | 'none';
     label?: Record<string, string>;
-    maxConnectionCount: number;
+    maxConnectionCount?: number;
     params?: Record<string, string>[];
 }
 
