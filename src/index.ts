@@ -10,6 +10,7 @@ export type { DPAFileSystemFileHandle, StorageTypeId, UsageTypeId } from './conn
 
 // Interfaces/Types - Connector
 export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
+export type { EstablishContainerResult, EstablishContainerSettings } from './connector';
 export type { FindResult, FindSettings } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewInterface, PreviewResult, PreviewSettings } from './connector';

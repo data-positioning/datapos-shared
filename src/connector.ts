@@ -15,8 +15,8 @@ export interface Connector {
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
-    establishContainer?: (id: string) => Promise<unknown>;
-    find?(findSettings: FindSettings): Promise<FindResult | undefined>;
+    establishContainer?: (settings: EstablishContainerSettings) => Promise<EstablishContainerResult>;
+    find?(findSettings: FindSettings): Promise<FindResult>;
     getCreateInterface?(): CreateInterface;
     getDeleteInterface?(): DeleteInterface;
     getDropInterface?(): DropInterface;
@@ -26,7 +26,7 @@ export interface Connector {
     getSelectInterface?(): SelectInterface;
     getUpdateInterface?(): UpdateInterface;
     getWriteInterface?(): WriteInterface;
-    list?(callback: (data: ConnectorCallbackData) => void, settings: ListSettings): Promise<ListResult>;
+    list?(settings: ListSettings): Promise<ListResult>;
 }
 
 // Interfaces/Types - Connector Callback Data
@@ -81,6 +81,14 @@ interface DescribeResult {
 interface DropInterface {
     connector: Connector;
     drop(connector: Connector, databaseName: string, tableName: string): Promise<{ error?: unknown }>;
+}
+
+// Interfaces/Types - Establish Container
+export interface EstablishContainerResult {
+    container: unknown;
+}
+export interface EstablishContainerSettings {
+    id: string;
 }
 
 // Interfaces/Types - Find
