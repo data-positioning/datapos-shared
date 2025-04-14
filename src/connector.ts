@@ -84,7 +84,7 @@ interface DropInterface {
 
 // Interfaces/Types - Find
 export interface FindSettings {
-    containerId: string;
+    container: { id: string; instance: unknown };
     objectId: string;
 }
 export interface FindResult {
