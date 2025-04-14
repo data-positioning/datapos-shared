@@ -55,6 +55,12 @@ interface ConnectorImplementation {
     params?: Record<string, string>[];
 }
 
+// Interfaces/Types - Connector Container
+interface ConnectorContainer {
+    id: string;
+    instance?: unknown;
+}
+
 // Interfaces/Types - Create Interface
 interface CreateInterface {
     connector: Connector;
@@ -84,7 +90,7 @@ interface DropInterface {
 
 // Interfaces/Types - Find
 export interface FindSettings {
-    container: { id: string; instance: unknown };
+    container?: ConnectorContainer;
     objectId: string;
 }
 export interface FindResult {
@@ -99,6 +105,7 @@ interface InsertInterface {
 
 // Interfaces/Types - List
 export interface ListSettings {
+    container?: ConnectorContainer;
     folderPath: string;
     limit?: number;
     offset?: number;
