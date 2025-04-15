@@ -18,11 +18,11 @@ export interface Connector {
     establishContainer: (settings: EstablishContainerSettings) => Promise<EstablishContainerResult>;
     find?(findSettings: FindSettings): Promise<FindResult>;
     getCreateInterface?(): CreateInterface;
-    getDeleteInterface?(): DeleteInterface;
     getDropInterface?(): DropInterface;
     getInsertInterface?(): InsertInterface;
     getPreviewInterface?(): PreviewInterface;
     getReadInterface?(): ReadInterface;
+    getRemoveInterface?(): RemoveInterface;
     getSelectInterface?(): SelectInterface;
     getUpdateInterface?(): UpdateInterface;
     getWriteInterface?(): WriteInterface;
@@ -67,12 +67,6 @@ export interface CreateSettings {
 }
 export interface CreateResult {
     placeholder: string;
-}
-
-// Interfaces/Types - Delete Interface
-export interface DeleteInterface {
-    connector: Connector;
-    delete(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Interfaces/Types - Describe
@@ -187,6 +181,12 @@ export interface ReadSummary {
     invalidFieldLengthCount: number;
     lineCount: number;
     recordCount: number;
+}
+
+// Interfaces/Types - Remove Interface
+export interface RemoveInterface {
+    connector: Connector;
+    delete(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Interfaces/Types - Select Interface
