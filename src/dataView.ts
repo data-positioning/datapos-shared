@@ -64,8 +64,7 @@ type DataFormatConfig = { id: string; label: Record<string, string> };
 const dataFormats: DataFormatConfig[] = [
     { id: 'dtv', label: { en: 'Delimited Text' } },
     { id: 'e/e', label: { en: 'Entity/Event' } },
-    { id: 'json', label: { en: 'JSON' } },
-    { id: 'jsonTable', label: { en: 'JSON Table' } },
+    { id: 'jsonArray', label: { en: 'JSON Array' } },
     { id: 'spss', label: { en: 'SPSS' } },
     { id: 'xls', label: { en: 'XLS' } },
     { id: 'xlsx', label: { en: 'XLSX' } },
@@ -132,6 +131,6 @@ export const getValueDelimiters = (localeId = 'en'): ValueDelimiter[] => {
 };
 
 // Interfaces/Types - Basic
-export type DataFormatId = 'dtv' | 'e/e' | 'json' | 'jsonTable' | 'spss' | 'xls' | 'xlsx' | 'xml';
+export type DataFormatId = 'dtv' | 'e/e' | 'jsonArray' | 'spss' | 'xls' | 'xlsx' | 'xml';
 export type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 export type ValueDelimiterId = ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
