@@ -72,7 +72,7 @@ export interface CreateResult {
 // Interfaces/Types - Delete Interface
 export interface DeleteInterface {
     connector: Connector;
-    drop(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+    delete(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Interfaces/Types - Describe
