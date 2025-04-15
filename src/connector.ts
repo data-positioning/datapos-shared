@@ -144,13 +144,13 @@ export interface PreviewResult {
 // Interfaces/Types - Put Interface
 export interface PutInterface {
     connector: Connector;
-    update(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+    put(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Interfaces/Types - Retrieve Interface
 export interface RetrieveInterface {
     connector: Connector;
-    read(
+    retrieve(
         connector: Connector,
         callback: (data: ConnectorCallbackData) => void,
         connectionItemConfig: ConnectionItemConfig,

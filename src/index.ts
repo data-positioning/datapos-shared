@@ -16,9 +16,9 @@ export type { EstablishContainerResult, EstablishContainerSettings } from './con
 export type { FindResult, FindSettings } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewInterface, PreviewResult, PreviewSettings } from './connector';
+export type { PutInterface } from './connector';
 export type { RetrieveInterface, RetrieveRecord, RetrieveSettings, RetrieveSummary } from './connector';
 export type { RemoveInterface } from './connector';
-export type { PutInterface } from './connector';
 
 // Interfaces/Types - Context
 export type { ContextConfig, FocusConfig, ModelConfig, DimensionConfig, EntityCharacteristicConfig, EntityComputationConfig } from './context';
