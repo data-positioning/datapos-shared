@@ -19,9 +19,9 @@ export type ParsedValue = bigint | boolean | number | string | null;
 export interface DataViewPreviewConfig {
     asAt: Timestamp;
     // commentPrefixId?: string;
-    columnConfigs?: ConnectionColumnConfig[];
+    columnConfigs: ConnectionColumnConfig[];
     dataFormatId: DataFormatId;
-    duration?: number;
+    duration: number;
     encodingConfidenceLevel?: number;
     encodingId?: string;
     hasHeaders?: boolean;
@@ -31,12 +31,12 @@ export interface DataViewPreviewConfig {
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
     recordDelimiterId?: RecordDelimiterId;
-    records?: ParsedValue[][];
-    size?: number;
+    records: ParsedValue[][];
+    size: number;
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;
-    text?: string;
+    text: string;
     valueDelimiterId?: ValueDelimiterId;
     // valueTrimMethodId?: string;
 }
