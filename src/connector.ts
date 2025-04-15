@@ -153,7 +153,7 @@ export interface PreviewSettings {
 }
 export interface PreviewResult {
     data: ParsedValue[][] | Uint8Array;
-    typeId: 'table' | 'uint8Array';
+    typeId: 'jsonArray' | 'uint8Array';
 }
 
 // Interfaces/Types - Read Interface
