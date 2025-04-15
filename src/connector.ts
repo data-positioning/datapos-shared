@@ -19,13 +19,10 @@ export interface Connector {
     find?(findSettings: FindSettings): Promise<FindResult>;
     getCreateInterface?(): CreateInterface;
     getDropInterface?(): DropInterface;
-    getInsertInterface?(): InsertInterface;
     getPreviewInterface?(): PreviewInterface;
+    getPutInterface?(): PutInterface;
     getRetrieveInterface?(): RetrieveInterface;
     getRemoveInterface?(): RemoveInterface;
-    getSelectInterface?(): SelectInterface;
-    getUpdateInterface?(): UpdateInterface;
-    getWriteInterface?(): WriteInterface;
     list?(settings: ListSettings): Promise<ListResult>;
 }
 
@@ -108,12 +105,6 @@ export interface FindResult {
     folderPath?: string;
 }
 
-// Interfaces/Types - Insert Interface
-export interface InsertInterface {
-    connector: Connector;
-    insert(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
-}
-
 // Interfaces/Types - List
 export interface ListSettings {
     containerId?: string;
@@ -148,6 +139,12 @@ export interface PreviewSettings {
 export interface PreviewResult {
     data: Record<string, unknown>[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
+}
+
+// Interfaces/Types - Put Interface
+export interface PutInterface {
+    connector: Connector;
+    update(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Interfaces/Types - Retrieve Interface
@@ -187,33 +184,6 @@ export interface RetrieveSummary {
 export interface RemoveInterface {
     connector: Connector;
     remove(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
-}
-
-// Interfaces/Types - Select Interface
-export interface SelectInterface {
-    connector: Connector;
-    select(
-        connector: Connector,
-        databaseName: string,
-        tableName: string,
-        columnNames?: string[],
-        limit?: number,
-        offset?: number
-    ): Promise<{ error?: unknown; result?: Record<string, unknown>[] }>;
-}
-
-// Interfaces/Types - Update Interface
-export interface UpdateInterface {
-    connector: Connector;
-    update(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
-}
-
-// Interfaces/Types - Write Interface
-export interface WriteInterface {
-    connector: Connector;
-    open(): void;
-    write(): void;
-    close(): void;
 }
 
 // Connector Category
