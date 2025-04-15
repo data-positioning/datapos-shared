@@ -21,7 +21,7 @@ export interface Connector {
     getDropInterface?(): DropInterface;
     getInsertInterface?(): InsertInterface;
     getPreviewInterface?(): PreviewInterface;
-    getReadInterface?(): ReadInterface;
+    getRetrieveInterface?(): RetrieveInterface;
     getRemoveInterface?(): RemoveInterface;
     getSelectInterface?(): SelectInterface;
     getUpdateInterface?(): UpdateInterface;
@@ -150,31 +150,31 @@ export interface PreviewResult {
     typeId: 'jsonArray' | 'uint8Array';
 }
 
-// Interfaces/Types - Read Interface
-export interface ReadInterface {
+// Interfaces/Types - Retrieve Interface
+export interface RetrieveInterface {
     connector: Connector;
     read(
         connector: Connector,
         callback: (data: ConnectorCallbackData) => void,
         connectionItemConfig: ConnectionItemConfig,
         previewConfig: DataViewPreviewConfig,
-        settings: ReadSettings
+        settings: RetrieveSettings
     ): Promise<void>;
 }
-export interface ReadSettings {
+export interface RetrieveSettings {
     accountId?: string;
-    chunk(records: ReadRecord[]): void;
+    chunk(records: RetrieveRecord[]): void;
     chunkSize?: number;
-    complete(info: ReadSummary): void;
+    complete(info: RetrieveSummary): void;
     containerId?: string;
     csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
     sessionAccessToken?: string;
 }
-export interface ReadRecord {
+export interface RetrieveRecord {
     fieldQuotings: boolean[];
     fieldValues: string[];
 }
-export interface ReadSummary {
+export interface RetrieveSummary {
     byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;

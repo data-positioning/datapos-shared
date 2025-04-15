@@ -17,7 +17,7 @@ export type { FindResult, FindSettings } from './connector';
 export type { InsertInterface } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewInterface, PreviewResult, PreviewSettings } from './connector';
-export type { ReadInterface, ReadRecord, ReadSettings, ReadSummary } from './connector';
+export type { RetrieveInterface, RetrieveRecord, RetrieveSettings, RetrieveSummary } from './connector';
 export type { RemoveInterface } from './connector';
 export type { SelectInterface } from './connector';
 export type { UpdateInterface } from './connector';
