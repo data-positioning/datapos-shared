@@ -99,7 +99,7 @@ export interface DropResult {
 
 // Interfaces/Types - Establish Container
 export interface EstablishContainerResult {
-    id: string;
+    id?: string;
 }
 export interface EstablishContainerSettings {
     name: string;
