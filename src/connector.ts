@@ -186,7 +186,7 @@ export interface ReadSummary {
 // Interfaces/Types - Remove Interface
 export interface RemoveInterface {
     connector: Connector;
-    delete(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+    remove(connector: Connector, databaseName: string, tableName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Interfaces/Types - Select Interface
