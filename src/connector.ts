@@ -15,7 +15,7 @@ export interface Connector {
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
-    establishContainer?: (settings: EstablishContainerSettings) => Promise<EstablishContainerResult>;
+    establishContainer: (settings: EstablishContainerSettings) => Promise<EstablishContainerResult>;
     find?(findSettings: FindSettings): Promise<FindResult>;
     getCreateInterface?(): CreateInterface;
     getDeleteInterface?(): DeleteInterface;
