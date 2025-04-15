@@ -152,7 +152,7 @@ export interface PreviewSettings {
     sessionAccessToken?: string;
 }
 export interface PreviewResult {
-    data: ParsedValue[][] | Uint8Array;
+    data: Record<string, unknown>[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
 }
 
