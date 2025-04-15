@@ -144,7 +144,7 @@ export interface PreviewResult {
 // Interfaces/Types - Put Interface
 export interface PutInterface {
     connector: Connector;
-    put(connector: Connector, databaseName: string, tableName: string, data: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+    put(connector: Connector, containerId: string, tableName: string, data: Record<string, unknown> | Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Interfaces/Types - Retrieve Interface
