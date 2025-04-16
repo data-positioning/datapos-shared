@@ -56,7 +56,7 @@ interface ConnectorImplementation {
 // Interfaces/Types - Create Interface
 export interface CreateInterface {
     connector: Connector;
-    create(connector: Connector, containerId: string, objectName: string, typeId?: string, structure?: Record<string, unknown>): Promise<{ error?: unknown }>;
+    create(connector: Connector, containerId: string, objectName: string, structure: Record<string, string>): Promise<{ error?: unknown }>;
 }
 export interface CreateSettings {
     accountId?: string;
