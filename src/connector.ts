@@ -123,12 +123,7 @@ export interface ListResult {
 // Interfaces/Types - Preview Interface
 export interface PreviewInterface {
     connector: Connector;
-    preview(
-        connector: Connector,
-        callback: (data: ConnectorCallbackData) => void,
-        connectionItemConfig: ConnectionItemConfig,
-        settings: PreviewSettings
-    ): Promise<{ error?: unknown; result?: PreviewResult }>;
+    preview(connector: Connector, connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<{ error?: unknown; result?: PreviewResult }>;
 }
 export interface PreviewSettings {
     accountId?: string;
