@@ -147,10 +147,10 @@ export interface RetrieveInterface {
     connector: Connector;
     retrieve(
         connector: Connector,
-        callback: (data: ConnectorCallbackData) => void,
         connectionItemConfig: ConnectionItemConfig,
         previewConfig: DataViewPreviewConfig,
-        settings: RetrieveSettings
+        settings: RetrieveSettings,
+        callback: (data: ConnectorCallbackData) => void
     ): Promise<void>;
 }
 export interface RetrieveSettings {
