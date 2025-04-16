@@ -56,7 +56,7 @@ interface ConnectorImplementation {
 // Interfaces/Types - Create Interface
 export interface CreateInterface {
     connector: Connector;
-    create(connector: Connector, containerName: string, objectName: string, typeId?: string, structure?: Record<string, unknown>): Promise<{ error?: unknown }>;
+    create(connector: Connector, containerId: string, objectName: string, typeId?: string, structure?: Record<string, unknown>): Promise<{ error?: unknown }>;
 }
 export interface CreateSettings {
     accountId?: string;
@@ -78,7 +78,7 @@ interface DescribeResult {
 // Interfaces/Types - Drop Interface
 export interface DropInterface {
     connector: Connector;
-    drop(connector: Connector, containerName: string, objectName: string): Promise<{ error?: unknown }>;
+    drop(connector: Connector, containerId: string, objectName: string): Promise<{ error?: unknown }>;
 }
 export interface DropSettings {
     accountId?: string;
@@ -98,7 +98,7 @@ export interface EstablishContainerSettings {
 
 // Interfaces/Types - Find
 export interface FindSettings {
-    containerName?: string;
+    containerId?: string;
     objectName: string;
 }
 export interface FindResult {
@@ -107,7 +107,7 @@ export interface FindResult {
 
 // Interfaces/Types - List
 export interface ListSettings {
-    containerName?: string;
+    containerId?: string;
     folderPath: string;
     limit?: number;
     offset?: number;
@@ -128,7 +128,7 @@ export interface PreviewInterface {
 export interface PreviewSettings {
     accountId?: string;
     chunkSize?: number;
-    containerName?: string;
+    containerId?: string;
     sessionAccessToken?: string;
 }
 export interface PreviewResult {
@@ -141,7 +141,7 @@ export interface PutInterface {
     connector: Connector;
     put(
         connector: Connector,
-        containerName: string,
+        containerId: string,
         objectName: string,
         data: Record<string, unknown> | Record<string, unknown>[],
         callback: (data: ConnectorCallbackData) => void
@@ -164,7 +164,7 @@ export interface RetrieveSettings {
     chunk(records: RetrieveRecord[]): void;
     chunkSize?: number;
     complete(info: RetrieveSummary): void;
-    containerName?: string;
+    containerId?: string;
     csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
     sessionAccessToken?: string;
 }
@@ -184,7 +184,7 @@ export interface RetrieveSummary {
 // Interfaces/Types - Remove Interface
 export interface RemoveInterface {
     connector: Connector;
-    remove(connector: Connector, containerName: string, objectName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+    remove(connector: Connector, containerId: string, objectName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Connector Category
