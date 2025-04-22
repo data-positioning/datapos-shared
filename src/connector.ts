@@ -54,7 +54,6 @@ interface ConnectorImplementation {
 
 // Interfaces/Types - Create Interface
 export interface CreateInterface {
-    connector: Connector;
     create(connector: Connector, containerName: string, objectName: string, structure: Record<string, string>): Promise<{ error?: unknown }>;
 }
 export interface CreateSettings {
@@ -76,7 +75,6 @@ interface DescribeResult {
 
 // Interfaces/Types - Drop Interface
 export interface DropInterface {
-    connector: Connector;
     drop(connector: Connector, containerName: string, objectName: string): Promise<{ error?: unknown }>;
 }
 export interface DropSettings {
@@ -121,7 +119,6 @@ export interface ListResult {
 
 // Interfaces/Types - Preview Interface
 export interface PreviewInterface {
-    connector: Connector;
     preview(connector: Connector, connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<{ error?: unknown; result?: PreviewResult }>;
 }
 export interface PreviewSettings {
@@ -137,7 +134,6 @@ export interface PreviewResult {
 
 // Interfaces/Types - Put Interface
 export interface PutInterface {
-    connector: Connector;
     put(
         connector: Connector,
         containerName: string,
@@ -149,7 +145,6 @@ export interface PutInterface {
 
 // Interfaces/Types - Retrieve Interface
 export interface RetrieveInterface {
-    connector: Connector;
     retrieve(
         connector: Connector,
         connectionItemConfig: ConnectionItemConfig,
@@ -182,7 +177,6 @@ export interface RetrieveSummary {
 
 // Interfaces/Types - Remove Interface
 export interface RemoveInterface {
-    connector: Connector;
     remove(connector: Connector, containerName: string, objectName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
