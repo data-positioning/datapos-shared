@@ -87,13 +87,13 @@ export interface DropResult {
     placeholder: string;
 }
 
-// Interfaces/Types - Establish Container
-export interface EstablishContainerResult {
-    id?: string;
-}
-export interface EstablishContainerSettings {
-    name: string;
-}
+// // Interfaces/Types - Establish Container
+// export interface EstablishContainerResult {
+//     id?: string;
+// }
+// export interface EstablishContainerSettings {
+//     name: string;
+// }
 
 // Interfaces/Types - Find
 export interface FindSettings {
