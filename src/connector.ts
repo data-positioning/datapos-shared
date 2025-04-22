@@ -54,7 +54,7 @@ interface ConnectorImplementation {
 
 // Interfaces/Types - Create Interface
 export interface CreateInterface {
-    create(connector: Connector, containerName: string, objectName: string, structure: Record<string, string>): Promise<{ error?: unknown }>;
+    create(containerName: string, objectName: string, structure: Record<string, string>): Promise<{ error?: unknown }>;
 }
 export interface CreateSettings {
     accountId?: string;
@@ -75,7 +75,7 @@ interface DescribeResult {
 
 // Interfaces/Types - Drop Interface
 export interface DropInterface {
-    drop(connector: Connector, containerName: string, objectName: string): Promise<{ error?: unknown }>;
+    drop(containerName: string, objectName: string): Promise<{ error?: unknown }>;
 }
 export interface DropSettings {
     accountId?: string;
@@ -119,7 +119,7 @@ export interface ListResult {
 
 // Interfaces/Types - Preview Interface
 export interface PreviewInterface {
-    preview(connector: Connector, connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<{ error?: unknown; result?: PreviewResult }>;
+    preview(connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<{ error?: unknown; result?: PreviewResult }>;
 }
 export interface PreviewSettings {
     accountId?: string;
@@ -135,7 +135,6 @@ export interface PreviewResult {
 // Interfaces/Types - Put Interface
 export interface PutInterface {
     put(
-        connector: Connector,
         containerName: string,
         objectName: string,
         data: Record<string, unknown> | Record<string, unknown>[],
@@ -146,7 +145,6 @@ export interface PutInterface {
 // Interfaces/Types - Retrieve Interface
 export interface RetrieveInterface {
     retrieve(
-        connector: Connector,
         connectionItemConfig: ConnectionItemConfig,
         previewConfig: DataViewPreviewConfig,
         settings: RetrieveSettings,
@@ -177,7 +175,7 @@ export interface RetrieveSummary {
 
 // Interfaces/Types - Remove Interface
 export interface RemoveInterface {
-    remove(connector: Connector, containerName: string, objectName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+    remove(containerName: string, objectName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
 }
 
 // Connector Category
