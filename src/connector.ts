@@ -14,7 +14,9 @@ export interface Connector {
 
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
+    create?(): unknown;
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
+    drop?(): unknown;
     find?(findSettings: FindSettings): Promise<FindResult>;
     getCreateInterface?(): CreateInterface;
     getDropInterface?(): DropInterface;
@@ -23,6 +25,7 @@ export interface Connector {
     getRetrieveInterface?(): RetrieveInterface;
     getRemoveInterface?(): RemoveInterface;
     list?(settings: ListSettings): Promise<ListResult>;
+    preview?(): unknown;
 }
 
 // Interfaces/Types - Connector Callback Data
@@ -119,7 +122,7 @@ export interface ListResult {
 
 // Interfaces/Types - Preview Interface
 export interface PreviewInterface {
-    preview(connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<{ error?: unknown; result?: PreviewResult }>;
+    preview(connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<PreviewResult>;
 }
 export interface PreviewSettings {
     accountId?: string;
