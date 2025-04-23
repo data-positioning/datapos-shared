@@ -14,9 +14,9 @@ export interface Connector {
 
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
-    create?(): unknown;
+    // create?(): unknown;
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
-    drop?(): unknown;
+    // drop?(): unknown;
     find?(findSettings: FindSettings): Promise<FindResult>;
     getCreateInterface?(): CreateInterface;
     getDropInterface?(): DropInterface;
@@ -25,7 +25,7 @@ export interface Connector {
     getRetrieveInterface?(): RetrieveInterface;
     getRemoveInterface?(): RemoveInterface;
     list?(settings: ListSettings): Promise<ListResult>;
-    preview?(): unknown;
+    // preview?(): unknown;
 }
 
 // Interfaces/Types - Connector Callback Data
