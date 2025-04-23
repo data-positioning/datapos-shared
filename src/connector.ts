@@ -14,13 +14,10 @@ export interface Connector {
 
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
-    // create?(): unknown;
+    create(containerName: string, objectName: string, structure: Record<string, string>): Promise<{ error?: unknown }>;
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
-    // drop?(): unknown;
+    drop(containerName: string, objectName: string): Promise<{ error?: unknown }>;
     find?(findSettings: FindSettings): Promise<FindResult>;
-    getCreateInterface?(): CreateInterface;
-    getDropInterface?(): DropInterface;
-    getPreviewInterface?(): PreviewInterface;
     getPutInterface?(): PutInterface;
     getRetrieveInterface?(): RetrieveInterface;
     getRemoveInterface?(): RemoveInterface;
@@ -56,9 +53,6 @@ interface ConnectorImplementation {
 }
 
 // Interfaces/Types - Create Interface
-export interface CreateInterface {
-    create(containerName: string, objectName: string, structure: Record<string, string>): Promise<{ error?: unknown }>;
-}
 export interface CreateSettings {
     accountId?: string;
     sessionAccessToken?: string;
@@ -77,9 +71,6 @@ interface DescribeResult {
 }
 
 // Interfaces/Types - Drop Interface
-export interface DropInterface {
-    drop(containerName: string, objectName: string): Promise<{ error?: unknown }>;
-}
 export interface DropSettings {
     accountId?: string;
     sessionAccessToken?: string;
@@ -87,14 +78,6 @@ export interface DropSettings {
 export interface DropResult {
     placeholder: string;
 }
-
-// // Interfaces/Types - Establish Container
-// export interface EstablishContainerResult {
-//     id?: string;
-// }
-// export interface EstablishContainerSettings {
-//     name: string;
-// }
 
 // Interfaces/Types - Find
 export interface FindSettings {
@@ -121,9 +104,6 @@ export interface ListResult {
 }
 
 // Interfaces/Types - Preview Interface
-export interface PreviewInterface {
-    preview(connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<PreviewResult>;
-}
 export interface PreviewSettings {
     accountId?: string;
     chunkSize?: number;
