@@ -25,7 +25,7 @@ export interface Connector {
     getRetrieveInterface?(): RetrieveInterface;
     getRemoveInterface?(): RemoveInterface;
     list?(settings: ListSettings): Promise<ListResult>;
-    // preview?(): unknown;
+    preview(connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<PreviewResult>;
 }
 
 // Interfaces/Types - Connector Callback Data
