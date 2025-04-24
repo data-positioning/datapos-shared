@@ -3,8 +3,8 @@ import type { Callback, Options, Parser } from 'csv-parse';
 
 // Dependencies - Framework
 import type { ConnectionConfig, ConnectionDescription, ConnectionItemConfig } from './connection';
+import type { DataViewContentAuditConfig, DataViewPreviewConfig, ValueDelimiterId } from './dataView';
 import type { ComponentConfig } from './component';
-import type { ValueDelimiterId } from './dataView';
 
 // Interfaces/Types - Connector
 export interface Connector {
@@ -23,7 +23,7 @@ export interface Connector {
     getRetrieveInterface?(): RetrieveInterface; // Get the retrieve interface. Enables retrieving multiple records from an object for a specified connection.
     getRemoveInterface?(): RemoveInterface; // Get the remove interface. Enables removing all records from an object for a specified connection.
     list?(settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
-    preview?(settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
+    preview?(settings: PreviewSettings): Promise<DataViewPreviewConfig>; // Preview an object for a specified connection.
 }
 
 // Interfaces/Types - Connector Callback Data
@@ -60,6 +60,19 @@ export interface ConnectorOperationSettings {
     connectorConfigId: string;
     connectorConfigVersion: string;
     sessionAccessToken?: string;
+}
+
+// Interfaces/Types - Content Audit
+export interface ContentAuditResult {
+    contentAuditConfig: DataViewContentAuditConfig;
+}
+export interface ContentAuditSettings {
+    callback: (data: ConnectorCallbackData) => void;
+    chunk(count: number): void;
+    chunkSize?: number;
+    complete(result: PutResult): void;
+    data: Record<string, unknown> | Record<string, unknown>[];
+    path: string;
 }
 
 // Interfaces/Types - Create
@@ -114,10 +127,9 @@ export interface PreviewData {
     data: Record<string, unknown>[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
 }
-// export interface PreviewResult {
-//     data: Record<string, unknown>[] | Uint8Array;
-//     typeId: 'jsonArray' | 'uint8Array';
-// }
+export interface PreviewResult {
+    previewConfig: DataViewPreviewConfig;
+}
 export interface PreviewSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     path: string;
@@ -133,6 +145,7 @@ export interface PutResult {
 export interface PutSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
     chunk(count: number): void;
+    chunkSize?: number;
     complete(result: PutResult): void;
     data: Record<string, unknown> | Record<string, unknown>[];
     path: string;
@@ -148,6 +161,7 @@ export interface RemoveResult {
 export interface RemoveSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
     chunk(count: number): void;
+    chunkSize?: number;
     complete(result: RemoveResult): void;
     keys: Record<string, unknown>[];
     path: string;

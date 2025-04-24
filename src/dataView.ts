@@ -12,8 +12,17 @@ export interface DataViewConfig extends ComponentConfig {
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
 }
 
-// Interfaces/Types - Parsed Value
-export type ParsedValue = bigint | boolean | number | string | null;
+// Interfaces/Types - Data View Content Audit Configuration
+export interface DataViewContentAuditConfig {
+    asAt: Timestamp;
+    columns: ConnectionColumnConfig[];
+    commentLineCount: number;
+    emptyLineCount: number;
+    invalidFieldLengthCount: number;
+    duration: number;
+    lineCount: number;
+    recordCount: number;
+}
 
 // Interfaces/Types - Data View Preview Configuration
 export interface DataViewPreviewConfig {
@@ -39,18 +48,6 @@ export interface DataViewPreviewConfig {
     text: string;
     valueDelimiterId?: ValueDelimiterId;
     // valueTrimMethodId?: string;
-}
-
-// Interfaces/Types - Data View Content Audit Configuration
-export interface DataViewContentAuditConfig {
-    asAt: Timestamp;
-    columns: ConnectionColumnConfig[];
-    commentLineCount: number;
-    emptyLineCount: number;
-    invalidFieldLengthCount: number;
-    duration: number;
-    lineCount: number;
-    recordCount: number;
 }
 
 // Interfaces/Types - Data View Relationships Audit Configuration
@@ -129,6 +126,9 @@ export const getValueDelimiters = (localeId = 'en'): ValueDelimiter[] => {
     // return items.sort((first, second) => first.label.localeCompare(second.label));
     return items;
 };
+
+// Interfaces/Types - Parsed Value
+export type ParsedValue = bigint | boolean | number | string | null;
 
 // Interfaces/Types - Basic
 export type DataFormatId = 'dtv' | 'e/e' | 'jsonArray' | 'spss' | 'xls' | 'xlsx' | 'xml';
