@@ -88,7 +88,7 @@ export interface DropResult {
 export interface FindSettings extends ConnectorOperationSettings {
     // containerName?: string;
     // objectName: string;
-    path: string;
+    path?: string;
 }
 export interface FindResult {
     // folderPath?: string;
