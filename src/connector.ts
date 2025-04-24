@@ -64,7 +64,7 @@ export interface ConnectorOperationSettings {
 
 // Interfaces/Types - Create
 export interface CreateResult {
-    placeholder: string;
+    placeholder?: string;
 }
 export interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
@@ -80,7 +80,7 @@ interface DescribeResult {
 
 // Interfaces/Types - Drop
 export interface DropResult {
-    placeholder: string;
+    placeholder?: string;
 }
 export interface DropSettings extends ConnectorOperationSettings {
     path: string;
