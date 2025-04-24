@@ -14,7 +14,6 @@ export interface Connector {
 
     abort?(): void; // Abort the active long running operation for a specified connection.
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection
-
     create?(settings: CreateSettings): Promise<CreateResult>; // Create an object for a specified connection.
     describe?(settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
     drop?(settings: DropSettings): Promise<DropSettings>; // Drop (delete) an object for a specified connection.
@@ -23,7 +22,7 @@ export interface Connector {
     getRetrieveInterface?(): RetrieveInterface; // Get the retrieve interface. Enables retrieving multiple records from an object for a specified connection.
     getRemoveInterface?(): RemoveInterface; // Get the remove interface. Enables removing all records from an object for a specified connection.
     list?(settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
-    preview?(settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
+    preview?(settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
 }
 
 // Interfaces/Types - Connector Callback Data
