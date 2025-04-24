@@ -16,7 +16,7 @@ export interface Connector {
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
     create(settings: CreateSettings): Promise<CreateResult>;
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
-    drop(containerName: string, objectName: string): Promise<{ error?: unknown }>;
+    drop(containerName: string, objectName: string): Promise<DropSettings>;
     find?(findSettings: FindSettings): Promise<FindResult>;
     getPutInterface?(): PutInterface;
     getRetrieveInterface?(): RetrieveInterface;
@@ -128,17 +128,17 @@ export interface PutInterface {
         // containerName: string,
         // objectName: string,
         settings: PutSettings
-    ): Promise<{ error?: unknown }>;
+    ): Promise<void>;
 }
 export interface PutSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
     chunk(count: number): void;
-    complete(count: number): void;
+    complete(result: PutResult): void;
     data: Record<string, unknown> | Record<string, unknown>[];
     path: string;
 }
 export interface PutResult {
-    placeholder: string;
+    count: number;
 }
 
 // Interfaces/Types - Retrieve
@@ -149,7 +149,7 @@ export interface RetrieveSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
     chunk(records: RetrieveRecord[]): void;
     chunkSize?: number;
-    complete(info: RetrieveSummary): void;
+    complete(result: RetrieveSummary): void;
     // containerName?: string;
     csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
     path: string;
@@ -169,19 +169,19 @@ export interface RetrieveSummary {
 
 // Interfaces/Types - Remove Interface
 export interface RemoveInterface {
-    remove(settings: RemoveSettings): Promise<RemoveResult>;
+    remove(settings: RemoveSettings): Promise<void>;
 }
 export interface RemoveSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
     chunk(count: number): void;
-    complete(count: number): void;
+    complete(result: RemoveResult): void;
     // containerName: string;
     // objectName: string;
     keys: Record<string, unknown>[];
     path: string;
 }
 export interface RemoveResult {
-    placeholder: string;
+    count: number;
 }
 
 // Connector Category
