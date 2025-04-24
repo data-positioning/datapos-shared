@@ -58,6 +58,7 @@ export interface ConnectorOperationSettings {
     accountId?: string;
     appCheckToken?: string;
     connectorConfigId: string;
+    connectorConfigVersion: string;
     sessionAccessToken?: string;
 }
 
