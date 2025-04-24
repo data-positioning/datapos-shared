@@ -22,7 +22,7 @@ export interface Connector {
     getRetrieveInterface?(): RetrieveInterface; // Get the retrieve interface. Enables retrieving multiple records from an object for a specified connection.
     getRemoveInterface?(): RemoveInterface; // Get the remove interface. Enables removing all records from an object for a specified connection.
     list?(settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
-    preview?(settings: PreviewSettings): Promise<DataViewPreviewConfig>; // Preview an object for a specified connection.
+    preview?(settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
 }
 
 // Interfaces/Types - Connector Callback Data
