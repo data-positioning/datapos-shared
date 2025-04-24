@@ -66,7 +66,7 @@ export interface ConnectorOperationSettings {
 export interface ContentAuditResult {
     contentAuditConfig: DataViewContentAuditConfig;
 }
-export interface ContentAuditSettings {
+export interface ContentAuditSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
     chunk(count: number): void;
     chunkSize?: number;
