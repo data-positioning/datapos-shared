@@ -15,15 +15,15 @@ export interface Connector {
     abort?(): void; // Abort the active long running operation for a specified connection.
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection
 
-    create(settings: CreateSettings): Promise<CreateResult>; // Create an object for a specified connection.
+    create?(settings: CreateSettings): Promise<CreateResult>; // Create an object for a specified connection.
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
-    drop(containerName: string, objectName: string): Promise<DropSettings>; // Drop (delete) an object for a specified connection.
+    drop?(containerName: string, objectName: string): Promise<DropSettings>; // Drop (delete) an object for a specified connection.
     find?(findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
     getPutInterface?(): PutInterface; // Get the put interface. Enables updating/inserting single or multiple records into an object for a specified connection.
     getRetrieveInterface?(): RetrieveInterface; // Get the retrieve interface. Enables retrieving multiple records from an object for a specified connection.
     getRemoveInterface?(): RemoveInterface; // Get the remove interface. Enables removing all records from an object for a specified connection.
     list?(settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
-    preview(connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
+    preview?(connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
 }
 
 // Interfaces/Types - Connector Callback Data
