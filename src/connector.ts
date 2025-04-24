@@ -2,9 +2,9 @@
 import type { Callback, Options, Parser } from 'csv-parse';
 
 // Dependencies - Framework
-import type { ComponentConfig } from './component';
 import type { ConnectionConfig, ConnectionDescription, ConnectionItemConfig } from './connection';
-import type { DataViewPreviewConfig, ParsedValue } from './dataView';
+import type { ComponentConfig } from './component';
+import type { DataViewPreviewConfig } from './dataView';
 
 // Interfaces/Types - Connector
 export interface Connector {
