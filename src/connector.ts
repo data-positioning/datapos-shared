@@ -57,6 +57,7 @@ export interface ConnectorImplementation {
 export interface ConnectorOperationSettings {
     accountId?: string;
     appCheckToken?: string;
+    connectorConfigId: string;
     sessionAccessToken?: string;
 }
 
