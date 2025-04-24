@@ -4,7 +4,7 @@ import type { Callback, Options, Parser } from 'csv-parse';
 // Dependencies - Framework
 import type { ConnectionConfig, ConnectionDescription, ConnectionItemConfig } from './connection';
 import type { ComponentConfig } from './component';
-import type { DataViewPreviewConfig } from './dataView';
+import type { DataViewPreviewConfig, ValueDelimiterId } from './dataView';
 
 // Interfaces/Types - Connector
 export interface Connector {
@@ -12,17 +12,18 @@ export interface Connector {
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
 
-    abort?(): void;
-    authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
-    create(settings: CreateSettings): Promise<CreateResult>;
-    describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
-    drop(containerName: string, objectName: string): Promise<DropSettings>;
-    find?(findSettings: FindSettings): Promise<FindResult>;
-    getPutInterface?(): PutInterface;
-    getRetrieveInterface?(): RetrieveInterface;
-    getRemoveInterface?(): RemoveInterface;
-    list?(settings: ListSettings): Promise<ListResult>;
-    preview(connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<PreviewResult>;
+    abort?(): void; // Abort the active long running operation for a specified connection.
+    authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection
+
+    create(settings: CreateSettings): Promise<CreateResult>; // Create an object for a specified connection.
+    describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
+    drop(containerName: string, objectName: string): Promise<DropSettings>; // Drop (delete) an object for a specified connection.
+    find?(findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
+    getPutInterface?(): PutInterface; // Get the put interface. Enables updating/inserting single or multiple records into an object for a specified connection.
+    getRetrieveInterface?(): RetrieveInterface; // Get the retrieve interface. Enables retrieving multiple records from an object for a specified connection.
+    getRemoveInterface?(): RemoveInterface; // Get the remove interface. Enables removing all records from an object for a specified connection.
+    list?(settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
+    preview(connectionItemConfig: ConnectionItemConfig, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
 }
 
 // Interfaces/Types - Connector Callback Data
@@ -95,7 +96,6 @@ export interface FindResult {
 
 // Interfaces/Types - List
 export interface ListSettings extends ConnectorOperationSettings {
-    // containerName?: string;
     folderPath: string;
     limit?: number;
     offset?: number;
@@ -148,8 +148,12 @@ export interface RetrieveSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     complete(result: RetrieveSummary): void;
     // containerName?: string;
-    csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
     path: string;
+}
+export interface CSVRetrieveSettings extends RetrieveSettings {
+    csvParse: (options?: Options, callback?: Callback) => Parser | undefined;
+    encodingId: string;
+    valueDelimiterId: ValueDelimiterId;
 }
 export interface RetrieveRecord {
     fieldQuotings: boolean[];
