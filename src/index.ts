@@ -17,7 +17,7 @@ export type { CreateResult, CreateSettings } from './connector';
 export type { DropResult, DropSettings } from './connector';
 export type { FindResult, FindSettings } from './connector';
 export type { ListResult, ListSettings } from './connector';
-export type { PreviewResult, PreviewSettings } from './connector';
+export type { PreviewData, PreviewResult, PreviewSettings } from './connector';
 export type { PutInterface, PutResult, PutSettings } from './connector';
 export type { RemoveInterface, RemoveResult, RemoveSettings } from './connector';
 export type { RetrieveSettingsForCSV, RetrieveInterface, RetrieveRecord, RetrieveSettings, RetrieveSummary } from './connector';
