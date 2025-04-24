@@ -95,11 +95,10 @@ export interface FindResult {
 
 // Interfaces/Types - List
 export interface ListSettings extends ConnectorOperationSettings {
-    containerName?: string;
-    // folderPath: string;
+    // containerName?: string;
+    folderPath: string;
     limit?: number;
     offset?: number;
-    path: string;
     totalCount?: number;
 }
 export interface ListResult {
