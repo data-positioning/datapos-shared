@@ -14,7 +14,7 @@ export interface Connector {
 
     abort?(): void;
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
-    create(containerName: string, objectName: string, structure: Record<string, string>): Promise<{ error?: unknown }>;
+    create(settings: CreateSettings): Promise<CreateResult>;
     describe?(callback: (data: ConnectorCallbackData) => void, settings: DescribeSettings): Promise<DescribeResult>;
     drop(containerName: string, objectName: string): Promise<{ error?: unknown }>;
     find?(findSettings: FindSettings): Promise<FindResult>;
@@ -42,7 +42,7 @@ export interface ConnectorConfig extends ComponentConfig {
     vendorHomeURL?: string;
     version?: string;
 }
-interface ConnectorImplementation {
+export interface ConnectorImplementation {
     activeConnectionCount?: number;
     canDescribe?: boolean;
     id?: string;
@@ -52,48 +52,56 @@ interface ConnectorImplementation {
     params?: Record<string, string>[];
 }
 
-// Interfaces/Types - Create Interface
-export interface CreateSettings {
+// Interfaces/Types - Connector Operator Settings
+export interface ConnectorOperationSettings {
     accountId?: string;
     sessionAccessToken?: string;
+}
+
+// Interfaces/Types - Create
+export interface CreateSettings extends ConnectorOperationSettings {
+    accountId?: string;
+    // containerName: string;
+    // objectName: string;
+    path: string;
+    structure: Record<string, string>;
 }
 export interface CreateResult {
     placeholder: string;
 }
 
 // Interfaces/Types - Describe
-interface DescribeSettings {
-    accountId: string | undefined;
-    sessionAccessToken: string | undefined;
-}
+interface DescribeSettings extends ConnectorOperationSettings {}
 interface DescribeResult {
     description: ConnectionDescription;
 }
 
-// Interfaces/Types - Drop Interface
-export interface DropSettings {
-    accountId?: string;
-    sessionAccessToken?: string;
+// Interfaces/Types - Drop
+export interface DropSettings extends ConnectorOperationSettings {
+    path: string;
 }
 export interface DropResult {
     placeholder: string;
 }
 
 // Interfaces/Types - Find
-export interface FindSettings {
-    containerName?: string;
-    objectName: string;
+export interface FindSettings extends ConnectorOperationSettings {
+    // containerName?: string;
+    // objectName: string;
+    path: string;
 }
 export interface FindResult {
-    folderPath?: string;
+    // folderPath?: string;
+    path: string;
 }
 
 // Interfaces/Types - List
-export interface ListSettings {
+export interface ListSettings extends ConnectorOperationSettings {
     containerName?: string;
-    folderPath: string;
+    // folderPath: string;
     limit?: number;
     offset?: number;
+    path: string;
     totalCount?: number;
 }
 export interface ListResult {
@@ -103,45 +111,48 @@ export interface ListResult {
     totalCount: number;
 }
 
-// Interfaces/Types - Preview Interface
-export interface PreviewSettings {
-    accountId?: string;
+// Interfaces/Types - Preview
+export interface PreviewSettings extends ConnectorOperationSettings {
     chunkSize?: number;
-    containerName?: string;
-    sessionAccessToken?: string;
+    // containerName?: string;
+    path: string;
 }
 export interface PreviewResult {
     data: Record<string, unknown>[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
 }
 
-// Interfaces/Types - Put Interface
+// Interfaces/Types - Put
 export interface PutInterface {
     put(
-        containerName: string,
-        objectName: string,
-        data: Record<string, unknown> | Record<string, unknown>[],
-        callback: (data: ConnectorCallbackData) => void
+        // containerName: string,
+        // objectName: string,
+        settings: PutSettings
     ): Promise<{ error?: unknown }>;
 }
-
-// Interfaces/Types - Retrieve Interface
-export interface RetrieveInterface {
-    retrieve(
-        connectionItemConfig: ConnectionItemConfig,
-        previewConfig: DataViewPreviewConfig,
-        settings: RetrieveSettings,
-        callback: (data: ConnectorCallbackData) => void
-    ): Promise<void>;
+export interface PutSettings extends ConnectorOperationSettings {
+    callback: (data: ConnectorCallbackData) => void;
+    chunk(count: number): void;
+    complete(count: number): void;
+    data: Record<string, unknown> | Record<string, unknown>[];
+    path: string;
 }
-export interface RetrieveSettings {
-    accountId?: string;
+export interface PutResult {
+    placeholder: string;
+}
+
+// Interfaces/Types - Retrieve
+export interface RetrieveInterface {
+    retrieve(connectionItemConfig: ConnectionItemConfig, previewConfig: DataViewPreviewConfig, settings: RetrieveSettings): Promise<void>;
+}
+export interface RetrieveSettings extends ConnectorOperationSettings {
+    callback: (data: ConnectorCallbackData) => void;
     chunk(records: RetrieveRecord[]): void;
     chunkSize?: number;
     complete(info: RetrieveSummary): void;
-    containerName?: string;
+    // containerName?: string;
     csvParse?: (options?: Options, callback?: Callback) => Parser | undefined;
-    sessionAccessToken?: string;
+    path: string;
 }
 export interface RetrieveRecord {
     fieldQuotings: boolean[];
@@ -158,7 +169,19 @@ export interface RetrieveSummary {
 
 // Interfaces/Types - Remove Interface
 export interface RemoveInterface {
-    remove(containerName: string, objectName: string, keys: Record<string, unknown>[]): Promise<{ error?: unknown }>;
+    remove(settings: RemoveSettings): Promise<RemoveResult>;
+}
+export interface RemoveSettings extends ConnectorOperationSettings {
+    callback: (data: ConnectorCallbackData) => void;
+    chunk(count: number): void;
+    complete(count: number): void;
+    // containerName: string;
+    // objectName: string;
+    keys: Record<string, unknown>[];
+    path: string;
+}
+export interface RemoveResult {
+    placeholder: string;
 }
 
 // Connector Category

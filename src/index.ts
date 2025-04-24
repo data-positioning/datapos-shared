@@ -9,15 +9,15 @@ export type { ConnectionAuthorization, ConnectionColumnConfig, ConnectionConfig,
 export type { DPAFileSystemFileHandle, StorageTypeId, UsageTypeId } from './connection';
 
 // Interfaces/Types - Connector
-export type { Connector, ConnectorCallbackData, ConnectorConfig } from './connector';
+export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings } from './connector';
 export type { CreateResult, CreateSettings } from './connector';
 export type { DropResult, DropSettings } from './connector';
 export type { FindResult, FindSettings } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewResult, PreviewSettings } from './connector';
-export type { PutInterface } from './connector';
+export type { PutResult, PutSettings, PutInterface } from './connector';
 export type { RetrieveInterface, RetrieveRecord, RetrieveSettings, RetrieveSummary } from './connector';
-export type { RemoveInterface } from './connector';
+export type { RemoveResult, RemoveSettings, RemoveInterface } from './connector';
 
 // Interfaces/Types - Context
 export type { ContextConfig, FocusConfig, ModelConfig, DimensionConfig, EntityCharacteristicConfig, EntityComputationConfig } from './context';
@@ -34,25 +34,23 @@ export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, Fe
 // Interfaces/Types - Event Query
 export type { EventQueryConfig } from './eventQuery';
 
-// Interfaces/Types - Location
-export type { IPAddressLocation } from './location';
+// // Interfaces/Types - Location
+// export type { IPAddressLocation } from './location';
 
-// Interfaces/Types - Monitor
-export type {
-    LocationData,
-    LocationTimings,
-    MonitorIssue,
-    MonitorIssuesByWeek,
-    MonitorTimingsByLocation,
-    MonitorTimingsByWeek,
-    GetMonitorIssuesResult,
-    GetMonitorWeeklyTimingsResult
-} from './monitor';
+// // Interfaces/Types - Monitor
+// export type {
+//     LocationData,
+//     LocationTimings,
+//     MonitorIssue,
+//     MonitorIssuesByWeek,
+//     MonitorTimingsByLocation,
+//     MonitorTimingsByWeek,
+//     GetMonitorIssuesResult,
+//     GetMonitorWeeklyTimingsResult
+// } from './monitor';
 
 // Interfaces/Types - Package
-export type { PackageConfig, PackageData } from './package';
-
-// Interfaces/Types - Presentation
+// export type { PackageConfig, PackageData } from './package';
 
 // Interfaces/Types - Presenter
 export type { IPresenter, IPresenterConfig, IPresenterItemConfig } from './presenter';
