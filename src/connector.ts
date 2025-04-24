@@ -3,8 +3,8 @@ import type { Callback, Options, Parser } from 'csv-parse';
 
 // Dependencies - Framework
 import type { ConnectionConfig, ConnectionDescription, ConnectionItemConfig } from './connection';
-import type { DataViewPreviewConfig, ValueDelimiterId } from './dataView';
 import type { ComponentConfig } from './component';
+import type { ValueDelimiterId } from './dataView';
 
 // Interfaces/Types - Connector
 export interface Connector {
@@ -65,8 +65,6 @@ export interface CreateResult {
 }
 export interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
-    // containerName: string;
-    // objectName: string;
     path: string;
     structure: Record<string, string>;
 }
@@ -115,17 +113,12 @@ export interface PreviewResult {
 }
 export interface PreviewSettings extends ConnectorOperationSettings {
     chunkSize?: number;
-    // containerName?: string;
     path: string;
 }
 
 // Interfaces/Types - Put
 export interface PutInterface {
-    put(
-        // containerName: string,
-        // objectName: string,
-        settings: PutSettings
-    ): Promise<void>;
+    put(settings: PutSettings): Promise<void>;
 }
 export interface PutResult {
     count: number;
@@ -149,15 +142,13 @@ export interface RemoveSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
     chunk(count: number): void;
     complete(result: RemoveResult): void;
-    // containerName: string;
-    // objectName: string;
     keys: Record<string, unknown>[];
     path: string;
 }
 
 // Interfaces/Types - Retrieve
 export interface RetrieveInterface {
-    retrieve(connectionItemConfig: ConnectionItemConfig, previewConfig: DataViewPreviewConfig, settings: RetrieveSettings): Promise<void>;
+    retrieve(settings: RetrieveSettings): Promise<void>;
 }
 export interface RetrieveRecord {
     fieldQuotings: boolean[];
@@ -168,7 +159,6 @@ export interface RetrieveSettings extends ConnectorOperationSettings {
     chunk(records: RetrieveRecord[]): void;
     chunkSize?: number;
     complete(result: RetrieveSummary): void;
-    // containerName?: string;
     path: string;
 }
 export interface RetrieveSettingsForCSV extends RetrieveSettings {
