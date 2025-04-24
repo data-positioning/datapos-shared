@@ -3,8 +3,8 @@ import type { Callback, Options, Parser } from 'csv-parse';
 
 // Dependencies - Framework
 import type { ConnectionConfig, ConnectionDescription, ConnectionItemConfig } from './connection';
-import type { ComponentConfig } from './component';
 import type { DataViewPreviewConfig, ValueDelimiterId } from './dataView';
+import type { ComponentConfig } from './component';
 
 // Interfaces/Types - Connector
 export interface Connector {
@@ -60,15 +60,15 @@ export interface ConnectorOperationSettings {
 }
 
 // Interfaces/Types - Create
+export interface CreateResult {
+    placeholder: string;
+}
 export interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
     // containerName: string;
     // objectName: string;
     path: string;
     structure: Record<string, string>;
-}
-export interface CreateResult {
-    placeholder: string;
 }
 
 // Interfaces/Types - Describe
@@ -78,45 +78,45 @@ interface DescribeResult {
 }
 
 // Interfaces/Types - Drop
-export interface DropSettings extends ConnectorOperationSettings {
-    path: string;
-}
 export interface DropResult {
     placeholder: string;
 }
+export interface DropSettings extends ConnectorOperationSettings {
+    path: string;
+}
 
 // Interfaces/Types - Find
+export interface FindResult {
+    folderPath?: string;
+}
 export interface FindSettings extends ConnectorOperationSettings {
     containerName?: string;
     objectName: string;
 }
-export interface FindResult {
-    folderPath?: string;
-}
 
 // Interfaces/Types - List
-export interface ListSettings extends ConnectorOperationSettings {
-    folderPath: string;
-    limit?: number;
-    offset?: number;
-    totalCount?: number;
-}
 export interface ListResult {
     cursor: string | number | undefined;
     connectionItemConfigs: ConnectionItemConfig[];
     isMore: boolean;
     totalCount: number;
 }
+export interface ListSettings extends ConnectorOperationSettings {
+    folderPath: string;
+    limit?: number;
+    offset?: number;
+    totalCount?: number;
+}
 
 // Interfaces/Types - Preview
+export interface PreviewResult {
+    data: Record<string, unknown>[] | Uint8Array;
+    typeId: 'jsonArray' | 'uint8Array';
+}
 export interface PreviewSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     // containerName?: string;
     path: string;
-}
-export interface PreviewResult {
-    data: Record<string, unknown>[] | Uint8Array;
-    typeId: 'jsonArray' | 'uint8Array';
 }
 
 // Interfaces/Types - Put
@@ -127,6 +127,9 @@ export interface PutInterface {
         settings: PutSettings
     ): Promise<void>;
 }
+export interface PutResult {
+    count: number;
+}
 export interface PutSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
     chunk(count: number): void;
@@ -134,43 +137,13 @@ export interface PutSettings extends ConnectorOperationSettings {
     data: Record<string, unknown> | Record<string, unknown>[];
     path: string;
 }
-export interface PutResult {
-    count: number;
-}
-
-// Interfaces/Types - Retrieve
-export interface RetrieveInterface {
-    retrieve(connectionItemConfig: ConnectionItemConfig, previewConfig: DataViewPreviewConfig, settings: RetrieveSettings): Promise<void>;
-}
-export interface RetrieveSettings extends ConnectorOperationSettings {
-    callback: (data: ConnectorCallbackData) => void;
-    chunk(records: RetrieveRecord[]): void;
-    chunkSize?: number;
-    complete(result: RetrieveSummary): void;
-    // containerName?: string;
-    path: string;
-}
-export interface CSVRetrieveSettings extends RetrieveSettings {
-    csvParse: (options?: Options, callback?: Callback) => Parser | undefined;
-    encodingId: string;
-    valueDelimiterId: ValueDelimiterId;
-}
-export interface RetrieveRecord {
-    fieldQuotings: boolean[];
-    fieldValues: string[];
-}
-export interface RetrieveSummary {
-    byteCount: number;
-    commentLineCount: number;
-    emptyLineCount: number;
-    invalidFieldLengthCount: number;
-    lineCount: number;
-    recordCount: number;
-}
 
 // Interfaces/Types - Remove Interface
 export interface RemoveInterface {
     remove(settings: RemoveSettings): Promise<void>;
+}
+export interface RemoveResult {
+    count: number;
 }
 export interface RemoveSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
@@ -181,8 +154,35 @@ export interface RemoveSettings extends ConnectorOperationSettings {
     keys: Record<string, unknown>[];
     path: string;
 }
-export interface RemoveResult {
-    count: number;
+
+// Interfaces/Types - Retrieve
+export interface RetrieveInterface {
+    retrieve(connectionItemConfig: ConnectionItemConfig, previewConfig: DataViewPreviewConfig, settings: RetrieveSettings): Promise<void>;
+}
+export interface RetrieveRecord {
+    fieldQuotings: boolean[];
+    fieldValues: string[];
+}
+export interface RetrieveSettings extends ConnectorOperationSettings {
+    callback: (data: ConnectorCallbackData) => void;
+    chunk(records: RetrieveRecord[]): void;
+    chunkSize?: number;
+    complete(result: RetrieveSummary): void;
+    // containerName?: string;
+    path: string;
+}
+export interface RetrieveSettingsForCSV extends RetrieveSettings {
+    csvParse: (options?: Options, callback?: Callback) => Parser | undefined;
+    encodingId: string;
+    valueDelimiterId: ValueDelimiterId;
+}
+export interface RetrieveSummary {
+    byteCount: number;
+    commentLineCount: number;
+    emptyLineCount: number;
+    invalidFieldLengthCount: number;
+    lineCount: number;
+    recordCount: number;
 }
 
 // Connector Category

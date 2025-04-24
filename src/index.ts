@@ -1,3 +1,5 @@
+/* eslint-disable export/sort-exports */
+
 // Constants
 export { DefaultTimestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
@@ -15,9 +17,9 @@ export type { DropResult, DropSettings } from './connector';
 export type { FindResult, FindSettings } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewResult, PreviewSettings } from './connector';
-export type { PutResult, PutSettings, PutInterface } from './connector';
-export type { RetrieveInterface, RetrieveRecord, RetrieveSettings, RetrieveSummary } from './connector';
-export type { RemoveResult, RemoveSettings, RemoveInterface } from './connector';
+export type { PutInterface, PutResult, PutSettings } from './connector';
+export type { RemoveInterface, RemoveResult, RemoveSettings } from './connector';
+export type { RetrieveSettingsForCSV, RetrieveInterface, RetrieveRecord, RetrieveSettings, RetrieveSummary } from './connector';
 
 // Interfaces/Types - Context
 export type { ContextConfig, FocusConfig, ModelConfig, DimensionConfig, EntityCharacteristicConfig, EntityComputationConfig } from './context';
@@ -33,24 +35,6 @@ export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, Fe
 
 // Interfaces/Types - Event Query
 export type { EventQueryConfig } from './eventQuery';
-
-// // Interfaces/Types - Location
-// export type { IPAddressLocation } from './location';
-
-// // Interfaces/Types - Monitor
-// export type {
-//     LocationData,
-//     LocationTimings,
-//     MonitorIssue,
-//     MonitorIssuesByWeek,
-//     MonitorTimingsByLocation,
-//     MonitorTimingsByWeek,
-//     GetMonitorIssuesResult,
-//     GetMonitorWeeklyTimingsResult
-// } from './monitor';
-
-// Interfaces/Types - Package
-// export type { PackageConfig, PackageData } from './package';
 
 // Interfaces/Types - Presenter
 export type { IPresenter, IPresenterConfig, IPresenterItemConfig } from './presenter';
