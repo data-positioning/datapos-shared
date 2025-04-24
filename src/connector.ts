@@ -124,7 +124,7 @@ export interface PutInterface {
     put(settings: PutSettings): Promise<void>;
 }
 export interface PutResult {
-    count: number;
+    placeholder?: string;
 }
 export interface PutSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
@@ -139,7 +139,7 @@ export interface RemoveInterface {
     remove(settings: RemoveSettings): Promise<void>;
 }
 export interface RemoveResult {
-    count: number;
+    placeholder?: string;
 }
 export interface RemoveSettings extends ConnectorOperationSettings {
     callback: (data: ConnectorCallbackData) => void;
