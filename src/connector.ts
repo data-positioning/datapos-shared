@@ -86,13 +86,11 @@ export interface DropResult {
 
 // Interfaces/Types - Find
 export interface FindSettings extends ConnectorOperationSettings {
-    // containerName?: string;
-    // objectName: string;
-    path: string;
+    containerName?: string;
+    objectName: string;
 }
 export interface FindResult {
-    // folderPath?: string;
-    path?: string;
+    folderPath?: string;
 }
 
 // Interfaces/Types - List
