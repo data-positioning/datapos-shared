@@ -16,7 +16,7 @@ export type { ContentAuditResult, ContentAuditSettings } from './connector';
 export type { CreateResult, CreateSettings } from './connector';
 export type { DropResult, DropSettings } from './connector';
 export type { FindResult, FindSettings } from './connector';
-export type { InitialiseSettings } from './connector';
+export type { InitialiseResult, InitialiseSettings } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewData, PreviewResult, PreviewSettings } from './connector';
 export type { PutInterface, PutResult, PutSettings } from './connector';
