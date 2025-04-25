@@ -136,49 +136,60 @@ export interface PreviewSettings extends ConnectorOperationSettings {
 
 // Interfaces/Types - Put
 export interface PutInterface {
-    put(settings: PutSettings): Promise<void>;
+    put(
+        callback: (data: ConnectorCallbackData) => void,
+        data: Record<string, unknown> | Record<string, unknown>[],
+        settings: PutSettings,
+        chunk: (count: number) => void,
+        complete: (result: PutResult) => void
+    ): Promise<void>;
 }
 export interface PutResult {
     placeholder?: string;
 }
 export interface PutSettings extends ConnectorOperationSettings {
-    callback: (data: ConnectorCallbackData) => void;
-    chunk(count: number): void;
+    // callback: (data: ConnectorCallbackData) => void;
+    // chunk(count: number): void;
     chunkSize?: number;
-    complete(result: PutResult): void;
-    data: Record<string, unknown> | Record<string, unknown>[];
+    // complete(result: PutResult): void;
+    // data: Record<string, unknown> | Record<string, unknown>[];
     path: string;
 }
 
 // Interfaces/Types - Remove Interface
 export interface RemoveInterface {
-    remove(settings: RemoveSettings): Promise<void>;
+    remove(callback: (data: ConnectorCallbackData) => void, settings: RemoveSettings, chunk: (count: number) => void, complete: (result: RemoveResult) => void): Promise<void>;
 }
 export interface RemoveResult {
     placeholder?: string;
 }
 export interface RemoveSettings extends ConnectorOperationSettings {
-    callback: (data: ConnectorCallbackData) => void;
-    chunk(count: number): void;
+    // callback: (data: ConnectorCallbackData) => void;
+    // chunk(count: number): void;
     chunkSize?: number;
-    complete(result: RemoveResult): void;
-    keys: Record<string, unknown>[];
+    // complete(result: RemoveResult): void;
+    // keys: Record<string, unknown>[];
     path: string;
 }
 
 // Interfaces/Types - Retrieve
 export interface RetrieveInterface {
-    retrieve(settings: RetrieveSettings): Promise<void>;
+    retrieve(
+        callback: (data: ConnectorCallbackData) => void,
+        settings: RetrieveSettings,
+        chunk: (records: RetrieveRecord[]) => void,
+        complete: (result: RetrieveSummary) => void
+    ): Promise<void>;
 }
 export interface RetrieveRecord {
     fieldQuotings: boolean[];
     fieldValues: string[];
 }
 export interface RetrieveSettings extends ConnectorOperationSettings {
-    callback: (data: ConnectorCallbackData) => void;
-    chunk(records: RetrieveRecord[]): void;
+    // callback: (data: ConnectorCallbackData) => void;
+    // chunk(records: RetrieveRecord[]): void;
     chunkSize?: number;
-    complete(result: RetrieveSummary): void;
+    // complete(result: RetrieveSummary): void;
     path: string;
 }
 export interface RetrieveSettingsForCSV extends RetrieveSettings {
