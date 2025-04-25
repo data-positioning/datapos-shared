@@ -7,7 +7,7 @@ export { DefaultTimestamp } from './timestamp'; // TODO: Review, do we need it n
 export type { ComponentConfig, ComponentStatus } from './component';
 
 // Interfaces/Types - Connection
-export type { ConnectionAuthorization, ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
+export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionItemConfig } from './connection';
 export type { DPAFileSystemFileHandle, StorageTypeId, UsageTypeId } from './connection';
 
 // Interfaces/Types - Connector

@@ -4,13 +4,7 @@ import type { ConnectorConfig } from './connector';
 import type { Timestamp } from './timestamp';
 
 // Interfaces/Types - Connection Configuration
-export interface ConnectionConfig extends ComponentConfig {
-    authorisation: Record<string, ConnectionAuthorization>;
-    connectorConfig: ConnectorConfig;
-    lastVerifiedAt: Timestamp;
-    notation: string;
-}
-export interface ConnectionAuthorization {
+export interface ConnectionAuthorizationConfig {
     accessToken: string; // Dropbox.
     accountId: string; // Dropbox.
     expiresAt: Timestamp; // Dropbox.
@@ -19,6 +13,12 @@ export interface ConnectionAuthorization {
     scope: string; // Dropbox.
     tokenType: string; // Dropbox.
     uid: string; // Dropbox.
+}
+export interface ConnectionConfig extends ComponentConfig {
+    authorisation: Record<string, ConnectionAuthorizationConfig>;
+    connectorConfig: ConnectorConfig;
+    lastVerifiedAt: Timestamp;
+    notation: string;
 }
 
 // Interfaces/Types - Connection Item Configuration
