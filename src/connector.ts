@@ -107,6 +107,11 @@ export interface FindSettings extends ConnectorOperationSettings {
     objectName: string;
 }
 
+// Interfaces/Types - Initialise
+export interface InitialiseSettings extends ConnectorOperationSettings {
+    connectorsURLPrefix: string;
+}
+
 // Interfaces/Types - List
 export interface ListResult {
     cursor: string | number | undefined;
