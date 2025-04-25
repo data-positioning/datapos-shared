@@ -170,7 +170,8 @@ export interface RetrieveInterface {
         settings: RetrieveSettings,
         chunk: (records: RetrieveRecord[]) => void,
         complete: (result: RetrieveSummary) => void,
-        callback: (data: ConnectorCallbackData) => void
+        callback: (data: ConnectorCallbackData) => void,
+        tools: { csvParse: (options?: Options, callback?: Callback) => Parser | undefined }
     ): Promise<void>;
 }
 export interface RetrieveRecord {
@@ -182,7 +183,6 @@ export interface RetrieveSettings extends ConnectorOperationSettings {
     path: string;
 }
 export interface RetrieveSettingsForCSV extends RetrieveSettings {
-    csvParse: (options?: Options, callback?: Callback) => Parser | undefined;
     encodingId: string;
     valueDelimiterId: ValueDelimiterId;
 }
