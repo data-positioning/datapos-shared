@@ -148,15 +148,11 @@ export interface PutResult {
     placeholder?: string;
 }
 export interface PutSettings extends ConnectorOperationSettings {
-    // callback: (data: ConnectorCallbackData) => void;
-    // chunk(count: number): void;
     chunkSize?: number;
-    // complete(result: PutResult): void;
-    // data: Record<string, unknown> | Record<string, unknown>[];
     path: string;
 }
 
-// Interfaces/Types - Remove Interface
+// Interfaces/Types - Remove
 export interface RemoveInterface {
     remove(settings: RemoveSettings, chunk: (count: number) => void, complete: (result: RemoveResult) => void, callback: (data: ConnectorCallbackData) => void): Promise<void>;
 }
@@ -164,11 +160,7 @@ export interface RemoveResult {
     placeholder?: string;
 }
 export interface RemoveSettings extends ConnectorOperationSettings {
-    // callback: (data: ConnectorCallbackData) => void;
-    // chunk(count: number): void;
     chunkSize?: number;
-    // complete(result: RemoveResult): void;
-    // keys: Record<string, unknown>[];
     path: string;
 }
 
@@ -186,10 +178,7 @@ export interface RetrieveRecord {
     fieldValues: string[];
 }
 export interface RetrieveSettings extends ConnectorOperationSettings {
-    // callback: (data: ConnectorCallbackData) => void;
-    // chunk(records: RetrieveRecord[]): void;
     chunkSize?: number;
-    // complete(result: RetrieveSummary): void;
     path: string;
 }
 export interface RetrieveSettingsForCSV extends RetrieveSettings {
