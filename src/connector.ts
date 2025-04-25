@@ -108,7 +108,7 @@ export interface FindSettings extends ConnectorOperationSettings {
 }
 
 // Interfaces/Types - Initialise
-export interface InitialiseSettings extends ConnectorOperationSettings {
+export interface InitialiseSettings {
     connectorsURLPrefix: string;
 }
 
