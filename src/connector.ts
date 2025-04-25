@@ -1,5 +1,5 @@
 // Dependencies - Vendor
-import type { Callback, Options, Parser } from 'csv-parse';
+import type { Callback, Options, Parser } from 'csv-parse/browser/esm';
 
 // Dependencies - Framework
 import type { ConnectionConfig, ConnectionDescription, ConnectionItemConfig } from './connection';
