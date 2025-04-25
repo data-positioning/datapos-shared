@@ -137,11 +137,11 @@ export interface PreviewSettings extends ConnectorOperationSettings {
 // Interfaces/Types - Put
 export interface PutInterface {
     put(
-        callback: (data: ConnectorCallbackData) => void,
         data: Record<string, unknown> | Record<string, unknown>[],
         settings: PutSettings,
         chunk: (count: number) => void,
-        complete: (result: PutResult) => void
+        complete: (result: PutResult) => void,
+        callback: (data: ConnectorCallbackData) => void
     ): Promise<void>;
 }
 export interface PutResult {
@@ -158,7 +158,7 @@ export interface PutSettings extends ConnectorOperationSettings {
 
 // Interfaces/Types - Remove Interface
 export interface RemoveInterface {
-    remove(callback: (data: ConnectorCallbackData) => void, settings: RemoveSettings, chunk: (count: number) => void, complete: (result: RemoveResult) => void): Promise<void>;
+    remove(settings: RemoveSettings, chunk: (count: number) => void, complete: (result: RemoveResult) => void, callback: (data: ConnectorCallbackData) => void): Promise<void>;
 }
 export interface RemoveResult {
     placeholder?: string;
@@ -175,10 +175,10 @@ export interface RemoveSettings extends ConnectorOperationSettings {
 // Interfaces/Types - Retrieve
 export interface RetrieveInterface {
     retrieve(
-        callback: (data: ConnectorCallbackData) => void,
         settings: RetrieveSettings,
         chunk: (records: RetrieveRecord[]) => void,
-        complete: (result: RetrieveSummary) => void
+        complete: (result: RetrieveSummary) => void,
+        callback: (data: ConnectorCallbackData) => void
     ): Promise<void>;
 }
 export interface RetrieveRecord {
