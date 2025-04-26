@@ -14,15 +14,15 @@ export interface Connector {
 
     abort?(): void; // Abort the active long running operation for a specified connection.
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection
-    create?(connectionConfig: ConnectionConfig, settings: CreateSettings): Promise<CreateResult>; // Create an object for a specified connection.
-    describe?(connectionConfig: ConnectionConfig, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
-    drop?(connectionConfig: ConnectionConfig, settings: DropSettings): Promise<DropSettings>; // Drop (delete) an object for a specified connection.
-    find?(connectionConfig: ConnectionConfig, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
+    create?(connector: Connector, connectionConfig: ConnectionConfig, settings: CreateSettings): Promise<CreateResult>; // Create an object for a specified connection.
+    describe?(connector: Connector, connectionConfig: ConnectionConfig, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
+    drop?(connector: Connector, connectionConfig: ConnectionConfig, settings: DropSettings): Promise<DropSettings>; // Drop (delete) an object for a specified connection.
+    find?(connector: Connector, connectionConfig: ConnectionConfig, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
     getPutInterface?(): PutInterface; // Get the put interface. Enables updating/inserting single or multiple records into an object for a specified connection.
     getRetrieveInterface?(): RetrieveInterface; // Get the retrieve interface. Enables retrieving multiple records from an object for a specified connection.
     getRemoveInterface?(): RemoveInterface; // Get the remove interface. Enables removing all records from an object for a specified connection.
-    list?(connectionConfig: ConnectionConfig, settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
-    preview?(connectionConfig: ConnectionConfig, settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
+    list?(connector: Connector, connectionConfig: ConnectionConfig, settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
+    preview?(connector: Connector, connectionConfig: ConnectionConfig, settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
 }
 
 // Interfaces/Types - Connector Callback Data
@@ -143,6 +143,7 @@ export interface PreviewSettings extends ConnectorOperationSettings {
 // Interfaces/Types - Put
 export interface PutInterface {
     put(
+        connector: Connector,
         connectionConfig: ConnectionConfig,
         data: Record<string, unknown> | Record<string, unknown>[],
         settings: PutSettings,
@@ -162,6 +163,7 @@ export interface PutSettings extends ConnectorOperationSettings {
 // Interfaces/Types - Remove
 export interface RemoveInterface {
     remove(
+        connector: Connector,
         connectionConfig: ConnectionConfig,
         settings: RemoveSettings,
         chunk: (count: number) => void,
@@ -180,6 +182,7 @@ export interface RemoveSettings extends ConnectorOperationSettings {
 // Interfaces/Types - Retrieve
 export interface RetrieveInterface {
     retrieve(
+        connector: Connector,
         connectionConfig: ConnectionConfig,
         settings: RetrieveSettings,
         chunk: (records: RetrieveRecord[]) => void,
