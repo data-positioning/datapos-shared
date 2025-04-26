@@ -33,7 +33,7 @@ export interface ConnectorCallbackData {
 
 // Interfaces/Types - Connector Configuration
 export interface ConnectorConfig extends ComponentConfig {
-    category: ConnectorCategory;
+    category?: ConnectorCategory;
     categoryId: string;
     implementations: Record<string, ConnectorImplementation>;
     usageId: 'bidirectional' | 'destination' | 'source';
