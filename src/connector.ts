@@ -16,7 +16,7 @@ export interface Connector {
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection
     create?(connector: Connector, connectionConfig: ConnectionConfig, settings: CreateSettings): Promise<CreateResult>; // Create an object for a specified connection.
     describe?(connector: Connector, connectionConfig: ConnectionConfig, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
-    drop?(connector: Connector, connectionConfig: ConnectionConfig, settings: DropSettings): Promise<DropSettings>; // Drop (delete) an object for a specified connection.
+    drop?(connector: Connector, connectionConfig: ConnectionConfig, settings: DropSettings): Promise<DropResult>; // Drop (delete) an object for a specified connection.
     find?(connector: Connector, connectionConfig: ConnectionConfig, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
     getPutInterface?(): PutInterface; // Get the put interface. Enables updating/inserting single or multiple records into an object for a specified connection.
     getRetrieveInterface?(): RetrieveInterface; // Get the retrieve interface. Enables retrieving multiple records from an object for a specified connection.
