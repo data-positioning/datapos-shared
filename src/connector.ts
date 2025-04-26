@@ -1,3 +1,5 @@
+/* eslint-disable export/sort-exports */
+
 // Dependencies - Vendor
 import type { Callback, Options, Parser } from 'csv-parse/browser/esm';
 
@@ -68,16 +70,12 @@ export interface ConnectorOperationSettings {
     sessionAccessToken?: string;
 }
 
-// Interfaces/Types - Content Audit
-export interface ContentAuditResult {
+// Interfaces/Types - Audit Content
+export interface AuditContentResult {
     contentAuditConfig: DataViewContentAuditConfig;
 }
-export interface ContentAuditSettings extends ConnectorOperationSettings {
-    callback: (data: ConnectorCallbackData) => void;
-    chunk(count: number): void;
+export interface AuditContentSettings extends ConnectorOperationSettings {
     chunkSize?: number;
-    complete(result: PutResult): void;
-    data: Record<string, unknown> | Record<string, unknown>[];
     path: string;
 }
 
