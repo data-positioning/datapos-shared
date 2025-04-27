@@ -1,5 +1,3 @@
-/* eslint-disable export/sort-exports */
-
 // Dependencies - Vendor
 import type { Callback, Options, Parser } from 'csv-parse/browser/esm';
 
@@ -14,17 +12,29 @@ export interface Connector {
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
 
-    abort?(): void; // Abort the active long running operation for a specified connection.
+    abort?(connector: Connector, connectionConfig: ConnectionConfig, settings: AbortSettings): AbortResult; // Abort the active long running operation for a specified connection.
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection
     create?(connector: Connector, connectionConfig: ConnectionConfig, settings: CreateSettings): Promise<CreateResult>; // Create an object for a specified connection.
     describe?(connector: Connector, connectionConfig: ConnectionConfig, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
     drop?(connector: Connector, connectionConfig: ConnectionConfig, settings: DropSettings): Promise<DropResult>; // Drop (delete) an object for a specified connection.
     find?(connector: Connector, connectionConfig: ConnectionConfig, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
-    getPutInterface?(): PutInterface; // Get the put interface. Enables updating/inserting single or multiple records into an object for a specified connection.
-    // getRetrieveInterface?(): RetrieveInterface; // Get the retrieve interface. Enables retrieving multiple records from an object for a specified connection.
-    getRemoveInterface?(): RemoveInterface; // Get the remove interface. Enables removing all records from an object for a specified connection.
     list?(connector: Connector, connectionConfig: ConnectionConfig, settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
     preview?(connector: Connector, connectionConfig: ConnectionConfig, settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
+    put(
+        connector: Connector,
+        connectionConfig: ConnectionConfig,
+        data: Record<string, unknown> | Record<string, unknown>[],
+        settings: PutSettings,
+        chunk: (count: number) => void,
+        complete: (result: PutResult) => void
+    ): Promise<void>; // Upsert multiple records into an object for a specified connection.
+    remove(
+        connector: Connector,
+        connectionConfig: ConnectionConfig,
+        settings: RemoveSettings,
+        chunk: (count: number) => void,
+        complete: (result: RemoveResult) => void
+    ): Promise<void>; // Remove multiple records from an object for a specified connection.
     retrieve(
         connector: Connector,
         connectionConfig: ConnectionConfig,
@@ -39,6 +49,14 @@ export interface Connector {
 export interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
+}
+
+// Interfaces/Types - Abort
+export interface AbortResult {
+    placeholder?: string;
+}
+export interface AbortSettings extends ConnectorOperationSettings {
+    placeholder?: string;
 }
 
 // Interfaces/Types - Connector Configuration
@@ -147,16 +165,6 @@ export interface PreviewSettings extends ConnectorOperationSettings {
 }
 
 // Interfaces/Types - Put
-export interface PutInterface {
-    put(
-        connector: Connector,
-        connectionConfig: ConnectionConfig,
-        data: Record<string, unknown> | Record<string, unknown>[],
-        settings: PutSettings,
-        chunk: (count: number) => void,
-        complete: (result: PutResult) => void
-    ): Promise<void>;
-}
 export interface PutResult {
     placeholder?: string;
 }
@@ -166,15 +174,6 @@ export interface PutSettings extends ConnectorOperationSettings {
 }
 
 // Interfaces/Types - Remove
-export interface RemoveInterface {
-    remove(
-        connector: Connector,
-        connectionConfig: ConnectionConfig,
-        settings: RemoveSettings,
-        chunk: (count: number) => void,
-        complete: (result: RemoveResult) => void
-    ): Promise<void>;
-}
 export interface RemoveResult {
     placeholder?: string;
 }
@@ -184,17 +183,6 @@ export interface RemoveSettings extends ConnectorOperationSettings {
 }
 
 // Interfaces/Types - Retrieve
-// export interface RetrieveInterface {
-//     retrieve(
-//         connector: Connector,
-//         connectionConfig: ConnectionConfig,
-//         settings: RetrieveSettings,
-//         chunk: (records: RetrieveRecord[]) => void,
-//         complete: (result: RetrieveSummary) => void,
-//         callback: (data: ConnectorCallbackData) => void,
-//         tools: { csvParse: (options?: Options, callback?: Callback) => Parser | undefined }
-//     ): Promise<void>;
-// }
 export interface RetrieveRecord {
     fieldQuotings: boolean[];
     fieldValues: string[];

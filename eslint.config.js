@@ -1,7 +1,6 @@
 import tseslint from '@typescript-eslint/eslint-plugin';
 import tseslintParser from '@typescript-eslint/parser';
 import importPlugin from 'eslint-plugin-import';
-import exportsPlugin from 'eslint-plugin-sort-exports';
 
 export default [
     {
@@ -9,7 +8,6 @@ export default [
         languageOptions: { parser: tseslintParser, parserOptions: { project: './tsconfig.json' } },
         plugins: {
             '@typescript-eslint': tseslint,
-            export: exportsPlugin,
             import: importPlugin
         },
         rules: {
