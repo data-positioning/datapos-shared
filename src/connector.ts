@@ -87,7 +87,7 @@ export interface CreateResult {
 export interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
     path: string;
-    structure: Record<string, string>;
+    structure: string;
 }
 
 // Interfaces/Types - Describe
