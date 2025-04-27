@@ -17,7 +17,6 @@ export default [
 
             'import/no-duplicates': 'off',
             'sort-imports': ['warn', { allowSeparatedGroups: true, ignoreCase: true, memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'] }],
-            'export/sort-exports': ['warn', { ignoreCase: true }], // Does not support 'allowSeparatedGroups' as above. Turn on and off to check as required.
 
             'no-empty': 'warn',
             'prefer-const': 'warn'
