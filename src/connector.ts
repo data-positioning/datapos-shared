@@ -12,16 +12,16 @@ export interface Connector {
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
 
-    abort?(connector: Connector): void; // Abort the active long running operation for a specified connection.
+    abort?(connector: Connector): Promise<void>; // Abort the active long running operation for a specified connection.
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection
-    create?(connector: Connector, settings: CreateSettings): Promise<CreateResult>; // Create an object for a specified connection.
+    create?(connector: Connector, settings: CreateSettings): Promise<void>; // Create an object for a specified connection.
     describe?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
-    drop?(connector: Connector, settings: DropSettings): Promise<DropResult>; // Drop (delete) an object for a specified connection.
+    drop?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
     find?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
     list?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
     preview?(connector: Connector, settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
-    put?(connector: Connector, settings: PutSettings, chunk: (count: number) => void, complete: (result: PutResult) => void): Promise<void>; // Upsert multiple records into an object for a specified connection.
-    remove?(connector: Connector, settings: RemoveSettings, chunk: (count: number) => void, complete: (result: RemoveResult) => void): Promise<void>; // Remove multiple records from an object for a specified connection.
+    put?(connector: Connector, settings: PutSettings, chunk: () => Record<string, unknown> | Record<string, unknown>[]): Promise<void>; // Upsert multiple records into an object for a specified connection.
+    remove?(connector: Connector, settings: RemoveSettings, chunk: () => string[]): Promise<void>; // Remove multiple records from an object for a specified connection.
     retrieve?(
         connector: Connector,
         settings: RetrieveSettings,
@@ -75,9 +75,6 @@ export interface AuditContentSettings extends ConnectorOperationSettings {
 }
 
 // Interfaces/Types - Create
-export interface CreateResult {
-    placeholder?: string;
-}
 export interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
     path: string;
@@ -91,9 +88,6 @@ interface DescribeResult {
 }
 
 // Interfaces/Types - Drop
-export interface DropResult {
-    placeholder?: string;
-}
 export interface DropSettings extends ConnectorOperationSettings {
     path: string;
 }
@@ -108,9 +102,6 @@ export interface FindSettings extends ConnectorOperationSettings {
 }
 
 // Interfaces/Types - Initialise
-export interface InitialiseResult {
-    placeholder?: string;
-}
 export interface InitialiseSettings {
     connectorStorageURLPrefix: string;
 }
@@ -143,22 +134,12 @@ export interface PreviewSettings extends ConnectorOperationSettings {
 }
 
 // Interfaces/Types - Put
-export interface PutResult {
-    placeholder?: string;
-}
 export interface PutSettings extends ConnectorOperationSettings {
-    chunkSize?: number;
-    data: Record<string, unknown> | Record<string, unknown>[];
     path: string;
 }
 
 // Interfaces/Types - Remove
-export interface RemoveResult {
-    placeholder?: string;
-}
 export interface RemoveSettings extends ConnectorOperationSettings {
-    chunkSize?: number;
-    keys: string[];
     path: string;
 }
 
