@@ -122,7 +122,7 @@ export interface ListSettings extends ConnectorOperationSettings {
 
 // Interfaces/Types - Preview
 export interface PreviewData {
-    data: Record<string, unknown>[] | Uint8Array;
+    data: RetrieveRecordForTable[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
 }
 export interface PreviewResult {
@@ -135,7 +135,7 @@ export interface PreviewSettings extends ConnectorOperationSettings {
 
 // Interfaces/Types - Put
 export interface PutSettings extends ConnectorOperationSettings {
-    data: Record<string, unknown>[];
+    data: RetrieveRecordForTable[];
     path: string;
 }
 
