@@ -25,7 +25,7 @@ export interface Connector {
     retrieve?(
         connector: Connector,
         settings: RetrieveSettings,
-        chunk: (records: RetrieveRecord[]) => void,
+        chunk: (records: RetrieveRecordForDSV[] | RetrieveRecordForTable[]) => void,
         complete: (result: RetrieveSummary) => void,
         tools: RetrieveTools
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
@@ -146,15 +146,16 @@ export interface RemoveSettings extends ConnectorOperationSettings {
 }
 
 // Interfaces/Types - Retrieve
-export interface RetrieveRecord {
+export interface RetrieveRecordForDSV {
     fieldQuotings: boolean[];
     fieldValues: string[];
 }
+export type RetrieveRecordForTable = Record<string, unknown>[];
 export interface RetrieveSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     path: string;
 }
-export interface RetrieveSettingsForCSV extends RetrieveSettings {
+export interface RetrieveSettingsForDSV extends RetrieveSettings {
     encodingId: string;
     valueDelimiterId: ValueDelimiterId;
 }
