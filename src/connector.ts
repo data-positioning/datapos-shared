@@ -25,7 +25,7 @@ export interface Connector {
     retrieve?(
         connector: Connector,
         settings: RetrieveSettings,
-        chunk: (records: DSVRecord[] | TableRecord[]) => void,
+        chunk: (records: DSVRecord[] | Record<string, unknown>[]) => void,
         complete: (result: RetrieveSummary) => void,
         tools: RetrieveTools
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
@@ -63,7 +63,6 @@ export interface DSVRecord {
     fieldQuotings: boolean[];
     fieldValues: string[];
 }
-export type TableRecord = Record<string, unknown>[];
 
 // Interfaces/Types - Connector Operator Settings
 export interface ConnectorOperationSettings {
@@ -129,7 +128,7 @@ export interface ListSettings extends ConnectorOperationSettings {
 
 // Interfaces/Types - Preview
 export interface PreviewData {
-    data: TableRecord[] | Uint8Array;
+    data: Record<string, unknown>[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
 }
 export interface PreviewResult {
@@ -142,7 +141,7 @@ export interface PreviewSettings extends ConnectorOperationSettings {
 
 // Interfaces/Types - Put
 export interface PutSettings extends ConnectorOperationSettings {
-    data: TableRecord[];
+    data: Record<string, unknown>[];
     path: string;
 }
 
