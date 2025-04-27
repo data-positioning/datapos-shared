@@ -12,7 +12,7 @@ export interface Connector {
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
 
-    abort?(connector: Connector, settings: AbortSettings): AbortResult; // Abort the active long running operation for a specified connection.
+    abort?(connector: Connector): void; // Abort the active long running operation for a specified connection.
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection
     create?(connector: Connector, settings: CreateSettings): Promise<CreateResult>; // Create an object for a specified connection.
     describe?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
@@ -41,14 +41,6 @@ export interface Connector {
 export interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
-}
-
-// Interfaces/Types - Abort
-export interface AbortResult {
-    placeholder?: string;
-}
-export interface AbortSettings extends ConnectorOperationSettings {
-    placeholder?: string;
 }
 
 // Interfaces/Types - Connector Configuration
