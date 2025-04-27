@@ -12,7 +12,7 @@ export interface Connector {
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
 
-    abort?(connector: Connector): Promise<void>; // Abort the active long running operation for a specified connection.
+    abort?(connector: Connector): void; // Abort the active long running operation for a specified connection.
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection
     create?(connector: Connector, settings: CreateSettings): Promise<void>; // Create an object for a specified connection.
     describe?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
@@ -20,7 +20,7 @@ export interface Connector {
     find?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
     list?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
     preview?(connector: Connector, settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
-    put?(connector: Connector, settings: PutSettings, chunk: () => Record<string, unknown> | Record<string, unknown>[]): Promise<void>; // Upsert multiple records into an object for a specified connection.
+    put?(connector: Connector, settings: PutSettings, chunk: () => Record<string, unknown>[]): Promise<void>; // Upsert multiple records into an object for a specified connection.
     remove?(connector: Connector, settings: RemoveSettings, chunk: () => string[]): Promise<void>; // Remove multiple records from an object for a specified connection.
     retrieve?(
         connector: Connector,
