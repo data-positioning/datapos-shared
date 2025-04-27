@@ -19,7 +19,7 @@ export type { ListResult, ListSettings } from './connector';
 export type { PreviewData, PreviewResult, PreviewSettings } from './connector';
 export type { PutResult, PutSettings } from './connector';
 export type { RemoveResult, RemoveSettings } from './connector';
-export type { RetrieveSettingsForCSV, RetrieveRecord, RetrieveSettings, RetrieveSummary } from './connector';
+export type { RetrieveSettingsForCSV, RetrieveRecord, RetrieveSettings, RetrieveSummary, RetrieveTools } from './connector';
 
 // Interfaces/Types - Context
 export type { ContextConfig, FocusConfig, ModelConfig, DimensionConfig, EntityCharacteristicConfig, EntityComputationConfig } from './context';

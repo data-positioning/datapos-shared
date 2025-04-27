@@ -33,7 +33,7 @@ export interface Connector {
         settings: RetrieveSettings,
         chunk: (records: RetrieveRecord[]) => void,
         complete: (result: RetrieveSummary) => void,
-        tools: { csvParse: (options?: Options, callback?: Callback) => Parser | undefined }
+        tools: RetrieveTools
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
 }
 
@@ -186,6 +186,9 @@ export interface RetrieveSummary {
     invalidFieldLengthCount: number;
     lineCount: number;
     recordCount: number;
+}
+export interface RetrieveTools {
+    csvParse: (options?: Options, callback?: Callback) => Parser | undefined;
 }
 
 // Connector Category
