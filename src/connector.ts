@@ -158,6 +158,7 @@ export interface RemoveResult {
 }
 export interface RemoveSettings extends ConnectorOperationSettings {
     chunkSize?: number;
+    keys: string[];
     path: string;
 }
 
