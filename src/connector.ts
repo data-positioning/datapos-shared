@@ -135,11 +135,13 @@ export interface PreviewSettings extends ConnectorOperationSettings {
 
 // Interfaces/Types - Put
 export interface PutSettings extends ConnectorOperationSettings {
+    chunk: () => Record<string, unknown>[];
     path: string;
 }
 
 // Interfaces/Types - Remove
 export interface RemoveSettings extends ConnectorOperationSettings {
+    chunk: () => string[];
     path: string;
 }
 
