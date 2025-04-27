@@ -31,7 +31,6 @@ export interface Connector {
         settings: RetrieveSettings,
         chunk: (records: RetrieveRecord[]) => void,
         complete: (result: RetrieveSummary) => void,
-        callback: (data: ConnectorCallbackData) => void,
         tools: { csvParse: (options?: Options, callback?: Callback) => Parser | undefined }
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
 }
@@ -155,8 +154,7 @@ export interface PutInterface {
         data: Record<string, unknown> | Record<string, unknown>[],
         settings: PutSettings,
         chunk: (count: number) => void,
-        complete: (result: PutResult) => void,
-        callback: (data: ConnectorCallbackData) => void
+        complete: (result: PutResult) => void
     ): Promise<void>;
 }
 export interface PutResult {
@@ -174,8 +172,7 @@ export interface RemoveInterface {
         connectionConfig: ConnectionConfig,
         settings: RemoveSettings,
         chunk: (count: number) => void,
-        complete: (result: RemoveResult) => void,
-        callback: (data: ConnectorCallbackData) => void
+        complete: (result: RemoveResult) => void
     ): Promise<void>;
 }
 export interface RemoveResult {
