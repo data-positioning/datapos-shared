@@ -35,7 +35,7 @@ export interface Connector {
         chunk: (count: number) => void,
         complete: (result: RemoveResult) => void
     ): Promise<void>; // Remove multiple records from an object for a specified connection.
-    retrieve(
+    retrieve?(
         connector: Connector,
         connectionConfig: ConnectionConfig,
         settings: RetrieveSettings,
