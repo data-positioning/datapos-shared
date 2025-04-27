@@ -20,8 +20,8 @@ export interface Connector {
     find?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
     list?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
     preview?(connector: Connector, settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
-    put?(connector: Connector, settings: PutSettings, chunk: () => Record<string, unknown>[]): Promise<void>; // Upsert multiple records into an object for a specified connection.
-    remove?(connector: Connector, settings: RemoveSettings, chunk: () => string[]): Promise<void>; // Remove multiple records from an object for a specified connection.
+    put?(connector: Connector, settings: PutSettings): Promise<void>; // Upsert multiple records into an object for a specified connection.
+    remove?(connector: Connector, settings: RemoveSettings): Promise<void>; // Remove multiple records from an object for a specified connection.
     retrieve?(
         connector: Connector,
         settings: RetrieveSettings,
