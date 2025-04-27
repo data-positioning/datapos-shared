@@ -20,13 +20,7 @@ export interface Connector {
     find?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
     list?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
     preview?(connector: Connector, settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
-    put?(
-        connector: Connector,
-        data: Record<string, unknown> | Record<string, unknown>[],
-        settings: PutSettings,
-        chunk: (count: number) => void,
-        complete: (result: PutResult) => void
-    ): Promise<void>; // Upsert multiple records into an object for a specified connection.
+    put?(connector: Connector, settings: PutSettings, chunk: (count: number) => void, complete: (result: PutResult) => void): Promise<void>; // Upsert multiple records into an object for a specified connection.
     remove?(connector: Connector, settings: RemoveSettings, chunk: (count: number) => void, complete: (result: RemoveResult) => void): Promise<void>; // Remove multiple records from an object for a specified connection.
     retrieve?(
         connector: Connector,
@@ -154,6 +148,7 @@ export interface PutResult {
 }
 export interface PutSettings extends ConnectorOperationSettings {
     chunkSize?: number;
+    data: Record<string, unknown> | Record<string, unknown>[];
     path: string;
 }
 
