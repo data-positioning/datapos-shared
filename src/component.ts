@@ -10,7 +10,7 @@ export interface ComponentConfig {
     lastUpdatedAt?: Timestamp;
     logo?: string;
     status?: ComponentStatus;
-    statusId: string;
+    statusId: 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
     typeId: 'connection' | 'connector' | 'focus' | 'model' | 'dataView' | 'eventQuery' | 'presentation' | 'presenter' | 'tutorial'; // TODO: Review these.
 }
 
@@ -21,6 +21,7 @@ const componentStatuses: ComponentStatusConfig[] = [
     { id: 'alpha', color: '#d62728', label: { en: 'alpha' } },
     { id: 'beta', color: '#8c564b', label: { en: 'beta' } },
     { id: 'generalAvailability', label: { en: '' } },
+    { id: 'notApplicable', label: { en: 'not-applicable' } },
     { id: 'preAlpha', color: '#d62728', label: { en: 'pre-alpha' } },
     { id: 'proposed', color: '#666666', label: { en: 'proposed' } },
     { id: 'releaseCandidate', color: '#ff7f0e', label: { en: 'release-candidate' } },
