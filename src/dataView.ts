@@ -5,8 +5,8 @@ import type { Timestamp } from './timestamp';
 
 // Interfaces/Types - Data View Configuration
 export interface DataViewConfig extends ComponentConfig {
-    connectionConfig: ConnectionConfig;
-    connectionItemConfig: ConnectionItemConfig;
+    connectionConfig?: ConnectionConfig;
+    connectionItemConfig?: ConnectionItemConfig;
     previewConfig?: DataViewPreviewConfig;
     contentAuditConfig?: DataViewContentAuditConfig;
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
