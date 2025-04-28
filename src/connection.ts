@@ -18,7 +18,7 @@ export interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorizationConfig>;
     connectorConfig: ConnectorConfig;
     lastVerifiedAt: Timestamp;
-    notation: string;
+    notation?: string;
 }
 
 // Interfaces/Types - Connection Item Configuration
