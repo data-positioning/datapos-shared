@@ -141,7 +141,7 @@ export interface PreviewSettings extends ConnectorOperationSettings {
 
 // Interfaces/Types - Put
 export interface PutSettings extends ConnectorOperationSettings {
-    data: Record<string, unknown>[];
+    records: Record<string, unknown>[];
     path: string;
 }
 
