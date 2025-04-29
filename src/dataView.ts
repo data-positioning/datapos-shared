@@ -25,7 +25,7 @@ export interface DataViewContentAuditConfig {
 }
 
 // Interfaces/Types - Data View Preview Configuration
-export interface DataViewPreviewConfig {
+export interface DataViewPreviewConfig extends Record<string, unknown> {
     asAt: Timestamp;
     // commentPrefixId?: string;
     columnConfigs: ConnectionColumnConfig[];
