@@ -52,13 +52,13 @@ export class BackendError extends DataPosError {
     }
 }
 
-// Classes - Connector Error
-export class ConnectorError extends DataPosError {
-    constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
-        super(message, context, originalStack, cause);
-        this.name = 'ConnectorError';
-    }
-}
+// // Classes - Connector Error
+// export class ConnectorError extends DataPosError {
+//     constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
+//         super(message, context, originalStack, cause);
+//         this.name = 'ConnectorError';
+//     }
+// }
 
 // Classes - Engine Error
 export class EngineError extends DataPosError {
@@ -107,13 +107,13 @@ export const deserialiseError = (errorData: SerialisedErrorData): Error => {
                 errorData.originalStack,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
-        case 'ConnectorError':
-            return new ConnectorError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
+        // case 'ConnectorError':
+        //     return new ConnectorError(
+        //         errorData.message,
+        //         errorData.context ? JSON.parse(errorData.context) : undefined,
+        //         errorData.originalStack,
+        //         errorData.cause ? deserialiseError(errorData.cause) : undefined
+        //     );
         case 'DataPosError':
             return new DataPosError(
                 errorData.message,

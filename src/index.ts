@@ -31,7 +31,7 @@ export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from './dataVi
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
 
 // Interfaces/Types - Error
-export { AbortError, BackendError, ConnectorError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
+export { AbortError, BackendError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
 export type { ErrorContext, ErrorData, SerialisedErrorData } from './errors';
 
 // Interfaces/Types - Event Query
