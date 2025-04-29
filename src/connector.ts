@@ -27,7 +27,7 @@ export interface Connector {
         settings: RetrieveSettings,
         chunk: (records: DSVRecord[] | Record<string, unknown>[]) => void,
         complete: (result: RetrieveSummary) => void,
-        tools: RetrieveTools
+        tools?: RetrieveTools
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
 }
 
