@@ -25,7 +25,7 @@ export interface Connector {
     retrieve?(
         connector: Connector,
         settings: RetrieveSettings,
-        chunk: (records: string[][] | Record<string, unknown>[]) => void,
+        chunk: (records: (string[] | Record<string, unknown>)[]) => void,
         complete: (result: RetrieveSummary) => void,
         tools?: RetrieveTools
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
@@ -155,7 +155,7 @@ export interface RetrieveSettings extends ConnectorOperationSettings {
     valueDelimiterId: ValueDelimiterId;
 }
 export interface RetrieveResult {
-    records: string[][] | Record<string, unknown>[];
+    records: (string[] | Record<string, unknown>)[];
 }
 export interface RetrieveSummary {
     byteCount: number;
