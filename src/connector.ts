@@ -104,7 +104,7 @@ export interface FindResult {
 }
 export interface FindSettings extends ConnectorOperationSettings {
     containerName?: string;
-    objectName?: string;
+    objectName: string;
 }
 
 // Interfaces/Types - Initialise
