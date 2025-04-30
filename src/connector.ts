@@ -77,7 +77,9 @@ export interface AuditContentResult {
 }
 export interface AuditContentSettings extends ConnectorOperationSettings {
     chunkSize?: number;
+    encodingId: string;
     path: string;
+    valueDelimiterId: ValueDelimiterId;
 }
 
 // Interfaces/Types - Create
