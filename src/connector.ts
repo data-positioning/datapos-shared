@@ -13,7 +13,7 @@ export interface Connector {
     readonly connectionConfig: ConnectionConfig;
 
     abort?(connector: Connector): void; // Abort the active long running operation for a specified connection.
-    authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection
+    authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection.
     create?(connector: Connector, settings: CreateSettings): Promise<void>; // Create an object for a specified connection.
     describe?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
     drop?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
