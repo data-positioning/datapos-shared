@@ -9,8 +9,8 @@ export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionC
 export type { DPAFileSystemFileHandle, StorageTypeId, UsageTypeId } from './connection';
 
 // Interfaces/Types - Connector
-export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings } from './connector';
 export type { AuditContentResult, AuditContentSettings } from './connector';
+export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings } from './connector';
 export type { CreateSettings } from './connector';
 export type { DropSettings } from './connector';
 export type { DSVRecord } from './connector';
