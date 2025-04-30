@@ -14,7 +14,6 @@ export type { AuditContentResult, AuditContentSettings } from './connector';
 export type { CreateSettings } from './connector';
 export type { DropSettings } from './connector';
 export type { DSVRecord } from './connector';
-export type { EstablishNodeSettings } from './connector';
 export type { FindResult, FindSettings } from './connector';
 export type { InitialiseSettings } from './connector';
 export type { ListResult, ListSettings } from './connector';

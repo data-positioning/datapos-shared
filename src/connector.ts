@@ -98,18 +98,13 @@ export interface DropSettings extends ConnectorOperationSettings {
     path: string;
 }
 
-// Interfaces/Types - Establish Node
-export interface EstablishNodeSettings extends ConnectorOperationSettings {
-    path: string;
-}
-
 // Interfaces/Types - Find
 export interface FindResult {
     folderPath?: string;
 }
 export interface FindSettings extends ConnectorOperationSettings {
     containerName?: string;
-    objectName: string;
+    objectName?: string;
 }
 
 // Interfaces/Types - Initialise
