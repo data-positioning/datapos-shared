@@ -58,12 +58,6 @@ export interface ConnectorImplementation {
     params?: Record<string, string>[];
 }
 
-// // Interfaces/Types - Records
-// export interface DSVRecord {
-//     fieldQuotings: boolean[];
-//     fieldValues: string[];
-// }
-
 // Interfaces/Types - Connector Operator Settings
 export interface ConnectorOperationSettings {
     accountId?: string;
@@ -160,10 +154,9 @@ export interface RetrieveSettings extends ConnectorOperationSettings {
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
-// export interface RetrieveSettingsForDSV extends RetrieveSettings {
-//     encodingId: string;
-//     valueDelimiterId: ValueDelimiterId;
-// }
+export interface RetrieveResult {
+    records: string[] | Record<string, unknown>[];
+}
 export interface RetrieveSummary {
     byteCount: number;
     commentLineCount: number;
