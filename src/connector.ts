@@ -25,7 +25,7 @@ export interface Connector {
     retrieve?(
         connector: Connector,
         settings: RetrieveSettings,
-        chunk: (records: DSVRecord[] | Record<string, unknown>[]) => void,
+        chunk: (records: string[] | Record<string, unknown>[]) => void,
         complete: (result: RetrieveSummary) => void,
         tools?: RetrieveTools
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
@@ -58,11 +58,11 @@ export interface ConnectorImplementation {
     params?: Record<string, string>[];
 }
 
-// Interfaces/Types - Records
-export interface DSVRecord {
-    fieldQuotings: boolean[];
-    fieldValues: string[];
-}
+// // Interfaces/Types - Records
+// export interface DSVRecord {
+//     fieldQuotings: boolean[];
+//     fieldValues: string[];
+// }
 
 // Interfaces/Types - Connector Operator Settings
 export interface ConnectorOperationSettings {
@@ -154,12 +154,14 @@ export interface RemoveSettings extends ConnectorOperationSettings {
 // Interfaces/Types - Retrieve
 export interface RetrieveSettings extends ConnectorOperationSettings {
     chunkSize?: number;
-    path: string;
-}
-export interface RetrieveSettingsForDSV extends RetrieveSettings {
     encodingId: string;
+    path: string;
     valueDelimiterId: ValueDelimiterId;
 }
+// export interface RetrieveSettingsForDSV extends RetrieveSettings {
+//     encodingId: string;
+//     valueDelimiterId: ValueDelimiterId;
+// }
 export interface RetrieveSummary {
     byteCount: number;
     commentLineCount: number;

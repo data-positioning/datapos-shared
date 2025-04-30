@@ -13,14 +13,14 @@ export type { AuditContentResult, AuditContentSettings } from './connector';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings } from './connector';
 export type { CreateSettings } from './connector';
 export type { DropSettings } from './connector';
-export type { DSVRecord } from './connector';
+// export type { DSVRecord } from './connector';
 export type { FindResult, FindSettings } from './connector';
 export type { InitialiseSettings } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewData, PreviewResult, PreviewSettings } from './connector';
 export type { PutSettings } from './connector';
 export type { RemoveSettings } from './connector';
-export type { RetrieveSettings, RetrieveSettingsForDSV, RetrieveSummary, RetrieveTools } from './connector';
+export type { RetrieveSettings, RetrieveSummary, RetrieveTools } from './connector';
 
 // Interfaces/Types - Context
 export type { ContextConfig, FocusConfig, ModelConfig, DimensionConfig, EntityCharacteristicConfig, EntityComputationConfig } from './context';
