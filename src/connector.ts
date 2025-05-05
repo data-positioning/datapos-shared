@@ -106,7 +106,7 @@ export interface FindSettings extends ConnectorOperationSettings {
 
 // Interfaces/Types - Get (Object)
 export interface GetResult {
-    records: (string[] | Record<string, unknown>)[];
+    record?: string[] | Record<string, unknown>;
 }
 export interface GetSettings extends ConnectorOperationSettings {
     id: string;
