@@ -18,10 +18,10 @@ export interface Connector {
     describe?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
     drop?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
     find?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
+    get?(connector: Connector, getSettings: GetSettings): Promise<GetResult>; // Find an object for a specified connection.
     list?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
     preview?(connector: Connector, settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
-    put?(connector: Connector, settings: PutSettings): Promise<void>; // Upsert multiple records into an object for a specified connection.
-    remove?(connector: Connector, settings: RemoveSettings): Promise<void>; // Remove multiple records from an object for a specified connection.
+    remove?(connector: Connector, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
     retrieve?(
         connector: Connector,
         settings: RetrieveSettings,
@@ -29,6 +29,7 @@ export interface Connector {
         complete: (result: RetrieveSummary) => void,
         tools?: RetrieveTools
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
+    upsert?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
 
 // Interfaces/Types - Connector Callback Data
@@ -65,7 +66,7 @@ export interface ConnectorOperationSettings {
     sessionAccessToken?: string;
 }
 
-// Interfaces/Types - Audit Content
+// Interfaces/Types - Audit Content (Object)
 export interface AuditContentResult {
     contentAuditConfig: DataViewContentAuditConfig;
 }
@@ -76,25 +77,25 @@ export interface AuditContentSettings extends ConnectorOperationSettings {
     valueDelimiterId: ValueDelimiterId;
 }
 
-// Interfaces/Types - Create
+// Interfaces/Types - Create (Object)
 export interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
     path: string;
     structure: string;
 }
 
-// Interfaces/Types - Describe
+// Interfaces/Types - Describe (Connection)
 interface DescribeSettings extends ConnectorOperationSettings {}
 interface DescribeResult {
     description: ConnectionDescription;
 }
 
-// Interfaces/Types - Drop
+// Interfaces/Types - Drop (Object)
 export interface DropSettings extends ConnectorOperationSettings {
     path: string;
 }
 
-// Interfaces/Types - Find
+// Interfaces/Types - Find (Object)
 export interface FindResult {
     folderPath?: string;
 }
@@ -103,12 +104,20 @@ export interface FindSettings extends ConnectorOperationSettings {
     objectName: string;
 }
 
-// Interfaces/Types - Initialise
+// Interfaces/Types - Get (Object)
+export interface GetResult {
+    id: string;
+}
+export interface GetSettings extends ConnectorOperationSettings {
+    records: (string[] | Record<string, unknown>)[];
+}
+
+// Interfaces/Types - Initialise (Connector)
 export interface InitialiseSettings {
     connectorStorageURLPrefix: string;
 }
 
-// Interfaces/Types - List
+// Interfaces/Types - List (Items)
 export interface ListResult {
     cursor: string | number | undefined;
     connectionItemConfigs: ConnectionItemConfig[];
@@ -122,7 +131,7 @@ export interface ListSettings extends ConnectorOperationSettings {
     totalCount?: number;
 }
 
-// Interfaces/Types - Preview
+// Interfaces/Types - Preview (Object)
 export interface PreviewData {
     data: Record<string, unknown>[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
@@ -135,19 +144,13 @@ export interface PreviewSettings extends ConnectorOperationSettings {
     path: string;
 }
 
-// Interfaces/Types - Put
-export interface PutSettings extends ConnectorOperationSettings {
-    records: Record<string, unknown>[];
-    path: string;
-}
-
-// Interfaces/Types - Remove
+// Interfaces/Types - Remove (Records)
 export interface RemoveSettings extends ConnectorOperationSettings {
     keys: string[];
     path: string;
 }
 
-// Interfaces/Types - Retrieve
+// Interfaces/Types - Retrieve (Records)
 export interface RetrieveSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
@@ -167,6 +170,12 @@ export interface RetrieveSummary {
 }
 export interface RetrieveTools {
     csvParse: (options?: Options, callback?: Callback) => Parser | undefined;
+}
+
+// Interfaces/Types - Upsert (Records)
+export interface UpsertSettings extends ConnectorOperationSettings {
+    records: Record<string, unknown>[];
+    path: string;
 }
 
 // Connector Category
