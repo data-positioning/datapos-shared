@@ -18,7 +18,7 @@ export interface Connector {
     describe?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
     drop?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
     find?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
-    get?(connector: Connector, getSettings: GetSettings): Promise<GetResult>; // Find an object for a specified connection.
+    get?(connector: Connector, getSettings: GetSettings): Promise<GetResult>; // Get a record for an object for a specified connection.
     list?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List items in a folder for a specified connection.
     preview?(connector: Connector, settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
     remove?(connector: Connector, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
