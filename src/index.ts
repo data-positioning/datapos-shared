@@ -31,7 +31,7 @@ export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId 
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
 
 // Interfaces/Types - Engine
-export type { ConnectorInterfaceResult, EngineWorkerInterface } from './engine';
+export type { ConnectorInterfaceResult, Engine, EngineWorkerInterface } from './engine';
 
 // Interfaces/Types - Error
 export { AbortError, BackendError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
