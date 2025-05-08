@@ -27,7 +27,7 @@ export type { ContextConfig, FocusConfig, ModelConfig, DimensionConfig, EntityCh
 export type { EntityConfig, EntityEventConfig, HierarchyConfig, ViewConfig, Event } from './context';
 
 // Interfaces/Types - Data View
-export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from './dataView';
+export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from './dataView';
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
 
 // Interfaces/Types - Engine

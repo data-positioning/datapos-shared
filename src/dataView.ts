@@ -55,6 +55,15 @@ export interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
 
+// Interfaces/Types - Encoding Config
+export interface EncodingConfig {
+    id: string;
+    groupLabel: string;
+    label: string;
+    isDetectable: boolean;
+    isDecodable: boolean;
+}
+
 // Utilities - Data Format
 type DataFormat = { id: string; label: string };
 type DataFormatConfig = { id: string; label: Record<string, string> };
