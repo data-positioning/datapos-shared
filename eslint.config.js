@@ -16,7 +16,7 @@ export default [
             '@typescript-eslint/no-unused-vars': 'warn',
 
             'import/no-duplicates': 'off',
-            'sort-imports': ['warn', { allowSeparatedGroups: true, ignoreCase: true, memberSyntaxSortOrder: ['none', 'all', 'multiple', 'single'] }],
+            'sort-imports': ['warn', { allowSeparatedGroups: true, ignoreCase: true, memberSyntaxSortOrder: ['none', 'all', 'single', 'multiple'] }],
 
             'no-empty': 'warn',
             'prefer-const': 'warn'

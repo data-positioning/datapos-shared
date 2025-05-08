@@ -30,6 +30,9 @@ export type { EntityConfig, EntityEventConfig, HierarchyConfig, ViewConfig, Even
 export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from './dataView';
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
 
+// Interfaces/Types - Engine
+export type { ConnectorInterfaceResult, EngineWorkerInterface } from './engine';
+
 // Interfaces/Types - Error
 export { AbortError, BackendError, DataPosError, EngineError, FetchError, FrontendError } from './errors';
 export type { ErrorContext, ErrorData, SerialisedErrorData } from './errors';
