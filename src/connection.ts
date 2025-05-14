@@ -28,7 +28,7 @@ export interface ConnectionItemConfig {
     extension?: string;
     folderPath: string;
     handle?: DPAFileSystemFileHandle;
-    id?: string;
+    id: string;
     itemHeight?: number;
     items?: ConnectionItemConfig[];
     label: string;
