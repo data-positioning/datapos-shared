@@ -21,26 +21,26 @@ export interface ConnectionConfig extends ComponentConfig {
     notation?: string;
 }
 
-// Interfaces/Types - Connection Item Configuration
-export interface ConnectionItemConfig {
+// Interfaces/Types - Connection Node Configuration
+export interface connectionNodeConfig {
     childCount?: number;
     columnsConfigs?: ConnectionColumnConfig[];
     extension?: string;
     folderPath: string;
     handle?: DPAFileSystemFileHandle;
     id: string;
-    itemHeight?: number;
-    items?: ConnectionItemConfig[];
+    nodeDisplayHeight?: number;
+    nodes?: connectionNodeConfig[];
     label: string;
     lastModifiedAt?: Timestamp;
     mimeType?: string;
     name: string;
     size?: number;
-    typeId: ConnectionItemTypeId;
+    typeId: ConnectionNodeTypeId;
 }
 
-// Interfaces/Types - Connection Item Type Identifier
-export type ConnectionItemTypeId = 'folder' | 'object';
+// Interfaces/Types - Connection Node Type Identifier
+export type ConnectionNodeTypeId = 'folder' | 'object';
 
 // Interfaces/Types - Configuration Description
 export interface ConnectionDescription {
