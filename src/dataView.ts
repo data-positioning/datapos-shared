@@ -1,12 +1,12 @@
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
 import type { Timestamp } from './timestamp';
-import type { ConnectionColumnConfig, connectionNodeConfig } from './connection';
+import type { ConnectionColumnConfig, ConnectionNodeConfig } from './connection';
 
 // Interfaces/Types - Data View Configuration
 export interface DataViewConfig extends ComponentConfig {
     connectionId?: string;
-    connectionNodeConfig?: connectionNodeConfig;
+    connectionNodeConfig?: ConnectionNodeConfig;
     previewConfig?: DataViewPreviewConfig;
     contentAuditConfig?: DataViewContentAuditConfig;
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;

@@ -3,7 +3,7 @@ import type { Callback, Options, Parser } from 'csv-parse/browser/esm';
 
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
-import type { ConnectionConfig, ConnectionDescription, connectionNodeConfig } from './connection';
+import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
 import type { DataViewContentAuditConfig, DataViewPreviewConfig, ValueDelimiterId } from './dataView';
 
 // Interfaces/Types - Connector
@@ -121,7 +121,7 @@ export interface InitialiseSettings {
 // Interfaces/Types - List (Nodes)
 export interface ListResult {
     cursor: string | number | undefined;
-    connectionNodeConfigs: connectionNodeConfig[];
+    connectionNodeConfigs: ConnectionNodeConfig[];
     isMore: boolean;
     totalCount: number;
 }

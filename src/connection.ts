@@ -22,7 +22,7 @@ export interface ConnectionConfig extends ComponentConfig {
 }
 
 // Interfaces/Types - Connection Node Configuration
-export interface connectionNodeConfig {
+export interface ConnectionNodeConfig {
     childCount?: number;
     columnsConfigs?: ConnectionColumnConfig[];
     extension?: string;
@@ -30,7 +30,7 @@ export interface connectionNodeConfig {
     handle?: DPAFileSystemFileHandle;
     id: string;
     nodeDisplayHeight?: number;
-    nodes?: connectionNodeConfig[];
+    nodes?: ConnectionNodeConfig[];
     label: string;
     lastModifiedAt?: Timestamp;
     mimeType?: string;
