@@ -139,6 +139,7 @@ export interface PreviewResult {
 }
 export interface PreviewSettings extends ConnectorOperationSettings {
     chunkSize?: number;
+    extension?: string;
     path: string;
 }
 
