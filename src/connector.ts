@@ -4,7 +4,7 @@ import type { Callback, Options, Parser } from 'csv-parse/browser/esm';
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
-import type { DataViewContentAuditConfig, DataViewPreviewConfig, ValueDelimiterId } from './dataView';
+import type { DataViewContentAuditConfig, ValueDelimiterId } from './dataView';
 
 // Interfaces/Types - Connector
 export interface Connector {
@@ -20,7 +20,7 @@ export interface Connector {
     find?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
     get?(connector: Connector, getSettings: GetSettings): Promise<GetResult>; // Get a record for an object for a specified connection.
     list?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List nodes in a folder for a specified connection.
-    preview?(connector: Connector, settings: PreviewSettings): Promise<PreviewData>; // Preview an object for a specified connection.
+    preview?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
     remove?(connector: Connector, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
     retrieve?(
         connector: Connector,
