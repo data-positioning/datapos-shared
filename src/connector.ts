@@ -133,12 +133,9 @@ export interface ListSettings extends ConnectorOperationSettings {
 }
 
 // Interfaces/Types - Preview (Object)
-export interface PreviewData {
+export interface PreviewResult {
     data: Record<string, unknown>[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
-}
-export interface PreviewResult2 {
-    previewConfig: DataViewPreviewConfig;
 }
 export interface PreviewSettings extends ConnectorOperationSettings {
     chunkSize?: number;
