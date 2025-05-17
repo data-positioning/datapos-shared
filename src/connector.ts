@@ -137,7 +137,7 @@ export interface PreviewData {
     data: Record<string, unknown>[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
 }
-export interface PreviewResult {
+export interface PreviewResult2 {
     previewConfig: DataViewPreviewConfig;
 }
 export interface PreviewSettings extends ConnectorOperationSettings {
