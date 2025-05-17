@@ -35,7 +35,7 @@ export const convertODataTypeIdToUsageTypeId = (oDataTypeId: string): string => 
         case 'Edm.String':
             return 'string';
         case 'Edm.Time':
-            return 'moment'; // Time...
+            return 'momentTime'; // Time...
         default:
             return 'unknown';
     }

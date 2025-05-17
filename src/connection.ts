@@ -89,7 +89,7 @@ export type StorageTypeId =
     | 'string'
     | 'time'
     | 'unknown';
-export type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'string' | 'unknown' | 'wholeNumber';
+export type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
 
 // Interfaces/Types - Encoding
 export interface Encoding {
