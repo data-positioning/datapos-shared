@@ -6,7 +6,7 @@ export type { ComponentConfig, ComponentStatus } from './component';
 
 // Interfaces/Types - Connection
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from './connection';
-export type { DPAFileSystemFileHandle, StorageTypeId, UsageTypeId } from './connection';
+export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from './connection';
 
 // Interfaces/Types - Connector
 export type { AuditContentResult, AuditContentSettings } from './connector';
