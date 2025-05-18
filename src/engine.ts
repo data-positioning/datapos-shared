@@ -1,6 +1,6 @@
 import type { ConnectionConfig } from './connection';
-import type { EncodingConfig } from './dataView';
-import type { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, PreviewResult, RetrieveResult } from './connector';
+import type { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveResult } from './connector';
+import type { DataViewPreviewConfig, EncodingConfig } from './dataView';
 
 type ConnectorInterface = (
     id: string,
@@ -9,7 +9,7 @@ type ConnectorInterface = (
     callback?: ((callbackData: ConnectorCallbackData) => void) | undefined
 ) => Promise<ConnectorInterfaceResult>;
 
-export type ConnectorInterfaceResult = AuditContentResult | ListResult | PreviewResult | RetrieveResult;
+export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
 
 export interface Engine {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
