@@ -3,7 +3,7 @@ const MAX_INVALID_VALUE_COUNT = 100;
 // Dependencies - Framework
 import { PreviewColumn } from './Z_PreviewColumn';
 
-export type ParsedValue = bigint | boolean | number | string | null;
+export type ParsedValue = { isValid: boolean; value: bigint | boolean | number | string | null };
 
 // Declarations - Content Audit Column
 export class ContentAuditColumn extends PreviewColumn {
@@ -66,7 +66,7 @@ export class ContentAuditColumn extends PreviewColumn {
     addValidValue(originalValue: string, parsedValue: ParsedValue, wholeDigitCount?: number, decimalDigitCount?: number): ParsedValue {
         switch (this.dataUsageTypeId) {
             case 'string': {
-                parsedValue = originalValue;
+                parsedValue = { isValid: true, value: originalValue }; // TODO: Review use of isValid.
                 const length = originalValue.length;
                 if (this.maxSize) {
                     if (length < this.minSize) this.minSize = length;
