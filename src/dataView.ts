@@ -137,7 +137,7 @@ export const getValueDelimiters = (localeId = 'en'): ValueDelimiter[] => {
 };
 
 // Interfaces/Types - Parsed Value
-export type ParsedValue = bigint | boolean | number | string | null;
+export type ParsedValue = { isValid: boolean; value: bigint | boolean | number | string | null };
 
 // Interfaces/Types - Basic
 export type DataFormatId = 'dtv' | 'e/e' | 'jsonArray' | 'spss' | 'xls' | 'xlsx' | 'xml';
