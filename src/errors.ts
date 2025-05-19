@@ -1,4 +1,4 @@
-// Interfaces/Types
+// Interfaces/Types - Error Context
 export interface ErrorContext extends Record<string, unknown> {
     fetchBody?: string;
     locator?: string;
@@ -45,20 +45,12 @@ export class AbortError extends DataPosError {
 }
 
 // Classes - Backend Error
-export class BackendError extends DataPosError {
+export class AppOperations extends DataPosError {
     constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
         super(message, context, originalStack, cause);
-        this.name = 'BackendError';
+        this.name = 'AppOperations';
     }
 }
-
-// // Classes - Connector Error
-// export class ConnectorError extends DataPosError {
-//     constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
-//         super(message, context, originalStack, cause);
-//         this.name = 'ConnectorError';
-//     }
-// }
 
 // Classes - Engine Error
 export class EngineError extends DataPosError {
@@ -76,84 +68,22 @@ export class FetchError extends DataPosError {
     }
 }
 
-// Classes - Frontend Error
-export class FrontendError extends DataPosError {
-    constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
-        super(message, context, originalStack, cause);
-        this.name = 'FrontendError';
-    }
-}
-
-// Utilities - Build Fetch Error
-export const buildFetchError = async (response: { status: number; statusText: string; text: () => Promise<string> }, message: string, locator: string) => {
+// Operations - Build Fetch Error
+export async function buildFetchError(response: { status: number; statusText: string; text: () => Promise<string> }, message: string, locator: string) {
     const fetchMessage = `${message} Response status '${response.status}${response.statusText ? ` - ${response.statusText}` : ''}' received.`;
     return new FetchError(fetchMessage, { fetchBody: await response.text(), locator });
-};
+}
 
-// Utilities - Deserialise Error
-export const deserialiseError = (errorData: SerialisedErrorData): Error => {
-    switch (errorData.name) {
-        case 'AbortError':
-            return new AbortError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
-        case 'BackendError':
-            return new BackendError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
-        // case 'ConnectorError':
-        //     return new ConnectorError(
-        //         errorData.message,
-        //         errorData.context ? JSON.parse(errorData.context) : undefined,
-        //         errorData.originalStack,
-        //         errorData.cause ? deserialiseError(errorData.cause) : undefined
-        //     );
-        case 'DataPosError':
-            return new DataPosError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
-        case 'EngineError':
-            return new EngineError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
-        case 'FetchError':
-            return new FetchError(errorData.message, errorData.context ? JSON.parse(errorData.context) : undefined);
-        case 'FrontendError':
-            return new FrontendError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
-        default:
-            return new Error(errorData.message);
-    }
-};
-
-// Utilities - Format Error
-export const formatError = (sourceError?: unknown, context?: { locator?: string }): ErrorData => {
+// Operations - Format Error
+export function formatError(sourceError?: unknown, context?: { locator?: string }): ErrorData {
     let errorData: ErrorData;
     if (
         sourceError instanceof Error &&
         (sourceError.name === 'AbortError' ||
-            sourceError.name === 'BackendError' ||
-            sourceError.name === 'ConnectorError' ||
+            sourceError.name === 'AppOperations' ||
             sourceError.name === 'DataPosError' ||
             sourceError.name === 'EngineError' ||
-            sourceError.name === 'FetchError' ||
-            sourceError.name === 'FrontendError')
+            sourceError.name === 'FetchError')
     ) {
         const dataPosSourceError = sourceError as DataPosError;
         errorData = {
@@ -174,19 +104,13 @@ export const formatError = (sourceError?: unknown, context?: { locator?: string 
     }
     if (!errorData.message.endsWith('.')) errorData.message = `${errorData.message}.`;
     return errorData;
-};
+}
 
-// Utilities - Serialise Error
-export const serialiseError = (error: unknown): SerialisedErrorData => {
+// Operations - Serialise Error
+export function serialiseError(error: unknown): SerialisedErrorData {
     if (
         error instanceof DataPosError ||
-        (error instanceof Error &&
-            (error.name === 'AbortError' ||
-                error.name === 'BackendError' ||
-                error.name === 'ConnectorError' ||
-                error.name === 'EngineError' ||
-                error.name === 'FetchError' ||
-                error.name === 'FrontendError'))
+        (error instanceof Error && (error.name === 'AbortError' || error.name === 'AppOperations' || error.name === 'EngineError' || error.name === 'FetchError'))
     ) {
         const dataPosError = error as DataPosError;
         return {
@@ -206,4 +130,42 @@ export const serialiseError = (error: unknown): SerialisedErrorData => {
     } else {
         return { message: String(error || 'Unknown error.') };
     }
-};
+}
+
+// Operations - Deserialise Error
+export function deserialiseError(errorData: SerialisedErrorData): Error {
+    switch (errorData.name) {
+        case 'AbortError':
+            return new AbortError(
+                errorData.message,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
+                errorData.originalStack,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'AppOperations':
+            return new AppOperations(
+                errorData.message,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
+                errorData.originalStack,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'DataPosError':
+            return new DataPosError(
+                errorData.message,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
+                errorData.originalStack,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'EngineError':
+            return new EngineError(
+                errorData.message,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
+                errorData.originalStack,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
+        case 'FetchError':
+            return new FetchError(errorData.message, errorData.context ? JSON.parse(errorData.context) : undefined);
+        default:
+            return new Error(errorData.message);
+    }
+}
