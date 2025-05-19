@@ -1,13 +1,14 @@
 // Interfaces/Types - Error Context
 export interface ErrorContext extends Record<string, unknown> {
     fetchBody?: string;
+    info?: string;
     locator?: string;
 }
 
 // Interfaces/Types - Error Data
 export interface ErrorData extends Record<string, unknown> {
     cause?: unknown;
-    context?: ErrorContext;
+    context: ErrorContext;
     error: Error;
     message: string;
     stack?: string;
@@ -18,16 +19,17 @@ export interface SerialisedErrorData {
     cause?: SerialisedErrorData;
     context?: string;
     message: string;
-    name?: string;
+    name: string;
     notes?: string;
-    originalStack?: string;
 }
+
+// Constants
+const errorConstructors: Record<string, ErrorConstructor> = { Error, TypeError, ReferenceError, SyntaxError, RangeError, EvalError, URIError };
 
 // Classes - DataPos Error
 export class DataPosError extends Error {
-    context?: ErrorContext;
-    originalStack?: string;
-    constructor(message: string, context?: ErrorContext, cause?: unknown) {
+    context: ErrorContext;
+    constructor(message: string, context: ErrorContext, cause?: unknown) {
         super(message);
         this.name = 'DataPosError';
         this.context = context;
@@ -37,7 +39,7 @@ export class DataPosError extends Error {
 
 // Classes - API Error
 export class APIError extends DataPosError {
-    constructor(message: string, context?: ErrorContext, cause?: unknown) {
+    constructor(message: string, context: ErrorContext, cause?: unknown) {
         super(message, context, cause);
         this.name = 'APIError';
     }
@@ -45,7 +47,7 @@ export class APIError extends DataPosError {
 
 // Classes - Engine Error
 export class EngineError extends DataPosError {
-    constructor(message: string, context?: ErrorContext, cause?: unknown) {
+    constructor(message: string, context: ErrorContext, cause?: unknown) {
         super(message, context, cause);
         this.name = 'EngineError';
     }
@@ -53,17 +55,17 @@ export class EngineError extends DataPosError {
 
 // Classes - Fetch Error
 export class FetchError extends DataPosError {
-    constructor(message: string, context?: ErrorContext, cause?: unknown) {
+    constructor(message: string, context: ErrorContext, cause?: unknown) {
         super(message, context, cause);
         this.name = 'FetchError';
     }
 }
 
-// Classes - Operations Error
-export class OperationsError extends DataPosError {
-    constructor(message: string, context?: ErrorContext, cause?: unknown) {
+// Classes - Operational Error
+export class OperationalError extends DataPosError {
+    constructor(message: string, context: ErrorContext, cause?: unknown) {
         super(message, context, cause);
-        this.name = 'OperationsError';
+        this.name = 'OperationalError';
     }
 }
 
@@ -74,32 +76,16 @@ export async function buildFetchError(response: { status: number; statusText: st
 }
 
 // Operations - Format Error
-export function formatError(sourceError?: unknown, context?: { locator?: string }): ErrorData {
+export function formatError(sourceError: unknown, context: ErrorContext): ErrorData {
     let errorData: ErrorData;
-    if (
-        sourceError instanceof Error &&
-        (sourceError.name === 'APIError' ||
-            sourceError.name === 'DataPosError' ||
-            sourceError.name === 'EngineError' ||
-            sourceError.name === 'FetchError' ||
-            sourceError.name === 'OperationsError')
-    ) {
-        const dataPosSourceError = sourceError as DataPosError;
-        errorData = {
-            context,
-            error: dataPosSourceError,
-            message: dataPosSourceError.message,
-            stack: dataPosSourceError.stack,
-            cause: dataPosSourceError.cause
-        };
-    } else if (sourceError instanceof Error) {
-        errorData = { cause: sourceError.cause, context, error: sourceError, message: sourceError.message, stack: sourceError.stack };
+    if (sourceError instanceof Error) {
+        errorData = { error: sourceError, message: sourceError.message, context, stack: sourceError.stack, cause: sourceError.cause };
     } else if (sourceError) {
         const error = new Error(String(sourceError));
-        errorData = { context, error, message: error.message };
+        errorData = { error, message: error.message, context };
     } else {
         const error = new Error('Unknown error');
-        errorData = { context, error, message: error.message };
+        errorData = { error, message: error.message, context };
     }
     if (!errorData.message.endsWith('.')) errorData.message = `${errorData.message}.`;
     return errorData;
@@ -107,27 +93,22 @@ export function formatError(sourceError?: unknown, context?: { locator?: string 
 
 // Operations - Serialise Error
 export function serialiseError(error: unknown): SerialisedErrorData {
-    if (
-        error instanceof DataPosError ||
-        (error instanceof Error && (error.name === 'APIError' || error.name === 'EngineError' || error.name === 'FetchError' || error.name === 'OperationsError'))
-    ) {
+    if (error instanceof Error && ['DataPosError', 'APIError', 'EngineError', 'FetchError', 'OperationalError'].includes(error.name)) {
         const dataPosError = error as DataPosError;
         return {
             name: dataPosError.name,
             message: dataPosError.message,
             context: JSON.stringify(dataPosError.context),
-            originalStack: dataPosError.stack,
             cause: dataPosError.cause ? serialiseError(dataPosError.cause) : undefined
         };
     } else if (error instanceof Error) {
         return {
             name: error.name,
             message: error.message,
-            originalStack: error.stack,
             cause: error.cause ? serialiseError(error.cause) : undefined
         };
     } else {
-        return { message: String(error || 'Unknown error.') };
+        return { name: 'Error', message: String(error || 'Unknown error.') };
     }
 }
 
@@ -154,13 +135,14 @@ export function deserialiseError(errorData: SerialisedErrorData): Error {
                 errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
-        case 'OperationsError':
-            return new OperationsError(
+        case 'OperationalError':
+            return new OperationalError(
                 errorData.message,
                 errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
         default:
-            return new Error(errorData.message);
+            const ErrorConstructor = errorConstructors[errorData.name] || Error;
+            return new ErrorConstructor(errorData.message, { cause: errorData.cause ? deserialiseError(errorData.cause) : undefined });
     }
 }
