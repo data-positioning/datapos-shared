@@ -90,6 +90,7 @@ export function formatError(sourceError: unknown, context: ErrorContext): ErrorD
         errorData = { message: error.message, context: {} };
     }
     if (!errorData.message.endsWith('.')) errorData.message = `${errorData.message}.`;
+    console.log(9999, errorData);
     return errorData;
 }
 
