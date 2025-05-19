@@ -7,8 +7,8 @@ export interface ErrorContext extends Record<string, unknown> {
 
 // Interfaces/Types - Error Data
 export interface ErrorData extends Record<string, unknown> {
-    context: string;
-    errorHistory: ErrorInstanceData[];
+    context?: string;
+    history: ErrorInstanceData[];
 }
 
 // Interfaces/Types - Error Instance Data
@@ -82,8 +82,8 @@ export async function buildFetchError(response: { status: number; statusText: st
 }
 
 // Operations - Format Error
-export function formatError(sourceError: unknown, context: string): ErrorData {
-    const errorHistory: ErrorInstanceData[] = [];
+export function formatError(sourceError: unknown, context?: string): ErrorData {
+    const history: ErrorInstanceData[] = [];
     let priorError = sourceError;
     while (priorError) {
         let errorInstanceData: ErrorInstanceData;
@@ -103,9 +103,9 @@ export function formatError(sourceError: unknown, context: string): ErrorData {
             priorError = undefined;
         }
         if (!errorInstanceData.message.endsWith('.')) errorInstanceData.message = `${errorInstanceData.message}.`;
-        errorHistory.push(errorInstanceData);
+        history.push(errorInstanceData);
     }
-    return { context, errorHistory };
+    return { context, history };
 }
 
 // Operations - Serialise Error
