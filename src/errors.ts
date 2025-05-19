@@ -27,43 +27,42 @@ export interface SerialisedErrorData {
 export class DataPosError extends Error {
     context?: ErrorContext;
     originalStack?: string;
-    constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
+    constructor(message: string, context?: ErrorContext, cause?: unknown) {
         super(message);
         this.name = 'DataPosError';
         this.context = context;
-        this.originalStack = originalStack;
         this.cause = cause;
     }
 }
 
 // Classes - API Error
 export class APIError extends DataPosError {
-    constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
-        super(message, context, originalStack, cause);
+    constructor(message: string, context?: ErrorContext, cause?: unknown) {
+        super(message, context, cause);
         this.name = 'APIError';
     }
 }
 
 // Classes - Engine Error
 export class EngineError extends DataPosError {
-    constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
-        super(message, context, originalStack, cause);
+    constructor(message: string, context?: ErrorContext, cause?: unknown) {
+        super(message, context, cause);
         this.name = 'EngineError';
     }
 }
 
 // Classes - Fetch Error
 export class FetchError extends DataPosError {
-    constructor(message: string, context?: ErrorContext) {
-        super(message, context);
+    constructor(message: string, context?: ErrorContext, cause?: unknown) {
+        super(message, context, cause);
         this.name = 'FetchError';
     }
 }
 
 // Classes - Operations Error
 export class OperationsError extends DataPosError {
-    constructor(message: string, context?: ErrorContext) {
-        super(message, context);
+    constructor(message: string, context?: ErrorContext, cause?: unknown) {
+        super(message, context, cause);
         this.name = 'OperationsError';
     }
 }
@@ -136,30 +135,31 @@ export function serialiseError(error: unknown): SerialisedErrorData {
 export function deserialiseError(errorData: SerialisedErrorData): Error {
     switch (errorData.name) {
         case 'APIError':
-            return new APIError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
+            return new APIError(errorData.message, errorData.context ? JSON.parse(errorData.context) : undefined, errorData.cause ? deserialiseError(errorData.cause) : undefined);
         case 'DataPosError':
             return new DataPosError(
                 errorData.message,
                 errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
         case 'EngineError':
             return new EngineError(
                 errorData.message,
                 errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
         case 'FetchError':
-            return new FetchError(errorData.message, errorData.context ? JSON.parse(errorData.context) : undefined);
+            return new FetchError(
+                errorData.message,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
         case 'OperationsError':
-            return new OperationsError(errorData.message, errorData.context ? JSON.parse(errorData.context) : undefined);
+            return new OperationsError(
+                errorData.message,
+                errorData.context ? JSON.parse(errorData.context) : undefined,
+                errorData.cause ? deserialiseError(errorData.cause) : undefined
+            );
         default:
             return new Error(errorData.message);
     }
