@@ -23,7 +23,7 @@ export interface SerialisedErrorData {
     originalStack?: string;
 }
 
-// Classes - Data Positioning Error
+// Classes - DataPos Error
 export class DataPosError extends Error {
     context?: ErrorContext;
     originalStack?: string;
@@ -36,19 +36,11 @@ export class DataPosError extends Error {
     }
 }
 
-// Classes - Abort Error
-export class AbortError extends DataPosError {
+// Classes - API Error
+export class APIError extends DataPosError {
     constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
         super(message, context, originalStack, cause);
-        this.name = 'AbortError';
-    }
-}
-
-// Classes - Backend Error
-export class AppOperationsError extends DataPosError {
-    constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
-        super(message, context, originalStack, cause);
-        this.name = 'AppOperationsError';
+        this.name = 'APIError';
     }
 }
 
@@ -68,6 +60,14 @@ export class FetchError extends DataPosError {
     }
 }
 
+// Classes - Operations Error
+export class OperationsError extends DataPosError {
+    constructor(message: string, context?: ErrorContext) {
+        super(message, context);
+        this.name = 'OperationsError';
+    }
+}
+
 // Operations - Build Fetch Error
 export async function buildFetchError(response: { status: number; statusText: string; text: () => Promise<string> }, message: string, locator: string) {
     const fetchMessage = `${message} Response status '${response.status}${response.statusText ? ` - ${response.statusText}` : ''}' received.`;
@@ -79,11 +79,11 @@ export function formatError(sourceError?: unknown, context?: { locator?: string 
     let errorData: ErrorData;
     if (
         sourceError instanceof Error &&
-        (sourceError.name === 'AbortError' ||
-            sourceError.name === 'AppOperationsError' ||
+        (sourceError.name === 'APIError' ||
             sourceError.name === 'DataPosError' ||
             sourceError.name === 'EngineError' ||
-            sourceError.name === 'FetchError')
+            sourceError.name === 'FetchError' ||
+            sourceError.name === 'OperationsError')
     ) {
         const dataPosSourceError = sourceError as DataPosError;
         errorData = {
@@ -110,7 +110,7 @@ export function formatError(sourceError?: unknown, context?: { locator?: string 
 export function serialiseError(error: unknown): SerialisedErrorData {
     if (
         error instanceof DataPosError ||
-        (error instanceof Error && (error.name === 'AbortError' || error.name === 'AppOperationsError' || error.name === 'EngineError' || error.name === 'FetchError'))
+        (error instanceof Error && (error.name === 'APIError' || error.name === 'EngineError' || error.name === 'FetchError' || error.name === 'OperationsError'))
     ) {
         const dataPosError = error as DataPosError;
         return {
@@ -135,15 +135,8 @@ export function serialiseError(error: unknown): SerialisedErrorData {
 // Operations - Deserialise Error
 export function deserialiseError(errorData: SerialisedErrorData): Error {
     switch (errorData.name) {
-        case 'AbortError':
-            return new AbortError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.originalStack,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
-        case 'AppOperationsError':
-            return new AppOperationsError(
+        case 'APIError':
+            return new APIError(
                 errorData.message,
                 errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.originalStack,
@@ -165,6 +158,8 @@ export function deserialiseError(errorData: SerialisedErrorData): Error {
             );
         case 'FetchError':
             return new FetchError(errorData.message, errorData.context ? JSON.parse(errorData.context) : undefined);
+        case 'OperationsError':
+            return new OperationsError(errorData.message, errorData.context ? JSON.parse(errorData.context) : undefined);
         default:
             return new Error(errorData.message);
     }
