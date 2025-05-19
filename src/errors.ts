@@ -45,10 +45,10 @@ export class AbortError extends DataPosError {
 }
 
 // Classes - Backend Error
-export class AppOperations extends DataPosError {
+export class AppOperationsError extends DataPosError {
     constructor(message: string, context?: ErrorContext, originalStack?: string, cause?: unknown) {
         super(message, context, originalStack, cause);
-        this.name = 'AppOperations';
+        this.name = 'AppOperationsError';
     }
 }
 
@@ -80,7 +80,7 @@ export function formatError(sourceError?: unknown, context?: { locator?: string 
     if (
         sourceError instanceof Error &&
         (sourceError.name === 'AbortError' ||
-            sourceError.name === 'AppOperations' ||
+            sourceError.name === 'AppOperationsError' ||
             sourceError.name === 'DataPosError' ||
             sourceError.name === 'EngineError' ||
             sourceError.name === 'FetchError')
@@ -110,7 +110,7 @@ export function formatError(sourceError?: unknown, context?: { locator?: string 
 export function serialiseError(error: unknown): SerialisedErrorData {
     if (
         error instanceof DataPosError ||
-        (error instanceof Error && (error.name === 'AbortError' || error.name === 'AppOperations' || error.name === 'EngineError' || error.name === 'FetchError'))
+        (error instanceof Error && (error.name === 'AbortError' || error.name === 'AppOperationsError' || error.name === 'EngineError' || error.name === 'FetchError'))
     ) {
         const dataPosError = error as DataPosError;
         return {
@@ -142,8 +142,8 @@ export function deserialiseError(errorData: SerialisedErrorData): Error {
                 errorData.originalStack,
                 errorData.cause ? deserialiseError(errorData.cause) : undefined
             );
-        case 'AppOperations':
-            return new AppOperations(
+        case 'AppOperationsError':
+            return new AppOperationsError(
                 errorData.message,
                 errorData.context ? JSON.parse(errorData.context) : undefined,
                 errorData.originalStack,

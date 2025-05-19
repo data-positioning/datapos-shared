@@ -34,7 +34,7 @@ export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig,
 export type { ConnectorInterfaceResult, Engine, EngineWorkerInterface } from './engine';
 
 // Interfaces/Types - Error
-export { AbortError, AppOperations, DataPosError, EngineError, FetchError } from './errors';
+export { AbortError, AppOperationsError, DataPosError, EngineError, FetchError } from './errors';
 export type { ErrorContext, ErrorData, SerialisedErrorData } from './errors';
 
 // Interfaces/Types - Event Query
@@ -52,7 +52,7 @@ export type { Timestamp } from './timestamp'; // TODO: Review, do we need it now
 // Interfaces/Types - Tutorial
 export type { TutorialConfig } from './tutorial';
 
-// Utilities
+// Operations
 export { buildFetchError, deserialiseError, formatError, serialiseError } from './errors';
 export { convertMillisecondsToTimestamp, getCurrentTimestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 export { convertODataTypeIdToUsageTypeId } from './utilities';
