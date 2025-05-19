@@ -35,7 +35,7 @@ export type { ConnectorInterfaceResult, Engine, EngineWorkerInterface } from './
 
 // Interfaces/Types - Error
 export { APIError, DataPosError, EngineError, FetchError, OperationalError } from './errors';
-export type { ErrorContext, ErrorData, SerialisedErrorData } from './errors';
+export type { ErrorContext, ErrorData, ErrorInstanceData, SerialisedErrorData } from './errors';
 
 // Interfaces/Types - Event Query
 export type { EventQueryConfig } from './eventQuery';
