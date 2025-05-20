@@ -1,7 +1,12 @@
 // Interfaces/Types - Error Context
 export interface ErrorContext extends Record<string, unknown> {
-    fetchBody?: string;
     info?: string;
+    locator: string;
+}
+
+// Interfaces/Types - Error Instance Context
+export interface ErrorInstanceContext extends Record<string, unknown> {
+    fetchBody?: string;
     locator?: string;
 }
 
@@ -14,7 +19,7 @@ export interface ErrorData extends Record<string, unknown> {
 // Interfaces/Types - Error Instance Data
 export interface ErrorInstanceData extends Record<string, unknown> {
     cause?: unknown;
-    context: ErrorContext;
+    context: ErrorInstanceContext;
     message: string;
     name: string;
     stack?: string;
