@@ -38,7 +38,7 @@ export interface SerialisedErrorData {
 const errorConstructors: Record<string, ErrorConstructor> = { Error, TypeError, ReferenceError, SyntaxError, RangeError, EvalError, URIError };
 
 // Classes - DataPos Error
-export class DataPosError extends Error {
+class DataPosError extends Error {
     context: ErrorContext;
     constructor(message: string, context: ErrorContext, cause?: unknown) {
         super(message);
