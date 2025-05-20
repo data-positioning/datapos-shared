@@ -1,6 +1,5 @@
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
-import type { ErrorData } from './errors';
 import type { Timestamp } from './timestamp';
 import type { ConnectionColumnConfig, ConnectionNodeConfig } from './connection';
 
@@ -34,7 +33,7 @@ export interface DataViewPreviewConfig {
     duration: number;
     encodingConfidenceLevel?: number;
     encodingId?: string;
-    error?: ErrorData;
+    errorMessage?: string;
     hasHeaders?: boolean;
     // linesToSkipBeforeHeader?: number;
     // linesToSkipAfterHeader?: number;
