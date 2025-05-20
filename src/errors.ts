@@ -151,7 +151,6 @@ export function deserialiseError(errorData: ErrorData): Error {
 
 // Operations - Deserialise Error
 function deserialiseError1(errorData: ErrorInstanceData, cause?: unknown): Error {
-    console.log(9999, errorData, cause);
     switch (errorData.name) {
         case 'APIError':
             return new APIError(errorData.message, errorData.context, cause);
