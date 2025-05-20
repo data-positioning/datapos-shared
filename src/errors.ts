@@ -39,8 +39,8 @@ const errorConstructors: Record<string, ErrorConstructor> = { Error, TypeError, 
 
 // Classes - DataPos Error - Base error class for all DataPos errors.
 class DataPosError extends Error {
-    context: ErrorContext;
-    constructor(message: string, context: ErrorContext, cause?: unknown) {
+    context?: ErrorInstanceContext;
+    constructor(message: string, context?: ErrorInstanceContext, cause?: unknown) {
         super(message);
         this.name = 'DataPosError';
         this.context = context;
@@ -50,7 +50,7 @@ class DataPosError extends Error {
 
 // Classes - API Error
 export class APIError extends DataPosError {
-    constructor(message: string, context: ErrorContext, cause?: unknown) {
+    constructor(message: string, context?: ErrorInstanceContext, cause?: unknown) {
         super(message, context, cause);
         this.name = 'APIError';
     }
@@ -58,7 +58,7 @@ export class APIError extends DataPosError {
 
 // Classes - Engine Error
 export class EngineError extends DataPosError {
-    constructor(message: string, context: ErrorContext, cause?: unknown) {
+    constructor(message: string, context?: ErrorInstanceContext, cause?: unknown) {
         super(message, context, cause);
         this.name = 'EngineError';
     }
@@ -66,7 +66,7 @@ export class EngineError extends DataPosError {
 
 // Classes - Fetch Error
 export class FetchError extends DataPosError {
-    constructor(message: string, context: ErrorContext, cause?: unknown) {
+    constructor(message: string, context?: ErrorInstanceContext, cause?: unknown) {
         super(message, context, cause);
         this.name = 'FetchError';
     }
@@ -74,7 +74,7 @@ export class FetchError extends DataPosError {
 
 // Classes - Operational Error
 export class OperationalError extends DataPosError {
-    constructor(message: string, context: ErrorContext, cause?: unknown) {
+    constructor(message: string, context?: ErrorInstanceContext, cause?: unknown) {
         super(message, context, cause);
         this.name = 'OperationalError';
     }
@@ -113,58 +113,57 @@ export function formatError(error: unknown, context?: ErrorContext): ErrorData {
     return { context, history };
 }
 
-// Operations - Serialise Error
-export function serialiseError(causeError: unknown): SerialisedErrorData {
-    if (causeError instanceof Error && ['DataPosError', 'APIError', 'EngineError', 'FetchError', 'OperationalError'].includes(causeError.name)) {
-        const dataPosError = causeError as DataPosError;
-        return {
-            name: dataPosError.name,
-            message: dataPosError.message,
-            context: JSON.stringify(dataPosError.context),
-            cause: dataPosError.cause ? serialiseError(dataPosError.cause) : undefined
-        };
-    } else if (causeError instanceof Error) {
-        return {
-            name: causeError.name,
-            message: causeError.message,
-            cause: causeError.cause ? serialiseError(causeError.cause) : undefined
-        };
-    } else {
-        return { name: 'Error', message: String(causeError || 'Unknown causeError.') };
+// // Operations - Serialise Error
+// export function serialiseError(causeError: unknown): SerialisedErrorData {
+//     if (causeError instanceof Error && ['DataPosError', 'APIError', 'EngineError', 'FetchError', 'OperationalError'].includes(causeError.name)) {
+//         const dataPosError = causeError as DataPosError;
+//         return {
+//             name: dataPosError.name,
+//             message: dataPosError.message,
+//             context: JSON.stringify(dataPosError.context),
+//             cause: dataPosError.cause ? serialiseError(dataPosError.cause) : undefined
+//         };
+//     } else if (causeError instanceof Error) {
+//         return {
+//             name: causeError.name,
+//             message: causeError.message,
+//             cause: causeError.cause ? serialiseError(causeError.cause) : undefined
+//         };
+//     } else {
+//         return { name: 'Error', message: String(causeError || 'Unknown causeError.') };
+//     }
+// }
+
+// Operations - Deserialise Error
+export function deserialiseError(errorData: ErrorData): Error {
+    const errorCount = errorData.history.length;
+    let current = deserialiseError1(errorData.history[0]);
+    for (let errorIndex = 1; errorIndex < errorCount; errorIndex++) {
+        const newErrorData = errorData.history[errorIndex];
+        // const wrapped = new Error(newErrorData.message, { cause: current });
+        // wrapped.name = newErrorData.name || 'Error';
+        const wrapped = deserialiseError1(newErrorData);
+        if (newErrorData.stack) wrapped.stack = newErrorData.stack;
+        current = wrapped;
     }
+    return current;
 }
 
 // Operations - Deserialise Error
-export function deserialiseError(errorData: SerialisedErrorData): Error {
+function deserialiseError1(errorData: ErrorInstanceData): Error {
     switch (errorData.name) {
         case 'APIError':
-            return new APIError(errorData.message, errorData.context ? JSON.parse(errorData.context) : undefined, errorData.cause ? deserialiseError(errorData.cause) : undefined);
+            return new APIError(errorData.message, errorData.context);
         case 'DataPosError':
-            return new DataPosError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
+            return new DataPosError(errorData.message, errorData.context);
         case 'EngineError':
-            return new EngineError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
+            return new EngineError(errorData.message, errorData.context);
         case 'FetchError':
-            return new FetchError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
+            return new FetchError(errorData.message, errorData.context);
         case 'OperationalError':
-            return new OperationalError(
-                errorData.message,
-                errorData.context ? JSON.parse(errorData.context) : undefined,
-                errorData.cause ? deserialiseError(errorData.cause) : undefined
-            );
+            return new OperationalError(errorData.message, errorData.context);
         default:
             const ErrorConstructor = errorConstructors[errorData.name] || Error;
-            return new ErrorConstructor(errorData.message, { cause: errorData.cause ? deserialiseError(errorData.cause) : undefined });
+            return new ErrorConstructor(errorData.message);
     }
 }
