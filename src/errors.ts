@@ -142,7 +142,7 @@ export function deserialiseError(errorData: ErrorData): Error {
         const newErrorData = errorData.history[errorIndex];
         // const wrapped = new Error(newErrorData.message, { cause: current });
         // wrapped.name = newErrorData.name || 'Error';
-        const wrapped = deserialiseError1(newErrorData);
+        const wrapped = deserialiseError1(newErrorData, current);
         if (newErrorData.stack) wrapped.stack = newErrorData.stack;
         current = wrapped;
     }
@@ -150,20 +150,20 @@ export function deserialiseError(errorData: ErrorData): Error {
 }
 
 // Operations - Deserialise Error
-function deserialiseError1(errorData: ErrorInstanceData): Error {
+function deserialiseError1(errorData: ErrorInstanceData, cause?: unknown): Error {
     switch (errorData.name) {
         case 'APIError':
-            return new APIError(errorData.message, errorData.context);
+            return new APIError(errorData.message, errorData.context, cause);
         case 'DataPosError':
-            return new DataPosError(errorData.message, errorData.context);
+            return new DataPosError(errorData.message, errorData.context, cause);
         case 'EngineError':
-            return new EngineError(errorData.message, errorData.context);
+            return new EngineError(errorData.message, errorData.context, cause);
         case 'FetchError':
-            return new FetchError(errorData.message, errorData.context);
+            return new FetchError(errorData.message, errorData.context, cause);
         case 'OperationalError':
-            return new OperationalError(errorData.message, errorData.context);
+            return new OperationalError(errorData.message, errorData.context, cause);
         default:
             const ErrorConstructor = errorConstructors[errorData.name] || Error;
-            return new ErrorConstructor(errorData.message);
+            return new ErrorConstructor(errorData.message, { cause });
     }
 }
