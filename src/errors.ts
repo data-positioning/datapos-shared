@@ -1,19 +1,13 @@
+// Interfaces/Types - Error Data
+export interface ErrorData extends Record<string, unknown> {
+    context: ErrorContext;
+    history: ErrorInstanceData[];
+}
+
 // Interfaces/Types - Error Context
 export interface ErrorContext extends Record<string, unknown> {
     info?: string;
     locator: string;
-}
-
-// Interfaces/Types - Error Instance Context
-export interface ErrorInstanceContext extends Record<string, unknown> {
-    fetchBody?: string;
-    locator?: string;
-}
-
-// Interfaces/Types - Error Data
-export interface ErrorData extends Record<string, unknown> {
-    context?: string;
-    history: ErrorInstanceData[];
 }
 
 // Interfaces/Types - Error Instance Data
@@ -23,6 +17,12 @@ export interface ErrorInstanceData extends Record<string, unknown> {
     message: string;
     name: string;
     stack?: string;
+}
+
+// Interfaces/Types - Error Instance Context
+export interface ErrorInstanceContext extends Record<string, unknown> {
+    fetchBody?: string;
+    locator?: string;
 }
 
 // Interfaces/Types - Serialised Error Data
@@ -87,28 +87,28 @@ export async function buildFetchError(response: { status: number; statusText: st
 }
 
 // Operations - Format Error
-export function formatError(sourceError: unknown, context?: string): ErrorData {
+export function formatError(error: unknown, context: ErrorContext): ErrorData {
     const history: ErrorInstanceData[] = [];
-    let priorError = sourceError;
-    while (priorError) {
+    let causeError = error;
+    while (causeError) {
         let errorInstanceData: ErrorInstanceData;
-        if (priorError instanceof Error && ['DataPosError', 'APIError', 'EngineError', 'FetchError', 'OperationalError'].includes(priorError.name)) {
-            const dataPosError = priorError as DataPosError;
+        if (causeError instanceof Error && ['DataPosError', 'APIError', 'EngineError', 'FetchError', 'OperationalError'].includes(causeError.name)) {
+            const dataPosError = causeError as DataPosError;
             errorInstanceData = { message: dataPosError.message, context: dataPosError.context, name: dataPosError.name, stack: dataPosError.stack };
-            priorError = dataPosError.cause;
-        } else if (priorError instanceof Error) {
-            const error = priorError as Error;
-            errorInstanceData = { message: error.message, context: {}, name: error.name, stack: error.stack };
-            priorError = error.cause;
-        } else if (priorError) {
-            errorInstanceData = { message: String(priorError), context: {}, name: 'Error' };
-            priorError = undefined;
+            causeError = dataPosError.cause;
+        } else if (causeError instanceof Error) {
+            const error = causeError as Error;
+            errorInstanceData = { message: error.message, context, name: error.name, stack: error.stack };
+            causeError = error.cause;
+        } else if (causeError) {
+            errorInstanceData = { message: String(causeError), context, name: 'Error' };
+            causeError = undefined;
         } else {
-            errorInstanceData = { message: 'Unknown error.', context: {}, name: 'Error' };
-            priorError = undefined;
+            errorInstanceData = { message: 'Unknown error.', context, name: 'Error' };
+            causeError = undefined;
         }
         if (!errorInstanceData.message.endsWith('.')) errorInstanceData.message = `${errorInstanceData.message}.`;
-        history.push(errorInstanceData);
+        history.unshift(errorInstanceData);
     }
     return { context, history };
 }
