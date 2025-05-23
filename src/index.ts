@@ -53,7 +53,7 @@ export type { Timestamp } from './timestamp'; // TODO: Review, do we need it now
 export type { TutorialConfig } from './tutorial';
 
 // Operations
-export { buildFetchError, deserialiseError, formatError } from './errors';
+export { buildFetchError, deserialiseError, serialiseError } from './errors';
 export { convertMillisecondsToTimestamp, getCurrentTimestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 export { convertODataTypeIdToUsageTypeId } from './utilities';
 export { extractExtensionFromPath, extractNameFromPath } from './utilities';

@@ -41,10 +41,10 @@ const errorConstructors: Record<string, ErrorConstructor> = { Error, TypeError, 
 class DataPosError extends Error {
     context?: ErrorInstanceContext;
     constructor(message: string, context?: ErrorInstanceContext, cause?: unknown) {
-        super(message);
+        super(message, { cause });
         this.name = 'DataPosError';
         this.context = context;
-        this.cause = cause;
+        Error.captureStackTrace?.(this, DataPosError); // Removes this constructor from the stack trace, so stack traces start at the actual point of error creation.
     }
 }
 
@@ -86,16 +86,16 @@ export async function buildFetchError(response: { status: number; statusText: st
     return new FetchError(fetchMessage, { fetchBody: await response.text(), locator });
 }
 
-// Operations - Format Error
-export function formatError(error: unknown, context?: ErrorContext): ErrorData {
+// Operations - Serialise Error
+export function serialiseError(error: unknown, context?: ErrorContext): ErrorData {
     const history: ErrorInstanceData[] = [];
     let causeError = error;
     while (causeError) {
         let errorInstanceData: ErrorInstanceData;
-        if (causeError instanceof Error && ['DataPosError', 'APIError', 'EngineError', 'FetchError', 'OperationalError'].includes(causeError.name)) {
-            const dataPosError = causeError as DataPosError;
-            errorInstanceData = { message: dataPosError.message, context: dataPosError.context, name: dataPosError.name, stack: dataPosError.stack };
-            causeError = dataPosError.cause;
+        // if (causeError instanceof Error && ['DataPosError', 'APIError', 'EngineError', 'FetchError', 'OperationalError'].includes(causeError.name)) {
+        if (causeError instanceof DataPosError) {
+            errorInstanceData = { message: causeError.message, context: causeError.context, name: causeError.name, stack: causeError.stack };
+            causeError = causeError.cause;
         } else if (causeError instanceof Error) {
             const error = causeError as Error;
             errorInstanceData = { message: error.message, name: error.name, stack: error.stack };
@@ -115,13 +115,13 @@ export function formatError(error: unknown, context?: ErrorContext): ErrorData {
 
 // // Operations - Serialise Error
 // export function serialiseError(causeError: unknown): SerialisedErrorData {
-//     if (causeError instanceof Error && ['DataPosError', 'APIError', 'EngineError', 'FetchError', 'OperationalError'].includes(causeError.name)) {
-//         const dataPosError = causeError as DataPosError;
+//     // if (causeError instanceof Error && ['DataPosError', 'APIError', 'EngineError', 'FetchError', 'OperationalError'].includes(causeError.name)) {
+//     if (causeError instanceof DataPosError) {
 //         return {
-//             name: dataPosError.name,
-//             message: dataPosError.message,
-//             context: JSON.stringify(dataPosError.context),
-//             cause: dataPosError.cause ? serialiseError(dataPosError.cause) : undefined
+//             name: causeError.name,
+//             message: causeError.message,
+//             context: JSON.stringify(causeError.context),
+//             cause: causeError.cause ? serialiseError(causeError.cause) : undefined
 //         };
 //     } else if (causeError instanceof Error) {
 //         return {
