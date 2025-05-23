@@ -137,33 +137,39 @@ export function serialiseError(error: unknown, context?: ErrorContext): ErrorDat
 // Operations - Deserialise Error
 export function deserialiseError(errorData: ErrorData): Error {
     const errorCount = errorData.history.length;
-    let current = deserialiseError1(errorData.history[0]);
+    let current = deserialiseErrorInstance(errorData.history[0]);
     for (let errorIndex = 1; errorIndex < errorCount; errorIndex++) {
         const newErrorData = errorData.history[errorIndex];
-        // const wrapped = new Error(newErrorData.message, { cause: current });
-        // wrapped.name = newErrorData.name || 'Error';
-        const wrapped = deserialiseError1(newErrorData, current);
-        if (newErrorData.stack) wrapped.stack = newErrorData.stack;
+        const wrapped = deserialiseErrorInstance(newErrorData, current);
         current = wrapped;
     }
     return current;
 }
 
-// Operations - Deserialise Error
-function deserialiseError1(errorData: ErrorInstanceData, cause?: unknown): Error {
+// Operations - Deserialise Error Instance
+function deserialiseErrorInstance(errorData: ErrorInstanceData, cause?: unknown): Error {
+    let error: Error;
     switch (errorData.name) {
         case 'APIError':
-            return new APIError(errorData.message, errorData.context, cause);
+            error = new APIError(errorData.message, errorData.context, cause);
+            break;
         case 'DataPosError':
-            return new DataPosError(errorData.message, errorData.context, cause);
+            error = new DataPosError(errorData.message, errorData.context, cause);
+            break;
         case 'EngineError':
-            return new EngineError(errorData.message, errorData.context, cause);
+            error = new EngineError(errorData.message, errorData.context, cause);
+            break;
         case 'FetchError':
-            return new FetchError(errorData.message, errorData.context, cause);
+            error = new FetchError(errorData.message, errorData.context, cause);
+            break;
         case 'OperationalError':
-            return new OperationalError(errorData.message, errorData.context, cause);
+            error = new OperationalError(errorData.message, errorData.context, cause);
+            break;
         default:
             const ErrorConstructor = errorConstructors[errorData.name] || Error;
-            return new ErrorConstructor(errorData.message, { cause });
+            error = new ErrorConstructor(errorData.message, { cause });
+            break;
     }
+    if (errorData.stack) error.stack = errorData.stack;
+    return error;
 }
