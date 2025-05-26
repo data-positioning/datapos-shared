@@ -113,27 +113,6 @@ export function serialiseError(error: unknown, context?: ErrorContext): ErrorDat
     return { context, history };
 }
 
-// // Operations - Serialise Error
-// export function serialiseError(causeError: unknown): SerialisedErrorData {
-//     // if (causeError instanceof Error && ['DataPosError', 'APIError', 'EngineError', 'FetchError', 'OperationalError'].includes(causeError.name)) {
-//     if (causeError instanceof DataPosError) {
-//         return {
-//             name: causeError.name,
-//             message: causeError.message,
-//             context: JSON.stringify(causeError.context),
-//             cause: causeError.cause ? serialiseError(causeError.cause) : undefined
-//         };
-//     } else if (causeError instanceof Error) {
-//         return {
-//             name: causeError.name,
-//             message: causeError.message,
-//             cause: causeError.cause ? serialiseError(causeError.cause) : undefined
-//         };
-//     } else {
-//         return { name: 'Error', message: String(causeError || 'Unknown causeError.') };
-//     }
-// }
-
 // Operations - Deserialise Error
 export function deserialiseError(errorData: ErrorData): Error {
     const errorCount = errorData.history.length;
