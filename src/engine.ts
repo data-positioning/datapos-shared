@@ -2,7 +2,9 @@ import type { ConnectionConfig } from './connection';
 import type { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveResult } from './connector';
 import type { DataViewPreviewConfig, EncodingConfig } from './dataView';
 
-type ConnectorInterface = (
+type InitialiseEngine = (settings: InitialiseSettings) => Promise<void>;
+
+type ProcessConnectorRequest = (
     id: string,
     connectionConfig: ConnectionConfig,
     settings: ConnectorOperationSettings,
@@ -18,7 +20,5 @@ export interface Engine {
 
 export interface EngineWorkerInterface {
     initialise: InitialiseEngine;
-    connectorInterface: ConnectorInterface;
+    processConnectorRequest: ProcessConnectorRequest;
 }
-
-type InitialiseEngine = (settings: InitialiseSettings) => Promise<void>;
