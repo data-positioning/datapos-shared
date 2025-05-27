@@ -88,7 +88,7 @@ type TChartSeriesTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' 
 //     localeId?: string;
 // }
 
-// // Interfaces/Types - Basic Chart Options
+// // Interfaces/Types - Basic Chart Options - TODO: Do we need to extend Record?
 // export interface IBasicChartOptions extends Record<string, unknown> {
 //     isPolar: boolean;
 //     // series: { label: string; typeId: TBasicChartSeriesTypeId | undefined; values: number[] }[];
