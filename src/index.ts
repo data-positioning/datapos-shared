@@ -35,7 +35,7 @@ export type { ConnectorInterfaceResult, Engine, EngineWorkerInterface } from './
 
 // Interfaces/Types - Error
 export { APIError, EngineError, FetchError, OperationalError } from './errors';
-export type { ErrorContext, ErrorData, ErrorInstanceContext, ErrorInstanceData } from './errors';
+export type { SerialisedError } from './errors';
 
 // Interfaces/Types - Event Query
 export type { EventQueryConfig } from './eventQuery';
@@ -53,7 +53,7 @@ export type { Timestamp } from './timestamp'; // TODO: Review, do we need it now
 export type { TutorialConfig } from './tutorial';
 
 // Operations
-export { buildFetchError, deserialiseError, serialiseError } from './errors';
+export { buildFetchError, serialiseError } from './errors';
 export { convertMillisecondsToTimestamp, getCurrentTimestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 export { convertODataTypeIdToUsageTypeId } from './utilities';
 export { extractExtensionFromPath, extractNameFromPath } from './utilities';
