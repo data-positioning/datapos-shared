@@ -12,24 +12,24 @@ export interface Connector {
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
 
-    abort?(connector: Connector): void; // Abort the active long running operation for a specified connection.
+    abortOperation?(connector: Connector): void; // Abort the active long running operation for a specified connection.
     authenticate?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection.
-    create?(connector: Connector, settings: CreateSettings): Promise<void>; // Create an object for a specified connection.
-    describe?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
-    drop?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
-    find?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
-    get?(connector: Connector, getSettings: GetSettings): Promise<GetResult>; // Get a record for an object for a specified connection.
-    list?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List nodes in a folder for a specified connection.
-    preview?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
-    remove?(connector: Connector, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
-    retrieve?(
+    createObject?(connector: Connector, settings: CreateSettings): Promise<void>; // Create an object for a specified connection.
+    describeConnection?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
+    dropObject?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
+    findObject?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
+    getObject?(connector: Connector, getSettings: GetSettings): Promise<GetResult>; // Get a record for an object for a specified connection.
+    listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List nodes in a folder for a specified connection.
+    previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
+    removeRecords?(connector: Connector, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
+    retrieveRecords?(
         connector: Connector,
         settings: RetrieveSettings,
         chunk: (records: (string[] | Record<string, unknown>)[]) => void,
         complete: (result: RetrieveSummary) => void,
         tools?: RetrieveTools
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
-    upsert?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
+    upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
 
 // Interfaces/Types - Connector Callback Data
