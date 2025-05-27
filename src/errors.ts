@@ -10,7 +10,7 @@ export interface SerialisedError extends Record<string, unknown> {
 }
 
 // Classes - DataPos Error - Base DataPos error class.
-class DataPosError extends Error {
+export class DataPosError extends Error {
     locator: string;
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, options);
