@@ -1,5 +1,5 @@
 // Interfaces/Types - Serialised Error Data
-export interface SerialisedError extends Record<string, unknown> {
+export interface SerialisedError {
     body?: string;
     cause?: unknown;
     info?: string;
