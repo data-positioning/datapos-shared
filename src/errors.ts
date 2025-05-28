@@ -20,29 +20,49 @@ export class DataPosError extends Error {
     }
 }
 
-// Classes - API Error
-export class APIError extends DataPosError {
+// Classes - Application Error
+export class ApplicationError extends DataPosError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
         this.name = 'APIError';
     }
 }
 
-// Classes - Engine Error
-export class EngineError extends DataPosError {
+// Classes - Application Error -> API Error
+export class APIError extends ApplicationError {
+    constructor(message: string, locator: string, options?: ErrorOptions) {
+        super(message, locator, options);
+        this.name = 'APIError';
+    }
+}
+
+// Classes - Application Error -> Engine Error
+export class EngineError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
         this.name = 'EngineError';
     }
 }
 
-// Classes - Fetch Error
-export class FetchError extends DataPosError {
+// Classes - Application Error -> Fetch Error
+export class FetchError extends ApplicationError {
     body: string;
     constructor(message: string, locator: string, body: string, options?: ErrorOptions) {
         super(message, locator, options);
         this.name = 'FetchError';
         this.body = body;
+    }
+}
+
+// Classes - Application Error -> Vue Handled Error
+export class VueHandledError extends ApplicationError {
+    componentName?: string;
+    info: string;
+    constructor(message: string, locator: string, info: string, componentName?: string, options?: ErrorOptions) {
+        super(message, locator, options);
+        this.name = 'VueHandledError';
+        this.info = info;
+        this.componentName = componentName;
     }
 }
 
@@ -54,13 +74,19 @@ export class OperationalError extends DataPosError {
     }
 }
 
-// Classes - Vue Error
-export class VueError extends DataPosError {
-    info: string;
-    constructor(message: string, locator: string, info: string, options?: ErrorOptions) {
+// Classes - Window Handled Runtime Error
+export class WindowHandledRuntimeError extends ApplicationError {
+    constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
-        this.name = 'VueError';
-        this.info = info;
+        this.name = 'WindowHandledRuntimeError';
+    }
+}
+
+// Classes - Window Handled Promise Rejection Error
+export class WindowHandledPromiseRejectionError extends ApplicationError {
+    constructor(message: string, locator: string, options?: ErrorOptions) {
+        super(message, locator, options);
+        this.name = 'WindowHandledPromiseRejectionError';
     }
 }
 
@@ -83,7 +109,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
         if (cause instanceof FetchError) {
             serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
             cause = cause.cause;
-        } else if (cause instanceof VueError) {
+        } else if (cause instanceof VueHandledError) {
             serialisedError = { info: cause.info, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
             cause = cause.cause;
         } else if (cause instanceof DataPosError) {
