@@ -34,7 +34,7 @@ export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig,
 export type { ConnectorInterfaceResult, Engine, EngineWorkerInterface } from './engine';
 
 // Interfaces/Types - Error
-export { APIError, DataPosError, EngineError, FetchError, OperationalError } from './errors';
+export { APIError, DataPosError, EngineError, FetchError, OperationalError, VueError } from './errors';
 export type { SerialisedError } from './errors';
 
 // Interfaces/Types - Event Query
