@@ -97,6 +97,10 @@ export async function buildFetchError(response: { status: number; statusText: st
     return new FetchError(fetchMessage, locator, body);
 }
 
+// Operations - Concatenate Serialised Error Messages
+export function concatenateSerialisedErrorMessages(serialisedErrors: SerialisedError[]): string {
+    return serialisedErrors.map((serialisedError) => serialisedError.message).join(' ');
+}
 // Operations - Normalise To Error
 export function normalizeToError(value: unknown, fallbackMessage = 'Unknown error.'): Error {
     if (value instanceof Error) return value;
@@ -138,7 +142,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
             cause = undefined;
         }
         if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.'; // Terminate with "." if message does not already end in "...", ".", "!" or "?"."
-        serialisedErrors.unshift(serialisedError);
+        serialisedErrors.push(serialisedError);
     }
     return serialisedErrors;
 }
