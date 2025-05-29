@@ -2,6 +2,7 @@
 export interface SerialisedError {
     body?: string;
     cause?: unknown;
+    componentName?: string;
     info?: string;
     locator: string;
     message: string;
@@ -10,7 +11,7 @@ export interface SerialisedError {
 }
 
 // Classes - DataPos Error - Base DataPos error class.
-export class DataPosError extends Error {
+class DataPosError extends Error {
     locator: string;
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, options);
@@ -24,11 +25,11 @@ export class DataPosError extends Error {
 export class ApplicationError extends DataPosError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
-        this.name = 'APIError';
+        this.name = 'ApplicationError';
     }
 }
 
-// Classes - Application Error -> API Error
+// Classes - Application Error - API Error
 export class APIError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
@@ -36,7 +37,7 @@ export class APIError extends ApplicationError {
     }
 }
 
-// Classes - Application Error -> Engine Error
+// Classes - Application Error - Engine Error
 export class EngineError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
@@ -44,7 +45,7 @@ export class EngineError extends ApplicationError {
     }
 }
 
-// Classes - Application Error -> Fetch Error
+// Classes - Application Error - Fetch Error
 export class FetchError extends ApplicationError {
     body: string;
     constructor(message: string, locator: string, body: string, options?: ErrorOptions) {
@@ -54,7 +55,7 @@ export class FetchError extends ApplicationError {
     }
 }
 
-// Classes - Application Error -> Vue Handled Error
+// Classes - Application Error - Vue Handled Error
 export class VueHandledError extends ApplicationError {
     componentName?: string;
     info: string;
@@ -121,7 +122,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
             serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
             cause = cause.cause;
         } else if (cause instanceof VueHandledError) {
-            serialisedError = { info: cause.info, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
+            serialisedError = { componentName: cause.componentName, info: cause.info, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
             cause = cause.cause;
         } else if (cause instanceof DataPosError) {
             serialisedError = { locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
