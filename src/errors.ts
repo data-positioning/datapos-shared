@@ -1,7 +1,6 @@
 // Interfaces/Types - Serialised Error Data
 export interface SerialisedError {
     body?: string;
-    cause?: unknown;
     componentName?: string;
     info?: string;
     locator: string;
