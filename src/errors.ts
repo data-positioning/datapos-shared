@@ -97,6 +97,17 @@ export async function buildFetchError(response: { status: number; statusText: st
     return new FetchError(fetchMessage, locator, body);
 }
 
+// Operations - Normalise To Error
+export function normalizeToError(value: unknown, fallbackMessage = 'Unknown error.'): Error {
+    if (value instanceof Error) return value;
+    if (typeof value === 'string') return new Error(value);
+    try {
+        return new Error(JSON.stringify(value ?? fallbackMessage));
+    } catch {
+        return new Error(fallbackMessage);
+    }
+}
+
 // Operations - Serialise Error
 export function serialiseError(error?: unknown): SerialisedError[] {
     const seenCauses = new Set();
