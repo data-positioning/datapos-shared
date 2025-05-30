@@ -34,7 +34,7 @@ export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig,
 export type { ConnectorInterfaceResult, Engine, EngineWorkerInterface } from './engine';
 
 // Interfaces/Types - Error
-export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError } from './errors';
+export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from './errors';
 export type { SerialisedError } from './errors';
 
 // Interfaces/Types - Event Query

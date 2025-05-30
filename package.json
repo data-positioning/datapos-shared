@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-share-core",
     "license": "ISC",
     "private": false,
-    "version": "0.1.864",
+    "version": "0.1.865",
     "type": "module",
     "files": [
         "dist"

@@ -54,8 +54,8 @@ export class FetchError extends ApplicationError {
     }
 }
 
-// Classes - Application Error - Vue Handled Error
-export class VueHandledError extends ApplicationError {
+// Classes - Application Error - Vue Error
+export class VueError extends ApplicationError {
     componentName?: string;
     info: string;
     constructor(message: string, locator: string, info: string, componentName?: string, options?: ErrorOptions) {
@@ -66,27 +66,27 @@ export class VueHandledError extends ApplicationError {
     }
 }
 
-// Classes - Operational Error
-export class OperationalError extends DataPosError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
-        super(message, locator, options);
-        this.name = 'OperationalError';
-    }
-}
-
-// Classes - Window Handled Runtime Error
-export class WindowHandledRuntimeError extends ApplicationError {
+// Classes - Application Error - Window Runtime Error
+export class WindowRuntimeError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
         this.name = 'WindowHandledRuntimeError';
     }
 }
 
-// Classes - Window Handled Promise Rejection Error
-export class WindowHandledPromiseRejectionError extends ApplicationError {
+// Classes - Application Error - Window Promise Rejection Error
+export class WindowPromiseRejectionError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
         this.name = 'WindowHandledPromiseRejectionError';
+    }
+}
+
+// Classes - Operational Error
+export class OperationalError extends DataPosError {
+    constructor(message: string, locator: string, options?: ErrorOptions) {
+        super(message, locator, options);
+        this.name = 'OperationalError';
     }
 }
 
@@ -124,7 +124,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
         if (cause instanceof FetchError) {
             serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
             cause = cause.cause;
-        } else if (cause instanceof VueHandledError) {
+        } else if (cause instanceof VueError) {
             serialisedError = { componentName: cause.componentName, info: cause.info, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
             cause = cause.cause;
         } else if (cause instanceof DataPosError) {
