@@ -20,7 +20,7 @@ interface DimensionGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, string>;
-    dimensionConfigs: DimensionConfig[];
+    dimensionRefs: ComponentRef[];
 }
 
 // Interfaces/Types - Entity Group Configuration
@@ -28,7 +28,7 @@ interface EntityGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, string>;
-    entityConfigs: EntityConfig[];
+    entityRefs: ComponentRef[];
 }
 
 // Interfaces/Types - Secondary Measure Group Configuration
@@ -36,7 +36,7 @@ interface SecondaryMeasureGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, string>;
-    secondaryMeasureConfigs: SecondaryMeasureConfig[];
+    secondaryMeasureRefs: ComponentRef[];
 }
 
 // Interfaces/Types - View Group Configuration
@@ -44,7 +44,7 @@ interface ViewGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, string>;
-    viewConfigs: ViewConfig[];
+    viewRefs: ComponentRef[];
 }
 
 // Interfaces/Types - Dimension Configuration
