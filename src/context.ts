@@ -3,7 +3,7 @@ import type { ComponentConfig } from './component';
 
 // Interfaces/Types - Focus Configuration
 export interface FocusConfig extends ComponentConfig {
-    modelConfigs: ModelConfig[];
+    modelRefs: ModelRef[];
 }
 
 // Interfaces/Types - Model Configuration
@@ -13,6 +13,12 @@ export interface ModelConfig extends ComponentConfig {
     entityGroupConfigs: EntityGroupConfig[];
     secondaryMeasureGroupConfigs: SecondaryMeasureGroupConfig[];
     viewGroupConfigs: ViewGroupConfig[];
+}
+
+// Interfaces/Types - Model References
+export interface ModelRef {
+    id: string;
+    label: Record<string, string>;
 }
 
 // Interfaces/Types - Dimension Group Configuration
