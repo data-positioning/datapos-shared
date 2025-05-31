@@ -1,36 +1,67 @@
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
 
-// Interfaces/Types - Context Configuration
-export interface ContextConfig extends ComponentConfig {
-    focuses: FocusConfig[];
-}
-
 // Interfaces/Types - Focus Configuration
 export interface FocusConfig extends ComponentConfig {
-    models: ModelConfig[];
+    modelConfigs: ModelConfig[];
 }
 
 // Interfaces/Types - Model Configuration
 export interface ModelConfig extends ComponentConfig {
-    dimensions: DimensionConfig[];
-    entities: EntityConfig[];
-    views: ViewConfig[];
+    diagramURL: string;
+    dimensionGroupConfigs: DimensionGroupConfig[];
+    entityGroupConfigs: EntityGroupConfig[];
+    secondaryMeasureGroupConfigs: SecondaryMeasureGroupConfig[];
+    viewGroupConfigs: ViewGroupConfig[];
 }
 
-// Config - Dimension
-export interface DimensionConfig extends ComponentConfig {
+// Interfaces/Types - Dimension Group Configuration
+interface DimensionGroupConfig {
     id: string;
+    label: Record<string, string>;
+    description: Record<string, string>;
+    dimensionConfigs: DimensionConfig[];
+}
+
+// Interfaces/Types - Entity Group Configuration
+interface EntityGroupConfig {
+    id: string;
+    label: Record<string, string>;
+    description: Record<string, string>;
+    entityConfigs: EntityConfig[];
+}
+
+// Interfaces/Types - Secondary Measure Group Configuration
+interface SecondaryMeasureGroupConfig {
+    id: string;
+    label: Record<string, string>;
+    description: Record<string, string>;
+    secondaryMeasureConfigs: SecondaryMeasureConfig[];
+}
+
+// Interfaces/Types - View Group Configuration
+interface ViewGroupConfig {
+    id: string;
+    label: Record<string, string>;
+    description: Record<string, string>;
+    viewConfigs: ViewConfig[];
+}
+
+// Interfaces/Types - Dimension Configuration
+export interface DimensionConfig {
+    id: string;
+    label: Record<string, string>;
     hierarchies: HierarchyConfig[];
-    label: Record<string, string>;
 }
-export interface HierarchyConfig extends ComponentConfig {
+export interface HierarchyConfig {
     id: string;
     label: Record<string, string>;
 }
 
-// Config - Entity
-export interface EntityConfig extends ComponentConfig {
+// Interfaces/Types - Entity Configuration
+export interface EntityConfig {
+    id: string;
+    label: Record<string, string>;
     labelPlural: Record<string, string>;
     characteristics: EntityCharacteristicConfig[];
     computations: EntityComputationConfig[];
@@ -50,9 +81,16 @@ export interface EntityEventConfig {
     labelState: Record<string, string>;
 }
 
-// Config - View
-export interface ViewConfig extends ComponentConfig {
-    placeholder: string;
+// Interfaces/Types - Secondary Measure Configuration
+export interface SecondaryMeasureConfig {
+    id: string;
+    label: Record<string, string>;
+}
+
+// Interfaces/Types - View Configuration
+export interface ViewConfig {
+    id: string;
+    label: Record<string, string>;
 }
 
 // ...

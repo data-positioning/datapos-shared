@@ -1,6 +1,6 @@
-# Datapos - Core Share Library
+# Datapos - Shared Library
 
-A TypeScript library of core declarations and utilities shared between Datapos applications and plugin components.
+A TypeScript library of declarations and utilities shared between Datapos applications and plugin components.
 
 ## Installation
 
@@ -72,27 +72,27 @@ The following diagram illustrates the connection entry class hierarchy, showcasi
 
 ### Conversion
 
--   convertODataTypeToDataType
+- convertODataTypeToDataType
 
 ### Extraction
 
--   extractDirectoryPathFromEntryPath
--   extractExtensionFromEntryPath
--   extractLastFolderNameFromFolderPath
+- extractDirectoryPathFromEntryPath
+- extractExtensionFromEntryPath
+- extractLastFolderNameFromFolderPath
 
 ### Formatting
 
--   formatNumberAsDecimalNumber
--   formatNumberAsStorageSize
--   formatNumberAsWholeNumber
+- formatNumberAsDecimalNumber
+- formatNumberAsStorageSize
+- formatNumberAsWholeNumber
 
 ### Lookup
 
--   lookupMimeTypeForFileExtension
+- lookupMimeTypeForFileExtension
 
 ### Security
 
--   establishVendorAccessToken
+- establishVendorAccessToken
 
 ## Repository Management Commands
 
