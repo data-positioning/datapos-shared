@@ -16,7 +16,7 @@ export interface ModelConfig extends ComponentConfig {
 }
 
 // Interfaces/Types - Dimension Group Configuration
-interface DimensionGroupConfig {
+export interface DimensionGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, string>;
@@ -24,7 +24,7 @@ interface DimensionGroupConfig {
 }
 
 // Interfaces/Types - Entity Group Configuration
-interface EntityGroupConfig {
+export interface EntityGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, string>;
@@ -32,7 +32,7 @@ interface EntityGroupConfig {
 }
 
 // Interfaces/Types - Secondary Measure Group Configuration
-interface SecondaryMeasureGroupConfig {
+export interface SecondaryMeasureGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, string>;
@@ -40,7 +40,7 @@ interface SecondaryMeasureGroupConfig {
 }
 
 // Interfaces/Types - View Group Configuration
-interface ViewGroupConfig {
+export interface ViewGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, string>;

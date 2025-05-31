@@ -23,7 +23,17 @@ export type { RetrieveResult, RetrieveSettings, RetrieveSummary, RetrieveTools }
 export type { UpsertSettings } from './connector';
 
 // Interfaces/Types - Context
-export type { FocusConfig, ModelConfig, DimensionConfig, EntityCharacteristicConfig, EntityComputationConfig } from './context';
+export type {
+    FocusConfig,
+    ModelConfig,
+    DimensionConfig,
+    DimensionGroupConfig,
+    EntityCharacteristicConfig,
+    EntityGroupConfig,
+    EntityComputationConfig,
+    SecondaryMeasureGroupConfig,
+    ViewGroupConfig
+} from './context';
 export type { EntityConfig, EntityEventConfig, HierarchyConfig, ViewConfig, Event } from './context';
 
 // Interfaces/Types - Data View
