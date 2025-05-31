@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "ISC",
     "private": false,
-    "version": "0.1.877",
+    "version": "0.1.878",
     "type": "module",
     "files": [
         "dist"

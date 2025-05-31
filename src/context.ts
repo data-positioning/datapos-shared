@@ -19,7 +19,7 @@ export interface ModelConfig extends ComponentConfig {
 export interface DimensionGroupConfig {
     id: string;
     label: Record<string, string>;
-    description?: Record<string, string>;
+    description?: Record<string, unknown>[];
     dimensionRefs: ComponentRef[];
 }
 
@@ -27,7 +27,7 @@ export interface DimensionGroupConfig {
 export interface EntityGroupConfig {
     id: string;
     label: Record<string, string>;
-    description?: Record<string, string>;
+    description?: Record<string, unknown>[];
     entityRefs: ComponentRef[];
 }
 
@@ -35,7 +35,7 @@ export interface EntityGroupConfig {
 export interface SecondaryMeasureGroupConfig {
     id: string;
     label: Record<string, string>;
-    description?: Record<string, string>;
+    description?: Record<string, unknown>[];
     secondaryMeasureRefs: ComponentRef[];
 }
 
@@ -43,7 +43,7 @@ export interface SecondaryMeasureGroupConfig {
 export interface ViewGroupConfig {
     id: string;
     label: Record<string, string>;
-    description?: Record<string, string>;
+    description?: Record<string, unknown>[];
     viewRefs: ComponentRef[];
 }
 
