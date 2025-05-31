@@ -14,6 +14,12 @@ export interface ComponentConfig {
     typeId: ComponentTypeId;
 }
 
+// Interfaces/Types - Component References
+export interface ComponentRef {
+    id: string;
+    label: Record<string, string>;
+}
+
 export type ComponentTypeId = 'connection' | 'connector' | 'focus' | 'model' | 'dataView' | 'eventQuery' | 'presentation' | 'presenter' | 'tutorial'; // TODO: Review these.
 
 // Interfaces/Types - Component Status

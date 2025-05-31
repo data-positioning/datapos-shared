@@ -2,7 +2,7 @@
 export { DefaultTimestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
 // Interfaces/Types - Component
-export type { ComponentConfig, ComponentStatus, ComponentStatusId, ComponentTypeId } from './component';
+export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from './component';
 
 // Interfaces/Types - Connection
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from './connection';
@@ -23,7 +23,7 @@ export type { RetrieveResult, RetrieveSettings, RetrieveSummary, RetrieveTools }
 export type { UpsertSettings } from './connector';
 
 // Interfaces/Types - Context
-export type { FocusConfig, ModelConfig, ModelRef, DimensionConfig, EntityCharacteristicConfig, EntityComputationConfig } from './context';
+export type { FocusConfig, ModelConfig, DimensionConfig, EntityCharacteristicConfig, EntityComputationConfig } from './context';
 export type { EntityConfig, EntityEventConfig, HierarchyConfig, ViewConfig, Event } from './context';
 
 // Interfaces/Types - Data View

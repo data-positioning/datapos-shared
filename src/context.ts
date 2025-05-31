@@ -1,9 +1,9 @@
 // Dependencies - Framework
-import type { ComponentConfig } from './component';
+import type { ComponentConfig, ComponentRef } from './component';
 
 // Interfaces/Types - Focus Configuration
 export interface FocusConfig extends ComponentConfig {
-    modelRefs: ModelRef[];
+    modelRefs: ComponentRef[];
 }
 
 // Interfaces/Types - Model Configuration
@@ -13,12 +13,6 @@ export interface ModelConfig extends ComponentConfig {
     entityGroupConfigs: EntityGroupConfig[];
     secondaryMeasureGroupConfigs: SecondaryMeasureGroupConfig[];
     viewGroupConfigs: ViewGroupConfig[];
-}
-
-// Interfaces/Types - Model References
-export interface ModelRef {
-    id: string;
-    label: Record<string, string>;
 }
 
 // Interfaces/Types - Dimension Group Configuration
