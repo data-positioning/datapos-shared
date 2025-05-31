@@ -5,7 +5,7 @@ A TypeScript library of core declarations and utilities shared between Datapos a
 ## Installation
 
 ```
-npm install --save-dev @datapos-share-core
+npm install --save-dev @datapos-shared
 ```
 
 ## Component Configuration Declarations

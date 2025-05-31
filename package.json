@@ -1,16 +1,16 @@
 {
-    "name": "@datapos/datapos-share-core",
+    "name": "@datapos/datapos-shared",
     "license": "ISC",
     "private": false,
-    "version": "0.1.865",
+    "version": "0.1.866",
     "type": "module",
     "files": [
         "dist"
     ],
-    "module": "./dist/datapos-share-core.es.js",
+    "module": "./dist/datapos-shared.es.js",
     "exports": {
         ".": {
-            "import": "./dist/datapos-share-core.es.js",
+            "import": "./dist/datapos-shared.es.js",
             "types": "./dist/types/src/index.d.ts"
         }
     },

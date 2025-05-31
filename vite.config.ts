@@ -7,7 +7,7 @@ export default defineConfig({
     build: {
         lib: {
             entry: resolve('src/index.ts'),
-            fileName: (format) => `datapos-share-core.${format}.js`,
+            fileName: (format) => `datapos-shared.${format}.js`,
             formats: ['es'],
             name: 'DataposShareCore'
         },
