@@ -8,7 +8,7 @@ export interface FocusConfig extends ComponentConfig {
 
 // Interfaces/Types - Model Configuration
 export interface ModelConfig extends ComponentConfig {
-    diagramURL: string;
+    diagramURL?: string;
     dimensionGroupConfigs: DimensionGroupConfig[];
     entityGroupConfigs: EntityGroupConfig[];
     secondaryMeasureGroupConfigs: SecondaryMeasureGroupConfig[];
