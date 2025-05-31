@@ -2,7 +2,7 @@
 import type { Timestamp } from './timestamp';
 
 // Interfaces/Types - Component Configuration - TODO: Do we need to extend Record?
-export interface ComponentConfig extends Record<string, unknown> {
+export interface ComponentConfig {
     description?: Record<string, string>;
     firstCreatedAt?: Timestamp;
     id: string;
