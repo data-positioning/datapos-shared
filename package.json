@@ -1,8 +1,8 @@
 {
     "name": "@datapos/datapos-shared",
-    "license": "ISC",
+    "license": "MIT",
     "private": false,
-    "version": "0.1.881",
+    "version": "0.3.1",
     "type": "module",
     "files": [
         "dist"
@@ -17,15 +17,15 @@
     "types": "./dist/types/src/index.d.ts",
     "devDependencies": {
         "@datapos/datapos-development": "^0.3.2",
-        "@typescript-eslint/eslint-plugin": "^8.32.0",
-        "@typescript-eslint/parser": "^8.32.0",
+        "@typescript-eslint/eslint-plugin": "^8.33.1",
+        "@typescript-eslint/parser": "^8.33.1",
         "csv-parse": "^5.6.0",
-        "eslint": "^9.26.0",
+        "eslint": "^9.28.0",
         "eslint-plugin-import": "^2.31.0",
         "prettier": "^3.5.3",
         "typescript": "^5.8.3",
         "vite": "^6.3.5",
-        "vite-plugin-dts": "^4.5.3"
+        "vite-plugin-dts": "^4.5.4"
     },
     "scripts": {
         "audit": "npm audit",
@@ -35,9 +35,9 @@
         "document": "npx npm-license-crawler --onlyDirectDependencies --production --relativeLicensePath --json LICENSES.json",
         "format": "prettier --write *.ts",
         "lint": "npx eslint **/*.ts",
-        "publishToNPM": "npm publish",
+        "publishToNPM": "npm publish --access public",
         "release": "npm run syncWithGitHub && npm run build && npm run publishToNPM",
-        "syncWithGitHub": "npm run bumpVersion && node -e \"require('@datapos/datapos-development/index').syncWithGitHub()\"",
+        "syncWithGitHub": "npm run bumpVersion && node -e \"require('@datapos/datapos-development').syncWithGitHub()\"",
         "test": "echo \"***** TEST SCRIPT NOT IMPLEMENTED. *****\"",
         "updateDependencies": "npm run updateOperations",
         "updateOperations": "npm install --save-dev @datapos/datapos-development@latest"

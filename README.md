@@ -1,11 +1,11 @@
 # Datapos - Shared Library
 
-A TypeScript library of declarations and utilities shared between Datapos applications and plugin components.
+A TypeScript library of declarations and utilities shared between Datapos repositories.
 
 ## Installation
 
 ```
-npm install --save-dev @datapos-shared
+npm install -D @datapos-shared
 ```
 
 ## Component Configuration Declarations
