@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "ISC",
     "private": false,
-    "version": "0.1.880",
+    "version": "0.1.881",
     "type": "module",
     "files": [
         "dist"
@@ -30,7 +30,7 @@
     "scripts": {
         "audit": "npm audit",
         "build": "npx vite build",
-        "bumpVersion": "node -e \"require('@datapos/datapos-development/index').bumpVersion()\"",
+        "bumpVersion": "node -e \"require('@datapos/datapos-development').bumpVersion()\"",
         "check": "npx npm-check-updates && npm outdated",
         "document": "npx npm-license-crawler --onlyDirectDependencies --production --relativeLicensePath --json LICENSES.json",
         "format": "prettier --write *.ts",
