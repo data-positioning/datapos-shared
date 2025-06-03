@@ -1,6 +1,6 @@
-# Datapos - Shared Library
+# DataPos Shared Library
 
-A TypeScript library of declarations and utilities shared between Datapos repositories.
+A TypeScript library containing common declarations and utilities used across DataPos repositories.
 
 ## Installation
 
