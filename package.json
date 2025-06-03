@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "MIT",
     "private": false,
-    "version": "0.3.2",
+    "version": "0.3.3",
     "type": "module",
     "files": [
         "dist"
@@ -40,6 +40,6 @@
         "syncWithGitHub": "npm run bumpVersion && node -e \"require('@datapos/datapos-development').syncWithGitHub()\"",
         "test": "echo \"***** TEST SCRIPT NOT IMPLEMENTED. *****\"",
         "updateDependencies": "npm run updateOperations",
-        "updateOperations": "npm install --save-dev @datapos/datapos-development@latest"
+        "updateOperations": "npm install -D @datapos/datapos-development@latest"
     }
 }
