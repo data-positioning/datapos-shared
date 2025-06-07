@@ -27,15 +27,15 @@ export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notA
 export type ComponentStatus = { id: string; color?: string; label: string };
 type ComponentStatusConfig = { id: string; color?: string; label: Record<string, string> };
 const componentStatuses: ComponentStatusConfig[] = [
-    { id: 'alpha', color: '#d62728', label: { en: 'alpha' } },
-    { id: 'beta', color: '#8c564b', label: { en: 'beta' } },
+    { id: 'alpha', color: 'warning', label: { en: 'alpha' } },
+    { id: 'beta', color: 'success', label: { en: 'beta' } },
     { id: 'generalAvailability', label: { en: '' } },
     { id: 'notApplicable', label: { en: 'not-applicable' } },
-    { id: 'preAlpha', color: '#d62728', label: { en: 'pre-alpha' } },
-    { id: 'proposed', color: '#666666', label: { en: 'proposed' } },
-    { id: 'releaseCandidate', color: '#ff7f0e', label: { en: 'release-candidate' } },
-    { id: 'unavailable', color: '#d62728', label: { en: 'unavailable' } },
-    { id: 'underReview', color: '#666666', label: { en: 'under-review' } }
+    { id: 'preAlpha', color: 'warning', label: { en: 'pre-alpha' } },
+    { id: 'proposed', color: 'neutral', label: { en: 'proposed' } },
+    { id: 'releaseCandidate', label: { en: 'release-candidate' } },
+    { id: 'unavailable', color: 'neutral', label: { en: 'unavailable' } },
+    { id: 'underReview', color: 'neutral', label: { en: 'under-review' } }
 ];
 export const getComponentStatus = (id: string, localeId = 'en'): ComponentStatus => {
     const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
