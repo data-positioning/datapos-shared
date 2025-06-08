@@ -23,10 +23,12 @@ export interface ComponentRef {
 
 export type ComponentTypeId = 'app' | 'connection' | 'connector' | 'engine' | 'focus' | 'model' | 'dataView' | 'eventQuery' | 'presentation' | 'presenter' | 'tutorial'; // TODO: Review these.
 
+type StatusColor = 'success' | 'error' | 'primary' | 'secondary' | 'info' | 'warning' | 'neutral';
+
 // Interfaces/Types - Component Status
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
-export type ComponentStatus = { id: string; color?: string; label: string };
-type ComponentStatusConfig = { id: string; color?: string; label: Record<string, string> };
+export type ComponentStatus = { id: string; color?: StatusColor; label: string };
+type ComponentStatusConfig = { id: string; color?: StatusColor; label: Record<string, string> };
 const componentStatuses: ComponentStatusConfig[] = [
     { id: 'alpha', color: 'warning', label: { en: 'alpha' } },
     { id: 'beta', color: 'success', label: { en: 'beta' } },
@@ -41,5 +43,5 @@ const componentStatuses: ComponentStatusConfig[] = [
 export const getComponentStatus = (id: string, localeId = 'en'): ComponentStatus => {
     const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
     if (componentStatus) return { ...componentStatus, label: componentStatus.label[localeId] || componentStatus.label['en'] || id };
-    return { id, color: '#d62728', label: id };
+    return { id, color: 'neutral', label: id };
 };
