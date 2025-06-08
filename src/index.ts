@@ -53,11 +53,11 @@ export type { EventQueryConfig } from './eventQuery';
 // Interfaces/Types - Presenter
 export type { IPresenter, IPresenterConfig, IPresenterItemConfig } from './presenter';
 
-// Interfaces/Types - Status
-export type { Status } from './status';
-
-// Interfaces/Types - Tutorial
+// Interfaces/Types - Service
 export type { ServiceData } from './service';
+
+// Interfaces/Types - State
+export type { StateConfig } from './state';
 
 // Interfaces/Types - Timestamp
 export type { Timestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
