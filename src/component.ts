@@ -8,7 +8,8 @@ export interface ComponentConfig {
     id: string;
     label: Record<string, string>;
     lastUpdatedAt?: Timestamp;
-    logo?: string;
+    logoDark?: string;
+    logoLight?: string;
     status?: ComponentStatus;
     statusId: ComponentStatusId;
     typeId: ComponentTypeId;
