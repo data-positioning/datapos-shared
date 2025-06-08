@@ -53,6 +53,9 @@ export type { EventQueryConfig } from './eventQuery';
 // Interfaces/Types - Presenter
 export type { IPresenter, IPresenterConfig, IPresenterItemConfig } from './presenter';
 
+// Interfaces/Types - Status
+export type { Status } from './status';
+
 // Interfaces/Types - Tutorial
 export type { ServiceData } from './service';
 
