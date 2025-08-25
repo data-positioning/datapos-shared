@@ -23,25 +23,25 @@ export interface ComponentRef {
 
 export type ComponentTypeId = 'app' | 'connection' | 'connector' | 'engine' | 'focus' | 'model' | 'dataView' | 'eventQuery' | 'presentation' | 'presenter' | 'tutorial'; // TODO: Review these.
 
-type StatusColor = 'success' | 'error' | 'primary' | 'secondary' | 'info' | 'warning' | 'neutral';
+type StatusColor = 'amber' | 'blue' | 'emerald' | 'green' | 'red' | 'rose' | 'sky' | 'slate' | 'yellow';
 
 // Interfaces/Types - Component Status
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
 export type ComponentStatus = { id: string; color?: StatusColor; label: string };
 type ComponentStatusConfig = { id: string; color?: StatusColor; label: Record<string, string> };
 const componentStatuses: ComponentStatusConfig[] = [
-    { id: 'alpha', color: 'warning', label: { en: 'alpha' } },
-    { id: 'beta', color: 'success', label: { en: 'beta' } },
+    { id: 'alpha', color: 'rose', label: { en: 'alpha' } },
+    { id: 'beta', color: 'amber', label: { en: 'beta' } },
     { id: 'generalAvailability', label: { en: '' } },
     { id: 'notApplicable', label: { en: 'not-applicable' } },
-    { id: 'preAlpha', color: 'warning', label: { en: 'pre-alpha' } },
-    { id: 'proposed', color: 'neutral', label: { en: 'proposed' } },
+    { id: 'preAlpha', color: 'rose', label: { en: 'pre-alpha' } },
+    { id: 'proposed', color: 'slate', label: { en: 'proposed' } },
     { id: 'releaseCandidate', label: { en: 'release-candidate' } },
-    { id: 'unavailable', color: 'neutral', label: { en: 'unavailable' } },
-    { id: 'underReview', color: 'neutral', label: { en: 'under-review' } }
+    { id: 'unavailable', color: 'slate', label: { en: 'unavailable' } },
+    { id: 'underReview', color: 'slate', label: { en: 'under-review' } }
 ];
 export const getComponentStatus = (id: string, localeId = 'en'): ComponentStatus => {
     const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
     if (componentStatus) return { ...componentStatus, label: componentStatus.label[localeId] || componentStatus.label['en'] || id };
-    return { id, color: 'neutral', label: id };
+    return { id, color: 'slate', label: id };
 };
