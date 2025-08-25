@@ -23,18 +23,18 @@ export interface ComponentRef {
 
 export type ComponentTypeId = 'app' | 'connection' | 'connector' | 'engine' | 'focus' | 'model' | 'dataView' | 'eventQuery' | 'presentation' | 'presenter' | 'tutorial'; // TODO: Review these.
 
-type StatusColor = 'amber' | 'blue' | 'emerald' | 'green' | 'red' | 'rose' | 'sky' | 'slate' | 'yellow';
+type StatusColor = 'amber' | 'blue' | 'emerald' | 'green' | 'orange' | 'red' | 'rose' | 'sky' | 'slate' | 'yellow';
 
 // Interfaces/Types - Component Status
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
 export type ComponentStatus = { id: string; color?: StatusColor; label: string };
 type ComponentStatusConfig = { id: string; color?: StatusColor; label: Record<string, string> };
 const componentStatuses: ComponentStatusConfig[] = [
-    { id: 'alpha', color: 'rose', label: { en: 'alpha' } },
-    { id: 'beta', color: 'amber', label: { en: 'beta' } },
+    { id: 'alpha', color: 'orange', label: { en: 'alpha' } },
+    { id: 'beta', color: 'yellow', label: { en: 'beta' } },
     { id: 'generalAvailability', label: { en: '' } },
     { id: 'notApplicable', label: { en: 'not-applicable' } },
-    { id: 'preAlpha', color: 'rose', label: { en: 'pre-alpha' } },
+    { id: 'preAlpha', color: 'red', label: { en: 'pre-alpha' } },
     { id: 'proposed', color: 'slate', label: { en: 'proposed' } },
     { id: 'releaseCandidate', label: { en: 'release-candidate' } },
     { id: 'unavailable', color: 'slate', label: { en: 'unavailable' } },
