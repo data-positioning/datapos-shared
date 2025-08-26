@@ -58,6 +58,7 @@ export interface ConnectorImplementation {
     maxConnectionCount?: number;
     params?: Record<string, string>[];
 }
+export type LocaleConnectorConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Connector Operator Settings
 export interface ConnectorOperationSettings {
