@@ -4,11 +4,13 @@ import type { ComponentConfig, ComponentRef } from './component';
 // Interfaces/Types - Connector
 export interface Context {
     readonly config: ContextConfig;
+
+    listFocuses(settings?: ContextFocusConfigListSettings): Promise<ContextFocusConfigListResult>;
 }
 
 // Interfaces - Context configuration.
 export interface ContextConfig {
-    focuses: ContextFocusConfig[];
+    focusConfigs: ContextFocusConfig[];
 }
 
 // Interfaces/Types - Context Focus Configuration
@@ -103,6 +105,12 @@ export interface ContextViewConfig {
     id: string;
     label: Record<string, string>;
 }
+
+// Interfaces/Types - Context focus list result/settings.
+export interface ContextFocusConfigListResult {
+    focusConfigs: ContextFocusConfig[];
+}
+export interface ContextFocusConfigListSettings {}
 
 // ...
 export interface Event {
