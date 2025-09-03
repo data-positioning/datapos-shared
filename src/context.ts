@@ -1,95 +1,95 @@
 // Dependencies - Framework
 import type { ComponentConfig, ComponentRef } from './component';
 
-// Interfaces/Types - Focus Configuration
-export interface FocusConfig extends ComponentConfig {
-    modelRefs: ModelConfig[];
+// Interfaces/Types - Context Focus Configuration
+export interface ContextFocusConfig extends ComponentConfig {
+    modelRefs: ContextModelConfig[];
 }
-export type LocaleFocusConfig = Omit<FocusConfig, 'label' | 'description'> & { label: string; description: string };
+export type LocaleContextFocusConfig = Omit<ContextFocusConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Model Configuration
-export interface ModelConfig extends ComponentConfig {
+// Interfaces/Types - Context Model Configuration
+export interface ContextModelConfig extends ComponentConfig {
     diagramURL?: string;
-    dimensionGroupConfigs: DimensionGroupConfig[];
-    entityGroupConfigs: EntityGroupConfig[];
-    secondaryMeasureGroupConfigs: SecondaryMeasureGroupConfig[];
-    viewGroupConfigs: ViewGroupConfig[];
+    dimensionGroupConfigs: ContextDimensionGroupConfig[];
+    entityGroupConfigs: ContextEntityGroupConfig[];
+    secondaryMeasureGroupConfigs: ContextSecondaryMeasureGroupConfig[];
+    viewGroupConfigs: ContextViewGroupConfig[];
 }
 
-// Interfaces/Types - Dimension Group Configuration
-export interface DimensionGroupConfig {
+// Interfaces/Types - Context Dimension Group Configuration
+export interface ContextDimensionGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, unknown>;
     dimensionRefs: ComponentRef[];
 }
 
-// Interfaces/Types - Entity Group Configuration
-export interface EntityGroupConfig {
+// Interfaces/Types - Context Entity Group Configuration
+export interface ContextEntityGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, unknown>;
     entityRefs: ComponentRef[];
 }
 
-// Interfaces/Types - Secondary Measure Group Configuration
-export interface SecondaryMeasureGroupConfig {
+// Interfaces/Types - Context Secondary Measure Group Configuration
+export interface ContextSecondaryMeasureGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, unknown>;
     secondaryMeasureRefs: ComponentRef[];
 }
 
-// Interfaces/Types - View Group Configuration
-export interface ViewGroupConfig {
+// Interfaces/Types - Context View Group Configuration
+export interface ContextViewGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, unknown>;
     viewRefs: ComponentRef[];
 }
 
-// Interfaces/Types - Dimension Configuration
-export interface DimensionConfig {
+// Interfaces/Types - Context Dimension Configuration
+export interface ContextDimensionConfig {
     id: string;
     label: Record<string, string>;
-    hierarchies: HierarchyConfig[];
+    hierarchies: ContextHierarchyConfig[];
 }
-export interface HierarchyConfig {
+export interface ContextHierarchyConfig {
     id: string;
     label: Record<string, string>;
 }
 
-// Interfaces/Types - Entity Configuration
-export interface EntityConfig {
+// Interfaces/Types - Context Entity Configuration
+export interface ContextEntityConfig {
     id: string;
     label: Record<string, string>;
     labelPlural: Record<string, string>;
-    characteristics: EntityCharacteristicConfig[];
-    computations: EntityComputationConfig[];
-    events: EntityEventConfig[];
+    characteristics: ContextEntityCharacteristicConfig[];
+    computations: ContextEntityComputationConfig[];
+    events: ContextEntityEventConfig[];
 }
-export interface EntityCharacteristicConfig {
+export interface ContextEntityCharacteristicConfig {
     id: string;
     label: Record<string, string>;
 }
-export interface EntityComputationConfig {
+export interface ContextEntityComputationConfig {
     id: string;
     label: Record<string, string>;
 }
-export interface EntityEventConfig {
+export interface ContextEntityEventConfig {
     id: string;
     labelAction: Record<string, string>;
     labelState: Record<string, string>;
 }
 
-// Interfaces/Types - Secondary Measure Configuration
-export interface SecondaryMeasureConfig {
+// Interfaces/Types - Context Secondary Measure Configuration
+export interface ContextSecondaryMeasureConfig {
     id: string;
     label: Record<string, string>;
 }
 
-// Interfaces/Types - View Configuration
-export interface ViewConfig {
+// Interfaces/Types - Context View Configuration
+export interface ContextViewConfig {
     id: string;
     label: Record<string, string>;
 }

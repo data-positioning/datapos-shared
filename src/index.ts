@@ -24,18 +24,18 @@ export type { UpsertSettings } from './connector';
 
 // Interfaces/Types - Context
 export type {
-    FocusConfig,
-    ModelConfig,
-    DimensionConfig,
-    DimensionGroupConfig,
-    EntityCharacteristicConfig,
-    EntityGroupConfig,
-    EntityComputationConfig,
-    LocaleFocusConfig,
-    SecondaryMeasureGroupConfig,
-    ViewGroupConfig
+    ContextFocusConfig,
+    ContextModelConfig,
+    ContextDimensionConfig,
+    ContextDimensionGroupConfig,
+    ContextEntityCharacteristicConfig,
+    ContextEntityGroupConfig,
+    ContextEntityComputationConfig,
+    ContextSecondaryMeasureGroupConfig,
+    ContextViewGroupConfig,
+    LocaleContextFocusConfig
 } from './context';
-export type { EntityConfig, EntityEventConfig, HierarchyConfig, ViewConfig, Event } from './context';
+export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from './context';
 
 // Interfaces/Types - Data View
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from './dataView';
