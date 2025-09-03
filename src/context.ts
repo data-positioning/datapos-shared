@@ -9,8 +9,8 @@ export interface Context {
 }
 
 // Interfaces - Context configuration.
-export interface ContextConfig {
-    focusConfigs: ContextFocusConfig[];
+export interface ContextConfig extends ComponentConfig {
+    focuses: ContextFocusConfig[];
 }
 
 // Interfaces/Types - Context Focus Configuration
