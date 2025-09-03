@@ -27,6 +27,8 @@ export type {
     Context,
     ContextConfig,
     ContextFocusConfig,
+    ContextFocusConfigListResult,
+    ContextFocusConfigListSettings,
     ContextModelConfig,
     ContextDimensionConfig,
     ContextDimensionGroupConfig,
