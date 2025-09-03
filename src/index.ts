@@ -24,6 +24,8 @@ export type { UpsertSettings } from './connector';
 
 // Interfaces/Types - Context
 export type {
+    Context,
+    ContextConfig,
     ContextFocusConfig,
     ContextModelConfig,
     ContextDimensionConfig,

@@ -1,6 +1,16 @@
 // Dependencies - Framework
 import type { ComponentConfig, ComponentRef } from './component';
 
+// Interfaces/Types - Connector
+export interface Context {
+    readonly config: ContextConfig;
+}
+
+// Interfaces - Context configuration.
+export interface ContextConfig {
+    focuses: ContextFocusConfig[];
+}
+
 // Interfaces/Types - Context Focus Configuration
 export interface ContextFocusConfig extends ComponentConfig {
     modelRefs: ContextModelConfig[];
