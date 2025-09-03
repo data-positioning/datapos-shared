@@ -3,8 +3,9 @@ import type { ComponentConfig, ComponentRef } from './component';
 
 // Interfaces/Types - Focus Configuration
 export interface FocusConfig extends ComponentConfig {
-    modelRefs: ComponentRef[];
+    modelRefs: ModelConfig[];
 }
+export type LocaleFocusConfig = Omit<FocusConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Model Configuration
 export interface ModelConfig extends ComponentConfig {

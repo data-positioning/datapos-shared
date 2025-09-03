@@ -31,6 +31,7 @@ export type {
     EntityCharacteristicConfig,
     EntityGroupConfig,
     EntityComputationConfig,
+    LocaleFocusConfig,
     SecondaryMeasureGroupConfig,
     ViewGroupConfig
 } from './context';
