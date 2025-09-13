@@ -46,7 +46,7 @@ export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId 
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
 
 // Interfaces/Types - Engine
-export type { ConnectorInterfaceResult, Engine, EngineWorkerInterface } from './engine';
+export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWorkerInterface } from './engine';
 
 // Interfaces/Types - Error
 export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from './errors';

@@ -8,6 +8,12 @@ export interface Context {
     listFocuses(settings?: ContextFocusConfigListSettings): Promise<ContextFocusConfigListResult>;
 }
 
+// Interfaces/Types - Context Callback Data
+export interface ContextCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
+
 // Interfaces - Context configuration.
 export interface ContextConfig extends ComponentConfig {
     focuses: ContextFocusConfig[];
@@ -20,6 +26,13 @@ export interface ContextFocusConfig extends ComponentConfig {
     order: number;
 }
 export type LocaleContextFocusConfig = Omit<ContextFocusConfig, 'label' | 'description'> & { label: string; description: string };
+
+// Interfaces/Types - Context Operator Settings
+export interface ContextOperationSettings {
+    accountId?: string;
+    appCheckToken?: string;
+    sessionAccessToken?: string;
+}
 
 // Interfaces/Types - Context Model Configuration
 export interface ContextModelConfig extends ComponentConfig {
