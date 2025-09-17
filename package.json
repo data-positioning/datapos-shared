@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "MIT",
     "private": false,
-    "version": "0.3.28",
+    "version": "0.3.29",
     "type": "module",
     "files": [
         "dist"
@@ -17,6 +17,7 @@
     "types": "./dist/types/src/index.d.ts",
     "devDependencies": {
         "@datapos/datapos-development": "^0.3.18",
+        "@types/node": "^24.5.1",
         "@typescript-eslint/eslint-plugin": "^8.44.0",
         "@typescript-eslint/parser": "^8.44.0",
         "csv-parse": "^6.1.0",
