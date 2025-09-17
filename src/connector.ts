@@ -169,7 +169,7 @@ export interface RetrieveSummary {
     recordCount: number;
 }
 export interface RetrieveTools {
-    csvParse: (options?: Options, callback?: Callback) => Parser | undefined;
+    csvParse: (options: Options, callback?: Callback) => Parser | undefined;
 }
 
 // Interfaces/Types - Upsert (Records)
