@@ -10,7 +10,7 @@ export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } fr
 
 // Interfaces/Types - Connector
 export type { AuditContentResult, AuditContentSettings } from './connector';
-export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings, LocaleConnectorConfig } from './connector';
+export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings, ConnectorLocalisedConfig } from './connector';
 export type { CreateSettings } from './connector';
 export type { DropSettings } from './connector';
 export type { FindResult, FindSettings } from './connector';
@@ -37,7 +37,7 @@ export type {
     ContextEntityComputationConfig,
     ContextSecondaryMeasureGroupConfig,
     ContextViewGroupConfig,
-    LocaleContextFocusConfig
+    ContextFocusLocalisedConfig
 } from './context';
 export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from './context';
 

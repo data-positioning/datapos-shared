@@ -25,7 +25,7 @@ export interface ContextFocusConfig extends ComponentConfig {
     modelRefs: ComponentRef[];
     order: number;
 }
-export type LocaleContextFocusConfig = Omit<ContextFocusConfig, 'label' | 'description'> & { label: string; description: string };
+export type ContextFocusLocalisedConfig = Omit<ContextFocusConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Context Operator Settings
 export interface ContextOperationSettings {
