@@ -30,7 +30,7 @@ export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notA
 export type ComponentStatus = { id: string; color?: StatusColor; label: string };
 type ComponentStatusConfig = { id: string; color?: StatusColor; label: Record<string, string> };
 const componentStatuses: ComponentStatusConfig[] = [
-    { id: 'alpha', color: 'orange', label: { en: 'alpha' } },
+    { id: 'alpha', color: 'red', label: { en: 'alpha' } },
     { id: 'beta', color: 'amber', label: { en: 'beta' } },
     { id: 'generalAvailability', label: { en: '' } },
     { id: 'notApplicable', label: { en: 'not-applicable' } },
