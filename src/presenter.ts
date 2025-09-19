@@ -2,50 +2,50 @@
 import type { ComponentConfig } from './component';
 
 // Interfaces/Types - Presenter
-export interface IPresenter {
-    readonly config: IPresenterConfig;
+export interface Presenter {
+    readonly config: PresenterConfig;
 
-    list(path: string): IPresenterItemConfig[];
+    list(path: string): PresenterItemConfig[];
     render(id: string, renderTo: string | HTMLElement): Promise<void>;
 }
 
 // Interfaces/Types - Presenter Configuration
-export interface IPresenterConfig extends ComponentConfig {
-    index: IPresenterItemConfig[];
+export interface PresenterConfig extends ComponentConfig {
+    index: PresenterItemConfig[];
 }
 
 // Interfaces/Types - Presenter Item Configuration
-export interface IPresenterItemConfig {
-    items?: IPresenterItemConfig[];
+export interface PresenterItemConfig {
+    items?: PresenterItemConfig[];
     label: Record<string, string>;
     name: string;
     typeId: 'folder' | 'object'; // TODO: Maybe standardise.
 }
 
 // Interface/Types - Presentation
-export interface IPresentation {
-    readonly config: IPresentationConfig;
-    render(data: IPresentationData, renderTo: string | HTMLElement | null, localeId?: string): void;
+export interface Presentation {
+    readonly config: PresentationConfig;
+    render(data: PresentationData, renderTo: string | HTMLElement | null, localeId?: string): void;
     resize: () => void;
     update: () => void;
 }
 
 // Interface/Types - Presentation Configuration
-export interface IPresentationConfig {
+export interface PresentationConfig {
     id: string;
     label: string;
     typeId: 'declarative' | 'coded';
-    blocks?: IPresentationBlockConfig[];
+    blocks?: PresentationBlockConfig[];
 }
 
 // Interface/Types - Presentation Block Configuration
-export interface IPresentationBlockConfig {
+export interface PresentationBlockConfig {
     config: IHighchartsBasicConfig | Record<string, unknown>;
     typeId?: 'chartJSBasic' | 'cytoscapeMarkov' | 'cytoscapeNetwork' | 'highchartsBasic' | 'table' | 'text';
 }
 
 // Interfaces/Types - Presentation Data
-export interface IPresentationData {
+export interface PresentationData {
     dimensions: { id: string; type: { id: string; spanId?: string; intervalId?: string }; intervals: { label: string }[] };
     measures: { id: string; label: string; values: number[] }[];
 }
@@ -59,32 +59,32 @@ interface IHighchartsBasicConfig {
 type TChartSeriesTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
 
 // // Interfaces/Types - Presentation
-// export interface IPresentation {
-//     readonly items: IPresentationBlock[];
+// export interface Presentation {
+//     readonly items: PresentationBlock[];
 //     readonly prefix: Record<string, string>;
 //     readonly label: Record<string, string>;
 //     readonly suffix: Record<string, string>;
-//     renderItems(data: IPresentationData, renderTo: string | HTMLElement | null, localeId?: string): Promise<void>;
+//     renderItems(data: PresentationData, renderTo: string | HTMLElement | null, localeId?: string): Promise<void>;
 //     renderPrefix(renderTo: string | HTMLElement | null, localeId?: string): void;
 //     renderSuffix(renderTo: string | HTMLElement | null, localeId?: string): void;
 //     renderTitle(renderTo: string | HTMLElement | null, localeId?: string): string;
 // }
 
 // // Interfaces/Types - Presentation Block
-// export interface IPresentationBlock {
+// export interface PresentationBlock {
 //     readonly prefix: Record<string, string>;
 //     readonly label: Record<string, string>;
 //     readonly suffix: Record<string, string>;
 //     renderPrefix(renderTo: string | HTMLElement | null, localeId?: string): void;
 //     renderSuffix(renderTo: string | HTMLElement | null, localeId?: string): void;
 //     renderTitle(renderTo: string | HTMLElement | null, localeId?: string): string;
-//     renderVisual(data: IPresentationData, renderTo: string | HTMLElement | null, localeId?: string): Promise<void>;
+//     renderVisual(data: PresentationData, renderTo: string | HTMLElement | null, localeId?: string): Promise<void>;
 //     resize: () => void;
 //     update: () => void;
 // }
 
 // // Interfaces/Types - Presentation Render Settings
-// export interface IPresentationRenderSettings {
+// export interface PresentationRenderSettings {
 //     localeId?: string;
 // }
 
