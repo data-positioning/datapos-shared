@@ -23,7 +23,7 @@ export interface ComponentRef {
 
 export type ComponentTypeId = 'app' | 'connection' | 'connector' | 'engine' | 'focus' | 'model' | 'dataView' | 'eventQuery' | 'presentation' | 'presenter' | 'tutorial'; // TODO: Review these.
 
-type StatusColor = 'amber' | 'orange' | 'red' | 'slate';
+type StatusColor = 'amber' | 'orange' | 'red' | 'slate'; // TODO: Check if orange required?
 
 // Interfaces/Types - Component Status
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
