@@ -12,6 +12,7 @@ export interface Presenter {
 // Interfaces/Types - Presenter Configuration
 export interface PresenterConfig extends ComponentConfig {
     // index: PresenterItemConfig[];
+    version: string;
 }
 
 // Interfaces/Types - Presenter Item Configuration

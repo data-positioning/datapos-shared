@@ -56,7 +56,7 @@ export type { SerialisedError } from './errors';
 export type { EventQueryConfig } from './eventQuery';
 
 // Interfaces/Types - Presenter
-export type { Presenter, PresenterConfig, PresenterItemConfig } from './presenter';
+export type { Presenter, PresenterConfig } from './presenter';
 
 // Interfaces/Types - Recipe
 export type { Recipe, RecipeConfig } from './recipe';

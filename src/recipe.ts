@@ -12,6 +12,7 @@ export interface Recipe {
 // Interfaces/Types - Recipe Configuration
 export interface RecipeConfig extends ComponentConfig {
     // index: RecipeItemConfig[];
+    version: string;
 }
 
 // Interfaces/Types - Recipe Item Configuration
