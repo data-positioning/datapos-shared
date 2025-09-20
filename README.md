@@ -28,8 +28,6 @@ let connectorConfig: ConnectorConfig;
 getComponentStatus('alpha');
 ```
 
-> ⚠️ This library is intended for TypeScript projects.
-
 ## Repository Management Commands
 
 The table below lists the repository management commands available in this project.
@@ -40,7 +38,7 @@ For detailed implementation, see the `scripts` section in `package.json`.
 | audit              | alt+ctrl+shift+a | Audit the project's dependencies for known security vulnerabilities.                                                            |
 | build              | alt+ctrl+shift+b | Build the package using Vite.                                                                                                   |
 | check              | alt+ctrl+shift+c | List outdated dependencies.                                                                                                     |
-| document           | alt+ctrl+shift+d | Identify licenses of the project's production and peer dependencies.                                                            |
+| document           | alt+ctrl+shift+d | Identify licenses of the project's production and peer dependencies. See [LICENSES.json](./LICENSES.json).                      |
 | format             | alt+ctrl+shift+f | Enforce formatting style rules.                                                                                                 |
 | lint               | alt+ctrl+shift+l | Check the code for errors and enforce coding style rules.                                                                       |
 | release            | alt+ctrl+shift+r | Bump version, synchronise local repository with the main GitHub repository, build and publish to [npm](https://www.npmjs.com/). |
