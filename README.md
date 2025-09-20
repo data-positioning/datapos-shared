@@ -35,20 +35,18 @@ getComponentStatus('alpha');
 The table below lists the repository management commands available in this project.
 For detailed implementation, see the `scripts` section in `package.json`.
 
-| Name               | Key Code         | Notes                                                                                                                                                                   |
-| ------------------ | ---------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| audit              | alt+ctrl+shift+a | Audit the project's dependencies for known security vulnerabilities.                                                                                                    |
-| build              | alt+ctrl+shift+b | Build the package using Vite.                                                                                                                                           |
-| check              | alt+ctrl+shift+c | List outdated dependencies.                                                                                                                                             |
-| document           | alt+ctrl+shift+d | Identify licenses of the project's production and peer dependencies.                                                                                                    |
-| format             | alt+ctrl+shift+f | NOT implemented.                                                                                                                                                        |
-| lint               | alt+ctrl+shift+l | Check the code for errors and enforce coding style rules.                                                                                                               |
-| publishToNPM       | alt+ctrl+shift+n | Publishes the package to the [npm](https://www.npmjs.com/) registry. This action will publish the last synchronised version. For first-time publish, use `npm publish`. |
-| release            | alt+ctrl+shift+r | Synchronise local repository with the main GitHub repository and publish to [npm](https://www.npmjs.com/).                                                              |
-| syncWithGitHub     | alt+ctrl+shift+s | Synchronise local repository with the main GitHub repository.                                                                                                           |
-| test               | alt+ctrl+shift+l | NOT implemented.                                                                                                                                                        |
-| updateDependencies | alt+ctrl+shift+l | Install the latest version of outdated Data Positioning packages.                                                                                                       |
-|                    |
+| Name               | Key Code         | Notes                                                                                                      |
+| ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------- |
+| audit              | alt+ctrl+shift+a | Audit the project's dependencies for known security vulnerabilities.                                       |
+| build              | alt+ctrl+shift+b | Build the package using Vite.                                                                              |
+| check              | alt+ctrl+shift+c | List outdated dependencies.                                                                                |
+| document           | alt+ctrl+shift+d | Identify licenses of the project's production and peer dependencies.                                       |
+| format             | alt+ctrl+shift+f | Enforce formatting style rules.                                                                            |
+| lint               | alt+ctrl+shift+l | Check the code for errors and enforce coding style rules.                                                  |
+| release            | alt+ctrl+shift+r | Synchronise local repository with the main GitHub repository and publish to [npm](https://www.npmjs.com/). |
+| syncWithGitHub     | alt+ctrl+shift+s | Synchronise local repository with the main GitHub repository.                                              |
+| test               | alt+ctrl+shift+t | NOT implemented.                                                                                           |
+| updateDependencies | alt+ctrl+shift+u | Install the latest version of outdated Data Positioning packages.                                          |
 
 ## License
 
