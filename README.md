@@ -3,6 +3,7 @@
 [![npm version](https://img.shields.io/npm/v/@datapos/datapos-shared.svg)](https://www.npmjs.com/package/@datapos/datapos-shared)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 [![Build Status](https://img.shields.io/badge/build-passing-brightgreen.svg)](#)
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdata-positioning%2Fdatapos-shared.svg?type=shield)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdata-positioning%2Fdatapos-shared?ref=badge_shield)
 
 A TypeScript library containing common declarations and utilities used across other Data Positioning repositories.
 
@@ -49,3 +50,6 @@ For detailed implementation, see the `scripts` section in `package.json`.
 ## License
 
 [MIT](./LICENSE) © 2026 Data Positioning Pty Ltd
+
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdata-positioning%2Fdatapos-shared.svg?type=large)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdata-positioning%2Fdatapos-shared?ref=badge_large)
