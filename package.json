@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "MIT",
     "private": false,
-    "version": "0.3.37",
+    "version": "0.3.38",
     "type": "module",
     "files": [
         "dist"
@@ -23,6 +23,7 @@
         "csv-parse": "^6.1.0",
         "eslint": "^9.35.0",
         "eslint-plugin-import": "^2.32.0",
+        "npm-check-updates": "^18.3.0",
         "prettier": "^3.6.2",
         "typescript": "^5.9.2",
         "vite": "^7.1.5",
@@ -32,7 +33,7 @@
         "audit": "npm audit",
         "build": "npx vite build",
         "bumpVersion": "node -e \"require('@datapos/datapos-development').bumpVersion()\"",
-        "check": "npx npm-check-updates && npm outdated",
+        "check": "npx npm-check-updates -i && npm outdated",
         "document": "npx npm-license-crawler --onlyDirectDependencies --production --relativeLicensePath --json LICENSES.json",
         "format": "prettier --write *.ts",
         "lint": "npx eslint **/*.ts",
