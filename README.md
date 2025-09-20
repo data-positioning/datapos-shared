@@ -33,19 +33,21 @@ getComponentStatus('alpha');
 The table below lists the repository management commands available in this project.
 For detailed implementation, see the `scripts` section in `package.json`.
 
-| Name               | Key Code         | Notes                                                                                                                           |
-| ------------------ | ---------------- | ------------------------------------------------------------------------------------------------------------------------------- |
-| audit              | alt+ctrl+shift+a | Audit the project's dependencies for known security vulnerabilities.                                                            |
-| build              | alt+ctrl+shift+b | Build the package using Vite.                                                                                                   |
-| check              | alt+ctrl+shift+c | List outdated dependencies.                                                                                                     |
-| document           | alt+ctrl+shift+d | Identify licenses of the project's production and peer dependencies. See [LICENSES.json](./LICENSES.json).                      |
-| format             | alt+ctrl+shift+f | Enforce formatting style rules.                                                                                                 |
-| lint               | alt+ctrl+shift+l | Check the code for errors and enforce coding style rules.                                                                       |
-| release            | alt+ctrl+shift+r | Bump version, synchronise local repository with the main GitHub repository, build and publish to [npm](https://www.npmjs.com/). |
-| syncWithGitHub     | alt+ctrl+shift+s | Bump version and synchronise local repository with the main GitHub repository.                                                  |
-| test               | alt+ctrl+shift+t | NOT implemented.                                                                                                                |
-| updateDependencies | alt+ctrl+shift+u | Install the latest version of outdated Data Positioning packages.                                                               |
+| Name               | Key Code         | Notes                                                                                                      |
+| ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------- |
+| audit              | alt+ctrl+shift+a | Audit the project's dependencies for known security vulnerabilities.                                       |
+| build              | alt+ctrl+shift+b | Build the package using Vite.                                                                              |
+| check              | alt+ctrl+shift+c | List outdated dependencies.                                                                                |
+| document           | alt+ctrl+shift+d | Identify licenses of the project's production and peer dependencies. See [LICENSES.json](./LICENSES.json). |
+| format             | alt+ctrl+shift+f | Enforce formatting style rules.                                                                            |
+| lint               | alt+ctrl+shift+l | Check the code for errors and enforce coding style rules.                                                  |
+| release            | alt+ctrl+shift+r | Bump version, synchronise local repository with the main GitHub repository, build and publish to npm.      |
+| syncWithGitHub     | alt+ctrl+shift+s | Bump version and synchronise local repository with the main GitHub repository.                             |
+| test               | alt+ctrl+shift+t | NOT implemented.                                                                                           |
+| updateDependencies | alt+ctrl+shift+u | Install the latest version of outdated Data Positioning packages.                                          |
 
 ## License
 
 [MIT](./LICENSE) © 2026 Data Positioning Pty Ltd
+
+[![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdata-positioning%2Fdatapos-shared.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdata-positioning%2Fdatapos-shared?ref=badge_large&issueType=license)
