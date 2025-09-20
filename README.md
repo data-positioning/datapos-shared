@@ -46,12 +46,12 @@ For detailed implementation, see the `scripts` section in `package.json`.
 | test               | alt+ctrl+shift+t | NOT implemented.                                                                                           |
 | updateDependencies | alt+ctrl+shift+u | Install the latest version of outdated Data Positioning packages.                                          |
 
-## License
-
-[MIT](./LICENSE) © 2026 Data Positioning Pty Ltd
-
 ## Compliance
 
 This badge reflects FOSSA's assessment of this repository's open-source license compliance.
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdata-positioning%2Fdatapos-shared.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdata-positioning%2Fdatapos-shared?ref=badge_large&issueType=license)
+
+## License
+
+[MIT](./LICENSE) © 2026 Data Positioning Pty Ltd
