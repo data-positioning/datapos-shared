@@ -14,6 +14,7 @@ export interface RecipeConfig extends ComponentConfig {
     // index: RecipeItemConfig[];
     version: string;
 }
+export type RecipeLocalisedConfig = Omit<RecipeConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Recipe Item Configuration
 export interface RecipeItemConfig {

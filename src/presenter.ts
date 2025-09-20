@@ -14,6 +14,7 @@ export interface PresenterConfig extends ComponentConfig {
     // index: PresenterItemConfig[];
     version: string;
 }
+export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Presenter Item Configuration
 export interface PresenterItemConfig {
