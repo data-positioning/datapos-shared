@@ -4,7 +4,7 @@ import importPlugin from 'eslint-plugin-import';
 
 export default [
     {
-        files: ['**/*.ts', '**/*.tsx'],
+        files: ['vite.config.ts', 'src/*.ts'],
         languageOptions: { parser: tseslintParser, parserOptions: { project: './tsconfig.json' } },
         plugins: {
             '@typescript-eslint': tseslint,

@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "MIT",
     "private": false,
-    "version": "0.3.47",
+    "version": "0.3.48",
     "type": "module",
     "files": [
         "dist"
@@ -23,6 +23,7 @@
         "csv-parse": "^6.1.0",
         "eslint": "^9.36.0",
         "eslint-plugin-import": "^2.32.0",
+        "jiti": "^2.5.1",
         "license-report": "^6.8.0",
         "license-report-check": "^0.1.2",
         "npm-check-updates": "^18.3.0",
@@ -38,7 +39,7 @@
         "check": "npm outdated; npm-check-updates -i",
         "document": "license-report --only=prod,peer > LICENSES.json && license-report-check --source ./LICENSES.json --allowed 'MIT' --allowed 'n/a' --allowed 'Apache-2.0' --output=table",
         "format": "prettier --write *.ts",
-        "lint": "eslint **/*.ts",
+        "lint": "eslint",
         "publishToNPM": "npm publish --access public",
         "release": "npm run syncWithGitHub && npm run build && npm run publishToNPM",
         "syncWithGitHub": "npm run bumpVersion && node -e \"require('@datapos/datapos-development').syncWithGitHub()\"",
