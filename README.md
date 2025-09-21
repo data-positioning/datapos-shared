@@ -28,10 +28,10 @@ let connectorConfig: ConnectorConfig;
 getComponentStatus('alpha');
 ```
 
-## Repository Management Commands
+## Repository Common Management Commands
 
 The table below lists the repository management commands available in this project.
-For detailed implementation, see the `scripts` section in `package.json`.
+For detailed implementation, see the `scripts` section in the `package.json` file.
 
 | Name               | Key Code         | Notes                                                                                                      |
 | ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -48,7 +48,7 @@ For detailed implementation, see the `scripts` section in `package.json`.
 
 ## Compliance
 
-This badge reflects FOSSA's assessment of this repository's open-source license compliance.
+The following badge reflects FOSSA's assessment of this repository's open-source license compliance.
 
 [![FOSSA Status](https://app.fossa.com/api/projects/git%2Bgithub.com%2Fdata-positioning%2Fdatapos-shared.svg?type=large&issueType=license)](https://app.fossa.com/projects/git%2Bgithub.com%2Fdata-positioning%2Fdatapos-shared?ref=badge_large&issueType=license)
 

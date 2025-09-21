@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "MIT",
     "private": false,
-    "version": "0.3.51",
+    "version": "0.3.52",
     "type": "module",
     "files": [
         "dist"
@@ -16,7 +16,7 @@
     },
     "types": "./dist/types/src/index.d.ts",
     "devDependencies": {
-        "@datapos/datapos-development": "^0.3.18",
+        "@datapos/datapos-development": "^0.3.25",
         "@types/node": "^24.5.2",
         "@typescript-eslint/eslint-plugin": "^8.44.0",
         "@typescript-eslint/parser": "^8.44.0",
@@ -28,6 +28,7 @@
         "license-report-check": "^0.1.2",
         "npm-check-updates": "^18.3.0",
         "prettier": "^3.6.2",
+        "retire": "^5.3.0",
         "typescript": "^5.9.2",
         "vite": "^7.1.6",
         "vite-plugin-dts": "^4.5.4"
@@ -36,7 +37,7 @@
         "audit": "npm audit",
         "build": "vite build",
         "bumpVersion": "node -e \"require('@datapos/datapos-development').bumpVersion()\"",
-        "check": "npm outdated; npm-check-updates -i",
+        "check": "npm outdated; npm-check-updates -i && retire",
         "document": "license-report --only=prod,peer > LICENSES.json && license-report-check --source ./LICENSES.json --allowed 'MIT' --allowed 'n/a' --allowed 'Apache-2.0' --output=table",
         "format": "prettier --write *.ts",
         "lint": "eslint",
