@@ -25,10 +25,10 @@ export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfi
 
 export interface Engine {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
-    invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorkerInterface;
+    invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;
 }
 
-export interface EngineWorkerInterface {
+export interface EngineWorker {
     initialise: InitialiseEngine;
     processConnectorRequest: ProcessConnectorRequest;
     processContextRequest: ProcessContextRequest;
