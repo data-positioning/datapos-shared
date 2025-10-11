@@ -2,7 +2,7 @@
 export { DefaultTimestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
 // Interfaces/Types - Component
-export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from './component';
+export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, StatusColorId } from './component';
 
 // Interfaces/Types - Connection
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from './connection';

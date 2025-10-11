@@ -23,12 +23,12 @@ export interface ComponentRef {
 
 export type ComponentTypeId = 'app' | 'connection' | 'connector' | 'engine' | 'focus' | 'model' | 'dataView' | 'eventQuery' | 'presentation' | 'presenter' | 'tutorial'; // TODO: Review these.
 
-type StatusColor = 'amber' | 'red' | 'other';
+export type StatusColorId = 'amber' | 'red' | 'other';
 
 // Interfaces/Types - Component Status
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
-export type ComponentStatus = { id: string; color?: StatusColor; label: string };
-type ComponentStatusConfig = { id: string; color?: StatusColor; label: Record<string, string> };
+export type ComponentStatus = { id: string; color?: StatusColorId; label: string };
+type ComponentStatusConfig = { id: string; color?: StatusColorId; label: Record<string, string> };
 const componentStatuses: ComponentStatusConfig[] = [
     { id: 'alpha', color: 'red', label: { en: 'alpha' } },
     { id: 'beta', color: 'amber', label: { en: 'beta' } },
