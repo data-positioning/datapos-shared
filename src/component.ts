@@ -23,7 +23,7 @@ export interface ComponentRef {
 
 export type ComponentTypeId = 'app' | 'connection' | 'connector' | 'engine' | 'focus' | 'model' | 'dataView' | 'eventQuery' | 'presentation' | 'presenter' | 'tutorial'; // TODO: Review these.
 
-type StatusColor = 'amber' | 'orange' | 'red' | 'slate'; // TODO: Check if orange required?
+type StatusColor = 'amber' | 'red' | 'other';
 
 // Interfaces/Types - Component Status
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
@@ -35,13 +35,13 @@ const componentStatuses: ComponentStatusConfig[] = [
     { id: 'generalAvailability', label: { en: '' } },
     { id: 'notApplicable', label: { en: 'not-applicable' } },
     { id: 'preAlpha', color: 'red', label: { en: 'pre-alpha' } },
-    { id: 'proposed', color: 'slate', label: { en: 'proposed' } },
+    { id: 'proposed', color: 'other', label: { en: 'proposed' } },
     { id: 'releaseCandidate', label: { en: 'release-candidate' } },
-    { id: 'unavailable', color: 'slate', label: { en: 'unavailable' } },
-    { id: 'underReview', color: 'slate', label: { en: 'under-review' } }
+    { id: 'unavailable', color: 'other', label: { en: 'unavailable' } },
+    { id: 'underReview', color: 'other', label: { en: 'under-review' } }
 ];
 export const getComponentStatus = (id: string, localeId = 'en'): ComponentStatus => {
     const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
     if (componentStatus) return { ...componentStatus, label: componentStatus.label[localeId] || componentStatus.label['en'] || id };
-    return { id, color: 'slate', label: id };
+    return { id, color: 'other', label: id };
 };
