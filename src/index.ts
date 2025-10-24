@@ -45,6 +45,9 @@ export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyCon
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from './dataView';
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
 
+// Interfaces/Types - Dimension
+export type { DimensionConfig, DimensionLocalisedConfig } from './dimension';
+
 // Interfaces/Types - Engine
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWorker } from './engine';
 
@@ -53,7 +56,7 @@ export { APIError, ApplicationError, EngineError, FetchError, OperationalError, 
 export type { SerialisedError } from './errors';
 
 // Interfaces/Types - Event Query
-export type { EventQueryConfig } from './eventQuery';
+export type { EventQueryConfig, EventQueryLocalisedConfig } from './eventQuery';
 
 // Interfaces/Types - Presenter
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from './presenter';

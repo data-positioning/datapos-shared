@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "MIT",
     "private": false,
-    "version": "0.3.57",
+    "version": "0.3.58",
     "type": "module",
     "files": [
         "dist"
