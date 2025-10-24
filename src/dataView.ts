@@ -11,6 +11,7 @@ export interface DataViewConfig extends ComponentConfig {
     contentAuditConfig?: DataViewContentAuditConfig;
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
 }
+export type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Data View Content Audit Configuration
 export interface DataViewContentAuditConfig {

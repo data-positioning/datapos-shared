@@ -43,7 +43,7 @@ export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyCon
 
 // Interfaces/Types - Data View
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from './dataView';
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
 
 // Interfaces/Types - Engine
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWorker } from './engine';
