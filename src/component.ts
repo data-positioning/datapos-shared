@@ -21,7 +21,20 @@ export interface ComponentRef {
     label: Record<string, string>;
 }
 
-export type ComponentTypeId = 'app' | 'connection' | 'connector' | 'engine' | 'focus' | 'model' | 'dataView' | 'eventQuery' | 'presentation' | 'presenter' | 'tutorial'; // TODO: Review these.
+export type ComponentTypeId =
+    | 'app'
+    | 'connection'
+    | 'connector'
+    | 'dimension'
+    | 'engine'
+    | 'focus'
+    | 'model'
+    | 'dataView'
+    | 'eventQuery'
+    | 'presentation'
+    | 'presenter'
+    | 'recipe'
+    | 'tutorial'; // TODO: Review these.
 
 export type StatusColorId = 'amber' | 'red' | 'other';
 
