@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "MIT",
     "private": false,
-    "version": "0.3.59",
+    "version": "0.3.60",
     "type": "module",
     "files": [
         "dist"
@@ -35,7 +35,7 @@
     },
     "scripts": {
         "audit": "npm audit",
-        "build": "vite build",
+        "build": "npx vite build",
         "bumpVersion": "node -e \"require('@datapos/datapos-development').bumpVersion()\"",
         "check": "npm outdated; npm-check-updates -i && retire",
         "document": "license-report --only=prod,peer > LICENSES.json && license-report-check --source ./LICENSES.json --allowed 'MIT' --allowed 'n/a' --allowed 'Apache-2.0' --output=table",
