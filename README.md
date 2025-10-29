@@ -7,11 +7,19 @@ A TypeScript library containing common declarations and utilities used across ot
 
 ## Installation
 
-Install as a development (dev) dependency:
+Install as a production dependency:
 
 ```bash
-npm install --save-dev @datapos/datapos-shared
+npm install @datapos/datapos-shared
 ```
+
+## Content
+
+| Item                                   | Notes                                                                    |
+| -------------------------------------- | ------------------------------------------------------------------------ |
+| [Component Types](./src/component.ts)  | Base types. The Component type serves as a base type for all components. |
+| [Connector Types](./src/component.ts)  | Connector types. The connector type extends the Component type.          |
+| [Connection Types](./src/component.ts) | Connection types. The connection type extends the Component type.        |
 
 ## Usage
 
