@@ -15,11 +15,20 @@ npm install @datapos/datapos-shared
 
 ## Content
 
-| Item                                   | Notes                                                                    |
-| -------------------------------------- | ------------------------------------------------------------------------ |
-| [Component Types](./src/component.ts)  | Base types. The Component type serves as a base type for all components. |
-| [Connector Types](./src/component.ts)  | Connector types. The connector type extends the Component type.          |
-| [Connection Types](./src/component.ts) | Connection types. The connection type extends the Component type.        |
+| Item                                        | Notes                                                                    |
+| ------------------------------------------- | ------------------------------------------------------------------------ |
+| [Component Types](./src/component.ts)       | Base types. The Component type serves as a base type for all components. |
+| [Connector Types](./src/connector.ts)       | Connector types. The Connector type extends the Component type.          |
+| [Connection Types](./src/connection.ts)     | Connection types. The Connection type extends the Component type.        |
+| [Context Types](./src/context.ts)           | Context types. The Context type extends the Component type.              |
+| [Data View Types](./src/dataView.ts)        | DataView types. The DataView type extends the Component type.            |
+| [Dimension Types](./src/dimension.ts)       | Dimension types. The Dimension type extends the Component type.          |
+| [Engine Types](./src/dimension.ts)          | Engine types.                                                            |
+| [Event Query Types](./src/eventQuery.ts)    | Event Query types. The Event Query type extends the Component type.      |
+| [Presenter Types](./src/presenter.ts)       | Presenter types. The Presenter type extends the Component type.          |
+| [Presentation Types](./src/presentation.ts) | Presentation types. The Presentation type extends the Component type.    |
+| [Informer Types](./src/informer.ts)         | Informer types. The Informer type extends the Component type.            |
+| [Recipe Types](./src/recipe.ts)             | Recipe types. The Recipe type extends the Component type.                |
 
 ## Usage
 

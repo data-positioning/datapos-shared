@@ -61,6 +61,10 @@ export type { EventQueryConfig, EventQueryLocalisedConfig } from './eventQuery';
 // Interfaces/Types - Presenter
 export type { Presenter, PresenterConfig, PresenterItemConfig, PresenterLocalisedConfig } from './presenter';
 
+// Types - Presentation
+
+// Types - Informer
+
 // Interfaces/Types - Recipe
 export type { Recipe, RecipeConfig, RecipeLocalisedConfig } from './recipe';
 
