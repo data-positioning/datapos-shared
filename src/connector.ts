@@ -1,7 +1,8 @@
-// Dependencies - Vendor
+// Dependencies - Vendor.
+import type { parse } from 'date-fns';
 import type { Callback, Options, Parser } from 'csv-parse/browser/esm';
 
-// Dependencies - Framework
+// Dependencies - Framework.
 import type { ComponentConfig } from './component';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from './dataView';
@@ -11,6 +12,7 @@ export interface Connector {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
+    readonly tools: ConnectorTools;
 
     abortOperation?(connector: Connector): void; // Abort the active long running operation for a specified connection.
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection.
@@ -30,6 +32,11 @@ export interface Connector {
         tools?: RetrieveTools
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
+}
+export interface ConnectorTools {
+    csvParse: (options: Options, callback?: Callback) => Parser | undefined;
+    dateFNS: { parse: typeof parse };
+    nanoid: <Type extends string>(size?: number) => Type;
 }
 
 // Interfaces/Types - Connector Callback Data

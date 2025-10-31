@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "MIT",
     "private": false,
-    "version": "0.3.68",
+    "version": "0.3.69",
     "type": "module",
     "files": [
         "dist"
@@ -21,11 +21,13 @@
         "@typescript-eslint/eslint-plugin": "^8.46.2",
         "@typescript-eslint/parser": "^8.46.2",
         "csv-parse": "^6.1.0",
+        "date-fns": "^4.1.0",
         "eslint": "^9.38.0",
         "eslint-plugin-import": "^2.32.0",
         "jiti": "^2.6.1",
         "license-report": "^6.8.1",
         "license-report-check": "^0.1.2",
+        "nanoid": "^5.1.6",
         "npm-check-updates": "^19.1.2",
         "prettier": "^3.6.2",
         "retire": "^5.3.0",
