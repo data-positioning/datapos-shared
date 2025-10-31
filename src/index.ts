@@ -1,14 +1,14 @@
 // Constants
 export { DefaultTimestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
-// Interfaces/Types - Component
+// Types - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, StatusColorId } from './component';
 
-// Interfaces/Types - Connection
+// Types - Connection.
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from './connection';
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from './connection';
 
-// Interfaces/Types - Connector
+// Types - Connector.
 export type { AuditContentResult, AuditContentSettings } from './connector';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings, ConnectorLocalisedConfig, ConnectorTools } from './connector';
 export type { CreateSettings } from './connector';
@@ -22,7 +22,7 @@ export type { RemoveSettings } from './connector';
 export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from './connector';
 export type { UpsertSettings } from './connector';
 
-// Interfaces/Types - Context
+// Types - Context.
 export type {
     Context,
     ContextConfig,
@@ -41,44 +41,46 @@ export type {
 } from './context';
 export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from './context';
 
-// Interfaces/Types - Data View
+// Types - Data view.
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from './dataView';
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './dataView';
 
-// Interfaces/Types - Dimension
+// Types - Dimension.
 export type { DimensionConfig, DimensionLocalisedConfig } from './dimension';
 
-// Interfaces/Types - Engine
+// Types - Engine.
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWorker } from './engine';
 
-// Interfaces/Types - Error
-export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from './errors';
+// Types - Error.
 export type { SerialisedError } from './errors';
 
-// Interfaces/Types - Event Query
+// Types - Event query.
 export type { EventQueryConfig, EventQueryLocalisedConfig } from './eventQuery';
 
-// Interfaces/Types - Presenter
+// Types - Presenter.
 export type { Presenter, PresenterConfig, PresenterItemConfig, PresenterLocalisedConfig } from './presenter';
 
-// Types - Presentation
+// Types - Presentation.
 
-// Types - Informer
+// Types - Informer.
 
-// Interfaces/Types - Recipe
+// Types - Recipe. // TODO: Document?
 export type { Recipe, RecipeConfig, RecipeLocalisedConfig } from './recipe';
 
-// Interfaces/Types - Service
+// Types - Service.
 export type { ServiceData } from './service';
 
-// Interfaces/Types - State
+// Types - State.
 export type { StateConfig } from './state';
 
-// Interfaces/Types - Timestamp
+// Types - Timestamp.
 export type { Timestamp } from './timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
-// Interfaces/Types - Tutorial
+// Types - Tutorial.
 export type { TutorialConfig } from './tutorial';
+
+// Errors
+export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from './errors';
 
 // Operations
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from './errors';
