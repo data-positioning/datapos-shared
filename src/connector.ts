@@ -1,11 +1,15 @@
 // Dependencies - Vendor.
-import type { parse } from 'date-fns';
-import type { Callback, Options, Parser } from 'csv-parse/browser/esm';
+import type { parse as dateFnsParse } from 'date-fns';
+import type { nanoid } from 'nanoid';
+import type { Callback, parse as csvParse, Options, Parser } from 'csv-parse/browser/esm';
 
 // Dependencies - Framework.
 import type { ComponentConfig } from './component';
+import type { convertMillisecondsToTimestamp } from '.';
+import type { buildFetchError, OperationalError } from './errors';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from './dataView';
+import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from './utilities';
 
 // Interfaces/Types - Connector
 export interface Connector {
@@ -34,9 +38,17 @@ export interface Connector {
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
 export interface ConnectorTools {
-    csvParse: (options: Options, callback?: Callback) => Parser | undefined;
-    dateFNS: { parse: typeof parse };
-    nanoid: <Type extends string>(size?: number) => Type;
+    csvParse: typeof csvParse; //(options: Options, callback?: Callback) => Parser | undefined;
+    dateFns: { parse: typeof dateFnsParse };
+    nanoid: typeof nanoid;
+    shared: {
+        buildFetchError: typeof buildFetchError;
+        convertMillisecondsToTimestamp: typeof convertMillisecondsToTimestamp;
+        extractExtensionFromPath: typeof extractExtensionFromPath;
+        extractNameFromPath: typeof extractNameFromPath;
+        lookupMimeTypeForExtension: typeof lookupMimeTypeForExtension;
+        OperationalError: typeof OperationalError;
+    };
 }
 
 // Interfaces/Types - Connector Callback Data
