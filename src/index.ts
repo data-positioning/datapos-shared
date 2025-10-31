@@ -19,7 +19,7 @@ export type { InitialiseSettings } from './connector';
 export type { ListResult, ListSettings } from './connector';
 export type { PreviewResult, PreviewSettings } from './connector';
 export type { RemoveSettings } from './connector';
-export type { RetrieveResult, RetrieveSettings, RetrieveSummary, RetrieveTools } from './connector';
+export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from './connector';
 export type { UpsertSettings } from './connector';
 
 // Interfaces/Types - Context
