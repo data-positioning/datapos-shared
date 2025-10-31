@@ -1,13 +1,20 @@
+// Dependencies - Vendor.
+import type markdownIt from 'markdown-it';
+
 // Dependencies - Framework
 import type { ComponentConfig } from './component';
 
 // Interfaces/Types - Presenter
 export interface Presenter {
     readonly config: PresenterConfig;
+    tools: PresenterTools;
 
     list(path: string): PresenterItemConfig[];
     render(id: string, renderTo: string | HTMLElement): Promise<void>;
 }
+export type PresenterTools = {
+    markdownIt: typeof markdownIt;
+};
 
 // Interfaces/Types - Presenter Configuration
 export interface PresenterConfig extends ComponentConfig {
