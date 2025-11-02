@@ -1,14 +1,15 @@
 // Constants
+export const DEFAULT_LOCALE_CODE = 'en-gb';
 export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
-// Types - Component.
-export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, StatusColorId } from '@/component';
+// Interfaces/Types
+export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
+export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 
-// Types - Connection.
-export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/connection';
-export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/connection';
+// Interfaces/Types - Component.
+export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from '@/component';
 
-// Types - Connector.
+// Interfaces/Types - Connector.
 export type { AuditContentResult, AuditContentSettings } from '@/connector';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings, ConnectorLocalisedConfig, ConnectorTools } from '@/connector';
 export type { CreateSettings } from '@/connector';
@@ -22,7 +23,11 @@ export type { RemoveSettings } from '@/connector';
 export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from '@/connector';
 export type { UpsertSettings } from '@/connector';
 
-// Types - Context.
+// Interfaces/Types - Connector connection.
+export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/connection';
+export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/connection';
+
+// Interfaces/Types - Context.
 export type {
     Context,
     ContextConfig,
@@ -41,43 +46,43 @@ export type {
 } from '@/context';
 export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from '@/context';
 
-// Types - Data view.
+// Interfaces/Types - Data view.
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from '@/dataView';
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from '@/dataView';
 
-// Types - Dimension.
+// Interfaces/Types - Dimension.
 export type { DimensionConfig, DimensionLocalisedConfig } from '@/dimension';
 
-// Types - Engine.
+// Interfaces/Types - Engine.
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWorker } from '@/engine';
 
-// Types - Error.
+// Interfaces/Types - Error.
 export type { SerialisedError } from '@/errors';
 
-// Types - Event query.
+// Interfaces/Types - Event query.
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/eventQuery';
 
-// Types - Presenter.
+// Interfaces/Types - Presenter.
 export type { Presenter, PresenterConfig, PresenterItemConfig, PresenterLocalisedConfig, PresenterTools } from '@/presenter';
 export type { PresentationView } from '@/presenter';
 
-// Types - Presentation.
+// Interfaces/Types - Presenter presentation.
 
-// Types - Informer.
+// Interfaces/Types - Informer.
 
-// Types - Recipe. // TODO: Document?
+// Interfaces/Types - Informer document.
 export type { Recipe, RecipeConfig, RecipeLocalisedConfig } from '@/recipe';
 
-// Types - Service.
+// Interfaces/Types - Service.
 export type { ServiceData } from '@/service';
 
-// Types - State.
+// Interfaces/Types - State.
 export type { StateConfig } from '@/state';
 
-// Types - Timestamp.
+// Interfaces/Types - Timestamp.
 export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
-// Types - Tutorial.
+// Interfaces/Types - Tutorial.
 export type { TutorialConfig } from '@/tutorial';
 
 // Errors

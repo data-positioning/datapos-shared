@@ -1,7 +1,7 @@
 // Dependencies - Vendor.
 import type markdownIt from 'markdown-it';
 
-// Dependencies - Framework
+// Dependencies - Framework.
 import type { ComponentConfig } from '@/component';
 
 // Interfaces/Types - Presenter

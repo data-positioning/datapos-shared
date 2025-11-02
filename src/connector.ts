@@ -5,9 +5,9 @@ import type { nanoid } from 'nanoid';
 
 // Dependencies - Framework.
 import type { ComponentConfig } from '@/component';
-import type { convertMillisecondsToTimestamp } from '.';
 import type { buildFetchError, OperationalError } from '@/errors';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/connection';
+import { type convertMillisecondsToTimestamp, DEFAULT_LOCALE_CODE } from '.';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/dataView';
 import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
@@ -197,13 +197,13 @@ export interface UpsertSettings extends ConnectorOperationSettings {
 type ConnectorCategory = { id: string; label: string };
 type ConnectorCategoryConfig = { id: string; label: Record<string, string> };
 const connectorCategories: ConnectorCategoryConfig[] = [
-    { id: 'application', label: { en: 'Application' } },
-    { id: 'curatedDataset', label: { en: 'Curated Dataset' } },
-    { id: 'database', label: { en: 'Database' } },
-    { id: 'fileStore', label: { en: 'File Store' } }
+    { id: 'application', label: { 'en-gb': 'Application' } },
+    { id: 'curatedDataset', label: { 'en-gb': 'Curated Dataset' } },
+    { id: 'database', label: { 'en-gb': 'Database' } },
+    { id: 'fileStore', label: { 'en-gb': 'File Store' } }
 ];
-const getConnectorCategory = (id: string, localeId = 'en'): ConnectorCategory => {
+const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): ConnectorCategory => {
     const connectorCategory = connectorCategories.find((connectorCategory) => connectorCategory.id === id);
-    if (connectorCategory) return { ...connectorCategory, label: connectorCategory.label[localeId] || connectorCategory.label['en'] || id };
+    if (connectorCategory) return { ...connectorCategory, label: connectorCategory.label[localeId] || connectorCategory.label[DEFAULT_LOCALE_CODE] || id };
     return { id, label: id };
 };
