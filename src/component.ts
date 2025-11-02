@@ -20,6 +20,8 @@ export interface ComponentConfig {
 export interface ComponentRef {
     id: string;
     label: Partial<LocalisedString>;
+    description: Partial<LocalisedString>;
+    order: number;
 }
 
 // Interfaces/Types/Operations - Component status.

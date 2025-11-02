@@ -64,7 +64,7 @@ export type { SerialisedError } from '@/errors';
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/eventQuery';
 
 // Interfaces/Types - Presenter.
-export type { Presenter, PresenterConfig, PresenterItemConfig, PresenterLocalisedConfig, PresenterTools } from '@/presenter';
+export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterTools } from '@/presenter';
 export type { PresentationConfig, PresentationView } from '@/presenter';
 
 // Interfaces/Types - Presenter presentation.
