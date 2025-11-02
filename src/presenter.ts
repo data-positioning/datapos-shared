@@ -13,7 +13,8 @@ export interface Presenter {
     render(presentationPath: string, renderTo: HTMLElement): Promise<void>;
 }
 export interface PresenterConfig extends ComponentConfig {
-    version: string;
+    attributes: { label: Record<string, string>; description: Record<string, string>; order: number };
+    content: string;
 }
 export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };
 export type PresenterTools = { markdownIt: typeof markdownIt };
