@@ -65,7 +65,7 @@ export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/eventQuery';
 
 // Interfaces/Types - Presenter.
 export type { Presenter, PresenterConfig, PresenterItemConfig, PresenterLocalisedConfig, PresenterTools } from '@/presenter';
-export type { PresentationView } from '@/presenter';
+export type { PresentationConfig, PresentationView } from '@/presenter';
 
 // Interfaces/Types - Presenter presentation.
 
