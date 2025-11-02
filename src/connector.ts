@@ -4,12 +4,12 @@ import type { parse as dateFnsParse } from 'date-fns';
 import type { nanoid } from 'nanoid';
 
 // Dependencies - Framework.
-import type { ComponentConfig } from './component';
+import type { ComponentConfig } from '@/component';
 import type { convertMillisecondsToTimestamp } from '.';
-import type { buildFetchError, OperationalError } from './errors';
-import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
-import type { DataViewContentAuditConfig, ValueDelimiterId } from './dataView';
-import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from './utilities';
+import type { buildFetchError, OperationalError } from '@/errors';
+import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/connection';
+import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/dataView';
+import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
 // Interfaces - Connector.
 export interface Connector {

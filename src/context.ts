@@ -1,7 +1,7 @@
-// Dependencies - Framework
-import type { ComponentConfig, ComponentRef } from './component';
+// Dependencies - Framework.
+import type { ComponentConfig, ComponentRef } from '@/component';
 
-// Interfaces/Types - Connector
+// Interfaces/Types - Context.
 export interface Context {
     readonly config: ContextConfig;
 

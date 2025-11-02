@@ -16,6 +16,11 @@ export type PresenterTools = {
     markdownIt: typeof markdownIt;
 };
 
+export interface PresentationView {
+    resize: () => void;
+    vendorId: string;
+}
+
 // Interfaces/Types - Presenter Configuration
 export interface PresenterConfig extends ComponentConfig {
     // index: PresenterItemConfig[];

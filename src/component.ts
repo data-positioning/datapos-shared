@@ -1,7 +1,7 @@
-// Dependencies - Framework
+// Dependencies - Framework.
 import type { Timestamp } from './timestamp';
 
-// Interfaces/Types - Component Configuration - TODO: Do we need to extend Record?
+// Interfaces/Types - Component Configuration. TODO: Do we need to extend Record?
 export interface ComponentConfig {
     description: Record<string, string>;
     firstCreatedAt?: Timestamp;
