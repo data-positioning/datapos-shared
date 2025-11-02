@@ -50,7 +50,7 @@ export type ComponentTypeId =
     | 'connector'
     | 'connectorConnection'
     | 'context'
-    | 'contextFocus'
+    | 'contextModelGroup'
     | 'contextModel'
     | 'contextModelDimensionGroup'
     | 'contextModelDimension'
