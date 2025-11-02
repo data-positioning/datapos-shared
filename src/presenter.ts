@@ -13,6 +13,7 @@ export interface Presenter {
     render(presentationPath: string, renderTo: HTMLElement): Promise<void>;
 }
 export interface PresenterConfig extends ComponentConfig {
+    presentations: ComponentRef[];
     version: string;
 }
 export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };
