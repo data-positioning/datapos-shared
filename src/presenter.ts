@@ -21,9 +21,9 @@ export type PresenterTools = { markdownIt: typeof markdownIt };
 
 // Interface/Types - Presentation Configuration
 export interface PresentationConfig extends ComponentConfig {
-    attributes: { label: Record<string, string>; description: Record<string, string>; order: number }; // TODO: Change code so we can remove this.
     content: string;
     order: number;
+    path: string;
 }
 
 // Interfaces/Types - Presentation view.
