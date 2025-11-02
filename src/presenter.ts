@@ -2,7 +2,7 @@
 import type markdownIt from 'markdown-it';
 
 // Dependencies - Framework
-import type { ComponentConfig } from './component';
+import type { ComponentConfig } from '@/component';
 
 // Interfaces/Types - Presenter
 export interface Presenter {

@@ -1,7 +1,7 @@
 // Use NAMESPACES rather than SCHEMAS.
 
 // import type { ConnectionConfig } from '../connection';
-// import type { Connector, ConnectorConfig } from './';
+// import type { Connector, ConnectorConfig } from '@/';
 
 // export interface NodeConnector extends Connector {
 //     abortController?: AbortController | undefined;
