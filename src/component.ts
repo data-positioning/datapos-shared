@@ -22,7 +22,7 @@ export interface ComponentRef {
     label: Record<LocaleCode, string>;
 }
 
-// Interfaces/Types - Component status.
+// Interfaces/Types/Operations - Component status.
 export type ComponentStatus = { id: string; color: StatusColorId; label: string };
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
 type ComponentStatusConfig = { id: string; color: StatusColorId; label: Record<string, string> };
@@ -43,7 +43,7 @@ export const getComponentStatus = (id: string, localeId = DEFAULT_LOCALE_CODE): 
     return { id, color: 'other', label: id };
 };
 
-// Interfaces/Types - Component type identifier.
+// Interfaces/Types/Operations - Component type.
 export type ComponentTypeId =
     | 'app'
     | 'engine'
@@ -51,14 +51,19 @@ export type ComponentTypeId =
     | 'connectorConnection'
     | 'context'
     | 'contextFocus'
-    | 'contextFocusModel'
-    | 'contextFocusModelDimension'
-    | 'contextFocusModelDimensionHierarchy'
-    | 'contextFocusModelEntity'
-    | 'contextFocusModelEntityDataItems'
-    | 'contextFocusModelEntityEvent'
-    | 'contextFocusModelEntityPrimaryMeasure'
-    | 'contextFocusModelSecondaryMeasure'
+    | 'contextModel'
+    | 'contextModelDimensionGroup'
+    | 'contextModelDimension'
+    | 'contextModelDimensionHierarchy'
+    | 'contextModelEntityGroup'
+    | 'contextModelEntity'
+    | 'contextModelEntityDataItems'
+    | 'contextModelEntityEvent'
+    | 'contextModelEntityPrimaryMeasure'
+    | 'contextModelSecondaryMeasureGroup'
+    | 'contextModelSecondaryMeasure'
+    | 'contextModelPresentationGroup'
+    | 'contextModelPresentation'
     | 'dataView'
     | 'dimension'
     | 'eventQuery'

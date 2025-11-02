@@ -7,7 +7,7 @@ import type { nanoid } from 'nanoid';
 import type { ComponentConfig } from '@/component';
 import type { buildFetchError, OperationalError } from '@/errors';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/connection';
-import { type convertMillisecondsToTimestamp, DEFAULT_LOCALE_CODE } from '.';
+import { type convertMillisecondsToTimestamp, DEFAULT_LOCALE_CODE } from '@/index';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/dataView';
 import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
@@ -36,27 +36,6 @@ export interface Connector {
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
-export interface ConnectorTools {
-    csvParse: typeof csvParse; //(options: Options, callback?: Callback) => Parser | undefined;
-    dateFns: { parse: typeof dateFnsParse };
-    nanoid: typeof nanoid;
-    shared: {
-        buildFetchError: typeof buildFetchError;
-        convertMillisecondsToTimestamp: typeof convertMillisecondsToTimestamp;
-        extractExtensionFromPath: typeof extractExtensionFromPath;
-        extractNameFromPath: typeof extractNameFromPath;
-        lookupMimeTypeForExtension: typeof lookupMimeTypeForExtension;
-        OperationalError: typeof OperationalError;
-    };
-}
-
-// Interfaces/Types - Connector Callback Data
-export interface ConnectorCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
-}
-
-// Interfaces/Types - Connector Configuration
 export interface ConnectorConfig extends ComponentConfig {
     category?: ConnectorCategory;
     categoryId: string;
@@ -67,7 +46,7 @@ export interface ConnectorConfig extends ComponentConfig {
     vendorHomeURL?: string;
     version: string;
 }
-export interface ConnectorImplementation {
+export type ConnectorImplementation = {
     activeConnectionCount?: number;
     canDescribe?: boolean;
     id?: string;
@@ -75,100 +54,113 @@ export interface ConnectorImplementation {
     label?: Record<string, string>;
     maxConnectionCount?: number;
     params?: Record<string, string>[];
-}
+};
 export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
+export type ConnectorTools = {
+    csvParse: typeof csvParse;
+    dataPos: {
+        buildFetchError: typeof buildFetchError;
+        convertMillisecondsToTimestamp: typeof convertMillisecondsToTimestamp;
+        extractExtensionFromPath: typeof extractExtensionFromPath;
+        extractNameFromPath: typeof extractNameFromPath;
+        lookupMimeTypeForExtension: typeof lookupMimeTypeForExtension;
+        OperationalError: typeof OperationalError;
+    };
+    dateFns: { parse: typeof dateFnsParse };
+    nanoid: typeof nanoid;
+};
 
-// Interfaces/Types - Connector Operator Settings
+// Interfaces/Types - Initialise settings.
+export interface InitialiseSettings {
+    connectorStorageURLPrefix: string;
+}
+
+// Interfaces/Types - Connector operation settings.
 export interface ConnectorOperationSettings {
     accountId?: string;
     appCheckToken?: string;
     sessionAccessToken?: string;
 }
 
-// Interfaces/Types - Audit Content (Object)
-export interface AuditContentResult {
-    contentAuditConfig: DataViewContentAuditConfig;
-}
+// Interfaces/Types - Audit Content (object).
 export interface AuditContentSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
+export interface AuditContentResult {
+    contentAuditConfig: DataViewContentAuditConfig;
+}
 
-// Interfaces/Types - Create (Object)
+// Interfaces/Types - Create (object).
 export interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
     path: string;
     structure: string;
 }
 
-// Interfaces/Types - Describe (Connection)
+// Interfaces/Types - Describe (Connection).
 interface DescribeSettings extends ConnectorOperationSettings {}
 interface DescribeResult {
     description: ConnectionDescription;
 }
 
-// Interfaces/Types - Drop (Object)
+// Interfaces/Types - Drop (object).
 export interface DropSettings extends ConnectorOperationSettings {
     path: string;
 }
 
-// Interfaces/Types - Find (Object)
-export interface FindResult {
-    folderPath?: string;
-}
+// Interfaces/Types - Find (object).
 export interface FindSettings extends ConnectorOperationSettings {
     containerName?: string;
     objectName: string;
 }
-
-// Interfaces/Types - Get (Object)
-export interface GetResult {
-    record?: string[] | Record<string, unknown>;
+export interface FindResult {
+    folderPath?: string;
 }
+
+// Interfaces/Types - Get (object).
 export interface GetSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
 }
-
-// Interfaces/Types - Initialise (Connector)
-export interface InitialiseSettings {
-    connectorStorageURLPrefix: string;
+export interface GetResult {
+    record?: string[] | Record<string, unknown>;
 }
 
-// Interfaces/Types - List (Nodes)
-export interface ListResult {
-    cursor: string | number | undefined;
-    connectionNodeConfigs: ConnectionNodeConfig[];
-    isMore: boolean;
-    totalCount: number;
-}
+// Interfaces/Types - List (nodes).
 export interface ListSettings extends ConnectorOperationSettings {
     folderPath: string;
     limit?: number;
     offset?: number;
     totalCount?: number;
 }
-
-// Interfaces/Types - Preview (Object)
-export interface PreviewResult {
-    data: Record<string, unknown>[] | Uint8Array;
-    typeId: 'jsonArray' | 'uint8Array';
+export interface ListResult {
+    cursor: string | number | undefined;
+    connectionNodeConfigs: ConnectionNodeConfig[];
+    isMore: boolean;
+    totalCount: number;
 }
+
+// Interfaces/Types - Preview (object).
 export interface PreviewSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     extension?: string;
     path: string;
 }
+export interface PreviewResult {
+    data: Record<string, unknown>[] | Uint8Array;
+    typeId: 'jsonArray' | 'uint8Array';
+}
 
-// Interfaces/Types - Remove (Records)
+// Interfaces/Types - Remove (records).
 export interface RemoveSettings extends ConnectorOperationSettings {
     keys: string[];
     path: string;
 }
 
-// Interfaces/Types - Retrieve (Records)
+// Interfaces/Types - Retrieve (records).
 export interface RetrieveSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
@@ -187,13 +179,19 @@ export interface RetrieveSummary {
     recordCount: number;
 }
 
-// Interfaces/Types - Upsert (Records)
+// Interfaces/Types - Upsert (records).
 export interface UpsertSettings extends ConnectorOperationSettings {
     records: Record<string, unknown>[];
     path: string;
 }
 
-// Connector Category
+// Interfaces/Types - Connector callback data.
+export interface ConnectorCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
+
+// Interfaces/Types/Operations - Connector category.
 type ConnectorCategory = { id: string; label: string };
 type ConnectorCategoryConfig = { id: string; label: Record<string, string> };
 const connectorCategories: ConnectorCategoryConfig[] = [

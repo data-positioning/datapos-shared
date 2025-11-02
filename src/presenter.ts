@@ -4,29 +4,25 @@ import type markdownIt from 'markdown-it';
 // Dependencies - Framework.
 import type { ComponentConfig } from '@/component';
 
-// Interfaces/Types - Presenter
+// Interfaces/Types - Presenter.
 export interface Presenter {
     readonly config: PresenterConfig;
-    tools: PresenterTools;
+    readonly tools: PresenterTools;
 
-    list(path: string): PresenterItemConfig[];
-    render(id: string, renderTo: string | HTMLElement): Promise<void>;
+    list(): PresenterItemConfig[];
+    render(presentationPath: string, renderTo: HTMLElement): Promise<void>;
 }
-export type PresenterTools = {
-    markdownIt: typeof markdownIt;
-};
+export interface PresenterConfig extends ComponentConfig {
+    version: string;
+}
+export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };
+export type PresenterTools = { markdownIt: typeof markdownIt };
 
+// Interfaces/Types - Presentation view.
 export interface PresentationView {
     resize: () => void;
     vendorId: string;
 }
-
-// Interfaces/Types - Presenter Configuration
-export interface PresenterConfig extends ComponentConfig {
-    // index: PresenterItemConfig[];
-    version: string;
-}
-export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Presenter Item Configuration
 export interface PresenterItemConfig {
