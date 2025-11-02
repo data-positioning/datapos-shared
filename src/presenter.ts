@@ -41,7 +41,7 @@ export interface Presentation {
 }
 
 // Interface/Types - Presentation Configuration
-export interface PresentationConfig {
+export interface PresentationConfig extends ComponentConfig {
     attributes: { label: Record<string, string>; description: Record<string, string>; order: number };
     content: string;
 }
