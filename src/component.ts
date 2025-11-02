@@ -22,6 +22,7 @@ export interface ComponentRef {
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
     order: number;
+    path: string;
 }
 
 // Interfaces/Types/Operations - Component status.
