@@ -193,7 +193,7 @@ export interface ConnectorCallbackData {
 
 // Interfaces/Types/Operations - Connector category.
 type ConnectorCategory = { id: string; label: string };
-type ConnectorCategoryConfig = { id: string; label: LocalisedString };
+type ConnectorCategoryConfig = { id: string; label: Partial<LocalisedString> };
 const connectorCategories: ConnectorCategoryConfig[] = [
     { id: 'application', label: { 'en-gb': 'Application' } },
     { id: 'curatedDataset', label: { 'en-gb': 'Curated Dataset' } },
