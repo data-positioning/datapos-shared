@@ -1,16 +1,16 @@
 // Dependencies - Framework.
 import type { Timestamp } from '@/timestamp';
-import { DEFAULT_LOCALE_CODE, type LocaleCode, type StatusColorId } from '@/index';
+import { DEFAULT_LOCALE_CODE, type LocaleCode, type LocalisedString, type StatusColorId } from '@/index';
 
 // Interfaces/Types - Component configuration.
 export interface ComponentConfig {
-    description: Record<LocaleCode, string>;
-    firstCreatedAt?: Timestamp;
     id: string;
-    label: Record<LocaleCode, string>;
-    lastUpdatedAt?: Timestamp;
+    label: Partial<LocalisedString>;
+    description: Partial<LocalisedString>;
+    firstCreatedAt?: Timestamp;
     icon?: string;
     iconDark?: string;
+    lastUpdatedAt?: Timestamp;
     status?: ComponentStatus;
     statusId: ComponentStatusId;
     typeId: ComponentTypeId;
@@ -19,13 +19,13 @@ export interface ComponentConfig {
 // Interfaces/Types - Component references.
 export interface ComponentRef {
     id: string;
-    label: Record<LocaleCode, string>;
+    label: Partial<LocalisedString>;
 }
 
 // Interfaces/Types/Operations - Component status.
 export type ComponentStatus = { id: string; color: StatusColorId; label: string };
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
-type ComponentStatusConfig = { id: string; color: StatusColorId; label: Record<string, string> };
+type ComponentStatusConfig = { id: string; color: StatusColorId; label: Partial<LocalisedString> };
 const componentStatuses: ComponentStatusConfig[] = [
     { id: 'alpha', color: 'red', label: { 'en-gb': 'alpha' } },
     { id: 'beta', color: 'amber', label: { 'en-gb': 'beta' } },
@@ -37,7 +37,7 @@ const componentStatuses: ComponentStatusConfig[] = [
     { id: 'unavailable', color: 'other', label: { 'en-gb': 'unavailable' } },
     { id: 'underReview', color: 'other', label: { 'en-gb': 'under-review' } }
 ];
-export const getComponentStatus = (id: string, localeId = DEFAULT_LOCALE_CODE): ComponentStatus => {
+export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LOCALE_CODE): ComponentStatus => {
     const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
     if (componentStatus) return { ...componentStatus, label: componentStatus.label[localeId] || componentStatus.label[DEFAULT_LOCALE_CODE] || id };
     return { id, color: 'other', label: id };

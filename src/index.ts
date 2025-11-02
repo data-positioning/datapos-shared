@@ -1,10 +1,11 @@
-// Constants
-export const DEFAULT_LOCALE_CODE = 'en-gb';
-export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
-
 // Interfaces/Types
 export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
+export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
+
+// Constants
+export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
+export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
 // Interfaces/Types - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from '@/component';

@@ -7,7 +7,7 @@ import type { nanoid } from 'nanoid';
 import type { ComponentConfig } from '@/component';
 import type { buildFetchError, OperationalError } from '@/errors';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/connection';
-import { type convertMillisecondsToTimestamp, DEFAULT_LOCALE_CODE } from '@/index';
+import { type convertMillisecondsToTimestamp, DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/dataView';
 import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
@@ -51,7 +51,7 @@ export type ConnectorImplementation = {
     canDescribe?: boolean;
     id?: string;
     authMethodId: 'apiKey' | 'disabled' | 'oAuth2' | 'none';
-    label?: Record<string, string>;
+    label?: LocalisedString;
     maxConnectionCount?: number;
     params?: Record<string, string>[];
 };
@@ -193,7 +193,7 @@ export interface ConnectorCallbackData {
 
 // Interfaces/Types/Operations - Connector category.
 type ConnectorCategory = { id: string; label: string };
-type ConnectorCategoryConfig = { id: string; label: Record<string, string> };
+type ConnectorCategoryConfig = { id: string; label: LocalisedString };
 const connectorCategories: ConnectorCategoryConfig[] = [
     { id: 'application', label: { 'en-gb': 'Application' } },
     { id: 'curatedDataset', label: { 'en-gb': 'Curated Dataset' } },
