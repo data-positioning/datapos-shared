@@ -19,14 +19,11 @@ export interface PresenterConfig extends ComponentConfig {
 export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };
 export type PresenterTools = { markdownIt: typeof markdownIt };
 
-// Interface/Types - Presentation Configuration
+// Interface/Types - Presentation.
 export interface PresentationConfig extends ComponentConfig {
     content: string;
     order: number;
-    path: string;
 }
-
-// Interfaces/Types - Presentation view.
 export interface PresentationView {
     resize: () => void;
     vendorId: string;
