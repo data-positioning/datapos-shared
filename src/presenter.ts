@@ -77,7 +77,7 @@ export type PresentationVisualViewType =
     | PresentationVisualValuesViewType;
 export type PresentationVisualCartesianViewType = {
     categoryId: 'cartesian';
-    typeId: 'area' | 'bar' | 'column' | 'line';
+    typeId: 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
     label: Record<string, string>;
     options: { highchartsType: 'area' | 'bar' | 'column' | 'line'; inverted?: boolean };
 };
@@ -100,10 +100,13 @@ export type PresentationVisualValuesViewType = { categoryId: 'values'; label: Re
 
 // Constants
 export const presentationViewTypeMap: Record<string, PresentationVisualViewType> = {
-    cartesian_area: { categoryId: 'cartesian', typeId: 'area', label: { 'en-gb': 'Area' }, options: { highchartsType: 'area' } },
+    cartesian_areaLine: { categoryId: 'cartesian', typeId: 'areaLine', label: { 'en-gb': 'Area Line' }, options: { highchartsType: 'area' } },
+    cartesian_areaSpline: { categoryId: 'cartesian', typeId: 'areaSpline', label: { 'en-gb': 'Area Spline' }, options: { highchartsType: 'area' } },
     cartesian_bar: { categoryId: 'cartesian', typeId: 'bar', label: { 'en-gb': 'Bar' }, options: { highchartsType: 'bar' } },
     cartesian_column: { categoryId: 'cartesian', typeId: 'column', label: { 'en-gb': 'Column' }, options: { highchartsType: 'column' } },
     cartesian_line: { categoryId: 'cartesian', typeId: 'line', label: { 'en-gb': 'Line' }, options: { highchartsType: 'line' } },
+    cartesian_pyramid: { categoryId: 'cartesian', typeId: 'line', label: { 'en-gb': 'Pyramid' }, options: { highchartsType: 'line' } },
+    cartesian_spline: { categoryId: 'cartesian', typeId: 'line', label: { 'en-gb': 'Spline' }, options: { highchartsType: 'line' } },
     chordDiagram: { categoryId: 'chordDiagram', label: { 'en-gb': 'Chord Diagram' }, options: {} },
     polar_area: { categoryId: 'polar', typeId: 'area', label: { 'en-gb': 'Radar (Area)' }, options: { highchartsType: 'area' } },
     polar_column: { categoryId: 'polar', typeId: 'column', label: { 'en-gb': 'Radar (Column)' }, options: { highchartsType: 'column' } },
