@@ -6,6 +6,7 @@ export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 // Constants
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
+export { presentationViewTypeMap } from '@/presenter';
 
 // Interfaces/Types - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from '@/component';
@@ -65,9 +66,31 @@ export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/eventQuery';
 
 // Interfaces/Types - Presenter.
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterTools } from '@/presenter';
-export type { PresentationConfig, PresentationView } from '@/presenter';
 
 // Interfaces/Types - Presenter presentation.
+export type { PresentationConfig, PresentationView } from '@/presenter';
+export type {
+    PresentationVisualConfig,
+    PresentationVisualContentConfig,
+    PresentationVisualViewConfig,
+    PresentationVisualCartesianViewConfig,
+    PresentationVisualChordDiagramViewConfig,
+    PresentationVisualPolarViewConfig,
+    PresentationVisualRangeViewConfig,
+    PresentationVisualSankeyDiagramViewConfig,
+    PresentationVisualStreamgraphViewConfig,
+    PresentationVisualValuesViewConfig
+} from '@/presenter';
+export type {
+    PresentationVisualViewType,
+    PresentationVisualCartesianViewType,
+    PresentationVisualChordViewType,
+    PresentationVisualPolarViewType,
+    PresentationVisualRangeViewType,
+    PresentationVisualSankeyDiagramViewType,
+    PresentationVisualStreamgraphViewType,
+    PresentationVisualValuesViewType
+} from '@/presenter';
 
 // Interfaces/Types - Informer.
 
