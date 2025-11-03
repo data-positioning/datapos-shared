@@ -32,14 +32,13 @@ export function useHighcharts() {
     async function renderCartesianChart(
         type: PresentationVisualCartesianViewType,
         contentConfig: PresentationVisualContentConfig,
-        data: number[][],
         element: HTMLElement,
         callback?: () => void
     ): Promise<HighchartsView> {
         await loadHighchartsCore();
         const series: SeriesOptionsType[] = [];
         for (const measure of contentConfig.data.measures) {
-            series.push({ type: type.options.highchartsType, name: measure.name, data });
+            series.push({ type: type.options.highchartsType, name: measure.name, data: getMeasureValues([measure.id]) });
         }
         const options: Options = {
             chart: { type: type.options.highchartsType },
@@ -57,14 +56,13 @@ export function useHighcharts() {
     async function renderPolarChart(
         type: PresentationVisualPolarViewType,
         content: PresentationVisualContentConfig,
-        data: number[][],
         element: HTMLElement,
         callback?: () => void
     ): Promise<HighchartsView> {
         await Promise.all([loadHighchartsCore(), loadHighchartsMoreModule()]);
         const series: SeriesOptionsType[] = [];
         for (const measure of content.data.measures) {
-            series.push({ type: type.options.highchartsType, name: measure.name, data });
+            series.push({ type: type.options.highchartsType, name: measure.name, data: getMeasureValues([measure.id]) });
         }
         const options: Options = {
             chart: { polar: true },
@@ -82,13 +80,12 @@ export function useHighcharts() {
     async function renderRangeChart(
         type: PresentationVisualRangeViewType,
         content: PresentationVisualContentConfig,
-        data: number[][],
         element: HTMLElement,
         callback?: () => void
     ): Promise<HighchartsView> {
         await Promise.all([loadHighchartsCore(), loadHighchartsMoreModule()]);
         const series: SeriesOptionsType[] = [];
-        series.push({ type: type.options.highchartsType, name: 'Unknown', data });
+        series.push({ type: type.options.highchartsType, name: 'Unknown', data: getMeasureValues([content.data.measures[0].id, content.data.measures[1].id]) });
         const options: Options = {
             chart: { type: type.options.highchartsType, inverted: type.options.inverted },
             plotOptions: { series: { borderColor: '#333' } },

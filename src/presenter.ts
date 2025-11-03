@@ -10,7 +10,7 @@ export interface Presenter {
     readonly tools: PresenterTools;
 
     list(): ComponentRef[];
-    render(presentationPath: string, renderTo: HTMLElement): Promise<void>;
+    render(presentationPath: string, renderTo: HTMLElement, data?: unknown): Promise<void>;
 }
 export interface PresenterConfig extends ComponentConfig {
     presentations: ComponentRef[];
@@ -33,7 +33,10 @@ export interface PresentationView {
 
 // Interface/Types - Presentation visual configuration.
 export type PresentationVisualConfig = { content: PresentationVisualContentConfig; views: PresentationVisualViewConfig[] };
-export type PresentationVisualContentConfig = { title: { text: string }; data: { name: string; categoryLabels: string[]; measures: { id: string; name: string }[] } };
+export type PresentationVisualContentConfig = {
+    title: { text: string };
+    data: { name: string; categoryLabels: string[]; measures: { id: string; name: string; data?: number[][] }[] };
+};
 export interface PresentationVisualViewConfig {
     categoryId: 'cartesian' | 'chordDiagram' | 'polar' | 'range' | 'sankeyDiagram' | 'streamgraph' | 'values';
     default?: boolean;
