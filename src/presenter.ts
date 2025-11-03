@@ -43,7 +43,7 @@ export interface PresentationVisualViewConfig {
 }
 export interface PresentationVisualCartesianViewConfig extends PresentationVisualViewConfig {
     categoryId: 'cartesian';
-    typeId: 'area' | 'bar' | 'column' | 'line';
+    typeId: 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
 }
 export interface PresentationVisualChordDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'chordDiagram';
