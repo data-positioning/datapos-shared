@@ -92,6 +92,7 @@ export function useHighcharts() {
         for (let index = 0; index++; index < content.data.measures[0].data!.length) {
             data.push([content.data.measures[0].data![index], content.data.measures[1].data![index]]);
         }
+        console.log(1111, content.data.measures, data);
         // series.push({ type: type.options.highchartsType, name: 'Unknown', data: getMeasureValues([content.data.measures[0].id, content.data.measures[1].id]) });
         series.push({ type: type.options.highchartsType, name: 'Unknown', data });
         const options: Options = {
