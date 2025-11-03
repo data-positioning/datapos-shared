@@ -90,7 +90,7 @@ export function useHighcharts() {
         // series.push({ type: type.options.highchartsType, name: 'Unknown', data: getMeasureValues([content.data.measures[0].id, content.data.measures[1].id]) });
         const data = [];
         console.log(1111, content.data.measures[0].data!.length);
-        for (let index = 0; index++; index < content.data.measures[0].data!.length) {
+        for (let index = 0; index < content.data.measures[0].data!.length; index++) {
             console.log(2222, content.data.measures[0].data![index], content.data.measures[1].data![index]);
             data.push([content.data.measures[0].data![index][0], content.data.measures[1].data![index][0]]);
         }
