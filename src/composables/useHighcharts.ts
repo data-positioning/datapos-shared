@@ -38,7 +38,8 @@ export function useHighcharts() {
         await loadHighchartsCore();
         const series: SeriesOptionsType[] = [];
         for (const measure of contentConfig.data.measures) {
-            series.push({ type: type.options.highchartsType, name: measure.name, data: getMeasureValues([measure.id]) });
+            // series.push({ type: type.options.highchartsType, name: measure.name, data: getMeasureValues([measure.id]) });
+            series.push({ type: type.options.highchartsType, name: measure.name, data: measure.data });
         }
         const options: Options = {
             chart: { type: type.options.highchartsType },
@@ -62,7 +63,8 @@ export function useHighcharts() {
         await Promise.all([loadHighchartsCore(), loadHighchartsMoreModule()]);
         const series: SeriesOptionsType[] = [];
         for (const measure of content.data.measures) {
-            series.push({ type: type.options.highchartsType, name: measure.name, data: getMeasureValues([measure.id]) });
+            // series.push({ type: type.options.highchartsType, name: measure.name, data: getMeasureValues([measure.id]) });
+            series.push({ type: type.options.highchartsType, name: measure.name, data: measure.data });
         }
         const options: Options = {
             chart: { polar: true },
@@ -85,7 +87,13 @@ export function useHighcharts() {
     ): Promise<HighchartsView> {
         await Promise.all([loadHighchartsCore(), loadHighchartsMoreModule()]);
         const series: SeriesOptionsType[] = [];
-        series.push({ type: type.options.highchartsType, name: 'Unknown', data: getMeasureValues([content.data.measures[0].id, content.data.measures[1].id]) });
+        // series.push({ type: type.options.highchartsType, name: 'Unknown', data: getMeasureValues([content.data.measures[0].id, content.data.measures[1].id]) });
+        const data = [];
+        for (let index = 0; index++; index < content.data.measures[0].data!.length) {
+            data.push([content.data.measures[0].data![index], content.data.measures[1].data![index]]);
+        }
+        // series.push({ type: type.options.highchartsType, name: 'Unknown', data: getMeasureValues([content.data.measures[0].id, content.data.measures[1].id]) });
+        series.push({ type: type.options.highchartsType, name: 'Unknown', data });
         const options: Options = {
             chart: { type: type.options.highchartsType, inverted: type.options.inverted },
             plotOptions: { series: { borderColor: '#333' } },
