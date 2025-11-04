@@ -107,12 +107,6 @@ export type {
 // Interfaces/Types - Informer document.
 export type { Recipe, RecipeConfig, RecipeLocalisedConfig } from '@/component/informer/recipe';
 
-// Interfaces/Types - Service.
-export type { ServiceData } from '@/service';
-
-// Interfaces/Types - State.
-export type { StateConfig } from '@/state';
-
 // Interfaces/Types - Timestamp.
 export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 

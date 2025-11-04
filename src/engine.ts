@@ -1,7 +1,7 @@
-import type { ConnectionConfig } from '@/connection';
-import type { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveResult } from '@/connector';
-import type { ContextCallbackData, ContextConfig, ContextOperationSettings } from '@/context';
-import type { DataViewPreviewConfig, EncodingConfig } from '@/dataView';
+import type { ConnectionConfig } from '@/component/connector/connection';
+import type { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveResult } from '@/component/connector';
+import type { ContextCallbackData, ContextConfig, ContextOperationSettings } from '@/component/context';
+import type { DataViewPreviewConfig, EncodingConfig } from '@/component/dataView';
 
 type InitialiseEngine = (settings: InitialiseSettings) => Promise<void>;
 
