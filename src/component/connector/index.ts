@@ -8,7 +8,7 @@ import type { ComponentConfig } from '@/component';
 import type { buildFetchError, OperationalError } from '@/errors';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
 import { type convertMillisecondsToTimestamp, DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
-import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/dataView';
+import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/dataView';
 import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
 // Interfaces - Connector.

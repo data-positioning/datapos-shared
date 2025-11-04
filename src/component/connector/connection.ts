@@ -1,6 +1,6 @@
 // Dependencies - Framework
 import type { ComponentConfig } from '@/component';
-import type { ConnectorConfig } from '@/connector';
+import type { ConnectorConfig } from '@/component/connector';
 import type { Timestamp } from '@/timestamp';
 
 // Interfaces/Types - Connection Configuration
