@@ -3,11 +3,6 @@ export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 
-// Constants
-export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
-export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
-export { presentationViewTypeMap } from '@/component/presenter';
-
 // Interfaces/Types - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from '@/component';
 
@@ -57,11 +52,18 @@ export type {
 export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from '@/component/context';
 
 // Interfaces/Types - Data view.
-export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from '@/dataView';
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from '@/dataView';
+export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from '@/component/dataView';
+export type {
+    DataViewConfig,
+    DataViewContentAuditConfig,
+    DataViewLocalisedConfig,
+    DataViewPreviewConfig,
+    DataViewRelationshipsAuditConfig,
+    ParsedValue
+} from '@/component/dataView';
 
 // Interfaces/Types - Dimension.
-export type { DimensionConfig, DimensionLocalisedConfig } from '@/dimension';
+export type { DimensionConfig, DimensionLocalisedConfig } from '@/component/dimension';
 
 // Interfaces/Types - Engine.
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWorker } from '@/engine';
@@ -70,7 +72,7 @@ export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWo
 export type { SerialisedError } from '@/errors';
 
 // Interfaces/Types - Event query.
-export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/eventQuery';
+export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/component/eventQuery';
 
 // Interfaces/Types - Presenter.
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterTools } from '@/component/presenter';
@@ -103,7 +105,7 @@ export type {
 // Interfaces/Types - Informer.
 
 // Interfaces/Types - Informer document.
-export type { Recipe, RecipeConfig, RecipeLocalisedConfig } from '@/recipe';
+export type { Recipe, RecipeConfig, RecipeLocalisedConfig } from '@/component/informer/recipe';
 
 // Interfaces/Types - Service.
 export type { ServiceData } from '@/service';
@@ -117,13 +119,18 @@ export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now
 // Interfaces/Types - Tutorial.
 export type { TutorialConfig } from '@/component/informer/tutorial';
 
-// Errors
-export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';
+// Constants
+export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
+export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
+export { presentationViewTypeMap } from '@/component/presenter';
 
 // Composables
 export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
 export { useDataTable } from '@/composables/useDataTable';
 export { type HighchartsView, useHighcharts } from '@/composables/useHighcharts';
+
+// Errors
+export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';
 
 // Operations
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
@@ -131,6 +138,6 @@ export { convertMillisecondsToTimestamp, getCurrentTimestamp } from '@/timestamp
 export { convertODataTypeIdToUsageTypeId } from '@/utilities';
 export { extractExtensionFromPath, extractNameFromPath } from '@/utilities';
 export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/utilities';
-export { getDataFormats, getRecordDelimiters, getValueDelimiters } from '@/dataView';
+export { getDataFormats, getRecordDelimiters, getValueDelimiters } from '@/component/dataView';
 export { getComponentStatus } from '@/component';
 export { lookupMimeTypeForExtension } from '@/utilities';
