@@ -25,12 +25,6 @@ export interface PresentationConfig extends ComponentConfig {
     order: number;
 }
 
-// Interface/Types - Presentation view.
-export interface PresentationView {
-    resize: () => void;
-    vendorId: string;
-}
-
 // Interface/Types - Presentation visual configuration.
 export type PresentationVisualConfig = { content: PresentationVisualContentConfig; views: PresentationVisualViewConfig[] };
 export type PresentationVisualContentConfig = {
@@ -97,6 +91,12 @@ export type PresentationVisualRangeViewType = {
 export type PresentationVisualSankeyDiagramViewType = { categoryId: 'sankeyDiagram'; label: Record<string, string>; options: {} };
 export type PresentationVisualStreamgraphViewType = { categoryId: 'streamgraph'; label: Record<string, string>; options: {} };
 export type PresentationVisualValuesViewType = { categoryId: 'values'; label: Record<string, string>; options: {} };
+
+// Interface/Types - Presentation view.
+export interface PresentationView {
+    resize: () => void;
+    vendorId: string;
+}
 
 // Constants
 export const presentationViewTypeMap: Record<string, PresentationVisualViewType> = {

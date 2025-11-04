@@ -6,28 +6,36 @@ export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 // Constants
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
-export { presentationViewTypeMap } from '@/presenter';
+export { presentationViewTypeMap } from '@/component/presenter';
 
 // Interfaces/Types - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from '@/component';
 
 // Interfaces/Types - Connector.
-export type { AuditContentResult, AuditContentSettings } from '@/connector';
-export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings, ConnectorLocalisedConfig, ConnectorTools } from '@/connector';
-export type { CreateSettings } from '@/connector';
-export type { DropSettings } from '@/connector';
-export type { FindResult, FindSettings } from '@/connector';
-export type { GetResult, GetSettings } from '@/connector';
-export type { InitialiseSettings } from '@/connector';
-export type { ListResult, ListSettings } from '@/connector';
-export type { PreviewResult, PreviewSettings } from '@/connector';
-export type { RemoveSettings } from '@/connector';
-export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from '@/connector';
-export type { UpsertSettings } from '@/connector';
+export type { AuditContentResult, AuditContentSettings } from '@/component/connector';
+export type {
+    Connector,
+    ConnectorCallbackData,
+    ConnectorConfig,
+    ConnectorImplementation,
+    ConnectorOperationSettings,
+    ConnectorLocalisedConfig,
+    ConnectorTools
+} from '@/component/connector';
+export type { CreateSettings } from '@/component/connector';
+export type { DropSettings } from '@/component/connector';
+export type { FindResult, FindSettings } from '@/component/connector';
+export type { GetResult, GetSettings } from '@/component/connector';
+export type { InitialiseSettings } from '@/component/connector';
+export type { ListResult, ListSettings } from '@/component/connector';
+export type { PreviewResult, PreviewSettings } from '@/component/connector';
+export type { RemoveSettings } from '@/component/connector';
+export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from '@/component/connector';
+export type { UpsertSettings } from '@/component/connector';
 
 // Interfaces/Types - Connector connection.
-export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/connection';
-export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/connection';
+export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
+export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/component/connector/connection';
 
 // Interfaces/Types - Context.
 export type {
@@ -45,8 +53,8 @@ export type {
     ContextSecondaryMeasureGroupConfig,
     ContextViewGroupConfig,
     ContextFocusLocalisedConfig
-} from '@/context';
-export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from '@/context';
+} from '@/component/context';
+export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from '@/component/context';
 
 // Interfaces/Types - Data view.
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from '@/dataView';
@@ -65,10 +73,10 @@ export type { SerialisedError } from '@/errors';
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/eventQuery';
 
 // Interfaces/Types - Presenter.
-export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterTools } from '@/presenter';
+export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterTools } from '@/component/presenter';
 
 // Interfaces/Types - Presenter presentation.
-export type { PresentationConfig, PresentationView } from '@/presenter';
+export type { PresentationConfig, PresentationView } from '@/component/presenter';
 export type {
     PresentationVisualConfig,
     PresentationVisualContentConfig,
@@ -80,7 +88,7 @@ export type {
     PresentationVisualSankeyDiagramViewConfig,
     PresentationVisualStreamgraphViewConfig,
     PresentationVisualValuesViewConfig
-} from '@/presenter';
+} from '@/component/presenter';
 export type {
     PresentationVisualViewType,
     PresentationVisualCartesianViewType,
@@ -90,7 +98,7 @@ export type {
     PresentationVisualSankeyDiagramViewType,
     PresentationVisualStreamgraphViewType,
     PresentationVisualValuesViewType
-} from '@/presenter';
+} from '@/component/presenter';
 
 // Interfaces/Types - Informer.
 
@@ -107,7 +115,7 @@ export type { StateConfig } from '@/state';
 export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
 // Interfaces/Types - Tutorial.
-export type { TutorialConfig } from '@/tutorial';
+export type { TutorialConfig } from '@/component/informer/tutorial';
 
 // Errors
 export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';
