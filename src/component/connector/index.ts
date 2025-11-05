@@ -1,3 +1,7 @@
+/**
+ * Connector composables, constants, interfaces, errors, types and utilities.
+ */
+
 // Dependencies - Vendor.
 import type { parse as csvParse } from 'csv-parse/browser/esm';
 import type { parse as dateFnsParse } from 'date-fns';
@@ -17,7 +21,6 @@ export interface Connector {
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
     readonly tools: ConnectorTools;
-
     abortOperation?(connector: Connector): void; // Abort the active long running operation for a specified connection.
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection.
     createObject?(connector: Connector, settings: CreateSettings): Promise<void>; // Create an object for a specified connection.
@@ -46,6 +49,7 @@ export interface ConnectorConfig extends ComponentConfig {
     vendorHomeURL?: string;
     version: string;
 }
+export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
 export type ConnectorImplementation = {
     activeConnectionCount?: number;
     canDescribe?: boolean;
@@ -55,7 +59,6 @@ export type ConnectorImplementation = {
     maxConnectionCount?: number;
     params?: Record<string, string>[];
 };
-export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
 export type ConnectorTools = {
     csvParse: typeof csvParse;
     dataPos: {
@@ -70,19 +73,19 @@ export type ConnectorTools = {
     nanoid: typeof nanoid;
 };
 
-// Interfaces/Types - Initialise settings.
+// Interfaces/Types/Operations - Initialise settings.
 export interface InitialiseSettings {
     connectorStorageURLPrefix: string;
 }
 
-// Interfaces/Types - Connector operation settings.
+// Interfaces/Types/Operations - Connector operation settings.
 export interface ConnectorOperationSettings {
     accountId?: string;
     appCheckToken?: string;
     sessionAccessToken?: string;
 }
 
-// Interfaces/Types - Audit Content (object).
+// Interfaces/Types/Operations - Audit Content (object).
 export interface AuditContentSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
@@ -93,25 +96,25 @@ export interface AuditContentResult {
     contentAuditConfig: DataViewContentAuditConfig;
 }
 
-// Interfaces/Types - Create (object).
+// Interfaces/Types/Operations - Create (object).
 export interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
     path: string;
     structure: string;
 }
 
-// Interfaces/Types - Describe (Connection).
+// Interfaces/Types/Operations - Describe (Connection).
 interface DescribeSettings extends ConnectorOperationSettings {}
 interface DescribeResult {
     description: ConnectionDescription;
 }
 
-// Interfaces/Types - Drop (object).
+// Interfaces/Types/Operations - Drop (object).
 export interface DropSettings extends ConnectorOperationSettings {
     path: string;
 }
 
-// Interfaces/Types - Find (object).
+// Interfaces/Types/Operations - Find (object).
 export interface FindSettings extends ConnectorOperationSettings {
     containerName?: string;
     objectName: string;
@@ -120,7 +123,7 @@ export interface FindResult {
     folderPath?: string;
 }
 
-// Interfaces/Types - Get (object).
+// Interfaces/Types/Operations - Get (object).
 export interface GetSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
@@ -129,7 +132,7 @@ export interface GetResult {
     record?: string[] | Record<string, unknown>;
 }
 
-// Interfaces/Types - List (nodes).
+// Interfaces/Types/Operations - List (nodes).
 export interface ListSettings extends ConnectorOperationSettings {
     folderPath: string;
     limit?: number;
@@ -143,7 +146,7 @@ export interface ListResult {
     totalCount: number;
 }
 
-// Interfaces/Types - Preview (object).
+// Interfaces/Types/Operations - Preview (object).
 export interface PreviewSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     extension?: string;
@@ -154,13 +157,13 @@ export interface PreviewResult {
     typeId: 'jsonArray' | 'uint8Array';
 }
 
-// Interfaces/Types - Remove (records).
+// Interfaces/Types/Operations - Remove (records).
 export interface RemoveSettings extends ConnectorOperationSettings {
     keys: string[];
     path: string;
 }
 
-// Interfaces/Types - Retrieve (records).
+// Interfaces/Types/Operations - Retrieve (records).
 export interface RetrieveSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
@@ -179,13 +182,13 @@ export interface RetrieveSummary {
     recordCount: number;
 }
 
-// Interfaces/Types - Upsert (records).
+// Interfaces/Types/Operations - Upsert (records).
 export interface UpsertSettings extends ConnectorOperationSettings {
     records: Record<string, unknown>[];
     path: string;
 }
 
-// Interfaces/Types - Connector callback data.
+// Interfaces/Types/Operations - Connector callback data.
 export interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
