@@ -1,7 +1,14 @@
+/**
+ * Shared interface/type/operation declarations.
+ */
+
 // Interfaces/Types
 export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
+
+// Interfaces/Types - Module.
+export type { AppModuleConfig, ConnectorModuleConfig, EngineModuleConfig, InformerModuleConfig, PresenterModuleConfig } from '@/module';
 
 // Interfaces/Types - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from '@/component';

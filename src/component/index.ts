@@ -48,8 +48,6 @@ export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LO
 
 // Interfaces/Types/Operations - Component type.
 export type ComponentTypeId =
-    | 'app'
-    | 'engine'
     | 'connector'
     | 'connectorConnection'
     | 'context'
@@ -65,8 +63,6 @@ export type ComponentTypeId =
     | 'contextModelEntityPrimaryMeasure'
     | 'contextModelSecondaryMeasureGroup'
     | 'contextModelSecondaryMeasure'
-    | 'contextModelPresentationGroup'
-    | 'contextModelPresentation'
     | 'dataView'
     | 'dimension'
     | 'eventQuery'
