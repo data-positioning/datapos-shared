@@ -1,8 +1,12 @@
+/**
+ * Component composables, constants, interfaces, errors, types and utilities.
+ */
+
 // Dependencies - Framework.
 import type { Timestamp } from '@/timestamp';
 import { DEFAULT_LOCALE_CODE, type LocaleCode, type LocalisedString, type StatusColorId } from '@/index';
 
-// Interfaces/Types - Component configuration.
+// Interfaces/Types/Operations - Component configuration.
 export interface ComponentConfig {
     id: string;
     label: Partial<LocalisedString>;
@@ -15,15 +19,38 @@ export interface ComponentConfig {
     statusId: ComponentStatusId;
     typeId: ComponentTypeId;
 }
+export type ComponentTypeId =
+    | 'connector'
+    | 'connectorConnection'
+    | 'context'
+    | 'contextModelGroup'
+    | 'contextModel'
+    | 'contextModelDimensionGroup'
+    | 'contextModelDimension'
+    | 'contextModelDimensionHierarchy'
+    | 'contextModelEntityGroup'
+    | 'contextModelEntity'
+    | 'contextModelEntityDataItem'
+    | 'contextModelEntityEvent'
+    | 'contextModelEntityPrimaryMeasure'
+    | 'contextModelSecondaryMeasureGroup'
+    | 'contextModelSecondaryMeasure'
+    | 'dataView'
+    | 'dimension'
+    | 'eventQuery'
+    | 'presenter'
+    | 'presenterPresentation'
+    | 'informer'
+    | 'informerDocument';
 
-// Interfaces/Types - Component references.
-export interface ComponentRef {
+// Interfaces/Types/Operations - Component references.
+export type ComponentRef = {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
     order: number;
     path: string;
-}
+};
 
 // Interfaces/Types/Operations - Component status.
 export type ComponentStatus = { id: string; color: StatusColorId; label: string };
@@ -45,28 +72,3 @@ export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LO
     if (componentStatus) return { ...componentStatus, label: componentStatus.label[localeId] || componentStatus.label[DEFAULT_LOCALE_CODE] || id };
     return { id, color: 'other', label: id };
 };
-
-// Interfaces/Types/Operations - Component type.
-export type ComponentTypeId =
-    | 'connector'
-    | 'connectorConnection'
-    | 'context'
-    | 'contextModelGroup'
-    | 'contextModel'
-    | 'contextModelDimensionGroup'
-    | 'contextModelDimension'
-    | 'contextModelDimensionHierarchy'
-    | 'contextModelEntityGroup'
-    | 'contextModelEntity'
-    | 'contextModelEntityDataItems'
-    | 'contextModelEntityEvent'
-    | 'contextModelEntityPrimaryMeasure'
-    | 'contextModelSecondaryMeasureGroup'
-    | 'contextModelSecondaryMeasure'
-    | 'dataView'
-    | 'dimension'
-    | 'eventQuery'
-    | 'presenter'
-    | 'presenterPresentation'
-    | 'informer'
-    | 'informerDocument';

@@ -1,136 +1,112 @@
+/**
+ * Context composables, constants, interfaces, errors, types and utilities.
+ */
+
 // Dependencies - Framework.
 import type { ComponentConfig, ComponentRef } from '@/component';
 
-// Interfaces/Types - Context.
+// Interfaces/Types/Operations - Context.
 export interface Context {
     readonly config: ContextConfig;
-
-    listFocuses(settings?: ContextFocusConfigListSettings): Promise<ContextFocusConfigListResult>;
+    list(settings?: ContextListSettings): Promise<ContextListResult>;
 }
+export type ContextListSettings = {};
+export type ContextListResult = { models: ContextModelGroupConfig[] };
+export type ContextCallbackData = { typeId: string; properties: Record<string, unknown> };
 
-// Interfaces/Types - Context Callback Data
-export interface ContextCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
-}
-
-// Interfaces - Context configuration.
+// Interfaces/Types/Operations - Context configuration.
 export interface ContextConfig extends ComponentConfig {
-    focuses: ContextFocusConfig[];
+    models: ContextModelGroupConfig[];
     version: string;
 }
+export type ContextLocalisedConfig = Omit<ContextConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Context Focus Configuration
-export interface ContextFocusConfig extends ComponentConfig {
+// Interfaces/Types/Operations - Context model configuration
+export interface ContextModelGroupConfig extends ComponentConfig {
     modelRefs: ComponentRef[];
     order: number;
 }
-export type ContextFocusLocalisedConfig = Omit<ContextFocusConfig, 'label' | 'description'> & { label: string; description: string };
-
-// Interfaces/Types - Context Operator Settings
-export interface ContextOperationSettings {
-    accountId?: string;
-    appCheckToken?: string;
-    sessionAccessToken?: string;
-}
-
-// Interfaces/Types - Context Model Configuration
+export type ContextModelGroupLocalisedConfig = Omit<ContextModelGroupConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelConfig extends ComponentConfig {
     diagramURL?: string;
-    dimensionGroupConfigs: ContextDimensionGroupConfig[];
-    entityGroupConfigs: ContextEntityGroupConfig[];
-    secondaryMeasureGroupConfigs: ContextSecondaryMeasureGroupConfig[];
-    viewGroupConfigs: ContextViewGroupConfig[];
+    dimension: ContextModelDimensionGroupConfig[];
+    entities: ContextModelEntityGroupConfig[];
+    secondaryMeasures: ContextModelSecondaryMeasureGroupConfig[];
 }
+export type ContextModelLocalisedConfig = Omit<ContextModelConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Context Dimension Group Configuration
-export interface ContextDimensionGroupConfig {
+// Interfaces/Types/Operations - Context model dimension configuration.
+export interface ContextModelDimensionGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, unknown>;
     dimensionRefs: ComponentRef[];
 }
+export type ContextModelDimensionGroupLocalisedConfig = Omit<ContextModelDimensionGroupConfig, 'label' | 'description'> & { label: string; description: string };
+export interface ContextModelDimensionConfig {
+    id: string;
+    label: Record<string, string>;
+    hierarchies: ContextModelDimensionHierarchyConfig[];
+}
+export type ContextModelDimensionLocalisedConfig = Omit<ContextModelDimensionConfig, 'label' | 'description'> & { label: string; description: string };
+export interface ContextModelDimensionHierarchyConfig {
+    id: string;
+    label: Record<string, string>;
+}
+export type ContextModelDimensionHierarchyLocalisedConfig = Omit<ContextModelDimensionHierarchyConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Context Entity Group Configuration
-export interface ContextEntityGroupConfig {
+// Interfaces/Types/Operations - Context model entity configuration.
+export interface ContextModelEntityGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, unknown>;
     entityRefs: ComponentRef[];
 }
+export type ContextModelEntityGroupLocalisedConfig = Omit<ContextModelEntityGroupConfig, 'label' | 'description'> & { label: string; description: string };
+export interface ContextModelEntityConfig {
+    id: string;
+    label: Record<string, string>;
+    labelPlural: Record<string, string>;
+    dataItems: ContextModelEntityDataItemConfig[];
+    events: ContextModelEntityEventConfig[];
+    primaryMeasures: ContextModelEntityPrimaryMeasureConfig[];
+}
+export type ContextModelEntityLocalisedConfig = Omit<ContextModelEntityConfig, 'label' | 'description'> & { label: string; description: string };
+export interface ContextModelEntityDataItemConfig {
+    id: string;
+    label: Record<string, string>;
+}
+export type ContextModelEntityDataItemLocalisedConfig = Omit<ContextModelEntityDataItemConfig, 'label' | 'description'> & { label: string; description: string };
+export interface ContextModelEntityEventConfig {
+    id: string;
+    labelAction: Record<string, string>;
+    labelState: Record<string, string>;
+}
+export type ContextModelEntityEventLocalisedConfig = Omit<ContextModelEntityEventConfig, 'label' | 'description'> & { label: string; description: string };
+export interface ContextModelEntityPrimaryMeasureConfig {
+    id: string;
+    label: Record<string, string>;
+}
+export type ContextModelEntityPrimaryMeasureLocalisedConfig = Omit<ContextModelEntityPrimaryMeasureConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Context Secondary Measure Group Configuration
-export interface ContextSecondaryMeasureGroupConfig {
+// Interfaces/Types/Operations - Context model secondary measure configuration.
+export interface ContextModelSecondaryMeasureGroupConfig {
     id: string;
     label: Record<string, string>;
     description?: Record<string, unknown>;
     secondaryMeasureRefs: ComponentRef[];
 }
+export type ContextModelSecondaryMeasureGroupLocalisedConfig = Omit<ContextModelSecondaryMeasureGroupConfig, 'label' | 'description'> & { label: string; description: string };
+export interface ContextModelSecondaryMeasureConfig {
+    id: string;
+    label: Record<string, string>;
+}
+export type ContextModelSecondaryMeasureLocalisedConfig = Omit<ContextModelSecondaryMeasureConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Context View Group Configuration
-export interface ContextViewGroupConfig {
-    id: string;
-    label: Record<string, string>;
-    description?: Record<string, unknown>;
-    viewRefs: ComponentRef[];
-}
-
-// Interfaces/Types - Context Dimension Configuration
-export interface ContextDimensionConfig {
-    id: string;
-    label: Record<string, string>;
-    hierarchies: ContextHierarchyConfig[];
-}
-export interface ContextHierarchyConfig {
-    id: string;
-    label: Record<string, string>;
-}
-
-// Interfaces/Types - Context Entity Configuration
-export interface ContextEntityConfig {
-    id: string;
-    label: Record<string, string>;
-    labelPlural: Record<string, string>;
-    characteristics: ContextEntityCharacteristicConfig[];
-    computations: ContextEntityComputationConfig[];
-    events: ContextEntityEventConfig[];
-}
-export interface ContextEntityCharacteristicConfig {
-    id: string;
-    label: Record<string, string>;
-}
-export interface ContextEntityComputationConfig {
-    id: string;
-    label: Record<string, string>;
-}
-export interface ContextEntityEventConfig {
-    id: string;
-    labelAction: Record<string, string>;
-    labelState: Record<string, string>;
-}
-
-// Interfaces/Types - Context Secondary Measure Configuration
-export interface ContextSecondaryMeasureConfig {
-    id: string;
-    label: Record<string, string>;
-}
-
-// Interfaces/Types - Context View Configuration
-export interface ContextViewConfig {
-    id: string;
-    label: Record<string, string>;
-}
-
-// Interfaces/Types - Context focus list result/settings.
-export interface ContextFocusConfigListResult {
-    focusConfigs: ContextFocusConfig[];
-}
-export interface ContextFocusConfigListSettings {}
-
-// ...
-export interface Event {
+// Interfaces/Types/Operations - ????
+type Event = {
     id?: number;
     entityId: string;
     effDate: number;
     typeId: string;
-}
+};

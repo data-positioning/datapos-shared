@@ -1,19 +1,19 @@
 /**
- * Shared interface/type/operation declarations.
+ * Shared composables, constants, interfaces, errors, types and utilities.
  */
 
-// Interfaces/Types
+// Interfaces/Types/Operations
 export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 
-// Interfaces/Types - Module.
+// Interfaces/Types/Operations - Module.
 export type { AppModuleConfig, ConnectorModuleConfig, EngineModuleConfig, InformerModuleConfig, PresenterModuleConfig } from '@/module';
 
-// Interfaces/Types - Component.
+// Interfaces/Types/Operations - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from '@/component';
 
-// Interfaces/Types - Connector.
+// Interfaces/Types/Operations - Connector.
 export type { AuditContentResult, AuditContentSettings } from '@/component/connector';
 export type {
     Connector,
@@ -35,30 +35,48 @@ export type { RemoveSettings } from '@/component/connector';
 export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from '@/component/connector';
 export type { UpsertSettings } from '@/component/connector';
 
-// Interfaces/Types - Connector connection.
+// Interfaces/Types/Operations - Connector connection.
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/component/connector/connection';
 
-// Interfaces/Types - Context.
+// Interfaces/Types/Operations - Context.
 export type {
     Context,
     ContextConfig,
-    ContextFocusConfig,
-    ContextFocusConfigListResult,
-    ContextFocusConfigListSettings,
+    ContextLocalisedConfig,
+    ContextListSettings,
+    ContextListResult,
+    // Model.
+    ContextModelGroupConfig,
+    ContextModelGroupLocalisedConfig,
     ContextModelConfig,
-    ContextDimensionConfig,
-    ContextDimensionGroupConfig,
-    ContextEntityCharacteristicConfig,
-    ContextEntityGroupConfig,
-    ContextEntityComputationConfig,
-    ContextSecondaryMeasureGroupConfig,
-    ContextViewGroupConfig,
-    ContextFocusLocalisedConfig
+    ContextModelLocalisedConfig,
+    // Model dimension.
+    ContextModelDimensionGroupConfig,
+    ContextModelDimensionGroupLocalisedConfig,
+    ContextModelDimensionConfig,
+    ContextModelDimensionLocalisedConfig,
+    ContextModelDimensionHierarchyConfig,
+    ContextModelDimensionHierarchyLocalisedConfig,
+    // Model entity.
+    ContextModelEntityGroupConfig,
+    ContextModelEntityGroupLocalisedConfig,
+    ContextModelEntityConfig,
+    ContextModelEntityLocalisedConfig,
+    ContextModelEntityDataItemConfig, // Data items.
+    ContextModelEntityDataItemLocalisedConfig,
+    ContextModelEntityEventConfig, // Events.
+    ContextModelEntityEventLocalisedConfig,
+    ContextModelEntityPrimaryMeasureConfig, // Primary measures.
+    ContextModelEntityPrimaryMeasureLocalisedConfig,
+    // Model secondary measure.
+    ContextModelSecondaryMeasureGroupConfig,
+    ContextModelSecondaryMeasureGroupLocalisedConfig,
+    ContextModelSecondaryMeasureConfig,
+    ContextModelSecondaryMeasureLocalisedConfig
 } from '@/component/context';
-export type { ContextEntityConfig, ContextEntityEventConfig, ContextHierarchyConfig, ContextViewConfig, Event } from '@/component/context';
 
-// Interfaces/Types - Data view.
+// Interfaces/Types/Operations - Data view.
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from '@/component/dataView';
 export type {
     DataViewConfig,
@@ -69,22 +87,22 @@ export type {
     ParsedValue
 } from '@/component/dataView';
 
-// Interfaces/Types - Dimension.
+// Interfaces/Types/Operations - Dimension.
 export type { DimensionConfig, DimensionLocalisedConfig } from '@/component/dimension';
 
-// Interfaces/Types - Engine.
+// Interfaces/Types/Operations - Engine.
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWorker } from '@/engine';
 
-// Interfaces/Types - Error.
+// Interfaces/Types/Operations - Error.
 export type { SerialisedError } from '@/errors';
 
-// Interfaces/Types - Event query.
+// Interfaces/Types/Operations - Event query.
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/component/eventQuery';
 
-// Interfaces/Types - Presenter.
+// Interfaces/Types/Operations - Presenter.
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterTools } from '@/component/presenter';
 
-// Interfaces/Types - Presenter presentation.
+// Interfaces/Types/Operations - Presenter presentation.
 export type { PresentationConfig, PresentationView } from '@/component/presenter';
 export type {
     PresentationVisualConfig,
@@ -109,15 +127,22 @@ export type {
     PresentationVisualValuesViewType
 } from '@/component/presenter';
 
-// Interfaces/Types - Informer.
+// Interfaces/Types/Operations - Informer.
 
-// Interfaces/Types - Informer document.
+// Interfaces/Types/Operations - Informer document.
 export type { Recipe, RecipeConfig, RecipeLocalisedConfig } from '@/component/informer/recipe';
 
-// Interfaces/Types - Timestamp.
+// Interfaces/Types/Operations - Context Operator Settings
+export interface ContextOperationSettings {
+    accountId?: string;
+    appCheckToken?: string;
+    sessionAccessToken?: string;
+}
+
+// Interfaces/Types/Operations - Timestamp.
 export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
-// Interfaces/Types - Tutorial.
+// Interfaces/Types/Operations - Tutorial.
 export type { TutorialConfig } from '@/component/informer/tutorial';
 
 // Constants
@@ -133,7 +158,7 @@ export { type HighchartsView, useHighcharts } from '@/composables/useHighcharts'
 // Errors
 export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';
 
-// Operations
+// Utilities
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
 export { convertMillisecondsToTimestamp, getCurrentTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 export { convertODataTypeIdToUsageTypeId } from '@/utilities';
