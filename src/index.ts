@@ -161,12 +161,12 @@ export { APIError, ApplicationError, EngineError, FetchError, OperationalError, 
 // Utilities - Application.
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
 export { convertMillisecondsToTimestamp, getCurrentTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
-export { convertODataTypeIdToUsageTypeId } from '@/utilities';
-export { extractExtensionFromPath, extractNameFromPath } from '@/utilities';
-export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/utilities';
+export { convertODataTypeIdToUsageTypeId } from '@/appUtilities';
+export { extractExtensionFromPath, extractNameFromPath } from '@/appUtilities';
+export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/appUtilities';
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from '@/component/dataView';
 export { getComponentStatus } from '@/component';
-export { lookupMimeTypeForExtension } from '@/utilities';
+export { lookupMimeTypeForExtension } from '@/appUtilities';
 
 // Utilities - Development.
 export { buildConnectorConfig } from '@/devUtilities';

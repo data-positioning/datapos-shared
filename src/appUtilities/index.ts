@@ -1,3 +1,7 @@
+/**
+ * Application utilities.
+ */
+
 // Constants
 const numberFormatterDefaultLocale = 'en-US';
 const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
