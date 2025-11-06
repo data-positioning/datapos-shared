@@ -19,7 +19,7 @@ export default defineConfig({
         },
         target: 'ESNext',
         rollupOptions: {
-            external: ['exec', 'fs', 'promises', 'promisify']
+            external: ['exec', 'fs', 'promises']
         }
     },
     plugins: [dts({ outDir: 'dist/types' })],
