@@ -3,12 +3,13 @@
  */
 
 // Dependencies - Vendor.
-import { exec as execCallback } from 'child_process';
+// import { exec as execCallback } from 'child_process';
 import { promises as fs } from 'fs';
 import type { PackageJson } from 'type-fest';
-import { promisify } from 'util';
+// import { promisify } from 'util';
 
-const exec = promisify(execCallback);
+// const exec = promisify(execCallback);
+
 // Dependencies - Framework.
 import { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/module';
 import type { ConnectorModuleConfig, ConnectorModuleOperation, ConnectorModuleUsageId } from '@/module';
@@ -143,16 +144,17 @@ export async function bumpVersion() {
         console.warn('❌ Error bumping package version.', error);
     }
 }
-// Utilities - Synchronise with GitHub.
-export async function syncWithGitHub(): Promise<void> {
-    try {
-        console.log('🚀 Synchronising with GitHub....');
-        const packageJSON = JSON.parse(await fs.readFile('package.json', 'utf8')) as PackageJson;
-        await exec('git add .');
-        await exec(`git commit -m "v${packageJSON.version}"`);
-        await exec('git push origin main:main');
-        console.log(`✅ Synchronised version ${packageJSON.version} with GitHub.`);
-    } catch (error) {
-        console.warn('❌ Error synchronising with GitHub.', error);
-    }
-}
+
+// // Utilities - Synchronise with GitHub.
+// export async function syncWithGitHub(): Promise<void> {
+//     try {
+//         console.log('🚀 Synchronising with GitHub....');
+//         const packageJSON = JSON.parse(await fs.readFile('package.json', 'utf8')) as PackageJson;
+//         await exec('git add .');
+//         await exec(`git commit -m "v${packageJSON.version}"`);
+//         await exec('git push origin main:main');
+//         console.log(`✅ Synchronised version ${packageJSON.version} with GitHub.`);
+//     } catch (error) {
+//         console.warn('❌ Error synchronising with GitHub.', error);
+//     }
+// }
