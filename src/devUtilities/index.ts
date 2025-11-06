@@ -16,6 +16,7 @@ import type { PresenterModuleConfig, PresenterModuleOperation } from '@/module';
 // Utilities - Build connector configuration.
 export async function buildConnectorConfig() {
     try {
+        console.log('🚀 Building connector configuration...');
         const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
         const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as ConnectorModuleConfig;
         const indexCode = await fs.readFile('src/index.ts', 'utf8');
@@ -49,6 +50,7 @@ export async function buildConnectorConfig() {
 // Utilities - Build context configuration.
 export async function buildContextConfig() {
     try {
+        console.log('🚀 Building context configuration...');
         const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
         const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as ContextModuleConfig;
         const indexCode = await fs.readFile('src/index.ts', 'utf8');
@@ -71,6 +73,7 @@ export async function buildContextConfig() {
 // Utilities - Build informer configuration.
 export async function buildInformerConfig() {
     try {
+        console.log('🚀 Building informer configuration...');
         const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
         const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as InformerModuleConfig;
         const indexCode = await fs.readFile('src/index.ts', 'utf8');
@@ -93,6 +96,7 @@ export async function buildInformerConfig() {
 // Utilities - Build presenter configuration.
 export async function buildPresenterConfig() {
     try {
+        console.log('🚀 Building presenter configuration...');
         const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
         const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as PresenterModuleConfig;
         const indexCode = await fs.readFile('src/index.ts', 'utf8');
@@ -115,17 +119,18 @@ export async function buildPresenterConfig() {
 // Utilities - Bump version.
 export async function bumpVersion() {
     try {
+        console.log('🚀 Bumping version...');
         const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
         if (packageJSON.version) {
             const oldVersion = packageJSON.version;
             const versionSegments = packageJSON.version.split('.');
             packageJSON.version = `${versionSegments[0]}.${versionSegments[1]}.${Number(versionSegments[2]) + 1}`;
             await fs.writeFile('package.json', JSON.stringify(packageJSON, undefined, 4), 'utf8');
-            console.log(`✅ Bumped version from ${oldVersion} to ${packageJSON.version}.`);
+            console.log(`✅ Version bumped from ${oldVersion} to ${packageJSON.version}.`);
         } else {
             packageJSON.version = '0.0.001';
             await fs.writeFile('package.json', JSON.stringify(packageJSON, undefined, 4), 'utf8');
-            console.log(`⚠️ Set version to ${packageJSON.version}.`);
+            console.log(`⚠️ Version initialised to ${packageJSON.version}.`);
         }
     } catch (error) {
         console.warn('❌ Error bumping package version.', error);
