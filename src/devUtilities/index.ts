@@ -16,7 +16,7 @@ import type { PresenterModuleConfig, PresenterModuleOperation } from '@/module';
 // Utilities - Build connector configuration.
 export async function buildConnectorConfig() {
     try {
-        console.log('🚀 Building connector configuration...');
+        console.log('● Building connector configuration...');
         const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
         const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as ConnectorModuleConfig;
         const indexCode = await fs.readFile('src/index.ts', 'utf8');
@@ -32,12 +32,12 @@ export async function buildConnectorConfig() {
                 sourceOperations = sourceOperations || CONNECTOR_SOURCE_OPERATIONS.includes(operation);
                 return operation;
             });
-        if (operations.length > 0) console.log(`💡 Implements ${operations.length} operations.`);
-        else console.log('⚠️ Implements no operations.');
+        if (operations.length > 0) console.log(`ℹ Implements ${operations.length} operations.`);
+        else console.log('⚠ Implements no operations.');
         const usageId: ConnectorModuleUsageId | null =
             sourceOperations && destinationOperations ? 'bidirectional' : sourceOperations ? 'source' : destinationOperations ? 'destination' : null;
-        if (usageId) console.log(`💡 Supports '${usageId}' usage.`);
-        else console.log('⚠️ No usage identified.');
+        if (usageId) console.log(`ℹ Supports '${usageId}' usage.`);
+        else console.log('⚠ No usage identified.');
 
         if (packageJSON.name) configJSON.id = packageJSON.name;
         configJSON.operations = operations;
@@ -45,9 +45,9 @@ export async function buildConnectorConfig() {
         if (packageJSON.version) configJSON.version = packageJSON.version;
 
         await fs.writeFile('config.json', JSON.stringify(configJSON, undefined, 4), 'utf8');
-        console.log('✅ Connector configuration built.');
+        console.log('%c✓ Connector configuration built.', 'color: green; font-size: 20px;');
     } catch (error) {
-        console.warn('❌ Error building connector configuration.', error);
+        console.warn('✗ Error building connector configuration.', error);
     }
 }
 
