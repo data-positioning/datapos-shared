@@ -17,7 +17,10 @@ export default defineConfig({
             formats: ['es'],
             name: 'DataposShared'
         },
-        target: 'ESNext'
+        target: 'ESNext',
+        rollupOptions: {
+            external: ['fs']
+        }
     },
     plugins: [dts({ outDir: 'dist/types' })],
     resolve: {
