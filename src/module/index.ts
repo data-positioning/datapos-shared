@@ -33,7 +33,7 @@ export interface ConnectorModuleConfig extends ModuleConfig {
     implementations: Record<string, unknown>;
     icon: string;
     iconDark: string;
-    interfaces: ConnectorModuleInterface[];
+    operations: ConnectorModuleInterface[];
     typeId: 'connector';
     usageId: ConnectorModuleUsageId;
     vendorAccountURL?: string;
@@ -54,7 +54,7 @@ export type ConnectorModuleInterface =
     | 'removeRecords'
     | 'retrieveRecords'
     | 'upsertRecords';
-type ConnectorModuleUsageId = 'bidirectional' | 'destination' | 'source';
+type ConnectorModuleUsageId = 'bidirectional' | 'destination' | 'source'; // TODO: Can we work this out from the supported operations?
 
 // Interfaces/Types/Operations - Context module configuration.
 export interface ContextModuleConfig extends ModuleConfig {

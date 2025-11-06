@@ -17,11 +17,11 @@ export async function buildConnectorConfig() {
         const indexCode = await fs.readFile('src/index.ts', 'utf8');
 
         const regex = /^\s{4}(?:async\s+)?(private\s+)?(?:public\s+|protected\s+)?([A-Za-z_]\w*)\s*\(/gm;
-        const interfaces = [...indexCode.matchAll(regex)]
+        const operations = [...indexCode.matchAll(regex)]
             .filter((m) => !m[1] && m[2] !== 'constructor') // m[1] is 'private ' if present.
             .map((m) => m[2]);
 
-        await fs.writeFile('configNEW.json', JSON.stringify({ ...configJSON, id: packageJSON.name, interfaces, version: packageJSON.version }, undefined, 4), 'utf8');
+        await fs.writeFile('configNEW.json', JSON.stringify({ ...configJSON, id: packageJSON.name, operations, version: packageJSON.version }, undefined, 4), 'utf8');
     } catch (error) {
         console.warn('Error building connector configuration.', error);
     }
