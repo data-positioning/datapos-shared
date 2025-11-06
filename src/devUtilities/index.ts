@@ -32,11 +32,11 @@ export async function buildConnectorConfig() {
                 sourceOperations = sourceOperations || CONNECTOR_SOURCE_OPERATIONS.includes(operation);
                 return operation;
             });
-        if (operations.length > 0) console.log(`ℹ️ Implements ${operations.length} operations.`);
+        if (operations.length > 0) console.log(`💡 Implements ${operations.length} operations.`);
         else console.log('⚠️ Implements no operations.');
         const usageId: ConnectorModuleUsageId | null =
             sourceOperations && destinationOperations ? 'bidirectional' : sourceOperations ? 'source' : destinationOperations ? 'destination' : null;
-        if (usageId) console.log(`ℹ️ Supports ${usageId} usage.`);
+        if (usageId) console.log(`💡 Supports '${usageId}' usage.`);
         else console.log('⚠️ No usage identified.');
 
         if (packageJSON.name) configJSON.id = packageJSON.name;
