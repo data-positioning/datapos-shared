@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "MIT",
     "private": false,
-    "version": "0.3.112",
+    "version": "0.3.113",
     "type": "module",
     "files": [
         "dist"
@@ -35,7 +35,7 @@
         "prettier": "^3.6.2",
         "retire": "^5.3.0",
         "typescript": "^5.9.3",
-        "vite": "^7.1.12",
+        "vite": "^7.2.1",
         "vite-plugin-dts": "^4.5.4"
     },
     "scripts": {

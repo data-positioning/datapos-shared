@@ -10,7 +10,8 @@ export interface Context {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;
 }
-export type ContextListSettings = {};
+export type ContextOperationSettings = {}; // TODO.
+export type ContextListSettings = {}; // TODO.
 export type ContextListResult = { models: ContextModelGroupConfig[] };
 export type ContextCallbackData = { typeId: string; properties: Record<string, unknown> };
 
