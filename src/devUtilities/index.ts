@@ -31,8 +31,8 @@ export async function buildConnectorConfig() {
             .filter((m) => !m[1] && m[2] !== 'constructor') // m[1] is 'private ' if present.
             .map((m) => {
                 const operation = m[2] as ConnectorModuleOperation;
-                destinationOperations = CONNECTOR_DESTINATION_OPERATIONS.includes(operation);
-                sourceOperations = CONNECTOR_SOURCE_OPERATIONS.includes(operation);
+                destinationOperations = destinationOperations || CONNECTOR_DESTINATION_OPERATIONS.includes(operation);
+                sourceOperations = sourceOperations || CONNECTOR_SOURCE_OPERATIONS.includes(operation);
                 return operation;
             });
         const usageId = sourceOperations && destinationOperations ? 'bidirectional' : sourceOperations ? 'source' : destinationOperations ? 'destination' : undefined;
