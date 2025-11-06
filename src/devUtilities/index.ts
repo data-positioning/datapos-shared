@@ -125,7 +125,7 @@ export async function bumpVersion() {
         } else {
             packageJSON.version = '0.0.001';
             await fs.writeFile('package.json', JSON.stringify(packageJSON, undefined, 4), 'utf8');
-            console.log(`✅ Set version to ${packageJSON.version}.`);
+            console.log(`⚠️ Set version to ${packageJSON.version}.`);
         }
     } catch (error) {
         console.warn('❌ Error bumping package version.', error);

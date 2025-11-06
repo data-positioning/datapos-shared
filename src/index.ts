@@ -169,4 +169,4 @@ export { getComponentStatus } from '@/component';
 export { lookupMimeTypeForExtension } from '@/appUtilities';
 
 // Utilities - Development.
-export { buildConnectorConfig } from '@/devUtilities';
+export { buildConnectorConfig, buildContextConfig, buildInformerConfig, buildPresenterConfig, bumpVersion } from '@/devUtilities';
