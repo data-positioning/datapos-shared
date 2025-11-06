@@ -3,7 +3,6 @@
  */
 
 // Dependencies - Vendor.
-import chalk from 'chalk';
 import { promises as fs } from 'fs';
 import type { PackageJson } from 'type-fest';
 
@@ -33,12 +32,12 @@ export async function buildConnectorConfig() {
                 sourceOperations = sourceOperations || CONNECTOR_SOURCE_OPERATIONS.includes(operation);
                 return operation;
             });
-        if (operations.length > 0) console.log(`ℹ️ Implements ${operations.length} operations.`);
-        else console.log('⚠️ Implements no operations.');
+        if (operations.length > 0) console.log(`ℹ️  Implements ${operations.length} operations.`);
+        else console.log('⚠️  Implements no operations.');
         const usageId: ConnectorModuleUsageId | null =
             sourceOperations && destinationOperations ? 'bidirectional' : sourceOperations ? 'source' : destinationOperations ? 'destination' : null;
-        if (usageId) console.log(`ℹ️ Supports ${usageId} usage.`);
-        else console.log('⚠️ No usage identified.');
+        if (usageId) console.log(`ℹ️  Supports ${usageId} usage.`);
+        else console.log('⚠️  No usage identified.');
 
         if (packageJSON.name) configJSON.id = packageJSON.name;
         configJSON.operations = operations;
@@ -47,10 +46,6 @@ export async function buildConnectorConfig() {
 
         await fs.writeFile('config.json', JSON.stringify(configJSON, undefined, 4), 'utf8');
         console.log('✅ Connector configuration built.');
-        console.log(chalk.blue.bold('ℹ️ '), chalk.blue('Info: Process started.'));
-        console.log(chalk.yellow.bold('⚠️ '), chalk.yellow('Warning: Low disk space.'));
-        console.log(chalk.red.bold('❌ '), chalk.red('Error: Connection failed.'));
-        console.log(chalk.green.bold('✅ '), chalk.green('Success: Operation complete.'));
     } catch (error) {
         console.warn('❌ Error building connector configuration.', error);
     }
