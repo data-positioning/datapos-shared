@@ -41,7 +41,7 @@ export interface ConnectorModuleConfig extends ModuleConfig {
     vendorHomeURL?: string;
 }
 type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
-type ConnectorModuleInterface =
+export type ConnectorModuleInterface =
     | 'abortOperation'
     | 'authenticateConnection'
     | 'createObject'
