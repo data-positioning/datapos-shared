@@ -25,7 +25,7 @@ export async function buildConnectorConfig() {
         configJSON.operations = operations;
         if (packageJSON.version) configJSON.version = packageJSON.version;
 
-        await fs.writeFile('configNEW.json', JSON.stringify(configJSON, undefined, 4), 'utf8');
+        await fs.writeFile('config.json', JSON.stringify(configJSON, undefined, 4), 'utf8');
     } catch (error) {
         console.warn('Error building connector configuration.', error);
     }
