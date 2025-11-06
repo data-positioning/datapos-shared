@@ -1,3 +1,7 @@
+/**
+ * Vite configuration.
+ */
+
 // Dependencies - Vendor.
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';

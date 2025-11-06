@@ -103,7 +103,7 @@ export interface ContextModelSecondaryMeasureConfig {
 }
 export type ContextModelSecondaryMeasureLocalisedConfig = Omit<ContextModelSecondaryMeasureConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types/Operations - ????
+// Interfaces/Types/Operations - Event.
 type Event = {
     id?: number;
     entityId: string;
