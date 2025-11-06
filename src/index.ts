@@ -158,6 +158,9 @@ export { type HighchartsView, useHighcharts } from '@/composables/useHighcharts'
 // Errors
 export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';
 
+// Operations (Development)
+export { buildConnectorConfig } from '@/devOps';
+
 // Utilities
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
 export { convertMillisecondsToTimestamp, getCurrentTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
