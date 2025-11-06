@@ -10,7 +10,7 @@ import importPlugin from 'eslint-plugin-import';
 // Exposures - Configuration.
 export default [
     {
-        files: ['vite.config.ts', 'src/*.ts'],
+        files: ['vite.config.ts', 'src/**/*.ts'],
         languageOptions: { parser: tseslintParser, parserOptions: { project: './tsconfig.json' } },
         plugins: {
             '@typescript-eslint': tseslint,

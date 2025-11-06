@@ -3,19 +3,15 @@
  */
 
 // Dependencies - Vendor.
-import type { PackageJson } from 'type-fest';
 import { promises as fs } from 'fs';
+import type { PackageJson } from 'type-fest';
 
 // Dependencies - Framework.
-import {
-    CONNECTOR_DESTINATION_OPERATIONS,
-    CONNECTOR_SOURCE_OPERATIONS,
-    type ConnectorModuleConfig,
-    type ConnectorModuleOperation,
-    type ConnectorModuleUsageId,
-    type ContextModuleConfig,
-    type ContextModuleOperation
-} from '@/module';
+import { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/module';
+import type { ConnectorModuleConfig, ConnectorModuleOperation, ConnectorModuleUsageId } from '@/module';
+import type { ContextModuleConfig, ContextModuleOperation } from '@/module';
+import type { InformerModuleConfig, InformerModuleOperation } from '@/module';
+import type { PresenterModuleConfig, PresenterModuleOperation } from '@/module';
 
 // Utilities - Build connector configuration.
 export async function buildConnectorConfig() {
@@ -35,16 +31,18 @@ export async function buildConnectorConfig() {
                 sourceOperations = sourceOperations || CONNECTOR_SOURCE_OPERATIONS.includes(operation);
                 return operation;
             });
-        const usageId = sourceOperations && destinationOperations ? 'bidirectional' : sourceOperations ? 'source' : destinationOperations ? 'destination' : undefined;
+        const usageId: ConnectorModuleUsageId | null =
+            sourceOperations && destinationOperations ? 'bidirectional' : sourceOperations ? 'source' : destinationOperations ? 'destination' : null;
 
         if (packageJSON.name) configJSON.id = packageJSON.name;
         configJSON.operations = operations;
-        if (usageId) configJSON.usageId = usageId;
+        configJSON.usageId = usageId;
         if (packageJSON.version) configJSON.version = packageJSON.version;
 
         await fs.writeFile('config.json', JSON.stringify(configJSON, undefined, 4), 'utf8');
+        console.log('✅ Connector configuration built.');
     } catch (error) {
-        console.warn('Error building connector configuration.', error);
+        console.warn('❌ Error building connector configuration.', error);
     }
 }
 
@@ -66,6 +64,70 @@ export async function buildContextConfig() {
 
         await fs.writeFile('config.json', JSON.stringify(configJSON, undefined, 4), 'utf8');
     } catch (error) {
-        console.warn('Error building connector configuration.', error);
+        console.warn('❌ Error building context configuration.', error);
+    }
+}
+
+// Utilities - Build informer configuration.
+export async function buildInformerConfig() {
+    try {
+        const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
+        const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as InformerModuleConfig;
+        const indexCode = await fs.readFile('src/index.ts', 'utf8');
+
+        const regex = /^\s{4}(?:async\s+)?(private\s+)?(?:public\s+|protected\s+)?([A-Za-z_]\w*)\s*\(/gm;
+        const operations = [...indexCode.matchAll(regex)]
+            .filter((m) => !m[1] && m[2] !== 'constructor') // m[1] is 'private ' if present.
+            .map((m) => m[2]) as InformerModuleOperation[];
+
+        if (packageJSON.name) configJSON.id = packageJSON.name;
+        configJSON.operations = operations;
+        if (packageJSON.version) configJSON.version = packageJSON.version;
+
+        await fs.writeFile('config.json', JSON.stringify(configJSON, undefined, 4), 'utf8');
+    } catch (error) {
+        console.warn('❌ Error building informer configuration.', error);
+    }
+}
+
+// Utilities - Build presenter configuration.
+export async function buildPresenterConfig() {
+    try {
+        const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
+        const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as PresenterModuleConfig;
+        const indexCode = await fs.readFile('src/index.ts', 'utf8');
+
+        const regex = /^\s{4}(?:async\s+)?(private\s+)?(?:public\s+|protected\s+)?([A-Za-z_]\w*)\s*\(/gm;
+        const operations = [...indexCode.matchAll(regex)]
+            .filter((m) => !m[1] && m[2] !== 'constructor') // m[1] is 'private ' if present.
+            .map((m) => m[2]) as PresenterModuleOperation[];
+
+        if (packageJSON.name) configJSON.id = packageJSON.name;
+        configJSON.operations = operations;
+        if (packageJSON.version) configJSON.version = packageJSON.version;
+
+        await fs.writeFile('config.json', JSON.stringify(configJSON, undefined, 4), 'utf8');
+    } catch (error) {
+        console.warn('❌ Error building context configuration.', error);
+    }
+}
+
+// Utilities - Bump version.
+export async function bumpVersion() {
+    try {
+        const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
+        if (packageJSON.version) {
+            const oldVersion = packageJSON.version;
+            const versionSegments = packageJSON.version.split('.');
+            packageJSON.version = `${versionSegments[0]}.${versionSegments[1]}.${Number(versionSegments[2]) + 1}`;
+            await fs.writeFile('package.json', JSON.stringify(packageJSON, undefined, 4), 'utf8');
+            console.log(`✅ Bumped version from ${oldVersion} to ${packageJSON.version}.`);
+        } else {
+            packageJSON.version = '0.0.001';
+            await fs.writeFile('package.json', JSON.stringify(packageJSON, undefined, 4), 'utf8');
+            console.log(`✅ Set version to ${packageJSON.version}.`);
+        }
+    } catch (error) {
+        console.warn('❌ Error bumping package version.', error);
     }
 }

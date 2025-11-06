@@ -35,7 +35,7 @@ export interface ConnectorModuleConfig extends ModuleConfig {
     iconDark: string;
     operations: ConnectorModuleOperation[];
     typeId: 'connector';
-    usageId?: ConnectorModuleUsageId;
+    usageId: ConnectorModuleUsageId | null;
     vendorAccountURL?: string;
     vendorDocumentationURL?: string;
     vendorHomeURL?: string;
