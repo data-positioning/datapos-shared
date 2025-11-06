@@ -3,9 +3,12 @@
  */
 
 // Dependencies - Vendor.
+import { exec as execCallback } from 'child_process';
 import { promises as fs } from 'fs';
 import type { PackageJson } from 'type-fest';
+import { promisify } from 'util';
 
+const exec = promisify(execCallback);
 // Dependencies - Framework.
 import { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/module';
 import type { ConnectorModuleConfig, ConnectorModuleOperation, ConnectorModuleUsageId } from '@/module';
@@ -17,8 +20,8 @@ import type { PresenterModuleConfig, PresenterModuleOperation } from '@/module';
 export async function buildConnectorConfig() {
     try {
         console.log('🚀 Building connector configuration...');
-        const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
-        const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as ConnectorModuleConfig;
+        const packageJSON = JSON.parse(await fs.readFile('package.json', 'utf8')) as PackageJson;
+        const configJSON = JSON.parse(await fs.readFile('config.json', 'utf8')) as ConnectorModuleConfig;
         const indexCode = await fs.readFile('src/index.ts', 'utf8');
 
         let destinationOperations = false;
@@ -55,8 +58,8 @@ export async function buildConnectorConfig() {
 export async function buildContextConfig() {
     try {
         console.log('🚀 Building context configuration...');
-        const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
-        const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as ContextModuleConfig;
+        const packageJSON = JSON.parse(await fs.readFile('package.json', 'utf8')) as PackageJson;
+        const configJSON = JSON.parse(await fs.readFile('config.json', 'utf8')) as ContextModuleConfig;
         const indexCode = await fs.readFile('src/index.ts', 'utf8');
 
         const regex = /^\s{4}(?:async\s+)?(private\s+)?(?:public\s+|protected\s+)?([A-Za-z_]\w*)\s*\(/gm;
@@ -78,8 +81,8 @@ export async function buildContextConfig() {
 export async function buildInformerConfig() {
     try {
         console.log('🚀 Building informer configuration...');
-        const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
-        const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as InformerModuleConfig;
+        const packageJSON = JSON.parse(await fs.readFile('package.json', 'utf8')) as PackageJson;
+        const configJSON = JSON.parse(await fs.readFile('config.json', 'utf8')) as InformerModuleConfig;
         const indexCode = await fs.readFile('src/index.ts', 'utf8');
 
         const regex = /^\s{4}(?:async\s+)?(private\s+)?(?:public\s+|protected\s+)?([A-Za-z_]\w*)\s*\(/gm;
@@ -101,8 +104,8 @@ export async function buildInformerConfig() {
 export async function buildPresenterConfig() {
     try {
         console.log('🚀 Building presenter configuration...');
-        const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
-        const configJSON = (await JSON.parse(await fs.readFile('config.json', 'utf8'))) as PresenterModuleConfig;
+        const packageJSON = JSON.parse(await fs.readFile('package.json', 'utf8')) as PackageJson;
+        const configJSON = JSON.parse(await fs.readFile('config.json', 'utf8')) as PresenterModuleConfig;
         const indexCode = await fs.readFile('src/index.ts', 'utf8');
 
         const regex = /^\s{4}(?:async\s+)?(private\s+)?(?:public\s+|protected\s+)?([A-Za-z_]\w*)\s*\(/gm;
@@ -124,7 +127,7 @@ export async function buildPresenterConfig() {
 export async function bumpVersion() {
     try {
         console.log('🚀 Bumping version...');
-        const packageJSON = (await JSON.parse(await fs.readFile('package.json', 'utf8'))) as PackageJson;
+        const packageJSON = JSON.parse(await fs.readFile('package.json', 'utf8')) as PackageJson;
         if (packageJSON.version) {
             const oldVersion = packageJSON.version;
             const versionSegments = packageJSON.version.split('.');
@@ -138,5 +141,18 @@ export async function bumpVersion() {
         }
     } catch (error) {
         console.warn('❌ Error bumping package version.', error);
+    }
+}
+// Utilities - Synchronise with GitHub.
+export async function syncWithGitHub(): Promise<void> {
+    try {
+        console.log('🚀 Synchronising with GitHub....');
+        const packageJSON = JSON.parse(await fs.readFile('package.json', 'utf8')) as PackageJson;
+        await exec('git add .');
+        await exec(`git commit -m "v${packageJSON.version}"`);
+        await exec('git push origin main:main');
+        console.log(`✅ Synchronised version ${packageJSON.version} with GitHub.`);
+    } catch (error) {
+        console.warn('❌ Error synchronising with GitHub.', error);
     }
 }
