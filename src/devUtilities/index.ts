@@ -4,6 +4,7 @@
 
 // Dependencies - Vendor.
 import { promises as fs } from 'fs';
+import logSymbols from 'log-symbols';
 import type { PackageJson } from 'type-fest';
 
 // Dependencies - Framework.
@@ -45,7 +46,7 @@ export async function buildConnectorConfig() {
         if (packageJSON.version) configJSON.version = packageJSON.version;
 
         await fs.writeFile('config.json', JSON.stringify(configJSON, undefined, 4), 'utf8');
-        console.log('%c✓ Connector configuration built.', 'color: green; font-size: 20px;');
+        console.log(logSymbols.success, 'Connector configuration built.');
     } catch (error) {
         console.warn('✗ Error building connector configuration.', error);
     }

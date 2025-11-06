@@ -2,7 +2,7 @@
     "name": "@datapos/datapos-shared",
     "license": "MIT",
     "private": false,
-    "version": "0.3.128",
+    "version": "0.3.129",
     "type": "module",
     "files": [
         "dist"
@@ -16,14 +16,14 @@
     },
     "types": "./dist/types/src/index.d.ts",
     "devDependencies": {
-        "@datapos/datapos-development": "^0.3.29",
+        "@datapos/datapos-development": "^0.3.39",
         "@types/markdown-it": "^14.1.2",
-        "@types/node": "^24.9.2",
-        "@typescript-eslint/eslint-plugin": "^8.46.2",
-        "@typescript-eslint/parser": "^8.46.2",
+        "@types/node": "^24.10.0",
+        "@typescript-eslint/eslint-plugin": "^8.46.3",
+        "@typescript-eslint/parser": "^8.46.3",
         "csv-parse": "^6.1.0",
         "date-fns": "^4.1.0",
-        "eslint": "^9.38.0",
+        "eslint": "^9.39.1",
         "eslint-plugin-import": "^2.32.0",
         "highcharts": "^12.4.0",
         "jiti": "^2.6.1",
@@ -53,5 +53,11 @@
         "test": "echo \"***** TEST SCRIPT NOT IMPLEMENTED. *****\"",
         "updateDependencies": "npm run updateOperations",
         "updateOperations": "npm install -D @datapos/datapos-development@latest"
+    },
+    "dependencies": {
+        "install": "^0.13.0",
+        "log-symbols": "^7.0.1",
+        "npm": "^11.6.2",
+        "uninstall": "^0.0.0"
     }
 }
