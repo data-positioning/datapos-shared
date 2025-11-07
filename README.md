@@ -13,6 +13,13 @@ Install as a production dependency:
 npm install @datapos/datapos-shared
 ```
 
+Create `.npmrc` with access token. Access token needs to disable 2FA and allow all access.
+
+```ini
+registry=https://registry.npmjs.org/
+//registry.npmjs.org/:_authToken=<ACCESS TOKEN>
+```
+
 ## Declarations
 
 ### Components
