@@ -8,7 +8,13 @@ export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 
 // Interfaces/Types/Operations - Module.
-export type { AppModuleConfig, ConnectorModuleConfig, EngineModuleConfig, InformerModuleConfig, PresenterModuleConfig } from '@/module';
+export type { AppModuleConfig } from '@/module';
+export type { ConnectorModuleConfig, ConnectorModuleOperation, ConnectorModuleUsageId } from '@/module';
+export type { ContextModuleConfig, ContextModuleOperation } from '@/module';
+export type { EngineModuleConfig } from '@/module';
+export type { InformerModuleConfig, InformerModuleOperation } from '@/module';
+export type { PresenterModuleConfig, PresenterModuleOperation } from '@/module';
+export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/module';
 
 // Interfaces/Types/Operations - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from '@/component';
