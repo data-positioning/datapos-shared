@@ -15,12 +15,9 @@ export default defineConfig({
             entry: resolve('src/index.ts'),
             fileName: (format) => `datapos-shared.${format}.js`,
             formats: ['es'],
-            name: 'DataposShared'
+            name: 'DataPosShared'
         },
-        target: 'ESNext',
-        rollupOptions: {
-            external: ['fs']
-        }
+        target: 'ESNext'
     },
     plugins: [dts({ outDir: 'dist/types' })],
     resolve: {

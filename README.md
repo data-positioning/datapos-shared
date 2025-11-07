@@ -15,7 +15,9 @@ npm install @datapos/datapos-shared
 
 ## Declarations
 
-### Component Types
+### Components
+
+#### Component Types
 
 | Item                                  | Notes                                                        |
 | ------------------------------------- | ------------------------------------------------------------ |
@@ -26,14 +28,14 @@ npm install @datapos/datapos-shared
 | ComponentTypeId                       |                                                              |
 | StatusColorId                         |                                                              |
 
-### Connector and Connection Types
+#### Connector and Connection Types
 
 | Item                                    | Notes                                                             |
 | --------------------------------------- | ----------------------------------------------------------------- |
 | [Connector Types](./src/connector.ts)   | Connector types. The Connector type extends the Component type.   |
 | [Connection Types](./src/connection.ts) | Connection types. The Connection type extends the Component type. |
 
-### Context Types
+#### Context Types
 
 | Item                                        | Notes                                                                 |
 | ------------------------------------------- | --------------------------------------------------------------------- |
@@ -70,14 +72,17 @@ For detailed implementation, see the `scripts` section in the `package.json` fil
 | ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------- |
 | audit              | alt+ctrl+shift+a | Audit the project's dependencies for known security vulnerabilities.                                       |
 | build              | alt+ctrl+shift+b | Build the package using Vite.                                                                              |
+| build...Config     |                  |                                                                                                            |
+| bumpVersion        | alt+ctrl+shift+v |                                                                                                            |
 | check              | alt+ctrl+shift+c | List outdated dependencies and run retire scanner.                                                         |
 | document           | alt+ctrl+shift+d | Identify licenses of the project's production and peer dependencies. See [LICENSES.json](./LICENSES.json). |
 | format             | alt+ctrl+shift+f | Enforce formatting style rules.                                                                            |
 | lint               | alt+ctrl+shift+l | Check the code for errors and enforce coding style rules.                                                  |
+| publishToNPM       | alt+ctrl+shift+p |                                                                                                            |
 | release            | alt+ctrl+shift+r | Bump version, synchronise local repository with the main GitHub repository, build and publish to npm.      |
 | syncWithGitHub     | alt+ctrl+shift+s | Bump version and synchronise local repository with the main GitHub repository.                             |
-| test               | alt+ctrl+shift+t | NOT implemented.                                                                                           |
-| updateDependencies | alt+ctrl+shift+u | Install the latest version of outdated Data Positioning packages.                                          |
+| test               | alt+ctrl+shift+t | ❌ Not implemented.                                                                                        |
+| updateDependencies | alt+ctrl+shift+l | Install the latest version of all Data Positioning dependencies.                                           |
 
 ## Compliance
 

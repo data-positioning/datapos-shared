@@ -7,7 +7,7 @@ import type { ContextModelGroupConfig } from '@/component/context';
 import type { LocalisedString } from '@/index';
 
 // Interfaces/Types/Operations - Module configuration.
-interface ModuleConfig {
+export interface ModuleConfig {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
