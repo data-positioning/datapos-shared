@@ -12,6 +12,8 @@ export type { EngineModuleConfig } from './module';
 export type { InformerModuleConfig, InformerModuleOperation } from './module';
 export type { PresenterModuleConfig, PresenterModuleOperation } from './module';
 export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from './module';
+export type { ModuleConfigZ } from './module/configSchema';
+export { moduleConfigSchema } from './module/configSchema';
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from './component';
 export type { AuditContentResult, AuditContentSettings } from './component/connector';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings, ConnectorLocalisedConfig, ConnectorTools } from './component/connector';

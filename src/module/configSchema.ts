@@ -1,9 +1,5 @@
 import { z } from 'zod';
 
-export const localeCodeSchema = z.enum(['en-au', 'en-gb', 'en-us', 'es-es']);
-
-export const moduleTypeIdSchema = z.enum(['app', 'engine', 'connector', 'context', 'informer', 'presenter']);
-
 export const partialLocalisedStringSchema = z.object({
     'en-au': z.string().optional(),
     'en-gb': z.string().optional(),
@@ -16,7 +12,7 @@ export const moduleConfigSchema = z.object({
     label: partialLocalisedStringSchema,
     description: partialLocalisedStringSchema,
     statusId: z.unknown(),
-    typeId: moduleTypeIdSchema,
+    typeId: z.enum(['app', 'engine', 'connector', 'context', 'informer', 'presenter']),
     version: z.string()
 });
 
