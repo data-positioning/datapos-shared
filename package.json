@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.150",
+    "version": "0.3.151",
     "description": "A TypeScript library containing common declarations and utilities used across other Data Positioning repositories.",
     "license": "MIT",
     "private": false,
@@ -56,7 +56,7 @@
         "format": "prettier --write src/",
         "lint": "eslint .",
         "publish:toNPM": "npm publish --access public",
-        "release": "npm run sync:withGitHub && npm run build && npm run publish_toNPM",
+        "release": "npm run sync:withGitHub && npm run build && npm run publish:toNPM",
         "sync:withGitHub": "npm run bump:version && node -e \"import('@datapos/datapos-development').then(m => m.syncWithGitHub())\"",
         "test": "echo \"***** TEST SCRIPT NOT IMPLEMENTED. *****\"",
         "update:dataPosDeps": "npm run _update:developDeps",
