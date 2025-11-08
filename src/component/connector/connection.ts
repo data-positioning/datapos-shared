@@ -1,3 +1,7 @@
+/**
+ * Connection composables, constants, interfaces, errors, types and utilities.
+ */
+
 // Dependencies - Framework
 import type { ComponentConfig } from '@/component';
 import type { ConnectorConfig } from '@/component/connector';

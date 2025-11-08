@@ -2,7 +2,7 @@
 import type { ComponentConfig } from '@/component';
 import { DEFAULT_LOCALE_CODE } from '@/index';
 import type { Timestamp } from '@/timestamp';
-import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/connection';
+import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 
 // Interfaces/Types - Data View Configuration
 export interface DataViewConfig extends ComponentConfig {

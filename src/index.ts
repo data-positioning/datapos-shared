@@ -47,25 +47,23 @@ export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionC
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/component/connector/connection';
 
 // Interfaces/Types/Operations - Context.
+export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult } from '@/component/context';
+
+// Interfaces/Types/Operations - Context model.
+export type { ContextModelGroupConfig, ContextModelGroupLocalisedConfig, ContextModelConfig, ContextModelLocalisedConfig } from '@/component/context';
+
+// Interfaces/Types/Operations - Context model dimension.
 export type {
-    Context,
-    ContextConfig,
-    ContextLocalisedConfig,
-    ContextListSettings,
-    ContextListResult,
-    // Model.
-    ContextModelGroupConfig,
-    ContextModelGroupLocalisedConfig,
-    ContextModelConfig,
-    ContextModelLocalisedConfig,
-    // Model dimension.
     ContextModelDimensionGroupConfig,
     ContextModelDimensionGroupLocalisedConfig,
     ContextModelDimensionConfig,
     ContextModelDimensionLocalisedConfig,
     ContextModelDimensionHierarchyConfig,
-    ContextModelDimensionHierarchyLocalisedConfig,
-    // Model entity.
+    ContextModelDimensionHierarchyLocalisedConfig
+} from '@/component/context';
+
+// Interfaces/Types/Operations - Context model entity.
+export type {
     ContextModelEntityGroupConfig,
     ContextModelEntityGroupLocalisedConfig,
     ContextModelEntityConfig,
@@ -75,8 +73,11 @@ export type {
     ContextModelEntityEventConfig, // Events.
     ContextModelEntityEventLocalisedConfig,
     ContextModelEntityPrimaryMeasureConfig, // Primary measures.
-    ContextModelEntityPrimaryMeasureLocalisedConfig,
-    // Model secondary measure.
+    ContextModelEntityPrimaryMeasureLocalisedConfig
+} from '@/component/context';
+
+// Interfaces/Types/Operations - Context model secondary measure.
+export type {
     ContextModelSecondaryMeasureGroupConfig,
     ContextModelSecondaryMeasureGroupLocalisedConfig,
     ContextModelSecondaryMeasureConfig,
@@ -106,11 +107,16 @@ export type { SerialisedError } from '@/errors';
 // Interfaces/Types/Operations - Event query.
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/component/eventQuery';
 
+// Interfaces/Types/Operations - Informer.
+export type { Informer, InformerConfig, InformerLocalisedConfig, InformerTools } from '@/component/informer';
+
+// Interfaces/Types/Operations - Informer document.
+
 // Interfaces/Types/Operations - Presenter.
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterTools } from '@/component/presenter';
 
 // Interfaces/Types/Operations - Presenter presentation.
-export type { PresentationConfig, PresentationView } from '@/component/presenter';
+export type { PresentationConfig, PresentationView } from '@/component/presenter/presentation';
 export type {
     PresentationVisualConfig,
     PresentationVisualContentConfig,
@@ -122,7 +128,7 @@ export type {
     PresentationVisualSankeyDiagramViewConfig,
     PresentationVisualStreamgraphViewConfig,
     PresentationVisualValuesViewConfig
-} from '@/component/presenter';
+} from '@/component/presenter/presentation';
 export type {
     PresentationVisualViewType,
     PresentationVisualCartesianViewType,
@@ -132,12 +138,7 @@ export type {
     PresentationVisualSankeyDiagramViewType,
     PresentationVisualStreamgraphViewType,
     PresentationVisualValuesViewType
-} from '@/component/presenter';
-
-// Interfaces/Types/Operations - Informer.
-
-// Interfaces/Types/Operations - Informer document.
-export type { Recipe, RecipeConfig, RecipeLocalisedConfig } from '@/component/informer/recipe';
+} from '@/component/presenter/presentation';
 
 // Interfaces/Types/Operations - Context Operator Settings
 export interface ContextOperationSettings {
@@ -149,13 +150,10 @@ export interface ContextOperationSettings {
 // Interfaces/Types/Operations - Timestamp.
 export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
-// Interfaces/Types/Operations - Tutorial.
-export type { TutorialConfig } from '@/component/informer/tutorial';
-
 // Constants
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
-export { presentationViewTypeMap } from '@/component/presenter';
+export { presentationViewTypeMap } from '@/component/presenter/presentation';
 
 // Composables
 export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';

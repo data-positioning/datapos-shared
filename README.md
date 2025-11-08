@@ -33,6 +33,28 @@ registry=https://registry.npmjs.org/
 
 ### Components
 
+The following components are all extended from the base type `Component`:
+
+| Type       | Notes |
+| ---------- | ----- |
+| Connector  |       |
+| Connection |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+|            |       |
+
 #### Component Types
 
 | Item                                  | Notes                                                        |
@@ -88,17 +110,17 @@ For detailed implementation, see the `scripts` section in the `package.json` fil
 | ------------------ | ---------------- | ---------------------------------------------------------------------------------------------------------- |
 | audit              | alt+ctrl+shift+a | Audit the project's dependencies for known security vulnerabilities.                                       |
 | build              | alt+ctrl+shift+b | Build the package using Vite.                                                                              |
-| build...Config     |                  |                                                                                                            |
-| bumpVersion        | alt+ctrl+shift+v |                                                                                                            |
+| bump:version       | alt+ctrl+shift+v | Increment patch version number.                                                                            |
 | check              | alt+ctrl+shift+c | List outdated dependencies and run retire scanner.                                                         |
 | document           | alt+ctrl+shift+d | Identify licenses of the project's production and peer dependencies. See [LICENSES.json](./LICENSES.json). |
 | format             | alt+ctrl+shift+f | Enforce formatting style rules.                                                                            |
 | lint               | alt+ctrl+shift+l | Check the code for errors and enforce coding style rules.                                                  |
-| publishToNPM       | alt+ctrl+shift+p |                                                                                                            |
+| publish:toNPM      | alt+ctrl+shift+p | Publish the package to npm.                                                                                |
 | release            | alt+ctrl+shift+r | Bump version, synchronise local repository with the main GitHub repository, build and publish to npm.      |
-| syncWithGitHub     | alt+ctrl+shift+s | Bump version and synchronise local repository with the main GitHub repository.                             |
+| send:deployNotice  | alt+ctrl+shift+n | ❌ Not implemented.                                                                                        |
+| sync:withGitHub    | alt+ctrl+shift+s | Bump version and synchronise local repository with the main GitHub repository.                             |
 | test               | alt+ctrl+shift+t | ❌ Not implemented.                                                                                        |
-| updateDependencies | alt+ctrl+shift+l | Install the latest version of all Data Positioning dependencies.                                           |
+| update:dataPosDeps | alt+ctrl+shift+l | Install the latest version of all Data Positioning dependencies.                                           |
 
 ## Compliance
 

@@ -6,6 +6,11 @@
 import type { Timestamp } from '@/timestamp';
 import { DEFAULT_LOCALE_CODE, type LocaleCode, type LocalisedString, type StatusColorId } from '@/index';
 
+// Interfaces/Types/Operations - Component.
+export interface Component {
+    readonly config: ComponentConfig;
+}
+
 // Interfaces/Types/Operations - Component configuration.
 export interface ComponentConfig {
     id: string;
@@ -19,6 +24,8 @@ export interface ComponentConfig {
     statusId: ComponentStatusId;
     typeId: ComponentTypeId;
 }
+
+// Interfaces/Types/Operations - Component type identifier.
 export type ComponentTypeId =
     | 'connector'
     | 'connectorConnection'
