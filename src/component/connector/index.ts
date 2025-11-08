@@ -8,15 +8,16 @@ import type { parse as dateFnsParse } from 'date-fns';
 import type { nanoid } from 'nanoid';
 
 // Dependencies - Framework.
+import type { Module } from '@/module';
 import type { buildFetchError, OperationalError } from '@/errors';
 import type { Component, ComponentConfig } from '@/component';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
 import { type convertMillisecondsToTimestamp, DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/dataView';
-import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/appUtilities';
+import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
 // Interfaces - Connector.
-export interface Connector extends Component {
+export interface Connector extends Module, Component {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;

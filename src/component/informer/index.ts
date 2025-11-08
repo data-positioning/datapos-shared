@@ -6,10 +6,11 @@
 import type markdownIt from 'markdown-it';
 
 // Dependencies - Framework.
+import type { Module } from '@/module';
 import type { Component, ComponentConfig, ComponentRef } from '@/component';
 
 // Interfaces/Types - Informer.
-export interface Informer extends Component {
+export interface Informer extends Module, Component {
     readonly config: InformerConfig;
     readonly tools: InformerTools;
 

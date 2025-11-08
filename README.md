@@ -31,31 +31,47 @@ registry=https://registry.npmjs.org/
 
 ## Declarations
 
-### Components
+### Modules
 
-The following components are all extended from the base type `Component`:
+The Data Positioning solution consists of the following modules. All modules, except `App`, extend the base type `Module`.
 
-| Type       | Notes |
-| ---------- | ----- |
-| Connector  |       |
-| Connection |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
-|            |       |
+| Type      | Dynamic | Notes                                                           |
+| --------- | :-----: | --------------------------------------------------------------- |
+| App       |         | Implements the Data Positioning web application.                |
+| Engine    |   ✔    | Implements the data positioning engine.                         |
+| Connector |   ✔    | Implements a connector which supports one or more connections.  |
+| Context   |   ✔    | Implements a context which defines one or more models.          |
+| Informer  |   ✔    | Implements an informer which renders one or more documents.     |
+| Presenter |   ✔    | Implements a presenter which renders one or more presentations. |
 
-#### Component Types
+The modules implement the following components. All components extend the base type `Component`.
+
+| Module Type | Component Type                    |
+| ----------- | --------------------------------- |
+| Connector   | connector                         |
+|             | connectorConnection               |
+| Context     | context                           |
+|             | contextModelGroup                 |
+|             | contextModel                      |
+|             | contextModelDimensionGroup        |
+|             | contextModelDimension             |
+|             | contextModelDimensionHierarchy    |
+|             | contextModelEntityGroup           |
+|             | contextModelEntity                |
+|             | contextModelEntityDataItem        |
+|             | contextModelEntityEvent           |
+|             | contextModelEntityPrimaryMeasure  |
+|             | contextModelSecondaryMeasureGroup |
+|             | contextModelSecondaryMeasure      |
+|             | dataView                          |
+|             | dimension                         |
+|             | eventQuery                        |
+| Presenter   | presenter                         |
+|             | presenterPresentation             |
+| Informer    | informer                          |
+|             | informerDocument                  |
+
+### Base Components
 
 | Item                                  | Notes                                                        |
 | ------------------------------------- | ------------------------------------------------------------ |
@@ -66,14 +82,20 @@ The following components are all extended from the base type `Component`:
 | ComponentTypeId                       |                                                              |
 | StatusColorId                         |                                                              |
 
-#### Connector and Connection Types
+### Engine Module Components
+
+| Item | Notes |
+| ---- | ----- |
+|      |       |
+
+### Connector Module Components
 
 | Item                                    | Notes                                                             |
 | --------------------------------------- | ----------------------------------------------------------------- |
 | [Connector Types](./src/connector.ts)   | Connector types. The Connector type extends the Component type.   |
 | [Connection Types](./src/connection.ts) | Connection types. The Connection type extends the Component type. |
 
-#### Context Types
+### Context Module Components
 
 | Item                                        | Notes                                                                 |
 | ------------------------------------------- | --------------------------------------------------------------------- |
@@ -86,6 +108,18 @@ The following components are all extended from the base type `Component`:
 | [Presentation Types](./src/presentation.ts) | Presentation types. The Presentation type extends the Component type. |
 | [Informer Types](./src/informer.ts)         | Informer types. The Informer type extends the Component type.         |
 | [Recipe Types](./src/recipe.ts)             | Recipe types. The Recipe type extends the Component type.             |
+
+### Informer Module Components
+
+| Item | Notes |
+| ---- | ----- |
+|      |       |
+
+### Presenter Module Components
+
+| Item | Notes |
+| ---- | ----- |
+|      |       |
 
 ## Usage
 

@@ -1,4 +1,5 @@
 import type { ConnectionConfig } from '@/component/connector/connection';
+import type { Module } from '@/module';
 import type { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveResult } from '@/component/connector';
 import type { ContextCallbackData, ContextConfig, ContextOperationSettings } from '@/component/context';
 import type { DataViewPreviewConfig, EncodingConfig } from '@/component/dataView';
@@ -23,7 +24,7 @@ type ProcessContextRequest = (
 
 export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
 
-export interface Engine {
+export interface Engine extends Module {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;
 }

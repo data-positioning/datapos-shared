@@ -6,10 +6,11 @@
 import type markdownIt from 'markdown-it';
 
 // Dependencies - Framework.
+import type { Module } from '@/module';
 import type { Component, ComponentConfig, ComponentRef } from '@/component';
 
 // Interfaces/Types - Presenter.
-export interface Presenter extends Component {
+export interface Presenter extends Module, Component {
     readonly config: PresenterConfig;
     readonly tools: PresenterTools;
 

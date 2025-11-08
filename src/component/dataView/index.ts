@@ -1,10 +1,13 @@
 // Dependencies - Framework
-import type { ComponentConfig } from '@/component';
 import { DEFAULT_LOCALE_CODE } from '@/index';
 import type { Timestamp } from '@/timestamp';
+import type { Component, ComponentConfig } from '@/component';
 import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 
-// Interfaces/Types - Data View Configuration
+// Interfaces - Data view component.
+export interface DataView extends Component {}
+
+// Interfaces/Types - Data view configuration.
 export interface DataViewConfig extends ComponentConfig {
     connectionId?: string;
     connectionNodeConfig?: ConnectionNodeConfig;
@@ -14,7 +17,7 @@ export interface DataViewConfig extends ComponentConfig {
 }
 export type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Data View Content Audit Configuration
+// Interfaces/Types - Data view content audit configuration.
 export interface DataViewContentAuditConfig {
     asAt: Timestamp;
     columns: ConnectionColumnConfig[];

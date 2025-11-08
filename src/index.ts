@@ -163,12 +163,12 @@ export { type HighchartsView, useHighcharts } from '@/composables/useHighcharts'
 // Errors
 export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';
 
-// Utilities - Application.
+// Utilities.
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
 export { convertMillisecondsToTimestamp, getCurrentTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
-export { convertODataTypeIdToUsageTypeId } from '@/appUtilities';
-export { extractExtensionFromPath, extractNameFromPath } from '@/appUtilities';
-export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/appUtilities';
+export { convertODataTypeIdToUsageTypeId } from '@/utilities';
+export { extractExtensionFromPath, extractNameFromPath } from '@/utilities';
+export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/utilities';
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from '@/component/dataView';
 export { getComponentStatus } from '@/component';
-export { lookupMimeTypeForExtension } from '@/appUtilities';
+export { lookupMimeTypeForExtension } from '@/utilities';

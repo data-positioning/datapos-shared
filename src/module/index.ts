@@ -6,6 +6,9 @@
 import type { ContextModelGroupConfig } from '@/component/context';
 import type { LocalisedString } from '@/index';
 
+// Dependencies - Module.
+export interface Module {}
+
 // Interfaces/Types/Operations - Module configuration.
 export interface ModuleConfig {
     id: string;
@@ -15,7 +18,7 @@ export interface ModuleConfig {
     typeId: ModuleTypeId;
     version: string;
 }
-type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'presenter' | 'informer';
+type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'informer' | 'presenter';
 
 // Interfaces/Types/Operations - Application module configuration.
 export interface AppModuleConfig extends ModuleConfig {

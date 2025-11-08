@@ -3,10 +3,11 @@
  */
 
 // Dependencies - Framework.
+import type { Module } from '@/module';
 import type { Component, ComponentConfig, ComponentRef } from '@/component';
 
 // Interfaces/Types/Operations - Context.
-export interface Context extends Component {
+export interface Context extends Module, Component {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;
 }
