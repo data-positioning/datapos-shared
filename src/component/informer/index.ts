@@ -1,5 +1,5 @@
 /**
- * Informer composables, constants, types/interfaces, errors and utilities..
+ * Informer composables, constants, errors, types/interfaces and utilities.
  */
 
 // Dependencies - Vendor.

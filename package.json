@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.156",
+    "version": "0.3.157",
     "description": "A TypeScript library containing common declarations and utilities used across other Data Positioning repositories.",
     "license": "MIT",
     "private": false,
@@ -45,7 +45,8 @@
         "retire": "^5.3.0",
         "typescript": "^5.9.3",
         "vite": "^7.2.2",
-        "vite-plugin-dts": "^4.5.4"
+        "vite-plugin-dts": "^4.5.4",
+        "zod": "^4.1.12"
     },
     "scripts": {
         "audit": "npm audit",

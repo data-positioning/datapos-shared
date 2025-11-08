@@ -1,5 +1,5 @@
 /**
- * Module composables, constants, types/interfaces, errors and utilities..
+ * Module composables, constants, errors, types/interfaces and utilities.
  */
 
 // Dependencies - Framework.

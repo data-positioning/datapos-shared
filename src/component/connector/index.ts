@@ -1,5 +1,5 @@
 /**
- * Connector composables, constants, types/interfaces, errors and utilities..
+ * Connector composables, constants, errors, types/interfaces and utilities.
  */
 
 // Dependencies - Vendor.
@@ -38,7 +38,7 @@ export interface Connector extends Module, Component {
         chunk: (records: (string[] | Record<string, unknown>)[]) => void,
         complete: (result: RetrieveSummary) => void
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
-    upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
+    upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one oˆr more records into an object for a specified connection.
 }
 export interface ConnectorConfig extends ComponentConfig {
     category?: ConnectorCategory;

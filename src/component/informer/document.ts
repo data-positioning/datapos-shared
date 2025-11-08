@@ -1,3 +1,3 @@
 /**
- * Document composables, constants, types/interfaces, errors and utilities..
+ * Document composables, constants, errors, types/interfaces and utilities.
  */

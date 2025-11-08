@@ -1,5 +1,5 @@
 /**
- * Context composables, constants, types/interfaces, errors and utilities..
+ * Context composables, constants, errors, types/interfaces and utilities.
  */
 
 // Dependencies - Framework.

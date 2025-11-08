@@ -1,5 +1,5 @@
 /**
- * Presentation composables, constants, types/interfaces, errors and utilities..
+ * Presentation composables, constants, errors, types/interfaces and utilities.
  */
 
 // Dependencies - Framework.
