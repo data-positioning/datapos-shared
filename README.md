@@ -5,6 +5,15 @@
 
 A TypeScript library containing common declarations and utilities used across other Data Positioning repositories.
 
+## Requirements
+
+Ensure your environment meets the following prerequisites before using this library:
+
+- **Node.js** version `>=22.0.0`,
+- **npm** version `>=11.0.0`,
+- A Unix-like shell (for command shortcuts, e.g., `bash`, `zsh`, or Git Bash on Windows),
+- Access to the [npm registry](https://www.npmjs.com/) and [GitHub](https://github.com/) for publishing and syncing.
+
 ## Installation
 
 Install as a production dependency:
