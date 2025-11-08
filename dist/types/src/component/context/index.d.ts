@@ -1,5 +1,6 @@
-import { ComponentConfig, ComponentRef } from '..';
-export interface Context {
+import { Module } from '../../module';
+import { Component, ComponentConfig, ComponentRef } from '..';
+export interface Context extends Module, Component {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;
 }

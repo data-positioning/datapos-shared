@@ -1,5 +1,5 @@
 /**
- * Connection composables, constants, interfaces, errors, types and utilities.
+ * Connection composables, constants, types/interfaces, errors and utilities..
  */
 
 // Dependencies - Framework

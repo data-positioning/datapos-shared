@@ -1,5 +1,7 @@
 import { ContextModelGroupConfig } from '../component/context';
 import { LocalisedString } from '../index';
+export interface Module {
+}
 export interface ModuleConfig {
     id: string;
     label: Partial<LocalisedString>;
@@ -8,7 +10,7 @@ export interface ModuleConfig {
     typeId: ModuleTypeId;
     version: string;
 }
-type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'presenter' | 'informer';
+type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'informer' | 'presenter';
 export interface AppModuleConfig extends ModuleConfig {
     typeId: 'app';
 }

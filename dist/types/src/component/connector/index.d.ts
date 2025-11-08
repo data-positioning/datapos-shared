@@ -1,13 +1,14 @@
 import { parse as csvParse } from 'csv-parse/browser/esm';
 import { parse as dateFnsParse } from 'date-fns';
 import { nanoid } from 'nanoid';
-import { ComponentConfig } from '..';
+import { Module } from '../../module';
 import { buildFetchError, OperationalError } from '../../errors';
+import { Component, ComponentConfig } from '..';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
 import { convertMillisecondsToTimestamp, LocalisedString } from '../../index';
 import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
-import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../appUtilities';
-export interface Connector extends Component {
+import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../utilities';
+export interface Connector extends Module, Component {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
@@ -22,12 +23,7 @@ export interface Connector extends Component {
     listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>;
     previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>;
     removeRecords?(connector: Connector, settings: RemoveSettings): Promise<void>;
-    retrieveRecords?(
-        connector: Connector,
-        settings: RetrieveSettings,
-        chunk: (records: (string[] | Record<string, unknown>)[]) => void,
-        complete: (result: RetrieveSummary) => void
-    ): Promise<void>;
+    retrieveRecords?(connector: Connector, settings: RetrieveSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveSummary) => void): Promise<void>;
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
 export interface ConnectorConfig extends ComponentConfig {
@@ -90,7 +86,8 @@ export interface CreateSettings extends ConnectorOperationSettings {
     path: string;
     structure: string;
 }
-interface DescribeSettings extends ConnectorOperationSettings {}
+interface DescribeSettings extends ConnectorOperationSettings {
+}
 interface DescribeResult {
     description: ConnectionDescription;
 }

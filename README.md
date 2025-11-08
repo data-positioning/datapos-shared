@@ -31,95 +31,78 @@ registry=https://registry.npmjs.org/
 
 ## Declarations
 
+This package provides composables, constants, errors, types/interfaces and utilities used by Data Positioning modules.
+
 ### Modules
 
 The Data Positioning solution consists of the following modules. All modules, except `App`, extend the base type `Module`.
 
 | Type      | Dynamic | Notes                                                           |
 | --------- | :-----: | --------------------------------------------------------------- |
-| App       |         | Implements the Data Positioning web application.                |
+| App       |         | Implements the data positioning web application.                |
 | Engine    |   ✔    | Implements the data positioning engine.                         |
-| Connector |   ✔    | Implements a connector which supports one or more connections.  |
+| Connector |   ✔    | Implements a connector which handles one or more connections.   |
 | Context   |   ✔    | Implements a context which defines one or more models.          |
 | Informer  |   ✔    | Implements an informer which renders one or more documents.     |
 | Presenter |   ✔    | Implements a presenter which renders one or more presentations. |
 
-The modules implement the following components. All components extend the base type `Component`.
+### Components
 
-| Module Type | Component Type                    |
-| ----------- | --------------------------------- |
-| Connector   | connector                         |
-|             | connectorConnection               |
-| Context     | context                           |
-|             | contextModelGroup                 |
-|             | contextModel                      |
-|             | contextModelDimensionGroup        |
-|             | contextModelDimension             |
-|             | contextModelDimensionHierarchy    |
-|             | contextModelEntityGroup           |
-|             | contextModelEntity                |
-|             | contextModelEntityDataItem        |
-|             | contextModelEntityEvent           |
-|             | contextModelEntityPrimaryMeasure  |
-|             | contextModelSecondaryMeasureGroup |
-|             | contextModelSecondaryMeasure      |
-|             | dataView                          |
-|             | dimension                         |
-|             | eventQuery                        |
-| Presenter   | presenter                         |
-|             | presenterPresentation             |
-| Informer    | informer                          |
-|             | informerDocument                  |
+Each module implements a set of components. All module component types extend the base component types.
 
-### Base Components
+| Types                           | Notes                                                        |
+| ------------------------------- | ------------------------------------------------------------ |
+| [Component](./src/component.ts) | The Component type serves as a base type for all components. |
+| ComponentRef                    |                                                              |
+| ComponentStatus                 |                                                              |
+| ComponentStatusId               |                                                              |
+| ComponentTypeId                 |                                                              |
+| StatusColorId                   |                                                              |
 
-| Item                                  | Notes                                                        |
-| ------------------------------------- | ------------------------------------------------------------ |
-| [Component Types](./src/component.ts) | The Component type serves as a base type for all components. |
-| ComponentRef                          |                                                              |
-| ComponentStatus                       |                                                              |
-| ComponentStatusId                     |                                                              |
-| ComponentTypeId                       |                                                              |
-| StatusColorId                         |                                                              |
-
-### Engine Module Components
-
-| Item | Notes |
-| ---- | ----- |
-|      |       |
-
-### Connector Module Components
+#### Connector Module Components
 
 | Item                                    | Notes                                                             |
 | --------------------------------------- | ----------------------------------------------------------------- |
 | [Connector Types](./src/connector.ts)   | Connector types. The Connector type extends the Component type.   |
 | [Connection Types](./src/connection.ts) | Connection types. The Connection type extends the Component type. |
 
-### Context Module Components
+#### Context Module Components
+
+| Item                                     | Notes                                                               |
+| ---------------------------------------- | ------------------------------------------------------------------- |
+| [Context Types](./src/context.ts)        | Context types. The Context type extends the Component type.         |
+| [Data View Types](./src/dataView.ts)     | DataView types. The DataView type extends the Component type.       |
+| [Dimension Types](./src/dimension.ts)    | Dimension types. The Dimension type extends the Component type.     |
+| [Engine Types](./src/dimension.ts)       | Engine types.                                                       |
+| [Event Query Types](./src/eventQuery.ts) | Event Query types. The Event Query type extends the Component type. |
+
+#### Engine Module Components
+
+| Item                               | Notes         |
+| ---------------------------------- | ------------- |
+| [Engine Types](./src/dimension.ts) | Engine types. |
+
+#### Informer Module Components
 
 | Item                                        | Notes                                                                 |
 | ------------------------------------------- | --------------------------------------------------------------------- |
-| [Context Types](./src/context.ts)           | Context types. The Context type extends the Component type.           |
-| [Data View Types](./src/dataView.ts)        | DataView types. The DataView type extends the Component type.         |
-| [Dimension Types](./src/dimension.ts)       | Dimension types. The Dimension type extends the Component type.       |
-| [Engine Types](./src/dimension.ts)          | Engine types.                                                         |
-| [Event Query Types](./src/eventQuery.ts)    | Event Query types. The Event Query type extends the Component type.   |
 | [Presenter Types](./src/presenter.ts)       | Presenter types. The Presenter type extends the Component type.       |
 | [Presentation Types](./src/presentation.ts) | Presentation types. The Presentation type extends the Component type. |
-| [Informer Types](./src/informer.ts)         | Informer types. The Informer type extends the Component type.         |
-| [Recipe Types](./src/recipe.ts)             | Recipe types. The Recipe type extends the Component type.             |
 
-### Informer Module Components
+#### Presenter Module Components
 
-| Item | Notes |
-| ---- | ----- |
-|      |       |
+| Item                                | Notes                                                         |
+| ----------------------------------- | ------------------------------------------------------------- |
+| [Informer Types](./src/informer.ts) | Informer types. The Informer type extends the Component type. |
+| [Recipe Types](./src/recipe.ts)     | Recipe types. The Recipe type extends the Component type.     |
 
-### Presenter Module Components
+### Composables
 
-| Item | Notes |
-| ---- | ----- |
-|      |       |
+### Constants
+
+### Errors
+
+### Utilities
 
 ## Usage
 

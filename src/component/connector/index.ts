@@ -1,5 +1,5 @@
 /**
- * Connector composables, constants, interfaces, errors, types and utilities.
+ * Connector composables, constants, types/interfaces, errors and utilities..
  */
 
 // Dependencies - Vendor.

@@ -1,5 +1,5 @@
 /**
- * Component composables, constants, interfaces, errors, types and utilities.
+ * Component composables, constants, types/interfaces, errors and utilities..
  */
 
 // Dependencies - Framework.

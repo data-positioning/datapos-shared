@@ -1,5 +1,5 @@
 /**
- * Presenter composables, constants, interfaces, errors, types and utilities.
+ * Presenter composables, constants, types/interfaces, errors and utilities..
  */
 
 // Dependencies - Vendor.

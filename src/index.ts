@@ -1,5 +1,5 @@
 /**
- * Shared composables, constants, interfaces, errors, types and utilities.
+ * Shared composables, constants, types/interfaces, errors and utilities.
  */
 
 // Interfaces/Types/Operations
@@ -150,15 +150,15 @@ export interface ContextOperationSettings {
 // Interfaces/Types/Operations - Timestamp.
 export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
-// Constants
-export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
-export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
-export { presentationViewTypeMap } from '@/component/presenter/presentation';
-
 // Composables
 export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
 export { useDataTable } from '@/composables/useDataTable';
 export { type HighchartsView, useHighcharts } from '@/composables/useHighcharts';
+
+// Constants
+export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
+export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
+export { presentationViewTypeMap } from '@/component/presenter/presentation';
 
 // Errors
 export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';

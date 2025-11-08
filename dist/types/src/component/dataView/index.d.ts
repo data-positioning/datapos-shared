@@ -1,6 +1,8 @@
-import { ComponentConfig } from '..';
 import { Timestamp } from '../../timestamp';
-import { ConnectionColumnConfig, ConnectionNodeConfig } from '../../connection';
+import { Component, ComponentConfig } from '..';
+import { ConnectionColumnConfig, ConnectionNodeConfig } from '../connector/connection';
+export interface DataView extends Component {
+}
 export interface DataViewConfig extends ComponentConfig {
     connectionId?: string;
     connectionNodeConfig?: ConnectionNodeConfig;

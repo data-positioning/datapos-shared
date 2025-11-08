@@ -1,5 +1,8 @@
 import { Timestamp } from '../timestamp';
 import { LocaleCode, LocalisedString, StatusColorId } from '../index';
+export interface Component {
+    readonly config: ComponentConfig;
+}
 export interface ComponentConfig {
     id: string;
     label: Partial<LocalisedString>;
