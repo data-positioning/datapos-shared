@@ -84,17 +84,17 @@ Each module implements a set of components. All module component types extend th
 
 #### Informer Module Components
 
-| Item                                        | Notes                                                                 |
-| ------------------------------------------- | --------------------------------------------------------------------- |
-| [Presenter Types](./src/presenter.ts)       | Presenter types. The Presenter type extends the Component type.       |
-| [Presentation Types](./src/presentation.ts) | Presentation types. The Presentation type extends the Component type. |
-
-#### Presenter Module Components
-
 | Item                                | Notes                                                         |
 | ----------------------------------- | ------------------------------------------------------------- |
 | [Informer Types](./src/informer.ts) | Informer types. The Informer type extends the Component type. |
 | [Recipe Types](./src/recipe.ts)     | Recipe types. The Recipe type extends the Component type.     |
+
+#### Presenter Module Components
+
+| Item                                        | Notes                                                                 |
+| ------------------------------------------- | --------------------------------------------------------------------- |
+| [Presenter Types](./src/presenter.ts)       | Presenter types. The Presenter type extends the Component type.       |
+| [Presentation Types](./src/presentation.ts) | Presentation types. The Presentation type extends the Component type. |
 
 ### Composables
 
