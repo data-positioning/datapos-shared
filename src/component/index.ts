@@ -25,31 +25,6 @@ export interface ComponentConfig {
     typeId: ComponentTypeId;
 }
 
-// Interfaces/Types/Operations - Component type identifier.
-export type ComponentTypeId =
-    | 'connector'
-    | 'connectorConnection'
-    | 'context'
-    | 'contextModelGroup'
-    | 'contextModel'
-    | 'contextModelDimensionGroup'
-    | 'contextModelDimension'
-    | 'contextModelDimensionHierarchy'
-    | 'contextModelEntityGroup'
-    | 'contextModelEntity'
-    | 'contextModelEntityDataItem'
-    | 'contextModelEntityEvent'
-    | 'contextModelEntityPrimaryMeasure'
-    | 'contextModelSecondaryMeasureGroup'
-    | 'contextModelSecondaryMeasure'
-    | 'dataView'
-    | 'dimension'
-    | 'eventQuery'
-    | 'presenter'
-    | 'presenterPresentation'
-    | 'informer'
-    | 'informerDocument';
-
 // Interfaces/Types/Operations - Component references.
 export type ComponentRef = {
     id: string;
@@ -79,3 +54,28 @@ export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LO
     if (componentStatus) return { ...componentStatus, label: componentStatus.label[localeId] || componentStatus.label[DEFAULT_LOCALE_CODE] || id };
     return { id, color: 'other', label: id };
 };
+
+// Interfaces/Types/Operations - Component type.
+export type ComponentTypeId =
+    | 'connector'
+    | 'connectorConnection'
+    | 'context'
+    | 'contextModelGroup'
+    | 'contextModel'
+    | 'contextModelDimensionGroup'
+    | 'contextModelDimension'
+    | 'contextModelDimensionHierarchy'
+    | 'contextModelEntityGroup'
+    | 'contextModelEntity'
+    | 'contextModelEntityDataItem'
+    | 'contextModelEntityEvent'
+    | 'contextModelEntityPrimaryMeasure'
+    | 'contextModelSecondaryMeasureGroup'
+    | 'contextModelSecondaryMeasure'
+    | 'dataView'
+    | 'dimension'
+    | 'eventQuery'
+    | 'presenter'
+    | 'presenterPresentation'
+    | 'informer'
+    | 'informerDocument';

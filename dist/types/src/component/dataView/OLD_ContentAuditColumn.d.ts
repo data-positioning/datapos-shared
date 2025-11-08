@@ -1,4 +1,4 @@
-import { PreviewColumn } from '../../Z_PreviewColumn';
+import { PreviewColumn } from './OLD_PreviewColumn';
 export type ParsedValue = {
     isValid: boolean;
     value: bigint | boolean | number | string | null;

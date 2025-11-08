@@ -15,7 +15,6 @@ export interface ComponentConfig {
     statusId: ComponentStatusId;
     typeId: ComponentTypeId;
 }
-export type ComponentTypeId = 'connector' | 'connectorConnection' | 'context' | 'contextModelGroup' | 'contextModel' | 'contextModelDimensionGroup' | 'contextModelDimension' | 'contextModelDimensionHierarchy' | 'contextModelEntityGroup' | 'contextModelEntity' | 'contextModelEntityDataItem' | 'contextModelEntityEvent' | 'contextModelEntityPrimaryMeasure' | 'contextModelSecondaryMeasureGroup' | 'contextModelSecondaryMeasure' | 'dataView' | 'dimension' | 'eventQuery' | 'presenter' | 'presenterPresentation' | 'informer' | 'informerDocument';
 export type ComponentRef = {
     id: string;
     label: Partial<LocalisedString>;
@@ -30,3 +29,4 @@ export type ComponentStatus = {
 };
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
 export declare const getComponentStatus: (id: string, localeId?: LocaleCode) => ComponentStatus;
+export type ComponentTypeId = 'connector' | 'connectorConnection' | 'context' | 'contextModelGroup' | 'contextModel' | 'contextModelDimensionGroup' | 'contextModelDimension' | 'contextModelDimensionHierarchy' | 'contextModelEntityGroup' | 'contextModelEntity' | 'contextModelEntityDataItem' | 'contextModelEntityEvent' | 'contextModelEntityPrimaryMeasure' | 'contextModelSecondaryMeasureGroup' | 'contextModelSecondaryMeasure' | 'dataView' | 'dimension' | 'eventQuery' | 'presenter' | 'presenterPresentation' | 'informer' | 'informerDocument';

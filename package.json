@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.158",
+    "version": "0.3.159",
     "description": "A TypeScript library containing common declarations and utilities used across other Data Positioning repositories.",
     "license": "MIT",
     "private": false,
@@ -24,29 +24,31 @@
     "files": [
         "dist"
     ],
+    "peerDependencies": {
+        "csv-parse": "^6.1.0",
+        "date-fns": "^4.1.0",
+        "highcharts": "^12.4.0",
+        "markdown-it": "^14.1.0",
+        "zod": "^4.1.12"
+    },
     "devDependencies": {
         "@datapos/datapos-development": "^0.3.64",
         "@types/markdown-it": "^14.1.2",
         "@types/node": "^24.10.0",
         "@typescript-eslint/eslint-plugin": "^8.46.3",
         "@typescript-eslint/parser": "^8.46.3",
-        "csv-parse": "^6.1.0",
-        "date-fns": "^4.1.0",
         "eslint": "^9.39.1",
         "eslint-plugin-import": "^2.32.0",
-        "highcharts": "^12.4.0",
         "jiti": "^2.6.1",
         "license-report": "^6.8.1",
         "license-report-check": "^0.1.2",
-        "markdown-it": "^14.1.0",
         "nanoid": "^5.1.6",
         "npm-check-updates": "^19.1.2",
         "prettier": "^3.6.2",
         "retire": "^5.3.0",
         "typescript": "^5.9.3",
         "vite": "^7.2.2",
-        "vite-plugin-dts": "^4.5.4",
-        "zod": "^4.1.12"
+        "vite-plugin-dts": "^4.5.4"
     },
     "scripts": {
         "audit": "npm audit",
@@ -59,7 +61,7 @@
         "publish:toNPM": "npm publish --access public",
         "release": "npm run sync:withGitHub && npm run build && npm run publish:toNPM",
         "sync:withGitHub": "npm run bump:version && node -e \"import('@datapos/datapos-development').then(m => m.syncWithGitHub())\"",
-        "test": "echo \"***** TEST SCRIPT NOT IMPLEMENTED. *****\"",
+        "test": "node -e \"import('@datapos/datapos-development').then(m => m.echoScriptNotImplemented('Test'))\"",
         "update:dataPosDeps": "npm run _update:developDeps",
         "_document:licenceReport": "license-report --only=prod,peer > LICENSES.json",
         "_document:licenceCheck": "license-report-check --source ./LICENSES.json --allowed 'MIT' --allowed 'n/a' --allowed 'Apache-2.0' --output=table",

@@ -1,18 +1,4 @@
 import { z } from 'zod';
-export declare const localeCodeSchema: z.ZodEnum<{
-    "en-au": "en-au";
-    "en-gb": "en-gb";
-    "en-us": "en-us";
-    "es-es": "es-es";
-}>;
-export declare const moduleTypeIdSchema: z.ZodEnum<{
-    connector: "connector";
-    context: "context";
-    presenter: "presenter";
-    informer: "informer";
-    app: "app";
-    engine: "engine";
-}>;
 export declare const partialLocalisedStringSchema: z.ZodObject<{
     'en-au': z.ZodOptional<z.ZodString>;
     'en-gb': z.ZodOptional<z.ZodString>;
