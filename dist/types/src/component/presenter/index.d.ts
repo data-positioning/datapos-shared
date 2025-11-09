@@ -1,4 +1,6 @@
-import { default as markdownIt } from 'markdown-it';
+import { default as MarkdownIt } from 'markdown-it';
+import { micromark } from 'micromark';
+import { default as prism } from 'prismjs';
 import { Module } from '../../module';
 import { Component, ComponentConfig, ComponentRef } from '..';
 export interface Presenter extends Module, Component {
@@ -16,5 +18,7 @@ export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'descript
     description: string;
 };
 export type PresenterTools = {
-    markdownIt: typeof markdownIt;
+    MarkdownIt: typeof MarkdownIt;
+    micromark: typeof micromark;
+    prism: typeof prism;
 };
