@@ -156,6 +156,7 @@ export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now
 export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
 export { useDataTable } from '@/composables/useDataTable';
 export { type HighchartsView, useHighcharts } from '@/composables/useHighcharts';
+export { useMicromark } from '@/composables/useMicromark';
 
 // Constants
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';

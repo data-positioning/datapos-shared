@@ -1,4 +1,3 @@
-import { default as MarkdownIt } from 'markdown-it';
 import { micromark } from 'micromark';
 import { default as prism } from 'prismjs';
 import { Module } from '../../module';
@@ -18,7 +17,6 @@ export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'descript
     description: string;
 };
 export type PresenterTools = {
-    MarkdownIt: typeof MarkdownIt;
     micromark: typeof micromark;
     prism: typeof prism;
 };
