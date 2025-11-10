@@ -1,18 +1,10 @@
 /**
- * Micromark and Prism composable..
+ * Micromark composable.
  */
 
 // Dependencies - Vendor.
 import type { micromark } from 'micromark';
 import type prism from 'prismjs';
-
-// Dependencies - Framework.
-import type { PresentationView, PresentationVisualContentConfig } from '@/index';
-
-// Interfaces/Types - Cytoscape.js view.
-export interface CytoscapeJSView extends PresentationView {
-    diagram: unknown;
-}
 
 // Constants
 const MICROMARK_DOWNLOAD_RELEASE = 4;
@@ -26,29 +18,35 @@ const PRISM_JSON_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_DOWNLOAD_RE
 let micromarkModule: typeof micromark | undefined = undefined;
 let prismModule: typeof prism | undefined = undefined;
 
-// Composables - Use Micromark and Prism.
+// Composables - Use Micromark.
 export function useMicromark() {
+    // Operations - ????
+    function getStuff() {
+        return { micromarkModule, prismModule };
+    }
+
     // Operations - Render.
     async function render() {
         await loadMicromarkAndPrism();
     }
 
-    function getStuff() {
-        return { micromarkModule, prismModule };
-    }
-
     // Utilities - Load Micromark and Prism.
     async function loadMicromarkAndPrism(): Promise<void> {
-        if (micromarkModule && prismModule) return;
-        micromarkModule = await import(/* @vite-ignore */ MICROMARK_DOWNLOAD_URL_);
-        prismModule = await import(/* @vite-ignore */ PRISM_DOWNLOAD_URL);
-        await import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL);
-        await import(/* @vite-ignore */ PRISM_JSON_URL);
+        if (micromarkModule && prismModule) return;≥
+        const modules = await Promise.all([
+            import(/* @vite-ignore */ MICROMARK_DOWNLOAD_URL_),
+            import(/* @vite-ignore */ PRISM_DOWNLOAD_URL),
+            import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL),
+            import(/* @vite-ignore */ PRISM_JSON_URL)
+        ]);
+
+        micromarkModule = modules[0];
+        prismModule = modules[1];
 
         console.log('micromarkModule', micromarkModule);
         console.log('prismModule', prismModule);
     }
 
     // Exposures
-    return { getStuff, micromarkModule, prismModule, render };
+    return { getStuff, render };
 }
