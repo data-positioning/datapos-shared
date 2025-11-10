@@ -3,7 +3,6 @@
  */
 
 // Dependencies - Vendor.
-import type MarkdownIt from 'markdown-it';
 import type { micromark } from 'micromark';
 import type prism from 'prismjs';
 
@@ -28,4 +27,4 @@ export interface PresenterConfig extends ComponentConfig {
 export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Presenter tools.
-export type PresenterTools = { MarkdownIt: typeof MarkdownIt; micromark: typeof micromark; prism: typeof prism };
+export type PresenterTools = { micromark: typeof micromark; prism: typeof prism };

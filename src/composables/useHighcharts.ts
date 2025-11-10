@@ -20,7 +20,7 @@ export interface HighchartsView extends PresentationView {
 const DOWNLOAD_URL_PREFIX = 'https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/';
 const HIGHCHARTS_ID = 'highcharts';
 
-// Module Operations & Variables
+// Module Variables
 let dependencyWheelAndSankeyModulesLoaded = false;
 let Highcharts: typeof HighchartsType | undefined = undefined;
 let highchartsMoreModuleLoaded = false;
