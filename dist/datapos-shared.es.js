@@ -11,7 +11,7 @@ function W() {
   }
   return { render: e };
 }
-const A = "https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/", w = "highcharts";
+const A = "https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/", D = "highcharts";
 let b, R = !1;
 function H() {
   async function e(n, s, m, h) {
@@ -27,7 +27,7 @@ function H() {
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
     }, u = b.chart(m, p, h);
-    return { chart: u, resize: () => u.reflow(), vendorId: w };
+    return { chart: u, resize: () => u.reflow(), vendorId: D };
   }
   async function r(n, s, m, h) {
     await Promise.all([t(), o()]);
@@ -42,13 +42,13 @@ function H() {
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
     }, u = b.chart(m, p, h);
-    return { chart: u, resize: () => u.reflow(), vendorId: w };
+    return { chart: u, resize: () => u.reflow(), vendorId: D };
   }
   async function a(n, s, m, h) {
     await Promise.all([t(), o()]);
     const l = [], p = [];
-    for (let E = 0; E < s.data.measures[0].data.length; E++)
-      p.push([s.data.measures[0].data[E][0], s.data.measures[1].data[E][0]]);
+    for (let f = 0; f < s.data.measures[0].data.length; f++)
+      p.push([s.data.measures[0].data[f][0], s.data.measures[1].data[f][0]]);
     l.push({ type: n.options.highchartsType, name: "Unknown", data: p });
     const u = {
       chart: { type: n.options.highchartsType, inverted: n.options.inverted },
@@ -58,7 +58,7 @@ function H() {
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
     }, c = b.chart(m, u, h);
-    return { chart: c, resize: () => c.reflow(), vendorId: w };
+    return { chart: c, resize: () => c.reflow(), vendorId: D };
   }
   async function t() {
     if (b) return;
@@ -77,31 +77,38 @@ function H() {
   }
   return { renderCartesianChart: e, renderPolarChart: r, renderRangeChart: a };
 }
-const O = 4, N = `https://cdn.jsdelivr.net/npm/micromark@${O}/+esm`, D = 1, _ = `https://cdn.jsdelivr.net/npm/prismjs@${D}/+esm`, C = `https://cdn.jsdelivr.net/npm/prismjs@${D}/components/prism-javascript.min.js`, L = `https://cdn.jsdelivr.net/npm/prismjs@${D}/components/prism-javascript.min.js`;
-let f, y;
+const O = 4, N = `https://cdn.jsdelivr.net/npm/micromark@${O}/+esm`, T = 1, _ = `https://cdn.jsdelivr.net/npm/prismjs@${T}/+esm`, C = `https://cdn.jsdelivr.net/npm/prismjs@${T}/components/prism-javascript.min.js`, L = `https://cdn.jsdelivr.net/npm/prismjs@${T}/components/prism-javascript.min.js`;
+let y, E;
 function V() {
-  async function e() {
+  function e() {
+    return { micromarkModule: y, prismModule: E };
+  }
+  async function r() {
     await a();
   }
-  function r() {
-    return { micromarkModule: f, prismModule: y };
-  }
   async function a() {
-    f && y || (f = await import(
-      /* @vite-ignore */
-      N
-    ), y = await import(
-      /* @vite-ignore */
-      _
-    ), await import(
-      /* @vite-ignore */
-      C
-    ), await import(
-      /* @vite-ignore */
-      L
-    ), console.log("micromarkModule", f), console.log("prismModule", y));
+    if (y && E) return;
+    const t = await Promise.all([
+      import(
+        /* @vite-ignore */
+        N
+      ),
+      import(
+        /* @vite-ignore */
+        _
+      ),
+      import(
+        /* @vite-ignore */
+        C
+      ),
+      import(
+        /* @vite-ignore */
+        L
+      )
+    ]);
+    y = t[0], E = t[1], console.log("micromarkModule", y), console.log("prismModule", E);
   }
-  return { getStuff: r, micromarkModule: f, prismModule: y, render: e };
+  return { getStuff: e, render: r };
 }
 const z = 0, X = (e) => e, G = () => Date.now(), J = {
   cartesian_areaLine: { categoryId: "cartesian", typeId: "areaLine", label: { "en-gb": "Area Line" }, options: { highchartsType: "area" } },
@@ -122,13 +129,13 @@ const z = 0, X = (e) => e, G = () => Date.now(), J = {
   streamgraph: { categoryId: "streamgraph", label: { "en-gb": "Streamgraph" }, options: {} },
   values: { categoryId: "values", label: { "en-gb": "Values" }, options: {} }
 };
-class T extends Error {
+class w extends Error {
   locator;
   constructor(r, a, t) {
     super(r, t), this.name = "DataPosError", this.locator = a, Error.captureStackTrace?.(this, new.target);
   }
 }
-class g extends T {
+class g extends w {
   constructor(r, a, t) {
     super(r, a, t), this.name = "ApplicationError";
   }
@@ -166,7 +173,7 @@ class Y extends g {
     super(r, a, t), this.name = "WindowHandledPromiseRejectionError";
   }
 }
-class Z extends T {
+class Z extends w {
   constructor(r, a, t) {
     super(r, a, t), this.name = "OperationalError";
   }
@@ -197,7 +204,7 @@ function ae(e) {
       o = { body: t.body, locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
     else if (t instanceof $)
       o = { componentName: t.componentName, info: t.info, locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
-    else if (t instanceof T)
+    else if (t instanceof w)
       o = { locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
     else if (t instanceof Error) {
       const n = t;
