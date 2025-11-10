@@ -11,7 +11,7 @@ function W() {
   }
   return { render: e };
 }
-const A = "https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/", I = "highcharts";
+const A = "https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/", w = "highcharts";
 let b, R = !1;
 function H() {
   async function e(n, s, m, h) {
@@ -27,7 +27,7 @@ function H() {
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
     }, u = b.chart(m, p, h);
-    return { chart: u, resize: () => u.reflow(), vendorId: I };
+    return { chart: u, resize: () => u.reflow(), vendorId: w };
   }
   async function r(n, s, m, h) {
     await Promise.all([t(), o()]);
@@ -42,7 +42,7 @@ function H() {
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
     }, u = b.chart(m, p, h);
-    return { chart: u, resize: () => u.reflow(), vendorId: I };
+    return { chart: u, resize: () => u.reflow(), vendorId: w };
   }
   async function a(n, s, m, h) {
     await Promise.all([t(), o()]);
@@ -58,7 +58,7 @@ function H() {
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
     }, c = b.chart(m, u, h);
-    return { chart: c, resize: () => c.reflow(), vendorId: I };
+    return { chart: c, resize: () => c.reflow(), vendorId: w };
   }
   async function t() {
     if (b) return;
@@ -78,16 +78,16 @@ function H() {
   return { renderCartesianChart: e, renderPolarChart: r, renderRangeChart: a };
 }
 const O = 4, N = `https://cdn.jsdelivr.net/npm/micromark@${O}/+esm`, T = 1, _ = `https://cdn.jsdelivr.net/npm/prismjs@${T}/+esm`, C = `https://cdn.jsdelivr.net/npm/prismjs@${T}/components/prism-javascript.min.js`, L = `https://cdn.jsdelivr.net/npm/prismjs@${T}/components/prism-javascript.min.js`;
-let x, w;
+let y, E;
 function V() {
   async function e(a, t, o) {
     await r(), o.textContent = "Micromark & Prism content goes here...";
   }
   async function r() {
-    x && w || (x = await import(
+    y && E || (y = await import(
       /* @vite-ignore */
       N
-    ), w = await import(
+    ), E = await import(
       /* @vite-ignore */
       _
     ), await import(
@@ -96,9 +96,9 @@ function V() {
     ), await import(
       /* @vite-ignore */
       L
-    ), console.log("micromarkModule", x), console.log("prismModule", w));
+    ), console.log("micromarkModule", y), console.log("prismModule", E));
   }
-  return { render: e };
+  return { micromarkModule: y, prismModule: E, render: e };
 }
 const z = 0, X = (e) => e, G = () => Date.now(), J = {
   cartesian_areaLine: { categoryId: "cartesian", typeId: "areaLine", label: { "en-gb": "Area Line" }, options: { highchartsType: "area" } },
@@ -204,7 +204,7 @@ function ae(e) {
   }
   return a;
 }
-const S = "en-US", y = {}, ne = (e) => {
+const S = "en-US", I = {}, ne = (e) => {
   switch (e) {
     case "Edm.Binary":
       return "unknown";
@@ -256,7 +256,7 @@ const S = "en-US", y = {}, ne = (e) => {
 }, i = (e, r = 2, a = r, t = S) => {
   if (e == null) return "";
   const o = `${t}decimal${r}.${a}`;
-  let n = y[o];
+  let n = I[o];
   return n || (n = new Intl.NumberFormat(t, {
     localeMatcher: "best fit",
     maximumFractionDigits: r,
@@ -264,11 +264,11 @@ const S = "en-US", y = {}, ne = (e) => {
     minimumIntegerDigits: 1,
     style: "decimal",
     useGrouping: !0
-  }), y[o] = n), n.format(e);
-}, ie = (e) => e == null ? "" : e < 1e3 ? E(e) : e < 1e6 ? `${i(e / 1e3, 2, 0)}K` : e < 1e9 ? `${i(e / 1e6, 2, 0)}M` : e < 1e12 ? `${i(e / 1e9, 2, 0)}B` : `${i(e / 1e12, 2, 0)}T`, le = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${E(e)} bytes` : e < 1048576 ? `${i(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${i(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${i(e / 1073741824, 2, 0)} GB` : `${i(e / 1099511627776, 2, 0)} TB`, ce = (e) => e == null ? "" : e < 1e3 ? `${E(e)} ms` : e === 1e3 ? `${E(e)} sec` : e < 6e4 ? `${i(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${i(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${i(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${i(e / 864e5, 2, 0)} days`, E = (e, r = S) => {
+  }), I[o] = n), n.format(e);
+}, ie = (e) => e == null ? "" : e < 1e3 ? x(e) : e < 1e6 ? `${i(e / 1e3, 2, 0)}K` : e < 1e9 ? `${i(e / 1e6, 2, 0)}M` : e < 1e12 ? `${i(e / 1e9, 2, 0)}B` : `${i(e / 1e12, 2, 0)}T`, le = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${x(e)} bytes` : e < 1048576 ? `${i(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${i(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${i(e / 1073741824, 2, 0)} GB` : `${i(e / 1099511627776, 2, 0)} TB`, ce = (e) => e == null ? "" : e < 1e3 ? `${x(e)} ms` : e === 1e3 ? `${x(e)} sec` : e < 6e4 ? `${i(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${i(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${i(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${i(e / 864e5, 2, 0)} days`, x = (e, r = S) => {
   if (e == null) return "";
   const a = `${r}decimal0.0`;
-  let t = y[a];
+  let t = I[a];
   return t || (t = new Intl.NumberFormat(r, {
     localeMatcher: "best fit",
     maximumFractionDigits: 0,
@@ -276,7 +276,7 @@ const S = "en-US", y = {}, ne = (e) => {
     minimumIntegerDigits: 1,
     style: "decimal",
     useGrouping: !0
-  }), y[a] = t), t.format(e);
+  }), I[a] = t), t.format(e);
 }, de = (e) => {
   switch (e) {
     case "csv":
@@ -368,7 +368,7 @@ export {
   ce as formatNumberAsDuration,
   ie as formatNumberAsSize,
   le as formatNumberAsStorageSize,
-  E as formatNumberAsWholeNumber,
+  x as formatNumberAsWholeNumber,
   ge as getComponentStatus,
   G as getCurrentTimestamp,
   me as getDataFormats,

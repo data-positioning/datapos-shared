@@ -35,6 +35,10 @@ export function useMicromark() {
         element.textContent = 'Micromark & Prism content goes here...';
     }
 
+    function getStuff() {
+        return { micromarkModule, prismModule };
+    }
+
     // Utilities - Load Micromark and Prism.
     async function loadMicromarkAndPrism(): Promise<void> {
         if (micromarkModule && prismModule) return;
@@ -48,5 +52,5 @@ export function useMicromark() {
     }
 
     // Exposures
-    return { micromarkModule, prismModule, render };
+    return { getStuff, micromarkModule, prismModule, render };
 }
