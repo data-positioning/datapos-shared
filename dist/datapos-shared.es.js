@@ -47,8 +47,8 @@ function H() {
   async function a(n, s, m, h) {
     await Promise.all([t(), o()]);
     const l = [], p = [];
-    for (let f = 0; f < s.data.measures[0].data.length; f++)
-      p.push([s.data.measures[0].data[f][0], s.data.measures[1].data[f][0]]);
+    for (let E = 0; E < s.data.measures[0].data.length; E++)
+      p.push([s.data.measures[0].data[E][0], s.data.measures[1].data[E][0]]);
     l.push({ type: n.options.highchartsType, name: "Unknown", data: p });
     const u = {
       chart: { type: n.options.highchartsType, inverted: n.options.inverted },
@@ -78,16 +78,19 @@ function H() {
   return { renderCartesianChart: e, renderPolarChart: r, renderRangeChart: a };
 }
 const O = 4, N = `https://cdn.jsdelivr.net/npm/micromark@${O}/+esm`, T = 1, _ = `https://cdn.jsdelivr.net/npm/prismjs@${T}/+esm`, C = `https://cdn.jsdelivr.net/npm/prismjs@${T}/components/prism-javascript.min.js`, L = `https://cdn.jsdelivr.net/npm/prismjs@${T}/components/prism-javascript.min.js`;
-let y, E;
+let f, y;
 function V() {
-  async function e(a, t, o) {
-    await r(), o.textContent = "Micromark & Prism content goes here...";
+  async function e(t, o, n) {
+    await a(), n.textContent = "Micromark & Prism content goes here...";
   }
-  async function r() {
-    y && E || (y = await import(
+  function r() {
+    return { micromarkModule: f, prismModule: y };
+  }
+  async function a() {
+    f && y || (f = await import(
       /* @vite-ignore */
       N
-    ), E = await import(
+    ), y = await import(
       /* @vite-ignore */
       _
     ), await import(
@@ -96,9 +99,9 @@ function V() {
     ), await import(
       /* @vite-ignore */
       L
-    ), console.log("micromarkModule", y), console.log("prismModule", E));
+    ), console.log("micromarkModule", f), console.log("prismModule", y));
   }
-  return { micromarkModule: y, prismModule: E, render: e };
+  return { getStuff: r, micromarkModule: f, prismModule: y, render: e };
 }
 const z = 0, X = (e) => e, G = () => Date.now(), J = {
   cartesian_areaLine: { categoryId: "cartesian", typeId: "areaLine", label: { "en-gb": "Area Line" }, options: { highchartsType: "area" } },

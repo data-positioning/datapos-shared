@@ -32,7 +32,7 @@ export function useMicromark() {
     async function render(viewType: unknown, contentConfig: PresentationVisualContentConfig, element: HTMLElement) {
         await loadMicromarkAndPrism();
 
-        element.textContent = 'Micromark & Prism content goes here...';
+        // element.textContent = 'Micromark & Prism content goes here...';
     }
 
     function getStuff() {
