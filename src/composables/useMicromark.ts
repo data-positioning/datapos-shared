@@ -36,13 +36,17 @@ export function useMicromark() {
         if (micromarkModule && prismModule) return;
         const modules = await Promise.all([
             import(/* @vite-ignore */ MICROMARK_DOWNLOAD_URL_),
-            import(/* @vite-ignore */ PRISM_DOWNLOAD_URL),
-            import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL),
-            import(/* @vite-ignore */ PRISM_JSON_URL)
+            import(/* @vite-ignore */ PRISM_DOWNLOAD_URL)
+            // import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL),
+            // import(/* @vite-ignore */ PRISM_JSON_URL)
         ]);
 
         micromarkModule = modules[0].micromark;
         prismModule = modules[1].default;
+
+        (globalThis as any).Prism = prismModule;
+
+        await Promise.all([import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL), import(/* @vite-ignore */ PRISM_JSON_URL)]);
     }
 
     // Exposures

@@ -81,7 +81,7 @@ const O = 4, N = `https://cdn.jsdelivr.net/npm/micromark@${O}/+esm`, D = 1, _ = 
 let x, w;
 function V() {
   async function e() {
-    return await r(), { micromark: x, prism: w };
+    return await r(), { micromark: x, Prism: w };
   }
   async function a() {
     await r();
