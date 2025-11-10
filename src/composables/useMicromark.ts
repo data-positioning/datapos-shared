@@ -43,12 +43,12 @@ export function useMicromark() {
         micromarkModule = modules[0];
         prismModule = modules[1];
 
-        console.log('micromarkModule', micromarkModule);
+        console.log('micromarkModule1', micromarkModule);
         // @ts-expect-error
-        console.log('micromarkModule', micromarkModule?.default);
-        console.log('prismModule', prismModule);
+        console.log('micromarkModule2', micromarkModule?.micromark);
+        console.log('prismModule1', prismModule);
         // @ts-expect-error
-        console.log('prismModule', prismModule?.default);
+        console.log('prismModule2', prismModule?.default);
     }
 
     // Exposures
