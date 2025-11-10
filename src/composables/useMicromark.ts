@@ -48,5 +48,5 @@ export function useMicromark() {
     }
 
     // Exposures
-    return { render };
+    return { micromarkModule, prismModule, render };
 }
