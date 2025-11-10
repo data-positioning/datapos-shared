@@ -55,6 +55,7 @@ export type { Timestamp } from './timestamp';
 export { type CytoscapeJSView, useCytoscapeJS } from './composables/useCytoscapeJS';
 export { useDataTable } from './composables/useDataTable';
 export { type HighchartsView, useHighcharts } from './composables/useHighcharts';
+export { useMicromark } from './composables/useMicromark';
 export declare const DEFAULT_LOCALE_CODE: LocaleCode;
 export { DefaultTimestamp } from './timestamp';
 export { presentationViewTypeMap } from './component/presenter/presentation';
