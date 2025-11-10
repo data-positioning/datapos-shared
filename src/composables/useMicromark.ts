@@ -41,9 +41,9 @@ export function useMicromark() {
     async function loadMicromarkAndPrism(): Promise<void> {
         if (micromarkModule && prismModule) return;
         micromarkModule = await import(/* @vite-ignore */ MICROMARK_DOWNLOAD_URL_);
-        prismModule = await import(/* @vite-ignore */ PRISM_DOWNLOAD_URL);
-        await import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL);
-        await import(/* @vite-ignore */ PRISM_JSON_URL);
+        // prismModule = await import(/* @vite-ignore */ PRISM_DOWNLOAD_URL);
+        // await import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL);
+        // await import(/* @vite-ignore */ PRISM_JSON_URL);
 
         console.log('micromarkModule', micromarkModule);
         console.log('prismModule', prismModule);

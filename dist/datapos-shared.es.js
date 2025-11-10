@@ -77,10 +77,10 @@ function H() {
   }
   return { renderCartesianChart: e, renderPolarChart: r, renderRangeChart: a };
 }
-const O = 4, N = `https://cdn.jsdelivr.net/npm/micromark@${O}/+esm`, T = 1, _ = `https://cdn.jsdelivr.net/npm/prismjs@${T}/+esm`, C = `https://cdn.jsdelivr.net/npm/prismjs@${T}/components/prism-javascript.min.js`, L = `https://cdn.jsdelivr.net/npm/prismjs@${T}/components/prism-javascript.min.js`;
+const O = 4, N = `https://cdn.jsdelivr.net/npm/micromark@${O}/+esm`, D = 1, _ = `https://cdn.jsdelivr.net/npm/prismjs@${D}/+esm`, C = `https://cdn.jsdelivr.net/npm/prismjs@${D}/components/prism-javascript.min.js`, L = `https://cdn.jsdelivr.net/npm/prismjs@${D}/components/prism-javascript.min.js`;
 let f, y;
 function V() {
-  async function e(t, o, n) {
+  async function e() {
     await a();
   }
   function r() {
@@ -122,13 +122,13 @@ const z = 0, X = (e) => e, G = () => Date.now(), J = {
   streamgraph: { categoryId: "streamgraph", label: { "en-gb": "Streamgraph" }, options: {} },
   values: { categoryId: "values", label: { "en-gb": "Values" }, options: {} }
 };
-class D extends Error {
+class T extends Error {
   locator;
   constructor(r, a, t) {
     super(r, t), this.name = "DataPosError", this.locator = a, Error.captureStackTrace?.(this, new.target);
   }
 }
-class g extends D {
+class g extends T {
   constructor(r, a, t) {
     super(r, a, t), this.name = "ApplicationError";
   }
@@ -166,7 +166,7 @@ class Y extends g {
     super(r, a, t), this.name = "WindowHandledPromiseRejectionError";
   }
 }
-class Z extends D {
+class Z extends T {
   constructor(r, a, t) {
     super(r, a, t), this.name = "OperationalError";
   }
@@ -197,7 +197,7 @@ function ae(e) {
       o = { body: t.body, locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
     else if (t instanceof $)
       o = { componentName: t.componentName, info: t.info, locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
-    else if (t instanceof D)
+    else if (t instanceof T)
       o = { locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
     else if (t instanceof Error) {
       const n = t;
