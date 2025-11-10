@@ -106,7 +106,7 @@ function V() {
         L
       )
     ]);
-    f = r[0], y = r[1], console.log("micromarkModule", f), console.log("micromarkModule", f?.default), console.log("prismModule", y), console.log("prismModule", y?.default);
+    f = r[0], y = r[1], console.log("micromarkModule1", f), console.log("micromarkModule2", f?.micromark), console.log("prismModule1", y), console.log("prismModule2", y?.default);
   }
   return { getStuff: e, render: t };
 }
