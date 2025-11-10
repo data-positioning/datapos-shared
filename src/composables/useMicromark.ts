@@ -21,9 +21,9 @@ let prismModule: typeof Prism | undefined = undefined;
 // Composables - Use Micromark.
 export function useMicromark() {
     // Operations - ????
-    async function getStuff(): Promise<{ micromark: typeof micromark; prism: typeof Prism }> {
+    async function getStuff(): Promise<{ micromark: typeof micromark; Prism: typeof Prism }> {
         await loadMicromarkAndPrism();
-        return { micromark: micromarkModule!, prism: prismModule! };
+        return { micromark: micromarkModule!, Prism: prismModule! };
     }
 
     // Operations - Render.
