@@ -4,7 +4,7 @@
 
 // Dependencies - Vendor.
 import type { micromark } from 'micromark';
-import type prism from 'prismjs';
+import type Prism from 'prismjs';
 
 // Constants
 const MICROMARK_DOWNLOAD_RELEASE = 4;
@@ -16,12 +16,12 @@ const PRISM_JSON_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_DOWNLOAD_RE
 
 // Module Variables
 let micromarkModule: typeof micromark | undefined = undefined;
-let prismModule: typeof prism | undefined = undefined;
+let prismModule: typeof Prism | undefined = undefined;
 
 // Composables - Use Micromark.
 export function useMicromark() {
     // Operations - ????
-    async function getStuff(): Promise<{ micromark: typeof micromark; prism: typeof prism }> {
+    async function getStuff(): Promise<{ micromark: typeof micromark; prism: typeof Prism }> {
         await loadMicromarkAndPrism();
         return { micromark: micromarkModule!, prism: prismModule! };
     }

@@ -1,9 +1,9 @@
 import { micromark } from 'micromark';
 import { default as prism } from 'prismjs';
 export declare function useMicromark(): {
-    getStuff: () => {
-        micromark: typeof micromark | undefined;
-        prism: typeof prism | undefined;
-    };
+    getStuff: () => Promise<{
+        micromark: typeof micromark;
+        prism: typeof prism;
+    }>;
     render: () => Promise<void>;
 };
