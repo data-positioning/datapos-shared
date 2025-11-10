@@ -1,21 +1,21 @@
 const U = ["createObject", "dropObject", "removeRecords", "upsertRecords"], P = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
 function B() {
-  function e(a, r, t) {
-    t.textContent = "Cytoscape.js diagram goes here...";
+  function e(a, t, r) {
+    r.textContent = "Cytoscape.js diagram goes here...";
   }
   return { render: e };
 }
 function W() {
-  function e(a, r, t) {
-    t.textContent = "values table goes here...";
+  function e(a, t, r) {
+    r.textContent = "values table goes here...";
   }
   return { render: e };
 }
-const A = "https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/", I = "highcharts";
+const A = "https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/", x = "highcharts";
 let b, R = !1;
 function H() {
   async function e(n, s, m, h) {
-    await t();
+    await r();
     const l = [];
     for (const c of s.data.measures)
       l.push({ type: n.options.highchartsType, name: c.name, data: c.data });
@@ -27,10 +27,10 @@ function H() {
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
     }, u = b.chart(m, p, h);
-    return { chart: u, resize: () => u.reflow(), vendorId: I };
+    return { chart: u, resize: () => u.reflow(), vendorId: x };
   }
   async function a(n, s, m, h) {
-    await Promise.all([t(), o()]);
+    await Promise.all([r(), o()]);
     const l = [];
     for (const c of s.data.measures)
       l.push({ type: n.options.highchartsType, name: c.name, data: c.data });
@@ -42,10 +42,10 @@ function H() {
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
     }, u = b.chart(m, p, h);
-    return { chart: u, resize: () => u.reflow(), vendorId: I };
+    return { chart: u, resize: () => u.reflow(), vendorId: x };
   }
-  async function r(n, s, m, h) {
-    await Promise.all([t(), o()]);
+  async function t(n, s, m, h) {
+    await Promise.all([r(), o()]);
     const l = [], p = [];
     for (let f = 0; f < s.data.measures[0].data.length; f++)
       p.push([s.data.measures[0].data[f][0], s.data.measures[1].data[f][0]]);
@@ -58,9 +58,9 @@ function H() {
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
     }, c = b.chart(m, u, h);
-    return { chart: c, resize: () => c.reflow(), vendorId: I };
+    return { chart: c, resize: () => c.reflow(), vendorId: x };
   }
-  async function t() {
+  async function r() {
     if (b) return;
     const n = "https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/", s = `${n}highcharts.src.js`, m = `${n}modules/accessibility.src.js`;
     b = (await import(
@@ -75,20 +75,20 @@ function H() {
     if (R) return;
     await import(`${A}highcharts-more.src.js`), R = !0;
   }
-  return { renderCartesianChart: e, renderPolarChart: a, renderRangeChart: r };
+  return { renderCartesianChart: e, renderPolarChart: a, renderRangeChart: t };
 }
-const O = 4, N = `https://cdn.jsdelivr.net/npm/micromark@${O}/+esm`, D = 1, _ = `https://cdn.jsdelivr.net/npm/prismjs@${D}/+esm`, C = `https://cdn.jsdelivr.net/npm/prismjs@${D}/components/prism-javascript.min.js`, L = `https://cdn.jsdelivr.net/npm/prismjs@${D}/components/prism-javascript.min.js`;
-let x, w;
+const O = 4, N = `https://cdn.jsdelivr.net/npm/micromark@${O}/+esm`, T = 1, _ = `https://cdn.jsdelivr.net/npm/prismjs@${T}/+esm`, C = `https://cdn.jsdelivr.net/npm/prismjs@${T}/components/prism-javascript.min.js`, L = `https://cdn.jsdelivr.net/npm/prismjs@${T}/components/prism-javascript.min.js`;
+let w, y;
 function V() {
   async function e() {
-    return await r(), { micromark: x, Prism: w };
+    return await t(), { micromark: w, Prism: y };
   }
   async function a() {
-    await r();
+    await t();
   }
-  async function r() {
-    if (x && w) return;
-    const t = await Promise.all([
+  async function t() {
+    if (w && y) return;
+    const r = await Promise.all([
       import(
         /* @vite-ignore */
         N
@@ -96,17 +96,17 @@ function V() {
       import(
         /* @vite-ignore */
         _
-      ),
-      import(
-        /* @vite-ignore */
-        C
-      ),
-      import(
-        /* @vite-ignore */
-        L
       )
+      // import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL),
+      // import(/* @vite-ignore */ PRISM_JSON_URL)
     ]);
-    x = t[0].micromark, w = t[1].default;
+    w = r[0].micromark, y = r[1].default, globalThis.Prism = y, await Promise.all([import(
+      /* @vite-ignore */
+      C
+    ), import(
+      /* @vite-ignore */
+      L
+    )]);
   }
   return { getStuff: e, render: a };
 }
@@ -129,63 +129,63 @@ const z = 0, X = (e) => e, G = () => Date.now(), J = {
   streamgraph: { categoryId: "streamgraph", label: { "en-gb": "Streamgraph" }, options: {} },
   values: { categoryId: "values", label: { "en-gb": "Values" }, options: {} }
 };
-class T extends Error {
+class D extends Error {
   locator;
-  constructor(a, r, t) {
-    super(a, t), this.name = "DataPosError", this.locator = r, Error.captureStackTrace?.(this, new.target);
+  constructor(a, t, r) {
+    super(a, r), this.name = "DataPosError", this.locator = t, Error.captureStackTrace?.(this, new.target);
   }
 }
-class g extends T {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "ApplicationError";
+class g extends D {
+  constructor(a, t, r) {
+    super(a, t, r), this.name = "ApplicationError";
   }
 }
 class K extends g {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "APIError";
+  constructor(a, t, r) {
+    super(a, t, r), this.name = "APIError";
   }
 }
 class q extends g {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "EngineError";
+  constructor(a, t, r) {
+    super(a, t, r), this.name = "EngineError";
   }
 }
 class v extends g {
   body;
-  constructor(a, r, t, o) {
-    super(a, r, o), this.name = "FetchError", this.body = t;
+  constructor(a, t, r, o) {
+    super(a, t, o), this.name = "FetchError", this.body = r;
   }
 }
 class $ extends g {
   componentName;
   info;
-  constructor(a, r, t, o, n) {
-    super(a, r, n), this.name = "VueHandledError", this.info = t, this.componentName = o;
+  constructor(a, t, r, o, n) {
+    super(a, t, n), this.name = "VueHandledError", this.info = r, this.componentName = o;
   }
 }
 class Q extends g {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "WindowHandledRuntimeError";
+  constructor(a, t, r) {
+    super(a, t, r), this.name = "WindowHandledRuntimeError";
   }
 }
 class Y extends g {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "WindowHandledPromiseRejectionError";
+  constructor(a, t, r) {
+    super(a, t, r), this.name = "WindowHandledPromiseRejectionError";
   }
 }
-class Z extends T {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "OperationalError";
+class Z extends D {
+  constructor(a, t, r) {
+    super(a, t, r), this.name = "OperationalError";
   }
 }
-async function ee(e, a, r) {
-  const t = `${a} Response status '${e.status}${e.statusText ? ` - ${e.statusText}` : ""}' received.`, o = await e.text();
-  return new v(t, r, o);
+async function ee(e, a, t) {
+  const r = `${a} Response status '${e.status}${e.statusText ? ` - ${e.statusText}` : ""}' received.`, o = await e.text();
+  return new v(r, t, o);
 }
-function te(e) {
+function re(e) {
   return e.map((a) => a.message).join(" ");
 }
-function re(e, a = "Unknown error.") {
+function te(e, a = "Unknown error.") {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
   try {
@@ -195,26 +195,26 @@ function re(e, a = "Unknown error.") {
   }
 }
 function ae(e) {
-  const a = /* @__PURE__ */ new Set(), r = [];
-  let t = e;
-  for (; t && !a.has(t); ) {
-    a.add(t);
+  const a = /* @__PURE__ */ new Set(), t = [];
+  let r = e;
+  for (; r && !a.has(r); ) {
+    a.add(r);
     let o;
-    if (t instanceof v)
-      o = { body: t.body, locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
-    else if (t instanceof $)
-      o = { componentName: t.componentName, info: t.info, locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
-    else if (t instanceof T)
-      o = { locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
-    else if (t instanceof Error) {
-      const n = t;
-      o = { locator: "", message: n.message, name: n.name, stack: n.stack }, t = n.cause;
-    } else t ? (o = { locator: "", message: String(t), name: "Error" }, t = void 0) : (o = { locator: "", message: "Unknown error.", name: "Error" }, t = void 0);
-    /(?:\.{3}|[.!?])$/.test(o.message) || (o.message += "."), r.push(o);
+    if (r instanceof v)
+      o = { body: r.body, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
+    else if (r instanceof $)
+      o = { componentName: r.componentName, info: r.info, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
+    else if (r instanceof D)
+      o = { locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
+    else if (r instanceof Error) {
+      const n = r;
+      o = { locator: "", message: n.message, name: n.name, stack: n.stack }, r = n.cause;
+    } else r ? (o = { locator: "", message: String(r), name: "Error" }, r = void 0) : (o = { locator: "", message: "Unknown error.", name: "Error" }, r = void 0);
+    /(?:\.{3}|[.!?])$/.test(o.message) || (o.message += "."), t.push(o);
   }
-  return r;
+  return t;
 }
-const S = "en-US", y = {}, ne = (e) => {
+const S = "en-US", E = {}, ne = (e) => {
   switch (e) {
     case "Edm.Binary":
       return "unknown";
@@ -255,38 +255,38 @@ const S = "en-US", y = {}, ne = (e) => {
   }
 }, oe = (e) => {
   if (e) {
-    const a = e.lastIndexOf("/"), r = e.lastIndexOf(".", a > -1 ? a : e.length);
-    return r > -1 ? e.substring(0, r) : e;
+    const a = e.lastIndexOf("/"), t = e.lastIndexOf(".", a > -1 ? a : e.length);
+    return t > -1 ? e.substring(0, t) : e;
   }
 }, se = (e) => {
   if (e) {
     const a = e.lastIndexOf(".");
     if (a > -1) return e.substring(a + 1);
   }
-}, i = (e, a = 2, r = a, t = S) => {
+}, i = (e, a = 2, t = a, r = S) => {
   if (e == null) return "";
-  const o = `${t}decimal${a}.${r}`;
-  let n = y[o];
-  return n || (n = new Intl.NumberFormat(t, {
+  const o = `${r}decimal${a}.${t}`;
+  let n = E[o];
+  return n || (n = new Intl.NumberFormat(r, {
     localeMatcher: "best fit",
     maximumFractionDigits: a,
-    minimumFractionDigits: r,
+    minimumFractionDigits: t,
     minimumIntegerDigits: 1,
     style: "decimal",
     useGrouping: !0
-  }), y[o] = n), n.format(e);
-}, ie = (e) => e == null ? "" : e < 1e3 ? E(e) : e < 1e6 ? `${i(e / 1e3, 2, 0)}K` : e < 1e9 ? `${i(e / 1e6, 2, 0)}M` : e < 1e12 ? `${i(e / 1e9, 2, 0)}B` : `${i(e / 1e12, 2, 0)}T`, le = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${E(e)} bytes` : e < 1048576 ? `${i(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${i(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${i(e / 1073741824, 2, 0)} GB` : `${i(e / 1099511627776, 2, 0)} TB`, ce = (e) => e == null ? "" : e < 1e3 ? `${E(e)} ms` : e === 1e3 ? `${E(e)} sec` : e < 6e4 ? `${i(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${i(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${i(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${i(e / 864e5, 2, 0)} days`, E = (e, a = S) => {
+  }), E[o] = n), n.format(e);
+}, ie = (e) => e == null ? "" : e < 1e3 ? I(e) : e < 1e6 ? `${i(e / 1e3, 2, 0)}K` : e < 1e9 ? `${i(e / 1e6, 2, 0)}M` : e < 1e12 ? `${i(e / 1e9, 2, 0)}B` : `${i(e / 1e12, 2, 0)}T`, le = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${I(e)} bytes` : e < 1048576 ? `${i(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${i(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${i(e / 1073741824, 2, 0)} GB` : `${i(e / 1099511627776, 2, 0)} TB`, ce = (e) => e == null ? "" : e < 1e3 ? `${I(e)} ms` : e === 1e3 ? `${I(e)} sec` : e < 6e4 ? `${i(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${i(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${i(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${i(e / 864e5, 2, 0)} days`, I = (e, a = S) => {
   if (e == null) return "";
-  const r = `${a}decimal0.0`;
-  let t = y[r];
-  return t || (t = new Intl.NumberFormat(a, {
+  const t = `${a}decimal0.0`;
+  let r = E[t];
+  return r || (r = new Intl.NumberFormat(a, {
     localeMatcher: "best fit",
     maximumFractionDigits: 0,
     minimumFractionDigits: 0,
     minimumIntegerDigits: 1,
     style: "decimal",
     useGrouping: !0
-  }), y[r] = t), t.format(e);
+  }), E[t] = r), r.format(e);
 }, de = (e) => {
   switch (e) {
     case "csv":
@@ -311,7 +311,7 @@ const S = "en-US", y = {}, ne = (e) => {
   { id: "xml", label: { "en-gb": "XML" } }
 ], me = (e = d) => {
   const a = [];
-  for (const r of M) a.push({ ...r, label: r.label[e] || r.label[d] || r.id });
+  for (const t of M) a.push({ ...t, label: t.label[e] || t.label[d] || t.id });
   return a;
 }, j = [
   { id: `
@@ -321,8 +321,8 @@ const S = "en-US", y = {}, ne = (e) => {
 `, label: { "en-gb": "Carriage Return/Newline" } }
 ], ue = (e = d) => {
   const a = [];
-  for (const r of j)
-    a.push({ ...r, label: r.label[e] || r.label[d] || r.id });
+  for (const t of j)
+    a.push({ ...t, label: t.label[e] || t.label[d] || t.id });
   return a;
 }, k = [
   { id: ":", label: { "en-gb": "Colon" } },
@@ -338,8 +338,8 @@ const S = "en-US", y = {}, ne = (e) => {
   { id: "|", label: { "en-gb": "Vertical Bar" } }
 ], pe = (e = d) => {
   const a = [];
-  for (const r of k)
-    a.push({ ...r, label: r.label[e] || r.label[d] || r.id });
+  for (const t of k)
+    a.push({ ...t, label: t.label[e] || t.label[d] || t.id });
   return a;
 }, F = [
   { id: "alpha", color: "red", label: { "en-gb": "alpha" } },
@@ -352,8 +352,8 @@ const S = "en-US", y = {}, ne = (e) => {
   { id: "unavailable", color: "other", label: { "en-gb": "unavailable" } },
   { id: "underReview", color: "other", label: { "en-gb": "under-review" } }
 ], ge = (e, a = d) => {
-  const r = F.find((t) => t.id === e);
-  return r ? { ...r, label: r.label[a] || r.label[d] || e } : { id: e, color: "other", label: e };
+  const t = F.find((r) => r.id === e);
+  return t ? { ...t, label: t.label[a] || t.label[d] || e } : { id: e, color: "other", label: e };
 }, d = "en-gb";
 export {
   K as APIError,
@@ -369,7 +369,7 @@ export {
   Y as WindowPromiseRejectionError,
   Q as WindowRuntimeError,
   ee as buildFetchError,
-  te as concatenateSerialisedErrorMessages,
+  re as concatenateSerialisedErrorMessages,
   X as convertMillisecondsToTimestamp,
   ne as convertODataTypeIdToUsageTypeId,
   se as extractExtensionFromPath,
@@ -378,14 +378,14 @@ export {
   ce as formatNumberAsDuration,
   ie as formatNumberAsSize,
   le as formatNumberAsStorageSize,
-  E as formatNumberAsWholeNumber,
+  I as formatNumberAsWholeNumber,
   ge as getComponentStatus,
   G as getCurrentTimestamp,
   me as getDataFormats,
   ue as getRecordDelimiters,
   pe as getValueDelimiters,
   de as lookupMimeTypeForExtension,
-  re as normalizeToError,
+  te as normalizeToError,
   J as presentationViewTypeMap,
   ae as serialiseError,
   B as useCytoscapeJS,
