@@ -81,7 +81,7 @@ const O = 4, N = `https://cdn.jsdelivr.net/npm/micromark@${O}/+esm`, T = 1, _ = 
 let f, y;
 function V() {
   async function e(t, o, n) {
-    await a(), n.textContent = "Micromark & Prism content goes here...";
+    await a();
   }
   function r() {
     return { micromarkModule: f, prismModule: y };

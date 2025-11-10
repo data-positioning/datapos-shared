@@ -29,10 +29,8 @@ let prismModule: typeof prism | undefined = undefined;
 // Composables - Use Micromark and Prism.
 export function useMicromark() {
     // Operations - Render.
-    async function render(viewType: unknown, contentConfig: PresentationVisualContentConfig, element: HTMLElement) {
+    async function render() {
         await loadMicromarkAndPrism();
-
-        // element.textContent = 'Micromark & Prism content goes here...';
     }
 
     function getStuff() {
