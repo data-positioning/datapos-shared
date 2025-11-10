@@ -32,7 +32,7 @@ export function useMicromark() {
 
     // Utilities - Load Micromark and Prism.
     async function loadMicromarkAndPrism(): Promise<void> {
-        if (micromarkModule && prismModule) return;≥
+        if (micromarkModule && prismModule) return;
         const modules = await Promise.all([
             import(/* @vite-ignore */ MICROMARK_DOWNLOAD_URL_),
             import(/* @vite-ignore */ PRISM_DOWNLOAD_URL),
