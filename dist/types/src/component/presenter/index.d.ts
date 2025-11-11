@@ -1,5 +1,4 @@
 import { micromark } from 'micromark';
-import { default as Prism } from 'prismjs';
 import { Module } from '../../module';
 import { Component, ComponentConfig, ComponentRef } from '..';
 export interface Presenter extends Module, Component {
@@ -18,5 +17,4 @@ export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'descript
 };
 export type PresenterTools = {
     micromark: typeof micromark;
-    Prism: typeof Prism;
 };
