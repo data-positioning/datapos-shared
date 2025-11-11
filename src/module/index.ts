@@ -9,7 +9,7 @@ import type { LocalisedString } from '@/index';
 // Dependencies - Module.
 export interface Module {}
 
-// Interfaces/Types/Operations - Module configuration.
+// Types/Interfaces/Operations - Module configuration.
 export interface ModuleConfig {
     id: string;
     label: Partial<LocalisedString>;
@@ -20,17 +20,17 @@ export interface ModuleConfig {
 }
 type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'informer' | 'presenter';
 
-// Interfaces/Types/Operations - Application module configuration.
+// Types/Interfaces/Operations - Application module configuration.
 export interface AppModuleConfig extends ModuleConfig {
     typeId: 'app';
 }
 
-// Interfaces/Types/Operations - Engine module configuration.
+// Types/Interfaces/Operations - Engine module configuration.
 export interface EngineModuleConfig extends ModuleConfig {
     typeId: 'engine';
 }
 
-// Interfaces/Types/Operations - Connector module configuration.
+// Types/Interfaces/Operations - Connector module configuration.
 export interface ConnectorModuleConfig extends ModuleConfig {
     categoryId: ConnectorModuleCategoryId;
     implementations: Record<string, unknown>;
@@ -61,7 +61,7 @@ export type ConnectorModuleUsageId = 'bidirectional' | 'destination' | 'source';
 export const CONNECTOR_DESTINATION_OPERATIONS = ['createObject', 'dropObject', 'removeRecords', 'upsertRecords'];
 export const CONNECTOR_SOURCE_OPERATIONS = ['findObject', 'getRecord', 'listNodes', 'previewObject', 'retrieveRecords'];
 
-// Interfaces/Types/Operations - Context module configuration.
+// Types/Interfaces/Operations - Context module configuration.
 export interface ContextModuleConfig extends ModuleConfig {
     operations: ContextModuleOperation[];
     models: ContextModelGroupConfig[]; // TODO: different pattern to informer and presenter modules? They use list operation?
@@ -69,14 +69,14 @@ export interface ContextModuleConfig extends ModuleConfig {
 }
 export type ContextModuleOperation = 'list';
 
-// Interfaces/Types/Operations - Informer module configuration.
+// Types/Interfaces/Operations - Informer module configuration.
 export interface InformerModuleConfig extends ModuleConfig {
     operations: InformerModuleOperation[];
     typeId: 'informer';
 }
 export type InformerModuleOperation = 'list' | 'render';
 
-// Interfaces/Types/Operations - Presenter module configuration.
+// Types/Interfaces/Operations - Presenter module configuration.
 export interface PresenterModuleConfig extends ModuleConfig {
     operations: PresenterModuleOperation[];
     typeId: 'presenter';

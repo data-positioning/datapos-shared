@@ -7,7 +7,7 @@ import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/component/c
 // Interfaces - Data view component.
 export interface DataView extends Component {}
 
-// Interfaces/Types - Data view configuration.
+// Types/Interfaces - Data view configuration.
 export interface DataViewConfig extends ComponentConfig {
     connectionId?: string;
     connectionNodeConfig?: ConnectionNodeConfig;
@@ -17,7 +17,7 @@ export interface DataViewConfig extends ComponentConfig {
 }
 export type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Data view content audit configuration.
+// Types/Interfaces - Data view content audit configuration.
 export interface DataViewContentAuditConfig {
     asAt: Timestamp;
     columns: ConnectionColumnConfig[];
@@ -29,7 +29,7 @@ export interface DataViewContentAuditConfig {
     recordCount: number;
 }
 
-// Interfaces/Types - Data View Preview Configuration
+// Types/Interfaces - Data View Preview Configuration
 export interface DataViewPreviewConfig {
     asAt: Timestamp;
     // commentPrefixId?: string;
@@ -56,12 +56,12 @@ export interface DataViewPreviewConfig {
     // valueTrimMethodId?: string;
 }
 
-// Interfaces/Types - Data View Relationships Audit Configuration
+// Types/Interfaces - Data View Relationships Audit Configuration
 export interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
 
-// Interfaces/Types - Encoding Config
+// Types/Interfaces - Encoding Config
 export interface EncodingConfig {
     id: string;
     groupLabel: string;
@@ -144,10 +144,10 @@ export const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): ValueDelimit
     return items;
 };
 
-// Interfaces/Types - Parsed Value
+// Types/Interfaces - Parsed Value
 export type ParsedValue = bigint | boolean | number | string | null;
 
-// Interfaces/Types - Basic
+// Types/Interfaces - Basic
 export type DataFormatId = 'dtv' | 'e/e' | 'jsonArray' | 'spss' | 'xls' | 'xlsx' | 'xml';
 export type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 export type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.

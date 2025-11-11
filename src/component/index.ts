@@ -6,12 +6,12 @@
 import type { Timestamp } from '@/timestamp';
 import { DEFAULT_LOCALE_CODE, type LocaleCode, type LocalisedString, type StatusColorId } from '@/index';
 
-// Interfaces/Types/Operations - Component.
+// Types/Interfaces/Operations - Component.
 export interface Component {
     readonly config: ComponentConfig;
 }
 
-// Interfaces/Types/Operations - Component configuration.
+// Types/Interfaces/Operations - Component configuration.
 export interface ComponentConfig {
     id: string;
     label: Partial<LocalisedString>;
@@ -25,7 +25,7 @@ export interface ComponentConfig {
     typeId: ComponentTypeId;
 }
 
-// Interfaces/Types/Operations - Component references.
+// Types/Interfaces/Operations - Component references.
 export type ComponentRef = {
     id: string;
     label: Partial<LocalisedString>;
@@ -34,7 +34,7 @@ export type ComponentRef = {
     path: string;
 };
 
-// Interfaces/Types/Operations - Component status.
+// Types/Interfaces/Operations - Component status.
 export type ComponentStatus = { id: string; color: StatusColorId; label: string };
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
 type ComponentStatusConfig = { id: string; color: StatusColorId; label: Partial<LocalisedString> };
@@ -55,7 +55,7 @@ export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LO
     return { id, color: 'other', label: id };
 };
 
-// Interfaces/Types/Operations - Component type.
+// Types/Interfaces/Operations - Component type.
 export type ComponentTypeId =
     | 'connector'
     | 'connectorConnection'

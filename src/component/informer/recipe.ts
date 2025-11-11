@@ -1,7 +1,7 @@
 // Dependencies - Framework
 import type { ComponentConfig } from '@/component';
 
-// Interfaces/Types - Presenter
+// Types/Interfaces - Presenter
 export interface Recipe {
     readonly config: RecipeConfig;
 
@@ -9,14 +9,14 @@ export interface Recipe {
     render(id: string, renderTo: string | HTMLElement): Promise<void>;
 }
 
-// Interfaces/Types - Recipe Configuration
+// Types/Interfaces - Recipe Configuration
 export interface RecipeConfig extends ComponentConfig {
     // index: RecipeItemConfig[];
     version: string;
 }
 export type RecipeLocalisedConfig = Omit<RecipeConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Recipe Item Configuration
+// Types/Interfaces - Recipe Item Configuration
 export interface RecipeItemConfig {
     items?: RecipeItemConfig[];
     label: Record<string, string>;

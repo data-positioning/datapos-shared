@@ -18,7 +18,7 @@ const PRISM_VERSION = 1;
 const PRISM_DOWNLOAD_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_VERSION}/+esm`;
 // const PRISM_JSON_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_DOWNLOAD_VERSION}/components/prism-json.min.js`;
 
-// Interfaces/Types
+// Types/Interfaces
 type MicromarkTools = { gfmExtension: typeof gfm; gfmHtmlExtension: typeof gfmHtml; mathExtension: typeof math; mathHtmlExtension: typeof mathHtml; micromark: typeof micromark };
 
 // Module Variables

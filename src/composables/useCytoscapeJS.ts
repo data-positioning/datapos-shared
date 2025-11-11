@@ -3,7 +3,7 @@
 // Dependencies - Framework.
 import type { PresentationView, PresentationVisualContentConfig } from '@/index';
 
-// Interfaces/Types - Cytoscape.js view.
+// Types/Interfaces - Cytoscape.js view.
 export interface CytoscapeJSView extends PresentationView {
     diagram: unknown;
 }

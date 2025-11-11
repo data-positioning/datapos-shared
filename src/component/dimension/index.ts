@@ -1,7 +1,7 @@
 // Dependencies - Framework
 import type { ComponentConfig } from '@/component';
 
-// Interfaces/Types - Dimension Configuration
+// Types/Interfaces - Dimension Configuration
 export interface DimensionConfig extends ComponentConfig {
     placeholder?: string;
 }

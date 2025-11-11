@@ -2,12 +2,12 @@
  * Shared composables, constants, types/interfaces, errors and utilities.
  */
 
-// Interfaces/Types/Operations
+// Types/Interfaces/Operations
 export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 
-// Interfaces/Types/Operations - Module.
+// Types/Interfaces/Operations - Module.
 export type { ModuleConfig } from '@/module';
 export type { AppModuleConfig } from '@/module';
 export type { ConnectorModuleConfig, ConnectorModuleOperation, ConnectorModuleUsageId } from '@/module';
@@ -19,10 +19,10 @@ export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@
 // export type { ModuleConfigZ } from '@/module/configSchema';
 // export { moduleConfigSchema, partialLocalisedStringSchema } from '@/module/configSchema';
 
-// Interfaces/Types/Operations - Component.
+// Types/Interfaces/Operations - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from '@/component';
 
-// Interfaces/Types/Operations - Connector.
+// Types/Interfaces/Operations - Connector.
 export type { AuditContentResult, AuditContentSettings } from '@/component/connector';
 export type {
     Connector,
@@ -44,17 +44,17 @@ export type { RemoveSettings } from '@/component/connector';
 export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from '@/component/connector';
 export type { UpsertSettings } from '@/component/connector';
 
-// Interfaces/Types/Operations - Connector connection.
+// Types/Interfaces/Operations - Connector connection.
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/component/connector/connection';
 
-// Interfaces/Types/Operations - Context.
+// Types/Interfaces/Operations - Context.
 export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult } from '@/component/context';
 
-// Interfaces/Types/Operations - Context model.
+// Types/Interfaces/Operations - Context model.
 export type { ContextModelGroupConfig, ContextModelGroupLocalisedConfig, ContextModelConfig, ContextModelLocalisedConfig } from '@/component/context';
 
-// Interfaces/Types/Operations - Context model dimension.
+// Types/Interfaces/Operations - Context model dimension.
 export type {
     ContextModelDimensionGroupConfig,
     ContextModelDimensionGroupLocalisedConfig,
@@ -64,7 +64,7 @@ export type {
     ContextModelDimensionHierarchyLocalisedConfig
 } from '@/component/context';
 
-// Interfaces/Types/Operations - Context model entity.
+// Types/Interfaces/Operations - Context model entity.
 export type {
     ContextModelEntityGroupConfig,
     ContextModelEntityGroupLocalisedConfig,
@@ -78,7 +78,7 @@ export type {
     ContextModelEntityPrimaryMeasureLocalisedConfig
 } from '@/component/context';
 
-// Interfaces/Types/Operations - Context model secondary measure.
+// Types/Interfaces/Operations - Context model secondary measure.
 export type {
     ContextModelSecondaryMeasureGroupConfig,
     ContextModelSecondaryMeasureGroupLocalisedConfig,
@@ -86,7 +86,7 @@ export type {
     ContextModelSecondaryMeasureLocalisedConfig
 } from '@/component/context';
 
-// Interfaces/Types/Operations - Data view.
+// Types/Interfaces/Operations - Data view.
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from '@/component/dataView';
 export type {
     DataViewConfig,
@@ -97,27 +97,27 @@ export type {
     ParsedValue
 } from '@/component/dataView';
 
-// Interfaces/Types/Operations - Dimension.
+// Types/Interfaces/Operations - Dimension.
 export type { DimensionConfig, DimensionLocalisedConfig } from '@/component/dimension';
 
-// Interfaces/Types/Operations - Engine.
+// Types/Interfaces/Operations - Engine.
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWorker } from '@/engine';
 
-// Interfaces/Types/Operations - Error.
+// Types/Interfaces/Operations - Error.
 export type { SerialisedError } from '@/errors';
 
-// Interfaces/Types/Operations - Event query.
+// Types/Interfaces/Operations - Event query.
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/component/eventQuery';
 
-// Interfaces/Types/Operations - Informer.
+// Types/Interfaces/Operations - Informer.
 export type { Informer, InformerConfig, InformerLocalisedConfig, InformerTools } from '@/component/informer';
 
-// Interfaces/Types/Operations - Informer document.
+// Types/Interfaces/Operations - Informer document.
 
-// Interfaces/Types/Operations - Presenter.
+// Types/Interfaces/Operations - Presenter.
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterTools } from '@/component/presenter';
 
-// Interfaces/Types/Operations - Presenter presentation.
+// Types/Interfaces/Operations - Presenter presentation.
 export type { PresentationConfig, PresentationView } from '@/component/presenter/presentation';
 export type {
     PresentationVisualConfig,
@@ -142,14 +142,14 @@ export type {
     PresentationVisualValuesViewType
 } from '@/component/presenter/presentation';
 
-// Interfaces/Types/Operations - Context Operator Settings
+// Types/Interfaces/Operations - Context Operator Settings
 export interface ContextOperationSettings {
     accountId?: string;
     appCheckToken?: string;
     sessionAccessToken?: string;
 }
 
-// Interfaces/Types/Operations - Timestamp.
+// Types/Interfaces/Operations - Timestamp.
 export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
 // Composables

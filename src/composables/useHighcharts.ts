@@ -11,7 +11,7 @@ import type {
     PresentationVisualRangeViewType
 } from '@/index';
 
-// Interfaces/Types - Highcharts view.
+// Types/Interfaces - Highcharts view.
 export interface HighchartsView extends PresentationView {
     chart: Chart;
 }

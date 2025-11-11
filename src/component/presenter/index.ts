@@ -11,7 +11,7 @@ import type { math, mathHtml } from 'micromark-extension-math';
 import type { Module } from '@/module';
 import type { Component, ComponentConfig, ComponentRef } from '@/component';
 
-// Interfaces/Types - Presenter.
+// Types/Interfaces - Presenter.
 export interface Presenter extends Module, Component {
     readonly config: PresenterConfig;
     readonly tools: PresenterTools;
@@ -20,14 +20,14 @@ export interface Presenter extends Module, Component {
     render(presentationPath: string, renderTo: HTMLElement, data?: unknown): Promise<void>;
 }
 
-// Interfaces/Types - Presenter configuration.
+// Types/Interfaces - Presenter configuration.
 export interface PresenterConfig extends ComponentConfig {
     presentations: ComponentRef[];
     version: string;
 }
 export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Presenter tools.
+// Types/Interfaces - Presenter tools.
 export type PresenterTools = {
     gfmExtension: typeof gfm;
     gfmHtmlExtension: typeof gfmHtml;

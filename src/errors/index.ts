@@ -1,4 +1,4 @@
-// Interfaces/Types - Serialised Error Data
+// Types/Interfaces - Serialised Error Data
 export interface SerialisedError {
     body?: string;
     componentName?: string;

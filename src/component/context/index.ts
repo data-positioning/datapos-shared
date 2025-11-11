@@ -6,7 +6,7 @@
 import type { Module } from '@/module';
 import type { Component, ComponentConfig, ComponentRef } from '@/component';
 
-// Interfaces/Types/Operations - Context.
+// Types/Interfaces/Operations - Context.
 export interface Context extends Module, Component {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;
@@ -16,14 +16,14 @@ export type ContextListSettings = {}; // TODO.
 export type ContextListResult = { models: ContextModelGroupConfig[] };
 export type ContextCallbackData = { typeId: string; properties: Record<string, unknown> };
 
-// Interfaces/Types/Operations - Context configuration.
+// Types/Interfaces/Operations - Context configuration.
 export interface ContextConfig extends ComponentConfig {
     models: ContextModelGroupConfig[];
     version: string;
 }
 export type ContextLocalisedConfig = Omit<ContextConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types/Operations - Context model configuration
+// Types/Interfaces/Operations - Context model configuration
 export interface ContextModelGroupConfig extends ComponentConfig {
     modelRefs: ComponentRef[];
     order: number;
@@ -37,7 +37,7 @@ export interface ContextModelConfig extends ComponentConfig {
 }
 export type ContextModelLocalisedConfig = Omit<ContextModelConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types/Operations - Context model dimension configuration.
+// Types/Interfaces/Operations - Context model dimension configuration.
 export interface ContextModelDimensionGroupConfig {
     id: string;
     label: Record<string, string>;
@@ -57,7 +57,7 @@ export interface ContextModelDimensionHierarchyConfig {
 }
 export type ContextModelDimensionHierarchyLocalisedConfig = Omit<ContextModelDimensionHierarchyConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types/Operations - Context model entity configuration.
+// Types/Interfaces/Operations - Context model entity configuration.
 export interface ContextModelEntityGroupConfig {
     id: string;
     label: Record<string, string>;
@@ -91,7 +91,7 @@ export interface ContextModelEntityPrimaryMeasureConfig {
 }
 export type ContextModelEntityPrimaryMeasureLocalisedConfig = Omit<ContextModelEntityPrimaryMeasureConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types/Operations - Context model secondary measure configuration.
+// Types/Interfaces/Operations - Context model secondary measure configuration.
 export interface ContextModelSecondaryMeasureGroupConfig {
     id: string;
     label: Record<string, string>;
@@ -105,7 +105,7 @@ export interface ContextModelSecondaryMeasureConfig {
 }
 export type ContextModelSecondaryMeasureLocalisedConfig = Omit<ContextModelSecondaryMeasureConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types/Operations - Event.
+// Types/Interfaces/Operations - Event.
 type Event = {
     id?: number;
     entityId: string;

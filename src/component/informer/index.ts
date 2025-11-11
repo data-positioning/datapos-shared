@@ -6,7 +6,7 @@
 import type { Module } from '@/module';
 import type { Component, ComponentConfig, ComponentRef } from '@/component';
 
-// Interfaces/Types - Informer.
+// Types/Interfaces - Informer.
 export interface Informer extends Module, Component {
     readonly config: InformerConfig;
     readonly tools: InformerTools;
@@ -15,11 +15,11 @@ export interface Informer extends Module, Component {
     render(informerPath: string, renderTo: HTMLElement, data?: unknown): Promise<void>;
 }
 
-// Interfaces/Types - Informer configuration.
+// Types/Interfaces - Informer configuration.
 export interface InformerConfig extends ComponentConfig {
     version: string;
 }
 export type InformerLocalisedConfig = Omit<InformerConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Interfaces/Types - Informer tools.
+// Types/Interfaces - Informer tools.
 export type InformerTools = {};

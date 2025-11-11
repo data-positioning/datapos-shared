@@ -7,7 +7,7 @@ import type { ComponentConfig } from '@/component';
 import type { ConnectorConfig } from '@/component/connector';
 import type { Timestamp } from '@/timestamp';
 
-// Interfaces/Types - Connection Configuration
+// Types/Interfaces - Connection Configuration
 export interface ConnectionAuthorizationConfig {
     accessToken: string; // Dropbox.
     accountId: string; // Dropbox.
@@ -25,7 +25,7 @@ export interface ConnectionConfig extends ComponentConfig {
     notation?: string;
 }
 
-// Interfaces/Types - Connection Node Configuration
+// Types/Interfaces - Connection Node Configuration
 export interface ConnectionNodeConfig {
     childCount?: number;
     columnsConfigs?: ConnectionColumnConfig[];
@@ -43,15 +43,15 @@ export interface ConnectionNodeConfig {
     typeId: ConnectionNodeTypeId;
 }
 
-// Interfaces/Types - Connection Node Type Identifier
+// Types/Interfaces - Connection Node Type Identifier
 export type ConnectionNodeTypeId = 'folder' | 'object';
 
-// Interfaces/Types - Configuration Description
+// Types/Interfaces - Configuration Description
 export interface ConnectionDescription {
     objects: { id: string; label: Record<string, string>; columns: ConnectionColumnConfig[] }[];
 }
 
-// Interfaces/Types - Column Configuration
+// Types/Interfaces - Column Configuration
 export interface ConnectionColumnConfig {
     invalidValueCount?: number;
     invalidValues?: string[];
@@ -73,7 +73,7 @@ export interface ConnectionColumnConfig {
     voidValueCount?: number;
 }
 
-// Interfaces/Types - Basic
+// Types/Interfaces - Basic
 export type DPAFileSystemFileHandle = { readonly kind: 'file'; getFile(): Promise<File> };
 export type StorageTypeId =
     | 'binary'
@@ -95,7 +95,7 @@ export type StorageTypeId =
     | 'unknown';
 export type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
 
-// Interfaces/Types - Encoding
+// Types/Interfaces - Encoding
 export interface Encoding {
     id: string;
     confidenceLevel?: number;

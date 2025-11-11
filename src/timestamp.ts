@@ -1,7 +1,7 @@
 // Dependencies - Vendor
 // import { Timestamp as FirebaseTimestamp } from 'firebase/firestore'; // See: https://firebase.google.com/docs/reference/js/firestore_.timestamp.md.
 
-// Interfaces/Types - Timestamp
+// Types/Interfaces - Timestamp
 // export type Timestamp = FirebaseTimestamp;
 export type Timestamp = number;
 
