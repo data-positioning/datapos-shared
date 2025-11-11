@@ -16,14 +16,13 @@ const PRISM_JSON_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_DOWNLOAD_RE
 
 // Module Variables
 let micromarkModule: typeof micromark | undefined = undefined;
-let prismModule: typeof Prism | undefined = undefined;
 
 // Composables - Use Micromark.
 export function useMicromark() {
     // Operations - ????
-    async function getStuff(): Promise<{ micromark: typeof micromark; Prism: typeof Prism }> {
+    async function getStuff(): Promise<{ micromark: typeof micromark }> {
         await loadMicromarkAndPrism();
-        return { micromark: micromarkModule!, Prism: prismModule! };
+        return { micromark: micromarkModule! };
     }
 
     // Operations - Render.
@@ -33,20 +32,9 @@ export function useMicromark() {
 
     // Utilities - Load Micromark and Prism.
     async function loadMicromarkAndPrism(): Promise<void> {
-        if (micromarkModule && prismModule) return;
-        const modules = await Promise.all([
-            import(/* @vite-ignore */ MICROMARK_DOWNLOAD_URL_),
-            import(/* @vite-ignore */ PRISM_DOWNLOAD_URL)
-            // import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL),
-            // import(/* @vite-ignore */ PRISM_JSON_URL)
-        ]);
-
+        if (micromarkModule) return;
+        const modules = await Promise.all([import(/* @vite-ignore */ MICROMARK_DOWNLOAD_URL_), import(/* @vite-ignore */ PRISM_DOWNLOAD_URL)]);
         micromarkModule = modules[0].micromark;
-        prismModule = modules[1].default;
-
-        console.log('globalThis', globalThis);
-        // (globalThis as any).Prism = prismModule;
-
         await Promise.all([import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL), import(/* @vite-ignore */ PRISM_JSON_URL)]);
     }
 
