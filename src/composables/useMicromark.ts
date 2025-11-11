@@ -3,25 +3,28 @@
  */
 
 // Dependencies - Vendor.
+import type { gfm } from 'micromark-extension-gfm';
 import type { micromark } from 'micromark';
 
 // Constants
-const MICROMARK_DOWNLOAD_RELEASE = 4;
-const MICROMARK_DOWNLOAD_URL_ = `https://cdn.jsdelivr.net/npm/micromark@${MICROMARK_DOWNLOAD_RELEASE}/+esm`;
-const PRISM_DOWNLOAD_RELEASE = 1;
-const PRISM_DOWNLOAD_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_DOWNLOAD_RELEASE}/+esm`;
-// const PRISM_JAVASCRIPT_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_DOWNLOAD_RELEASE}/components/prism-javascript.min.js`;
-// const PRISM_JSON_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_DOWNLOAD_RELEASE}/components/prism-json.min.js`;
+const MICROMARK_VERSION = 4;
+const MICROMARK_DOWNLOAD_URL_ = `https://cdn.jsdelivr.net/npm/micromark@${MICROMARK_VERSION}/+esm`;
+const GFM_EXTENSION_VERSION = 3;
+const GFM_EXTENSION_DOWNLOAD_URL = `https://cdn.jsdelivr.net/npm/micromark-extension-gfm@${GFM_EXTENSION_VERSION}/+esm`;
+const PRISM_VERSION = 1;
+const PRISM_DOWNLOAD_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_VERSION}/+esm`;
+// const PRISM_JSON_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_DOWNLOAD_VERSION}/components/prism-json.min.js`;
 
 // Module Variables
-let micromarkModule: typeof micromark | undefined = undefined;
+let micromarkFunction: typeof micromark | undefined = undefined;
+let gfmExtensionFunction: typeof gfm | undefined = undefined;
 
 // Composables - Use Micromark.
 export function useMicromark() {
     // Operations - ????
-    async function getStuff(): Promise<{ micromark: typeof micromark }> {
+    async function getStuff(): Promise<{ gfmExtension: typeof gfm; micromark: typeof micromark }> {
         await loadMicromarkAndPrism();
-        return { micromark: micromarkModule! };
+        return { gfmExtension: gfmExtensionFunction!, micromark: micromarkFunction! };
     }
 
     // Operations - Render.
@@ -29,15 +32,20 @@ export function useMicromark() {
         await loadMicromarkAndPrism();
     }
 
-    // Utilities - Load Micromark and Prism.
+    // Utilities - Load Micromark, Micromark extensions and Prism.
     async function loadMicromarkAndPrism(): Promise<void> {
-        if (micromarkModule) return;
+        if (micromarkFunction && gfmExtensionFunction) return;
 
-        const modules = await Promise.all([import(/* @vite-ignore */ MICROMARK_DOWNLOAD_URL_), import(/* @vite-ignore */ PRISM_DOWNLOAD_URL)]);
-        micromarkModule = modules[0].micromark;
+        const modules = await Promise.all([
+            import(/* @vite-ignore */ MICROMARK_DOWNLOAD_URL_),
+            import(/* @vite-ignore */ GFM_EXTENSION_DOWNLOAD_URL),
+            import(/* @vite-ignore */ PRISM_DOWNLOAD_URL)
+        ]);
+        micromarkFunction = modules[0].micromark;
+        gfmExtensionFunction = modules[1].gfm;
+
         // if (!globalThis.Prism) return;
-
-        // await Promise.all([import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL), import(/* @vite-ignore */ PRISM_JSON_URL)]);
+        // await Promise.all([ import(/* @vite-ignore */ PRISM_JSON_URL)]);
     }
 
     // Exposures

@@ -13,7 +13,7 @@ function U() {
 }
 const v = "https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/", I = "highcharts";
 let b, D = !1;
-function P() {
+function B() {
   async function e(n, s, m, h) {
     await r();
     const l = [];
@@ -79,7 +79,7 @@ function P() {
 }
 const S = 4, O = `https://cdn.jsdelivr.net/npm/micromark@${S}/+esm`, A = 1, N = `https://cdn.jsdelivr.net/npm/prismjs@${A}/+esm`;
 let x;
-function B() {
+function P() {
   async function e() {
     return await t(), { micromark: x };
   }
@@ -87,13 +87,14 @@ function B() {
     await t();
   }
   async function t() {
-    x || (x = (await Promise.all([import(
+    if (x) return;
+    x = (await Promise.all([import(
       /* @vite-ignore */
       O
     ), import(
       /* @vite-ignore */
       N
-    )]))[0].micromark, globalThis.Prism);
+    )]))[0].micromark;
   }
   return { getStuff: e, render: a };
 }
@@ -377,6 +378,6 @@ export {
   ee as serialiseError,
   j as useCytoscapeJS,
   U as useDataTable,
-  P as useHighcharts,
-  B as useMicromark
+  B as useHighcharts,
+  P as useMicromark
 };
