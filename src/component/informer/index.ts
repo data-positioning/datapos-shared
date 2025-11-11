@@ -2,9 +2,6 @@
  * Informer composables, constants, errors, types/interfaces and utilities.
  */
 
-// Dependencies - Vendor.
-import type markdownIt from 'markdown-it';
-
 // Dependencies - Framework.
 import type { Module } from '@/module';
 import type { Component, ComponentConfig, ComponentRef } from '@/component';
@@ -25,4 +22,4 @@ export interface InformerConfig extends ComponentConfig {
 export type InformerLocalisedConfig = Omit<InformerConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Informer tools.
-export type InformerTools = { markdownIt: typeof markdownIt };
+export type InformerTools = {};
