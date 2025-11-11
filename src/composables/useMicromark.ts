@@ -4,7 +4,6 @@
 
 // Dependencies - Vendor.
 import type { micromark } from 'micromark';
-import type Prism from 'prismjs';
 
 // Constants
 const MICROMARK_DOWNLOAD_RELEASE = 4;
@@ -33,8 +32,11 @@ export function useMicromark() {
     // Utilities - Load Micromark and Prism.
     async function loadMicromarkAndPrism(): Promise<void> {
         if (micromarkModule) return;
+
         const modules = await Promise.all([import(/* @vite-ignore */ MICROMARK_DOWNLOAD_URL_), import(/* @vite-ignore */ PRISM_DOWNLOAD_URL)]);
         micromarkModule = modules[0].micromark;
+        if (!globalThis.Prism) return;
+
         await Promise.all([import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL), import(/* @vite-ignore */ PRISM_JSON_URL)]);
     }
 

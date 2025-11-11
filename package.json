@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.192",
+    "version": "0.3.193",
     "description": "A TypeScript library containing common declarations and utilities used across other Data Positioning repositories.",
     "license": "MIT",
     "private": false,
@@ -28,15 +28,12 @@
         "csv-parse": "^6.1.0",
         "date-fns": "^4.1.0",
         "highcharts": "^12.4.0",
-        "markdown-it": "^14.1.0",
         "micromark": "^4.0.2",
         "nanoid": "^5.1.6",
-        "prismjs": "^1.30.0",
         "zod": "^4.1.12"
     },
     "devDependencies": {
         "@datapos/datapos-development": "^0.3.66",
-        "@types/markdown-it": "^14.1.2",
         "@types/node": "^24.10.0",
         "@types/prismjs": "^1.26.5",
         "@typescript-eslint/eslint-plugin": "^8.46.3",
