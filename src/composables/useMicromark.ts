@@ -37,7 +37,7 @@ export function useMicromark() {
         micromarkModule = modules[0].micromark;
         if (!globalThis.Prism) return;
 
-        await Promise.all([import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL), import(/* @vite-ignore */ PRISM_JSON_URL)]);
+        // await Promise.all([import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL), import(/* @vite-ignore */ PRISM_JSON_URL)]);
     }
 
     // Exposures
