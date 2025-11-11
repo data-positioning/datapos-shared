@@ -4,7 +4,6 @@
 
 // Dependencies - Vendor.
 import type { micromark } from 'micromark';
-import type Prism from 'prismjs';
 
 // Dependencies - Framework.
 import type { Module } from '@/module';
@@ -27,4 +26,4 @@ export interface PresenterConfig extends ComponentConfig {
 export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Presenter tools.
-export type PresenterTools = { micromark: typeof micromark; Prism: typeof Prism };
+export type PresenterTools = { micromark: typeof micromark };
