@@ -44,7 +44,8 @@ export function useMicromark() {
         micromarkModule = modules[0].micromark;
         prismModule = modules[1].default;
 
-        (globalThis as any).Prism = prismModule;
+        console.log('globalThis', globalThis);
+        // (globalThis as any).Prism = prismModule;
 
         await Promise.all([import(/* @vite-ignore */ PRISM_JAVASCRIPT_URL), import(/* @vite-ignore */ PRISM_JSON_URL)]);
     }
