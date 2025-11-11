@@ -1,4 +1,3 @@
-import { default as markdownIt } from 'markdown-it';
 import { Module } from '../../module';
 import { Component, ComponentConfig, ComponentRef } from '..';
 export interface Informer extends Module, Component {
@@ -14,6 +13,4 @@ export type InformerLocalisedConfig = Omit<InformerConfig, 'label' | 'descriptio
     label: string;
     description: string;
 };
-export type InformerTools = {
-    markdownIt: typeof markdownIt;
-};
+export type InformerTools = {};
