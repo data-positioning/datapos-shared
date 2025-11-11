@@ -1,5 +1,6 @@
 import { micromark } from 'micromark';
 import { gfm, gfmHtml } from 'micromark-extension-gfm';
+import { math, mathHtml } from 'micromark-extension-math';
 import { Module } from '../../module';
 import { Component, ComponentConfig, ComponentRef } from '..';
 export interface Presenter extends Module, Component {
@@ -19,5 +20,7 @@ export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'descript
 export type PresenterTools = {
     gfmExtension: typeof gfm;
     gfmHtmlExtension: typeof gfmHtml;
+    mathExtension: typeof math;
+    mathHtmlExtension: typeof mathHtml;
     micromark: typeof micromark;
 };
