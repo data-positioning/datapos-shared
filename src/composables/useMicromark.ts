@@ -3,8 +3,8 @@
  */
 
 // Dependencies - Vendor.
-import type { gfm } from 'micromark-extension-gfm';
 import type { micromark } from 'micromark';
+import type { gfm, gfmHtml } from 'micromark-extension-gfm';
 
 // Constants
 const MICROMARK_VERSION = 4;
@@ -18,13 +18,14 @@ const PRISM_DOWNLOAD_URL = `https://cdn.jsdelivr.net/npm/prismjs@${PRISM_VERSION
 // Module Variables
 let micromarkFunction: typeof micromark | undefined = undefined;
 let gfmExtensionFunction: typeof gfm | undefined = undefined;
+let gfmHtmlExtensionFunction: typeof gfmHtml | undefined = undefined;
 
 // Composables - Use Micromark.
 export function useMicromark() {
     // Operations - ????
-    async function getStuff(): Promise<{ gfmExtension: typeof gfm; micromark: typeof micromark }> {
+    async function getStuff(): Promise<{ gfmHtmlExtension: typeof gfmHtml; gfmExtension: typeof gfm; micromark: typeof micromark }> {
         await loadMicromarkAndPrism();
-        return { gfmExtension: gfmExtensionFunction!, micromark: micromarkFunction! };
+        return { gfmExtension: gfmExtensionFunction!, gfmHtmlExtension: gfmHtmlExtensionFunction!, micromark: micromarkFunction! };
     }
 
     // Operations - Render.
@@ -41,8 +42,11 @@ export function useMicromark() {
             import(/* @vite-ignore */ GFM_EXTENSION_DOWNLOAD_URL),
             import(/* @vite-ignore */ PRISM_DOWNLOAD_URL)
         ]);
+        console.log(modules);
+        console.log(modules[1]);
         micromarkFunction = modules[0].micromark;
         gfmExtensionFunction = modules[1].gfm;
+        gfmHtmlExtensionFunction = modules[1].gfmHtml;
 
         // if (!globalThis.Prism) return;
         // await Promise.all([ import(/* @vite-ignore */ PRISM_JSON_URL)]);

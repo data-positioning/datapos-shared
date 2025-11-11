@@ -3,8 +3,8 @@
  */
 
 // Dependencies - Vendor.
-import type { gfm } from 'micromark-extension-gfm';
 import type { micromark } from 'micromark';
+import type { gfm, gfmHtml } from 'micromark-extension-gfm';
 
 // Dependencies - Framework.
 import type { Module } from '@/module';
@@ -27,4 +27,4 @@ export interface PresenterConfig extends ComponentConfig {
 export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Interfaces/Types - Presenter tools.
-export type PresenterTools = { gfmExtension: typeof gfm; micromark: typeof micromark };
+export type PresenterTools = { gfmExtension: typeof gfm; gfmHtmlExtension: typeof gfmHtml; micromark: typeof micromark };
