@@ -30,8 +30,8 @@ let mathHtmlExtensionFunction: typeof mathHtml | undefined = undefined;
 
 // Composables - Use Micromark.
 export function useMicromark() {
-    // Operations - ????
-    async function getStuff(): Promise<MicromarkTools> {
+    // Operations - Get tools.
+    async function getTools(): Promise<MicromarkTools> {
         await loadMicromarkAndPrism();
         return {
             gfmExtension: gfmExtensionFunction!,
@@ -57,18 +57,16 @@ export function useMicromark() {
             import(/* @vite-ignore */ MATH_EXTENSION_DOWNLOAD_URL),
             import(/* @vite-ignore */ PRISM_DOWNLOAD_URL)
         ]);
-        console.log(modules);
-        console.log(modules[1]);
         micromarkFunction = modules[0].micromark;
         gfmExtensionFunction = modules[1].gfm;
         gfmHtmlExtensionFunction = modules[1].gfmHtml;
         mathExtensionFunction = modules[2].math;
         mathHtmlExtensionFunction = modules[2].mathHtml;
 
-        // if (!globalThis.Prism) return;
+        // if (!globalThis.Prism) return; // This is purely defensive.
         // await Promise.all([ import(/* @vite-ignore */ PRISM_JSON_URL)]);
     }
 
     // Exposures
-    return { getStuff, render };
+    return { getTools, render };
 }
