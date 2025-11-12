@@ -19,14 +19,14 @@ function K() {
     const l = [];
     for (const c of s.data.measures)
       l.push({ type: n.options.highchartsType, name: c.name, data: c.data });
-    const g = {
+    const p = {
       chart: { type: n.options.highchartsType },
       plotOptions: { series: { borderColor: "#333" } },
       series: l,
       title: { text: s.title.text },
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
-    }, u = b.chart(m, g, h);
+    }, u = b.chart(m, p, h);
     return { chart: u, resize: () => u.reflow(), vendorId: x };
   }
   async function a(n, s, m, h) {
@@ -34,22 +34,22 @@ function K() {
     const l = [];
     for (const c of s.data.measures)
       l.push({ type: n.options.highchartsType, name: c.name, data: c.data });
-    const g = {
+    const p = {
       chart: { polar: !0 },
       plotOptions: { series: { borderColor: "#333" } },
       series: l,
       title: { text: s.title.text },
       xAxis: { categories: s.data.categoryLabels },
       yAxis: { title: { text: s.data.name } }
-    }, u = b.chart(m, g, h);
+    }, u = b.chart(m, p, h);
     return { chart: u, resize: () => u.reflow(), vendorId: x };
   }
   async function r(n, s, m, h) {
     await Promise.all([t(), o()]);
-    const l = [], g = [];
+    const l = [], p = [];
     for (let f = 0; f < s.data.measures[0].data.length; f++)
-      g.push([s.data.measures[0].data[f][0], s.data.measures[1].data[f][0]]);
-    l.push({ type: n.options.highchartsType, name: "Unknown", data: g });
+      p.push([s.data.measures[0].data[f][0], s.data.measures[1].data[f][0]]);
+    l.push({ type: n.options.highchartsType, name: "Unknown", data: p });
     const u = {
       chart: { type: n.options.highchartsType, inverted: n.options.inverted },
       plotOptions: { series: { borderColor: "#333" } },
@@ -112,9 +112,9 @@ function J() {
         j
       )
     ]);
-    console.log(t), console.log(t[1]), I = t[0].micromark, T = t[1].gfm, D = t[1].gfmHtml, O = t[2].math, v = t[2].mathHtml;
+    I = t[0].micromark, T = t[1].gfm, D = t[1].gfmHtml, O = t[2].math, v = t[2].mathHtml;
   }
-  return { getStuff: e, render: a };
+  return { getTools: e, render: a };
 }
 const q = 0, Q = (e) => e, Y = () => Date.now(), Z = {
   cartesian_areaLine: { categoryId: "cartesian", typeId: "areaLine", label: { "en-gb": "Area Line" }, options: { highchartsType: "area" } },
@@ -141,40 +141,40 @@ class N extends Error {
     super(a, t), this.name = "DataPosError", this.locator = r, Error.captureStackTrace?.(this, new.target);
   }
 }
-class p extends N {
+class g extends N {
   constructor(a, r, t) {
     super(a, r, t), this.name = "ApplicationError";
   }
 }
-class ee extends p {
+class ee extends g {
   constructor(a, r, t) {
     super(a, r, t), this.name = "APIError";
   }
 }
-class te extends p {
+class te extends g {
   constructor(a, r, t) {
     super(a, r, t), this.name = "EngineError";
   }
 }
-class R extends p {
+class R extends g {
   body;
   constructor(a, r, t, o) {
     super(a, r, o), this.name = "FetchError", this.body = t;
   }
 }
-class U extends p {
+class U extends g {
   componentName;
   info;
   constructor(a, r, t, o, n) {
     super(a, r, n), this.name = "VueHandledError", this.info = t, this.componentName = o;
   }
 }
-class re extends p {
+class re extends g {
   constructor(a, r, t) {
     super(a, r, t), this.name = "WindowHandledRuntimeError";
   }
 }
-class ae extends p {
+class ae extends g {
   constructor(a, r, t) {
     super(a, r, t), this.name = "WindowHandledPromiseRejectionError";
   }
@@ -281,7 +281,7 @@ const S = "en-US", y = {}, ce = (e) => {
     style: "decimal",
     useGrouping: !0
   }), y[o] = n), n.format(e);
-}, ue = (e) => e == null ? "" : e < 1e3 ? E(e) : e < 1e6 ? `${i(e / 1e3, 2, 0)}K` : e < 1e9 ? `${i(e / 1e6, 2, 0)}M` : e < 1e12 ? `${i(e / 1e9, 2, 0)}B` : `${i(e / 1e12, 2, 0)}T`, ge = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${E(e)} bytes` : e < 1048576 ? `${i(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${i(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${i(e / 1073741824, 2, 0)} GB` : `${i(e / 1099511627776, 2, 0)} TB`, pe = (e) => e == null ? "" : e < 1e3 ? `${E(e)} ms` : e === 1e3 ? `${E(e)} sec` : e < 6e4 ? `${i(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${i(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${i(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${i(e / 864e5, 2, 0)} days`, E = (e, a = S) => {
+}, ue = (e) => e == null ? "" : e < 1e3 ? E(e) : e < 1e6 ? `${i(e / 1e3, 2, 0)}K` : e < 1e9 ? `${i(e / 1e6, 2, 0)}M` : e < 1e12 ? `${i(e / 1e9, 2, 0)}B` : `${i(e / 1e12, 2, 0)}T`, pe = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${E(e)} bytes` : e < 1048576 ? `${i(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${i(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${i(e / 1073741824, 2, 0)} GB` : `${i(e / 1099511627776, 2, 0)} TB`, ge = (e) => e == null ? "" : e < 1e3 ? `${E(e)} ms` : e === 1e3 ? `${E(e)} sec` : e < 6e4 ? `${i(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${i(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${i(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${i(e / 864e5, 2, 0)} days`, E = (e, a = S) => {
   if (e == null) return "";
   const r = `${a}decimal0.0`;
   let t = y[r];
@@ -363,7 +363,7 @@ const S = "en-US", y = {}, ce = (e) => {
 }, d = "en-gb";
 export {
   ee as APIError,
-  p as ApplicationError,
+  g as ApplicationError,
   V as CONNECTOR_DESTINATION_OPERATIONS,
   X as CONNECTOR_SOURCE_OPERATIONS,
   d as DEFAULT_LOCALE_CODE,
@@ -381,9 +381,9 @@ export {
   me as extractExtensionFromPath,
   de as extractNameFromPath,
   i as formatNumberAsDecimalNumber,
-  pe as formatNumberAsDuration,
+  ge as formatNumberAsDuration,
   ue as formatNumberAsSize,
-  ge as formatNumberAsStorageSize,
+  pe as formatNumberAsStorageSize,
   E as formatNumberAsWholeNumber,
   Ee as getComponentStatus,
   Y as getCurrentTimestamp,

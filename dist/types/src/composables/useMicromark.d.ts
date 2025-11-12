@@ -9,7 +9,7 @@ type MicromarkTools = {
     micromark: typeof micromark;
 };
 export declare function useMicromark(): {
-    getStuff: () => Promise<MicromarkTools>;
+    getTools: () => Promise<MicromarkTools>;
     render: () => Promise<void>;
 };
 export {};
