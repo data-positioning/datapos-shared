@@ -18,7 +18,7 @@ export interface ModuleConfig {
     typeId: ModuleTypeId;
     version: string;
 }
-type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'informer' | 'presenter';
+type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'informer' | 'presenter' | 'tool';
 
 // Types/Interfaces/Operations - Application module configuration.
 export interface AppModuleConfig extends ModuleConfig {
@@ -82,3 +82,8 @@ export interface PresenterModuleConfig extends ModuleConfig {
     typeId: 'presenter';
 }
 export type PresenterModuleOperation = 'list' | 'render';
+
+// Types/Interfaces/Operations - Tool module configuration.
+export interface ToolModuleConfig extends ModuleConfig {
+    typeId: 'tool';
+}

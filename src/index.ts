@@ -15,6 +15,7 @@ export type { ContextModuleConfig, ContextModuleOperation } from '@/module';
 export type { EngineModuleConfig } from '@/module';
 export type { InformerModuleConfig, InformerModuleOperation } from '@/module';
 export type { PresenterModuleConfig, PresenterModuleOperation } from '@/module';
+export type { ToolModuleConfig } from '@/module';
 export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/module';
 // export type { ModuleConfigZ } from '@/module/configSchema';
 // export { moduleConfigSchema, partialLocalisedStringSchema } from '@/module/configSchema';
@@ -155,8 +156,6 @@ export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now
 // Composables
 export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
 export { useDataTable } from '@/composables/useDataTable';
-// export { type HighchartsView } from '@/composables/useHighcharts';
-// export { useMicromark } from '@/composables/useMicromark';
 
 // Constants
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
