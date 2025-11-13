@@ -115,7 +115,7 @@ export type { Informer, InformerConfig, InformerLocalisedConfig, InformerTools }
 // Types/Interfaces/Operations - Informer document.
 
 // Types/Interfaces/Operations - Presenter.
-export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterTools } from '@/component/presenter';
+export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from '@/component/presenter';
 
 // Types/Interfaces/Operations - Presenter presentation.
 export type { PresentationConfig, PresentationView } from '@/component/presenter/presentation';
@@ -155,8 +155,8 @@ export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now
 // Composables
 export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
 export { useDataTable } from '@/composables/useDataTable';
-export { type HighchartsView, useHighcharts } from '@/composables/useHighcharts';
-export { useMicromark } from '@/composables/useMicromark';
+// export { type HighchartsView } from '@/composables/useHighcharts';
+// export { useMicromark } from '@/composables/useMicromark';
 
 // Constants
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';

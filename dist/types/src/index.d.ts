@@ -42,7 +42,7 @@ export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWo
 export type { SerialisedError } from './errors';
 export type { EventQueryConfig, EventQueryLocalisedConfig } from './component/eventQuery';
 export type { Informer, InformerConfig, InformerLocalisedConfig, InformerTools } from './component/informer';
-export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterTools } from './component/presenter';
+export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from './component/presenter';
 export type { PresentationConfig, PresentationView } from './component/presenter/presentation';
 export type { PresentationVisualConfig, PresentationVisualContentConfig, PresentationVisualViewConfig, PresentationVisualCartesianViewConfig, PresentationVisualChordDiagramViewConfig, PresentationVisualPolarViewConfig, PresentationVisualRangeViewConfig, PresentationVisualSankeyDiagramViewConfig, PresentationVisualStreamgraphViewConfig, PresentationVisualValuesViewConfig } from './component/presenter/presentation';
 export type { PresentationVisualViewType, PresentationVisualCartesianViewType, PresentationVisualChordViewType, PresentationVisualPolarViewType, PresentationVisualRangeViewType, PresentationVisualSankeyDiagramViewType, PresentationVisualStreamgraphViewType, PresentationVisualValuesViewType } from './component/presenter/presentation';
@@ -54,8 +54,6 @@ export interface ContextOperationSettings {
 export type { Timestamp } from './timestamp';
 export { type CytoscapeJSView, useCytoscapeJS } from './composables/useCytoscapeJS';
 export { useDataTable } from './composables/useDataTable';
-export { type HighchartsView, useHighcharts } from './composables/useHighcharts';
-export { useMicromark } from './composables/useMicromark';
 export declare const DEFAULT_LOCALE_CODE: LocaleCode;
 export { DefaultTimestamp } from './timestamp';
 export { presentationViewTypeMap } from './component/presenter/presentation';

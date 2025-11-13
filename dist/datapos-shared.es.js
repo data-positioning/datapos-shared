@@ -1,122 +1,17 @@
-const V = ["createObject", "dropObject", "removeRecords", "upsertRecords"], X = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
-function G() {
-  function e(a, r, t) {
-    t.textContent = "Cytoscape.js diagram goes here...";
+const E = ["createObject", "dropObject", "removeRecords", "upsertRecords"], I = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
+function x() {
+  function e(t, a, r) {
+    r.textContent = "Cytoscape.js diagram goes here...";
   }
   return { render: e };
 }
-function z() {
-  function e(a, r, t) {
-    t.textContent = "values table goes here...";
+function T() {
+  function e(t, a, r) {
+    r.textContent = "values table goes here...";
   }
   return { render: e };
 }
-const _ = "https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/", x = "highcharts";
-let b, w = !1;
-function K() {
-  async function e(n, s, m, h) {
-    await t();
-    const l = [];
-    for (const c of s.data.measures)
-      l.push({ type: n.options.highchartsType, name: c.name, data: c.data });
-    const p = {
-      chart: { type: n.options.highchartsType },
-      plotOptions: { series: { borderColor: "#333" } },
-      series: l,
-      title: { text: s.title.text },
-      xAxis: { categories: s.data.categoryLabels },
-      yAxis: { title: { text: s.data.name } }
-    }, u = b.chart(m, p, h);
-    return { chart: u, resize: () => u.reflow(), vendorId: x };
-  }
-  async function a(n, s, m, h) {
-    await Promise.all([t(), o()]);
-    const l = [];
-    for (const c of s.data.measures)
-      l.push({ type: n.options.highchartsType, name: c.name, data: c.data });
-    const p = {
-      chart: { polar: !0 },
-      plotOptions: { series: { borderColor: "#333" } },
-      series: l,
-      title: { text: s.title.text },
-      xAxis: { categories: s.data.categoryLabels },
-      yAxis: { title: { text: s.data.name } }
-    }, u = b.chart(m, p, h);
-    return { chart: u, resize: () => u.reflow(), vendorId: x };
-  }
-  async function r(n, s, m, h) {
-    await Promise.all([t(), o()]);
-    const l = [], p = [];
-    for (let f = 0; f < s.data.measures[0].data.length; f++)
-      p.push([s.data.measures[0].data[f][0], s.data.measures[1].data[f][0]]);
-    l.push({ type: n.options.highchartsType, name: "Unknown", data: p });
-    const u = {
-      chart: { type: n.options.highchartsType, inverted: n.options.inverted },
-      plotOptions: { series: { borderColor: "#333" } },
-      series: l,
-      title: { text: s.title.text },
-      xAxis: { categories: s.data.categoryLabels },
-      yAxis: { title: { text: s.data.name } }
-    }, c = b.chart(m, u, h);
-    return { chart: c, resize: () => c.reflow(), vendorId: x };
-  }
-  async function t() {
-    if (b) return;
-    const n = "https://cdn.jsdelivr.net/npm/highcharts@11.4.3/es-modules/masters/", s = `${n}highcharts.src.js`, m = `${n}modules/accessibility.src.js`;
-    b = (await import(
-      /* @vite-ignore */
-      s
-    )).default, await import(
-      /* @vite-ignore */
-      m
-    );
-  }
-  async function o() {
-    if (w) return;
-    await import(`${_}highcharts-more.src.js`), w = !0;
-  }
-  return { renderCartesianChart: e, renderPolarChart: a, renderRangeChart: r };
-}
-const A = 4, C = `https://cdn.jsdelivr.net/npm/micromark@${A}/+esm`, L = 3, $ = `https://cdn.jsdelivr.net/npm/micromark-extension-gfm@${L}/+esm`, F = 3, M = `https://cdn.jsdelivr.net/npm/micromark-extension-math@${F}/+esm`, k = 1, j = `https://cdn.jsdelivr.net/npm/prismjs@${k}/+esm`;
-let I, T, D, O, v;
-function J() {
-  async function e() {
-    return await r(), {
-      gfmExtension: T,
-      gfmHtmlExtension: D,
-      mathExtension: O,
-      mathHtmlExtension: v,
-      micromark: I
-    };
-  }
-  async function a() {
-    await r();
-  }
-  async function r() {
-    if (I && T) return;
-    const t = await Promise.all([
-      import(
-        /* @vite-ignore */
-        C
-      ),
-      import(
-        /* @vite-ignore */
-        $
-      ),
-      import(
-        /* @vite-ignore */
-        M
-      ),
-      import(
-        /* @vite-ignore */
-        j
-      )
-    ]);
-    I = t[0].micromark, T = t[1].gfm, D = t[1].gfmHtml, O = t[2].math, v = t[2].mathHtml;
-  }
-  return { getTools: e, render: a };
-}
-const q = 0, Q = (e) => e, Y = () => Date.now(), Z = {
+const S = 0, N = (e) => e, w = () => Date.now(), D = {
   cartesian_areaLine: { categoryId: "cartesian", typeId: "areaLine", label: { "en-gb": "Area Line" }, options: { highchartsType: "area" } },
   cartesian_areaSpline: { categoryId: "cartesian", typeId: "areaSpline", label: { "en-gb": "Area Spline" }, options: { highchartsType: "area" } },
   cartesian_bar: { categoryId: "cartesian", typeId: "bar", label: { "en-gb": "Bar" }, options: { highchartsType: "bar" } },
@@ -135,92 +30,92 @@ const q = 0, Q = (e) => e, Y = () => Date.now(), Z = {
   streamgraph: { categoryId: "streamgraph", label: { "en-gb": "Streamgraph" }, options: {} },
   values: { categoryId: "values", label: { "en-gb": "Values" }, options: {} }
 };
-class N extends Error {
+class g extends Error {
   locator;
-  constructor(a, r, t) {
-    super(a, t), this.name = "DataPosError", this.locator = r, Error.captureStackTrace?.(this, new.target);
+  constructor(t, a, r) {
+    super(t, r), this.name = "DataPosError", this.locator = a, Error.captureStackTrace?.(this, new.target);
   }
 }
-class g extends N {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "ApplicationError";
+class l extends g {
+  constructor(t, a, r) {
+    super(t, a, r), this.name = "ApplicationError";
   }
 }
-class ee extends g {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "APIError";
+class v extends l {
+  constructor(t, a, r) {
+    super(t, a, r), this.name = "APIError";
   }
 }
-class te extends g {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "EngineError";
+class C extends l {
+  constructor(t, a, r) {
+    super(t, a, r), this.name = "EngineError";
   }
 }
-class R extends g {
+class u extends l {
   body;
-  constructor(a, r, t, o) {
-    super(a, r, o), this.name = "FetchError", this.body = t;
+  constructor(t, a, r, n) {
+    super(t, a, n), this.name = "FetchError", this.body = r;
   }
 }
-class U extends g {
+class p extends l {
   componentName;
   info;
-  constructor(a, r, t, o, n) {
-    super(a, r, n), this.name = "VueHandledError", this.info = t, this.componentName = o;
+  constructor(t, a, r, n, s) {
+    super(t, a, s), this.name = "VueHandledError", this.info = r, this.componentName = n;
   }
 }
-class re extends g {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "WindowHandledRuntimeError";
+class O extends l {
+  constructor(t, a, r) {
+    super(t, a, r), this.name = "WindowHandledRuntimeError";
   }
 }
-class ae extends g {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "WindowHandledPromiseRejectionError";
+class R extends l {
+  constructor(t, a, r) {
+    super(t, a, r), this.name = "WindowHandledPromiseRejectionError";
   }
 }
-class ne extends N {
-  constructor(a, r, t) {
-    super(a, r, t), this.name = "OperationalError";
+class $ extends g {
+  constructor(t, a, r) {
+    super(t, a, r), this.name = "OperationalError";
   }
 }
-async function oe(e, a, r) {
-  const t = `${a} Response status '${e.status}${e.statusText ? ` - ${e.statusText}` : ""}' received.`, o = await e.text();
-  return new R(t, r, o);
+async function A(e, t, a) {
+  const r = `${t} Response status '${e.status}${e.statusText ? ` - ${e.statusText}` : ""}' received.`, n = await e.text();
+  return new u(r, a, n);
 }
-function se(e) {
-  return e.map((a) => a.message).join(" ");
+function _(e) {
+  return e.map((t) => t.message).join(" ");
 }
-function ie(e, a = "Unknown error.") {
+function F(e, t = "Unknown error.") {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
   try {
-    return new Error(JSON.stringify(e ?? a));
+    return new Error(JSON.stringify(e ?? t));
   } catch {
-    return new Error(a);
+    return new Error(t);
   }
 }
-function le(e) {
-  const a = /* @__PURE__ */ new Set(), r = [];
-  let t = e;
-  for (; t && !a.has(t); ) {
-    a.add(t);
-    let o;
-    if (t instanceof R)
-      o = { body: t.body, locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
-    else if (t instanceof U)
-      o = { componentName: t.componentName, info: t.info, locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
-    else if (t instanceof N)
-      o = { locator: t.locator, message: t.message, name: t.name, stack: t.stack }, t = t.cause;
-    else if (t instanceof Error) {
-      const n = t;
-      o = { locator: "", message: n.message, name: n.name, stack: n.stack }, t = n.cause;
-    } else t ? (o = { locator: "", message: String(t), name: "Error" }, t = void 0) : (o = { locator: "", message: "Unknown error.", name: "Error" }, t = void 0);
-    /(?:\.{3}|[.!?])$/.test(o.message) || (o.message += "."), r.push(o);
+function k(e) {
+  const t = /* @__PURE__ */ new Set(), a = [];
+  let r = e;
+  for (; r && !t.has(r); ) {
+    t.add(r);
+    let n;
+    if (r instanceof u)
+      n = { body: r.body, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
+    else if (r instanceof p)
+      n = { componentName: r.componentName, info: r.info, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
+    else if (r instanceof g)
+      n = { locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
+    else if (r instanceof Error) {
+      const s = r;
+      n = { locator: "", message: s.message, name: s.name, stack: s.stack }, r = s.cause;
+    } else r ? (n = { locator: "", message: String(r), name: "Error" }, r = void 0) : (n = { locator: "", message: "Unknown error.", name: "Error" }, r = void 0);
+    /(?:\.{3}|[.!?])$/.test(n.message) || (n.message += "."), a.push(n);
   }
-  return r;
+  return a;
 }
-const S = "en-US", y = {}, ce = (e) => {
+const m = "en-US", c = {}, B = (e) => {
   switch (e) {
     case "Edm.Binary":
       return "unknown";
@@ -259,41 +154,41 @@ const S = "en-US", y = {}, ce = (e) => {
     default:
       return "unknown";
   }
-}, de = (e) => {
+}, L = (e) => {
   if (e) {
-    const a = e.lastIndexOf("/"), r = e.lastIndexOf(".", a > -1 ? a : e.length);
-    return r > -1 ? e.substring(0, r) : e;
+    const t = e.lastIndexOf("/"), a = e.lastIndexOf(".", t > -1 ? t : e.length);
+    return a > -1 ? e.substring(0, a) : e;
   }
-}, me = (e) => {
+}, M = (e) => {
   if (e) {
-    const a = e.lastIndexOf(".");
-    if (a > -1) return e.substring(a + 1);
+    const t = e.lastIndexOf(".");
+    if (t > -1) return e.substring(t + 1);
   }
-}, i = (e, a = 2, r = a, t = S) => {
+}, o = (e, t = 2, a = t, r = m) => {
   if (e == null) return "";
-  const o = `${t}decimal${a}.${r}`;
-  let n = y[o];
-  return n || (n = new Intl.NumberFormat(t, {
+  const n = `${r}decimal${t}.${a}`;
+  let s = c[n];
+  return s || (s = new Intl.NumberFormat(r, {
     localeMatcher: "best fit",
-    maximumFractionDigits: a,
-    minimumFractionDigits: r,
+    maximumFractionDigits: t,
+    minimumFractionDigits: a,
     minimumIntegerDigits: 1,
     style: "decimal",
     useGrouping: !0
-  }), y[o] = n), n.format(e);
-}, ue = (e) => e == null ? "" : e < 1e3 ? E(e) : e < 1e6 ? `${i(e / 1e3, 2, 0)}K` : e < 1e9 ? `${i(e / 1e6, 2, 0)}M` : e < 1e12 ? `${i(e / 1e9, 2, 0)}B` : `${i(e / 1e12, 2, 0)}T`, pe = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${E(e)} bytes` : e < 1048576 ? `${i(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${i(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${i(e / 1073741824, 2, 0)} GB` : `${i(e / 1099511627776, 2, 0)} TB`, ge = (e) => e == null ? "" : e < 1e3 ? `${E(e)} ms` : e === 1e3 ? `${E(e)} sec` : e < 6e4 ? `${i(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${i(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${i(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${i(e / 864e5, 2, 0)} days`, E = (e, a = S) => {
+  }), c[n] = s), s.format(e);
+}, j = (e) => e == null ? "" : e < 1e3 ? d(e) : e < 1e6 ? `${o(e / 1e3, 2, 0)}K` : e < 1e9 ? `${o(e / 1e6, 2, 0)}M` : e < 1e12 ? `${o(e / 1e9, 2, 0)}B` : `${o(e / 1e12, 2, 0)}T`, U = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${d(e)} bytes` : e < 1048576 ? `${o(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${o(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${o(e / 1073741824, 2, 0)} GB` : `${o(e / 1099511627776, 2, 0)} TB`, V = (e) => e == null ? "" : e < 1e3 ? `${d(e)} ms` : e === 1e3 ? `${d(e)} sec` : e < 6e4 ? `${o(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${o(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${o(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${o(e / 864e5, 2, 0)} days`, d = (e, t = m) => {
   if (e == null) return "";
-  const r = `${a}decimal0.0`;
-  let t = y[r];
-  return t || (t = new Intl.NumberFormat(a, {
+  const a = `${t}decimal0.0`;
+  let r = c[a];
+  return r || (r = new Intl.NumberFormat(t, {
     localeMatcher: "best fit",
     maximumFractionDigits: 0,
     minimumFractionDigits: 0,
     minimumIntegerDigits: 1,
     style: "decimal",
     useGrouping: !0
-  }), y[r] = t), t.format(e);
-}, he = (e) => {
+  }), c[a] = r), r.format(e);
+}, W = (e) => {
   switch (e) {
     case "csv":
       return "text/csv";
@@ -307,7 +202,7 @@ const S = "en-US", y = {}, ce = (e) => {
     default:
       return "application/octet-stream";
   }
-}, H = [
+}, b = [
   { id: "dtv", label: { "en-gb": "Delimited Text" } },
   { id: "e/e", label: { "en-gb": "Entity/Event" } },
   { id: "jsonArray", label: { "en-gb": "JSON Array" } },
@@ -315,22 +210,22 @@ const S = "en-US", y = {}, ce = (e) => {
   { id: "xls", label: { "en-gb": "XLS" } },
   { id: "xlsx", label: { "en-gb": "XLSX" } },
   { id: "xml", label: { "en-gb": "XML" } }
-], be = (e = d) => {
-  const a = [];
-  for (const r of H) a.push({ ...r, label: r.label[e] || r.label[d] || r.id });
-  return a;
-}, B = [
+], G = (e = i) => {
+  const t = [];
+  for (const a of b) t.push({ ...a, label: a.label[e] || a.label[i] || a.id });
+  return t;
+}, h = [
   { id: `
 `, label: { "en-gb": "Newline" } },
   { id: "\r", label: { "en-gb": "Carriage Return" } },
   { id: `\r
 `, label: { "en-gb": "Carriage Return/Newline" } }
-], fe = (e = d) => {
-  const a = [];
-  for (const r of B)
-    a.push({ ...r, label: r.label[e] || r.label[d] || r.id });
-  return a;
-}, P = [
+], X = (e = i) => {
+  const t = [];
+  for (const a of h)
+    t.push({ ...a, label: a.label[e] || a.label[i] || a.id });
+  return t;
+}, f = [
   { id: ":", label: { "en-gb": "Colon" } },
   { id: ",", label: { "en-gb": "Comma" } },
   { id: "!", label: { "en-gb": "Exclamation Mark" } },
@@ -342,12 +237,12 @@ const S = "en-US", y = {}, ce = (e) => {
   { id: "_", label: { "en-gb": "Underscore" } },
   { id: "0x1F", label: { "en-gb": "Unit Separator" } },
   { id: "|", label: { "en-gb": "Vertical Bar" } }
-], ye = (e = d) => {
-  const a = [];
-  for (const r of P)
-    a.push({ ...r, label: r.label[e] || r.label[d] || r.id });
-  return a;
-}, W = [
+], z = (e = i) => {
+  const t = [];
+  for (const a of f)
+    t.push({ ...a, label: a.label[e] || a.label[i] || a.id });
+  return t;
+}, y = [
   { id: "alpha", color: "red", label: { "en-gb": "alpha" } },
   { id: "beta", color: "amber", label: { "en-gb": "beta" } },
   { id: "generalAvailability", color: "green", label: { "en-gb": "" } },
@@ -357,45 +252,43 @@ const S = "en-US", y = {}, ce = (e) => {
   { id: "releaseCandidate", color: "green", label: { "en-gb": "release-candidate" } },
   { id: "unavailable", color: "other", label: { "en-gb": "unavailable" } },
   { id: "underReview", color: "other", label: { "en-gb": "under-review" } }
-], Ee = (e, a = d) => {
-  const r = W.find((t) => t.id === e);
-  return r ? { ...r, label: r.label[a] || r.label[d] || e } : { id: e, color: "other", label: e };
-}, d = "en-gb";
+], H = (e, t = i) => {
+  const a = y.find((r) => r.id === e);
+  return a ? { ...a, label: a.label[t] || a.label[i] || e } : { id: e, color: "other", label: e };
+}, i = "en-gb";
 export {
-  ee as APIError,
-  g as ApplicationError,
-  V as CONNECTOR_DESTINATION_OPERATIONS,
-  X as CONNECTOR_SOURCE_OPERATIONS,
-  d as DEFAULT_LOCALE_CODE,
-  q as DefaultTimestamp,
-  te as EngineError,
-  R as FetchError,
-  ne as OperationalError,
-  U as VueError,
-  ae as WindowPromiseRejectionError,
-  re as WindowRuntimeError,
-  oe as buildFetchError,
-  se as concatenateSerialisedErrorMessages,
-  Q as convertMillisecondsToTimestamp,
-  ce as convertODataTypeIdToUsageTypeId,
-  me as extractExtensionFromPath,
-  de as extractNameFromPath,
-  i as formatNumberAsDecimalNumber,
-  ge as formatNumberAsDuration,
-  ue as formatNumberAsSize,
-  pe as formatNumberAsStorageSize,
-  E as formatNumberAsWholeNumber,
-  Ee as getComponentStatus,
-  Y as getCurrentTimestamp,
-  be as getDataFormats,
-  fe as getRecordDelimiters,
-  ye as getValueDelimiters,
-  he as lookupMimeTypeForExtension,
-  ie as normalizeToError,
-  Z as presentationViewTypeMap,
-  le as serialiseError,
-  G as useCytoscapeJS,
-  z as useDataTable,
-  K as useHighcharts,
-  J as useMicromark
+  v as APIError,
+  l as ApplicationError,
+  E as CONNECTOR_DESTINATION_OPERATIONS,
+  I as CONNECTOR_SOURCE_OPERATIONS,
+  i as DEFAULT_LOCALE_CODE,
+  S as DefaultTimestamp,
+  C as EngineError,
+  u as FetchError,
+  $ as OperationalError,
+  p as VueError,
+  R as WindowPromiseRejectionError,
+  O as WindowRuntimeError,
+  A as buildFetchError,
+  _ as concatenateSerialisedErrorMessages,
+  N as convertMillisecondsToTimestamp,
+  B as convertODataTypeIdToUsageTypeId,
+  M as extractExtensionFromPath,
+  L as extractNameFromPath,
+  o as formatNumberAsDecimalNumber,
+  V as formatNumberAsDuration,
+  j as formatNumberAsSize,
+  U as formatNumberAsStorageSize,
+  d as formatNumberAsWholeNumber,
+  H as getComponentStatus,
+  w as getCurrentTimestamp,
+  G as getDataFormats,
+  X as getRecordDelimiters,
+  z as getValueDelimiters,
+  W as lookupMimeTypeForExtension,
+  F as normalizeToError,
+  D as presentationViewTypeMap,
+  k as serialiseError,
+  x as useCytoscapeJS,
+  T as useDataTable
 };
