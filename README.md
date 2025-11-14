@@ -31,7 +31,7 @@ registry=https://registry.npmjs.org/
 
 ## Declarations
 
-This package provides composables, constants, errors, types/interfaces and utilities used by Data Positioning modules.
+This package provides constants, errors, types/interfaces and utilities used by Data Positioning modules.
 
 ### Modules
 

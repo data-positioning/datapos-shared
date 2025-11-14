@@ -10,7 +10,7 @@ export interface ModuleConfig {
     typeId: ModuleTypeId;
     version: string;
 }
-type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'informer' | 'presenter';
+type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'informer' | 'presenter' | 'tool';
 export interface AppModuleConfig extends ModuleConfig {
     typeId: 'app';
 }
@@ -50,4 +50,7 @@ export interface PresenterModuleConfig extends ModuleConfig {
     typeId: 'presenter';
 }
 export type PresenterModuleOperation = 'list' | 'render';
+export interface ToolModuleConfig extends ModuleConfig {
+    typeId: 'tool';
+}
 export {};
