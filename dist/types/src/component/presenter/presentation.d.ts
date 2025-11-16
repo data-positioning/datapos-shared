@@ -22,7 +22,7 @@ export type PresentationVisualContentConfig = {
     };
 };
 export interface PresentationVisualViewConfig {
-    categoryId: 'cartesian' | 'chordDiagram' | 'polar' | 'range' | 'sankeyDiagram' | 'streamgraph' | 'values';
+    categoryId: 'cartesian' | 'chordDiagram' | 'periodFlowBoundaries' | 'polar' | 'range' | 'sankeyDiagram' | 'streamgraph' | 'values';
     default?: boolean;
 }
 export interface PresentationVisualCartesianViewConfig extends PresentationVisualViewConfig {
@@ -49,7 +49,7 @@ export interface PresentationVisualStreamgraphViewConfig extends PresentationVis
 export interface PresentationVisualValuesViewConfig extends PresentationVisualViewConfig {
     categoryId: 'values';
 }
-export type PresentationVisualViewType = PresentationVisualCartesianViewType | PresentationVisualChordViewType | PresentationVisualPolarViewType | PresentationVisualRangeViewType | PresentationVisualSankeyDiagramViewType | PresentationVisualStreamgraphViewType | PresentationVisualValuesViewType;
+export type PresentationVisualViewType = PresentationVisualCartesianViewType | PresentationVisualChordViewType | PresentationVisualPeriodFLowBoundariesViewType | PresentationVisualPolarViewType | PresentationVisualRangeViewType | PresentationVisualSankeyDiagramViewType | PresentationVisualStreamgraphViewType | PresentationVisualValuesViewType;
 export type PresentationVisualCartesianViewType = {
     categoryId: 'cartesian';
     typeId: 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
@@ -61,6 +61,11 @@ export type PresentationVisualCartesianViewType = {
 };
 export type PresentationVisualChordViewType = {
     categoryId: 'chordDiagram';
+    label: Record<string, string>;
+    options: {};
+};
+export type PresentationVisualPeriodFLowBoundariesViewType = {
+    categoryId: 'periodFLowBoundaries';
     label: Record<string, string>;
     options: {};
 };

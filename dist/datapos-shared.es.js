@@ -11,7 +11,7 @@ function T() {
   }
   return { render: e };
 }
-const S = 0, N = (e) => e, w = () => Date.now(), D = {
+const w = 0, S = (e) => e, N = () => Date.now(), D = {
   cartesian_areaLine: { categoryId: "cartesian", typeId: "areaLine", label: { "en-gb": "Area Line" }, options: { highchartsType: "area" } },
   cartesian_areaSpline: { categoryId: "cartesian", typeId: "areaSpline", label: { "en-gb": "Area Spline" }, options: { highchartsType: "area" } },
   cartesian_bar: { categoryId: "cartesian", typeId: "bar", label: { "en-gb": "Bar" }, options: { highchartsType: "bar" } },
@@ -20,6 +20,7 @@ const S = 0, N = (e) => e, w = () => Date.now(), D = {
   cartesian_pyramid: { categoryId: "cartesian", typeId: "line", label: { "en-gb": "Pyramid" }, options: { highchartsType: "line" } },
   cartesian_spline: { categoryId: "cartesian", typeId: "line", label: { "en-gb": "Spline" }, options: { highchartsType: "line" } },
   chordDiagram: { categoryId: "chordDiagram", label: { "en-gb": "Chord Diagram" }, options: {} },
+  periodFLowBoundaries: { categoryId: "periodFLowBoundaries", label: { "en-gb": "Period Flow & Boundaries" }, options: {} },
   polar_area: { categoryId: "polar", typeId: "area", label: { "en-gb": "Radar (Area)" }, options: { highchartsType: "area" } },
   polar_column: { categoryId: "polar", typeId: "column", label: { "en-gb": "Radar (Column)" }, options: { highchartsType: "column" } },
   polar_line: { categoryId: "polar", typeId: "line", label: { "en-gb": "Radar (Line)" }, options: { highchartsType: "line" } },
@@ -30,13 +31,13 @@ const S = 0, N = (e) => e, w = () => Date.now(), D = {
   streamgraph: { categoryId: "streamgraph", label: { "en-gb": "Streamgraph" }, options: {} },
   values: { categoryId: "values", label: { "en-gb": "Values" }, options: {} }
 };
-class g extends Error {
+class u extends Error {
   locator;
   constructor(t, a, r) {
     super(t, r), this.name = "DataPosError", this.locator = a, Error.captureStackTrace?.(this, new.target);
   }
 }
-class l extends g {
+class l extends u {
   constructor(t, a, r) {
     super(t, a, r), this.name = "ApplicationError";
   }
@@ -51,7 +52,7 @@ class C extends l {
     super(t, a, r), this.name = "EngineError";
   }
 }
-class u extends l {
+class g extends l {
   body;
   constructor(t, a, r, n) {
     super(t, a, n), this.name = "FetchError", this.body = r;
@@ -74,19 +75,19 @@ class R extends l {
     super(t, a, r), this.name = "WindowHandledPromiseRejectionError";
   }
 }
-class $ extends g {
+class $ extends u {
   constructor(t, a, r) {
     super(t, a, r), this.name = "OperationalError";
   }
 }
 async function A(e, t, a) {
   const r = `${t} Response status '${e.status}${e.statusText ? ` - ${e.statusText}` : ""}' received.`, n = await e.text();
-  return new u(r, a, n);
+  return new g(r, a, n);
 }
-function _(e) {
+function F(e) {
   return e.map((t) => t.message).join(" ");
 }
-function F(e, t = "Unknown error.") {
+function _(e, t = "Unknown error.") {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
   try {
@@ -101,11 +102,11 @@ function k(e) {
   for (; r && !t.has(r); ) {
     t.add(r);
     let n;
-    if (r instanceof u)
+    if (r instanceof g)
       n = { body: r.body, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
     else if (r instanceof p)
       n = { componentName: r.componentName, info: r.info, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
-    else if (r instanceof g)
+    else if (r instanceof u)
       n = { locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
     else if (r instanceof Error) {
       const s = r;
@@ -220,7 +221,7 @@ const m = "en-US", c = {}, B = (e) => {
   { id: "\r", label: { "en-gb": "Carriage Return" } },
   { id: `\r
 `, label: { "en-gb": "Carriage Return/Newline" } }
-], X = (e = i) => {
+], P = (e = i) => {
   const t = [];
   for (const a of h)
     t.push({ ...a, label: a.label[e] || a.label[i] || a.id });
@@ -237,7 +238,7 @@ const m = "en-US", c = {}, B = (e) => {
   { id: "_", label: { "en-gb": "Underscore" } },
   { id: "0x1F", label: { "en-gb": "Unit Separator" } },
   { id: "|", label: { "en-gb": "Vertical Bar" } }
-], z = (e = i) => {
+], X = (e = i) => {
   const t = [];
   for (const a of f)
     t.push({ ...a, label: a.label[e] || a.label[i] || a.id });
@@ -252,7 +253,7 @@ const m = "en-US", c = {}, B = (e) => {
   { id: "releaseCandidate", color: "green", label: { "en-gb": "release-candidate" } },
   { id: "unavailable", color: "other", label: { "en-gb": "unavailable" } },
   { id: "underReview", color: "other", label: { "en-gb": "under-review" } }
-], H = (e, t = i) => {
+], z = (e, t = i) => {
   const a = y.find((r) => r.id === e);
   return a ? { ...a, label: a.label[t] || a.label[i] || e } : { id: e, color: "other", label: e };
 }, i = "en-gb";
@@ -262,16 +263,16 @@ export {
   E as CONNECTOR_DESTINATION_OPERATIONS,
   I as CONNECTOR_SOURCE_OPERATIONS,
   i as DEFAULT_LOCALE_CODE,
-  S as DefaultTimestamp,
+  w as DefaultTimestamp,
   C as EngineError,
-  u as FetchError,
+  g as FetchError,
   $ as OperationalError,
   p as VueError,
   R as WindowPromiseRejectionError,
   O as WindowRuntimeError,
   A as buildFetchError,
-  _ as concatenateSerialisedErrorMessages,
-  N as convertMillisecondsToTimestamp,
+  F as concatenateSerialisedErrorMessages,
+  S as convertMillisecondsToTimestamp,
   B as convertODataTypeIdToUsageTypeId,
   M as extractExtensionFromPath,
   L as extractNameFromPath,
@@ -280,13 +281,13 @@ export {
   j as formatNumberAsSize,
   U as formatNumberAsStorageSize,
   d as formatNumberAsWholeNumber,
-  H as getComponentStatus,
-  w as getCurrentTimestamp,
+  z as getComponentStatus,
+  N as getCurrentTimestamp,
   G as getDataFormats,
-  X as getRecordDelimiters,
-  z as getValueDelimiters,
+  P as getRecordDelimiters,
+  X as getValueDelimiters,
   W as lookupMimeTypeForExtension,
-  F as normalizeToError,
+  _ as normalizeToError,
   D as presentationViewTypeMap,
   k as serialiseError,
   x as useCytoscapeJS,

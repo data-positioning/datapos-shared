@@ -18,7 +18,7 @@ export type PresentationVisualContentConfig = {
     data: { name: string; categoryLabels: string[]; measures: { id: string; name: string; data?: number[][] }[] };
 };
 export interface PresentationVisualViewConfig {
-    categoryId: 'cartesian' | 'chordDiagram' | 'polar' | 'range' | 'sankeyDiagram' | 'streamgraph' | 'values';
+    categoryId: 'cartesian' | 'chordDiagram' | 'periodFlowBoundaries' | 'polar' | 'range' | 'sankeyDiagram' | 'streamgraph' | 'values';
     default?: boolean;
 }
 export interface PresentationVisualCartesianViewConfig extends PresentationVisualViewConfig {
@@ -50,6 +50,7 @@ export interface PresentationVisualValuesViewConfig extends PresentationVisualVi
 export type PresentationVisualViewType =
     | PresentationVisualCartesianViewType
     | PresentationVisualChordViewType
+    | PresentationVisualPeriodFLowBoundariesViewType
     | PresentationVisualPolarViewType
     | PresentationVisualRangeViewType
     | PresentationVisualSankeyDiagramViewType
@@ -62,6 +63,7 @@ export type PresentationVisualCartesianViewType = {
     options: { highchartsType: 'area' | 'bar' | 'column' | 'line'; inverted?: boolean };
 };
 export type PresentationVisualChordViewType = { categoryId: 'chordDiagram'; label: Record<string, string>; options: {} };
+export type PresentationVisualPeriodFLowBoundariesViewType = { categoryId: 'periodFLowBoundaries'; label: Record<string, string>; options: {} };
 export type PresentationVisualPolarViewType = {
     categoryId: 'polar';
     typeId: 'area' | 'column' | 'line';
@@ -94,6 +96,7 @@ export const presentationViewTypeMap: Record<string, PresentationVisualViewType>
     cartesian_pyramid: { categoryId: 'cartesian', typeId: 'line', label: { 'en-gb': 'Pyramid' }, options: { highchartsType: 'line' } },
     cartesian_spline: { categoryId: 'cartesian', typeId: 'line', label: { 'en-gb': 'Spline' }, options: { highchartsType: 'line' } },
     chordDiagram: { categoryId: 'chordDiagram', label: { 'en-gb': 'Chord Diagram' }, options: {} },
+    periodFLowBoundaries: { categoryId: 'periodFLowBoundaries', label: { 'en-gb': 'Period Flow & Boundaries' }, options: {} },
     polar_area: { categoryId: 'polar', typeId: 'area', label: { 'en-gb': 'Radar (Area)' }, options: { highchartsType: 'area' } },
     polar_column: { categoryId: 'polar', typeId: 'column', label: { 'en-gb': 'Radar (Column)' }, options: { highchartsType: 'column' } },
     polar_line: { categoryId: 'polar', typeId: 'line', label: { 'en-gb': 'Radar (Line)' }, options: { highchartsType: 'line' } },

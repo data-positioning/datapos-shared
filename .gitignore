@@ -1,5 +1,7 @@
-# Data Positioning public git ignore configuration.
+# Common git ignore configuration for published repositories.
+dist-scripts
 node_modules
+stats
 .env
 .npmrc
 **/.DS_Store

@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.215",
+    "version": "0.3.216",
     "description": "A TypeScript library containing common declarations and utilities used across other Data Positioning repositories.",
     "license": "MIT",
     "private": false,
@@ -57,13 +57,14 @@
         "format": "prettier --write src/",
         "lint": "eslint .",
         "publish:toNPM": "npm publish --access public",
-        "release": "npm run sync:withGitHub && npm run build && npm run publish:toNPM",
-        "sync:withGitHub": "npm run bump:version && node -e \"import('@datapos/datapos-development').then(m => m.syncWithGitHub())\"",
+        "release": "npm run bump:version && npm run build && npm run _sync:withGitHub && npm run publish:toNPM",
+        "sync": "npm run bump:version && npm run _sync:withGitHub",
         "test": "node -e \"import('@datapos/datapos-development').then(m => m.echoScriptNotImplemented('Test'))\"",
-        "update:dataPosDeps": "npm run _update:developDeps",
+        "update:dataPosDeps": "npm run _update:developDep",
         "_document:licenceReport": "license-report --only=prod,peer > LICENSES.json",
         "_document:licenceCheck": "license-report-check --source ./LICENSES.json --allowed 'MIT' --allowed 'n/a' --allowed 'Apache-2.0' --output=table",
-        "_update:developDeps": "npm install --save-dev @datapos/datapos-development@latest"
+        "_sync:withGitHub": "node -e \"import('@datapos/datapos-development').then(m => m.syncWithGitHub())\"",
+        "_update:developDep": "npm install --save-dev @datapos/datapos-development@latest"
     },
     "engines": {
         "node": ">=22.0.0",
