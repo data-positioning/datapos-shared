@@ -68,7 +68,7 @@ export type PresentationVisualChordViewType = {
     options: {};
 };
 export type PresentationVisualPeriodFLowBoundariesViewType = {
-    categoryId: 'periodFLowBoundaries';
+    categoryId: 'periodFlowBoundaries';
     label: Record<string, string>;
     options: {};
 };

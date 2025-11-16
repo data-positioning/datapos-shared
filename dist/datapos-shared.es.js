@@ -20,7 +20,7 @@ const w = 0, S = (e) => e, N = () => Date.now(), D = {
   cartesian_pyramid: { categoryId: "cartesian", typeId: "line", label: { "en-gb": "Pyramid" }, options: { highchartsType: "line" } },
   cartesian_spline: { categoryId: "cartesian", typeId: "line", label: { "en-gb": "Spline" }, options: { highchartsType: "line" } },
   chordDiagram: { categoryId: "chordDiagram", label: { "en-gb": "Chord Diagram" }, options: {} },
-  periodFLowBoundaries: { categoryId: "periodFLowBoundaries", label: { "en-gb": "Period Flow & Boundaries" }, options: {} },
+  periodFlowBoundaries: { categoryId: "periodFlowBoundaries", label: { "en-gb": "Period Flow & Boundaries" }, options: {} },
   polar_area: { categoryId: "polar", typeId: "area", label: { "en-gb": "Radar (Area)" }, options: { highchartsType: "area" } },
   polar_column: { categoryId: "polar", typeId: "column", label: { "en-gb": "Radar (Column)" }, options: { highchartsType: "column" } },
   polar_line: { categoryId: "polar", typeId: "line", label: { "en-gb": "Radar (Line)" }, options: { highchartsType: "line" } },
