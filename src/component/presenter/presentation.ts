@@ -28,6 +28,9 @@ export interface PresentationVisualCartesianViewConfig extends PresentationVisua
 export interface PresentationVisualChordDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'chordDiagram';
 }
+export interface PresentationVisualPeriodFlowBoundariesViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'periodFlowBoundaries';
+}
 export interface PresentationVisualPolarViewConfig extends PresentationVisualViewConfig {
     categoryId: 'polar';
     typeId: 'area' | 'column' | 'line';

@@ -45,8 +45,8 @@ export type { EventQueryConfig, EventQueryLocalisedConfig } from './component/ev
 export type { Informer, InformerConfig, InformerLocalisedConfig, InformerTools } from './component/informer';
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from './component/presenter';
 export type { PresentationConfig, PresentationView } from './component/presenter/presentation';
-export type { PresentationVisualConfig, PresentationVisualContentConfig, PresentationVisualViewConfig, PresentationVisualCartesianViewConfig, PresentationVisualChordDiagramViewConfig, PresentationVisualPolarViewConfig, PresentationVisualRangeViewConfig, PresentationVisualSankeyDiagramViewConfig, PresentationVisualStreamgraphViewConfig, PresentationVisualValuesViewConfig } from './component/presenter/presentation';
-export type { PresentationVisualViewType, PresentationVisualCartesianViewType, PresentationVisualChordViewType, PresentationVisualPolarViewType, PresentationVisualRangeViewType, PresentationVisualSankeyDiagramViewType, PresentationVisualStreamgraphViewType, PresentationVisualValuesViewType } from './component/presenter/presentation';
+export type { PresentationVisualConfig, PresentationVisualContentConfig, PresentationVisualViewConfig, PresentationVisualCartesianViewConfig, PresentationVisualChordDiagramViewConfig, PresentationVisualPeriodFlowBoundariesViewConfig, PresentationVisualPolarViewConfig, PresentationVisualRangeViewConfig, PresentationVisualSankeyDiagramViewConfig, PresentationVisualStreamgraphViewConfig, PresentationVisualValuesViewConfig } from './component/presenter/presentation';
+export type { PresentationVisualViewType, PresentationVisualCartesianViewType, PresentationVisualChordViewType, PresentationVisualPeriodFLowBoundariesViewType, PresentationVisualPolarViewType, PresentationVisualRangeViewType, PresentationVisualSankeyDiagramViewType, PresentationVisualStreamgraphViewType, PresentationVisualValuesViewType } from './component/presenter/presentation';
 export interface ContextOperationSettings {
     accountId?: string;
     appCheckToken?: string;
