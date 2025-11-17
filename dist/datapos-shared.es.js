@@ -1,125 +1,103 @@
-const E = ["createObject", "dropObject", "removeRecords", "upsertRecords"], I = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
-function C() {
-  function e(a, t, r) {
+const x = ["createObject", "dropObject", "removeRecords", "upsertRecords"], N = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
+function w() {
+  function e(t, n, r) {
     r.textContent = "Cytoscape.js diagram goes here...";
   }
   return { render: e };
 }
 function S() {
-  function e(a, t, r) {
-    console.log(1111, a), console.log(2222, t), console.log(3333, r), console.log(4444, r.childNodes), console.log(5555, r.children);
+  function e(t, n, r) {
+    console.log(1111, t), console.log(2222, n), console.log(3333, r), console.log(4444, r.childNodes), console.log(5555, r.children);
   }
   return { render: e };
 }
-const x = 0, w = (e) => e, N = () => Date.now(), D = {
-  cartesianChart_areaLine: { categoryId: "cartesianChart", typeId: "areaLine", label: { "en-gb": "Area Line" } },
-  cartesianChart_areaSpline: { categoryId: "cartesianChart", typeId: "areaSpline", label: { "en-gb": "Area Spline" } },
-  cartesianChart_bar: { categoryId: "cartesianChart", typeId: "bar", label: { "en-gb": "Bar" } },
-  cartesianChart_column: { categoryId: "cartesianChart", typeId: "column", label: { "en-gb": "Column" } },
-  cartesianChart_line: { categoryId: "cartesianChart", typeId: "line", label: { "en-gb": "Line" } },
-  cartesianChart_pyramid: { categoryId: "cartesianChart", typeId: "pyramid", label: { "en-gb": "Pyramid" } },
-  cartesianChart_spline: { categoryId: "cartesianChart", typeId: "spline", label: { "en-gb": "Spline" } },
-  chordDiagram: { categoryId: "chordDiagram", label: { "en-gb": "Chord Diagram" } },
-  periodFlowBoundariesChart: { categoryId: "periodFlowBoundariesChart", label: { "en-gb": "Period Flow & Boundaries" } },
-  polarChart_areaLine: { categoryId: "polarChart", typeId: "areaLine", label: { "en-gb": "Radar (Area Line)" } },
-  polarChart_areaSpline: { categoryId: "polarChart", typeId: "areaSpline", label: { "en-gb": "Radar (Area Spline)" } },
-  polarChart_column: { categoryId: "polarChart", typeId: "column", label: { "en-gb": "Radar (Column)" } },
-  polarChart_line: { categoryId: "polarChart", typeId: "line", label: { "en-gb": "Radar (Line)" } },
-  polarChart_spline: { categoryId: "polarChart", typeId: "spline", label: { "en-gb": "Radar (Spline)" } },
-  rangeChart_areaLine: { categoryId: "rangeChart", typeId: "areaLine", label: { "en-gb": "Range (Area Line)" } },
-  rangeChart_areaSpline: { categoryId: "rangeChart", typeId: "areaSpline", label: { "en-gb": "Range (Area Spline)" } },
-  rangeChart_bar: { categoryId: "rangeChart", typeId: "bar", label: { "en-gb": "Range (Bar)" } },
-  rangeChart_column: { categoryId: "rangeChart", typeId: "column", label: { "en-gb": "Range (Column)" } },
-  sankeyDiagram: { categoryId: "sankeyDiagram", label: { "en-gb": "Sankey Diagram" } },
-  streamGraph: { categoryId: "streamGraph", label: { "en-gb": "Streamgraph" } },
-  valueTable: { categoryId: "valueTable", label: { "en-gb": "Values" } }
-};
+const T = 0, y = (e) => e, D = () => Date.now();
 class u extends Error {
   locator;
-  constructor(a, t, r) {
-    super(a, r), this.name = "DataPosError", this.locator = t, Error.captureStackTrace?.(this, new.target);
+  constructor(t, n, r) {
+    super(t, r), this.name = "DataPosError", this.locator = n, Error.captureStackTrace?.(this, new.target);
   }
 }
-class i extends u {
-  constructor(a, t, r) {
-    super(a, t, r), this.name = "ApplicationError";
+class l extends u {
+  constructor(t, n, r) {
+    super(t, n, r), this.name = "ApplicationError";
   }
 }
-class T extends i {
-  constructor(a, t, r) {
-    super(a, t, r), this.name = "APIError";
+class v extends l {
+  constructor(t, n, r) {
+    super(t, n, r), this.name = "APIError";
   }
 }
-class v extends i {
-  constructor(a, t, r) {
-    super(a, t, r), this.name = "EngineError";
+class O extends l {
+  constructor(t, n, r) {
+    super(t, n, r), this.name = "EngineError";
   }
 }
-class g extends i {
+class m extends l {
   body;
-  constructor(a, t, r, n) {
-    super(a, t, n), this.name = "FetchError", this.body = r;
+  constructor(t, n, r, o) {
+    super(t, n, o), this.name = "FetchError", this.body = r;
   }
 }
-class b extends i {
+class g extends l {
   componentName;
   info;
-  constructor(a, t, r, n, s) {
-    super(a, t, s), this.name = "VueHandledError", this.info = r, this.componentName = n;
+  constructor(t, n, r, o, s) {
+    super(t, n, s), this.name = "VueHandledError", this.info = r, this.componentName = o;
   }
 }
-class R extends i {
-  constructor(a, t, r) {
-    super(a, t, r), this.name = "WindowHandledRuntimeError";
+class $ extends l {
+  constructor(t, n, r) {
+    super(t, n, r), this.name = "WindowHandledRuntimeError";
   }
 }
-class A extends i {
-  constructor(a, t, r) {
-    super(a, t, r), this.name = "WindowHandledPromiseRejectionError";
+class I extends l {
+  constructor(t, n, r) {
+    super(t, n, r), this.name = "WindowHandledPromiseRejectionError";
   }
 }
-class O extends u {
-  constructor(a, t, r) {
-    super(a, t, r), this.name = "OperationalError";
+class A extends u {
+  constructor(t, n, r) {
+    super(t, n, r), this.name = "OperationalError";
   }
 }
-async function $(e, a, t) {
-  const r = `${a} Response status '${e.status}${e.statusText ? ` - ${e.statusText}` : ""}' received.`, n = await e.text();
-  return new g(r, t, n);
+async function C(e, t, n) {
+  const r = `${t} Response status '${e.status}${e.statusText ? ` - ${e.statusText}` : ""}' received.`, o = await e.text();
+  return new m(r, n, o);
 }
-function _(e) {
-  return e.map((a) => a.message).join(" ");
+function F(e) {
+  return e.map((t) => t.message).join(" ");
 }
-function F(e, a = "Unknown error.") {
+function R(e, t = "Unknown error.") {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
   try {
-    return new Error(JSON.stringify(e ?? a));
+    return new Error(JSON.stringify(e ?? t));
   } catch {
-    return new Error(a);
+    return new Error(t);
   }
 }
-function L(e) {
-  const a = /* @__PURE__ */ new Set(), t = [];
+function k(e) {
+  const t = /* @__PURE__ */ new Set(), n = [];
   let r = e;
-  for (; r && !a.has(r); ) {
-    a.add(r);
-    let n;
-    if (r instanceof g)
-      n = { body: r.body, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
-    else if (r instanceof b)
-      n = { componentName: r.componentName, info: r.info, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
+  for (; r && !t.has(r); ) {
+    t.add(r);
+    let o;
+    if (r instanceof m)
+      o = { body: r.body, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
+    else if (r instanceof g)
+      o = { componentName: r.componentName, info: r.info, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
     else if (r instanceof u)
-      n = { locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
+      o = { locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
     else if (r instanceof Error) {
       const s = r;
-      n = { locator: "", message: s.message, name: s.name, stack: s.stack }, r = s.cause;
-    } else r ? (n = { locator: "", message: String(r), name: "Error" }, r = void 0) : (n = { locator: "", message: "Unknown error.", name: "Error" }, r = void 0);
-    /(?:\.{3}|[.!?])$/.test(n.message) || (n.message += "."), t.push(n);
+      o = { locator: "", message: s.message, name: s.name, stack: s.stack }, r = s.cause;
+    } else r ? (o = { locator: "", message: String(r), name: "Error" }, r = void 0) : (o = { locator: "", message: "Unknown error.", name: "Error" }, r = void 0);
+    /(?:\.{3}|[.!?])$/.test(o.message) || (o.message += "."), n.push(o);
   }
-  return t;
+  return n;
 }
-const m = "en-US", c = {}, k = (e) => {
+const f = "en-US", c = {}, B = (e) => {
   switch (e) {
     case "Edm.Binary":
       return "unknown";
@@ -158,41 +136,41 @@ const m = "en-US", c = {}, k = (e) => {
     default:
       return "unknown";
   }
-}, B = (e) => {
-  if (e) {
-    const a = e.lastIndexOf("/"), t = e.lastIndexOf(".", a > -1 ? a : e.length);
-    return t > -1 ? e.substring(0, t) : e;
-  }
 }, M = (e) => {
   if (e) {
-    const a = e.lastIndexOf(".");
-    if (a > -1) return e.substring(a + 1);
+    const t = e.lastIndexOf("/"), n = e.lastIndexOf(".", t > -1 ? t : e.length);
+    return n > -1 ? e.substring(0, n) : e;
   }
-}, o = (e, a = 2, t = a, r = m) => {
+}, j = (e) => {
+  if (e) {
+    const t = e.lastIndexOf(".");
+    if (t > -1) return e.substring(t + 1);
+  }
+}, a = (e, t = 2, n = t, r = f) => {
   if (e == null) return "";
-  const n = `${r}decimal${a}.${t}`;
-  let s = c[n];
+  const o = `${r}decimal${t}.${n}`;
+  let s = c[o];
   return s || (s = new Intl.NumberFormat(r, {
     localeMatcher: "best fit",
-    maximumFractionDigits: a,
-    minimumFractionDigits: t,
+    maximumFractionDigits: t,
+    minimumFractionDigits: n,
     minimumIntegerDigits: 1,
     style: "decimal",
     useGrouping: !0
-  }), c[n] = s), s.format(e);
-}, j = (e) => e == null ? "" : e < 1e3 ? d(e) : e < 1e6 ? `${o(e / 1e3, 2, 0)}K` : e < 1e9 ? `${o(e / 1e6, 2, 0)}M` : e < 1e12 ? `${o(e / 1e9, 2, 0)}B` : `${o(e / 1e12, 2, 0)}T`, U = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${d(e)} bytes` : e < 1048576 ? `${o(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${o(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${o(e / 1073741824, 2, 0)} GB` : `${o(e / 1099511627776, 2, 0)} TB`, G = (e) => e == null ? "" : e < 1e3 ? `${d(e)} ms` : e === 1e3 ? `${d(e)} sec` : e < 6e4 ? `${o(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${o(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${o(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${o(e / 864e5, 2, 0)} days`, d = (e, a = m) => {
+  }), c[o] = s), s.format(e);
+}, U = (e) => e == null ? "" : e < 1e3 ? d(e) : e < 1e6 ? `${a(e / 1e3, 2, 0)}K` : e < 1e9 ? `${a(e / 1e6, 2, 0)}M` : e < 1e12 ? `${a(e / 1e9, 2, 0)}B` : `${a(e / 1e12, 2, 0)}T`, L = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${d(e)} bytes` : e < 1048576 ? `${a(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${a(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${a(e / 1073741824, 2, 0)} GB` : `${a(e / 1099511627776, 2, 0)} TB`, _ = (e) => e == null ? "" : e < 1e3 ? `${d(e)} ms` : e === 1e3 ? `${d(e)} sec` : e < 6e4 ? `${a(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${a(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${a(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${a(e / 864e5, 2, 0)} days`, d = (e, t = f) => {
   if (e == null) return "";
-  const t = `${a}decimal0.0`;
-  let r = c[t];
-  return r || (r = new Intl.NumberFormat(a, {
+  const n = `${t}decimal0.0`;
+  let r = c[n];
+  return r || (r = new Intl.NumberFormat(t, {
     localeMatcher: "best fit",
     maximumFractionDigits: 0,
     minimumFractionDigits: 0,
     minimumIntegerDigits: 1,
     style: "decimal",
     useGrouping: !0
-  }), c[t] = r), r.format(e);
-}, V = (e) => {
+  }), c[n] = r), r.format(e);
+}, W = (e) => {
   switch (e) {
     case "csv":
       return "text/csv";
@@ -206,7 +184,7 @@ const m = "en-US", c = {}, k = (e) => {
     default:
       return "application/octet-stream";
   }
-}, p = [
+}, b = [
   { id: "dtv", label: { "en-gb": "Delimited Text" } },
   { id: "e/e", label: { "en-gb": "Entity/Event" } },
   { id: "jsonArray", label: { "en-gb": "JSON Array" } },
@@ -214,22 +192,22 @@ const m = "en-US", c = {}, k = (e) => {
   { id: "xls", label: { "en-gb": "XLS" } },
   { id: "xlsx", label: { "en-gb": "XLSX" } },
   { id: "xml", label: { "en-gb": "XML" } }
-], W = (e = l) => {
-  const a = [];
-  for (const t of p) a.push({ ...t, label: t.label[e] || t.label[l] || t.id });
-  return a;
-}, f = [
+], G = (e = i) => {
+  const t = [];
+  for (const n of b) t.push({ ...n, label: n.label[e] || n.label[i] || n.id });
+  return t;
+}, p = [
   { id: `
 `, label: { "en-gb": "Newline" } },
   { id: "\r", label: { "en-gb": "Carriage Return" } },
   { id: `\r
 `, label: { "en-gb": "Carriage Return/Newline" } }
-], P = (e = l) => {
-  const a = [];
-  for (const t of f)
-    a.push({ ...t, label: t.label[e] || t.label[l] || t.id });
-  return a;
-}, h = [
+], V = (e = i) => {
+  const t = [];
+  for (const n of p)
+    t.push({ ...n, label: n.label[e] || n.label[i] || n.id });
+  return t;
+}, E = [
   { id: ":", label: { "en-gb": "Colon" } },
   { id: ",", label: { "en-gb": "Comma" } },
   { id: "!", label: { "en-gb": "Exclamation Mark" } },
@@ -241,12 +219,12 @@ const m = "en-US", c = {}, k = (e) => {
   { id: "_", label: { "en-gb": "Underscore" } },
   { id: "0x1F", label: { "en-gb": "Unit Separator" } },
   { id: "|", label: { "en-gb": "Vertical Bar" } }
-], X = (e = l) => {
-  const a = [];
-  for (const t of h)
-    a.push({ ...t, label: t.label[e] || t.label[l] || t.id });
-  return a;
-}, y = [
+], X = (e = i) => {
+  const t = [];
+  for (const n of E)
+    t.push({ ...n, label: n.label[e] || n.label[i] || n.id });
+  return t;
+}, h = [
   { id: "alpha", color: "red", label: { "en-gb": "alpha" } },
   { id: "beta", color: "amber", label: { "en-gb": "beta" } },
   { id: "generalAvailability", color: "green", label: { "en-gb": "" } },
@@ -256,43 +234,42 @@ const m = "en-US", c = {}, k = (e) => {
   { id: "releaseCandidate", color: "green", label: { "en-gb": "release-candidate" } },
   { id: "unavailable", color: "other", label: { "en-gb": "unavailable" } },
   { id: "underReview", color: "other", label: { "en-gb": "under-review" } }
-], z = (e, a = l) => {
-  const t = y.find((r) => r.id === e);
-  return t ? { ...t, label: t.label[a] || t.label[l] || e } : { id: e, color: "other", label: e };
-}, l = "en-gb";
+], z = (e, t = i) => {
+  const n = h.find((r) => r.id === e);
+  return n ? { ...n, label: n.label[t] || n.label[i] || e } : { id: e, color: "other", label: e };
+}, i = "en-gb";
 export {
-  T as APIError,
-  i as ApplicationError,
-  E as CONNECTOR_DESTINATION_OPERATIONS,
-  I as CONNECTOR_SOURCE_OPERATIONS,
-  l as DEFAULT_LOCALE_CODE,
-  x as DefaultTimestamp,
-  v as EngineError,
-  g as FetchError,
-  O as OperationalError,
-  b as VueError,
-  A as WindowPromiseRejectionError,
-  R as WindowRuntimeError,
-  $ as buildFetchError,
-  _ as concatenateSerialisedErrorMessages,
-  w as convertMillisecondsToTimestamp,
-  k as convertODataTypeIdToUsageTypeId,
-  M as extractExtensionFromPath,
-  B as extractNameFromPath,
-  o as formatNumberAsDecimalNumber,
-  G as formatNumberAsDuration,
-  j as formatNumberAsSize,
-  U as formatNumberAsStorageSize,
+  v as APIError,
+  l as ApplicationError,
+  x as CONNECTOR_DESTINATION_OPERATIONS,
+  N as CONNECTOR_SOURCE_OPERATIONS,
+  i as DEFAULT_LOCALE_CODE,
+  T as DefaultTimestamp,
+  O as EngineError,
+  m as FetchError,
+  A as OperationalError,
+  g as VueError,
+  I as WindowPromiseRejectionError,
+  $ as WindowRuntimeError,
+  C as buildFetchError,
+  F as concatenateSerialisedErrorMessages,
+  y as convertMillisecondsToTimestamp,
+  B as convertODataTypeIdToUsageTypeId,
+  j as extractExtensionFromPath,
+  M as extractNameFromPath,
+  a as formatNumberAsDecimalNumber,
+  _ as formatNumberAsDuration,
+  U as formatNumberAsSize,
+  L as formatNumberAsStorageSize,
   d as formatNumberAsWholeNumber,
   z as getComponentStatus,
-  N as getCurrentTimestamp,
-  W as getDataFormats,
-  P as getRecordDelimiters,
+  D as getCurrentTimestamp,
+  G as getDataFormats,
+  V as getRecordDelimiters,
   X as getValueDelimiters,
-  V as lookupMimeTypeForExtension,
-  F as normalizeToError,
-  D as presentationViewTypeMap,
-  L as serialiseError,
-  C as useCytoscapeJS,
+  W as lookupMimeTypeForExtension,
+  R as normalizeToError,
+  k as serialiseError,
+  w as useCytoscapeJS,
   S as useDataTable
 };

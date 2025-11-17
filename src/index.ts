@@ -137,17 +137,6 @@ export type {
     PresentationVisualStreamGraphViewConfig,
     PresentationVisualValueTableViewConfig
 } from '@/component/presenter/presentation';
-export type {
-    PresentationVisualViewType,
-    PresentationVisualCartesianChartViewType,
-    PresentationVisualChordDiagramViewType,
-    PresentationVisualPeriodFlowBoundariesChartViewType,
-    PresentationVisualPolarChartViewType,
-    PresentationVisualRangeChartViewType,
-    PresentationVisualSankeyDiagramViewType,
-    PresentationVisualStreamGraphViewType,
-    PresentationVisualValueTableViewType
-} from '@/component/presenter/presentation';
 
 // Types/Interfaces/Operations - Context Operator Settings
 export interface ContextOperationSettings {
@@ -166,7 +155,6 @@ export { useDataTable } from '@/composables/useDataTable';
 // Constants
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
-export { presentationViewTypeMap } from '@/component/presenter/presentation';
 
 // Errors
 export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';

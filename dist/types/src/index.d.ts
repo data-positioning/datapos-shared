@@ -46,7 +46,6 @@ export type { Informer, InformerConfig, InformerLocalisedConfig, InformerTools }
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from './component/presenter';
 export type { PresentationConfig, PresentationView } from './component/presenter/presentation';
 export type { PresentationCategoryId, PresentationCartesianTypeId, PresentationPolarTypeId, PresentationRangeTypeId, PresentationVisualConfig, PresentationVisualContentConfig, PresentationVisualViewConfig, PresentationVisualCartesianChartViewConfig, PresentationVisualChordDiagramViewConfig, PresentationVisualPeriodFlowBoundariesChartViewConfig, PresentationVisualPolarChartViewConfig, PresentationVisualRangeChartViewConfig, PresentationVisualSankeyDiagramViewConfig, PresentationVisualStreamGraphViewConfig, PresentationVisualValueTableViewConfig } from './component/presenter/presentation';
-export type { PresentationVisualViewType, PresentationVisualCartesianChartViewType, PresentationVisualChordDiagramViewType, PresentationVisualPeriodFlowBoundariesChartViewType, PresentationVisualPolarChartViewType, PresentationVisualRangeChartViewType, PresentationVisualSankeyDiagramViewType, PresentationVisualStreamGraphViewType, PresentationVisualValueTableViewType } from './component/presenter/presentation';
 export interface ContextOperationSettings {
     accountId?: string;
     appCheckToken?: string;
@@ -57,7 +56,6 @@ export { type CytoscapeJSView, useCytoscapeJS } from './composables/useCytoscape
 export { useDataTable } from './composables/useDataTable';
 export declare const DEFAULT_LOCALE_CODE: LocaleCode;
 export { DefaultTimestamp } from './timestamp';
-export { presentationViewTypeMap } from './component/presenter/presentation';
 export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from './errors';
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from './errors';
 export { convertMillisecondsToTimestamp, getCurrentTimestamp } from './timestamp';

@@ -67,46 +67,7 @@ export interface PresentationVisualStreamGraphViewConfig extends PresentationVis
 export interface PresentationVisualValueTableViewConfig extends PresentationVisualViewConfig {
     categoryId: 'valueTable';
 }
-export interface PresentationVisualViewType {
-    categoryId: PresentationCategoryId;
-}
-export interface PresentationVisualCartesianChartViewType extends PresentationVisualViewType {
-    categoryId: 'cartesianChart';
-    typeId: PresentationCartesianTypeId;
-    label: Record<string, string>;
-}
-export interface PresentationVisualChordDiagramViewType extends PresentationVisualViewType {
-    categoryId: 'chordDiagram';
-    label: Record<string, string>;
-}
-export interface PresentationVisualPeriodFlowBoundariesChartViewType extends PresentationVisualViewType {
-    categoryId: 'periodFlowBoundariesChart';
-    label: Record<string, string>;
-}
-export interface PresentationVisualPolarChartViewType extends PresentationVisualViewType {
-    categoryId: 'polarChart';
-    typeId: PresentationPolarTypeId;
-    label: Record<string, string>;
-}
-export interface PresentationVisualRangeChartViewType extends PresentationVisualViewType {
-    categoryId: 'rangeChart';
-    typeId: PresentationRangeTypeId;
-    label: Record<string, string>;
-}
-export interface PresentationVisualSankeyDiagramViewType extends PresentationVisualViewType {
-    categoryId: 'sankeyDiagram';
-    label: Record<string, string>;
-}
-export interface PresentationVisualStreamGraphViewType extends PresentationVisualViewType {
-    categoryId: 'streamGraph';
-    label: Record<string, string>;
-}
-export interface PresentationVisualValueTableViewType extends PresentationVisualViewType {
-    categoryId: 'valueTable';
-    label: Record<string, string>;
-}
 export interface PresentationView {
     resize: () => void;
     vendorId: string;
 }
-export declare const presentationViewTypeMap: Record<string, PresentationVisualViewType>;
