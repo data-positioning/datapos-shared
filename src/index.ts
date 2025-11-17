@@ -125,10 +125,13 @@ export type {
     PresentationVisualContentConfig,
     PresentationVisualViewConfig,
     PresentationVisualCartesianChartViewConfig,
+    PresentationVisualCartesianTypeId,
     PresentationVisualChordDiagramViewConfig,
     PresentationVisualPeriodFlowBoundariesChartViewConfig,
     PresentationVisualPolarChartViewConfig,
+    PresentationVisualPolarTypeId,
     PresentationVisualRangeChartViewConfig,
+    PresentationVisualRangeTypeId,
     PresentationVisualSankeyDiagramViewConfig,
     PresentationVisualStreamGraphViewConfig,
     PresentationVisualValueTableViewConfig
