@@ -7,6 +7,7 @@ function C() {
 }
 function S() {
   function e(a, t, r) {
+    console.log(1111, a), console.log(2222, t), console.log(3333, r), console.log(4444, r.childNodes), console.log(5555, r.children);
   }
   return { render: e };
 }
