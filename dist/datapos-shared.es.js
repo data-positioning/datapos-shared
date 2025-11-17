@@ -1,35 +1,35 @@
 const E = ["createObject", "dropObject", "removeRecords", "upsertRecords"], I = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
-function x() {
+function C() {
   function e(a, t, r) {
     r.textContent = "Cytoscape.js diagram goes here...";
   }
   return { render: e };
 }
-function S() {
+function x() {
   function e(a, t, r) {
     r.textContent = "values table goes here...";
   }
   return { render: e };
 }
-const C = 0, w = (e) => e, N = () => Date.now(), D = {
-  cartesian_areaLine: { categoryId: "cartesianChart", typeId: "areaLine", label: { "en-gb": "Area Line" } },
-  cartesian_areaSpline: { categoryId: "cartesianChart", typeId: "areaSpline", label: { "en-gb": "Area Spline" } },
-  cartesian_bar: { categoryId: "cartesianChart", typeId: "bar", label: { "en-gb": "Bar" } },
-  cartesian_column: { categoryId: "cartesianChart", typeId: "column", label: { "en-gb": "Column" } },
-  cartesian_line: { categoryId: "cartesianChart", typeId: "line", label: { "en-gb": "Line" } },
-  cartesian_pyramid: { categoryId: "cartesianChart", typeId: "pyramid", label: { "en-gb": "Pyramid" } },
-  cartesian_spline: { categoryId: "cartesianChart", typeId: "spline", label: { "en-gb": "Spline" } },
+const S = 0, w = (e) => e, N = () => Date.now(), D = {
+  cartesianChart_areaLine: { categoryId: "cartesianChart", typeId: "areaLine", label: { "en-gb": "Area Line" } },
+  cartesianChart_areaSpline: { categoryId: "cartesianChart", typeId: "areaSpline", label: { "en-gb": "Area Spline" } },
+  cartesianChart_bar: { categoryId: "cartesianChart", typeId: "bar", label: { "en-gb": "Bar" } },
+  cartesianChart_column: { categoryId: "cartesianChart", typeId: "column", label: { "en-gb": "Column" } },
+  cartesianChart_line: { categoryId: "cartesianChart", typeId: "line", label: { "en-gb": "Line" } },
+  cartesianChart_pyramid: { categoryId: "cartesianChart", typeId: "pyramid", label: { "en-gb": "Pyramid" } },
+  cartesianChart_spline: { categoryId: "cartesianChart", typeId: "spline", label: { "en-gb": "Spline" } },
   chordDiagram: { categoryId: "chordDiagram", label: { "en-gb": "Chord Diagram" } },
   periodFlowBoundariesChart: { categoryId: "periodFlowBoundariesChart", label: { "en-gb": "Period Flow & Boundaries" } },
-  polar_areaLine: { categoryId: "polarChart", typeId: "areaLine", label: { "en-gb": "Radar (Area Line)" } },
-  polar_areaSpline: { categoryId: "polarChart", typeId: "areaSpline", label: { "en-gb": "Radar (Area Spline)" } },
-  polar_column: { categoryId: "polarChart", typeId: "column", label: { "en-gb": "Radar (Column)" } },
-  polar_line: { categoryId: "polarChart", typeId: "line", label: { "en-gb": "Radar (Line)" } },
-  polar_spline: { categoryId: "polarChart", typeId: "spline", label: { "en-gb": "Radar (Spline)" } },
-  range_areaLine: { categoryId: "rangeChart", typeId: "areaLine", label: { "en-gb": "Range (Area Line)" } },
-  range_areaSpline: { categoryId: "rangeChart", typeId: "areaSpline", label: { "en-gb": "Range (Area Spline)" } },
-  range_bar: { categoryId: "rangeChart", typeId: "bar", label: { "en-gb": "Range (Bar)" } },
-  range_column: { categoryId: "rangeChart", typeId: "column", label: { "en-gb": "Range (Column)" } },
+  polarChart_areaLine: { categoryId: "polarChart", typeId: "areaLine", label: { "en-gb": "Radar (Area Line)" } },
+  polarChart_areaSpline: { categoryId: "polarChart", typeId: "areaSpline", label: { "en-gb": "Radar (Area Spline)" } },
+  polarChart_column: { categoryId: "polarChart", typeId: "column", label: { "en-gb": "Radar (Column)" } },
+  polarChart_line: { categoryId: "polarChart", typeId: "line", label: { "en-gb": "Radar (Line)" } },
+  polarChart_spline: { categoryId: "polarChart", typeId: "spline", label: { "en-gb": "Radar (Spline)" } },
+  rangeChart_areaLine: { categoryId: "rangeChart", typeId: "areaLine", label: { "en-gb": "Range (Area Line)" } },
+  rangeChart_areaSpline: { categoryId: "rangeChart", typeId: "areaSpline", label: { "en-gb": "Range (Area Spline)" } },
+  rangeChart_bar: { categoryId: "rangeChart", typeId: "bar", label: { "en-gb": "Range (Bar)" } },
+  rangeChart_column: { categoryId: "rangeChart", typeId: "column", label: { "en-gb": "Range (Column)" } },
   sankeyDiagram: { categoryId: "sankeyDiagram", label: { "en-gb": "Sankey Diagram" } },
   streamGraph: { categoryId: "streamGraph", label: { "en-gb": "Streamgraph" } },
   valueTable: { categoryId: "valueTable", label: { "en-gb": "Values" } }
@@ -229,7 +229,7 @@ const m = "en-US", c = {}, k = (e) => {
   for (const t of f)
     a.push({ ...t, label: t.label[e] || t.label[l] || t.id });
   return a;
-}, y = [
+}, h = [
   { id: ":", label: { "en-gb": "Colon" } },
   { id: ",", label: { "en-gb": "Comma" } },
   { id: "!", label: { "en-gb": "Exclamation Mark" } },
@@ -243,10 +243,10 @@ const m = "en-US", c = {}, k = (e) => {
   { id: "|", label: { "en-gb": "Vertical Bar" } }
 ], X = (e = l) => {
   const a = [];
-  for (const t of y)
+  for (const t of h)
     a.push({ ...t, label: t.label[e] || t.label[l] || t.id });
   return a;
-}, h = [
+}, y = [
   { id: "alpha", color: "red", label: { "en-gb": "alpha" } },
   { id: "beta", color: "amber", label: { "en-gb": "beta" } },
   { id: "generalAvailability", color: "green", label: { "en-gb": "" } },
@@ -257,7 +257,7 @@ const m = "en-US", c = {}, k = (e) => {
   { id: "unavailable", color: "other", label: { "en-gb": "unavailable" } },
   { id: "underReview", color: "other", label: { "en-gb": "under-review" } }
 ], z = (e, a = l) => {
-  const t = h.find((r) => r.id === e);
+  const t = y.find((r) => r.id === e);
   return t ? { ...t, label: t.label[a] || t.label[l] || e } : { id: e, color: "other", label: e };
 }, l = "en-gb";
 export {
@@ -266,7 +266,7 @@ export {
   E as CONNECTOR_DESTINATION_OPERATIONS,
   I as CONNECTOR_SOURCE_OPERATIONS,
   l as DEFAULT_LOCALE_CODE,
-  C as DefaultTimestamp,
+  S as DefaultTimestamp,
   v as EngineError,
   g as FetchError,
   O as OperationalError,
@@ -293,6 +293,6 @@ export {
   F as normalizeToError,
   D as presentationViewTypeMap,
   L as serialiseError,
-  x as useCytoscapeJS,
-  S as useDataTable
+  C as useCytoscapeJS,
+  x as useDataTable
 };
