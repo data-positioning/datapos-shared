@@ -13,8 +13,8 @@ export interface PresentationConfig extends ComponentConfig {
 
 export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'periodFlowBoundariesChart' | 'polarChart' | 'rangeChart' | 'sankeyDiagram' | 'streamGraph' | 'valueTable';
 export type PresentationCartesianTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
-export type PresentationPolarTypeId = 'area' | 'column' | 'line';
-export type PresentationRangeTypeId = 'area' | 'bar' | 'column';
+export type PresentationPolarTypeId = 'areaLine' | 'areaSpline' | 'column' | 'line' | 'spline'; // TODO: One Highcharts demo suggests 'areaRange' is supported (https://www.highcharts.com/demo/polar/sand-signika?utm_source=chatgpt.com).
+export type PresentationRangeTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column';
 
 // Interface/Types - Presentation visual configuration.
 export type PresentationVisualConfig = {
@@ -118,10 +118,13 @@ export const presentationViewTypeMap: Record<string, PresentationVisualViewType>
     cartesian_spline: { categoryId: 'cartesianChart', typeId: 'spline', label: { 'en-gb': 'Spline' } } as PresentationVisualCartesianChartViewType,
     chordDiagram: { categoryId: 'chordDiagram', label: { 'en-gb': 'Chord Diagram' } } as PresentationVisualChordDiagramViewType,
     periodFlowBoundariesChart: { categoryId: 'periodFlowBoundariesChart', label: { 'en-gb': 'Period Flow & Boundaries' } } as PresentationVisualPeriodFlowBoundariesChartViewType,
-    polar_area: { categoryId: 'polarChart', typeId: 'area', label: { 'en-gb': 'Radar (Area)' } } as PresentationVisualPolarChartViewType,
+    polar_areaLine: { categoryId: 'polarChart', typeId: 'areaLine', label: { 'en-gb': 'Radar (Area Line)' } } as PresentationVisualPolarChartViewType,
+    polar_areaSpline: { categoryId: 'polarChart', typeId: 'areaSpline', label: { 'en-gb': 'Radar (Area Spline)' } } as PresentationVisualPolarChartViewType,
     polar_column: { categoryId: 'polarChart', typeId: 'column', label: { 'en-gb': 'Radar (Column)' } } as PresentationVisualPolarChartViewType,
     polar_line: { categoryId: 'polarChart', typeId: 'line', label: { 'en-gb': 'Radar (Line)' } } as PresentationVisualPolarChartViewType,
-    range_area: { categoryId: 'rangeChart', typeId: 'area', label: { 'en-gb': 'Range (Area)' } } as PresentationVisualRangeChartViewType,
+    polar_spline: { categoryId: 'polarChart', typeId: 'spline', label: { 'en-gb': 'Radar (Spline)' } } as PresentationVisualPolarChartViewType,
+    range_areaLine: { categoryId: 'rangeChart', typeId: 'areaLine', label: { 'en-gb': 'Range (Area Line)' } } as PresentationVisualRangeChartViewType,
+    range_areaSpline: { categoryId: 'rangeChart', typeId: 'areaSpline', label: { 'en-gb': 'Range (Area Spline)' } } as PresentationVisualRangeChartViewType,
     range_bar: { categoryId: 'rangeChart', typeId: 'bar', label: { 'en-gb': 'Range (Bar)' } } as PresentationVisualRangeChartViewType,
     range_column: { categoryId: 'rangeChart', typeId: 'column', label: { 'en-gb': 'Range (Column)' } } as PresentationVisualRangeChartViewType,
     sankeyDiagram: { categoryId: 'sankeyDiagram', label: { 'en-gb': 'Sankey Diagram' } } as PresentationVisualSankeyDiagramViewType,
