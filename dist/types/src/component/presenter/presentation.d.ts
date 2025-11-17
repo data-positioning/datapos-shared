@@ -13,7 +13,9 @@ export type PresentationVisualContentConfig = {
     };
     data: {
         name: string;
-        categoryLabels: string[];
+        categories: {
+            labels: string;
+        }[];
         measures: {
             id: string;
             name: string;
