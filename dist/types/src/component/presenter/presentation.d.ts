@@ -8,14 +8,23 @@ export type PresentationVisualConfig = {
     views: PresentationVisualViewConfig[];
 };
 export type PresentationVisualContentConfig = {
-    title: {
+    title?: {
         text: string;
     };
     data: {
-        name: string;
-        categories: {
-            labels: string;
-        }[];
+        label?: {
+            text: string;
+        };
+        dimension: {
+            label?: {
+                text: string;
+            };
+            values: {
+                label?: {
+                    text: string;
+                };
+            }[];
+        };
         measures: {
             id: string;
             name: string;

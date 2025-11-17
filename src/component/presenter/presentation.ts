@@ -14,8 +14,12 @@ export interface PresentationConfig extends ComponentConfig {
 // Interface/Types - Presentation visual configuration.
 export type PresentationVisualConfig = { content: PresentationVisualContentConfig; views: PresentationVisualViewConfig[] };
 export type PresentationVisualContentConfig = {
-    title: { text: string };
-    data: { name: string; categories: { labels: string }[]; measures: { id: string; name: string; values: number[][] }[] };
+    title?: { text: string };
+    data: {
+        label?: { text: string };
+        dimension: { label?: { text: string }; values: { label?: { text: string } }[] };
+        measures: { id: string; name: string; values: number[][] }[];
+    };
 };
 export interface PresentationVisualViewConfig {
     categoryId: 'cartesian' | 'chordDiagram' | 'periodFlowBoundaries' | 'polar' | 'range' | 'sankeyDiagram' | 'streamgraph' | 'values';
