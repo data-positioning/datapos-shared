@@ -5,33 +5,34 @@ export interface PresentationConfig extends ComponentConfig {
 }
 export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'periodFlowBoundariesChart' | 'polarChart' | 'rangeChart' | 'sankeyDiagram' | 'streamGraph' | 'valueTable';
 export type PresentationVisualConfig = {
-    content: {
-        title?: {
+    content: PresentationContentConfig;
+    views: PresentationVisualViewConfig[];
+};
+export interface PresentationContentConfig {
+    title?: {
+        text: string;
+    };
+    data: {
+        label?: {
             text: string;
         };
-        data: {
+        dimension: {
             label?: {
                 text: string;
             };
-            dimension: {
+            values: {
                 label?: {
                     text: string;
                 };
-                values: {
-                    label?: {
-                        text: string;
-                    };
-                }[];
-            };
-            measures: {
-                id: string;
-                name: string;
-                values: number[][];
             }[];
         };
+        measures: {
+            id: string;
+            name: string;
+            values: number[][];
+        }[];
     };
-    views: PresentationVisualViewConfig[];
-};
+}
 export interface PresentationVisualViewConfig {
     categoryId: PresentationCategoryId;
     default?: boolean;
