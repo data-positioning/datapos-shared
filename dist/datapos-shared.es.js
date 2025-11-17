@@ -1,17 +1,16 @@
-const E = ["createObject", "dropObject", "removeRecords", "upsertRecords"], C = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
-function I() {
+const E = ["createObject", "dropObject", "removeRecords", "upsertRecords"], I = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
+function C() {
   function e(a, t, r) {
     r.textContent = "Cytoscape.js diagram goes here...";
   }
   return { render: e };
 }
-function x() {
+function S() {
   function e(a, t, r) {
-    console.log(1111, a), console.log(2222, t), console.log(3333, r), console.log(4444, r.textContent), r.textContent = "values table goes here...", console.log(5555, r.textContent);
   }
   return { render: e };
 }
-const S = 0, w = (e) => e, N = () => Date.now(), D = {
+const x = 0, w = (e) => e, N = () => Date.now(), D = {
   cartesianChart_areaLine: { categoryId: "cartesianChart", typeId: "areaLine", label: { "en-gb": "Area Line" } },
   cartesianChart_areaSpline: { categoryId: "cartesianChart", typeId: "areaSpline", label: { "en-gb": "Area Spline" } },
   cartesianChart_bar: { categoryId: "cartesianChart", typeId: "bar", label: { "en-gb": "Bar" } },
@@ -264,9 +263,9 @@ export {
   T as APIError,
   i as ApplicationError,
   E as CONNECTOR_DESTINATION_OPERATIONS,
-  C as CONNECTOR_SOURCE_OPERATIONS,
+  I as CONNECTOR_SOURCE_OPERATIONS,
   l as DEFAULT_LOCALE_CODE,
-  S as DefaultTimestamp,
+  x as DefaultTimestamp,
   v as EngineError,
   g as FetchError,
   O as OperationalError,
@@ -293,6 +292,6 @@ export {
   F as normalizeToError,
   D as presentationViewTypeMap,
   L as serialiseError,
-  I as useCytoscapeJS,
-  x as useDataTable
+  C as useCytoscapeJS,
+  S as useDataTable
 };
