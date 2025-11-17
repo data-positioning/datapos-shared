@@ -5,10 +5,10 @@ export interface PresentationConfig extends ComponentConfig {
 }
 export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'periodFlowBoundariesChart' | 'polarChart' | 'rangeChart' | 'sankeyDiagram' | 'streamGraph' | 'valueTable';
 export type PresentationVisualConfig = {
-    content: PresentationContentConfig;
+    content: PresentationVisualContentConfig;
     views: PresentationVisualViewConfig[];
 };
-export interface PresentationContentConfig {
+export interface PresentationVisualContentConfig {
     title?: {
         text: string;
     };

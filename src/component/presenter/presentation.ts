@@ -15,10 +15,10 @@ export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'period
 
 // Interface/Types - Presentation visual configuration.
 export type PresentationVisualConfig = {
-    content: PresentationContentConfig;
+    content: PresentationVisualContentConfig;
     views: PresentationVisualViewConfig[];
 };
-export interface PresentationContentConfig {
+export interface PresentationVisualContentConfig {
     title?: { text: string };
     data: {
         label?: { text: string };

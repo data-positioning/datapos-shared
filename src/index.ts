@@ -122,7 +122,7 @@ export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from '@/com
 export type { PresentationConfig, PresentationView } from '@/component/presenter/presentation';
 export type {
     PresentationVisualConfig,
-    PresentationContentConfig,
+    PresentationVisualContentConfig,
     PresentationVisualViewConfig,
     PresentationVisualCartesianChartViewConfig,
     PresentationVisualChordDiagramViewConfig,
