@@ -5,7 +5,7 @@ export interface PresentationConfig extends ComponentConfig {
 }
 export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'periodFlowBoundariesChart' | 'polarChart' | 'rangeChart' | 'sankeyDiagram' | 'streamGraph' | 'valueTable';
 export type PresentationCartesianTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
-export type PresentationPolarTypeId = 'areaLine' | 'areaSpline' | 'column' | 'line' | 'spline';
+export type PresentationPolarTypeId = 'areaLine' | 'areaRange' | 'areaSpline' | 'column' | 'line' | 'spline';
 export type PresentationRangeTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column';
 export type PresentationVisualConfig = {
     content: PresentationVisualContentConfig;

@@ -13,7 +13,7 @@ export interface PresentationConfig extends ComponentConfig {
 
 export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'periodFlowBoundariesChart' | 'polarChart' | 'rangeChart' | 'sankeyDiagram' | 'streamGraph' | 'valueTable';
 export type PresentationCartesianTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
-export type PresentationPolarTypeId = 'areaLine' | 'areaSpline' | 'column' | 'line' | 'spline'; // TODO: One Highcharts demo suggests 'areaRange' is supported (https://www.highcharts.com/demo/polar/sand-signika?utm_source=chatgpt.com).
+export type PresentationPolarTypeId = 'areaLine' | 'areaRange' | 'areaSpline' | 'column' | 'line' | 'spline'; // TODO: One Highcharts demo suggests 'areaRange' is supported (https://www.highcharts.com/demo/polar/sand-signika?utm_source=chatgpt.com).
 export type PresentationRangeTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column';
 
 // Interface/Types - Presentation visual configuration.
