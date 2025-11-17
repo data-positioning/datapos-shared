@@ -11,81 +11,91 @@ export interface PresentationConfig extends ComponentConfig {
     order: number;
 }
 
+export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'periodFlowBoundariesChart' | 'polarChart' | 'rangeChart' | 'sankeyDiagram' | 'streamGraph' | 'valueTable';
+
 // Interface/Types - Presentation visual configuration.
-export type PresentationVisualConfig = { content: PresentationVisualContentConfig; views: PresentationVisualViewConfig[] };
-export type PresentationVisualContentConfig = {
-    title?: { text: string };
-    data: {
-        label?: { text: string };
-        dimension: { label?: { text: string }; values: { label?: { text: string } }[] };
-        measures: { id: string; name: string; values: number[][] }[];
+export type PresentationVisualConfig = {
+    content: {
+        title?: { text: string };
+        data: {
+            label?: { text: string };
+            dimension: { label?: { text: string }; values: { label?: { text: string } }[] };
+            measures: { id: string; name: string; values: number[][] }[];
+        };
     };
+    views: PresentationVisualViewConfig[];
 };
 export interface PresentationVisualViewConfig {
-    categoryId: 'cartesian' | 'chordDiagram' | 'periodFlowBoundaries' | 'polar' | 'range' | 'sankeyDiagram' | 'streamgraph' | 'values';
+    categoryId: PresentationCategoryId;
     default?: boolean;
 }
-export interface PresentationVisualCartesianViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'cartesian';
+export interface PresentationVisualCartesianChartViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'cartesianChart';
     typeId: 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
 }
 export interface PresentationVisualChordDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'chordDiagram';
 }
-export interface PresentationVisualPeriodFlowBoundariesViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'periodFlowBoundaries';
+export interface PresentationVisualPeriodFlowBoundariesChartViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'periodFlowBoundariesChart';
 }
-export interface PresentationVisualPolarViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'polar';
+export interface PresentationVisualPolarChartViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'polarChart';
     typeId: 'area' | 'column' | 'line';
 }
-export interface PresentationVisualRangeViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'range';
+export interface PresentationVisualRangeChartViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'rangeChart';
     typeId: 'area' | 'bar' | 'column';
 }
 export interface PresentationVisualSankeyDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'sankeyDiagram';
 }
-export interface PresentationVisualStreamgraphViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'streamgraph';
+export interface PresentationVisualStreamGraphViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'streamGraph';
 }
-export interface PresentationVisualValuesViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'values';
+export interface PresentationVisualValueTableViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'valueTable';
 }
 
 // Interface/Types - Presentation visual view type.
-export type PresentationVisualViewType =
-    | PresentationVisualCartesianViewType
-    | PresentationVisualChordViewType
-    | PresentationVisualPeriodFLowBoundariesViewType
-    | PresentationVisualPolarViewType
-    | PresentationVisualRangeViewType
-    | PresentationVisualSankeyDiagramViewType
-    | PresentationVisualStreamgraphViewType
-    | PresentationVisualValuesViewType;
-export type PresentationVisualCartesianViewType = {
-    categoryId: 'cartesian';
+export interface PresentationVisualViewType {
+    categoryId: PresentationCategoryId;
+}
+export interface PresentationVisualCartesianChartViewType extends PresentationVisualViewType {
+    categoryId: 'cartesianChart';
     typeId: 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
     label: Record<string, string>;
-    options: { highchartsType: 'area' | 'bar' | 'column' | 'line'; inverted?: boolean };
-};
-export type PresentationVisualChordViewType = { categoryId: 'chordDiagram'; label: Record<string, string>; options: {} };
-export type PresentationVisualPeriodFLowBoundariesViewType = { categoryId: 'periodFlowBoundaries'; label: Record<string, string>; options: {} };
-export type PresentationVisualPolarViewType = {
-    categoryId: 'polar';
+}
+export interface PresentationVisualChordDiagramViewType extends PresentationVisualViewType {
+    categoryId: 'chordDiagram';
+    label: Record<string, string>;
+}
+export interface PresentationVisualPeriodFlowBoundariesChartViewType extends PresentationVisualViewType {
+    categoryId: 'periodFlowBoundariesChart';
+    label: Record<string, string>;
+}
+export interface PresentationVisualPolarChartViewType extends PresentationVisualViewType {
+    categoryId: 'polarChart';
     typeId: 'area' | 'column' | 'line';
     label: Record<string, string>;
-    options: { highchartsType: 'area' | 'column' | 'line'; inverted?: boolean };
-};
-export type PresentationVisualRangeViewType = {
-    categoryId: 'range';
+}
+export interface PresentationVisualRangeChartViewType extends PresentationVisualViewType {
+    categoryId: 'rangeChart';
     typeId: 'area' | 'bar' | 'column';
     label: Record<string, string>;
-    options: { highchartsType: 'arearange' | 'columnrange'; inverted?: boolean };
-};
-export type PresentationVisualSankeyDiagramViewType = { categoryId: 'sankeyDiagram'; label: Record<string, string>; options: {} };
-export type PresentationVisualStreamgraphViewType = { categoryId: 'streamgraph'; label: Record<string, string>; options: {} };
-export type PresentationVisualValuesViewType = { categoryId: 'values'; label: Record<string, string>; options: {} };
+}
+export interface PresentationVisualSankeyDiagramViewType extends PresentationVisualViewType {
+    categoryId: 'sankeyDiagram';
+    label: Record<string, string>;
+}
+export interface PresentationVisualStreamGraphViewType extends PresentationVisualViewType {
+    categoryId: 'streamGraph';
+    label: Record<string, string>;
+}
+export interface PresentationVisualValueTableViewType extends PresentationVisualViewType {
+    categoryId: 'valueTable';
+    label: Record<string, string>;
+}
 
 // Interface/Types - Presentation view.
 export interface PresentationView {
@@ -95,22 +105,22 @@ export interface PresentationView {
 
 // Constants
 export const presentationViewTypeMap: Record<string, PresentationVisualViewType> = {
-    cartesian_areaLine: { categoryId: 'cartesian', typeId: 'areaLine', label: { 'en-gb': 'Area Line' }, options: { highchartsType: 'area' } },
-    cartesian_areaSpline: { categoryId: 'cartesian', typeId: 'areaSpline', label: { 'en-gb': 'Area Spline' }, options: { highchartsType: 'area' } },
-    cartesian_bar: { categoryId: 'cartesian', typeId: 'bar', label: { 'en-gb': 'Bar' }, options: { highchartsType: 'bar' } },
-    cartesian_column: { categoryId: 'cartesian', typeId: 'column', label: { 'en-gb': 'Column' }, options: { highchartsType: 'column' } },
-    cartesian_line: { categoryId: 'cartesian', typeId: 'line', label: { 'en-gb': 'Line' }, options: { highchartsType: 'line' } },
-    cartesian_pyramid: { categoryId: 'cartesian', typeId: 'line', label: { 'en-gb': 'Pyramid' }, options: { highchartsType: 'line' } },
-    cartesian_spline: { categoryId: 'cartesian', typeId: 'line', label: { 'en-gb': 'Spline' }, options: { highchartsType: 'line' } },
-    chordDiagram: { categoryId: 'chordDiagram', label: { 'en-gb': 'Chord Diagram' }, options: {} },
-    periodFlowBoundaries: { categoryId: 'periodFlowBoundaries', label: { 'en-gb': 'Period Flow & Boundaries' }, options: {} },
-    polar_area: { categoryId: 'polar', typeId: 'area', label: { 'en-gb': 'Radar (Area)' }, options: { highchartsType: 'area' } },
-    polar_column: { categoryId: 'polar', typeId: 'column', label: { 'en-gb': 'Radar (Column)' }, options: { highchartsType: 'column' } },
-    polar_line: { categoryId: 'polar', typeId: 'line', label: { 'en-gb': 'Radar (Line)' }, options: { highchartsType: 'line' } },
-    range_area: { categoryId: 'range', typeId: 'area', label: { 'en-gb': 'Range (Area)' }, options: { highchartsType: 'arearange' } },
-    range_bar: { categoryId: 'range', typeId: 'bar', label: { 'en-gb': 'Range (Bar)' }, options: { highchartsType: 'columnrange', inverted: true } },
-    range_column: { categoryId: 'range', typeId: 'column', label: { 'en-gb': 'Range (Column)' }, options: { highchartsType: 'columnrange' } },
-    sankeyDiagram: { categoryId: 'sankeyDiagram', label: { 'en-gb': 'Sankey Diagram' }, options: {} },
-    streamgraph: { categoryId: 'streamgraph', label: { 'en-gb': 'Streamgraph' }, options: {} },
-    values: { categoryId: 'values', label: { 'en-gb': 'Values' }, options: {} }
+    cartesian_areaLine: { categoryId: 'cartesianChart', typeId: 'areaLine', label: { 'en-gb': 'Area Line' } } as PresentationVisualCartesianChartViewType,
+    cartesian_areaSpline: { categoryId: 'cartesianChart', typeId: 'areaSpline', label: { 'en-gb': 'Area Spline' } } as PresentationVisualCartesianChartViewType,
+    cartesian_bar: { categoryId: 'cartesianChart', typeId: 'bar', label: { 'en-gb': 'Bar' } } as PresentationVisualCartesianChartViewType,
+    cartesian_column: { categoryId: 'cartesianChart', typeId: 'column', label: { 'en-gb': 'Column' } } as PresentationVisualCartesianChartViewType,
+    cartesian_line: { categoryId: 'cartesianChart', typeId: 'line', label: { 'en-gb': 'Line' } } as PresentationVisualCartesianChartViewType,
+    cartesian_pyramid: { categoryId: 'cartesianChart', typeId: 'pyramid', label: { 'en-gb': 'Pyramid' } } as PresentationVisualCartesianChartViewType,
+    cartesian_spline: { categoryId: 'cartesianChart', typeId: 'spline', label: { 'en-gb': 'Spline' } } as PresentationVisualCartesianChartViewType,
+    chordDiagram: { categoryId: 'chordDiagram', label: { 'en-gb': 'Chord Diagram' } } as PresentationVisualChordDiagramViewType,
+    periodFlowBoundariesChart: { categoryId: 'periodFlowBoundariesChart', label: { 'en-gb': 'Period Flow & Boundaries' } } as PresentationVisualPeriodFlowBoundariesChartViewType,
+    polar_area: { categoryId: 'polarChart', typeId: 'area', label: { 'en-gb': 'Radar (Area)' } } as PresentationVisualPolarChartViewType,
+    polar_column: { categoryId: 'polarChart', typeId: 'column', label: { 'en-gb': 'Radar (Column)' } } as PresentationVisualPolarChartViewType,
+    polar_line: { categoryId: 'polarChart', typeId: 'line', label: { 'en-gb': 'Radar (Line)' } } as PresentationVisualPolarChartViewType,
+    range_area: { categoryId: 'rangeChart', typeId: 'area', label: { 'en-gb': 'Range (Area)' } } as PresentationVisualRangeChartViewType,
+    range_bar: { categoryId: 'rangeChart', typeId: 'bar', label: { 'en-gb': 'Range (Bar)' } } as PresentationVisualRangeChartViewType,
+    range_column: { categoryId: 'rangeChart', typeId: 'column', label: { 'en-gb': 'Range (Column)' } } as PresentationVisualRangeChartViewType,
+    sankeyDiagram: { categoryId: 'sankeyDiagram', label: { 'en-gb': 'Sankey Diagram' } } as PresentationVisualSankeyDiagramViewType,
+    streamGraph: { categoryId: 'streamGraph', label: { 'en-gb': 'Streamgraph' } } as PresentationVisualStreamGraphViewType,
+    valueTable: { categoryId: 'valueTable', label: { 'en-gb': 'Values' } } as PresentationVisualValueTableViewType
 };

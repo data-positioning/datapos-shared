@@ -3,119 +3,104 @@ export interface PresentationConfig extends ComponentConfig {
     content: string;
     order: number;
 }
+export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'periodFlowBoundariesChart' | 'polarChart' | 'rangeChart' | 'sankeyDiagram' | 'streamGraph' | 'valueTable';
 export type PresentationVisualConfig = {
-    content: PresentationVisualContentConfig;
-    views: PresentationVisualViewConfig[];
-};
-export type PresentationVisualContentConfig = {
-    title?: {
-        text: string;
-    };
-    data: {
-        label?: {
+    content: {
+        title?: {
             text: string;
         };
-        dimension: {
+        data: {
             label?: {
                 text: string;
             };
-            values: {
+            dimension: {
                 label?: {
                     text: string;
                 };
+                values: {
+                    label?: {
+                        text: string;
+                    };
+                }[];
+            };
+            measures: {
+                id: string;
+                name: string;
+                values: number[][];
             }[];
         };
-        measures: {
-            id: string;
-            name: string;
-            values: number[][];
-        }[];
     };
+    views: PresentationVisualViewConfig[];
 };
 export interface PresentationVisualViewConfig {
-    categoryId: 'cartesian' | 'chordDiagram' | 'periodFlowBoundaries' | 'polar' | 'range' | 'sankeyDiagram' | 'streamgraph' | 'values';
+    categoryId: PresentationCategoryId;
     default?: boolean;
 }
-export interface PresentationVisualCartesianViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'cartesian';
+export interface PresentationVisualCartesianChartViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'cartesianChart';
     typeId: 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
 }
 export interface PresentationVisualChordDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'chordDiagram';
 }
-export interface PresentationVisualPeriodFlowBoundariesViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'periodFlowBoundaries';
+export interface PresentationVisualPeriodFlowBoundariesChartViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'periodFlowBoundariesChart';
 }
-export interface PresentationVisualPolarViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'polar';
+export interface PresentationVisualPolarChartViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'polarChart';
     typeId: 'area' | 'column' | 'line';
 }
-export interface PresentationVisualRangeViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'range';
+export interface PresentationVisualRangeChartViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'rangeChart';
     typeId: 'area' | 'bar' | 'column';
 }
 export interface PresentationVisualSankeyDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'sankeyDiagram';
 }
-export interface PresentationVisualStreamgraphViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'streamgraph';
+export interface PresentationVisualStreamGraphViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'streamGraph';
 }
-export interface PresentationVisualValuesViewConfig extends PresentationVisualViewConfig {
-    categoryId: 'values';
+export interface PresentationVisualValueTableViewConfig extends PresentationVisualViewConfig {
+    categoryId: 'valueTable';
 }
-export type PresentationVisualViewType = PresentationVisualCartesianViewType | PresentationVisualChordViewType | PresentationVisualPeriodFLowBoundariesViewType | PresentationVisualPolarViewType | PresentationVisualRangeViewType | PresentationVisualSankeyDiagramViewType | PresentationVisualStreamgraphViewType | PresentationVisualValuesViewType;
-export type PresentationVisualCartesianViewType = {
-    categoryId: 'cartesian';
+export interface PresentationVisualViewType {
+    categoryId: PresentationCategoryId;
+}
+export interface PresentationVisualCartesianChartViewType extends PresentationVisualViewType {
+    categoryId: 'cartesianChart';
     typeId: 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
     label: Record<string, string>;
-    options: {
-        highchartsType: 'area' | 'bar' | 'column' | 'line';
-        inverted?: boolean;
-    };
-};
-export type PresentationVisualChordViewType = {
+}
+export interface PresentationVisualChordDiagramViewType extends PresentationVisualViewType {
     categoryId: 'chordDiagram';
     label: Record<string, string>;
-    options: {};
-};
-export type PresentationVisualPeriodFLowBoundariesViewType = {
-    categoryId: 'periodFlowBoundaries';
+}
+export interface PresentationVisualPeriodFlowBoundariesChartViewType extends PresentationVisualViewType {
+    categoryId: 'periodFlowBoundariesChart';
     label: Record<string, string>;
-    options: {};
-};
-export type PresentationVisualPolarViewType = {
-    categoryId: 'polar';
+}
+export interface PresentationVisualPolarChartViewType extends PresentationVisualViewType {
+    categoryId: 'polarChart';
     typeId: 'area' | 'column' | 'line';
     label: Record<string, string>;
-    options: {
-        highchartsType: 'area' | 'column' | 'line';
-        inverted?: boolean;
-    };
-};
-export type PresentationVisualRangeViewType = {
-    categoryId: 'range';
+}
+export interface PresentationVisualRangeChartViewType extends PresentationVisualViewType {
+    categoryId: 'rangeChart';
     typeId: 'area' | 'bar' | 'column';
     label: Record<string, string>;
-    options: {
-        highchartsType: 'arearange' | 'columnrange';
-        inverted?: boolean;
-    };
-};
-export type PresentationVisualSankeyDiagramViewType = {
+}
+export interface PresentationVisualSankeyDiagramViewType extends PresentationVisualViewType {
     categoryId: 'sankeyDiagram';
     label: Record<string, string>;
-    options: {};
-};
-export type PresentationVisualStreamgraphViewType = {
-    categoryId: 'streamgraph';
+}
+export interface PresentationVisualStreamGraphViewType extends PresentationVisualViewType {
+    categoryId: 'streamGraph';
     label: Record<string, string>;
-    options: {};
-};
-export type PresentationVisualValuesViewType = {
-    categoryId: 'values';
+}
+export interface PresentationVisualValueTableViewType extends PresentationVisualViewType {
+    categoryId: 'valueTable';
     label: Record<string, string>;
-    options: {};
-};
+}
 export interface PresentationView {
     resize: () => void;
     vendorId: string;

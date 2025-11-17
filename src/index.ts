@@ -122,27 +122,26 @@ export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from '@/com
 export type { PresentationConfig, PresentationView } from '@/component/presenter/presentation';
 export type {
     PresentationVisualConfig,
-    PresentationVisualContentConfig,
     PresentationVisualViewConfig,
-    PresentationVisualCartesianViewConfig,
+    PresentationVisualCartesianChartViewConfig,
     PresentationVisualChordDiagramViewConfig,
-    PresentationVisualPeriodFlowBoundariesViewConfig,
-    PresentationVisualPolarViewConfig,
-    PresentationVisualRangeViewConfig,
+    PresentationVisualPeriodFlowBoundariesChartViewConfig,
+    PresentationVisualPolarChartViewConfig,
+    PresentationVisualRangeChartViewConfig,
     PresentationVisualSankeyDiagramViewConfig,
-    PresentationVisualStreamgraphViewConfig,
-    PresentationVisualValuesViewConfig
+    PresentationVisualStreamGraphViewConfig,
+    PresentationVisualValueTableViewConfig
 } from '@/component/presenter/presentation';
 export type {
     PresentationVisualViewType,
-    PresentationVisualCartesianViewType,
-    PresentationVisualChordViewType,
-    PresentationVisualPeriodFLowBoundariesViewType,
-    PresentationVisualPolarViewType,
-    PresentationVisualRangeViewType,
+    PresentationVisualCartesianChartViewType,
+    PresentationVisualChordDiagramViewType,
+    PresentationVisualPeriodFlowBoundariesChartViewType,
+    PresentationVisualPolarChartViewType,
+    PresentationVisualRangeChartViewType,
     PresentationVisualSankeyDiagramViewType,
-    PresentationVisualStreamgraphViewType,
-    PresentationVisualValuesViewType
+    PresentationVisualStreamGraphViewType,
+    PresentationVisualValueTableViewType
 } from '@/component/presenter/presentation';
 
 // Types/Interfaces/Operations - Context Operator Settings

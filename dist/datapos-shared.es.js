@@ -1,35 +1,35 @@
-const E = ["createObject", "dropObject", "removeRecords", "upsertRecords"], I = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
+const h = ["createObject", "dropObject", "removeRecords", "upsertRecords"], I = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
 function x() {
   function e(t, a, r) {
     r.textContent = "Cytoscape.js diagram goes here...";
   }
   return { render: e };
 }
-function T() {
+function C() {
   function e(t, a, r) {
     r.textContent = "values table goes here...";
   }
   return { render: e };
 }
 const w = 0, S = (e) => e, N = () => Date.now(), D = {
-  cartesian_areaLine: { categoryId: "cartesian", typeId: "areaLine", label: { "en-gb": "Area Line" }, options: { highchartsType: "area" } },
-  cartesian_areaSpline: { categoryId: "cartesian", typeId: "areaSpline", label: { "en-gb": "Area Spline" }, options: { highchartsType: "area" } },
-  cartesian_bar: { categoryId: "cartesian", typeId: "bar", label: { "en-gb": "Bar" }, options: { highchartsType: "bar" } },
-  cartesian_column: { categoryId: "cartesian", typeId: "column", label: { "en-gb": "Column" }, options: { highchartsType: "column" } },
-  cartesian_line: { categoryId: "cartesian", typeId: "line", label: { "en-gb": "Line" }, options: { highchartsType: "line" } },
-  cartesian_pyramid: { categoryId: "cartesian", typeId: "line", label: { "en-gb": "Pyramid" }, options: { highchartsType: "line" } },
-  cartesian_spline: { categoryId: "cartesian", typeId: "line", label: { "en-gb": "Spline" }, options: { highchartsType: "line" } },
-  chordDiagram: { categoryId: "chordDiagram", label: { "en-gb": "Chord Diagram" }, options: {} },
-  periodFlowBoundaries: { categoryId: "periodFlowBoundaries", label: { "en-gb": "Period Flow & Boundaries" }, options: {} },
-  polar_area: { categoryId: "polar", typeId: "area", label: { "en-gb": "Radar (Area)" }, options: { highchartsType: "area" } },
-  polar_column: { categoryId: "polar", typeId: "column", label: { "en-gb": "Radar (Column)" }, options: { highchartsType: "column" } },
-  polar_line: { categoryId: "polar", typeId: "line", label: { "en-gb": "Radar (Line)" }, options: { highchartsType: "line" } },
-  range_area: { categoryId: "range", typeId: "area", label: { "en-gb": "Range (Area)" }, options: { highchartsType: "arearange" } },
-  range_bar: { categoryId: "range", typeId: "bar", label: { "en-gb": "Range (Bar)" }, options: { highchartsType: "columnrange", inverted: !0 } },
-  range_column: { categoryId: "range", typeId: "column", label: { "en-gb": "Range (Column)" }, options: { highchartsType: "columnrange" } },
-  sankeyDiagram: { categoryId: "sankeyDiagram", label: { "en-gb": "Sankey Diagram" }, options: {} },
-  streamgraph: { categoryId: "streamgraph", label: { "en-gb": "Streamgraph" }, options: {} },
-  values: { categoryId: "values", label: { "en-gb": "Values" }, options: {} }
+  cartesian_areaLine: { categoryId: "cartesianChart", typeId: "areaLine", label: { "en-gb": "Area Line" } },
+  cartesian_areaSpline: { categoryId: "cartesianChart", typeId: "areaSpline", label: { "en-gb": "Area Spline" } },
+  cartesian_bar: { categoryId: "cartesianChart", typeId: "bar", label: { "en-gb": "Bar" } },
+  cartesian_column: { categoryId: "cartesianChart", typeId: "column", label: { "en-gb": "Column" } },
+  cartesian_line: { categoryId: "cartesianChart", typeId: "line", label: { "en-gb": "Line" } },
+  cartesian_pyramid: { categoryId: "cartesianChart", typeId: "pyramid", label: { "en-gb": "Pyramid" } },
+  cartesian_spline: { categoryId: "cartesianChart", typeId: "spline", label: { "en-gb": "Spline" } },
+  chordDiagram: { categoryId: "chordDiagram", label: { "en-gb": "Chord Diagram" } },
+  periodFlowBoundariesChart: { categoryId: "periodFlowBoundariesChart", label: { "en-gb": "Period Flow & Boundaries" } },
+  polar_area: { categoryId: "polarChart", typeId: "area", label: { "en-gb": "Radar (Area)" } },
+  polar_column: { categoryId: "polarChart", typeId: "column", label: { "en-gb": "Radar (Column)" } },
+  polar_line: { categoryId: "polarChart", typeId: "line", label: { "en-gb": "Radar (Line)" } },
+  range_area: { categoryId: "rangeChart", typeId: "area", label: { "en-gb": "Range (Area)" } },
+  range_bar: { categoryId: "rangeChart", typeId: "bar", label: { "en-gb": "Range (Bar)" } },
+  range_column: { categoryId: "rangeChart", typeId: "column", label: { "en-gb": "Range (Column)" } },
+  sankeyDiagram: { categoryId: "sankeyDiagram", label: { "en-gb": "Sankey Diagram" } },
+  streamGraph: { categoryId: "streamGraph", label: { "en-gb": "Streamgraph" } },
+  valueTable: { categoryId: "valueTable", label: { "en-gb": "Values" } }
 };
 class u extends Error {
   locator;
@@ -37,40 +37,40 @@ class u extends Error {
     super(t, r), this.name = "DataPosError", this.locator = a, Error.captureStackTrace?.(this, new.target);
   }
 }
-class l extends u {
+class i extends u {
   constructor(t, a, r) {
     super(t, a, r), this.name = "ApplicationError";
   }
 }
-class v extends l {
+class T extends i {
   constructor(t, a, r) {
     super(t, a, r), this.name = "APIError";
   }
 }
-class C extends l {
+class v extends i {
   constructor(t, a, r) {
     super(t, a, r), this.name = "EngineError";
   }
 }
-class g extends l {
+class m extends i {
   body;
   constructor(t, a, r, n) {
     super(t, a, n), this.name = "FetchError", this.body = r;
   }
 }
-class p extends l {
+class b extends i {
   componentName;
   info;
   constructor(t, a, r, n, s) {
     super(t, a, s), this.name = "VueHandledError", this.info = r, this.componentName = n;
   }
 }
-class O extends l {
+class O extends i {
   constructor(t, a, r) {
     super(t, a, r), this.name = "WindowHandledRuntimeError";
   }
 }
-class R extends l {
+class R extends i {
   constructor(t, a, r) {
     super(t, a, r), this.name = "WindowHandledPromiseRejectionError";
   }
@@ -82,7 +82,7 @@ class $ extends u {
 }
 async function A(e, t, a) {
   const r = `${t} Response status '${e.status}${e.statusText ? ` - ${e.statusText}` : ""}' received.`, n = await e.text();
-  return new g(r, a, n);
+  return new m(r, a, n);
 }
 function F(e) {
   return e.map((t) => t.message).join(" ");
@@ -102,9 +102,9 @@ function k(e) {
   for (; r && !t.has(r); ) {
     t.add(r);
     let n;
-    if (r instanceof g)
+    if (r instanceof m)
       n = { body: r.body, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
-    else if (r instanceof p)
+    else if (r instanceof b)
       n = { componentName: r.componentName, info: r.info, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
     else if (r instanceof u)
       n = { locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
@@ -116,7 +116,7 @@ function k(e) {
   }
   return a;
 }
-const m = "en-US", c = {}, B = (e) => {
+const g = "en-US", c = {}, B = (e) => {
   switch (e) {
     case "Edm.Binary":
       return "unknown";
@@ -165,7 +165,7 @@ const m = "en-US", c = {}, B = (e) => {
     const t = e.lastIndexOf(".");
     if (t > -1) return e.substring(t + 1);
   }
-}, o = (e, t = 2, a = t, r = m) => {
+}, o = (e, t = 2, a = t, r = g) => {
   if (e == null) return "";
   const n = `${r}decimal${t}.${a}`;
   let s = c[n];
@@ -177,7 +177,7 @@ const m = "en-US", c = {}, B = (e) => {
     style: "decimal",
     useGrouping: !0
   }), c[n] = s), s.format(e);
-}, j = (e) => e == null ? "" : e < 1e3 ? d(e) : e < 1e6 ? `${o(e / 1e3, 2, 0)}K` : e < 1e9 ? `${o(e / 1e6, 2, 0)}M` : e < 1e12 ? `${o(e / 1e9, 2, 0)}B` : `${o(e / 1e12, 2, 0)}T`, U = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${d(e)} bytes` : e < 1048576 ? `${o(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${o(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${o(e / 1073741824, 2, 0)} GB` : `${o(e / 1099511627776, 2, 0)} TB`, V = (e) => e == null ? "" : e < 1e3 ? `${d(e)} ms` : e === 1e3 ? `${d(e)} sec` : e < 6e4 ? `${o(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${o(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${o(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${o(e / 864e5, 2, 0)} days`, d = (e, t = m) => {
+}, j = (e) => e == null ? "" : e < 1e3 ? d(e) : e < 1e6 ? `${o(e / 1e3, 2, 0)}K` : e < 1e9 ? `${o(e / 1e6, 2, 0)}M` : e < 1e12 ? `${o(e / 1e9, 2, 0)}B` : `${o(e / 1e12, 2, 0)}T`, U = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${d(e)} bytes` : e < 1048576 ? `${o(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${o(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${o(e / 1073741824, 2, 0)} GB` : `${o(e / 1099511627776, 2, 0)} TB`, G = (e) => e == null ? "" : e < 1e3 ? `${d(e)} ms` : e === 1e3 ? `${d(e)} sec` : e < 6e4 ? `${o(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${o(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${o(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${o(e / 864e5, 2, 0)} days`, d = (e, t = g) => {
   if (e == null) return "";
   const a = `${t}decimal0.0`;
   let r = c[a];
@@ -189,7 +189,7 @@ const m = "en-US", c = {}, B = (e) => {
     style: "decimal",
     useGrouping: !0
   }), c[a] = r), r.format(e);
-}, W = (e) => {
+}, V = (e) => {
   switch (e) {
     case "csv":
       return "text/csv";
@@ -203,7 +203,7 @@ const m = "en-US", c = {}, B = (e) => {
     default:
       return "application/octet-stream";
   }
-}, b = [
+}, p = [
   { id: "dtv", label: { "en-gb": "Delimited Text" } },
   { id: "e/e", label: { "en-gb": "Entity/Event" } },
   { id: "jsonArray", label: { "en-gb": "JSON Array" } },
@@ -211,22 +211,22 @@ const m = "en-US", c = {}, B = (e) => {
   { id: "xls", label: { "en-gb": "XLS" } },
   { id: "xlsx", label: { "en-gb": "XLSX" } },
   { id: "xml", label: { "en-gb": "XML" } }
-], G = (e = i) => {
+], W = (e = l) => {
   const t = [];
-  for (const a of b) t.push({ ...a, label: a.label[e] || a.label[i] || a.id });
+  for (const a of p) t.push({ ...a, label: a.label[e] || a.label[l] || a.id });
   return t;
-}, h = [
+}, f = [
   { id: `
 `, label: { "en-gb": "Newline" } },
   { id: "\r", label: { "en-gb": "Carriage Return" } },
   { id: `\r
 `, label: { "en-gb": "Carriage Return/Newline" } }
-], P = (e = i) => {
+], P = (e = l) => {
   const t = [];
-  for (const a of h)
-    t.push({ ...a, label: a.label[e] || a.label[i] || a.id });
+  for (const a of f)
+    t.push({ ...a, label: a.label[e] || a.label[l] || a.id });
   return t;
-}, f = [
+}, y = [
   { id: ":", label: { "en-gb": "Colon" } },
   { id: ",", label: { "en-gb": "Comma" } },
   { id: "!", label: { "en-gb": "Exclamation Mark" } },
@@ -238,12 +238,12 @@ const m = "en-US", c = {}, B = (e) => {
   { id: "_", label: { "en-gb": "Underscore" } },
   { id: "0x1F", label: { "en-gb": "Unit Separator" } },
   { id: "|", label: { "en-gb": "Vertical Bar" } }
-], X = (e = i) => {
+], X = (e = l) => {
   const t = [];
-  for (const a of f)
-    t.push({ ...a, label: a.label[e] || a.label[i] || a.id });
+  for (const a of y)
+    t.push({ ...a, label: a.label[e] || a.label[l] || a.id });
   return t;
-}, y = [
+}, E = [
   { id: "alpha", color: "red", label: { "en-gb": "alpha" } },
   { id: "beta", color: "amber", label: { "en-gb": "beta" } },
   { id: "generalAvailability", color: "green", label: { "en-gb": "" } },
@@ -253,21 +253,21 @@ const m = "en-US", c = {}, B = (e) => {
   { id: "releaseCandidate", color: "green", label: { "en-gb": "release-candidate" } },
   { id: "unavailable", color: "other", label: { "en-gb": "unavailable" } },
   { id: "underReview", color: "other", label: { "en-gb": "under-review" } }
-], z = (e, t = i) => {
-  const a = y.find((r) => r.id === e);
-  return a ? { ...a, label: a.label[t] || a.label[i] || e } : { id: e, color: "other", label: e };
-}, i = "en-gb";
+], z = (e, t = l) => {
+  const a = E.find((r) => r.id === e);
+  return a ? { ...a, label: a.label[t] || a.label[l] || e } : { id: e, color: "other", label: e };
+}, l = "en-gb";
 export {
-  v as APIError,
-  l as ApplicationError,
-  E as CONNECTOR_DESTINATION_OPERATIONS,
+  T as APIError,
+  i as ApplicationError,
+  h as CONNECTOR_DESTINATION_OPERATIONS,
   I as CONNECTOR_SOURCE_OPERATIONS,
-  i as DEFAULT_LOCALE_CODE,
+  l as DEFAULT_LOCALE_CODE,
   w as DefaultTimestamp,
-  C as EngineError,
-  g as FetchError,
+  v as EngineError,
+  m as FetchError,
   $ as OperationalError,
-  p as VueError,
+  b as VueError,
   R as WindowPromiseRejectionError,
   O as WindowRuntimeError,
   A as buildFetchError,
@@ -277,19 +277,19 @@ export {
   M as extractExtensionFromPath,
   L as extractNameFromPath,
   o as formatNumberAsDecimalNumber,
-  V as formatNumberAsDuration,
+  G as formatNumberAsDuration,
   j as formatNumberAsSize,
   U as formatNumberAsStorageSize,
   d as formatNumberAsWholeNumber,
   z as getComponentStatus,
   N as getCurrentTimestamp,
-  G as getDataFormats,
+  W as getDataFormats,
   P as getRecordDelimiters,
   X as getValueDelimiters,
-  W as lookupMimeTypeForExtension,
+  V as lookupMimeTypeForExtension,
   _ as normalizeToError,
   D as presentationViewTypeMap,
   k as serialiseError,
   x as useCytoscapeJS,
-  T as useDataTable
+  C as useDataTable
 };
