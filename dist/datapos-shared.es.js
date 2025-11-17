@@ -1,5 +1,5 @@
-const E = ["createObject", "dropObject", "removeRecords", "upsertRecords"], I = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
-function C() {
+const E = ["createObject", "dropObject", "removeRecords", "upsertRecords"], C = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
+function I() {
   function e(a, t, r) {
     r.textContent = "Cytoscape.js diagram goes here...";
   }
@@ -7,7 +7,7 @@ function C() {
 }
 function x() {
   function e(a, t, r) {
-    r.textContent = "values table goes here...";
+    console.log(1111, a), console.log(2222, t), console.log(3333, r), console.log(4444, r.textContent), r.textContent = "values table goes here...", console.log(5555, r.textContent);
   }
   return { render: e };
 }
@@ -264,7 +264,7 @@ export {
   T as APIError,
   i as ApplicationError,
   E as CONNECTOR_DESTINATION_OPERATIONS,
-  I as CONNECTOR_SOURCE_OPERATIONS,
+  C as CONNECTOR_SOURCE_OPERATIONS,
   l as DEFAULT_LOCALE_CODE,
   S as DefaultTimestamp,
   v as EngineError,
@@ -293,6 +293,6 @@ export {
   F as normalizeToError,
   D as presentationViewTypeMap,
   L as serialiseError,
-  C as useCytoscapeJS,
+  I as useCytoscapeJS,
   x as useDataTable
 };
