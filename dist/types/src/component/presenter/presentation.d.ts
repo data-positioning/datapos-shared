@@ -17,7 +17,7 @@ export type PresentationVisualContentConfig = {
         measures: {
             id: string;
             name: string;
-            data?: number[][];
+            values: number[][];
         }[];
     };
 };
