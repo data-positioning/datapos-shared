@@ -3,10 +3,6 @@ export interface PresentationConfig extends ComponentConfig {
     content: string;
     order: number;
 }
-export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'periodFlowBoundariesChart' | 'polarChart' | 'rangeChart' | 'sankeyDiagram' | 'streamGraph' | 'valueTable';
-export type PresentationCartesianTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
-export type PresentationPolarTypeId = 'areaLine' | 'areaRange' | 'areaSpline' | 'column' | 'line' | 'spline';
-export type PresentationRangeTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column';
 export type PresentationVisualConfig = {
     content: PresentationVisualContentConfig;
     views: PresentationVisualViewConfig[];
@@ -40,10 +36,12 @@ export interface PresentationVisualViewConfig {
     categoryId: PresentationCategoryId;
     default?: boolean;
 }
+export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'periodFlowBoundariesChart' | 'polarChart' | 'rangeChart' | 'sankeyDiagram' | 'streamGraph' | 'valueTable';
 export interface PresentationVisualCartesianChartViewConfig extends PresentationVisualViewConfig {
     categoryId: 'cartesianChart';
     typeId: PresentationCartesianTypeId;
 }
+export type PresentationCartesianTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
 export interface PresentationVisualChordDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'chordDiagram';
 }
@@ -54,10 +52,12 @@ export interface PresentationVisualPolarChartViewConfig extends PresentationVisu
     categoryId: 'polarChart';
     typeId: PresentationPolarTypeId;
 }
+export type PresentationPolarTypeId = 'areaLine' | 'areaRange' | 'areaSpline' | 'column' | 'line' | 'spline';
 export interface PresentationVisualRangeChartViewConfig extends PresentationVisualViewConfig {
     categoryId: 'rangeChart';
     typeId: PresentationRangeTypeId;
 }
+export type PresentationRangeTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column';
 export interface PresentationVisualSankeyDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'sankeyDiagram';
 }
