@@ -49,7 +49,7 @@ export interface PresentationVisualPolarChartViewConfig extends PresentationVisu
     categoryId: 'polarChart';
     typeId: PresentationPolarTypeId;
 }
-export type PresentationPolarTypeId = 'areaLine' | 'areaRange' | 'areaSpline' | 'column' | 'line' | 'spline'; // TODO: One Highcharts demo suggests 'areaRange' (columnRange?) is supported (https://www.highcharts.com/demo/polar/sand-signika?utm_source=chatgpt.com).
+export type PresentationPolarTypeId = 'areaLine' | 'areaRange' | 'areaSpline' | 'column' | 'columnRange' | 'line' | 'spline'; // TODO: One Highcharts demo suggests 'areaRange' (columnRange?) is supported (https://www.highcharts.com/demo/polar/sand-signika?utm_source=chatgpt.com).
 
 export interface PresentationVisualRangeChartViewConfig extends PresentationVisualViewConfig {
     categoryId: 'rangeChart';

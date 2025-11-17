@@ -52,7 +52,7 @@ export interface PresentationVisualPolarChartViewConfig extends PresentationVisu
     categoryId: 'polarChart';
     typeId: PresentationPolarTypeId;
 }
-export type PresentationPolarTypeId = 'areaLine' | 'areaRange' | 'areaSpline' | 'column' | 'line' | 'spline';
+export type PresentationPolarTypeId = 'areaLine' | 'areaRange' | 'areaSpline' | 'column' | 'columnRange' | 'line' | 'spline';
 export interface PresentationVisualRangeChartViewConfig extends PresentationVisualViewConfig {
     categoryId: 'rangeChart';
     typeId: PresentationRangeTypeId;
