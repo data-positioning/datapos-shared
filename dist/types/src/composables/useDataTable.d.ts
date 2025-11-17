@@ -1,4 +1,4 @@
-import { PresentationVisualContentConfig, PresentationVisualValuesViewType } from '../index';
+import { PresentationVisualContentConfig, PresentationVisualValueTableViewType } from '../index';
 export declare function useDataTable(): {
-    render: (viewType: PresentationVisualValuesViewType, contentConfig: PresentationVisualContentConfig, element: HTMLElement) => void;
+    render: (viewType: PresentationVisualValueTableViewType, contentConfig: PresentationVisualContentConfig, element: HTMLElement) => void;
 };

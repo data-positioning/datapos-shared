@@ -1,10 +1,10 @@
 // Dependencies - Framework.
-import type { PresentationVisualContentConfig, PresentationVisualValuesViewType } from '@/index';
+import type { PresentationVisualContentConfig, PresentationVisualValueTableViewType } from '@/index';
 
 // Composables - Use data table.
 export function useDataTable() {
     // Operations - Render.
-    function render(viewType: PresentationVisualValuesViewType, contentConfig: PresentationVisualContentConfig, element: HTMLElement) {
+    function render(viewType: PresentationVisualValueTableViewType, contentConfig: PresentationVisualContentConfig, element: HTMLElement) {
         element.textContent = 'values table goes here...';
     }
 
