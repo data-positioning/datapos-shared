@@ -41,7 +41,7 @@ export interface PresentationVisualCartesianChartViewConfig extends Presentation
     categoryId: 'cartesianChart';
     typeId: PresentationCartesianTypeId;
 }
-export type PresentationCartesianTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
+export type PresentationCartesianTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'spline';
 export interface PresentationVisualChordDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'chordDiagram';
 }
