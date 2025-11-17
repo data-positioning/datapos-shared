@@ -121,17 +121,18 @@ export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from '@/com
 // Types/Interfaces/Operations - Presenter presentation.
 export type { PresentationConfig, PresentationView } from '@/component/presenter/presentation';
 export type {
+    PresentationCategoryId,
+    PresentationCartesianTypeId,
+    PresentationPolarTypeId,
+    PresentationRangeTypeId,
     PresentationVisualConfig,
     PresentationVisualContentConfig,
     PresentationVisualViewConfig,
     PresentationVisualCartesianChartViewConfig,
-    PresentationVisualCartesianTypeId,
     PresentationVisualChordDiagramViewConfig,
     PresentationVisualPeriodFlowBoundariesChartViewConfig,
     PresentationVisualPolarChartViewConfig,
-    PresentationVisualPolarTypeId,
     PresentationVisualRangeChartViewConfig,
-    PresentationVisualRangeTypeId,
     PresentationVisualSankeyDiagramViewConfig,
     PresentationVisualStreamGraphViewConfig,
     PresentationVisualValueTableViewConfig

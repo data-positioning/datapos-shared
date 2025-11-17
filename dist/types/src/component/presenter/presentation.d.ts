@@ -4,6 +4,9 @@ export interface PresentationConfig extends ComponentConfig {
     order: number;
 }
 export type PresentationCategoryId = 'cartesianChart' | 'chordDiagram' | 'periodFlowBoundariesChart' | 'polarChart' | 'rangeChart' | 'sankeyDiagram' | 'streamGraph' | 'valueTable';
+export type PresentationCartesianTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
+export type PresentationPolarTypeId = 'area' | 'column' | 'line';
+export type PresentationRangeTypeId = 'area' | 'bar' | 'column';
 export type PresentationVisualConfig = {
     content: PresentationVisualContentConfig;
     views: PresentationVisualViewConfig[];
@@ -39,9 +42,8 @@ export interface PresentationVisualViewConfig {
 }
 export interface PresentationVisualCartesianChartViewConfig extends PresentationVisualViewConfig {
     categoryId: 'cartesianChart';
-    typeId: PresentationVisualCartesianTypeId;
+    typeId: PresentationCartesianTypeId;
 }
-export type PresentationVisualCartesianTypeId = 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
 export interface PresentationVisualChordDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'chordDiagram';
 }
@@ -50,14 +52,12 @@ export interface PresentationVisualPeriodFlowBoundariesChartViewConfig extends P
 }
 export interface PresentationVisualPolarChartViewConfig extends PresentationVisualViewConfig {
     categoryId: 'polarChart';
-    typeId: PresentationVisualPolarTypeId;
+    typeId: PresentationPolarTypeId;
 }
-export type PresentationVisualPolarTypeId = 'area' | 'column' | 'line';
 export interface PresentationVisualRangeChartViewConfig extends PresentationVisualViewConfig {
     categoryId: 'rangeChart';
-    typeId: PresentationVisualRangeTypeId;
+    typeId: PresentationRangeTypeId;
 }
-export type PresentationVisualRangeTypeId = 'area' | 'bar' | 'column';
 export interface PresentationVisualSankeyDiagramViewConfig extends PresentationVisualViewConfig {
     categoryId: 'sankeyDiagram';
 }
@@ -72,7 +72,7 @@ export interface PresentationVisualViewType {
 }
 export interface PresentationVisualCartesianChartViewType extends PresentationVisualViewType {
     categoryId: 'cartesianChart';
-    typeId: 'areaLine' | 'areaSpline' | 'bar' | 'column' | 'line' | 'pyramid' | 'spline';
+    typeId: PresentationCartesianTypeId;
     label: Record<string, string>;
 }
 export interface PresentationVisualChordDiagramViewType extends PresentationVisualViewType {
@@ -85,12 +85,12 @@ export interface PresentationVisualPeriodFlowBoundariesChartViewType extends Pre
 }
 export interface PresentationVisualPolarChartViewType extends PresentationVisualViewType {
     categoryId: 'polarChart';
-    typeId: 'area' | 'column' | 'line';
+    typeId: PresentationPolarTypeId;
     label: Record<string, string>;
 }
 export interface PresentationVisualRangeChartViewType extends PresentationVisualViewType {
     categoryId: 'rangeChart';
-    typeId: 'area' | 'bar' | 'column';
+    typeId: PresentationRangeTypeId;
     label: Record<string, string>;
 }
 export interface PresentationVisualSankeyDiagramViewType extends PresentationVisualViewType {
