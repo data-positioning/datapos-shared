@@ -3,6 +3,7 @@
  */
 
 // Dependencies - Framework.
+import type { LocalisedString } from '@/index';
 import type { Module } from '@/module';
 import type { Component, ComponentConfig, ComponentRef } from '@/component';
 
@@ -40,35 +41,35 @@ export type ContextModelLocalisedConfig = Omit<ContextModelConfig, 'label' | 'de
 // Types/Interfaces/Operations - Context model dimension configuration.
 export interface ContextModelDimensionGroupConfig {
     id: string;
-    label: Record<string, string>;
-    description?: Record<string, unknown>;
+    label: Partial<LocalisedString>;
+    description: Partial<LocalisedString>;
     dimensionRefs: ComponentRef[];
 }
 export type ContextModelDimensionGroupLocalisedConfig = Omit<ContextModelDimensionGroupConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelDimensionConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
     hierarchies: ContextModelDimensionHierarchyConfig[];
 }
 export type ContextModelDimensionLocalisedConfig = Omit<ContextModelDimensionConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelDimensionHierarchyConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
 }
 export type ContextModelDimensionHierarchyLocalisedConfig = Omit<ContextModelDimensionHierarchyConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Types/Interfaces/Operations - Context model entity configuration.
 export interface ContextModelEntityGroupConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
     description?: Record<string, unknown>;
     entityRefs: ComponentRef[];
 }
 export type ContextModelEntityGroupLocalisedConfig = Omit<ContextModelEntityGroupConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelEntityConfig {
     id: string;
-    label: Record<string, string>;
-    labelPlural: Record<string, string>;
+    label: Partial<LocalisedString>;
+    labelPlural: Partial<LocalisedString>;
     dataItems: ContextModelEntityDataItemConfig[];
     events: ContextModelEntityEventConfig[];
     primaryMeasures: ContextModelEntityPrimaryMeasureConfig[];
@@ -76,7 +77,7 @@ export interface ContextModelEntityConfig {
 export type ContextModelEntityLocalisedConfig = Omit<ContextModelEntityConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelEntityDataItemConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
 }
 export type ContextModelEntityDataItemLocalisedConfig = Omit<ContextModelEntityDataItemConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelEntityEventConfig {
@@ -87,21 +88,21 @@ export interface ContextModelEntityEventConfig {
 export type ContextModelEntityEventLocalisedConfig = Omit<ContextModelEntityEventConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelEntityPrimaryMeasureConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
 }
 export type ContextModelEntityPrimaryMeasureLocalisedConfig = Omit<ContextModelEntityPrimaryMeasureConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Types/Interfaces/Operations - Context model secondary measure configuration.
 export interface ContextModelSecondaryMeasureGroupConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
     description?: Record<string, unknown>;
     secondaryMeasureRefs: ComponentRef[];
 }
 export type ContextModelSecondaryMeasureGroupLocalisedConfig = Omit<ContextModelSecondaryMeasureGroupConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelSecondaryMeasureConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
 }
 export type ContextModelSecondaryMeasureLocalisedConfig = Omit<ContextModelSecondaryMeasureConfig, 'label' | 'description'> & { label: string; description: string };
 

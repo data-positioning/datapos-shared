@@ -1,3 +1,4 @@
+import { LocalisedString } from '../../index';
 import { Module } from '../../module';
 import { Component, ComponentConfig, ComponentRef } from '..';
 export interface Context extends Module, Component {
@@ -41,8 +42,8 @@ export type ContextModelLocalisedConfig = Omit<ContextModelConfig, 'label' | 'de
 };
 export interface ContextModelDimensionGroupConfig {
     id: string;
-    label: Record<string, string>;
-    description?: Record<string, unknown>;
+    label: Partial<LocalisedString>;
+    description: Partial<LocalisedString>;
     dimensionRefs: ComponentRef[];
 }
 export type ContextModelDimensionGroupLocalisedConfig = Omit<ContextModelDimensionGroupConfig, 'label' | 'description'> & {
@@ -51,7 +52,7 @@ export type ContextModelDimensionGroupLocalisedConfig = Omit<ContextModelDimensi
 };
 export interface ContextModelDimensionConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
     hierarchies: ContextModelDimensionHierarchyConfig[];
 }
 export type ContextModelDimensionLocalisedConfig = Omit<ContextModelDimensionConfig, 'label' | 'description'> & {
@@ -60,7 +61,7 @@ export type ContextModelDimensionLocalisedConfig = Omit<ContextModelDimensionCon
 };
 export interface ContextModelDimensionHierarchyConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
 }
 export type ContextModelDimensionHierarchyLocalisedConfig = Omit<ContextModelDimensionHierarchyConfig, 'label' | 'description'> & {
     label: string;
@@ -68,7 +69,7 @@ export type ContextModelDimensionHierarchyLocalisedConfig = Omit<ContextModelDim
 };
 export interface ContextModelEntityGroupConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
     description?: Record<string, unknown>;
     entityRefs: ComponentRef[];
 }
@@ -78,8 +79,8 @@ export type ContextModelEntityGroupLocalisedConfig = Omit<ContextModelEntityGrou
 };
 export interface ContextModelEntityConfig {
     id: string;
-    label: Record<string, string>;
-    labelPlural: Record<string, string>;
+    label: Partial<LocalisedString>;
+    labelPlural: Partial<LocalisedString>;
     dataItems: ContextModelEntityDataItemConfig[];
     events: ContextModelEntityEventConfig[];
     primaryMeasures: ContextModelEntityPrimaryMeasureConfig[];
@@ -90,7 +91,7 @@ export type ContextModelEntityLocalisedConfig = Omit<ContextModelEntityConfig, '
 };
 export interface ContextModelEntityDataItemConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
 }
 export type ContextModelEntityDataItemLocalisedConfig = Omit<ContextModelEntityDataItemConfig, 'label' | 'description'> & {
     label: string;
@@ -107,7 +108,7 @@ export type ContextModelEntityEventLocalisedConfig = Omit<ContextModelEntityEven
 };
 export interface ContextModelEntityPrimaryMeasureConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
 }
 export type ContextModelEntityPrimaryMeasureLocalisedConfig = Omit<ContextModelEntityPrimaryMeasureConfig, 'label' | 'description'> & {
     label: string;
@@ -115,7 +116,7 @@ export type ContextModelEntityPrimaryMeasureLocalisedConfig = Omit<ContextModelE
 };
 export interface ContextModelSecondaryMeasureGroupConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
     description?: Record<string, unknown>;
     secondaryMeasureRefs: ComponentRef[];
 }
@@ -125,7 +126,7 @@ export type ContextModelSecondaryMeasureGroupLocalisedConfig = Omit<ContextModel
 };
 export interface ContextModelSecondaryMeasureConfig {
     id: string;
-    label: Record<string, string>;
+    label: Partial<LocalisedString>;
 }
 export type ContextModelSecondaryMeasureLocalisedConfig = Omit<ContextModelSecondaryMeasureConfig, 'label' | 'description'> & {
     label: string;

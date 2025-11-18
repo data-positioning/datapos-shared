@@ -30,6 +30,8 @@ export type ComponentRef = {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
+    icon?: string;
+    iconDark?: string;
     order: number;
     path: string;
 };
