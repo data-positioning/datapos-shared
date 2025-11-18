@@ -3,11 +3,10 @@
  */
 
 // Dependencies - Framework.
-import type { Module } from '@/module';
-import type { Component, ComponentConfig, ComponentRef } from '@/component';
+import type { Component, ComponentRef, ModuleConfig } from '@/component';
 
 // Types/Interfaces - Presenter.
-export interface Presenter extends Module, Component {
+export interface Presenter extends Component {
     readonly config: PresenterConfig;
 
     list(): ComponentRef[];
@@ -15,8 +14,9 @@ export interface Presenter extends Module, Component {
 }
 
 // Types/Interfaces - Presenter configuration.
-export interface PresenterConfig extends ComponentConfig {
+export interface PresenterConfig extends ModuleConfig {
     presentations: ComponentRef[];
-    version: string;
+    typeId: 'presenter';
 }
+export type PresenterModuleOperation = 'list' | 'render';
 export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };

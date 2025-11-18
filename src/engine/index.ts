@@ -1,8 +1,13 @@
 import type { ConnectionConfig } from '@/component/connector/connection';
-import type { Module } from '@/module';
 import type { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveResult } from '@/component/connector';
+import type { Component, ModuleConfig } from '@/component';
 import type { ContextCallbackData, ContextConfig, ContextOperationSettings } from '@/component/context';
 import type { DataViewPreviewConfig, EncodingConfig } from '@/component/dataView';
+
+// Types/Interfaces/Operations - Engine module configuration.
+export interface EngineModuleConfig extends ModuleConfig {
+    typeId: 'engine';
+}
 
 type InitialiseEngine = (settings: InitialiseSettings) => Promise<void>;
 
@@ -24,7 +29,7 @@ type ProcessContextRequest = (
 
 export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
 
-export interface Engine extends Module {
+export interface Engine extends Component {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;
 }

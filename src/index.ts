@@ -7,23 +7,15 @@ export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 
-// Types/Interfaces/Operations - Module.
-export type { ModuleConfig } from '@/module';
-export type { AppModuleConfig } from '@/module';
-export type { ConnectorModuleConfig, ConnectorModuleOperation, ConnectorModuleUsageId } from '@/module';
-export type { ContextModuleConfig, ContextModuleOperation } from '@/module';
-export type { EngineModuleConfig } from '@/module';
-export type { InformerModuleConfig, InformerModuleOperation } from '@/module';
-export type { PresenterModuleConfig, PresenterModuleOperation } from '@/module';
-export type { ToolModuleConfig } from '@/module';
-export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/module';
 // export type { ModuleConfigZ } from '@/module/configSchema';
 // export { moduleConfigSchema, partialLocalisedStringSchema } from '@/module/configSchema';
 
 // Types/Interfaces/Operations - Component.
-export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from '@/component';
+export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from '@/component';
 
 // Types/Interfaces/Operations - Connector.
+export type { ConnectorModuleOperation, ConnectorModuleUsageId } from '@/component/connector';
+export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/component/connector';
 export type { AuditContentResult, AuditContentSettings } from '@/component/connector';
 export type {
     Connector,
@@ -109,9 +101,6 @@ export type { SerialisedError } from '@/errors';
 
 // Types/Interfaces/Operations - Event query.
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/component/eventQuery';
-
-// Types/Interfaces/Operations - Informer.
-export type { Informer, InformerConfig, InformerLocalisedConfig, InformerTools } from '@/component/informer';
 
 // Types/Interfaces/Operations - Informer document.
 

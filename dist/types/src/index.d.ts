@@ -4,16 +4,9 @@
 export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
-export type { ModuleConfig } from './module';
-export type { AppModuleConfig } from './module';
-export type { ConnectorModuleConfig, ConnectorModuleOperation, ConnectorModuleUsageId } from './module';
-export type { ContextModuleConfig, ContextModuleOperation } from './module';
-export type { EngineModuleConfig } from './module';
-export type { InformerModuleConfig, InformerModuleOperation } from './module';
-export type { PresenterModuleConfig, PresenterModuleOperation } from './module';
-export type { ToolModuleConfig } from './module';
-export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from './module';
-export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId } from './component';
+export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from './component';
+export type { ConnectorModuleOperation, ConnectorModuleUsageId } from './component/connector';
+export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from './component/connector';
 export type { AuditContentResult, AuditContentSettings } from './component/connector';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings, ConnectorLocalisedConfig, ConnectorTools } from './component/connector';
 export type { CreateSettings } from './component/connector';
@@ -42,7 +35,6 @@ export type { DimensionConfig, DimensionLocalisedConfig } from './component/dime
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWorker } from './engine';
 export type { SerialisedError } from './errors';
 export type { EventQueryConfig, EventQueryLocalisedConfig } from './component/eventQuery';
-export type { Informer, InformerConfig, InformerLocalisedConfig, InformerTools } from './component/informer';
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from './component/presenter';
 export type { PresentationConfig, PresentationView } from './component/presenter/presentation';
 export type { PresentationCategoryId, PresentationCartesianTypeId, PresentationPolarTypeId, PresentationRangeTypeId, PresentationVisualConfig, PresentationVisualContentConfig, PresentationVisualViewConfig, PresentationVisualCartesianChartViewConfig, PresentationVisualChordDiagramViewConfig, PresentationVisualPeriodFlowBoundariesChartViewConfig, PresentationVisualPolarChartViewConfig, PresentationVisualRangeChartViewConfig, PresentationVisualSankeyDiagramViewConfig, PresentationVisualStreamGraphViewConfig, PresentationVisualValueTableViewConfig } from './component/presenter/presentation';

@@ -25,7 +25,7 @@ export interface ComponentConfig {
     typeId: ComponentTypeId;
 }
 
-// Types/Interfaces/Operations - Component references.
+// Types/Interfaces/Operations - Component reference.
 export type ComponentRef = {
     id: string;
     label: Partial<LocalisedString>;
@@ -57,8 +57,9 @@ export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LO
     return { id, color: 'other', label: id };
 };
 
-// Types/Interfaces/Operations - Component type.
+// Types/Interfaces/Operations - Component type identifier.
 export type ComponentTypeId =
+    | 'app'
     | 'connector'
     | 'connectorConnection'
     | 'context'
@@ -76,8 +77,17 @@ export type ComponentTypeId =
     | 'contextModelSecondaryMeasure'
     | 'dataView'
     | 'dimension'
+    | 'engine'
     | 'eventQuery'
     | 'presenter'
     | 'presenterPresentation'
-    | 'informer'
-    | 'informerDocument';
+    | 'tool';
+
+// Types/Interfaces/Operations - Module configuration.
+export interface ModuleConfig extends ComponentConfig {
+    typeId: ModuleTypeId;
+    version: string;
+}
+
+// Types/Interfaces/Operations - Module type identifier.
+export type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'presenter' | 'tool';

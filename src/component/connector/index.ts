@@ -8,16 +8,33 @@ import type { parse as dateFnsParse } from 'date-fns';
 import type { nanoid } from 'nanoid';
 
 // Dependencies - Framework.
-import type { Module } from '@/module';
 import type { buildFetchError, OperationalError } from '@/errors';
-import type { Component, ComponentConfig } from '@/component';
+import type { Component, ModuleConfig } from '@/component';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
 import { type convertMillisecondsToTimestamp, DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/dataView';
 import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
+type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
+export type ConnectorModuleOperation =
+    | 'abortOperation'
+    | 'authenticateConnection'
+    | 'createObject'
+    | 'describeConnection'
+    | 'dropObject'
+    | 'findObject'
+    | 'getRecord'
+    | 'listNodes'
+    | 'previewObject'
+    | 'removeRecords'
+    | 'retrieveRecords'
+    | 'upsertRecords';
+export type ConnectorModuleUsageId = 'bidirectional' | 'destination' | 'source';
+export const CONNECTOR_DESTINATION_OPERATIONS = ['createObject', 'dropObject', 'removeRecords', 'upsertRecords'];
+export const CONNECTOR_SOURCE_OPERATIONS = ['findObject', 'getRecord', 'listNodes', 'previewObject', 'retrieveRecords'];
+
 // Interfaces - Connector.
-export interface Connector extends Module, Component {
+export interface Connector extends Component {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
@@ -40,15 +57,16 @@ export interface Connector extends Module, Component {
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one oˆr more records into an object for a specified connection.
 }
-export interface ConnectorConfig extends ComponentConfig {
+export interface ConnectorConfig extends ModuleConfig {
     category?: ConnectorCategory;
-    categoryId: string;
+    categoryId: ConnectorModuleCategoryId;
     implementations: Record<string, ConnectorImplementation>;
-    usageId: 'bidirectional' | 'destination' | 'source';
+    operations: ConnectorModuleOperation[];
+    typeId: 'connector';
+    usageId: ConnectorModuleUsageId;
     vendorAccountURL?: string;
     vendorDocumentationURL?: string;
     vendorHomeURL?: string;
-    version: string;
 }
 export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
 export type ConnectorImplementation = {

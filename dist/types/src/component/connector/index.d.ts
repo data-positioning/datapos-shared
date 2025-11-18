@@ -1,14 +1,18 @@
 import { parse as csvParse } from 'csv-parse/browser/esm';
 import { parse as dateFnsParse } from 'date-fns';
 import { nanoid } from 'nanoid';
-import { Module } from '../../module';
 import { buildFetchError, OperationalError } from '../../errors';
-import { Component, ComponentConfig } from '..';
+import { Component, ModuleConfig } from '..';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
 import { convertMillisecondsToTimestamp, LocalisedString } from '../../index';
 import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
 import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../utilities';
-export interface Connector extends Module, Component {
+type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
+export type ConnectorModuleOperation = 'abortOperation' | 'authenticateConnection' | 'createObject' | 'describeConnection' | 'dropObject' | 'findObject' | 'getRecord' | 'listNodes' | 'previewObject' | 'removeRecords' | 'retrieveRecords' | 'upsertRecords';
+export type ConnectorModuleUsageId = 'bidirectional' | 'destination' | 'source';
+export declare const CONNECTOR_DESTINATION_OPERATIONS: string[];
+export declare const CONNECTOR_SOURCE_OPERATIONS: string[];
+export interface Connector extends Component {
     abortController?: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
@@ -26,15 +30,16 @@ export interface Connector extends Module, Component {
     retrieveRecords?(connector: Connector, settings: RetrieveSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveSummary) => void): Promise<void>;
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
-export interface ConnectorConfig extends ComponentConfig {
+export interface ConnectorConfig extends ModuleConfig {
     category?: ConnectorCategory;
-    categoryId: string;
+    categoryId: ConnectorModuleCategoryId;
     implementations: Record<string, ConnectorImplementation>;
-    usageId: 'bidirectional' | 'destination' | 'source';
+    operations: ConnectorModuleOperation[];
+    typeId: 'connector';
+    usageId: ConnectorModuleUsageId;
     vendorAccountURL?: string;
     vendorDocumentationURL?: string;
     vendorHomeURL?: string;
-    version: string;
 }
 export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & {
     label: string;

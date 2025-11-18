@@ -1,7 +1,6 @@
 import { LocalisedString } from '../../index';
-import { Module } from '../../module';
-import { Component, ComponentConfig, ComponentRef } from '..';
-export interface Context extends Module, Component {
+import { Component, ComponentConfig, ComponentRef, ModuleConfig } from '..';
+export interface Context extends Component {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;
 }
@@ -14,10 +13,11 @@ export type ContextCallbackData = {
     typeId: string;
     properties: Record<string, unknown>;
 };
-export interface ContextConfig extends ComponentConfig {
+export interface ContextConfig extends ModuleConfig {
     models: ContextModelGroupConfig[];
-    version: string;
+    typeId: 'context';
 }
+export type ContextModuleOperation = 'list';
 export type ContextLocalisedConfig = Omit<ContextConfig, 'label' | 'description'> & {
     label: string;
     description: string;

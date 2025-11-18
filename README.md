@@ -43,8 +43,8 @@ The Data Positioning solution consists of the following modules. All modules, ex
 | Engine    |   ✔    | Implements the data positioning engine.                         |
 | Connector |   ✔    | Implements a connector which handles one or more connections.   |
 | Context   |   ✔    | Implements a context which defines one or more models.          |
-| Informer  |   ✔    | Implements an informer which renders one or more documents.     |
 | Presenter |   ✔    | Implements a presenter which renders one or more presentations. |
+| Tool      |   ✔    | Implements...                                                   |
 
 ### Components
 
@@ -81,13 +81,6 @@ Each module implements a set of components. All module component types extend th
 | Item                               | Notes         |
 | ---------------------------------- | ------------- |
 | [Engine Types](./src/dimension.ts) | Engine types. |
-
-#### Informer Module Components
-
-| Item                                | Notes                                                         |
-| ----------------------------------- | ------------------------------------------------------------- |
-| [Informer Types](./src/informer.ts) | Informer types. The Informer type extends the Component type. |
-| [Recipe Types](./src/recipe.ts)     | Recipe types. The Recipe type extends the Component type.     |
 
 #### Presenter Module Components
 

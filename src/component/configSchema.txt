@@ -12,7 +12,7 @@ export const moduleConfigSchema = z.object({
     label: partialLocalisedStringSchema,
     description: partialLocalisedStringSchema,
     statusId: z.unknown(),
-    typeId: z.enum(['app', 'engine', 'connector', 'context', 'informer', 'presenter']),
+    typeId: z.enum(['app', 'engine', 'connector', 'context', 'presenter']),
     version: z.string()
 });
 

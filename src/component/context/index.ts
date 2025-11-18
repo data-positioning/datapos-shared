@@ -4,11 +4,10 @@
 
 // Dependencies - Framework.
 import type { LocalisedString } from '@/index';
-import type { Module } from '@/module';
-import type { Component, ComponentConfig, ComponentRef } from '@/component';
+import type { Component, ComponentConfig, ComponentRef, ModuleConfig } from '@/component';
 
 // Types/Interfaces/Operations - Context.
-export interface Context extends Module, Component {
+export interface Context extends Component {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;
 }
@@ -18,10 +17,11 @@ export type ContextListResult = { models: ContextModelGroupConfig[] };
 export type ContextCallbackData = { typeId: string; properties: Record<string, unknown> };
 
 // Types/Interfaces/Operations - Context configuration.
-export interface ContextConfig extends ComponentConfig {
+export interface ContextConfig extends ModuleConfig {
     models: ContextModelGroupConfig[];
-    version: string;
+    typeId: 'context';
 }
+export type ContextModuleOperation = 'list';
 export type ContextLocalisedConfig = Omit<ContextConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Types/Interfaces/Operations - Context model configuration
