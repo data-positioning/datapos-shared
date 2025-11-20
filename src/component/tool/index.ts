@@ -6,6 +6,6 @@
 import type { ModuleConfig } from '@/component';
 
 // Types/Interfaces/Operations - Tool module configuration.
-export interface ToolModuleConfig extends ModuleConfig {
+export interface ToolConfig extends ModuleConfig {
     typeId: 'tool';
 }

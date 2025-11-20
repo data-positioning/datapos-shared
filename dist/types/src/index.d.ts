@@ -38,6 +38,7 @@ export type { EventQueryConfig, EventQueryLocalisedConfig } from './component/ev
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from './component/presenter';
 export type { PresentationConfig, PresentationView } from './component/presenter/presentation';
 export type { PresentationCategoryId, PresentationCartesianTypeId, PresentationPolarTypeId, PresentationRangeTypeId, PresentationVisualConfig, PresentationVisualContentConfig, PresentationVisualViewConfig, PresentationVisualCartesianChartViewConfig, PresentationVisualChordDiagramViewConfig, PresentationVisualPeriodFlowBoundariesChartViewConfig, PresentationVisualPolarChartViewConfig, PresentationVisualRangeChartViewConfig, PresentationVisualSankeyDiagramViewConfig, PresentationVisualStreamGraphViewConfig, PresentationVisualValueTableViewConfig } from './component/presenter/presentation';
+export type { ToolConfig } from './component/tool';
 export interface ContextOperationSettings {
     accountId?: string;
     appCheckToken?: string;

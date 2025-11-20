@@ -127,6 +127,8 @@ export type {
     PresentationVisualValueTableViewConfig
 } from '@/component/presenter/presentation';
 
+export type { ToolConfig } from '@/component/tool';
+
 // Types/Interfaces/Operations - Context Operator Settings
 export interface ContextOperationSettings {
     accountId?: string;

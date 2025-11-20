@@ -1,4 +1,4 @@
 import { ModuleConfig } from '..';
-export interface ToolModuleConfig extends ModuleConfig {
+export interface ToolConfig extends ModuleConfig {
     typeId: 'tool';
 }
