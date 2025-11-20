@@ -3,7 +3,7 @@ import { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, 
 import { Component, ModuleConfig } from '../component';
 import { ContextCallbackData, ContextConfig, ContextOperationSettings } from '../component/context';
 import { DataViewPreviewConfig, EncodingConfig } from '../component/dataView';
-export interface EngineModuleConfig extends ModuleConfig {
+export interface EngineConfig extends ModuleConfig {
     typeId: 'engine';
 }
 type InitialiseEngine = (settings: InitialiseSettings) => Promise<void>;

@@ -94,7 +94,7 @@ export type {
 export type { DimensionConfig, DimensionLocalisedConfig } from '@/component/dimension';
 
 // Types/Interfaces/Operations - Engine.
-export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineWorker } from '@/engine';
+export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineConfig, EngineWorker } from '@/engine';
 
 // Types/Interfaces/Operations - Error.
 export type { SerialisedError } from '@/errors';

@@ -5,7 +5,7 @@ import type { ContextCallbackData, ContextConfig, ContextOperationSettings } fro
 import type { DataViewPreviewConfig, EncodingConfig } from '@/component/dataView';
 
 // Types/Interfaces/Operations - Engine module configuration.
-export interface EngineModuleConfig extends ModuleConfig {
+export interface EngineConfig extends ModuleConfig {
     typeId: 'engine';
 }
 
