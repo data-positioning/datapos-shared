@@ -9,14 +9,16 @@ import type { Component, ComponentRef, ModuleConfig } from '@/component';
 export interface Presenter extends Component {
     readonly config: PresenterConfig;
 
-    list(): ComponentRef[];
+    list(): ComponentRef[]; // TODO: Do we need this. Configuration contains list.
     render(presentationPath: string, renderTo: HTMLElement, data?: unknown): Promise<void>;
+    setColorMode(colorModeId: ColorModeId): void;
 }
+export type ColorModeId = 'dark' | 'light';
 
 // Types/Interfaces - Presenter configuration.
 export interface PresenterConfig extends ModuleConfig {
     presentations: ComponentRef[];
     typeId: 'presenter';
 }
-export type PresenterModuleOperation = 'list' | 'render';
+export type PresenterModuleOperation = 'list' | 'render' | 'setColorMode';
 export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };

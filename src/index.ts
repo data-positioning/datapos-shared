@@ -106,6 +106,7 @@ export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/component/ev
 
 // Types/Interfaces/Operations - Presenter.
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from '@/component/presenter';
+export type { ColorModeId } from '@/component/presenter';
 
 // Types/Interfaces/Operations - Presenter presentation.
 export type { PresentationConfig, PresentationView } from '@/component/presenter/presentation';
