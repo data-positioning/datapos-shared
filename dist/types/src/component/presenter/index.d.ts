@@ -3,9 +3,8 @@ export interface Presenter extends Component {
     readonly config: PresenterConfig;
     list(): ComponentRef[];
     render(presentationPath: string, renderTo: HTMLElement, data?: unknown): Promise<void>;
-    setColorMode(colorModeId: ColorModeId): void;
+    setColorMode(colorModeId: string): void;
 }
-export type ColorModeId = 'dark' | 'light';
 export interface PresenterConfig extends ModuleConfig {
     presentations: ComponentRef[];
     typeId: 'presenter';

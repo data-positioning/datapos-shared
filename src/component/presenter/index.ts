@@ -11,9 +11,8 @@ export interface Presenter extends Component {
 
     list(): ComponentRef[]; // TODO: Do we need this. Configuration contains list.
     render(presentationPath: string, renderTo: HTMLElement, data?: unknown): Promise<void>;
-    setColorMode(colorModeId: ColorModeId): void;
+    setColorMode(colorModeId: string): void;
 }
-export type ColorModeId = 'dark' | 'light';
 
 // Types/Interfaces - Presenter configuration.
 export interface PresenterConfig extends ModuleConfig {
