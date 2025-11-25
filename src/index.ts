@@ -42,7 +42,7 @@ export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionC
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/component/connector/connection';
 
 // Types/Interfaces/Operations - Context.
-export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextOperations } from '@/component/context';
+export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextOperation } from '@/component/context';
 
 // Types/Interfaces/Operations - Context model.
 export type { ContextModelGroupConfig, ContextModelGroupLocalisedConfig, ContextModelConfig, ContextModelLocalisedConfig } from '@/component/context';
