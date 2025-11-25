@@ -5,7 +5,7 @@ export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from './component';
-export type { ConnectorModuleOperation, ConnectorModuleUsageId } from './component/connector';
+export type { ConnectorModuleOperation, ConnectorUsageId } from './component/connector';
 export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from './component/connector';
 export type { AuditContentResult, AuditContentSettings } from './component/connector';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings, ConnectorLocalisedConfig, ConnectorTools } from './component/connector';
@@ -21,7 +21,7 @@ export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from './compon
 export type { UpsertSettings } from './component/connector';
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from './component/connector/connection';
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from './component/connector/connection';
-export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextModuleOperation } from './component/context';
+export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextOperations } from './component/context';
 export type { ContextModelGroupConfig, ContextModelGroupLocalisedConfig, ContextModelConfig, ContextModelLocalisedConfig } from './component/context';
 export type { ContextModelDimensionGroupConfig, ContextModelDimensionGroupLocalisedConfig, ContextModelDimensionConfig, ContextModelDimensionLocalisedConfig, ContextModelDimensionHierarchyConfig, ContextModelDimensionHierarchyLocalisedConfig } from './component/context';
 export type { ContextModelEntityGroupConfig, ContextModelEntityGroupLocalisedConfig, ContextModelEntityConfig, ContextModelEntityLocalisedConfig, ContextModelEntityDataItemConfig, // Data items.
@@ -35,7 +35,7 @@ export type { DimensionConfig, DimensionLocalisedConfig } from './component/dime
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineConfig, EngineWorker } from './engine';
 export type { SerialisedError } from './errors';
 export type { EventQueryConfig, EventQueryLocalisedConfig } from './component/eventQuery';
-export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterModuleOperation } from './component/presenter';
+export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterOperation } from './component/presenter';
 export type { PresentationConfig, PresentationView } from './component/presenter/presentation';
 export type { PresentationCategoryId, PresentationCartesianTypeId, PresentationPolarTypeId, PresentationRangeTypeId, PresentationVisualConfig, PresentationVisualContentConfig, PresentationVisualViewConfig, PresentationVisualCartesianChartViewConfig, PresentationVisualChordDiagramViewConfig, PresentationVisualPeriodFlowBoundariesChartViewConfig, PresentationVisualPolarChartViewConfig, PresentationVisualRangeChartViewConfig, PresentationVisualSankeyDiagramViewConfig, PresentationVisualStreamGraphViewConfig, PresentationVisualValueTableViewConfig } from './component/presenter/presentation';
 export type { ToolConfig } from './component/tool';

@@ -17,7 +17,8 @@ export interface Presenter extends Component {
 // Types/Interfaces - Presenter configuration.
 export interface PresenterConfig extends ModuleConfig {
     presentations: ComponentRef[];
+    operations: PresenterOperation[];
     typeId: 'presenter';
 }
-export type PresenterModuleOperation = 'list' | 'render' | 'setColorMode';
+export type PresenterOperation = 'list' | 'render' | 'setColorMode';
 export type PresenterLocalisedConfig = Omit<PresenterConfig, 'label' | 'description'> & { label: string; description: string };

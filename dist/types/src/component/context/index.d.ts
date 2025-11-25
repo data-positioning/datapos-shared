@@ -15,9 +15,10 @@ export type ContextCallbackData = {
 };
 export interface ContextConfig extends ModuleConfig {
     models: ContextModelGroupConfig[];
+    operations: ContextOperations[];
     typeId: 'context';
 }
-export type ContextModuleOperation = 'list';
+export type ContextOperations = 'list';
 export type ContextLocalisedConfig = Omit<ContextConfig, 'label' | 'description'> & {
     label: string;
     description: string;

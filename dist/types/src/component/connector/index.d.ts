@@ -9,7 +9,7 @@ import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
 import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../utilities';
 type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
 export type ConnectorModuleOperation = 'abortOperation' | 'authenticateConnection' | 'createObject' | 'describeConnection' | 'dropObject' | 'findObject' | 'getRecord' | 'listNodes' | 'previewObject' | 'removeRecords' | 'retrieveRecords' | 'upsertRecords';
-export type ConnectorModuleUsageId = 'bidirectional' | 'destination' | 'source';
+export type ConnectorUsageId = 'bidirectional' | 'destination' | 'source' | 'unknown';
 export declare const CONNECTOR_DESTINATION_OPERATIONS: string[];
 export declare const CONNECTOR_SOURCE_OPERATIONS: string[];
 export interface Connector extends Component {
@@ -36,7 +36,7 @@ export interface ConnectorConfig extends ModuleConfig {
     implementations: Record<string, ConnectorImplementation>;
     operations: ConnectorModuleOperation[];
     typeId: 'connector';
-    usageId: ConnectorModuleUsageId;
+    usageId: ConnectorUsageId;
     vendorAccountURL?: string;
     vendorDocumentationURL?: string;
     vendorHomeURL?: string;

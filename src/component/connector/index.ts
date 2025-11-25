@@ -29,7 +29,7 @@ export type ConnectorModuleOperation =
     | 'removeRecords'
     | 'retrieveRecords'
     | 'upsertRecords';
-export type ConnectorModuleUsageId = 'bidirectional' | 'destination' | 'source';
+export type ConnectorUsageId = 'bidirectional' | 'destination' | 'source' | 'unknown';
 export const CONNECTOR_DESTINATION_OPERATIONS = ['createObject', 'dropObject', 'removeRecords', 'upsertRecords'];
 export const CONNECTOR_SOURCE_OPERATIONS = ['findObject', 'getRecord', 'listNodes', 'previewObject', 'retrieveRecords'];
 
@@ -63,7 +63,7 @@ export interface ConnectorConfig extends ModuleConfig {
     implementations: Record<string, ConnectorImplementation>;
     operations: ConnectorModuleOperation[];
     typeId: 'connector';
-    usageId: ConnectorModuleUsageId;
+    usageId: ConnectorUsageId;
     vendorAccountURL?: string;
     vendorDocumentationURL?: string;
     vendorHomeURL?: string;
