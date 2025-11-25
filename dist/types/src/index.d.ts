@@ -21,7 +21,7 @@ export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from './compon
 export type { UpsertSettings } from './component/connector';
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from './component/connector/connection';
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from './component/connector/connection';
-export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult } from './component/context';
+export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextModuleOperation } from './component/context';
 export type { ContextModelGroupConfig, ContextModelGroupLocalisedConfig, ContextModelConfig, ContextModelLocalisedConfig } from './component/context';
 export type { ContextModelDimensionGroupConfig, ContextModelDimensionGroupLocalisedConfig, ContextModelDimensionConfig, ContextModelDimensionLocalisedConfig, ContextModelDimensionHierarchyConfig, ContextModelDimensionHierarchyLocalisedConfig } from './component/context';
 export type { ContextModelEntityGroupConfig, ContextModelEntityGroupLocalisedConfig, ContextModelEntityConfig, ContextModelEntityLocalisedConfig, ContextModelEntityDataItemConfig, // Data items.
@@ -35,7 +35,7 @@ export type { DimensionConfig, DimensionLocalisedConfig } from './component/dime
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineConfig, EngineWorker } from './engine';
 export type { SerialisedError } from './errors';
 export type { EventQueryConfig, EventQueryLocalisedConfig } from './component/eventQuery';
-export type { Presenter, PresenterConfig, PresenterLocalisedConfig } from './component/presenter';
+export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterModuleOperation } from './component/presenter';
 export type { PresentationConfig, PresentationView } from './component/presenter/presentation';
 export type { PresentationCategoryId, PresentationCartesianTypeId, PresentationPolarTypeId, PresentationRangeTypeId, PresentationVisualConfig, PresentationVisualContentConfig, PresentationVisualViewConfig, PresentationVisualCartesianChartViewConfig, PresentationVisualChordDiagramViewConfig, PresentationVisualPeriodFlowBoundariesChartViewConfig, PresentationVisualPolarChartViewConfig, PresentationVisualRangeChartViewConfig, PresentationVisualSankeyDiagramViewConfig, PresentationVisualStreamGraphViewConfig, PresentationVisualValueTableViewConfig } from './component/presenter/presentation';
 export type { ToolConfig } from './component/tool';
