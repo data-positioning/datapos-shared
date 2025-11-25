@@ -16,7 +16,7 @@ import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/d
 import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
 type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
-export type ConnectorModuleOperation =
+export type ConnectorOperation =
     | 'abortOperation'
     | 'authenticateConnection'
     | 'createObject'
@@ -61,7 +61,7 @@ export interface ConnectorConfig extends ModuleConfig {
     category?: ConnectorCategory;
     categoryId: ConnectorModuleCategoryId;
     implementations: Record<string, ConnectorImplementation>;
-    operations: ConnectorModuleOperation[];
+    operations: ConnectorOperation[];
     typeId: 'connector';
     usageId: ConnectorUsageId;
     vendorAccountURL?: string;

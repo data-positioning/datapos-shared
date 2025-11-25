@@ -8,7 +8,7 @@ import { convertMillisecondsToTimestamp, LocalisedString } from '../../index';
 import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
 import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../utilities';
 type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
-export type ConnectorModuleOperation = 'abortOperation' | 'authenticateConnection' | 'createObject' | 'describeConnection' | 'dropObject' | 'findObject' | 'getRecord' | 'listNodes' | 'previewObject' | 'removeRecords' | 'retrieveRecords' | 'upsertRecords';
+export type ConnectorOperation = 'abortOperation' | 'authenticateConnection' | 'createObject' | 'describeConnection' | 'dropObject' | 'findObject' | 'getRecord' | 'listNodes' | 'previewObject' | 'removeRecords' | 'retrieveRecords' | 'upsertRecords';
 export type ConnectorUsageId = 'bidirectional' | 'destination' | 'source' | 'unknown';
 export declare const CONNECTOR_DESTINATION_OPERATIONS: string[];
 export declare const CONNECTOR_SOURCE_OPERATIONS: string[];
@@ -34,7 +34,7 @@ export interface ConnectorConfig extends ModuleConfig {
     category?: ConnectorCategory;
     categoryId: ConnectorModuleCategoryId;
     implementations: Record<string, ConnectorImplementation>;
-    operations: ConnectorModuleOperation[];
+    operations: ConnectorOperation[];
     typeId: 'connector';
     usageId: ConnectorUsageId;
     vendorAccountURL?: string;

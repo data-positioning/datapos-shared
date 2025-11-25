@@ -5,7 +5,7 @@ export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from './component';
-export type { ConnectorModuleOperation, ConnectorUsageId } from './component/connector';
+export type { ConnectorOperation, ConnectorUsageId } from './component/connector';
 export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from './component/connector';
 export type { AuditContentResult, AuditContentSettings } from './component/connector';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorOperationSettings, ConnectorLocalisedConfig, ConnectorTools } from './component/connector';
