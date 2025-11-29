@@ -35,6 +35,8 @@ export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from '@/compon
 export type { UpsertSettings } from '@/component/connector';
 
 export { connectorConfigSchema } from '@/component/connector/connectorSchema';
+export { contextConfigSchema } from '@/component/context/contextSchema';
+export { presenterConfigSchema } from '@/component/presenter/presenterSchema';
 
 // Types/Interfaces/Operations - Connector connection.
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
