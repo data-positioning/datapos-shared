@@ -7,9 +7,6 @@ export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 
-// export type { ModuleConfigZ } from '@/module/configSchema';
-// export { moduleConfigSchema, partialLocalisedStringSchema } from '@/module/configSchema';
-
 // Types/Interfaces/Operations - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from '@/component';
 
@@ -36,6 +33,8 @@ export type { PreviewResult, PreviewSettings } from '@/component/connector';
 export type { RemoveSettings } from '@/component/connector';
 export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from '@/component/connector';
 export type { UpsertSettings } from '@/component/connector';
+
+export { connectorConfigSchema } from '@/component/connector/connectorSchema';
 
 // Types/Interfaces/Operations - Connector connection.
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';

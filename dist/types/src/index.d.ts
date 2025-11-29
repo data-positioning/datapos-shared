@@ -19,6 +19,7 @@ export type { PreviewResult, PreviewSettings } from './component/connector';
 export type { RemoveSettings } from './component/connector';
 export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from './component/connector';
 export type { UpsertSettings } from './component/connector';
+export { connectorConfigSchema } from './component/connector/connectorSchema';
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from './component/connector/connection';
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from './component/connector/connection';
 export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextOperation } from './component/context';
