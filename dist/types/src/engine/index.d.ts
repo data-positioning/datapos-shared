@@ -7,6 +7,7 @@ export interface EngineConfig extends ModuleConfig {
     typeId: 'engine';
 }
 type InitialiseEngine = (settings: InitialiseSettings) => Promise<void>;
+type Test = () => Promise<void>;
 type ProcessConnectorRequest = (id: string, connectionConfig: ConnectionConfig, settings: ConnectorOperationSettings, callback?: ((callbackData: ContextCallbackData) => void) | undefined) => Promise<ContextInterfaceResult>;
 export type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
 type ProcessContextRequest = (id: string, contextConfig: ContextConfig, settings: ContextOperationSettings, callback?: ((callbackData: ConnectorCallbackData) => void) | undefined) => Promise<ConnectorInterfaceResult>;
@@ -17,6 +18,7 @@ export interface Engine extends Component {
 }
 export interface EngineWorker {
     initialise: InitialiseEngine;
+    test: Test;
     processConnectorRequest: ProcessConnectorRequest;
     processContextRequest: ProcessContextRequest;
 }

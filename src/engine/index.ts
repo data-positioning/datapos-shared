@@ -10,6 +10,7 @@ export interface EngineConfig extends ModuleConfig {
 }
 
 type InitialiseEngine = (settings: InitialiseSettings) => Promise<void>;
+type Test = () => Promise<void>;
 
 type ProcessConnectorRequest = (
     id: string,
@@ -36,6 +37,7 @@ export interface Engine extends Component {
 
 export interface EngineWorker {
     initialise: InitialiseEngine;
+    test: Test;
     processConnectorRequest: ProcessConnectorRequest;
     processContextRequest: ProcessContextRequest;
 }
