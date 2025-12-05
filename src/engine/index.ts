@@ -10,7 +10,6 @@ export interface EngineConfig extends ModuleConfig {
 }
 
 type InitialiseEngine = (settings: InitialiseSettings) => Promise<void>;
-type Test = () => Promise<void>;
 
 type ProcessConnectorRequest = (
     id: string,
@@ -30,6 +29,8 @@ type ProcessContextRequest = (
 
 export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
 
+type ProcessTestRequest = (settings: Record<string, unknown>) => Promise<void>;
+
 export interface Engine extends Component {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;
@@ -37,7 +38,7 @@ export interface Engine extends Component {
 
 export interface EngineWorker {
     initialise: InitialiseEngine;
-    test: Test;
     processConnectorRequest: ProcessConnectorRequest;
     processContextRequest: ProcessContextRequest;
+    processTestRequest: ProcessTestRequest;
 }
