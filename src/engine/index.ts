@@ -29,7 +29,7 @@ type ProcessContextRequest = (
 
 export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
 
-type ProcessTestRequest = (settings: Record<string, unknown>) => Promise<void>;
+type ProcessTestRequest = (settings: Record<string, unknown>) => Promise<Record<string, unknown>>;
 
 export interface Engine extends Component {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];

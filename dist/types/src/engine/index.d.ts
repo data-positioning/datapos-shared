@@ -11,7 +11,7 @@ type ProcessConnectorRequest = (id: string, connectionConfig: ConnectionConfig, 
 export type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
 type ProcessContextRequest = (id: string, contextConfig: ContextConfig, settings: ContextOperationSettings, callback?: ((callbackData: ConnectorCallbackData) => void) | undefined) => Promise<ConnectorInterfaceResult>;
 export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
-type ProcessTestRequest = (settings: Record<string, unknown>) => Promise<void>;
+type ProcessTestRequest = (settings: Record<string, unknown>) => Promise<Record<string, unknown>>;
 export interface Engine extends Component {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;
