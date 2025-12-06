@@ -16,20 +16,21 @@ type ProcessConnectorRequest = (
     connectionConfig: ConnectionConfig,
     settings: ConnectorOperationSettings,
     callback?: ((callbackData: ContextCallbackData) => void) | undefined
-) => Promise<ContextInterfaceResult>;
+) => Promise<ConnectorInterfaceResult>;
 
-export type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
+export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
 
 type ProcessContextRequest = (
     id: string,
     contextConfig: ContextConfig,
     settings: ContextOperationSettings,
     callback?: ((callbackData: ConnectorCallbackData) => void) | undefined
-) => Promise<ConnectorInterfaceResult>;
+) => Promise<ContextInterfaceResult>;
 
-export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
+export type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
 
-type ProcessTestRequest = (settings: Record<string, unknown>) => Promise<Record<string, unknown>>;
+type ProcessTestRequest = (settings: TestSettings) => Promise<Record<string, unknown>>;
+export type TestSettings = { action?: string; delimiter?: string; forceFallback?: boolean; hasHeaders?: boolean; readable: ReadableStream<Uint8Array> };
 
 export interface Engine extends Component {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];

@@ -35,7 +35,7 @@ export type { ContextModelSecondaryMeasureGroupConfig, ContextModelSecondaryMeas
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from './component/dataView';
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './component/dataView';
 export type { DimensionConfig, DimensionLocalisedConfig } from './component/dimension';
-export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineConfig, EngineWorker } from './engine';
+export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineConfig, EngineWorker, TestSettings } from './engine';
 export type { SerialisedError } from './errors';
 export type { EventQueryConfig, EventQueryLocalisedConfig } from './component/eventQuery';
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterOperation } from './component/presenter';
