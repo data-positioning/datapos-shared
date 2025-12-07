@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.278",
+    "version": "0.3.279",
     "description": "A library containing common declarations and utilities used across all other Data Positioning projects.",
     "license": "MIT",
     "private": false,
