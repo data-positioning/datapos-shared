@@ -1,5 +1,6 @@
 # Data Positioning Shared Library
 
+<span><!-- OWASP_BADGES_START -->[![OWASP](https://img.shields.io/badge/OWASP-passed-4CAF50)](https://data-positioning.github.io/datapos-shared/dependency-check-reports/dependency-check-report.html)<!-- OWASP_BADGES_END --></span>
 [![npm version](https://img.shields.io/npm/v/@datapos/datapos-shared.svg)](https://www.npmjs.com/package/@datapos/datapos-shared)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
@@ -40,11 +41,11 @@ The Data Positioning solution consists of the following modules. All modules, ex
 | Type      | Dynamic | Notes                                                           |
 | --------- | :-----: | --------------------------------------------------------------- |
 | App       |         | Implements the data positioning web application.                |
-| Engine    |   ✔    | Implements the data positioning engine.                         |
-| Connector |   ✔    | Implements a connector which handles one or more connections.   |
-| Context   |   ✔    | Implements a context which defines one or more models.          |
-| Presenter |   ✔    | Implements a presenter which renders one or more presentations. |
-| Tool      |   ✔    | Implements...                                                   |
+| Engine    |    ✔    | Implements the data positioning engine.                         |
+| Connector |    ✔    | Implements a connector which handles one or more connections.   |
+| Context   |    ✔    | Implements a context which defines one or more models.          |
+| Presenter |    ✔    | Implements a presenter which renders one or more presentations. |
+| Tool      |    ✔    | Implements...                                                   |
 
 ### Components
 
@@ -110,6 +111,36 @@ let connectorConfig: ConnectorConfig;
 // Example function usage.
 getComponentStatus('alpha');
 ```
+
+## Reports & Compliance
+
+### Dependency Check Report
+
+The OWASP Dependency Check Report identifies known vulnerabilities in project dependencies. It is generated automatically on each release using the npm package `owasp-dependency-check`. We also rely on GitHub Dependabot to continuously check for vulnerabilities across all dependencies.
+
+[View the OWASP Dependency Check Report](https://data-positioning.github.io/datapos-shared/dependency-check-reports/dependency-check-report.html)
+
+### Dependency Licenses
+
+The following table lists top-level production and peer dependencies. All these dependencies (including transitive ones) have been recursively verified to use Apache-2.0, CC0-1.0, or MIT—commercially friendly licenses with minimal restrictions. Developers cloning this repository should independently verify dev and optional dependencies; users of the uploaded library are covered by these checks.
+
+<!-- DEPENDENCY_LICENSES_START -->
+
+| Name                          |  Type   | Installed | Latest | Latest Modified          |
+| :---------------------------- | :-----: | :-------: | :----: | :----------------------- |
+| @speed-highlight/core         | CC0-1.0 |  1.2.12   | 1.2.12 | 2025-11-03T17:41:39.642Z |
+| micromark                     |   MIT   |   4.0.2   | 4.0.2  | 2025-02-27T14:04:03.783Z |
+| micromark-extension-gfm-table |   MIT   |   2.1.1   | 2.1.1  | 2025-01-20T12:24:29.697Z |
+
+<!-- DEPENDENCY_LICENSES_END -->
+
+**Installed dependencies are kept up-to-date with latest releases.**
+
+### Bundle Analysis Report
+
+The Bundle Analysis Report provides a detailed breakdown of the bundle's composition and module sizes, helping to identify which modules contribute most to the final build. It is generated automatically on each release using the npm package `rollup-plugin-visualizer`.
+
+[View the Bundle Analysis Report](https://data-positioning.github.io/datapos-shared/stats/index.html)
 
 ## Repository Common Management Commands
 

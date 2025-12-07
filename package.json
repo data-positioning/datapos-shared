@@ -1,7 +1,7 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.261",
-    "description": "A TypeScript library containing common declarations and utilities used across other Data Positioning repositories.",
+    "version": "0.3.276",
+    "description": "A library containing common declarations and utilities used across all other Data Positioning projects.",
     "license": "MIT",
     "private": false,
     "type": "module",
@@ -14,58 +14,74 @@
         "url": "https://github.com/data-positioning/datapos-shared/issues"
     },
     "module": "./dist/datapos-shared.es.js",
-    "types": "./dist/types/src/index.d.ts",
+    "types": "./dist/types/index.d.ts",
     "exports": {
         ".": {
             "import": "./dist/datapos-shared.es.js",
-            "types": "./dist/types/src/index.d.ts"
+            "types": "./dist/types/index.d.ts"
+        },
+        "./schemas": {
+            "import": "./schemas/index.js",
+            "types": "./schemas/index.d.ts"
         }
     },
+    "sideEffects": false,
     "files": [
-        "dist"
+        "dist",
+        "schemas"
     ],
     "peerDependencies": {
         "csv-parse": "^6.1.0",
         "date-fns": "^4.1.0",
         "nanoid": "^5.1.6",
-        "zod": "^4.1.12"
+        "zod": "^4.1.13"
     },
     "devDependencies": {
-        "@datapos/datapos-development": "^0.3.94",
+        "@datapos/datapos-development": "^0.3.264",
         "@types/node": "^24.10.1",
         "@types/prismjs": "^1.26.5",
-        "@typescript-eslint/eslint-plugin": "^8.47.0",
-        "@typescript-eslint/parser": "^8.47.0",
+        "@typescript-eslint/eslint-plugin": "^8.48.1",
+        "@typescript-eslint/parser": "^8.48.1",
         "eslint": "^9.39.1",
         "eslint-plugin-import": "^2.32.0",
         "jiti": "^2.6.1",
         "license-report": "^6.8.1",
         "license-report-check": "^0.1.2",
         "npm-check-updates": "^19.1.2",
-        "prettier": "^3.6.2",
-        "retire": "^5.3.0",
+        "prettier": "^3.7.4",
+        "retire": "^5.4.0",
         "ts-to-zod": "^5.1.0",
         "typescript": "^5.9.3",
-        "vite": "^7.2.4",
+        "vite": "^7.2.6",
         "vite-plugin-dts": "^4.5.4"
     },
     "scripts": {
-        "audit": "npm audit",
-        "build": "vite build",
-        "bump:version": "node -e \"import('@datapos/datapos-development').then(m => m.bumpVersion())\"",
-        "check": "npm outdated; npm-check-updates -i && retire",
-        "document": "npm run _document:licenceReport && npm run _document:licenceCheck",
-        "format": "prettier --write src/",
-        "lint": "eslint .",
-        "publish:toNPM": "npm publish --access public",
-        "release": "npm run bump:version && npm run build && npm run _sync:withGitHub && npm run publish:toNPM",
-        "sync": "npm run bump:version && npm run _sync:withGitHub",
-        "test": "node -e \"import('@datapos/datapos-development').then(m => m.echoScriptNotImplemented('Test'))\"",
-        "update:dataPosDeps": "npm run _update:developDep",
-        "_document:licenceReport": "license-report --only=prod,peer > LICENSES.json",
-        "_document:licenceCheck": "license-report-check --source ./LICENSES.json --allowed 'MIT' --allowed 'n/a' --allowed 'Apache-2.0' --output=table",
-        "_sync:withGitHub": "node -e \"import('@datapos/datapos-development').then(m => m.syncWithGitHub())\"",
-        "_update:developDep": "npm install --save-dev @datapos/datapos-development@latest",
+        "audit": "node -e \"import('@datapos/datapos-development').then(m => m.auditDependencies())\"",
+        "build": "node -e \"import('@datapos/datapos-development').then(m => m.buildProject())\"",
+        "check": "node -e \"import('@datapos/datapos-development').then(m => m.checkDependencies())\"",
+        "document": "node -e \"import('@datapos/datapos-development').then(m => m.documentDependencies(['CC0-1.0','MIT']))\"",
+        "format": "node -e \"import('@datapos/datapos-development').then(m => m.formatCode())\"",
+        "lint": "node -e \"import('@datapos/datapos-development').then(m => m.lintCode())\"",
+        "release": "node -e \"import('@datapos/datapos-development').then(m => m.releaseProject())\"",
+        "sync": "node -e \"import('@datapos/datapos-development').then(m => m.syncProjectWithGitHub())\"",
+        "test": "node -e \"import('@datapos/datapos-development').then(m => m.testProject())\"",
+        "update": "node -e \"import('@datapos/datapos-development').then(m => m.updateDataPosDependencies(['development']))\"",
+        "audit1": "npm audit",
+        "build1": "vite build",
+        "bump:version1": "node -e \"import('@datapos/datapos-development').then(m => m.bumpVersion())\"",
+        "check1": "npm outdated; npm-check-updates -i && retire",
+        "document1": "npm run _document:licenceReport && npm run _document:licenceCheck",
+        "format1": "prettier --write src/",
+        "lint1": "eslint .",
+        "publish:toNPM1": "npm publish --access public",
+        "release1": "npm run bump:version && npm run build && npm run _sync:withGitHub && npm run publish:toNPM",
+        "sync1": "npm run bump:version && npm run _sync:withGitHub",
+        "test1": "node -e \"import('@datapos/datapos-development').then(m => m.echoScriptNotImplemented('Test'))\"",
+        "update:dataPosDep1s": "npm run _update:developDep",
+        "_document:licenceReport1": "license-report --only=prod,peer > LICENSES.json",
+        "_document:licenceCheck1": "license-report-check --source ./LICENSES.json --allowed 'MIT' --allowed 'n/a' --allowed 'Apache-2.0' --output=table",
+        "_sync:withGitHub1": "node -e \"import('@datapos/datapos-development').then(m => m.syncWithGitHub())\"",
+        "_update:developDep1": "npm install --save-dev @datapos/datapos-development@latest",
         "___ts-to-zod": "npx ts-to-zod src/schemaTypes.ts src/schemaZOD.ts"
     },
     "engines": {

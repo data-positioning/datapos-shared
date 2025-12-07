@@ -1,8 +1,9 @@
 {
     "explorer.fileNesting.enabled": true,
     "explorer.fileNesting.patterns": {
-        "package.json": ".gitignore, .npmrc, .prettier*, eslint*, package-lock.json",
-        "README.md": "LICENSE*",
-        "vite.config.ts": "tsconfig*"
-    }
+        "package.json": ".env,.gitattributes, .gitignore, .markdownlint.json, .npmrc, .prettier*, eslint*, package-lock.json",
+        "README.md": "license*",
+        "vite.config.ts": "tsconfig.*"
+    },
+    "postman.settings.dotenv-detection-notification-visibility": false
 }
