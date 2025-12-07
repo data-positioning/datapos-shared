@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.283",
+    "version": "0.3.284",
     "description": "A library containing common declarations and utilities used across all other Data Positioning projects.",
     "license": "MIT",
     "private": false,
@@ -21,15 +21,24 @@
             "types": "./dist/types/index.d.ts"
         },
         "./schemas": {
-            "import": "./schemas/index.js",
-            "types": "./schemas/index.d.ts"
+            "import": "./dist/schemas.js",
+            "types": "./dist/types/schemas.d.ts"
         }
     },
     "sideEffects": false,
     "files": [
-        "dist",
-        "schemas"
+        "dist"
     ],
+    "typesVersions": {
+        "*": {
+            "schemas": [
+                "dist/types/schemas.d.ts"
+            ],
+            "*": [
+                "dist/types/*"
+            ]
+        }
+    },
     "peerDependencies": {
         "csv-parse": "^6.1.0",
         "date-fns": "^4.1.0",
