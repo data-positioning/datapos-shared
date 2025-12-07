@@ -125,13 +125,12 @@ The OWASP Dependency Check Report identifies known vulnerabilities in project de
 The following table lists top-level production and peer dependencies. All these dependencies (including transitive ones) have been recursively verified to use Apache-2.0, CC0-1.0, or MIT—commercially friendly licenses with minimal restrictions. Developers cloning this repository should independently verify dev and optional dependencies; users of the uploaded library are covered by these checks.
 
 <!-- DEPENDENCY_LICENSES_START -->
-
-| Name                          |  Type   | Installed | Latest | Latest Modified          |
-| :---------------------------- | :-----: | :-------: | :----: | :----------------------- |
-| @speed-highlight/core         | CC0-1.0 |  1.2.12   | 1.2.12 | 2025-11-03T17:41:39.642Z |
-| micromark                     |   MIT   |   4.0.2   | 4.0.2  | 2025-02-27T14:04:03.783Z |
-| micromark-extension-gfm-table |   MIT   |   2.1.1   | 2.1.1  | 2025-01-20T12:24:29.697Z |
-
+| Name      | Type | Installed | Latest | Latest Modified          |
+| :-------- | :--: | :-------: | :----: | :----------------------- |
+| csv-parse | MIT  |   6.1.0   | 6.1.0  | 2025-07-16T18:42:21.126Z |
+| date-fns  | MIT  |   4.1.0   | 4.1.0  | 2025-08-03T13:10:27.925Z |
+| nanoid    | MIT  |   5.1.6   | 5.1.6  | 2025-09-22T09:45:52.899Z |
+| zod       | MIT  |  4.1.13   | 4.1.13 | 2025-12-02T06:21:25.529Z |
 <!-- DEPENDENCY_LICENSES_END -->
 
 **Installed dependencies are kept up-to-date with latest releases.**
