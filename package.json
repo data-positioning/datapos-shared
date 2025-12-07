@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.279",
+    "version": "0.3.280",
     "description": "A library containing common declarations and utilities used across all other Data Positioning projects.",
     "license": "MIT",
     "private": false,
@@ -37,7 +37,7 @@
         "zod": "^4.1.13"
     },
     "devDependencies": {
-        "@datapos/datapos-development": "^0.3.265",
+        "@datapos/datapos-development": "^0.3.266",
         "@types/node": "^24.10.1",
         "@types/prismjs": "^1.26.5",
         "@typescript-eslint/eslint-plugin": "^8.48.1",
