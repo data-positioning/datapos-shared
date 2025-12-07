@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.287",
+    "version": "0.3.288",
     "description": "A library containing common declarations and utilities used across all other Data Positioning projects.",
     "license": "MIT",
     "private": false,
@@ -39,6 +39,7 @@
             ]
         }
     },
+    "prettier": "@datapos/datapos-development/prettierrc",
     "peerDependencies": {
         "csv-parse": "^6.1.0",
         "date-fns": "^4.1.0",
@@ -46,7 +47,7 @@
         "zod": "^4.1.13"
     },
     "devDependencies": {
-        "@datapos/datapos-development": "^0.3.266",
+        "@datapos/datapos-development": "^0.3.272",
         "@types/node": "^24.10.1",
         "@types/prismjs": "^1.26.5",
         "@typescript-eslint/eslint-plugin": "^8.48.1",
