@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.277",
+    "version": "0.3.278",
     "description": "A library containing common declarations and utilities used across all other Data Positioning projects.",
     "license": "MIT",
     "private": false,
@@ -37,7 +37,7 @@
         "zod": "^4.1.13"
     },
     "devDependencies": {
-        "@datapos/datapos-development": "^0.3.264",
+        "@datapos/datapos-development": "^0.3.265",
         "@types/node": "^24.10.1",
         "@types/prismjs": "^1.26.5",
         "@typescript-eslint/eslint-plugin": "^8.48.1",
@@ -59,7 +59,7 @@
         "audit": "node -e \"import('@datapos/datapos-development').then(m => m.auditDependencies())\"",
         "build": "node -e \"import('@datapos/datapos-development').then(m => m.buildProject())\"",
         "check": "node -e \"import('@datapos/datapos-development').then(m => m.checkDependencies())\"",
-        "document": "node -e \"import('@datapos/datapos-development').then(m => m.documentDependencies(['CC0-1.0','MIT']))\"",
+        "document": "node -e \"import('@datapos/datapos-development').then(m => m.documentDependencies(['MIT']))\"",
         "format": "node -e \"import('@datapos/datapos-development').then(m => m.formatCode())\"",
         "lint": "node -e \"import('@datapos/datapos-development').then(m => m.lintCode())\"",
         "release": "node -e \"import('@datapos/datapos-development').then(m => m.releaseProject())\"",
