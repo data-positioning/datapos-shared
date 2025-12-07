@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.289",
+    "version": "0.3.290",
     "description": "A library containing common declarations and utilities used across all other Data Positioning projects.",
     "license": "MIT",
     "private": false,
@@ -14,31 +14,17 @@
         "url": "https://github.com/data-positioning/datapos-shared/issues"
     },
     "module": "./dist/datapos-shared.es.js",
-    "types": "./dist/types/index.d.ts",
+    "types": "./dist/types/src/index.d.ts",
     "exports": {
         ".": {
             "import": "./dist/datapos-shared.es.js",
-            "types": "./dist/types/index.d.ts"
-        },
-        "./schemas": {
-            "import": "./dist/schemas.js",
-            "types": "./dist/types/schemas.d.ts"
+            "types": "./dist/types/src/index.d.ts"
         }
     },
     "sideEffects": false,
     "files": [
         "dist"
     ],
-    "typesVersions": {
-        "*": {
-            "schemas": [
-                "dist/types/schemas.d.ts"
-            ],
-            "*": [
-                "dist/types/*"
-            ]
-        }
-    },
     "prettier": "@datapos/datapos-development/prettierrc",
     "peerDependencies": {
         "csv-parse": "^6.1.0",
@@ -47,7 +33,7 @@
         "zod": "^4.1.13"
     },
     "devDependencies": {
-        "@datapos/datapos-development": "^0.3.272",
+        "@datapos/datapos-development": "^0.3.273",
         "@types/node": "^24.10.1",
         "@types/prismjs": "^1.26.5",
         "@typescript-eslint/eslint-plugin": "^8.48.1",

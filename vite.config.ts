@@ -3,6 +3,7 @@
  */
 
 // Dependencies - Vendor.
+import config from './config.json';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
 import pkg from './package.json' with { type: 'json' };
@@ -17,15 +18,8 @@ const external = [...Object.keys(pkg.peerDependencies ?? {})];
 export default defineConfig({
     build: {
         lib: {
-            entry: {
-                index: resolve('src/index.ts'),
-                schemas: resolve('src/schemas.ts')
-            },
-            fileName: (format, entryName) => {
-                if (entryName === 'index') return 'datapos-shared.es.js';
-                if (entryName === 'schemas') return 'schemas.js';
-                return `${entryName}.${format}.js`;
-            },
+            entry: resolve('src/index.ts'),
+            fileName: (format) => `${config.id}.${format}.js`,
             formats: ['es'],
             name: 'DataPosShared'
         },
@@ -42,13 +36,7 @@ export default defineConfig({
         },
         target: 'ESNext'
     },
-    plugins: [
-        dts({
-            outDir: 'dist/types',
-            entryRoot: 'src',
-            tsconfigPath: 'tsconfig.json'
-        })
-    ],
+    plugins: [dts({ outDir: 'dist/types' })],
     resolve: {
         alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) }
     }

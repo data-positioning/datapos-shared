@@ -34,8 +34,6 @@ export type { RemoveSettings } from '@/component/connector';
 export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from '@/component/connector';
 export type { UpsertSettings } from '@/component/connector';
 
-// Schema exports remain available via '@datapos/datapos-shared/schemas' to keep zod out of the main bundle.
-
 // Types/Interfaces/Operations - Connector connection.
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/component/connector/connection';
@@ -100,8 +98,6 @@ export type { SerialisedError } from '@/errors';
 
 // Types/Interfaces/Operations - Event query.
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/component/eventQuery';
-
-// Types/Interfaces/Operations - Informer document.
 
 // Types/Interfaces/Operations - Presenter.
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterOperation } from '@/component/presenter';
