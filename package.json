@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.292",
+    "version": "0.3.293",
     "description": "A library containing common constants, types and utilities used across all Data Positioning projects.",
     "license": "MIT",
     "private": false,
@@ -32,7 +32,7 @@
         "nanoid": "^5.1.6"
     },
     "devDependencies": {
-        "@datapos/datapos-development": "^0.3.273",
+        "@datapos/datapos-development": "^0.3.279",
         "@types/node": "^24.10.1",
         "@types/prismjs": "^1.26.5",
         "@typescript-eslint/eslint-plugin": "^8.48.1",
@@ -49,7 +49,7 @@
         "prettier": "^3.7.4",
         "rollup-plugin-visualizer": "^6.0.5",
         "typescript": "^5.9.3",
-        "vite": "^7.2.6",
+        "vite": "^7.2.7",
         "vite-plugin-dts": "^4.5.4"
     },
     "scripts": {

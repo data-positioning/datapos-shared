@@ -118,20 +118,18 @@ getComponentStatus('alpha');
 
 The OWASP Dependency Check Report identifies known vulnerabilities in project dependencies. It is generated automatically on each release using the npm package `owasp-dependency-check`. We also rely on GitHub Dependabot to continuously check for vulnerabilities across all dependencies.
 
-[View the OWASP Dependency Check Report](https://data-positioning.github.io/datapos-shared/dependency-check-reports/dependency-check-report.html)
+[View the OWASP Dependency Check Report](https://data-positioning.github.io/datapos-shared/dependency-check-report.html)
 
 ### Dependency Licenses
 
 The following table lists top-level production and peer dependencies. All these dependencies (including transitive ones) have been recursively verified to use Apache-2.0, CC0-1.0, or MIT—commercially friendly licenses with minimal restrictions. Developers cloning this repository should independently verify dev and optional dependencies; users of the uploaded library are covered by these checks.
 
 <!-- DEPENDENCY_LICENSES_START -->
-
 | Name      | Type | Installed | Latest | Latest Modified          |
 | :-------- | :--: | :-------: | :----: | :----------------------- |
 | csv-parse | MIT  |   6.1.0   | 6.1.0  | 2025-07-16T18:42:21.126Z |
 | date-fns  | MIT  |   4.1.0   | 4.1.0  | 2025-08-03T13:10:27.925Z |
 | nanoid    | MIT  |   5.1.6   | 5.1.6  | 2025-09-22T09:45:52.899Z |
-
 <!-- DEPENDENCY_LICENSES_END -->
 
 **Installed dependencies are kept up-to-date with latest releases.**
