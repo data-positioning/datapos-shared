@@ -3,19 +3,23 @@
         "baseUrl": "./",
         "declaration": true,
         "esModuleInterop": true,
-        "isolatedModules": true,
         "jsx": "preserve",
-        "lib": ["ESNext", "dom", "dom.iterable", "scripthost"],
+        "lib": ["ESNext", "dom"],
         "module": "ESNext",
         "moduleResolution": "node",
+        "noUncheckedIndexedAccess": true, // Enforce checks when indexing into objects or arrays.
+        "noImplicitAny": true, // Disallow implicit any types to keep everything typed.
         "outDir": "dist",
         "paths": {
+            // Configure import aliases used across the project.
+            "~/*": ["*"],
             "@/*": ["src/*"]
         },
         "resolveJsonModule": true,
         "skipLibCheck": true,
         "sourceMap": true,
         "strict": true,
+        "strictNullChecks": true, // Major strict setting: enforce null/undefined checks.
         "target": "ESNext",
         "useDefineForClassFields": true
     },

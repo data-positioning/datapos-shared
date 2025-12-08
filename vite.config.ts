@@ -9,7 +9,7 @@ import { visualizer } from 'rollup-plugin-visualizer';
 import { fileURLToPath, URL } from 'node:url';
 
 // Dependencies - Data.
-import config from './config.json';
+import config from './config.json' with { type: 'json' };
 import pkg from './package.json' with { type: 'json' };
 
 // Initialisation
