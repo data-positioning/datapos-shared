@@ -19,10 +19,9 @@ const external = [...Object.keys(pkg.peerDependencies ?? {})]; // Keep peer depe
 export default defineConfig({
     build: {
         lib: {
-            entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
+            entry: fileURLToPath(new URL('src/index.ts', import.meta.url)),
             fileName: (format) => `${config.id}.${format}.js`,
-            formats: ['es'],
-            name: 'DataPosShared'
+            formats: ['es']
         },
         rollupOptions: {
             external,

@@ -125,13 +125,11 @@ The OWASP Dependency Check Report identifies known vulnerabilities in project de
 The following table lists top-level production and peer dependencies. All these dependencies (including transitive ones) have been recursively verified to use Apache-2.0, BSD-2-Clause, CC0-1.0, or MIT—commercially friendly licenses with minimal restrictions. Developers cloning this repository should independently verify dev and optional dependencies; users of the uploaded library are covered by these checks. We do not include unlicensed dependencies. Used to support development activity and not released as part of the production release. Check if you clone. We use the `npm` packages [license-report](https://www.npmjs.com/package/license-report), [license-report-check](https://www.npmjs.com/package/license-report-check) and [license-report-recursive](https://www.npmjs.com/package/license-report-recursive) to identify dependency licenses.
 
 <!-- DEPENDENCY_LICENSES_START -->
-
 | Name      | Type | Installed | Latest | Latest Modified          |
 | :-------- | :--: | :-------: | :----: | :----------------------- |
 | csv-parse | MIT  |   6.1.0   | 6.1.0  | 2025-07-16T18:42:21.126Z |
 | date-fns  | MIT  |   4.1.0   | 4.1.0  | 2025-08-03T13:10:27.925Z |
 | nanoid    | MIT  |   5.1.6   | 5.1.6  | 2025-09-22T09:45:52.899Z |
-
 <!-- DEPENDENCY_LICENSES_END -->
 
 **Installed dependencies are kept up-to-date with latest releases.**
