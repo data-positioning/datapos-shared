@@ -3,22 +3,23 @@
  */
 
 // Dependencies - Vendor.
-import config from './config.json';
 import { defineConfig } from 'vite';
 import dts from 'vite-plugin-dts';
-import pkg from './package.json' with { type: 'json' };
-import { resolve } from 'path';
 import { visualizer } from 'rollup-plugin-visualizer';
 import { fileURLToPath, URL } from 'node:url';
 
+// Dependencies - Data.
+import config from './config.json';
+import pkg from './package.json' with { type: 'json' };
+
 // Initialisation
-const external = [...Object.keys(pkg.peerDependencies ?? {})];
+const external = [...Object.keys(pkg.peerDependencies ?? {})]; // Keep peer dependencies out of the bundle.
 
 // Exposures - Configuration.
 export default defineConfig({
     build: {
         lib: {
-            entry: resolve('src/index.ts'),
+            entry: fileURLToPath(new URL('./src/index.ts', import.meta.url)),
             fileName: (format) => `${config.id}.${format}.js`,
             formats: ['es'],
             name: 'DataPosShared'
@@ -27,7 +28,7 @@ export default defineConfig({
             external,
             plugins: [
                 visualizer({
-                    filename: 'stats/index.html', // HTML report.
+                    filename: 'stats.html', // HTML report.
                     open: false, // Automatically opens in browser.
                     gzipSize: true, // Show gzip sizes.
                     brotliSize: true // Show brotli sizes.
@@ -38,6 +39,9 @@ export default defineConfig({
     },
     plugins: [dts({ outDir: 'dist/types' })],
     resolve: {
-        alias: { '@': fileURLToPath(new URL('./src', import.meta.url)) }
+        alias: {
+            '~': fileURLToPath(new URL('./', import.meta.url)),
+            '@': fileURLToPath(new URL('./src', import.meta.url))
+        }
     }
 });

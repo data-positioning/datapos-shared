@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.290",
+    "version": "0.3.291",
     "description": "A library containing common declarations and utilities used across all other Data Positioning projects.",
     "license": "MIT",
     "private": false,
@@ -29,8 +29,7 @@
     "peerDependencies": {
         "csv-parse": "^6.1.0",
         "date-fns": "^4.1.0",
-        "nanoid": "^5.1.6",
-        "zod": "^4.1.13"
+        "nanoid": "^5.1.6"
     },
     "devDependencies": {
         "@datapos/datapos-development": "^0.3.273",
@@ -49,7 +48,6 @@
         "owasp-dependency-check": "^1.0.0",
         "prettier": "^3.7.4",
         "rollup-plugin-visualizer": "^6.0.5",
-        "ts-to-zod": "^5.1.0",
         "typescript": "^5.9.3",
         "vite": "^7.2.6",
         "vite-plugin-dts": "^4.5.4"
@@ -64,8 +62,7 @@
         "release": "node -e \"import('@datapos/datapos-development').then(m => m.releaseProject())\"",
         "sync": "node -e \"import('@datapos/datapos-development').then(m => m.syncProjectWithGitHub())\"",
         "test": "node -e \"import('@datapos/datapos-development').then(m => m.testProject())\"",
-        "update": "node -e \"import('@datapos/datapos-development').then(m => m.updateDataPosDependencies(['development']))\"",
-        "___ts-to-zod": "npx ts-to-zod src/schemaTypes.ts src/schemaZOD.ts"
+        "update": "node -e \"import('@datapos/datapos-development').then(m => m.updateDataPosDependencies(['development']))\""
     },
     "engines": {
         "node": ">=22.0.0",
