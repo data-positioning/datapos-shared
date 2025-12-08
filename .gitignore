@@ -2,6 +2,7 @@
 dependency-check-bin
 dist-scripts
 node_modules
+licenses.md
 .env
 .npmrc
 **/.DS_Store
