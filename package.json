@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.298",
+    "version": "0.3.299",
     "description": "A library containing common constants, types and utilities used across all Data Positioning projects.",
     "license": "MIT",
     "author": "Jonathan Terrell <terrell.jm@gmail.com>",
@@ -22,7 +22,6 @@
             "types": "./dist/types/src/index.d.ts"
         }
     },
-    "sideEffects": false,
     "files": [
         "dist"
     ],
@@ -33,10 +32,10 @@
         "nanoid": "^5.1.6"
     },
     "devDependencies": {
-        "@datapos/datapos-development": "^0.3.297",
-        "@types/node": "^24.10.1",
-        "@typescript-eslint/eslint-plugin": "^8.48.1",
-        "@typescript-eslint/parser": "^8.48.1",
+        "@datapos/datapos-development": "^0.3.307",
+        "@types/node": "^24.10.2",
+        "@typescript-eslint/eslint-plugin": "^8.49.0",
+        "@typescript-eslint/parser": "^8.49.0",
         "eslint": "^9.39.1",
         "eslint-plugin-import": "^2.32.0",
         "jiti": "^2.6.1",
