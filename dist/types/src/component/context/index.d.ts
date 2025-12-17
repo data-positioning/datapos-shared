@@ -1,0 +1,135 @@
+import { LocalisedString } from '../../index';
+import { Component, ComponentConfig, ComponentRef, ModuleConfig } from '..';
+export interface Context extends Component {
+    readonly config: ContextConfig;
+    list(settings?: ContextListSettings): Promise<ContextListResult>;
+}
+export type ContextOperationSettings = {};
+export type ContextListSettings = {};
+export type ContextListResult = {
+    models: ContextModelGroupConfig[];
+};
+export type ContextCallbackData = {
+    typeId: string;
+    properties: Record<string, unknown>;
+};
+export interface ContextConfig extends ModuleConfig {
+    models: ContextModelGroupConfig[];
+    operations: ContextOperation[];
+    typeId: 'context';
+}
+export type ContextOperation = 'list';
+export type ContextLocalisedConfig = Omit<ContextConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelGroupConfig extends ComponentConfig {
+    modelRefs: ComponentRef[];
+    order: number;
+}
+export type ContextModelGroupLocalisedConfig = Omit<ContextModelGroupConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelConfig extends ComponentConfig {
+    diagramURL?: string;
+    dimension: ContextModelDimensionGroupConfig[];
+    entities: ContextModelEntityGroupConfig[];
+    secondaryMeasures: ContextModelSecondaryMeasureGroupConfig[];
+}
+export type ContextModelLocalisedConfig = Omit<ContextModelConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelDimensionGroupConfig {
+    id: string;
+    label: Partial<LocalisedString>;
+    description: Partial<LocalisedString>;
+    dimensionRefs: ComponentRef[];
+}
+export type ContextModelDimensionGroupLocalisedConfig = Omit<ContextModelDimensionGroupConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelDimensionConfig {
+    id: string;
+    label: Partial<LocalisedString>;
+    hierarchies: ContextModelDimensionHierarchyConfig[];
+}
+export type ContextModelDimensionLocalisedConfig = Omit<ContextModelDimensionConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelDimensionHierarchyConfig {
+    id: string;
+    label: Partial<LocalisedString>;
+}
+export type ContextModelDimensionHierarchyLocalisedConfig = Omit<ContextModelDimensionHierarchyConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelEntityGroupConfig {
+    id: string;
+    label: Partial<LocalisedString>;
+    description?: Record<string, unknown>;
+    entityRefs: ComponentRef[];
+}
+export type ContextModelEntityGroupLocalisedConfig = Omit<ContextModelEntityGroupConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelEntityConfig {
+    id: string;
+    label: Partial<LocalisedString>;
+    labelPlural: Partial<LocalisedString>;
+    dataItems: ContextModelEntityDataItemConfig[];
+    events: ContextModelEntityEventConfig[];
+    primaryMeasures: ContextModelEntityPrimaryMeasureConfig[];
+}
+export type ContextModelEntityLocalisedConfig = Omit<ContextModelEntityConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelEntityDataItemConfig {
+    id: string;
+    label: Partial<LocalisedString>;
+}
+export type ContextModelEntityDataItemLocalisedConfig = Omit<ContextModelEntityDataItemConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelEntityEventConfig {
+    id: string;
+    labelAction: Record<string, string>;
+    labelState: Record<string, string>;
+}
+export type ContextModelEntityEventLocalisedConfig = Omit<ContextModelEntityEventConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelEntityPrimaryMeasureConfig {
+    id: string;
+    label: Partial<LocalisedString>;
+}
+export type ContextModelEntityPrimaryMeasureLocalisedConfig = Omit<ContextModelEntityPrimaryMeasureConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelSecondaryMeasureGroupConfig {
+    id: string;
+    label: Partial<LocalisedString>;
+    description?: Record<string, unknown>;
+    secondaryMeasureRefs: ComponentRef[];
+}
+export type ContextModelSecondaryMeasureGroupLocalisedConfig = Omit<ContextModelSecondaryMeasureGroupConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+export interface ContextModelSecondaryMeasureConfig {
+    id: string;
+    label: Partial<LocalisedString>;
+}
+export type ContextModelSecondaryMeasureLocalisedConfig = Omit<ContextModelSecondaryMeasureConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
