@@ -64,9 +64,9 @@ export interface ConnectorConfig extends ModuleConfig {
     operations: ConnectorOperation[];
     typeId: 'connector';
     usageId: ConnectorUsageId;
-    vendorAccountURL?: string;
-    vendorDocumentationURL?: string;
-    vendorHomeURL?: string;
+    vendorAccountURL: string | null;
+    vendorDocumentationURL: string | null;
+    vendorHomeURL: string | null;
 }
 export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
 export type ConnectorImplementation = {
