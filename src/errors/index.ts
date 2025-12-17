@@ -1,4 +1,8 @@
-// Types/Interfaces - Serialised Error Data
+/*
+ * Error classes and utilities.
+ */
+
+/** Interfaces/Types - Serialised error data. */
 export interface SerialisedError {
     body?: string;
     componentName?: string;
@@ -9,7 +13,7 @@ export interface SerialisedError {
     stack?: string;
 }
 
-// Classes - DataPos Error - Base DataPos error class.
+/** Classes - Base Data Positioning error. */
 class DataPosError extends Error {
     locator: string;
     constructor(message: string, locator: string, options?: ErrorOptions) {
@@ -20,7 +24,9 @@ class DataPosError extends Error {
     }
 }
 
-// Classes - Application Error
+//#region Application Errors
+
+/** Classes - Base application error. */
 export class ApplicationError extends DataPosError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
@@ -28,7 +34,7 @@ export class ApplicationError extends DataPosError {
     }
 }
 
-// Classes - Application Error - API Error
+/** Classes - Application Error - API error. */
 export class APIError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
@@ -36,7 +42,7 @@ export class APIError extends ApplicationError {
     }
 }
 
-// Classes - Application Error - Engine Error
+/** Classes - Application Error - Engine Error */
 export class EngineError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
@@ -44,7 +50,7 @@ export class EngineError extends ApplicationError {
     }
 }
 
-// Classes - Application Error - Fetch Error
+/** Classes - Application Error - Fetch error. */
 export class FetchError extends ApplicationError {
     body: string;
     constructor(message: string, locator: string, body: string, options?: ErrorOptions) {
@@ -54,7 +60,7 @@ export class FetchError extends ApplicationError {
     }
 }
 
-// Classes - Application Error - Vue Error
+/** Classes - Application Error - Vue error. */
 export class VueError extends ApplicationError {
     componentName?: string;
     info: string;
@@ -66,7 +72,7 @@ export class VueError extends ApplicationError {
     }
 }
 
-// Classes - Application Error - Window Runtime Error
+/** Classes - Application Error - Window runtime error. */
 export class WindowRuntimeError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
@@ -74,7 +80,7 @@ export class WindowRuntimeError extends ApplicationError {
     }
 }
 
-// Classes - Application Error - Window Promise Rejection Error
+/** Classes - Application Error - Window promise rejection error. */
 export class WindowPromiseRejectionError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
@@ -82,7 +88,9 @@ export class WindowPromiseRejectionError extends ApplicationError {
     }
 }
 
-// Classes - Operational Error
+//#endregion
+
+/** Classes - Operational error. */
 export class OperationalError extends DataPosError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
@@ -90,29 +98,35 @@ export class OperationalError extends DataPosError {
     }
 }
 
-// Operations - Build Fetch Error
+/** Utilities - Build fetch error. */
 export async function buildFetchError(response: { status: number; statusText: string; text: () => Promise<string> }, message: string, locator: string): Promise<FetchError> {
     const fetchMessage = `${message} Response status '${response.status}${response.statusText ? ` - ${response.statusText}` : ''}' received.`;
     const body = await response.text();
     return new FetchError(fetchMessage, locator, body);
 }
 
-// Operations - Concatenate Serialised Error Messages
+/** Utilities - Concatenate serialised error messages. */
 export function concatenateSerialisedErrorMessages(serialisedErrors: SerialisedError[]): string {
     return serialisedErrors.map((serialisedError) => serialisedError.message).join(' ');
 }
-// Operations - Normalise To Error
-export function normalizeToError(value: unknown, fallbackMessage = 'Unknown error.'): Error {
+
+/** Utilities - Normalise to error. */
+export function normalizeToError(value: unknown): Error {
     if (value instanceof Error) return value;
     if (typeof value === 'string') return new Error(value);
-    try {
-        return new Error(JSON.stringify(value ?? fallbackMessage));
-    } catch {
-        return new Error(fallbackMessage);
+    if (typeof value === 'number' || typeof value === 'boolean' || typeof value === 'bigint') return new Error(String(value));
+    if (typeof value === 'symbol') return new Error(value.description ?? 'Unknown error');
+    if (Boolean(value) && typeof value === 'object') {
+        try {
+            return new Error(JSON.stringify(value));
+        } catch {
+            return new Error('Unknown error');
+        }
     }
+    return new Error('Unknown error');
 }
 
-// Operations - Serialise Error
+/** Utilities - Serialise error. */
 export function serialiseError(error?: unknown): SerialisedError[] {
     const seenCauses = new Set();
     const serialisedErrors: SerialisedError[] = [];

@@ -1,17 +1,17 @@
-const x = ["createObject", "dropObject", "removeRecords", "upsertRecords"], N = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
-function w() {
+const x = ["createObject", "dropObject", "removeRecords", "upsertRecords"], w = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"];
+function N() {
   function e(n, t, r) {
     r.textContent = "Cytoscape.js diagram goes here...";
   }
   return { render: e };
 }
-function S() {
+function y() {
   function e(n, t) {
     console.log(1111, n), console.log(2222, t), console.log(3333, t.childNodes), console.log(4444, t.children);
   }
   return { render: e };
 }
-const T = 0, y = (e) => e, D = () => Date.now();
+const S = 0, T = (e) => e, D = () => Date.now();
 class u extends Error {
   locator;
   constructor(n, t, r) {
@@ -23,12 +23,12 @@ class l extends u {
     super(n, t, r), this.name = "ApplicationError";
   }
 }
-class v extends l {
+class O extends l {
   constructor(n, t, r) {
     super(n, t, r), this.name = "APIError";
   }
 }
-class O extends l {
+class $ extends l {
   constructor(n, t, r) {
     super(n, t, r), this.name = "EngineError";
   }
@@ -46,12 +46,12 @@ class g extends l {
     super(n, t, s), this.name = "VueHandledError", this.info = r, this.componentName = o;
   }
 }
-class $ extends l {
+class I extends l {
   constructor(n, t, r) {
     super(n, t, r), this.name = "WindowHandledRuntimeError";
   }
 }
-class I extends l {
+class v extends l {
   constructor(n, t, r) {
     super(n, t, r), this.name = "WindowHandledPromiseRejectionError";
   }
@@ -68,14 +68,18 @@ async function C(e, n, t) {
 function F(e) {
   return e.map((n) => n.message).join(" ");
 }
-function R(e, n = "Unknown error.") {
+function R(e) {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
-  try {
-    return new Error(JSON.stringify(e ?? n));
-  } catch {
-    return new Error(n);
-  }
+  if (typeof e == "number" || typeof e == "boolean" || typeof e == "bigint") return new Error(String(e));
+  if (typeof e == "symbol") return new Error(e.description ?? "Unknown error");
+  if (e && typeof e == "object")
+    try {
+      return new Error(JSON.stringify(e));
+    } catch {
+      return new Error("Unknown error");
+    }
+  return new Error("Unknown error");
 }
 function k(e) {
   const n = /* @__PURE__ */ new Set(), t = [];
@@ -255,21 +259,21 @@ const b = [
   return t ? { ...t, label: t.label[n] || t.label[i] || e } : { id: e, color: "other", label: e };
 }, i = "en-gb";
 export {
-  v as APIError,
+  O as APIError,
   l as ApplicationError,
   x as CONNECTOR_DESTINATION_OPERATIONS,
-  N as CONNECTOR_SOURCE_OPERATIONS,
+  w as CONNECTOR_SOURCE_OPERATIONS,
   i as DEFAULT_LOCALE_CODE,
-  T as DefaultTimestamp,
-  O as EngineError,
+  S as DefaultTimestamp,
+  $ as EngineError,
   m as FetchError,
   A as OperationalError,
   g as VueError,
-  I as WindowPromiseRejectionError,
-  $ as WindowRuntimeError,
+  v as WindowPromiseRejectionError,
+  I as WindowRuntimeError,
   C as buildFetchError,
   F as concatenateSerialisedErrorMessages,
-  y as convertMillisecondsToTimestamp,
+  T as convertMillisecondsToTimestamp,
   B as convertODataTypeIdToUsageTypeId,
   j as extractExtensionFromPath,
   M as extractNameFromPath,
@@ -286,6 +290,6 @@ export {
   W as lookupMimeTypeForExtension,
   R as normalizeToError,
   k as serialiseError,
-  w as useCytoscapeJS,
-  S as useDataTable
+  N as useCytoscapeJS,
+  y as useDataTable
 };
