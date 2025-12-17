@@ -1,6 +1,10 @@
 # Data Positioning Shared Library
 
-<span><!-- OWASP_BADGES_START -->[![OWASP](https://img.shields.io/badge/OWASP-passed-4CAF50)](https://data-positioning.github.io/datapos-shared/dependency-check-reports/dependency-check-report.html)<!-- OWASP_BADGES_END --></span>
+<span><!-- OWASP_BADGES_START -->
+[![OWASP](https://img.shields.io/badge/OWASP-passed-4CAF50)](https://data-positioning.github.io/datapos-shared/dependency-check-reports/dependency-check-report.html)
+
+<!-- OWASP_BADGES_END --></span>
+
 [![npm version](https://img.shields.io/npm/v/@datapos/datapos-shared.svg)](https://www.npmjs.com/package/@datapos/datapos-shared)
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
 
@@ -120,11 +124,11 @@ The following table lists top-level production and peer dependencies. All these 
 
 <!-- DEPENDENCY_LICENSES_START -->
 
-| Name      | Type | Installed | Latest | Latest Update             | Deps | Document                                                                          |
-| :-------- | :--- | :-------: | :----: | :------------------------ | ---: | :-------------------------------------------------------------------------------- |
-| csv-parse | MIT  |   6.1.0   | 6.1.0  | 4 months ago - 2025-07-16 |    0 | ⚠️ No license file                                                                |
-| date-fns  | MIT  |   4.1.0   | 4.1.0  | 4 months ago - 2025-08-03 |    0 | [LICENSE.md](https://raw.githubusercontent.com/date-fns/date-fns/main/LICENSE.md) |
-| nanoid    | MIT  |   5.1.6   | 5.1.6  | 2 months ago - 2025-09-22 |    0 | [LICENSE](https://raw.githubusercontent.com/ai/nanoid/main/LICENSE)               |
+| Name      | Type | Installed | Latest | Latest Released          | Deps | Document                                                                          |
+| :-------- | :--- | :-------: | :----: | :----------------------- | ---: | :-------------------------------------------------------------------------------- |
+| csv-parse | MIT  |   6.1.0   | 6.1.0  | 5 months ago: 2025-07-16 |    0 | ⚠️ No license file                                                                |
+| date-fns  | MIT  |   4.1.0   | 4.1.0  | 4 months ago: 2025-08-03 |    0 | [LICENSE.md](https://raw.githubusercontent.com/date-fns/date-fns/main/LICENSE.md) |
+| nanoid    | MIT  |   5.1.6   | 5.1.6  | 2 months ago: 2025-09-22 |    0 | [LICENSE](https://raw.githubusercontent.com/ai/nanoid/main/LICENSE)               |
 
 <!-- DEPENDENCY_LICENSES_END -->
 
