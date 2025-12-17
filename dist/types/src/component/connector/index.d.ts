@@ -31,7 +31,7 @@ export interface Connector extends Component {
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
 export interface ConnectorConfig extends ModuleConfig {
-    category?: ConnectorCategory;
+    category: ConnectorCategory | null;
     categoryId: ConnectorModuleCategoryId;
     implementations: Record<string, ConnectorImplementation>;
     operations: ConnectorOperation[];

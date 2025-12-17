@@ -58,7 +58,7 @@ export interface Connector extends Component {
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one oˆr more records into an object for a specified connection.
 }
 export interface ConnectorConfig extends ModuleConfig {
-    category?: ConnectorCategory;
+    category: ConnectorCategory | null;
     categoryId: ConnectorModuleCategoryId;
     implementations: Record<string, ConnectorImplementation>;
     operations: ConnectorOperation[];

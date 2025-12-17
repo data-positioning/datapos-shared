@@ -1,4 +1,3 @@
-import { Timestamp } from '../timestamp';
 import { LocaleCode, LocalisedString, StatusColorId } from '../index';
 export interface Component {
     readonly config: ComponentConfig;
@@ -7,11 +6,11 @@ export interface ComponentConfig {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
-    firstCreatedAt?: Timestamp;
-    icon?: string;
-    iconDark?: string;
-    lastUpdatedAt?: Timestamp;
-    status?: ComponentStatus;
+    firstCreatedAt?: number;
+    icon: string | null;
+    iconDark: string | null;
+    lastUpdatedAt: number | null;
+    status: ComponentStatus | null;
     statusId: ComponentStatusId;
     typeId: ComponentTypeId;
 }

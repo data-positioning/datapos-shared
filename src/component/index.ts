@@ -3,7 +3,6 @@
  */
 
 // Dependencies - Framework.
-import type { Timestamp } from '@/timestamp';
 import { DEFAULT_LOCALE_CODE, type LocaleCode, type LocalisedString, type StatusColorId } from '@/index';
 
 // Types/Interfaces/Operations - Component.
@@ -16,11 +15,11 @@ export interface ComponentConfig {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
-    firstCreatedAt?: Timestamp;
-    icon?: string;
-    iconDark?: string;
-    lastUpdatedAt?: Timestamp;
-    status?: ComponentStatus;
+    firstCreatedAt?: number;
+    icon: string | null;
+    iconDark: string | null;
+    lastUpdatedAt: number | null;
+    status: ComponentStatus | null;
     statusId: ComponentStatusId;
     typeId: ComponentTypeId;
 }
