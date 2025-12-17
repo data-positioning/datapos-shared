@@ -97,7 +97,8 @@ function k(e) {
   }
   return t;
 }
-const f = "en-US", c = {}, B = (e) => {
+const f = "en-US", c = {};
+function B(e) {
   switch (e) {
     case "Edm.Binary":
       return "unknown";
@@ -136,17 +137,20 @@ const f = "en-US", c = {}, B = (e) => {
     default:
       return "unknown";
   }
-}, M = (e) => {
+}
+function M(e) {
   if (e) {
     const n = e.lastIndexOf("/"), t = e.lastIndexOf(".", n > -1 ? n : e.length);
     return t > -1 ? e.substring(0, t) : e;
   }
-}, j = (e) => {
+}
+function j(e) {
   if (e) {
     const n = e.lastIndexOf(".");
     if (n > -1) return e.substring(n + 1);
   }
-}, a = (e, n = 2, t = n, r = f) => {
+}
+function a(e, n = 2, t = n, r = f) {
   if (e == null) return "";
   const o = `${r}decimal${n}.${t}`;
   let s = c[o];
@@ -158,7 +162,17 @@ const f = "en-US", c = {}, B = (e) => {
     style: "decimal",
     useGrouping: !0
   }), c[o] = s), s.format(e);
-}, U = (e) => e == null ? "" : e < 1e3 ? d(e) : e < 1e6 ? `${a(e / 1e3, 2, 0)}K` : e < 1e9 ? `${a(e / 1e6, 2, 0)}M` : e < 1e12 ? `${a(e / 1e9, 2, 0)}B` : `${a(e / 1e12, 2, 0)}T`, L = (e) => e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${d(e)} bytes` : e < 1048576 ? `${a(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${a(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${a(e / 1073741824, 2, 0)} GB` : `${a(e / 1099511627776, 2, 0)} TB`, _ = (e) => e == null ? "" : e < 1e3 ? `${d(e)} ms` : e === 1e3 ? `${d(e)} sec` : e < 6e4 ? `${a(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${a(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${a(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${a(e / 864e5, 2, 0)} days`, d = (e, n = f) => {
+}
+function U(e) {
+  return e == null ? "" : e < 1e3 ? d(e) : e < 1e6 ? `${a(e / 1e3, 2, 0)}K` : e < 1e9 ? `${a(e / 1e6, 2, 0)}M` : e < 1e12 ? `${a(e / 1e9, 2, 0)}B` : `${a(e / 1e12, 2, 0)}T`;
+}
+function L(e) {
+  return e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${d(e)} bytes` : e < 1048576 ? `${a(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${a(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${a(e / 1073741824, 2, 0)} GB` : `${a(e / 1099511627776, 2, 0)} TB`;
+}
+function _(e) {
+  return e == null ? "" : e < 1e3 ? `${d(e)} ms` : e === 1e3 ? `${d(e)} sec` : e < 6e4 ? `${a(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${a(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${a(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${a(e / 864e5, 2, 0)} days`;
+}
+function d(e, n = f) {
   if (e == null) return "";
   const t = `${n}decimal0.0`;
   let r = c[t];
@@ -170,7 +184,8 @@ const f = "en-US", c = {}, B = (e) => {
     style: "decimal",
     useGrouping: !0
   }), c[t] = r), r.format(e);
-}, W = (e) => {
+}
+function W(e) {
   switch (e) {
     case "csv":
       return "text/csv";
@@ -184,7 +199,8 @@ const f = "en-US", c = {}, B = (e) => {
     default:
       return "application/octet-stream";
   }
-}, b = [
+}
+const b = [
   { id: "dtv", label: { "en-gb": "Delimited Text" } },
   { id: "e/e", label: { "en-gb": "Entity/Event" } },
   { id: "jsonArray", label: { "en-gb": "JSON Array" } },

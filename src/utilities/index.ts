@@ -8,7 +8,7 @@ const numberFormatterMap: Record<string, Intl.NumberFormat> = {};
 
 // Utilities - Convert - OData Type Identifier To Usage Type Identifier
 // See: https://www.odata.org/documentation/odata-version-2-0/overview/.
-export const convertODataTypeIdToUsageTypeId = (oDataTypeId: string): string => {
+export function convertODataTypeIdToUsageTypeId(oDataTypeId: string): string {
     switch (oDataTypeId) {
         case 'Edm.Binary':
             return 'unknown'; // Binary...
@@ -43,29 +43,29 @@ export const convertODataTypeIdToUsageTypeId = (oDataTypeId: string): string => 
         default:
             return 'unknown';
     }
-};
+}
 
 // Utilities - Extract - Name From Path
-export const extractNameFromPath = (itemPath: string): string | undefined => {
+export function extractNameFromPath(itemPath: string): string | undefined {
     if (itemPath) {
         const lastSeparatorIndex = itemPath.lastIndexOf('/');
         const lastExtensionIndex = itemPath.lastIndexOf('.', lastSeparatorIndex > -1 ? lastSeparatorIndex : itemPath.length);
         return lastExtensionIndex > -1 ? itemPath.substring(0, lastExtensionIndex) : itemPath;
     }
     return undefined;
-};
+}
 
 // Utilities - Extract - Extension From Path
-export const extractExtensionFromPath = (itemPath: string): string | undefined => {
+export function extractExtensionFromPath(itemPath: string): string | undefined {
     if (itemPath) {
         const lastExtensionIndex = itemPath.lastIndexOf('.');
         if (lastExtensionIndex > -1) return itemPath.substring(lastExtensionIndex + 1);
     }
     return undefined;
-};
+}
 
 // Utilities - Format Number - As Decimal Number
-export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, minimumFractionDigits = decimalPlaces, locale = numberFormatterDefaultLocale): string => {
+export function formatNumberAsDecimalNumber(number?: number, decimalPlaces = 2, minimumFractionDigits = decimalPlaces, locale = numberFormatterDefaultLocale): string {
     if (number === null || number === undefined) return '';
     const formatterId = `${locale}decimal${decimalPlaces}.${minimumFractionDigits}`;
     let numberFormatter = numberFormatterMap[formatterId];
@@ -81,20 +81,20 @@ export const formatNumberAsDecimalNumber = (number?: number, decimalPlaces = 2, 
         numberFormatterMap[formatterId] = numberFormatter;
     }
     return numberFormatter.format(number);
-};
+}
 
 // Utilities - Format Number - As Size
-export const formatNumberAsSize = (number?: number): string => {
+export function formatNumberAsSize(number?: number): string {
     if (number === null || number === undefined) return '';
     if (number < 1000) return formatNumberAsWholeNumber(number);
     if (number < 1000000) return `${formatNumberAsDecimalNumber(number / 1000, 2, 0)}K`;
     if (number < 1000000000) return `${formatNumberAsDecimalNumber(number / 1000000, 2, 0)}M`;
     if (number < 1000000000000) return `${formatNumberAsDecimalNumber(number / 1000000000, 2, 0)}B`;
     return `${formatNumberAsDecimalNumber(number / 1000000000000, 2, 0)}T`;
-};
+}
 
 // Utilities - Format Number - As Storage Size
-export const formatNumberAsStorageSize = (number?: number): string => {
+export function formatNumberAsStorageSize(number?: number): string {
     if (number === null || number === undefined) return '';
     if (number === 1) return '1 byte';
     if (number < 1024) return `${formatNumberAsWholeNumber(number)} bytes`;
@@ -102,10 +102,10 @@ export const formatNumberAsStorageSize = (number?: number): string => {
     if (number < 1073741824) return `${formatNumberAsDecimalNumber(number / 1048576, 2, 0)} MB`;
     if (number < 1099511627776) return `${formatNumberAsDecimalNumber(number / 1073741824, 2, 0)} GB`;
     return `${formatNumberAsDecimalNumber(number / 1099511627776, 2, 0)} TB`;
-};
+}
 
 // Utilities - Format Number - As Duration
-export const formatNumberAsDuration = (number?: number): string => {
+export function formatNumberAsDuration(number?: number): string {
     if (number === null || number === undefined) return '';
     if (number < 1000) return `${formatNumberAsWholeNumber(number)} ms`;
     if (number === 1000) return `${formatNumberAsWholeNumber(number)} sec`;
@@ -116,10 +116,10 @@ export const formatNumberAsDuration = (number?: number): string => {
     if (number < 86400000) return `${formatNumberAsDecimalNumber(number / 3600000, 2, 0)} hrs`;
     if (number === 86400000) return '1 day';
     return `${formatNumberAsDecimalNumber(number / 86400000, 2, 0)} days`;
-};
+}
 
 // Utilities - Format Number - As Whole Number
-export const formatNumberAsWholeNumber = (number?: number, locale = numberFormatterDefaultLocale): string => {
+export function formatNumberAsWholeNumber(number?: number, locale = numberFormatterDefaultLocale): string {
     if (number === null || number === undefined) return '';
     const formatterId = `${locale}decimal0.0`;
     let numberFormatter = numberFormatterMap[formatterId];
@@ -135,10 +135,10 @@ export const formatNumberAsWholeNumber = (number?: number, locale = numberFormat
         numberFormatterMap[formatterId] = numberFormatter;
     }
     return numberFormatter.format(number);
-};
+}
 
 // Utilities - Lookup - Mime Type For Extension
-export const lookupMimeTypeForExtension = (extension: string): string => {
+export function lookupMimeTypeForExtension(extension?: string): string {
     switch (extension) {
         case 'csv':
             return 'text/csv';
@@ -152,7 +152,7 @@ export const lookupMimeTypeForExtension = (extension: string): string => {
         default:
             return 'application/octet-stream';
     }
-};
+}
 
 // // Utilities - Establish Vendor Access Token
 // // // export const establishVendorAccessToken = async (item: Item, accountId: string, sessionAccessToken: string, vendorRefreshURI: string): Promise<string> => {

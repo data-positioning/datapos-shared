@@ -1,12 +1,12 @@
 /**
  * Application utilities.
  */
-export declare const convertODataTypeIdToUsageTypeId: (oDataTypeId: string) => string;
-export declare const extractNameFromPath: (itemPath: string) => string | undefined;
-export declare const extractExtensionFromPath: (itemPath: string) => string | undefined;
-export declare const formatNumberAsDecimalNumber: (number?: number, decimalPlaces?: number, minimumFractionDigits?: number, locale?: string) => string;
-export declare const formatNumberAsSize: (number?: number) => string;
-export declare const formatNumberAsStorageSize: (number?: number) => string;
-export declare const formatNumberAsDuration: (number?: number) => string;
-export declare const formatNumberAsWholeNumber: (number?: number, locale?: string) => string;
-export declare const lookupMimeTypeForExtension: (extension: string) => string;
+export declare function convertODataTypeIdToUsageTypeId(oDataTypeId: string): string;
+export declare function extractNameFromPath(itemPath: string): string | undefined;
+export declare function extractExtensionFromPath(itemPath: string): string | undefined;
+export declare function formatNumberAsDecimalNumber(number?: number, decimalPlaces?: number, minimumFractionDigits?: number, locale?: string): string;
+export declare function formatNumberAsSize(number?: number): string;
+export declare function formatNumberAsStorageSize(number?: number): string;
+export declare function formatNumberAsDuration(number?: number): string;
+export declare function formatNumberAsWholeNumber(number?: number, locale?: string): string;
+export declare function lookupMimeTypeForExtension(extension?: string): string;
