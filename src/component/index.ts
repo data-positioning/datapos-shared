@@ -5,11 +5,8 @@
 // Dependencies - Vendor.
 import type { InferInput } from 'valibot';
 
-import { componentConfigSchema } from '@/component/componentConfig.schema';
-export { componentConfigSchema };
-export type ComponentConfig2 = InferInput<typeof componentConfigSchema>;
-
 // Dependencies - Framework.
+import { componentConfigSchema } from '@/component/componentConfig.schema';
 import { DEFAULT_LOCALE_CODE, type LocaleCode, type LocalisedString, type StatusColorId } from '@/index';
 
 // Types/Interfaces/Operations - Component.
@@ -18,7 +15,9 @@ export interface Component {
 }
 
 // Types/Interfaces/Operations - Component configuration.
-export interface ComponentConfig {
+export { componentConfigSchema };
+export type ComponentConfig = InferInput<typeof componentConfigSchema>;
+export interface ComponentConfig1 {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;

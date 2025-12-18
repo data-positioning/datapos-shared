@@ -1,3 +1,5 @@
+// Drafted by Copilot.
+
 import { literal, nullable, number, object, optional, string, union } from 'valibot';
 
 export const literalUnion = <const T extends readonly string[]>(values: T) => union(values.map((value) => literal(value)));

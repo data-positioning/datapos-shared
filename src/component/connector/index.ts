@@ -2,14 +2,14 @@
  * Connector composables, constants, errors, types/interfaces and utilities.
  */
 
-export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
-
 // Dependencies - Vendor.
 import type { parse as csvParse } from 'csv-parse/browser/esm';
 import type { parse as dateFnsParse } from 'date-fns';
+import type { InferInput } from 'valibot';
 import type { nanoid } from 'nanoid'; // TODO: Check package.json if removed, currently both peer and dev dependency.
 
 // Dependencies - Framework.
+import { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
 import type { buildFetchError, OperationalError } from '@/errors';
 import type { Component, ModuleConfig } from '@/component';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
@@ -59,7 +59,9 @@ export interface Connector extends Component {
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one oˆr more records into an object for a specified connection.
 }
-export interface ConnectorConfig extends ModuleConfig {
+export { connectorConfigSchema };
+export type ConnectorConfig = InferInput<typeof connectorConfigSchema>;
+export interface ConnectorConfig1 extends ModuleConfig {
     category: ConnectorCategory | null;
     categoryId: ConnectorModuleCategoryId;
     implementations: Record<string, ConnectorImplementation>;

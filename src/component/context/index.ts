@@ -2,9 +2,11 @@
  * Context composables, constants, errors, types/interfaces and utilities.
  */
 
-export { contextConfigSchema } from '@/component/context/contextConfig.schema';
+// Dependencies - Vendor.
+import type { InferInput } from 'valibot';
 
 // Dependencies - Framework.
+import { contextConfigSchema } from '@/component/context/contextConfig.schema';
 import type { LocalisedString } from '@/index';
 import type { Component, ComponentConfig, ComponentRef, ModuleConfig } from '@/component';
 
@@ -19,7 +21,9 @@ export type ContextListResult = { models: ContextModelGroupConfig[] };
 export type ContextCallbackData = { typeId: string; properties: Record<string, unknown> };
 
 // Types/Interfaces/Operations - Context configuration.
-export interface ContextConfig extends ModuleConfig {
+export { contextConfigSchema };
+export type ContextConfig = InferInput<typeof contextConfigSchema>;
+export interface ContextConfig1 extends ModuleConfig {
     models: ContextModelGroupConfig[];
     operations: ContextOperation[];
     typeId: 'context';

@@ -2,11 +2,17 @@
  * Presentation composables, constants, errors, types/interfaces and utilities.
  */
 
+// Dependencies - Vendor.
+import type { InferInput } from 'valibot';
+
 // Dependencies - Framework.
 import type { ComponentConfig } from '@/component';
+import { presenterConfigSchema } from '@/component/presenter/presenterConfig.schema';
 
 // Interface/Types - Presentation.
-export interface PresentationConfig extends ComponentConfig {
+export { presenterConfigSchema };
+export type PresentationConfig = InferInput<typeof presenterConfigSchema>;
+export interface PresentationConfig1 extends ComponentConfig {
     content: string;
     order: number;
 }

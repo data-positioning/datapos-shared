@@ -1,3 +1,5 @@
+// Drafted by Copilot.
+
 import { array, boolean, literal, nullable, number, object, optional, record, string } from 'valibot';
 
 import { literalUnion, localisedStringSchema, moduleConfigCoreFields } from '@/component/componentConfig.schema';

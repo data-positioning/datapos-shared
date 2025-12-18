@@ -8,11 +8,11 @@ export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 
 // Types/Interfaces/Operations - Component.
+export { componentConfigSchema } from '@/component';
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from '@/component';
 
-export { componentConfigSchema, type ComponentConfig2 } from '@/component';
-
 // Types/Interfaces/Operations - Connector.
+export { connectorConfigSchema } from '@/component/connector';
 export type { ConnectorOperation, ConnectorUsageId } from '@/component/connector';
 export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/component/connector';
 export type { AuditContentResult, AuditContentSettings } from '@/component/connector';
@@ -41,6 +41,7 @@ export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionC
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/component/connector/connection';
 
 // Types/Interfaces/Operations - Context.
+export { contextConfigSchema } from '@/component/context';
 export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextOperation, ContextCallbackData } from '@/component/context';
 
 // Types/Interfaces/Operations - Context model.
@@ -102,6 +103,7 @@ export type { SerialisedError } from '@/errors';
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/component/eventQuery';
 
 // Types/Interfaces/Operations - Presenter.
+export { presenterConfigSchema } from '@/component/presenter';
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterOperation } from '@/component/presenter';
 
 // Types/Interfaces/Operations - Presenter presentation.
