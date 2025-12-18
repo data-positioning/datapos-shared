@@ -94,8 +94,8 @@ export const componentRefSchema = object({
     id: string(),
     label: partialLocalisedStringSchema,
     description: partialLocalisedStringSchema,
-    icon: optional(string()),
-    iconDark: optional(string()),
+    icon: nullable(string()),
+    iconDark: nullable(string()),
     order: number(),
     path: string()
 });

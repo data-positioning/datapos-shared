@@ -1,12 +1,12 @@
 import { InferInput } from 'valibot';
 import { componentConfigSchema } from './componentConfig.schema';
 import { LocaleCode, LocalisedString, StatusColorId } from '../index';
-export { componentConfigSchema };
-export type ComponentConfig2 = InferInput<typeof componentConfigSchema>;
 export interface Component {
     readonly config: ComponentConfig;
 }
-export interface ComponentConfig {
+export { componentConfigSchema };
+export type ComponentConfig = InferInput<typeof componentConfigSchema>;
+export interface ComponentConfig1 {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
@@ -22,8 +22,8 @@ export type ComponentRef = {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
-    icon?: string;
-    iconDark?: string;
+    icon: string | null;
+    iconDark: string | null;
     order: number;
     path: string;
 };

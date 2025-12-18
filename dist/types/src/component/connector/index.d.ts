@@ -1,16 +1,14 @@
 import { parse as csvParse } from 'csv-parse/browser/esm';
 import { parse as dateFnsParse } from 'date-fns';
+import { InferInput } from 'valibot';
 import { nanoid } from 'nanoid';
+import { connectorConfigSchema } from './connectorConfig.schema';
 import { buildFetchError, OperationalError } from '../../errors';
 import { Component, ModuleConfig } from '..';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
 import { convertMillisecondsToTimestamp, LocalisedString } from '../../index';
 import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
 import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../utilities';
-/**
- * Connector composables, constants, errors, types/interfaces and utilities.
- */
-export { connectorConfigSchema } from './connectorConfig.schema';
 type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
 export type ConnectorOperation = 'abortOperation' | 'authenticateConnection' | 'createObject' | 'describeConnection' | 'dropObject' | 'findObject' | 'getRecord' | 'listNodes' | 'previewObject' | 'removeRecords' | 'retrieveRecords' | 'upsertRecords';
 export type ConnectorUsageId = 'bidirectional' | 'destination' | 'source' | 'unknown';
@@ -34,7 +32,9 @@ export interface Connector extends Component {
     retrieveRecords?(connector: Connector, settings: RetrieveSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveSummary) => void): Promise<void>;
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
-export interface ConnectorConfig extends ModuleConfig {
+export { connectorConfigSchema };
+export type ConnectorConfig = InferInput<typeof connectorConfigSchema>;
+export interface ConnectorConfig1 extends ModuleConfig {
     category: ConnectorCategory | null;
     categoryId: ConnectorModuleCategoryId;
     implementations: Record<string, ConnectorImplementation>;

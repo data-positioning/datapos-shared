@@ -1,9 +1,7 @@
+import { InferInput } from 'valibot';
+import { contextConfigSchema } from './contextConfig.schema';
 import { LocalisedString } from '../../index';
 import { Component, ComponentConfig, ComponentRef, ModuleConfig } from '..';
-/**
- * Context composables, constants, errors, types/interfaces and utilities.
- */
-export { contextConfigSchema } from './contextConfig.schema';
 export interface Context extends Component {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;
@@ -17,7 +15,9 @@ export type ContextCallbackData = {
     typeId: string;
     properties: Record<string, unknown>;
 };
-export interface ContextConfig extends ModuleConfig {
+export { contextConfigSchema };
+export type ContextConfig = InferInput<typeof contextConfigSchema>;
+export interface ContextConfig1 extends ModuleConfig {
     models: ContextModelGroupConfig[];
     operations: ContextOperation[];
     typeId: 'context';

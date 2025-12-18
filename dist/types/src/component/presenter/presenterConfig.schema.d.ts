@@ -14,8 +14,8 @@ export declare const presenterConfigSchema: import('valibot').ObjectSchema<{
             readonly 'en-us': import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;
             readonly 'es-es': import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;
         }, undefined>;
-        readonly icon: import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;
-        readonly iconDark: import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;
+        readonly icon: import('valibot').NullableSchema<import('valibot').StringSchema<undefined>, undefined>;
+        readonly iconDark: import('valibot').NullableSchema<import('valibot').StringSchema<undefined>, undefined>;
         readonly order: import('valibot').NumberSchema<undefined>;
         readonly path: import('valibot').StringSchema<undefined>;
     }, undefined>, undefined>;
