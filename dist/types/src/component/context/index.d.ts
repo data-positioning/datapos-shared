@@ -1,4 +1,4 @@
-import { InferInput } from 'valibot';
+import { InferOutput } from 'valibot';
 import { contextConfigSchema } from './contextConfig.schema';
 import { LocalisedString } from '../../index';
 import { Component, ComponentConfig, ComponentRef, ModuleConfig } from '..';
@@ -16,7 +16,7 @@ export type ContextCallbackData = {
     properties: Record<string, unknown>;
 };
 export { contextConfigSchema };
-export type ContextConfig = InferInput<typeof contextConfigSchema>;
+export type ContextConfig = InferOutput<typeof contextConfigSchema>;
 export interface ContextConfig1 extends ModuleConfig {
     models: ContextModelGroupConfig[];
     operations: ContextOperation[];

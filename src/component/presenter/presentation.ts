@@ -3,7 +3,7 @@
  */
 
 // Dependencies - Vendor.
-import type { InferInput } from 'valibot';
+import type { InferOutput } from 'valibot';
 
 // Dependencies - Framework.
 import type { ComponentConfig } from '@/component';
@@ -11,7 +11,7 @@ import { presenterConfigSchema } from '@/component/presenter/presenterConfig.sch
 
 // Interface/Types - Presentation.
 export { presenterConfigSchema };
-export type PresentationConfig = InferInput<typeof presenterConfigSchema>;
+export type PresentationConfig = InferOutput<typeof presenterConfigSchema>;
 export interface PresentationConfig1 extends ComponentConfig {
     content: string;
     order: number;

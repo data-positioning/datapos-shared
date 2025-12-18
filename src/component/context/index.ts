@@ -3,7 +3,7 @@
  */
 
 // Dependencies - Vendor.
-import type { InferInput } from 'valibot';
+import type { InferOutput } from 'valibot';
 
 // Dependencies - Framework.
 import { contextConfigSchema } from '@/component/context/contextConfig.schema';
@@ -22,7 +22,7 @@ export type ContextCallbackData = { typeId: string; properties: Record<string, u
 
 // Types/Interfaces/Operations - Context configuration.
 export { contextConfigSchema };
-export type ContextConfig = InferInput<typeof contextConfigSchema>;
+export type ContextConfig = InferOutput<typeof contextConfigSchema>;
 export interface ContextConfig1 extends ModuleConfig {
     models: ContextModelGroupConfig[];
     operations: ContextOperation[];

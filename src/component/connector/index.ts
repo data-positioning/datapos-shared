@@ -5,7 +5,7 @@
 // Dependencies - Vendor.
 import type { parse as csvParse } from 'csv-parse/browser/esm';
 import type { parse as dateFnsParse } from 'date-fns';
-import type { InferInput } from 'valibot';
+import type { InferOutput } from 'valibot';
 import type { nanoid } from 'nanoid'; // TODO: Check package.json if removed, currently both peer and dev dependency.
 
 // Dependencies - Framework.
@@ -60,7 +60,7 @@ export interface Connector extends Component {
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one oˆr more records into an object for a specified connection.
 }
 export { connectorConfigSchema };
-export type ConnectorConfig = InferInput<typeof connectorConfigSchema>;
+export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
 export interface ConnectorConfig1 extends ModuleConfig {
     category: ConnectorCategory | null;
     categoryId: ConnectorModuleCategoryId;

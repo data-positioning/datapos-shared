@@ -1,6 +1,6 @@
 import { parse as csvParse } from 'csv-parse/browser/esm';
 import { parse as dateFnsParse } from 'date-fns';
-import { InferInput } from 'valibot';
+import { InferOutput } from 'valibot';
 import { nanoid } from 'nanoid';
 import { connectorConfigSchema } from './connectorConfig.schema';
 import { buildFetchError, OperationalError } from '../../errors';
@@ -33,7 +33,7 @@ export interface Connector extends Component {
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
 export { connectorConfigSchema };
-export type ConnectorConfig = InferInput<typeof connectorConfigSchema>;
+export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
 export interface ConnectorConfig1 extends ModuleConfig {
     category: ConnectorCategory | null;
     categoryId: ConnectorModuleCategoryId;
