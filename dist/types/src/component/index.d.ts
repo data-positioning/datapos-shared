@@ -1,4 +1,8 @@
+import { InferInput } from 'valibot';
+import { componentConfigSchema } from './componentConfig.schema';
 import { LocaleCode, LocalisedString, StatusColorId } from '../index';
+export { componentConfigSchema };
+export type ComponentConfig2 = InferInput<typeof componentConfigSchema>;
 export interface Component {
     readonly config: ComponentConfig;
 }

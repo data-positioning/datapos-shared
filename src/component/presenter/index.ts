@@ -2,6 +2,8 @@
  * Presenter composables, constants, errors, types/interfaces and utilities.
  */
 
+export { presenterConfigSchema } from '@/component/presenter/presenterConfig.schema';
+
 // Dependencies - Framework.
 import type { Component, ComponentRef, ModuleConfig } from '@/component';
 

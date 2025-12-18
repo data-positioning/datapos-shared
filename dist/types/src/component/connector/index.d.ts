@@ -7,6 +7,10 @@ import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '.
 import { convertMillisecondsToTimestamp, LocalisedString } from '../../index';
 import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
 import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../utilities';
+/**
+ * Connector composables, constants, errors, types/interfaces and utilities.
+ */
+export { connectorConfigSchema } from './connectorConfig.schema';
 type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
 export type ConnectorOperation = 'abortOperation' | 'authenticateConnection' | 'createObject' | 'describeConnection' | 'dropObject' | 'findObject' | 'getRecord' | 'listNodes' | 'previewObject' | 'removeRecords' | 'retrieveRecords' | 'upsertRecords';
 export type ConnectorUsageId = 'bidirectional' | 'destination' | 'source' | 'unknown';
@@ -167,4 +171,3 @@ type ConnectorCategory = {
     id: string;
     label: string;
 };
-export {};

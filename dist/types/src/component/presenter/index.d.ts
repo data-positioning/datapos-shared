@@ -1,4 +1,8 @@
 import { Component, ComponentRef, ModuleConfig } from '..';
+/**
+ * Presenter composables, constants, errors, types/interfaces and utilities.
+ */
+export { presenterConfigSchema } from './presenterConfig.schema';
 export interface Presenter extends Component {
     readonly config: PresenterConfig;
     list(): ComponentRef[];

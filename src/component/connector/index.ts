@@ -2,6 +2,8 @@
  * Connector composables, constants, errors, types/interfaces and utilities.
  */
 
+export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
+
 // Dependencies - Vendor.
 import type { parse as csvParse } from 'csv-parse/browser/esm';
 import type { parse as dateFnsParse } from 'date-fns';

@@ -2,6 +2,13 @@
  * Component composables, constants, errors, types/interfaces and utilities.
  */
 
+// Dependencies - Vendor.
+import type { InferInput } from 'valibot';
+
+import { componentConfigSchema } from '@/component/componentConfig.schema';
+export { componentConfigSchema };
+export type ComponentConfig2 = InferInput<typeof componentConfigSchema>;
+
 // Dependencies - Framework.
 import { DEFAULT_LOCALE_CODE, type LocaleCode, type LocalisedString, type StatusColorId } from '@/index';
 

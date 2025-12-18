@@ -10,6 +10,8 @@ export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 // Types/Interfaces/Operations - Component.
 export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from '@/component';
 
+export { componentConfigSchema, type ComponentConfig2 } from '@/component';
+
 // Types/Interfaces/Operations - Connector.
 export type { ConnectorOperation, ConnectorUsageId } from '@/component/connector';
 export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/component/connector';

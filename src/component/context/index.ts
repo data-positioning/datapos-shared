@@ -2,6 +2,8 @@
  * Context composables, constants, errors, types/interfaces and utilities.
  */
 
+export { contextConfigSchema } from '@/component/context/contextConfig.schema';
+
 // Dependencies - Framework.
 import type { LocalisedString } from '@/index';
 import type { Component, ComponentConfig, ComponentRef, ModuleConfig } from '@/component';

@@ -1,5 +1,9 @@
 import { LocalisedString } from '../../index';
 import { Component, ComponentConfig, ComponentRef, ModuleConfig } from '..';
+/**
+ * Context composables, constants, errors, types/interfaces and utilities.
+ */
+export { contextConfigSchema } from './contextConfig.schema';
 export interface Context extends Component {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;
