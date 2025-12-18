@@ -1,11 +1,11 @@
-import { InferInput } from 'valibot';
+import { InferOutput } from 'valibot';
 import { componentConfigSchema } from './componentConfig.schema';
 import { LocaleCode, LocalisedString, StatusColorId } from '../index';
 export interface Component {
     readonly config: ComponentConfig;
 }
 export { componentConfigSchema };
-export type ComponentConfig = InferInput<typeof componentConfigSchema>;
+export type ComponentConfig = InferOutput<typeof componentConfigSchema>;
 export interface ComponentConfig1 {
     id: string;
     label: Partial<LocalisedString>;

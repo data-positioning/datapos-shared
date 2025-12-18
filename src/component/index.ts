@@ -3,7 +3,7 @@
  */
 
 // Dependencies - Vendor.
-import type { InferInput } from 'valibot';
+import type { InferOutput } from 'valibot';
 
 // Dependencies - Framework.
 import { componentConfigSchema } from '@/component/componentConfig.schema';
@@ -16,7 +16,7 @@ export interface Component {
 
 // Types/Interfaces/Operations - Component configuration.
 export { componentConfigSchema };
-export type ComponentConfig = InferInput<typeof componentConfigSchema>;
+export type ComponentConfig = InferOutput<typeof componentConfigSchema>;
 export interface ComponentConfig1 {
     id: string;
     label: Partial<LocalisedString>;
