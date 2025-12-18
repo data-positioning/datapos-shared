@@ -1,8 +1,12 @@
 // Drafted by Copilot.
 
 import { literal, nullable, number, object, optional, string, union } from 'valibot';
+import type { LiteralSchema, UnionSchema } from 'valibot';
 
-export const literalUnion = <const T extends readonly string[]>(values: T) => union(values.map((value) => literal(value)));
+type LiteralUnionSchema<T extends readonly string[]> = UnionSchema<{ [K in keyof T]: LiteralSchema<T[K], undefined> }, undefined>;
+
+//export const literalUnion = <const T extends readonly string[]>(values: T) => union(values.map((value) => literal(value)));
+export const literalUnion = <const T extends readonly string[]>(values: T): LiteralUnionSchema<T> => union(values.map((value) => literal(value))) as LiteralUnionSchema<T>;
 
 export const localisedStringSchema = object({
     'en-au': string(),
