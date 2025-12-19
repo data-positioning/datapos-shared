@@ -1,13 +1,13 @@
 import { array, literal, number, object } from 'valibot';
 
-import { componentConfigCoreFields, componentRefSchema, literalUnion, moduleConfigCoreFields } from '@/component/componentConfig.schema';
+import { componentConfigCoreFields, componentReferenceSchema, literalUnion, moduleConfigCoreFields } from '@/component/componentConfig.schema';
 
 const contextOperationSchema = literalUnion(['list'] as const);
 
 const contextModelGroupConfigSchema = object({
     ...componentConfigCoreFields,
     typeId: literal('contextModelGroup'),
-    modelRefs: array(componentRefSchema),
+    modelRefs: array(componentReferenceSchema),
     order: number()
 });
 

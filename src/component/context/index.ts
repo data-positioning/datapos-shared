@@ -6,22 +6,26 @@
 import type { InferOutput } from 'valibot';
 
 // Dependencies - Framework.
-import { contextConfigSchema } from '@/component/context/contextConfig.schema';
+import type { contextConfigSchema } from '@/component/context/contextConfig.schema';
 import type { LocalisedString } from '@/index';
-import type { Component, ComponentConfig, ComponentRef, ModuleConfig } from '@/component';
+import type { Component, ComponentConfig, ComponentReference, ModuleConfig } from '@/component';
 
 // Types/Interfaces/Operations - Context.
 export interface Context extends Component {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;
 }
-export type ContextOperationSettings = {}; // TODO.
-export type ContextListSettings = {}; // TODO.
-export type ContextListResult = { models: ContextModelGroupConfig[] };
-export type ContextCallbackData = { typeId: string; properties: Record<string, unknown> };
+export type ContextOperationSettings = object; // TODO.
+export type ContextListSettings = object; // TODO.
+export interface ContextListResult {
+    models: ContextModelGroupConfig[];
+}
+export interface ContextCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
 
 // Types/Interfaces/Operations - Context configuration.
-export { contextConfigSchema };
 export type ContextConfig = InferOutput<typeof contextConfigSchema>;
 export interface ContextConfig1 extends ModuleConfig {
     models: ContextModelGroupConfig[];
@@ -33,7 +37,7 @@ export type ContextLocalisedConfig = Omit<ContextConfig, 'label' | 'description'
 
 // Types/Interfaces/Operations - Context model configuration
 export interface ContextModelGroupConfig extends ComponentConfig {
-    modelRefs: ComponentRef[];
+    modelRefs: ComponentReference[];
     order: number;
 }
 export type ContextModelGroupLocalisedConfig = Omit<ContextModelGroupConfig, 'label' | 'description'> & { label: string; description: string };
@@ -50,7 +54,7 @@ export interface ContextModelDimensionGroupConfig {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
-    dimensionRefs: ComponentRef[];
+    dimensionRefs: ComponentReference[];
 }
 export type ContextModelDimensionGroupLocalisedConfig = Omit<ContextModelDimensionGroupConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelDimensionConfig {
@@ -70,7 +74,7 @@ export interface ContextModelEntityGroupConfig {
     id: string;
     label: Partial<LocalisedString>;
     description?: Record<string, unknown>;
-    entityRefs: ComponentRef[];
+    entityRefs: ComponentReference[];
 }
 export type ContextModelEntityGroupLocalisedConfig = Omit<ContextModelEntityGroupConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelEntityConfig {
@@ -104,7 +108,7 @@ export interface ContextModelSecondaryMeasureGroupConfig {
     id: string;
     label: Partial<LocalisedString>;
     description?: Record<string, unknown>;
-    secondaryMeasureRefs: ComponentRef[];
+    secondaryMeasureRefs: ComponentReference[];
 }
 export type ContextModelSecondaryMeasureGroupLocalisedConfig = Omit<ContextModelSecondaryMeasureGroupConfig, 'label' | 'description'> & { label: string; description: string };
 export interface ContextModelSecondaryMeasureConfig {
@@ -114,9 +118,11 @@ export interface ContextModelSecondaryMeasureConfig {
 export type ContextModelSecondaryMeasureLocalisedConfig = Omit<ContextModelSecondaryMeasureConfig, 'label' | 'description'> & { label: string; description: string };
 
 // Types/Interfaces/Operations - Event.
-type Event = {
+interface Event {
     id?: number;
     entityId: string;
     effDate: number;
     typeId: string;
-};
+}
+
+export { contextConfigSchema } from '@/component/context/contextConfig.schema';

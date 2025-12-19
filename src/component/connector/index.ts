@@ -9,11 +9,12 @@ import type { InferOutput } from 'valibot';
 import type { nanoid } from 'nanoid'; // TODO: Check package.json if removed, currently both peer and dev dependency.
 
 // Dependencies - Framework.
-import { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
+import type { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
+import { DEFAULT_LOCALE_CODE } from '@/index';
+import type { LocalisedString } from '@/index';
 import type { buildFetchError, OperationalError } from '@/errors';
 import type { Component, ModuleConfig } from '@/component';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
-import { type convertMillisecondsToTimestamp, DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/dataView';
 import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
@@ -37,7 +38,7 @@ export const CONNECTOR_SOURCE_OPERATIONS = ['findObject', 'getRecord', 'listNode
 
 // Interfaces - Connector.
 export interface Connector extends Component {
-    abortController?: AbortController | undefined;
+    abortController?: AbortController;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
     readonly tools: ConnectorTools;
@@ -59,7 +60,7 @@ export interface Connector extends Component {
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one oˆr more records into an object for a specified connection.
 }
-export { connectorConfigSchema };
+
 export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
 export interface ConnectorConfig1 extends ModuleConfig {
     category: ConnectorCategory | null;
@@ -73,7 +74,7 @@ export interface ConnectorConfig1 extends ModuleConfig {
     vendorHomeURL: string | null;
 }
 export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
-export type ConnectorImplementation = {
+export interface ConnectorImplementation {
     activeConnectionCount?: number;
     canDescribe?: boolean;
     id?: string;
@@ -81,12 +82,11 @@ export type ConnectorImplementation = {
     label?: LocalisedString;
     maxConnectionCount?: number;
     params?: Record<string, string>[];
-};
-export type ConnectorTools = {
+}
+export interface ConnectorTools {
     csvParse: typeof csvParse;
     dataPos: {
         buildFetchError: typeof buildFetchError;
-        convertMillisecondsToTimestamp: typeof convertMillisecondsToTimestamp;
         extractExtensionFromPath: typeof extractExtensionFromPath;
         extractNameFromPath: typeof extractNameFromPath;
         lookupMimeTypeForExtension: typeof lookupMimeTypeForExtension;
@@ -94,7 +94,7 @@ export type ConnectorTools = {
     };
     dateFns: { parse: typeof dateFnsParse };
     nanoid: typeof nanoid;
-};
+}
 
 // Types/Interfaces/Operations - Initialise settings.
 export interface InitialiseSettings {
@@ -127,7 +127,7 @@ export interface CreateSettings extends ConnectorOperationSettings {
 }
 
 // Types/Interfaces/Operations - Describe (Connection).
-interface DescribeSettings extends ConnectorOperationSettings {}
+type DescribeSettings = ConnectorOperationSettings;
 interface DescribeResult {
     description: ConnectionDescription;
 }
@@ -218,16 +218,38 @@ export interface ConnectorCallbackData {
 }
 
 // Types/Interfaces/Operations - Connector category.
-type ConnectorCategory = { id: string; label: string };
-type ConnectorCategoryConfig = { id: string; label: Partial<LocalisedString> };
+interface ConnectorCategory {
+    id: string;
+    label: string;
+}
+type LocaleLabelMap = ReadonlyMap<string, string>;
+const createLocaleLabelMap = (labels: Partial<LocalisedString>): LocaleLabelMap => {
+    const entries = Object.entries(labels).filter((entry): entry is [string, string] => typeof entry[1] === 'string');
+    return new Map(entries);
+};
+const resolveLocaleLabel = (labels: LocaleLabelMap, localeId: string, fallbackLocaleId = DEFAULT_LOCALE_CODE): string | undefined => {
+    const localizedLabel = labels.get(localeId);
+    if (localizedLabel !== undefined) return localizedLabel;
+    if (fallbackLocaleId === localeId) return undefined;
+    return labels.get(fallbackLocaleId);
+};
+interface ConnectorCategoryConfig {
+    id: string;
+    labels: LocaleLabelMap;
+}
 const connectorCategories: ConnectorCategoryConfig[] = [
-    { id: 'application', label: { 'en-gb': 'Application' } },
-    { id: 'curatedDataset', label: { 'en-gb': 'Curated Dataset' } },
-    { id: 'database', label: { 'en-gb': 'Database' } },
-    { id: 'fileStore', label: { 'en-gb': 'File Store' } }
+    { id: 'application', labels: createLocaleLabelMap({ 'en-gb': 'Application' }) },
+    { id: 'curatedDataset', labels: createLocaleLabelMap({ 'en-gb': 'Curated Dataset' }) },
+    { id: 'database', labels: createLocaleLabelMap({ 'en-gb': 'Database' }) },
+    { id: 'fileStore', labels: createLocaleLabelMap({ 'en-gb': 'File Store' }) }
 ];
 const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): ConnectorCategory => {
     const connectorCategory = connectorCategories.find((connectorCategory) => connectorCategory.id === id);
-    if (connectorCategory) return { ...connectorCategory, label: connectorCategory.label[localeId] || connectorCategory.label[DEFAULT_LOCALE_CODE] || id };
+    if (connectorCategory) {
+        const resolvedLabel = resolveLocaleLabel(connectorCategory.labels, localeId);
+        return { id: connectorCategory.id, label: resolvedLabel ?? connectorCategory.id };
+    }
     return { id, label: id };
 };
+
+export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';

@@ -7,18 +7,18 @@ export interface EngineConfig extends ModuleConfig {
     typeId: 'engine';
 }
 type InitialiseEngine = (settings: InitialiseSettings) => Promise<void>;
-type ProcessConnectorRequest = (id: string, connectionConfig: ConnectionConfig, settings: ConnectorOperationSettings, callback?: ((callbackData: ContextCallbackData) => void) | undefined) => Promise<ConnectorInterfaceResult>;
+type ProcessConnectorRequest = (id: string, connectionConfig: ConnectionConfig, settings: ConnectorOperationSettings, callback?: (callbackData: ContextCallbackData) => void) => Promise<ConnectorInterfaceResult>;
 export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
-type ProcessContextRequest = (id: string, contextConfig: ContextConfig, settings: ContextOperationSettings, callback?: ((callbackData: ConnectorCallbackData) => void) | undefined) => Promise<ContextInterfaceResult>;
+type ProcessContextRequest = (id: string, contextConfig: ContextConfig, settings: ContextOperationSettings, callback?: (callbackData: ConnectorCallbackData) => void) => Promise<ContextInterfaceResult>;
 export type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
 type ProcessTestRequest = (settings: TestSettings) => Promise<Record<string, unknown>>;
-export type TestSettings = {
+export interface TestSettings {
     action?: string;
     delimiter?: string;
     forceFallback?: boolean;
     hasHeaders?: boolean;
     readable: ReadableStream<Uint8Array>;
-};
+}
 export interface Engine extends Component {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;

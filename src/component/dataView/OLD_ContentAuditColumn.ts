@@ -3,7 +3,10 @@ const MAX_INVALID_VALUE_COUNT = 100;
 // Dependencies - Framework
 import { PreviewColumn } from '@/component/dataView/OLD_PreviewColumn';
 
-export type ParsedValue = { isValid: boolean; value: bigint | boolean | number | string | null };
+export interface ParsedValue {
+    isValid: boolean;
+    value: bigint | boolean | number | string | null;
+}
 
 // Declarations - Content Audit Column
 export class ContentAuditColumn extends PreviewColumn {
@@ -49,11 +52,9 @@ export class ContentAuditColumn extends PreviewColumn {
         this.doCountIndividualValidValues = this.dataUsageTypeId === 'boolean' || this.dataUsageTypeId === 'string' || this.dataUsageTypeId === 'wholeNumber';
         this.doCountPatterns = true;
 
-        switch (this.dataUsageTypeId) {
-            case 'string':
-                this.maxValue = '';
-                this.minValue = '';
-                break;
+        if (this.dataUsageTypeId === 'string') {
+            this.maxValue = '';
+            this.minValue = '';
         }
     }
 
@@ -64,25 +65,20 @@ export class ContentAuditColumn extends PreviewColumn {
     }
 
     addValidValue(originalValue: string, parsedValue: ParsedValue, wholeDigitCount?: number, decimalDigitCount?: number): ParsedValue {
-        switch (this.dataUsageTypeId) {
-            case 'string': {
-                parsedValue = { isValid: true, value: originalValue }; // TODO: Review use of isValid.
-                const length = originalValue.length;
-                if (this.maxSize) {
-                    if (length < this.minSize) this.minSize = length;
-                    else if (length > this.maxSize) this.maxSize = length;
-                    if (!this.minValue || originalValue < this.minValue) this.minValue = originalValue;
-                    else if (!this.maxValue || originalValue > this.maxValue) this.maxValue = originalValue;
-                } else {
-                    this.maxSize = length;
-                    this.minSize = length;
-                    this.maxValue = originalValue;
-                    this.minValue = originalValue;
-                }
-                break;
+        if (this.dataUsageTypeId === 'string') {
+            parsedValue = { isValid: true, value: originalValue }; // TODO: Review use of isValid.
+            const length = originalValue.length;
+            if (this.maxSize) {
+                if (length < this.minSize) this.minSize = length;
+                else if (length > this.maxSize) this.maxSize = length;
+                if (this.minValue || originalValue < this.minValue) this.minValue = originalValue;
+                else if (!this.maxValue || originalValue > this.maxValue) this.maxValue = originalValue;
+            } else {
+                this.maxSize = length;
+                this.minSize = length;
+                this.maxValue = originalValue;
+                this.minValue = originalValue;
             }
-            default:
-                break;
         }
 
         if (this.doCountPatterns) {
@@ -113,11 +109,7 @@ export class ContentAuditColumn extends PreviewColumn {
         let pattern = '';
         for (let index = 0; index < originalValue.length; index++) {
             const char = originalValue.charAt(index);
-            if (char >= '0' && char <= '9') {
-                pattern += '9';
-            } else {
-                pattern += char;
-            }
+            pattern += char >= '0' && char <= '9' ? '9' : char;
         }
         return pattern;
     }

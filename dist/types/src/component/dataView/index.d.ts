@@ -1,8 +1,6 @@
-import { Timestamp } from '../../timestamp';
 import { Component, ComponentConfig } from '..';
 import { ConnectionColumnConfig, ConnectionNodeConfig } from '../connector/connection';
-export interface DataView extends Component {
-}
+export type DataView = Component;
 export interface DataViewConfig extends ComponentConfig {
     connectionId?: string;
     connectionNodeConfig?: ConnectionNodeConfig;
@@ -15,7 +13,7 @@ export type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'descriptio
     description: string;
 };
 export interface DataViewContentAuditConfig {
-    asAt: Timestamp;
+    asAt: number;
     columns: ConnectionColumnConfig[];
     commentLineCount: number;
     emptyLineCount: number;
@@ -25,7 +23,7 @@ export interface DataViewContentAuditConfig {
     recordCount: number;
 }
 export interface DataViewPreviewConfig {
-    asAt: Timestamp;
+    asAt: number;
     columnConfigs: ConnectionColumnConfig[];
     dataFormatId: DataFormatId;
     duration: number;
@@ -52,22 +50,22 @@ export interface EncodingConfig {
     isDetectable: boolean;
     isDecodable: boolean;
 }
-type DataFormat = {
+interface DataFormat {
     id: string;
     label: string;
-};
+}
 export declare const getDataFormat: (id: string, localeId?: import('../../index').LocaleCode) => DataFormat;
 export declare const getDataFormats: (localeId?: import('../../index').LocaleCode) => DataFormat[];
-type RecordDelimiter = {
+interface RecordDelimiter {
     id: string;
     label: string;
-};
+}
 export declare const getRecordDelimiter: (id: string, localeId?: import('../../index').LocaleCode) => RecordDelimiter;
 export declare const getRecordDelimiters: (localeId?: import('../../index').LocaleCode) => RecordDelimiter[];
-type ValueDelimiter = {
+interface ValueDelimiter {
     id: string;
     label: string;
-};
+}
 export declare const getValueDelimiter: (id: string, localeId?: import('../../index').LocaleCode) => ValueDelimiter;
 export declare const getValueDelimiters: (localeId?: import('../../index').LocaleCode) => ValueDelimiter[];
 export type ParsedValue = bigint | boolean | number | string | null;

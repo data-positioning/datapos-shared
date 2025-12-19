@@ -128,7 +128,7 @@ export declare const moduleConfigSchema: import('valibot').ObjectSchema<{
     }, undefined>, undefined>;
     readonly statusId: LiteralUnionSchema<readonly ["alpha", "beta", "generalAvailability", "notApplicable", "preAlpha", "proposed", "releaseCandidate", "unavailable", "underReview"]>;
 }, undefined>;
-export declare const componentRefSchema: import('valibot').ObjectSchema<{
+export declare const componentReferenceSchema: import('valibot').ObjectSchema<{
     readonly id: import('valibot').StringSchema<undefined>;
     readonly label: import('valibot').ObjectSchema<{
         readonly 'en-au': import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;

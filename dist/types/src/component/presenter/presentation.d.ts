@@ -1,16 +1,15 @@
 import { InferOutput } from 'valibot';
 import { ComponentConfig } from '..';
 import { presenterConfigSchema } from './presenterConfig.schema';
-export { presenterConfigSchema };
 export type PresentationConfig = InferOutput<typeof presenterConfigSchema>;
 export interface PresentationConfig1 extends ComponentConfig {
     content: string;
     order: number;
 }
-export type PresentationVisualConfig = {
+export interface PresentationVisualConfig {
     content: PresentationVisualContentConfig;
     views: PresentationVisualViewConfig[];
-};
+}
 export interface PresentationVisualContentConfig {
     title?: {
         text: string;
@@ -75,3 +74,4 @@ export interface PresentationView {
     resize: () => void;
     vendorId: string;
 }
+export { presenterConfigSchema } from './presenterConfig.schema';

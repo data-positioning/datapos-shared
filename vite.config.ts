@@ -5,15 +5,17 @@
 // Dependencies - Vendor.
 import { defineConfig } from 'vite'; // Core Vite API.
 import dts from 'vite-plugin-dts'; // Emit .d.ts files alongside the bundle.
+import type { PackageJson } from 'type-fest';
 import { visualizer } from 'rollup-plugin-visualizer'; // Generate bundle size report.
 import { fileURLToPath, URL } from 'node:url'; // ESM-safe path helpers.
 
 // Dependencies - Data.
 import config from './config.json' with { type: 'json' }; // Provide configuration identifier for naming.
-import pkg from './package.json' with { type: 'json' }; // Provide package for peer dependency detection.
+import package_ from './package.json' with { type: 'json' }; // Provide package for peer dependency detection.
 
 // Initialisation
-const external = [...Object.keys(pkg.peerDependencies ?? {})]; // Keep peer dependencies out of the bundle.
+const { peerDependencies } = package_ as PackageJson;
+const external = peerDependencies ? Object.keys(peerDependencies) : []; // Keep peer dependencies out of the bundle.
 
 // Exposures - Configuration.
 export default defineConfig({

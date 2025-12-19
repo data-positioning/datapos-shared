@@ -5,7 +5,7 @@ export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 export { componentConfigSchema } from './component';
-export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from './component';
+export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from './component';
 export { connectorConfigSchema } from './component/connector';
 export type { ConnectorOperation, ConnectorUsageId } from './component/connector';
 export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from './component/connector';
@@ -48,14 +48,11 @@ export interface ContextOperationSettings {
     appCheckToken?: string;
     sessionAccessToken?: string;
 }
-export type { Timestamp } from './timestamp';
 export { type CytoscapeJSView, useCytoscapeJS } from './composables/useCytoscapeJS';
 export { useDataTable } from './composables/useDataTable';
 export declare const DEFAULT_LOCALE_CODE: LocaleCode;
-export { DefaultTimestamp } from './timestamp';
 export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from './errors';
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from './errors';
-export { convertMillisecondsToTimestamp, getCurrentTimestamp } from './timestamp';
 export { convertODataTypeIdToUsageTypeId } from './utilities';
 export { extractExtensionFromPath, extractNameFromPath } from './utilities';
 export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './utilities';

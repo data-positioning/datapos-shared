@@ -1,16 +1,16 @@
-import { Component, ComponentRef, ModuleConfig } from '..';
+import { Component, ComponentReference, ModuleConfig } from '..';
 /**
  * Presenter composables, constants, errors, types/interfaces and utilities.
  */
 export { presenterConfigSchema } from './presenterConfig.schema';
 export interface Presenter extends Component {
     readonly config: PresenterConfig;
-    list(): ComponentRef[];
+    list(): ComponentReference[];
     render(presentationPath: string, renderTo: HTMLElement, data?: unknown): Promise<void>;
     setColorMode(colorModeId: string): void;
 }
 export interface PresenterConfig extends ModuleConfig {
-    presentations: ComponentRef[];
+    presentations: ComponentReference[];
     operations: PresenterOperation[];
     typeId: 'presenter';
 }

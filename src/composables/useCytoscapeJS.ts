@@ -9,12 +9,12 @@ export interface CytoscapeJSView extends PresentationView {
 }
 
 // Composables - Use Cytoscape.js.
-export function useCytoscapeJS() {
-    // Operations - Render.
-    function render(viewType: unknown, contentConfig: PresentationVisualContentConfig, element: HTMLElement) {
-        element.textContent = 'Cytoscape.js diagram goes here...';
-    }
-
+export function useCytoscapeJS(): { render: (viewType: unknown, contentConfig: PresentationVisualContentConfig, element: HTMLElement) => void } {
     // Exposures
     return { render };
+}
+
+// Operations - Render.
+function render(viewType: unknown, contentConfig: PresentationVisualContentConfig, element: HTMLElement): void {
+    element.textContent = 'Cytoscape.js diagram goes here...';
 }

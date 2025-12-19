@@ -5,20 +5,20 @@
 export { presenterConfigSchema } from '@/component/presenter/presenterConfig.schema';
 
 // Dependencies - Framework.
-import type { Component, ComponentRef, ModuleConfig } from '@/component';
+import type { Component, ComponentReference, ModuleConfig } from '@/component';
 
 // Types/Interfaces - Presenter.
 export interface Presenter extends Component {
     readonly config: PresenterConfig;
 
-    list(): ComponentRef[]; // TODO: Do we need this. Configuration contains list.
+    list(): ComponentReference[]; // TODO: Do we need this. Configuration contains list.
     render(presentationPath: string, renderTo: HTMLElement, data?: unknown): Promise<void>;
     setColorMode(colorModeId: string): void;
 }
 
 // Types/Interfaces - Presenter configuration.
 export interface PresenterConfig extends ModuleConfig {
-    presentations: ComponentRef[];
+    presentations: ComponentReference[];
     operations: PresenterOperation[];
     typeId: 'presenter';
 }

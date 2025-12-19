@@ -5,13 +5,12 @@
 // Dependencies - Framework
 import type { ComponentConfig } from '@/component';
 import type { ConnectorConfig } from '@/component/connector';
-import type { Timestamp } from '@/timestamp';
 
 // Types/Interfaces - Connection Configuration
 export interface ConnectionAuthorizationConfig {
     accessToken: string; // Dropbox.
     accountId: string; // Dropbox.
-    expiresAt: Timestamp; // Dropbox.
+    expiresAt: number; // Dropbox.
     expiresIn: number; // Dropbox.
     refreshToken: string; // Dropbox.
     scope: string; // Dropbox.
@@ -21,7 +20,7 @@ export interface ConnectionAuthorizationConfig {
 export interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorizationConfig>;
     connectorConfig: ConnectorConfig;
-    lastVerifiedAt: Timestamp;
+    lastVerifiedAt: number;
     notation?: string;
 }
 
@@ -36,7 +35,7 @@ export interface ConnectionNodeConfig {
     nodeDisplayHeight?: number;
     nodes?: ConnectionNodeConfig[];
     label: string;
-    lastModifiedAt?: Timestamp;
+    lastModifiedAt?: number;
     mimeType?: string;
     name: string;
     size?: number;
@@ -74,7 +73,10 @@ export interface ConnectionColumnConfig {
 }
 
 // Types/Interfaces - Basic
-export type DPAFileSystemFileHandle = { readonly kind: 'file'; getFile(): Promise<File> };
+export interface DPAFileSystemFileHandle {
+    readonly kind: 'file';
+    getFile(): Promise<File>;
+}
 export type StorageTypeId =
     | 'binary'
     | 'boolean'

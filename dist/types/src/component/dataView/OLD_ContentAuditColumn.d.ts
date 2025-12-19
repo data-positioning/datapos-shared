@@ -1,8 +1,8 @@
 import { PreviewColumn } from './OLD_PreviewColumn';
-export type ParsedValue = {
+export interface ParsedValue {
     isValid: boolean;
     value: bigint | boolean | number | string | null;
-};
+}
 export declare class ContentAuditColumn extends PreviewColumn {
     doCountIndividualValidValues: boolean;
     doCountPatterns: boolean;

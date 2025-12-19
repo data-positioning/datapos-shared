@@ -3,10 +3,10 @@ import { parse as dateFnsParse } from 'date-fns';
 import { InferOutput } from 'valibot';
 import { nanoid } from 'nanoid';
 import { connectorConfigSchema } from './connectorConfig.schema';
+import { LocalisedString } from '../../index';
 import { buildFetchError, OperationalError } from '../../errors';
 import { Component, ModuleConfig } from '..';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
-import { convertMillisecondsToTimestamp, LocalisedString } from '../../index';
 import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
 import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../utilities';
 type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
@@ -15,7 +15,7 @@ export type ConnectorUsageId = 'bidirectional' | 'destination' | 'source' | 'unk
 export declare const CONNECTOR_DESTINATION_OPERATIONS: string[];
 export declare const CONNECTOR_SOURCE_OPERATIONS: string[];
 export interface Connector extends Component {
-    abortController?: AbortController | undefined;
+    abortController?: AbortController;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
     readonly tools: ConnectorTools;
@@ -32,7 +32,6 @@ export interface Connector extends Component {
     retrieveRecords?(connector: Connector, settings: RetrieveSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveSummary) => void): Promise<void>;
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
-export { connectorConfigSchema };
 export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
 export interface ConnectorConfig1 extends ModuleConfig {
     category: ConnectorCategory | null;
@@ -49,7 +48,7 @@ export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'descript
     label: string;
     description: string;
 };
-export type ConnectorImplementation = {
+export interface ConnectorImplementation {
     activeConnectionCount?: number;
     canDescribe?: boolean;
     id?: string;
@@ -57,12 +56,11 @@ export type ConnectorImplementation = {
     label?: LocalisedString;
     maxConnectionCount?: number;
     params?: Record<string, string>[];
-};
-export type ConnectorTools = {
+}
+export interface ConnectorTools {
     csvParse: typeof csvParse;
     dataPos: {
         buildFetchError: typeof buildFetchError;
-        convertMillisecondsToTimestamp: typeof convertMillisecondsToTimestamp;
         extractExtensionFromPath: typeof extractExtensionFromPath;
         extractNameFromPath: typeof extractNameFromPath;
         lookupMimeTypeForExtension: typeof lookupMimeTypeForExtension;
@@ -72,7 +70,7 @@ export type ConnectorTools = {
         parse: typeof dateFnsParse;
     };
     nanoid: typeof nanoid;
-};
+}
 export interface InitialiseSettings {
     connectorStorageURLPrefix: string;
 }
@@ -95,8 +93,7 @@ export interface CreateSettings extends ConnectorOperationSettings {
     path: string;
     structure: string;
 }
-interface DescribeSettings extends ConnectorOperationSettings {
-}
+type DescribeSettings = ConnectorOperationSettings;
 interface DescribeResult {
     description: ConnectionDescription;
 }
@@ -167,7 +164,8 @@ export interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
-type ConnectorCategory = {
+interface ConnectorCategory {
     id: string;
     label: string;
-};
+}
+export { connectorConfigSchema } from './connectorConfig.schema';

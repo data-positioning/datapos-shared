@@ -20,7 +20,7 @@ class DataPosError extends Error {
         super(message, options);
         this.name = 'DataPosError';
         this.locator = locator;
-        Error.captureStackTrace?.(this, new.target); // Removes this constructor from the stack trace, so stack traces start at the actual point of error creation.
+        // Error.captureStackTrace?.(this, new.target); // Removes this constructor from the stack trace, so stack traces start at the actual point of error creation.
     }
 }
 
@@ -100,7 +100,8 @@ export class OperationalError extends DataPosError {
 
 /** Utilities - Build fetch error. */
 export async function buildFetchError(response: { status: number; statusText: string; text: () => Promise<string> }, message: string, locator: string): Promise<FetchError> {
-    const fetchMessage = `${message} Response status '${response.status}${response.statusText ? ` - ${response.statusText}` : ''}' received.`;
+    const responseStatusStuff = ` - ${response.statusText}`;
+    const fetchMessage = `${message} Response status '${response.status}${response.statusText ? responseStatusStuff : ''}' received.`;
     const body = await response.text();
     return new FetchError(fetchMessage, locator, body);
 }
@@ -132,7 +133,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
     const serialisedErrors: SerialisedError[] = [];
     let cause = error;
     // Process causes as long as there is one that has not previously been seen. Checking for previously seen is to protect against infinite loops.
-    while (cause && !seenCauses.has(cause)) {
+    while (Boolean(cause) && !seenCauses.has(cause)) {
         seenCauses.add(cause);
         let serialisedError: SerialisedError;
         if (cause instanceof FetchError) {
@@ -145,15 +146,16 @@ export function serialiseError(error?: unknown): SerialisedError[] {
             serialisedError = { locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
             cause = cause.cause;
         } else if (cause instanceof Error) {
-            const error = cause as Error;
+            const error = cause;
             serialisedError = { locator: '', message: error.message, name: error.name, stack: error.stack };
             cause = error.cause;
-        } else if (cause) {
+            // } else if (cause) {
+        } else {
             serialisedError = { locator: '', message: String(cause), name: 'Error' };
             cause = undefined;
-        } else {
-            serialisedError = { locator: '', message: 'Unknown error.', name: 'Error' };
-            cause = undefined;
+            // } else {
+            //     serialisedError = { locator: '', message: 'Unknown error.', name: 'Error' };
+            //     cause = undefined;
         }
         if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.'; // Terminate with "." if message does not already end in "...", ".", "!" or "?"."
         serialisedErrors.push(serialisedError);

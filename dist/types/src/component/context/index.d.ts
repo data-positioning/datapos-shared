@@ -1,21 +1,20 @@
 import { InferOutput } from 'valibot';
 import { contextConfigSchema } from './contextConfig.schema';
 import { LocalisedString } from '../../index';
-import { Component, ComponentConfig, ComponentRef, ModuleConfig } from '..';
+import { Component, ComponentConfig, ComponentReference, ModuleConfig } from '..';
 export interface Context extends Component {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;
 }
-export type ContextOperationSettings = {};
-export type ContextListSettings = {};
-export type ContextListResult = {
+export type ContextOperationSettings = object;
+export type ContextListSettings = object;
+export interface ContextListResult {
     models: ContextModelGroupConfig[];
-};
-export type ContextCallbackData = {
+}
+export interface ContextCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
-};
-export { contextConfigSchema };
+}
 export type ContextConfig = InferOutput<typeof contextConfigSchema>;
 export interface ContextConfig1 extends ModuleConfig {
     models: ContextModelGroupConfig[];
@@ -28,7 +27,7 @@ export type ContextLocalisedConfig = Omit<ContextConfig, 'label' | 'description'
     description: string;
 };
 export interface ContextModelGroupConfig extends ComponentConfig {
-    modelRefs: ComponentRef[];
+    modelRefs: ComponentReference[];
     order: number;
 }
 export type ContextModelGroupLocalisedConfig = Omit<ContextModelGroupConfig, 'label' | 'description'> & {
@@ -49,7 +48,7 @@ export interface ContextModelDimensionGroupConfig {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
-    dimensionRefs: ComponentRef[];
+    dimensionRefs: ComponentReference[];
 }
 export type ContextModelDimensionGroupLocalisedConfig = Omit<ContextModelDimensionGroupConfig, 'label' | 'description'> & {
     label: string;
@@ -76,7 +75,7 @@ export interface ContextModelEntityGroupConfig {
     id: string;
     label: Partial<LocalisedString>;
     description?: Record<string, unknown>;
-    entityRefs: ComponentRef[];
+    entityRefs: ComponentReference[];
 }
 export type ContextModelEntityGroupLocalisedConfig = Omit<ContextModelEntityGroupConfig, 'label' | 'description'> & {
     label: string;
@@ -123,7 +122,7 @@ export interface ContextModelSecondaryMeasureGroupConfig {
     id: string;
     label: Partial<LocalisedString>;
     description?: Record<string, unknown>;
-    secondaryMeasureRefs: ComponentRef[];
+    secondaryMeasureRefs: ComponentReference[];
 }
 export type ContextModelSecondaryMeasureGroupLocalisedConfig = Omit<ContextModelSecondaryMeasureGroupConfig, 'label' | 'description'> & {
     label: string;
@@ -137,3 +136,4 @@ export type ContextModelSecondaryMeasureLocalisedConfig = Omit<ContextModelSecon
     label: string;
     description: string;
 };
+export { contextConfigSchema } from './contextConfig.schema';

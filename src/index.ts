@@ -9,7 +9,7 @@ export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 
 // Types/Interfaces/Operations - Component.
 export { componentConfigSchema } from '@/component';
-export type { ComponentConfig, ComponentRef, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from '@/component';
+export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from '@/component';
 
 // Types/Interfaces/Operations - Connector.
 export { connectorConfigSchema } from '@/component/connector';
@@ -136,7 +136,7 @@ export interface ContextOperationSettings {
 }
 
 // Types/Interfaces/Operations - Timestamp.
-export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
+// export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
 // Composables
 export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
@@ -144,14 +144,14 @@ export { useDataTable } from '@/composables/useDataTable';
 
 // Constants
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
-export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
+// export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
 // Errors
 export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';
 
 // Utilities.
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
-export { convertMillisecondsToTimestamp, getCurrentTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
+// export { convertMillisecondsToTimestamp, getCurrentTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 export { convertODataTypeIdToUsageTypeId } from '@/utilities';
 export { extractExtensionFromPath, extractNameFromPath } from '@/utilities';
 export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/utilities';

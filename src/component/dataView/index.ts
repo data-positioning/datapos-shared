@@ -1,11 +1,10 @@
 // Dependencies - Framework
 import { DEFAULT_LOCALE_CODE } from '@/index';
-import type { Timestamp } from '@/timestamp';
 import type { Component, ComponentConfig } from '@/component';
 import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 
 // Interfaces - Data view component.
-export interface DataView extends Component {}
+export type DataView = Component;
 
 // Types/Interfaces - Data view configuration.
 export interface DataViewConfig extends ComponentConfig {
@@ -19,7 +18,7 @@ export type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'descriptio
 
 // Types/Interfaces - Data view content audit configuration.
 export interface DataViewContentAuditConfig {
-    asAt: Timestamp;
+    asAt: number;
     columns: ConnectionColumnConfig[];
     commentLineCount: number;
     emptyLineCount: number;
@@ -31,7 +30,7 @@ export interface DataViewContentAuditConfig {
 
 // Types/Interfaces - Data View Preview Configuration
 export interface DataViewPreviewConfig {
-    asAt: Timestamp;
+    asAt: number;
     // commentPrefixId?: string;
     columnConfigs: ConnectionColumnConfig[];
     dataFormatId: DataFormatId;
@@ -70,76 +69,119 @@ export interface EncodingConfig {
     isDecodable: boolean;
 }
 
+type LocaleLabelMap = ReadonlyMap<string, string>;
+const createLabelMap = (labels: Record<string, string>): LocaleLabelMap => new Map(Object.entries(labels));
+const resolveLabel = (labels: LocaleLabelMap, localeId: string, fallbackLocaleId = DEFAULT_LOCALE_CODE): string | undefined => {
+    const localizedLabel = labels.get(localeId);
+    if (localizedLabel !== undefined) return localizedLabel;
+    if (fallbackLocaleId === localeId) return undefined;
+    return labels.get(fallbackLocaleId);
+};
+
 // Utilities - Data Format
-type DataFormat = { id: string; label: string };
-type DataFormatConfig = { id: string; label: Record<string, string> };
+interface DataFormat {
+    id: string;
+    label: string;
+}
+interface DataFormatConfig {
+    id: string;
+    labels: LocaleLabelMap;
+}
 const dataFormats: DataFormatConfig[] = [
-    { id: 'dtv', label: { 'en-gb': 'Delimited Text' } },
-    { id: 'e/e', label: { 'en-gb': 'Entity/Event' } },
-    { id: 'jsonArray', label: { 'en-gb': 'JSON Array' } },
-    { id: 'spss', label: { 'en-gb': 'SPSS' } },
-    { id: 'xls', label: { 'en-gb': 'XLS' } },
-    { id: 'xlsx', label: { 'en-gb': 'XLSX' } },
-    { id: 'xml', label: { 'en-gb': 'XML' } }
+    { id: 'dtv', labels: createLabelMap({ 'en-gb': 'Delimited Text' }) },
+    { id: 'e/e', labels: createLabelMap({ 'en-gb': 'Entity/Event' }) },
+    { id: 'jsonArray', labels: createLabelMap({ 'en-gb': 'JSON Array' }) },
+    { id: 'spss', labels: createLabelMap({ 'en-gb': 'SPSS' }) },
+    { id: 'xls', labels: createLabelMap({ 'en-gb': 'XLS' }) },
+    { id: 'xlsx', labels: createLabelMap({ 'en-gb': 'XLSX' }) },
+    { id: 'xml', labels: createLabelMap({ 'en-gb': 'XML' }) }
 ];
 export const getDataFormat = (id: string, localeId = DEFAULT_LOCALE_CODE): DataFormat => {
     const dataFormat = dataFormats.find((dataFormat) => dataFormat.id === id);
-    if (dataFormat) return { ...dataFormat, label: dataFormat.label[localeId] || dataFormat.label[DEFAULT_LOCALE_CODE] || id };
+    if (dataFormat) {
+        const localizedLabel = resolveLabel(dataFormat.labels, localeId);
+        return { id: dataFormat.id, label: localizedLabel ?? dataFormat.id };
+    }
     return { id, label: id };
 };
 export const getDataFormats = (localeId = DEFAULT_LOCALE_CODE): DataFormat[] => {
     const items: DataFormat[] = [];
-    for (const dataFormat of dataFormats) items.push({ ...dataFormat, label: dataFormat.label[localeId] || dataFormat.label[DEFAULT_LOCALE_CODE] || dataFormat.id });
+    for (const dataFormat of dataFormats) {
+        const localizedLabel = resolveLabel(dataFormat.labels, localeId);
+        items.push({ id: dataFormat.id, label: localizedLabel ?? dataFormat.id });
+    }
     // return items.sort((first, second) => first.label.localeCompare(second.label));
     return items;
 };
 
 // Utilities - Record Delimiter
-type RecordDelimiter = { id: string; label: string };
-type RecordDelimiterConfig = { id: string; label: Record<string, string> };
+interface RecordDelimiter {
+    id: string;
+    label: string;
+}
+interface RecordDelimiterConfig {
+    id: string;
+    labels: LocaleLabelMap;
+}
 const recordDelimiters: RecordDelimiterConfig[] = [
-    { id: '\n', label: { 'en-gb': 'Newline' } },
-    { id: '\r', label: { 'en-gb': 'Carriage Return' } },
-    { id: '\r\n', label: { 'en-gb': 'Carriage Return/Newline' } }
+    { id: '\n', labels: createLabelMap({ 'en-gb': 'Newline' }) },
+    { id: '\r', labels: createLabelMap({ 'en-gb': 'Carriage Return' }) },
+    { id: '\r\n', labels: createLabelMap({ 'en-gb': 'Carriage Return/Newline' }) }
 ];
 export const getRecordDelimiter = (id: string, localeId = DEFAULT_LOCALE_CODE): RecordDelimiter => {
     const recordDelimiter = recordDelimiters.find((recordDelimiter) => recordDelimiter.id === id);
-    if (recordDelimiter) return { ...recordDelimiter, label: recordDelimiter.label[localeId] || recordDelimiter.label[DEFAULT_LOCALE_CODE] || id };
+    if (recordDelimiter) {
+        const localizedLabel = resolveLabel(recordDelimiter.labels, localeId);
+        return { id: recordDelimiter.id, label: localizedLabel ?? recordDelimiter.id };
+    }
     return { id, label: id };
 };
 export const getRecordDelimiters = (localeId = DEFAULT_LOCALE_CODE): RecordDelimiter[] => {
     const items: RecordDelimiter[] = [];
-    for (const recordDelimiter of recordDelimiters)
-        items.push({ ...recordDelimiter, label: recordDelimiter.label[localeId] || recordDelimiter.label[DEFAULT_LOCALE_CODE] || recordDelimiter.id });
+    for (const recordDelimiter of recordDelimiters) {
+        const localizedLabel = resolveLabel(recordDelimiter.labels, localeId);
+        items.push({ id: recordDelimiter.id, label: localizedLabel ?? recordDelimiter.id });
+    }
     // return items.sort((first, second) => first.label.localeCompare(second.label));
     return items;
 };
 
 // Utilities - Value Delimiter
-type ValueDelimiter = { id: string; label: string };
-type ValueDelimiterConfig = { id: string; label: Record<string, string> };
+interface ValueDelimiter {
+    id: string;
+    label: string;
+}
+interface ValueDelimiterConfig {
+    id: string;
+    labels: LocaleLabelMap;
+}
 const valueDelimiters: ValueDelimiterConfig[] = [
-    { id: ':', label: { 'en-gb': 'Colon' } },
-    { id: ',', label: { 'en-gb': 'Comma' } },
-    { id: '!', label: { 'en-gb': 'Exclamation Mark' } },
+    { id: ':', labels: createLabelMap({ 'en-gb': 'Colon' }) },
+    { id: ',', labels: createLabelMap({ 'en-gb': 'Comma' }) },
+    { id: '!', labels: createLabelMap({ 'en-gb': 'Exclamation Mark' }) },
     // { id: '', label: { 'en-gb': 'Other' } }, // TODO: Maybe set this to a 'not printing' or special ascii character when there is a user supplied delimited, rather than ''?
-    { id: '0x1E', label: { 'en-gb': 'Record Separator' } },
-    { id: ';', label: { 'en-gb': 'Semicolon' } },
-    { id: ' ', label: { 'en-gb': 'Space' } },
-    { id: '\t', label: { 'en-gb': 'Tab' } },
-    { id: '_', label: { 'en-gb': 'Underscore' } },
-    { id: '0x1F', label: { 'en-gb': 'Unit Separator' } },
-    { id: '|', label: { 'en-gb': 'Vertical Bar' } }
+    { id: '0x1E', labels: createLabelMap({ 'en-gb': 'Record Separator' }) },
+    { id: ';', labels: createLabelMap({ 'en-gb': 'Semicolon' }) },
+    { id: ' ', labels: createLabelMap({ 'en-gb': 'Space' }) },
+    { id: '\t', labels: createLabelMap({ 'en-gb': 'Tab' }) },
+    { id: '_', labels: createLabelMap({ 'en-gb': 'Underscore' }) },
+    { id: '0x1F', labels: createLabelMap({ 'en-gb': 'Unit Separator' }) },
+    { id: '|', labels: createLabelMap({ 'en-gb': 'Vertical Bar' }) }
 ];
 export const getValueDelimiter = (id: string, localeId = DEFAULT_LOCALE_CODE): ValueDelimiter => {
     const valueDelimiter = valueDelimiters.find((valueDelimiter) => valueDelimiter.id === id);
-    if (valueDelimiter) return { ...valueDelimiter, label: valueDelimiter.label[localeId] || valueDelimiter.label[DEFAULT_LOCALE_CODE] || id };
+    if (valueDelimiter) {
+        const localizedLabel = resolveLabel(valueDelimiter.labels, localeId);
+        return { id: valueDelimiter.id, label: localizedLabel ?? valueDelimiter.id };
+    }
     return { id, label: id };
 };
 export const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): ValueDelimiter[] => {
     const items: ValueDelimiter[] = [];
-    for (const valueDelimiter of valueDelimiters)
-        items.push({ ...valueDelimiter, label: valueDelimiter.label[localeId] || valueDelimiter.label[DEFAULT_LOCALE_CODE] || valueDelimiter.id });
+    for (const valueDelimiter of valueDelimiters) {
+        const localizedLabel = resolveLabel(valueDelimiter.labels, localeId);
+        items.push({ id: valueDelimiter.id, label: localizedLabel ?? valueDelimiter.id });
+    }
     // return items.sort((first, second) => first.label.localeCompare(second.label));
     return items;
 };

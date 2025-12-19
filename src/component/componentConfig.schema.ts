@@ -5,7 +5,6 @@ import type { LiteralSchema, UnionSchema } from 'valibot';
 
 type LiteralUnionSchema<T extends readonly string[]> = UnionSchema<{ [K in keyof T]: LiteralSchema<T[K], undefined> }, undefined>;
 
-//export const literalUnion = <const T extends readonly string[]>(values: T) => union(values.map((value) => literal(value)));
 export const literalUnion = <const T extends readonly string[]>(values: T): LiteralUnionSchema<T> => union(values.map((value) => literal(value))) as LiteralUnionSchema<T>;
 
 export const localisedStringSchema = object({
@@ -94,7 +93,7 @@ export const moduleConfigSchema = object({
     typeId: moduleTypeIdSchema
 });
 
-export const componentRefSchema = object({
+export const componentReferenceSchema = object({
     id: string(),
     label: partialLocalisedStringSchema,
     description: partialLocalisedStringSchema,

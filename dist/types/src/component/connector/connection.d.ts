@@ -1,10 +1,9 @@
 import { ComponentConfig } from '..';
 import { ConnectorConfig } from '.';
-import { Timestamp } from '../../timestamp';
 export interface ConnectionAuthorizationConfig {
     accessToken: string;
     accountId: string;
-    expiresAt: Timestamp;
+    expiresAt: number;
     expiresIn: number;
     refreshToken: string;
     scope: string;
@@ -14,7 +13,7 @@ export interface ConnectionAuthorizationConfig {
 export interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorizationConfig>;
     connectorConfig: ConnectorConfig;
-    lastVerifiedAt: Timestamp;
+    lastVerifiedAt: number;
     notation?: string;
 }
 export interface ConnectionNodeConfig {
@@ -27,7 +26,7 @@ export interface ConnectionNodeConfig {
     nodeDisplayHeight?: number;
     nodes?: ConnectionNodeConfig[];
     label: string;
-    lastModifiedAt?: Timestamp;
+    lastModifiedAt?: number;
     mimeType?: string;
     name: string;
     size?: number;
@@ -61,10 +60,10 @@ export interface ConnectionColumnConfig {
     validValues?: Record<string, string>;
     voidValueCount?: number;
 }
-export type DPAFileSystemFileHandle = {
+export interface DPAFileSystemFileHandle {
     readonly kind: 'file';
     getFile(): Promise<File>;
-};
+}
 export type StorageTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'dateTimeOffset' | 'decimal' | 'double' | 'int8' | 'int16' | 'int32' | 'int64' | 'object' | 'single' | 'string' | 'time' | 'unknown';
 export type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
 export interface Encoding {

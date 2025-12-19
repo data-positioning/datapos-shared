@@ -6,8 +6,9 @@
 import type { InferOutput } from 'valibot';
 
 // Dependencies - Framework.
-import { componentConfigSchema } from '@/component/componentConfig.schema';
-import { DEFAULT_LOCALE_CODE, type LocaleCode, type LocalisedString, type StatusColorId } from '@/index';
+import type { componentConfigSchema } from '@/component/componentConfig.schema';
+import { DEFAULT_LOCALE_CODE } from '@/index';
+import type { LocaleCode, LocalisedString, StatusColorId } from '@/index';
 
 // Types/Interfaces/Operations - Component.
 export interface Component {
@@ -15,7 +16,6 @@ export interface Component {
 }
 
 // Types/Interfaces/Operations - Component configuration.
-export { componentConfigSchema };
 export type ComponentConfig = InferOutput<typeof componentConfigSchema>;
 export interface ComponentConfig1 {
     id: string;
@@ -31,7 +31,7 @@ export interface ComponentConfig1 {
 }
 
 // Types/Interfaces/Operations - Component reference.
-export type ComponentRef = {
+export interface ComponentReference {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
@@ -39,26 +39,48 @@ export type ComponentRef = {
     iconDark: string | null;
     order: number;
     path: string;
-};
+}
 
 // Types/Interfaces/Operations - Component status.
-export type ComponentStatus = { id: string; color: StatusColorId; label: string };
+export interface ComponentStatus {
+    id: string;
+    color: StatusColorId;
+    label: string;
+}
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
-type ComponentStatusConfig = { id: string; color: StatusColorId; label: Partial<LocalisedString> };
+type LocaleLabelMap = ReadonlyMap<string, string>;
+const createLocaleLabelMap = (labels: Partial<LocalisedString>): LocaleLabelMap => {
+    const filteredEntries = Object.entries(labels).filter((entry): entry is [string, string] => typeof entry[1] === 'string');
+    return new Map(filteredEntries);
+};
+const resolveLocaleLabel = (labels: LocaleLabelMap, localeId: LocaleCode, fallbackLocaleId = DEFAULT_LOCALE_CODE): string | undefined => {
+    const localizedLabel = labels.get(localeId);
+    if (localizedLabel !== undefined) return localizedLabel;
+    if (fallbackLocaleId === localeId) return undefined;
+    return labels.get(fallbackLocaleId);
+};
+interface ComponentStatusConfig {
+    id: string;
+    color: StatusColorId;
+    labels: LocaleLabelMap;
+}
 const componentStatuses: ComponentStatusConfig[] = [
-    { id: 'alpha', color: 'red', label: { 'en-gb': 'alpha' } },
-    { id: 'beta', color: 'amber', label: { 'en-gb': 'beta' } },
-    { id: 'generalAvailability', color: 'green', label: { 'en-gb': '' } },
-    { id: 'notApplicable', color: 'green', label: { 'en-gb': 'not-applicable' } },
-    { id: 'preAlpha', color: 'red', label: { 'en-gb': 'pre-alpha' } },
-    { id: 'proposed', color: 'other', label: { 'en-gb': 'proposed' } },
-    { id: 'releaseCandidate', color: 'green', label: { 'en-gb': 'release-candidate' } },
-    { id: 'unavailable', color: 'other', label: { 'en-gb': 'unavailable' } },
-    { id: 'underReview', color: 'other', label: { 'en-gb': 'under-review' } }
+    { id: 'alpha', color: 'red', labels: createLocaleLabelMap({ 'en-gb': 'alpha' }) },
+    { id: 'beta', color: 'amber', labels: createLocaleLabelMap({ 'en-gb': 'beta' }) },
+    { id: 'generalAvailability', color: 'green', labels: createLocaleLabelMap({ 'en-gb': '' }) },
+    { id: 'notApplicable', color: 'green', labels: createLocaleLabelMap({ 'en-gb': 'not-applicable' }) },
+    { id: 'preAlpha', color: 'red', labels: createLocaleLabelMap({ 'en-gb': 'pre-alpha' }) },
+    { id: 'proposed', color: 'other', labels: createLocaleLabelMap({ 'en-gb': 'proposed' }) },
+    { id: 'releaseCandidate', color: 'green', labels: createLocaleLabelMap({ 'en-gb': 'release-candidate' }) },
+    { id: 'unavailable', color: 'other', labels: createLocaleLabelMap({ 'en-gb': 'unavailable' }) },
+    { id: 'underReview', color: 'other', labels: createLocaleLabelMap({ 'en-gb': 'under-review' }) }
 ];
 export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LOCALE_CODE): ComponentStatus => {
     const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
-    if (componentStatus) return { ...componentStatus, label: componentStatus.label[localeId] || componentStatus.label[DEFAULT_LOCALE_CODE] || id };
+    if (componentStatus) {
+        const resolvedLabel = resolveLocaleLabel(componentStatus.labels, localeId);
+        return { id: componentStatus.id, color: componentStatus.color, label: resolvedLabel ?? componentStatus.id };
+    }
     return { id, color: 'other', label: id };
 };
 
@@ -96,3 +118,5 @@ export interface ModuleConfig extends ComponentConfig {
 
 // Types/Interfaces/Operations - Module type identifier.
 export type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'presenter' | 'tool';
+
+export { componentConfigSchema } from '@/component/componentConfig.schema';
