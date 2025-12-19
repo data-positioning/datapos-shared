@@ -1,3 +1,7 @@
+/**
+ * Context schema.
+ * Drafted by Copilot.
+ */
 export declare const contextConfigSchema: import('valibot').ObjectSchema<{
     readonly typeId: import('valibot').LiteralSchema<"context", undefined>;
     readonly models: import('valibot').ArraySchema<import('valibot').ObjectSchema<{

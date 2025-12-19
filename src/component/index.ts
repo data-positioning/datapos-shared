@@ -6,8 +6,14 @@
 import type { InferOutput } from 'valibot';
 
 // Dependencies - Framework.
-import type { componentConfigSchema } from '@/component/componentConfig.schema';
 import { DEFAULT_LOCALE_CODE } from '@/index';
+import type {
+    componentConfigSchema,
+    componentStatusColorIdSchema,
+    componentStatusIdSchema,
+    componentStatusSchema,
+    componentTypeIdSchema
+} from '@/component/componentConfig.schema';
 import type { LocaleCode, LocalisedString } from '@/index';
 
 // Types/Interfaces/Operations - Component.
@@ -17,18 +23,22 @@ export interface Component {
 
 // Types/Interfaces/Operations - Component configuration.
 export type ComponentConfig = InferOutput<typeof componentConfigSchema>;
-export interface ComponentConfig1 {
-    id: string;
-    label: Partial<LocalisedString>;
-    description: Partial<LocalisedString>;
-    firstCreatedAt?: number;
-    icon: string | null;
-    iconDark: string | null;
-    lastUpdatedAt: number | null;
-    status: ComponentStatus | null;
-    statusId: ComponentStatusId;
-    typeId: ComponentTypeId;
-}
+export type ComponentStatus = InferOutput<typeof componentStatusSchema>;
+export type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
+export type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
+export type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
+// export interface ComponentConfig1 {
+//     id: string;
+//     label: Partial<LocalisedString>;
+//     description: Partial<LocalisedString>;
+//     firstCreatedAt?: number;
+//     icon: string | null;
+//     iconDark: string | null;
+//     lastUpdatedAt: number | null;
+//     status: ComponentStatus | null;
+//     statusId: ComponentStatusId;
+//     typeId: ComponentTypeId;
+// }
 
 // Types/Interfaces/Operations - Component reference.
 export interface ComponentReference {
@@ -42,12 +52,12 @@ export interface ComponentReference {
 }
 
 // Types/Interfaces/Operations - Component status.
-export interface ComponentStatus {
-    id: string;
-    color: ComponentStatusColorId;
-    label: string;
-}
-export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
+// export interface ComponentStatus {
+//     id: string;
+//     color: ComponentStatusColorId;
+//     label: string;
+// }
+// export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
 type LocaleLabelMap = ReadonlyMap<string, string>;
 const createLocaleLabelMap = (labels: Partial<LocalisedString>): LocaleLabelMap => {
     const filteredEntries = Object.entries(labels).filter((entry): entry is [string, string] => typeof entry[1] === 'string');
@@ -85,33 +95,33 @@ export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LO
 };
 
 //
-export type ComponentStatusColorId = 'amber' | 'green' | 'red' | 'other';
+// export type ComponentStatusColorId = 'amber' | 'green' | 'red' | 'other';
 
 // Types/Interfaces/Operations - Component type identifier.
-export type ComponentTypeId =
-    | 'app'
-    | 'connector'
-    | 'connectorConnection'
-    | 'context'
-    | 'contextModelGroup'
-    | 'contextModel'
-    | 'contextModelDimensionGroup'
-    | 'contextModelDimension'
-    | 'contextModelDimensionHierarchy'
-    | 'contextModelEntityGroup'
-    | 'contextModelEntity'
-    | 'contextModelEntityDataItem'
-    | 'contextModelEntityEvent'
-    | 'contextModelEntityPrimaryMeasure'
-    | 'contextModelSecondaryMeasureGroup'
-    | 'contextModelSecondaryMeasure'
-    | 'dataView'
-    | 'dimension'
-    | 'engine'
-    | 'eventQuery'
-    | 'presenter'
-    | 'presenterPresentation'
-    | 'tool';
+// export type ComponentTypeId =
+//     | 'app'
+//     | 'connector'
+//     | 'connectorConnection'
+//     | 'context'
+//     | 'contextModelGroup'
+//     | 'contextModel'
+//     | 'contextModelDimensionGroup'
+//     | 'contextModelDimension'
+//     | 'contextModelDimensionHierarchy'
+//     | 'contextModelEntityGroup'
+//     | 'contextModelEntity'
+//     | 'contextModelEntityDataItem'
+//     | 'contextModelEntityEvent'
+//     | 'contextModelEntityPrimaryMeasure'
+//     | 'contextModelSecondaryMeasureGroup'
+//     | 'contextModelSecondaryMeasure'
+//     | 'dataView'
+//     | 'dimension'
+//     | 'engine'
+//     | 'eventQuery'
+//     | 'presenter'
+//     | 'presenterPresentation'
+//     | 'tool';
 
 // Types/Interfaces/Operations - Module configuration.
 export interface ModuleConfig extends ComponentConfig {
@@ -122,4 +132,5 @@ export interface ModuleConfig extends ComponentConfig {
 // Types/Interfaces/Operations - Module type identifier.
 export type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'presenter' | 'tool';
 
+/** Exposures */
 export { componentConfigSchema } from '@/component/componentConfig.schema';

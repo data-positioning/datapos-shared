@@ -25,7 +25,8 @@ export interface Connector extends Component {
     describeConnection?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>;
     dropObject?(connector: Connector, settings: DropSettings): Promise<void>;
     findObject?(connector: Connector, findSettings: FindSettings): Promise<FindResult>;
-    getRecord?(connector: Connector, getSettings: GetSettings): Promise<GetResult>;
+    getReader?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult>;
+    getRecord?(connector: Connector, getSettings: GetRecordSettings): Promise<GetRecordResult>;
     listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>;
     previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>;
     removeRecords?(connector: Connector, settings: RemoveSettings): Promise<void>;
@@ -107,11 +108,18 @@ export interface FindSettings extends ConnectorOperationSettings {
 export interface FindResult {
     folderPath?: string;
 }
-export interface GetSettings extends ConnectorOperationSettings {
+export interface GetReaderSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
 }
-export interface GetResult {
+export interface GetReaderResult {
+    record?: string[] | Record<string, unknown>;
+}
+export interface GetRecordSettings extends ConnectorOperationSettings {
+    id: string;
+    path: string;
+}
+export interface GetRecordResult {
     record?: string[] | Record<string, unknown>;
 }
 export interface ListSettings extends ConnectorOperationSettings {
@@ -168,4 +176,5 @@ interface ConnectorCategory {
     id: string;
     label: string;
 }
+/** Exposures */
 export { connectorConfigSchema } from './connectorConfig.schema';

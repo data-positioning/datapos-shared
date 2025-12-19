@@ -1,3 +1,7 @@
+/**
+ * Presenter schema.
+ * Drafted by Copilot.
+ */
 export declare const presenterConfigSchema: import('valibot').ObjectSchema<{
     readonly typeId: import('valibot').LiteralSchema<"presenter", undefined>;
     readonly presentations: import('valibot').ArraySchema<import('valibot').ObjectSchema<{

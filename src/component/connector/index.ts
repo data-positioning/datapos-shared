@@ -48,7 +48,8 @@ export interface Connector extends Component {
     describeConnection?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
     dropObject?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
     findObject?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
-    getRecord?(connector: Connector, getSettings: GetSettings): Promise<GetResult>; // Get a record for an object for a specified connection.
+    getReader?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult>; // Get a reader that can retrieve all records from an object for a specified connection.
+    getRecord?(connector: Connector, getSettings: GetRecordSettings): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
     listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List nodes in a folder for a specified connection.
     previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
     removeRecords?(connector: Connector, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
@@ -146,12 +147,21 @@ export interface FindResult {
     folderPath?: string;
 }
 
-// Types/Interfaces/Operations - Get (object).
-export interface GetSettings extends ConnectorOperationSettings {
+// Types/Interfaces/Operations - Get reader (reader).
+export interface GetReaderSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
 }
-export interface GetResult {
+export interface GetReaderResult {
+    record?: string[] | Record<string, unknown>;
+}
+
+// Types/Interfaces/Operations - Get record (object).
+export interface GetRecordSettings extends ConnectorOperationSettings {
+    id: string;
+    path: string;
+}
+export interface GetRecordResult {
     record?: string[] | Record<string, unknown>;
 }
 
@@ -252,4 +262,5 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
     return { id, label: id };
 };
 
+/** Exposures */
 export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';

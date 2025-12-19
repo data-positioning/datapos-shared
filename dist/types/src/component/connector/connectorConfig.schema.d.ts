@@ -1,3 +1,7 @@
+/**
+ * Connector schema.
+ * Drafted by Copilot.
+ */
 export declare const connectorConfigSchema: import('valibot').ObjectSchema<{
     readonly typeId: import('valibot').LiteralSchema<"connector", undefined>;
     readonly category: import('valibot').NullableSchema<import('valibot').ObjectSchema<{
