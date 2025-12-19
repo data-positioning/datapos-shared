@@ -153,7 +153,7 @@ export interface GetReaderSettings extends ConnectorOperationSettings {
     path: string;
 }
 export interface GetReaderResult {
-    record?: string[] | Record<string, unknown>;
+    readable: ReadableStream<unknown>;
 }
 
 // Types/Interfaces/Operations - Get record (object).
