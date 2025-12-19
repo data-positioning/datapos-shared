@@ -48,7 +48,7 @@ export interface Connector extends Component {
     describeConnection?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
     dropObject?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
     findObject?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
-    getReader?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult>; // Get a reader that can retrieve all records from an object for a specified connection.
+    getReader?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult | undefined>; // Get a reader that can retrieve all records from an object for a specified connection.
     getRecord?(connector: Connector, getSettings: GetRecordSettings): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
     listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List nodes in a folder for a specified connection.
     previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
