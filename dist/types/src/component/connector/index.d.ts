@@ -25,7 +25,7 @@ export interface Connector extends Component {
     describeConnection?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>;
     dropObject?(connector: Connector, settings: DropSettings): Promise<void>;
     findObject?(connector: Connector, findSettings: FindSettings): Promise<FindResult>;
-    getReader?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult | undefined>;
+    getReader?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult>;
     getRecord?(connector: Connector, getSettings: GetRecordSettings): Promise<GetRecordResult>;
     listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>;
     previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>;
