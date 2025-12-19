@@ -44,7 +44,7 @@ Each module implements a set of components. All module component types extend th
 | ComponentStatus                 |                                                              |
 | ComponentStatusId               |                                                              |
 | ComponentTypeId                 |                                                              |
-| StatusColorId                   |                                                              |
+| ComponentStatusColorId          |                                                              |
 
 #### Connector Module Components
 

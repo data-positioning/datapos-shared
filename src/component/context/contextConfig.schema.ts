@@ -1,5 +1,12 @@
+/**
+ * Context schema.
+ * Drafted by Copilot.
+ */
+
+/** Dependencies - Vendor. */
 import { array, literal, number, object } from 'valibot';
 
+/** Dependencies - Framework. */
 import { componentConfigCoreFields, componentReferenceSchema, literalUnion, moduleConfigCoreFields } from '@/component/componentConfig.schema';
 
 const contextOperationSchema = literalUnion(['list'] as const);

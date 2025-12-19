@@ -1,6 +1,6 @@
 import { InferOutput } from 'valibot';
 import { componentConfigSchema } from './componentConfig.schema';
-import { LocaleCode, LocalisedString, StatusColorId } from '../index';
+import { LocaleCode, LocalisedString } from '../index';
 export interface Component {
     readonly config: ComponentConfig;
 }
@@ -28,11 +28,12 @@ export interface ComponentReference {
 }
 export interface ComponentStatus {
     id: string;
-    color: StatusColorId;
+    color: ComponentStatusColorId;
     label: string;
 }
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
 export declare const getComponentStatus: (id: string, localeId?: LocaleCode) => ComponentStatus;
+export type ComponentStatusColorId = 'amber' | 'green' | 'red' | 'other';
 export type ComponentTypeId = 'app' | 'connector' | 'connectorConnection' | 'context' | 'contextModelGroup' | 'contextModel' | 'contextModelDimensionGroup' | 'contextModelDimension' | 'contextModelDimensionHierarchy' | 'contextModelEntityGroup' | 'contextModelEntity' | 'contextModelEntityDataItem' | 'contextModelEntityEvent' | 'contextModelEntityPrimaryMeasure' | 'contextModelSecondaryMeasureGroup' | 'contextModelSecondaryMeasure' | 'dataView' | 'dimension' | 'engine' | 'eventQuery' | 'presenter' | 'presenterPresentation' | 'tool';
 export interface ModuleConfig extends ComponentConfig {
     typeId: ModuleTypeId;

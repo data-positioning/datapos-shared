@@ -15,7 +15,7 @@ export declare const partialLocalisedStringSchema: import('valibot').ObjectSchem
     readonly 'en-us': import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;
     readonly 'es-es': import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;
 }, undefined>;
-export declare const statusColorIdSchema: LiteralUnionSchema<readonly ["amber", "green", "red", "other"]>;
+export declare const componentStatusColorIdSchema: LiteralUnionSchema<readonly ["amber", "green", "red", "other"]>;
 export declare const componentStatusIdSchema: LiteralUnionSchema<readonly ["alpha", "beta", "generalAvailability", "notApplicable", "preAlpha", "proposed", "releaseCandidate", "unavailable", "underReview"]>;
 export declare const componentTypeIdSchema: LiteralUnionSchema<readonly ["app", "connector", "connectorConnection", "context", "contextModelGroup", "contextModel", "contextModelDimensionGroup", "contextModelDimension", "contextModelDimensionHierarchy", "contextModelEntityGroup", "contextModelEntity", "contextModelEntityDataItem", "contextModelEntityEvent", "contextModelEntityPrimaryMeasure", "contextModelSecondaryMeasureGroup", "contextModelSecondaryMeasure", "dataView", "dimension", "engine", "eventQuery", "presenter", "presenterPresentation", "tool"]>;
 export declare const moduleTypeIdSchema: LiteralUnionSchema<readonly ["app", "engine", "connector", "context", "presenter", "tool"]>;

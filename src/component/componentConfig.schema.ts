@@ -1,5 +1,9 @@
-// Drafted by Copilot.
+/**
+ * Component schema.
+ * Drafted by Copilot.
+ */
 
+/** Dependencies - Vendor. */
 import { literal, nullable, number, object, optional, string, union } from 'valibot';
 import type { LiteralSchema, UnionSchema } from 'valibot';
 
@@ -21,7 +25,7 @@ export const partialLocalisedStringSchema = object({
     'es-es': optional(string())
 });
 
-export const statusColorIdSchema = literalUnion(['amber', 'green', 'red', 'other'] as const);
+export const componentStatusColorIdSchema = literalUnion(['amber', 'green', 'red', 'other'] as const);
 export const componentStatusIdSchema = literalUnion([
     'alpha',
     'beta',
@@ -62,7 +66,7 @@ export const moduleTypeIdSchema = literalUnion(['app', 'engine', 'connector', 'c
 
 export const componentStatusSchema = object({
     id: string(),
-    color: statusColorIdSchema,
+    color: componentStatusColorIdSchema,
     label: string()
 });
 

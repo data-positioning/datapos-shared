@@ -1,7 +1,12 @@
-// Drafted by Copilot.
+/**
+ * Connector schema.
+ * Drafted by Copilot.
+ */
 
+/** Dependencies - Vendor. */
 import { array, boolean, literal, nullable, number, object, optional, record, string } from 'valibot';
 
+/** Dependencies - Framework. */
 import { literalUnion, localisedStringSchema, moduleConfigCoreFields } from '@/component/componentConfig.schema';
 
 const connectorModuleCategoryIdSchema = literalUnion(['application', 'curatedDataset', 'database', 'fileStore'] as const);

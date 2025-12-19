@@ -9,8 +9,7 @@ export type LocalisedString = Record<LocaleCode, string>;
 //#region Component --------------------
 
 /** Interfaces/Types - Component */
-export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from '@/component';
-export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
+export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId, ComponentStatusColorId } from '@/component';
 
 /** Schemas - Component */
 export { componentConfigSchema } from '@/component';
@@ -23,31 +22,47 @@ export { componentConfigSchema } from '@/component';
 export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/component/connector';
 
 /** Interfaces/Types Component - Connector */
-export type { ConnectorOperation, ConnectorUsageId } from '@/component/connector';
-export type { AuditContentResult, AuditContentSettings } from '@/component/connector';
 export type {
+    AuditContentResult,
+    AuditContentSettings,
     Connector,
     ConnectorCallbackData,
     ConnectorConfig,
     ConnectorImplementation,
-    ConnectorOperationSettings,
     ConnectorLocalisedConfig,
-    ConnectorTools
+    ConnectorOperation,
+    ConnectorOperationSettings,
+    ConnectorTools,
+    ConnectorUsageId,
+    CreateSettings,
+    DropSettings,
+    FindResult,
+    FindSettings,
+    GetResult,
+    GetSettings,
+    InitialiseSettings,
+    ListResult,
+    ListSettings,
+    PreviewResult,
+    PreviewSettings,
+    RemoveSettings,
+    RetrieveResult,
+    RetrieveSettings,
+    RetrieveSummary,
+    UpsertSettings
 } from '@/component/connector';
-export type { CreateSettings } from '@/component/connector';
-export type { DropSettings } from '@/component/connector';
-export type { FindResult, FindSettings } from '@/component/connector';
-export type { GetResult, GetSettings } from '@/component/connector';
-export type { InitialiseSettings } from '@/component/connector';
-export type { ListResult, ListSettings } from '@/component/connector';
-export type { PreviewResult, PreviewSettings } from '@/component/connector';
-export type { RemoveSettings } from '@/component/connector';
-export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from '@/component/connector';
-export type { UpsertSettings } from '@/component/connector';
 
 /** Interfaces/Types - Connection */
-export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
-export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/component/connector/connection';
+export type {
+    ConnectionAuthorizationConfig,
+    ConnectionColumnConfig,
+    ConnectionConfig,
+    ConnectionNodeConfig,
+    DPAFileSystemFileHandle,
+    Encoding,
+    StorageTypeId,
+    UsageTypeId
+} from '@/component/connector/connection';
 
 /** Schemas - Connector  */
 export { connectorConfigSchema } from '@/component/connector';

@@ -8,7 +8,7 @@ import type { InferOutput } from 'valibot';
 // Dependencies - Framework.
 import type { componentConfigSchema } from '@/component/componentConfig.schema';
 import { DEFAULT_LOCALE_CODE } from '@/index';
-import type { LocaleCode, LocalisedString, StatusColorId } from '@/index';
+import type { LocaleCode, LocalisedString } from '@/index';
 
 // Types/Interfaces/Operations - Component.
 export interface Component {
@@ -44,7 +44,7 @@ export interface ComponentReference {
 // Types/Interfaces/Operations - Component status.
 export interface ComponentStatus {
     id: string;
-    color: StatusColorId;
+    color: ComponentStatusColorId;
     label: string;
 }
 export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
@@ -61,7 +61,7 @@ const resolveLocaleLabel = (labels: LocaleLabelMap, localeId: LocaleCode, fallba
 };
 interface ComponentStatusConfig {
     id: string;
-    color: StatusColorId;
+    color: ComponentStatusColorId;
     labels: LocaleLabelMap;
 }
 const componentStatuses: ComponentStatusConfig[] = [
@@ -83,6 +83,9 @@ export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LO
     }
     return { id, color: 'other', label: id };
 };
+
+//
+export type ComponentStatusColorId = 'amber' | 'green' | 'red' | 'other';
 
 // Types/Interfaces/Operations - Component type identifier.
 export type ComponentTypeId =
