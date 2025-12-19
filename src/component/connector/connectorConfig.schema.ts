@@ -17,6 +17,7 @@ const connectorOperationSchema = literalUnion([
     'describeConnection',
     'dropObject',
     'findObject',
+    'getReader',
     'getRecord',
     'listNodes',
     'previewObject',

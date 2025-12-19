@@ -480,6 +480,7 @@ const oe = /* @__PURE__ */ b({
   "describeConnection",
   "dropObject",
   "findObject",
+  "getReader",
   "getRecord",
   "listNodes",
   "previewObject",
