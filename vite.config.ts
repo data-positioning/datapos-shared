@@ -6,6 +6,7 @@
 import { defineConfig } from 'vite'; // Core Vite API.
 import dts from 'vite-plugin-dts'; // Emit .d.ts files alongside the bundle.
 import type { PackageJson } from 'type-fest';
+import Sonda from 'sonda/vite'; // Visualize bundle results with Sonda plugin.
 import { visualizer } from 'rollup-plugin-visualizer'; // Generate bundle size report.
 import { fileURLToPath, URL } from 'node:url'; // ESM-safe path helpers.
 
@@ -28,11 +29,19 @@ export default defineConfig({
         rollupOptions: {
             external,
             plugins: [
-                visualizer({
-                    filename: 'stats.html', // Write report to stats.html in project root.
+                Sonda({
+                    filename: 'index', // Output file name.
+                    format: 'html', // Output file format.
+                    gzip: true, // Include gzip sizes.
+                    brotli: true, // Include brotli sizes.
                     open: false, // Do not auto-open browser post-build.
-                    gzipSize: true, // Display gzip sizes.
-                    brotliSize: true // Display brotli sizes.
+                    outputDir: './bundle-analysis-reports/sonda' // Output directory.
+                }), // Run Sonda analyser to generate additional bundle insights.
+                visualizer({
+                    filename: './bundle-analysis-reports/rollup-visualiser/index.html', // Output file path.
+                    open: false, // Do not auto-open browser post-build.
+                    gzipSize: true, // Include gzip sizes.
+                    brotliSize: true // Include brotli sizes.
                 })
             ]
         },

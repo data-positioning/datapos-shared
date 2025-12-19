@@ -6,7 +6,7 @@
         "isolatedModules": true, // Treat each file as a separate module; keeps Vite happy.
         "lib": ["ESNext", "dom"], // Target the latest JavaScript libs and built-ins.
         "module": "ESNext", // Generate native ESM output for bundlers.
-        "moduleResolution": "node", // Resolve modules the same way Node does (needed for aliases).
+        "moduleResolution": "bundler", // Resolve modules the same way Node does (needed for aliases).
         "noUncheckedIndexedAccess": true, // Enforce checks when indexing into objects or arrays.
         "noImplicitAny": true, // Disallow implicit any types to keep everything typed.
         "outDir": "dist", // Place compiler output in dist/.

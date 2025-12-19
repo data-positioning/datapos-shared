@@ -523,24 +523,7 @@ const me = v(["list"]), be = /* @__PURE__ */ b({
   typeId: /* @__PURE__ */ k("context"),
   models: /* @__PURE__ */ x(be),
   operations: /* @__PURE__ */ x(me)
-}), ye = v(["list", "render", "setColorMode"]), Ce = /* @__PURE__ */ b({
-  ...$,
-  typeId: /* @__PURE__ */ k("presenter"),
-  presentations: /* @__PURE__ */ x(P),
-  operations: /* @__PURE__ */ x(ye)
 });
-function Ne() {
-  return { render: ge };
-}
-function ge(e, r, t) {
-  t.textContent = "Cytoscape.js diagram goes here...";
-}
-function je() {
-  return { render: he };
-}
-function he(e, r) {
-  console.log(1111, e), console.log(2222, r), console.log(3333, r.childNodes), console.log(4444, r.children);
-}
 class F extends Error {
   locator;
   constructor(r, t, n) {
@@ -552,12 +535,12 @@ class w extends F {
     super(r, t, n), this.name = "ApplicationError";
   }
 }
-class Ae extends w {
+class Ce extends w {
   constructor(r, t, n) {
     super(r, t, n), this.name = "APIError";
   }
 }
-class Re extends w {
+class Ne extends w {
   constructor(r, t, n) {
     super(r, t, n), this.name = "EngineError";
   }
@@ -568,36 +551,36 @@ class z extends w {
     super(r, t, s), this.name = "FetchError", this.body = n;
   }
 }
-class ve extends w {
+class ye extends w {
   componentName;
   info;
   constructor(r, t, n, s, o) {
     super(r, t, o), this.name = "VueHandledError", this.info = n, this.componentName = s;
   }
 }
-class Te extends w {
+class je extends w {
   constructor(r, t, n) {
     super(r, t, n), this.name = "WindowHandledRuntimeError";
   }
 }
-class $e extends w {
+class Ae extends w {
   constructor(r, t, n) {
     super(r, t, n), this.name = "WindowHandledPromiseRejectionError";
   }
 }
-class Fe extends F {
+class Re extends F {
   constructor(r, t, n) {
     super(r, t, n), this.name = "OperationalError";
   }
 }
-async function Le(e, r, t) {
+async function Te(e, r, t) {
   const n = ` - ${e.statusText}`, s = `${r} Response status '${e.status}${e.statusText ? n : ""}' received.`, o = await e.text();
   return new z(s, t, o);
 }
-function _e(e) {
+function $e(e) {
   return e.map((r) => r.message).join(" ");
 }
-function Ue(e) {
+function Fe(e) {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
   if (typeof e == "number" || typeof e == "boolean" || typeof e == "bigint") return new Error(String(e));
@@ -610,7 +593,7 @@ function Ue(e) {
     }
   return new Error("Unknown error");
 }
-function Be(e) {
+function Le(e) {
   const r = /* @__PURE__ */ new Set(), t = [];
   let n = e;
   for (; n && !r.has(n); ) {
@@ -618,7 +601,7 @@ function Be(e) {
     let s;
     if (n instanceof z)
       s = { body: n.body, locator: n.locator, message: n.message, name: n.name, stack: n.stack }, n = n.cause;
-    else if (n instanceof ve)
+    else if (n instanceof ye)
       s = { componentName: n.componentName, info: n.info, locator: n.locator, message: n.message, name: n.name, stack: n.stack }, n = n.cause;
     else if (n instanceof F)
       s = { locator: n.locator, message: n.message, name: n.name, stack: n.stack }, n = n.cause;
@@ -630,6 +613,24 @@ function Be(e) {
     /(?:\.{3}|[.!?])$/.test(s.message) || (s.message += "."), t.push(s);
   }
   return t;
+}
+const ge = v(["list", "render", "setColorMode"]), _e = /* @__PURE__ */ b({
+  ...$,
+  typeId: /* @__PURE__ */ k("presenter"),
+  presentations: /* @__PURE__ */ x(P),
+  operations: /* @__PURE__ */ x(ge)
+});
+function Ue() {
+  return { render: he };
+}
+function he(e, r, t) {
+  t.textContent = "Cytoscape.js diagram goes here...";
+}
+function Be() {
+  return { render: ve };
+}
+function ve(e, r) {
+  console.log(1111, e), console.log(2222, r), console.log(3333, r.childNodes), console.log(4444, r.children);
 }
 const V = "en-US", C = /* @__PURE__ */ new Map();
 function Ge(e) {
@@ -788,20 +789,20 @@ const c = (e) => new Map(Object.entries(e)), L = (e, r, t = I) => {
   return r;
 }, I = "en-gb";
 export {
-  Ae as APIError,
+  Ce as APIError,
   w as ApplicationError,
   Ie as CONNECTOR_DESTINATION_OPERATIONS,
   Me as CONNECTOR_SOURCE_OPERATIONS,
   I as DEFAULT_LOCALE_CODE,
-  Re as EngineError,
+  Ne as EngineError,
   z as FetchError,
-  Fe as OperationalError,
-  ve as VueError,
-  $e as WindowPromiseRejectionError,
-  Te as WindowRuntimeError,
-  Le as buildFetchError,
+  Re as OperationalError,
+  ye as VueError,
+  Ae as WindowPromiseRejectionError,
+  je as WindowRuntimeError,
+  Te as buildFetchError,
   De as componentConfigSchema,
-  _e as concatenateSerialisedErrorMessages,
+  $e as concatenateSerialisedErrorMessages,
   we as connectorConfigSchema,
   Oe as contextConfigSchema,
   Ge as convertODataTypeIdToUsageTypeId,
@@ -817,9 +818,9 @@ export {
   Je as getRecordDelimiters,
   qe as getValueDelimiters,
   We as lookupMimeTypeForExtension,
-  Ue as normalizeToError,
-  Ce as presenterConfigSchema,
-  Be as serialiseError,
-  Ne as useCytoscapeJS,
-  je as useDataTable
+  Fe as normalizeToError,
+  _e as presenterConfigSchema,
+  Le as serialiseError,
+  Ue as useCytoscapeJS,
+  Be as useDataTable
 };

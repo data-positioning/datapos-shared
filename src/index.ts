@@ -1,20 +1,29 @@
 /**
- * Shared composables, constants, types/interfaces, errors and utilities.
+ * Shared composables, constants, errors, interfaces, schemas, types and utilities.
  */
 
-// Types/Interfaces/Operations
+/** Interfaces/Types */
 export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
+
+//#region Component --------------------
+
+/** Interfaces/Types - Component */
+export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from '@/component';
 export type StatusColorId = 'amber' | 'green' | 'red' | 'other';
 
-// Types/Interfaces/Operations - Component.
+/** Schemas - Component */
 export { componentConfigSchema } from '@/component';
-export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId } from '@/component';
 
-// Types/Interfaces/Operations - Connector.
-export { connectorConfigSchema } from '@/component/connector';
-export type { ConnectorOperation, ConnectorUsageId } from '@/component/connector';
+//#endregion
+
+//#region Connector --------------------
+
+/** Constants - Connector */
 export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/component/connector';
+
+/** Interfaces/Types Component - Connector */
+export type { ConnectorOperation, ConnectorUsageId } from '@/component/connector';
 export type { AuditContentResult, AuditContentSettings } from '@/component/connector';
 export type {
     Connector,
@@ -36,18 +45,25 @@ export type { RemoveSettings } from '@/component/connector';
 export type { RetrieveResult, RetrieveSettings, RetrieveSummary } from '@/component/connector';
 export type { UpsertSettings } from '@/component/connector';
 
-// Types/Interfaces/Operations - Connector connection.
+/** Interfaces/Types - Connection */
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 export type { DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from '@/component/connector/connection';
 
-// Types/Interfaces/Operations - Context.
+/** Schemas - Connector  */
+export { connectorConfigSchema } from '@/component/connector';
+
+//#endregion
+
+//#region Context --------------------
+
+/** Interfaces/Types - Context. */
 export { contextConfigSchema } from '@/component/context';
 export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextOperation, ContextCallbackData } from '@/component/context';
 
-// Types/Interfaces/Operations - Context model.
+/** Interfaces/Types - Context model. */
 export type { ContextModelGroupConfig, ContextModelGroupLocalisedConfig, ContextModelConfig, ContextModelLocalisedConfig } from '@/component/context';
 
-// Types/Interfaces/Operations - Context model dimension.
+/** Interfaces/Types - Context model dimension. */
 export type {
     ContextModelDimensionGroupConfig,
     ContextModelDimensionGroupLocalisedConfig,
@@ -57,7 +73,7 @@ export type {
     ContextModelDimensionHierarchyLocalisedConfig
 } from '@/component/context';
 
-// Types/Interfaces/Operations - Context model entity.
+/** Interfaces/Types - Context model entity. */
 export type {
     ContextModelEntityGroupConfig,
     ContextModelEntityGroupLocalisedConfig,
@@ -71,7 +87,7 @@ export type {
     ContextModelEntityPrimaryMeasureLocalisedConfig
 } from '@/component/context';
 
-// Types/Interfaces/Operations - Context model secondary measure.
+/** Interfaces/Types - Context model secondary measure. */
 export type {
     ContextModelSecondaryMeasureGroupConfig,
     ContextModelSecondaryMeasureGroupLocalisedConfig,
@@ -79,7 +95,16 @@ export type {
     ContextModelSecondaryMeasureLocalisedConfig
 } from '@/component/context';
 
-// Types/Interfaces/Operations - Data view.
+/** Interfaces/Types - Context Operator Settings */
+export interface ContextOperationSettings {
+    accountId?: string;
+    appCheckToken?: string;
+    sessionAccessToken?: string;
+}
+
+//#endregion
+
+/** Interfaces/Types - Data view. */
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from '@/component/dataView';
 export type {
     DataViewConfig,
@@ -90,23 +115,35 @@ export type {
     ParsedValue
 } from '@/component/dataView';
 
-// Types/Interfaces/Operations - Dimension.
+/** Interfaces/Types - Dimension. */
 export type { DimensionConfig, DimensionLocalisedConfig } from '@/component/dimension';
 
-// Types/Interfaces/Operations - Engine.
+/** Interfaces/Types - Engine. */
 export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineConfig, EngineWorker, TestSettings } from '@/engine';
 
-// Types/Interfaces/Operations - Error.
+//#region Error
+
+/** Interfaces/Types */
 export type { SerialisedError } from '@/errors';
 
-// Types/Interfaces/Operations - Event query.
+/** Errors */
+export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';
+
+/** Utilities */
+export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
+
+//#endregion
+
+/** Interfaces/Types - Event query. */
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/component/eventQuery';
 
-// Types/Interfaces/Operations - Presenter.
+//#region Presenter Component
+
+/** Interfaces/Types */
 export { presenterConfigSchema } from '@/component/presenter';
 export type { Presenter, PresenterConfig, PresenterLocalisedConfig, PresenterOperation } from '@/component/presenter';
 
-// Types/Interfaces/Operations - Presenter presentation.
+/** Interfaces/Types - Presenter presentation. */
 export type { PresentationConfig, PresentationView } from '@/component/presenter/presentation';
 export type {
     PresentationCategoryId,
@@ -126,32 +163,22 @@ export type {
     PresentationVisualValueTableViewConfig
 } from '@/component/presenter/presentation';
 
+//#endregion
+
+//#region Tool
+
 export type { ToolConfig } from '@/component/tool';
 
-// Types/Interfaces/Operations - Context Operator Settings
-export interface ContextOperationSettings {
-    accountId?: string;
-    appCheckToken?: string;
-    sessionAccessToken?: string;
-}
+//#endregion
 
-// Types/Interfaces/Operations - Timestamp.
-// export type { Timestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
-
-// Composables
+/** Composables */
 export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
 export { useDataTable } from '@/composables/useDataTable';
 
-// Constants
+/** Constants */
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
-// export { DefaultTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
 
-// Errors
-export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';
-
-// Utilities.
-export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
-// export { convertMillisecondsToTimestamp, getCurrentTimestamp } from '@/timestamp'; // TODO: Review, do we need it now we have removed Firebase?
+/** Utilities */
 export { convertODataTypeIdToUsageTypeId } from '@/utilities';
 export { extractExtensionFromPath, extractNameFromPath } from '@/utilities';
 export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/utilities';
