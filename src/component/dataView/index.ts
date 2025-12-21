@@ -1,5 +1,5 @@
 // Dependencies - Framework
-import { DEFAULT_LOCALE_CODE } from '@/locales';
+import { DEFAULT_LOCALE_CODE } from '@/index';
 import type { Component, ComponentConfig } from '@/component';
 import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 

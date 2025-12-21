@@ -3,7 +3,8 @@
  */
 
 /** Interfaces/Types */
-export type { LocaleCode, LocalisedString } from '@/locales';
+export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
+export type LocalisedString = Record<LocaleCode, string>;
 
 //#region Component --------------------
 
@@ -53,7 +54,7 @@ export type {
     RetrieveRecordsSettings,
     RetrieveRecordsSummary,
     UpsertSettings
-} from '@/component/connector/types';
+} from '@/component/connector';
 
 /** Interfaces/Types - Connection */
 export type {
@@ -194,7 +195,7 @@ export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscape
 export { useDataTable } from '@/composables/useDataTable';
 
 /** Constants */
-export { DEFAULT_LOCALE_CODE } from '@/locales';
+export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 
 /** Utilities */
 export { convertODataTypeIdToUsageTypeId } from '@/utilities';

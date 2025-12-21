@@ -2,7 +2,8 @@
  * Shared composables, constants, errors, interfaces, schemas, types and utilities.
  */
 /** Interfaces/Types */
-export type { LocaleCode, LocalisedString } from './locales';
+export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
+export type LocalisedString = Record<LocaleCode, string>;
 /** Interfaces/Types - Component */
 export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId, ComponentStatusColorId } from './component';
 /** Schemas - Component */
@@ -10,7 +11,7 @@ export { componentConfigSchema } from './component';
 /** Constants - Connector */
 export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from './component/connector';
 /** Interfaces/Types Component - Connector */
-export type { AuditContentResult, AuditContentSettings, Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationSettings, ConnectorTools, ConnectorUsageId, CreateSettings, DropSettings, FindResult, FindSettings, GetReadableStreamResult, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, InitialiseSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings } from './component/connector/types';
+export type { AuditContentResult, AuditContentSettings, Connector, ConnectorCallbackData, ConnectorConfig, ConnectorImplementation, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationSettings, ConnectorTools, ConnectorUsageId, CreateSettings, DropSettings, FindResult, FindSettings, GetReadableStreamResult, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, InitialiseSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings } from './component/connector';
 /** Interfaces/Types - Connection */
 export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from './component/connector/connection';
 /** Schemas - Connector  */
@@ -61,7 +62,7 @@ export type { ToolConfig } from './component/tool';
 export { type CytoscapeJSView, useCytoscapeJS } from './composables/useCytoscapeJS';
 export { useDataTable } from './composables/useDataTable';
 /** Constants */
-export { DEFAULT_LOCALE_CODE } from './locales';
+export declare const DEFAULT_LOCALE_CODE: LocaleCode;
 /** Utilities */
 export { convertODataTypeIdToUsageTypeId } from './utilities';
 export { extractExtensionFromPath, extractNameFromPath } from './utilities';

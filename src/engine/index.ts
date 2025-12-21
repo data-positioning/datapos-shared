@@ -1,5 +1,5 @@
 import type { ConnectionConfig } from '@/component/connector/connection';
-import type { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveResult } from '@/component/connector/types';
+import type { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveRecordsResult } from '@/component/connector';
 import type { Component, ModuleConfig } from '@/component';
 import type { ContextCallbackData, ContextConfig, ContextOperationSettings } from '@/component/context';
 import type { DataViewPreviewConfig, EncodingConfig } from '@/component/dataView';
@@ -18,7 +18,7 @@ type ProcessConnectorRequest = (
     callback?: (callbackData: ContextCallbackData) => void
 ) => Promise<ConnectorInterfaceResult>;
 
-export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
+export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
 
 type ProcessContextRequest = (
     id: string,
@@ -27,7 +27,7 @@ type ProcessContextRequest = (
     callback?: (callbackData: ConnectorCallbackData) => void
 ) => Promise<ContextInterfaceResult>;
 
-export type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveResult;
+export type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
 
 type ProcessTestRequest = (settings: TestSettings) => Promise<Record<string, unknown>>;
 export interface TestSettings {

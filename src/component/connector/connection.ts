@@ -4,7 +4,7 @@
 
 // Dependencies - Framework
 import type { ComponentConfig } from '@/component';
-import type { ConnectorConfig } from '@/component/connector/types';
+import type { ConnectorConfig } from '@/component/connector';
 
 // Types/Interfaces - Connection Configuration
 export interface ConnectionAuthorizationConfig {
