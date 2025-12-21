@@ -1,4 +1,4 @@
-import { convertODataTypeIdToUsageTypeId as Ge, extractExtensionFromPath as Ve, extractNameFromPath as He, formatNumberAsDecimalNumber as We, formatNumberAsDuration as $e, formatNumberAsSize as Xe, formatNumberAsStorageSize as Be, formatNumberAsWholeNumber as Je, lookupMimeTypeForExtension as Ke } from "./datapos-shared.es2.js";
+import { convertODataTypeIdToUsageTypeId as Ge, extractExtensionFromPath as Ve, extractNameFromPath as He, formatNumberAsDecimalNumber as We, formatNumberAsDuration as $e, formatNumberAsSize as Xe, formatNumberAsStorageSize as Be, formatNumberAsWholeNumber as Je, lookupMimeTypeForExtension as Ke } from "./datapos-shared.utilities.es.js";
 let j;
 // @__NO_SIDE_EFFECTS__
 function G(t) {
