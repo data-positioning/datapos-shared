@@ -22,7 +22,10 @@ const external = peerDependencies ? Object.keys(peerDependencies) : []; // Keep 
 export default defineConfig({
     build: {
         lib: {
-            entry: fileURLToPath(new URL('src/index.ts', import.meta.url)), // Absolute entry path.
+            entry: {
+                index: fileURLToPath(new URL('src/index.ts', import.meta.url)), // Absolute entry path.
+                utilities: fileURLToPath(new URL('src/utilities/index.ts', import.meta.url))
+            },
             fileName: (format) => `${config.id}.${format}.js`, // Bundle name derived from config identifier and format.
             formats: ['es'] // Only emit native ES modules.
         },
