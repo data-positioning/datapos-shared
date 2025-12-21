@@ -53,7 +53,7 @@ export type {
     RetrieveRecordsSettings,
     RetrieveRecordsSummary,
     UpsertSettings
-} from '@/component/connector';
+} from '@/component/connector/types';
 
 /** Interfaces/Types - Connection */
 export type {
@@ -68,7 +68,7 @@ export type {
 } from '@/component/connector/connection';
 
 /** Schemas - Connector  */
-export { connectorConfigSchema } from '@/component/connector';
+export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
 
 //#endregion
 

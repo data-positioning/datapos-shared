@@ -1,5 +1,5 @@
 import { ConnectionConfig } from '../component/connector/connection';
-import { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveResult } from '../component/connector';
+import { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveResult } from '../component/connector/types';
 import { Component, ModuleConfig } from '../component';
 import { ContextCallbackData, ContextConfig, ContextOperationSettings } from '../component/context';
 import { DataViewPreviewConfig, EncodingConfig } from '../component/dataView';

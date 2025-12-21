@@ -1,5 +1,5 @@
 import { ComponentConfig } from '..';
-import { ConnectorConfig } from '.';
+import { ConnectorConfig } from './types';
 export interface ConnectionAuthorizationConfig {
     accessToken: string;
     accountId: string;
