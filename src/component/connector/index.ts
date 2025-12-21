@@ -15,39 +15,31 @@ import type { LocalisedString } from '@/index';
 import type { buildFetchError, OperationalError } from '@/errors';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
 import type {
+    connectorCategoryIdSchema,
     connectorConfigSchema,
     connectorImplementationSchema,
-    connectorModuleCategoryIdSchema,
-    connectorOperationSchema,
+    connectorOperationNameSchema,
     connectorUsageIdSchema
 } from '@/component/connector/connectorConfig.schema';
+
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/dataView';
 import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
-// type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
-export type ConnectorModuleCategoryId = InferOutput<typeof connectorModuleCategoryIdSchema>;
+/** Interfaces/Types - Connector category identifier. */
+export type ConnectorCategoryId = InferOutput<typeof connectorCategoryIdSchema>;
 
-// export type ConnectorOperation =
-//     | 'abortOperation'
-//     | 'authenticateConnection'
-//     | 'createObject'
-//     | 'describeConnection'
-//     | 'dropObject'
-//     | 'findObject'
-//     | 'getRecord'
-//     | 'listNodes'
-//     | 'previewObject'
-//     | 'removeRecords'
-//     | 'retrieveRecords'
-//     | 'upsertRecords';
-export type ConnectorOperation = InferOutput<typeof connectorOperationSchema>;
+/** Interfaces/Types - Connector operation name. */
+export type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
 
-// export type ConnectorUsageId = 'bidirectional' | 'destination' | 'source' | 'unknown';
+/** Interfaces/Types - Connector usage identifier. */
 export type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
 
-/** Constants  */
-export const CONNECTOR_DESTINATION_OPERATIONS = ['createObject', 'dropObject', 'removeRecords', 'upsertRecords'];
-export const CONNECTOR_SOURCE_OPERATIONS = ['findObject', 'getRecord', 'listNodes', 'previewObject', 'retrieveRecords'];
+/** Interfaces/Types - Connector implementation. */
+export type ConnectorImplementation = InferOutput<typeof connectorImplementationSchema>;
+
+/** Interfaces/Types - Connector configuration. */
+export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
+export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
 
 /** Interfaces/Types - Connector. */
 export interface Connector extends Component {
@@ -61,43 +53,25 @@ export interface Connector extends Component {
     describeConnection?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
     dropObject?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
     findObject?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
-    getReadableStream?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult>; // Get a reader that can retrieve all records from an object for a specified connection.
+    getReadableStream?(connector: Connector, getSettings: GetReadableStreamSettings): Promise<GetReadableStreamResult>; // Get a reader that can retrieve all records from an object for a specified connection.
     getRecord?(connector: Connector, getSettings: GetRecordSettings): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
     listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List nodes in a folder for a specified connection.
     previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
     removeRecords?(connector: Connector, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
+    retrieveChunks?(
+        connector: Connector,
+        settings: RetrieveChunksSettings,
+        chunk: (records: (string[] | Record<string, unknown>)[]) => void,
+        complete: (result: RetrieveChunksSummary) => void
+    ): Promise<void>; // Retrieve all chunks from an object for a specified connection.
     retrieveRecords?(
         connector: Connector,
-        settings: RetrieveSettings,
+        settings: RetrieveRecordsSettings,
         chunk: (records: (string[] | Record<string, unknown>)[]) => void,
-        complete: (result: RetrieveSummary) => void
+        complete: (result: RetrieveRecordsSummary) => void
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one oˆr more records into an object for a specified connection.
 }
-
-export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
-// export interface ConnectorConfig1 extends ModuleConfig {
-//     category: ConnectorCategory | null;
-//     categoryId: ConnectorModuleCategoryId;
-//     implementations: Record<string, ConnectorImplementation>;
-//     operations: ConnectorOperation[];
-//     typeId: 'connector';
-//     usageId: ConnectorUsageId;
-//     vendorAccountURL: string | null;
-//     vendorDocumentationURL: string | null;
-//     vendorHomeURL: string | null;
-// }
-export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
-export type ConnectorImplementation = InferOutput<typeof connectorImplementationSchema>;
-// export interface ConnectorImplementation {
-//     activeConnectionCount?: number;
-//     canDescribe?: boolean;
-//     id?: string;
-//     authMethodId: 'apiKey' | 'disabled' | 'oAuth2' | 'none';
-//     label?: LocalisedString;
-//     maxConnectionCount?: number;
-//     params?: Record<string, string>[];
-// }
 
 export interface ConnectorTools {
     csvParse: typeof csvParse;
@@ -111,6 +85,10 @@ export interface ConnectorTools {
     dateFns: { parse: typeof dateFnsParse };
     nanoid: typeof nanoid;
 }
+
+/** Constants  */
+export const CONNECTOR_DESTINATION_OPERATIONS = ['createObject', 'dropObject', 'removeRecords', 'upsertRecords'];
+export const CONNECTOR_SOURCE_OPERATIONS = ['findObject', 'getRecord', 'listNodes', 'previewObject', 'retrieveRecords'];
 
 // Types/Interfaces/Operations - Initialise settings.
 export interface InitialiseSettings {
@@ -162,12 +140,12 @@ export interface FindResult {
     folderPath?: string;
 }
 
-// Types/Interfaces/Operations - Get reader (reader).
-export interface GetReaderSettings extends ConnectorOperationSettings {
+// Types/Interfaces/Operations - Get readable stream.
+export interface GetReadableStreamSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
 }
-export interface GetReaderResult {
+export interface GetReadableStreamResult {
     readable?: ReadableStream<unknown>;
 }
 
@@ -212,16 +190,30 @@ export interface RemoveSettings extends ConnectorOperationSettings {
 }
 
 // Types/Interfaces/Operations - Retrieve (records).
-export interface RetrieveSettings extends ConnectorOperationSettings {
+export interface RetrieveChunksSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
-export interface RetrieveResult {
+export interface RetrieveRecordsSettings extends ConnectorOperationSettings {
+    chunkSize?: number;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
+}
+export interface RetrieveRecordsResult {
     records: (string[] | Record<string, unknown>)[];
 }
-export interface RetrieveSummary {
+export interface RetrieveChunksSummary {
+    byteCount: number;
+    commentLineCount: number;
+    emptyLineCount: number;
+    invalidFieldLengthCount: number;
+    lineCount: number;
+    recordCount: number;
+}
+export interface RetrieveRecordsSummary {
     byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;

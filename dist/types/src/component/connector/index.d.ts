@@ -5,15 +5,23 @@ import { nanoid } from 'nanoid';
 import { Component } from '..';
 import { buildFetchError, OperationalError } from '../../errors';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
-import { connectorConfigSchema, connectorImplementationSchema, connectorModuleCategoryIdSchema, connectorOperationSchema, connectorUsageIdSchema } from './connectorConfig.schema';
+import { connectorCategoryIdSchema, connectorConfigSchema, connectorImplementationSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
 import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
 import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../utilities';
-export type ConnectorModuleCategoryId = InferOutput<typeof connectorModuleCategoryIdSchema>;
-export type ConnectorOperation = InferOutput<typeof connectorOperationSchema>;
+/** Interfaces/Types - Connector category identifier. */
+export type ConnectorCategoryId = InferOutput<typeof connectorCategoryIdSchema>;
+/** Interfaces/Types - Connector operation name. */
+export type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
+/** Interfaces/Types - Connector usage identifier. */
 export type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
-/** Constants  */
-export declare const CONNECTOR_DESTINATION_OPERATIONS: string[];
-export declare const CONNECTOR_SOURCE_OPERATIONS: string[];
+/** Interfaces/Types - Connector implementation. */
+export type ConnectorImplementation = InferOutput<typeof connectorImplementationSchema>;
+/** Interfaces/Types - Connector configuration. */
+export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
+export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
 /** Interfaces/Types - Connector. */
 export interface Connector extends Component {
     abortController?: AbortController;
@@ -26,20 +34,15 @@ export interface Connector extends Component {
     describeConnection?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>;
     dropObject?(connector: Connector, settings: DropSettings): Promise<void>;
     findObject?(connector: Connector, findSettings: FindSettings): Promise<FindResult>;
-    getReadableStream?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult>;
+    getReadableStream?(connector: Connector, getSettings: GetReadableStreamSettings): Promise<GetReadableStreamResult>;
     getRecord?(connector: Connector, getSettings: GetRecordSettings): Promise<GetRecordResult>;
     listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>;
     previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>;
     removeRecords?(connector: Connector, settings: RemoveSettings): Promise<void>;
-    retrieveRecords?(connector: Connector, settings: RetrieveSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveSummary) => void): Promise<void>;
+    retrieveChunks?(connector: Connector, settings: RetrieveChunksSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveChunksSummary) => void): Promise<void>;
+    retrieveRecords?(connector: Connector, settings: RetrieveRecordsSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
-export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
-export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & {
-    label: string;
-    description: string;
-};
-export type ConnectorImplementation = InferOutput<typeof connectorImplementationSchema>;
 export interface ConnectorTools {
     csvParse: typeof csvParse;
     dataPos: {
@@ -54,6 +57,9 @@ export interface ConnectorTools {
     };
     nanoid: typeof nanoid;
 }
+/** Constants  */
+export declare const CONNECTOR_DESTINATION_OPERATIONS: string[];
+export declare const CONNECTOR_SOURCE_OPERATIONS: string[];
 export interface InitialiseSettings {
     connectorStorageURLPrefix: string;
 }
@@ -90,11 +96,11 @@ export interface FindSettings extends ConnectorOperationSettings {
 export interface FindResult {
     folderPath?: string;
 }
-export interface GetReaderSettings extends ConnectorOperationSettings {
+export interface GetReadableStreamSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
 }
-export interface GetReaderResult {
+export interface GetReadableStreamResult {
     readable?: ReadableStream<unknown>;
 }
 export interface GetRecordSettings extends ConnectorOperationSettings {
@@ -129,16 +135,30 @@ export interface RemoveSettings extends ConnectorOperationSettings {
     keys: string[];
     path: string;
 }
-export interface RetrieveSettings extends ConnectorOperationSettings {
+export interface RetrieveChunksSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
-export interface RetrieveResult {
+export interface RetrieveRecordsSettings extends ConnectorOperationSettings {
+    chunkSize?: number;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
+}
+export interface RetrieveRecordsResult {
     records: (string[] | Record<string, unknown>)[];
 }
-export interface RetrieveSummary {
+export interface RetrieveChunksSummary {
+    byteCount: number;
+    commentLineCount: number;
+    emptyLineCount: number;
+    invalidFieldLengthCount: number;
+    lineCount: number;
+    recordCount: number;
+}
+export interface RetrieveRecordsSummary {
     byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;

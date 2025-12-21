@@ -131,11 +131,11 @@ function B(e) {
   };
 }
 // @__NO_SIDE_EFFECTS__
-function k(e, r) {
+function D(e, r) {
   return {
     kind: "schema",
     type: "literal",
-    reference: k,
+    reference: D,
     expects: /* @__PURE__ */ U(e),
     async: !1,
     literal: e,
@@ -167,11 +167,11 @@ function y(e, r) {
   };
 }
 // @__NO_SIDE_EFFECTS__
-function D(e) {
+function k(e) {
   return {
     kind: "schema",
     type: "number",
-    reference: D,
+    reference: k,
     expects: "number",
     async: !1,
     message: e,
@@ -374,12 +374,12 @@ function G(e, r) {
     }
   };
 }
-const v = (e) => /* @__PURE__ */ G(e.map((r) => /* @__PURE__ */ k(r))), te = /* @__PURE__ */ b({
+const v = (e) => /* @__PURE__ */ G(e.map((r) => /* @__PURE__ */ D(r))), te = /* @__PURE__ */ b({
   "en-au": /* @__PURE__ */ l(),
   "en-gb": /* @__PURE__ */ l(),
   "en-us": /* @__PURE__ */ l(),
   "es-es": /* @__PURE__ */ l()
-}), O = /* @__PURE__ */ b({
+}), C = /* @__PURE__ */ b({
   "en-au": /* @__PURE__ */ f(/* @__PURE__ */ l()),
   "en-gb": /* @__PURE__ */ f(/* @__PURE__ */ l()),
   "en-us": /* @__PURE__ */ f(/* @__PURE__ */ l()),
@@ -426,15 +426,15 @@ const oe = /* @__PURE__ */ b({
   label: /* @__PURE__ */ l()
 }), T = {
   id: /* @__PURE__ */ l(),
-  label: O,
-  description: O,
-  firstCreatedAt: /* @__PURE__ */ f(/* @__PURE__ */ D()),
+  label: C,
+  description: C,
+  firstCreatedAt: /* @__PURE__ */ f(/* @__PURE__ */ k()),
   icon: /* @__PURE__ */ y(/* @__PURE__ */ l()),
   iconDark: /* @__PURE__ */ y(/* @__PURE__ */ l()),
-  lastUpdatedAt: /* @__PURE__ */ y(/* @__PURE__ */ D()),
+  lastUpdatedAt: /* @__PURE__ */ y(/* @__PURE__ */ k()),
   status: /* @__PURE__ */ y(oe),
   statusId: ne
-}, De = /* @__PURE__ */ b({
+}, Se = /* @__PURE__ */ b({
   ...T,
   typeId: se
 }), $ = {
@@ -442,11 +442,11 @@ const oe = /* @__PURE__ */ b({
   version: /* @__PURE__ */ l()
 }, P = /* @__PURE__ */ b({
   id: /* @__PURE__ */ l(),
-  label: O,
-  description: O,
+  label: C,
+  description: C,
   icon: /* @__PURE__ */ y(/* @__PURE__ */ l()),
   iconDark: /* @__PURE__ */ y(/* @__PURE__ */ l()),
-  order: /* @__PURE__ */ D(),
+  order: /* @__PURE__ */ k(),
   path: /* @__PURE__ */ l()
 }), E = (e) => {
   const r = Object.entries(e).filter((t) => typeof t[1] == "string");
@@ -473,7 +473,7 @@ const oe = /* @__PURE__ */ b({
     return { id: t.id, color: t.color, label: n ?? t.id };
   }
   return { id: e, color: "other", label: e };
-}, le = v(["application", "curatedDataset", "database", "fileStore"]), ce = v([
+}, le = v(["apiKey", "disabled", "oAuth2", "none"]), ce = v(["application", "curatedDataset", "database", "fileStore"]), ue = v([
   "abortOperation",
   "authenticateConnection",
   "createObject",
@@ -485,45 +485,43 @@ const oe = /* @__PURE__ */ b({
   "listNodes",
   "previewObject",
   "removeRecords",
+  "retrieveChunks",
   "retrieveRecords",
   "upsertRecords"
-]), ue = v(["bidirectional", "destination", "source", "unknown"]), pe = v(["apiKey", "disabled", "oAuth2", "none"]), de = /* @__PURE__ */ b({
-  id: /* @__PURE__ */ l(),
-  label: /* @__PURE__ */ l()
-}), fe = /* @__PURE__ */ b({
-  authMethodId: pe,
-  activeConnectionCount: /* @__PURE__ */ f(/* @__PURE__ */ D()),
+]), pe = v(["bidirectional", "destination", "source", "unknown"]), de = /* @__PURE__ */ b({
+  authMethodId: le,
+  activeConnectionCount: /* @__PURE__ */ f(/* @__PURE__ */ k()),
   canDescribe: /* @__PURE__ */ f(/* @__PURE__ */ B()),
   id: /* @__PURE__ */ f(/* @__PURE__ */ l()),
   label: /* @__PURE__ */ f(te),
-  maxConnectionCount: /* @__PURE__ */ f(/* @__PURE__ */ D()),
+  maxConnectionCount: /* @__PURE__ */ f(/* @__PURE__ */ k()),
   params: /* @__PURE__ */ f(/* @__PURE__ */ x(/* @__PURE__ */ R(/* @__PURE__ */ l(), /* @__PURE__ */ l())))
-}), we = /* @__PURE__ */ b({
+}), De = /* @__PURE__ */ b({
   ...$,
-  typeId: /* @__PURE__ */ k("connector"),
-  category: /* @__PURE__ */ y(de),
-  categoryId: le,
-  implementations: /* @__PURE__ */ R(/* @__PURE__ */ l(), fe),
-  operations: /* @__PURE__ */ x(ce),
-  usageId: ue,
+  typeId: /* @__PURE__ */ D("connector"),
+  category: /* @__PURE__ */ y(/* @__PURE__ */ b({ id: /* @__PURE__ */ l(), label: /* @__PURE__ */ l() })),
+  categoryId: ce,
+  implementations: /* @__PURE__ */ R(/* @__PURE__ */ l(), de),
+  operations: /* @__PURE__ */ x(ue),
+  usageId: pe,
   vendorAccountURL: /* @__PURE__ */ y(/* @__PURE__ */ l()),
   vendorDocumentationURL: /* @__PURE__ */ y(/* @__PURE__ */ l()),
   vendorHomeURL: /* @__PURE__ */ y(/* @__PURE__ */ l())
-}), Ie = ["createObject", "dropObject", "removeRecords", "upsertRecords"], Me = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"], M = (e) => {
+}), we = ["createObject", "dropObject", "removeRecords", "upsertRecords"], Ie = ["findObject", "getRecord", "listNodes", "previewObject", "retrieveRecords"], O = (e) => {
   const r = Object.entries(e).filter((t) => typeof t[1] == "string");
   return new Map(r);
 };
-M({ "en-gb": "Application" }), M({ "en-gb": "Curated Dataset" }), M({ "en-gb": "Database" }), M({ "en-gb": "File Store" });
-const me = v(["list"]), be = /* @__PURE__ */ b({
+O({ "en-gb": "Application" }), O({ "en-gb": "Curated Dataset" }), O({ "en-gb": "Database" }), O({ "en-gb": "File Store" });
+const fe = v(["list"]), me = /* @__PURE__ */ b({
   ...T,
-  typeId: /* @__PURE__ */ k("contextModelGroup"),
+  typeId: /* @__PURE__ */ D("contextModelGroup"),
   modelRefs: /* @__PURE__ */ x(P),
-  order: /* @__PURE__ */ D()
+  order: /* @__PURE__ */ k()
 }), Oe = /* @__PURE__ */ b({
   ...$,
-  typeId: /* @__PURE__ */ k("context"),
-  models: /* @__PURE__ */ x(be),
-  operations: /* @__PURE__ */ x(me)
+  typeId: /* @__PURE__ */ D("context"),
+  models: /* @__PURE__ */ x(me),
+  operations: /* @__PURE__ */ x(fe)
 });
 class F extends Error {
   locator;
@@ -541,7 +539,7 @@ class Ce extends w {
     super(r, t, n), this.name = "APIError";
   }
 }
-class Ne extends w {
+class Me extends w {
   constructor(r, t, n) {
     super(r, t, n), this.name = "EngineError";
   }
@@ -552,36 +550,36 @@ class z extends w {
     super(r, t, s), this.name = "FetchError", this.body = n;
   }
 }
-class ye extends w {
+class be extends w {
   componentName;
   info;
   constructor(r, t, n, s, o) {
     super(r, t, o), this.name = "VueHandledError", this.info = n, this.componentName = s;
   }
 }
-class je extends w {
+class Ne extends w {
   constructor(r, t, n) {
     super(r, t, n), this.name = "WindowHandledRuntimeError";
   }
 }
-class Ae extends w {
+class je extends w {
   constructor(r, t, n) {
     super(r, t, n), this.name = "WindowHandledPromiseRejectionError";
   }
 }
-class Re extends F {
+class Ae extends F {
   constructor(r, t, n) {
     super(r, t, n), this.name = "OperationalError";
   }
 }
-async function Te(e, r, t) {
+async function Re(e, r, t) {
   const n = ` - ${e.statusText}`, s = `${r} Response status '${e.status}${e.statusText ? n : ""}' received.`, o = await e.text();
   return new z(s, t, o);
 }
-function $e(e) {
+function Te(e) {
   return e.map((r) => r.message).join(" ");
 }
-function Fe(e) {
+function $e(e) {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
   if (typeof e == "number" || typeof e == "boolean" || typeof e == "bigint") return new Error(String(e));
@@ -594,7 +592,7 @@ function Fe(e) {
     }
   return new Error("Unknown error");
 }
-function Le(e) {
+function Fe(e) {
   const r = /* @__PURE__ */ new Set(), t = [];
   let n = e;
   for (; n && !r.has(n); ) {
@@ -602,7 +600,7 @@ function Le(e) {
     let s;
     if (n instanceof z)
       s = { body: n.body, locator: n.locator, message: n.message, name: n.name, stack: n.stack }, n = n.cause;
-    else if (n instanceof ye)
+    else if (n instanceof be)
       s = { componentName: n.componentName, info: n.info, locator: n.locator, message: n.message, name: n.name, stack: n.stack }, n = n.cause;
     else if (n instanceof F)
       s = { locator: n.locator, message: n.message, name: n.name, stack: n.stack }, n = n.cause;
@@ -615,26 +613,26 @@ function Le(e) {
   }
   return t;
 }
-const ge = v(["list", "render", "setColorMode"]), _e = /* @__PURE__ */ b({
+const ye = v(["list", "render", "setColorMode"]), Le = /* @__PURE__ */ b({
   ...$,
-  typeId: /* @__PURE__ */ k("presenter"),
+  typeId: /* @__PURE__ */ D("presenter"),
   presentations: /* @__PURE__ */ x(P),
-  operations: /* @__PURE__ */ x(ge)
+  operations: /* @__PURE__ */ x(ye)
 });
+function _e() {
+  return { render: ge };
+}
+function ge(e, r, t) {
+  t.textContent = "Cytoscape.js diagram goes here...";
+}
 function Ue() {
   return { render: he };
 }
-function he(e, r, t) {
-  t.textContent = "Cytoscape.js diagram goes here...";
-}
-function Be() {
-  return { render: ve };
-}
-function ve(e, r) {
+function he(e, r) {
   console.log(1111, e), console.log(2222, r), console.log(3333, r.childNodes), console.log(4444, r.children);
 }
-const V = "en-US", C = /* @__PURE__ */ new Map();
-function Ge(e) {
+const V = "en-US", M = /* @__PURE__ */ new Map();
+function Be(e) {
   switch (e) {
     case "Edm.Binary":
       return "unknown";
@@ -674,13 +672,13 @@ function Ge(e) {
       return "unknown";
   }
 }
-function Pe(e) {
+function Ge(e) {
   if (e) {
     const r = e.lastIndexOf("/"), t = e.lastIndexOf(".", r === -1 ? e.length : r);
     return t === -1 ? e : e.slice(0, Math.max(0, t));
   }
 }
-function ze(e) {
+function Pe(e) {
   if (e) {
     const r = e.lastIndexOf(".");
     if (r !== -1) return e.slice(Math.max(0, r + 1));
@@ -689,7 +687,7 @@ function ze(e) {
 function m(e, r = 2, t = r, n = V) {
   if (e == null) return "";
   const s = `${n}decimal${r}.${t}`;
-  let o = C.get(s);
+  let o = M.get(s);
   return o || (o = new Intl.NumberFormat(n, {
     localeMatcher: "best fit",
     maximumFractionDigits: r,
@@ -697,21 +695,21 @@ function m(e, r = 2, t = r, n = V) {
     minimumIntegerDigits: 1,
     style: "decimal",
     useGrouping: !0
-  }), C.set(s, o)), o.format(e);
+  }), M.set(s, o)), o.format(e);
 }
-function Ve(e) {
+function ze(e) {
   return e == null ? "" : e < 1e3 ? N(e) : e < 1e6 ? `${m(e / 1e3, 2, 0)}K` : e < 1e9 ? `${m(e / 1e6, 2, 0)}M` : e < 1e12 ? `${m(e / 1e9, 2, 0)}B` : `${m(e / 1e12, 2, 0)}T`;
 }
-function He(e) {
+function Ve(e) {
   return e == null ? "" : e === 1 ? "1 byte" : e < 1024 ? `${N(e)} bytes` : e < 1048576 ? `${m(e / 1024, 2, 0)} KB` : e < 1073741824 ? `${m(e / 1048576, 2, 0)} MB` : e < 1099511627776 ? `${m(e / 1073741824, 2, 0)} GB` : `${m(e / 1099511627776, 2, 0)} TB`;
 }
-function Ke(e) {
+function He(e) {
   return e == null ? "" : e < 1e3 ? `${N(e)} ms` : e === 1e3 ? `${N(e)} sec` : e < 6e4 ? `${m(e / 1e3, 2, 0)} secs` : e === 6e4 ? "1 min" : e < 36e5 ? `${m(e / 6e4, 2, 0)} mins` : e === 36e5 ? "1 hr" : e < 864e5 ? `${m(e / 36e5, 2, 0)} hrs` : e === 864e5 ? "1 day" : `${m(e / 864e5, 2, 0)} days`;
 }
 function N(e, r = V) {
   if (e == null) return "";
   const t = `${r}decimal0.0`;
-  let n = C.get(t);
+  let n = M.get(t);
   return n || (n = new Intl.NumberFormat(r, {
     localeMatcher: "best fit",
     maximumFractionDigits: 0,
@@ -719,9 +717,9 @@ function N(e, r = V) {
     minimumIntegerDigits: 1,
     style: "decimal",
     useGrouping: !0
-  }), C.set(t, n)), n.format(e);
+  }), M.set(t, n)), n.format(e);
 }
-function We(e) {
+function Ke(e) {
   switch (e) {
     case "csv":
       return "text/csv";
@@ -741,7 +739,7 @@ const c = (e) => new Map(Object.entries(e)), L = (e, r, t = I) => {
   if (n !== void 0) return n;
   if (t !== r)
     return e.get(t);
-}, Ee = [
+}, ve = [
   { id: "dtv", labels: c({ "en-gb": "Delimited Text" }) },
   { id: "e/e", labels: c({ "en-gb": "Entity/Event" }) },
   { id: "jsonArray", labels: c({ "en-gb": "JSON Array" }) },
@@ -749,6 +747,19 @@ const c = (e) => new Map(Object.entries(e)), L = (e, r, t = I) => {
   { id: "xls", labels: c({ "en-gb": "XLS" }) },
   { id: "xlsx", labels: c({ "en-gb": "XLSX" }) },
   { id: "xml", labels: c({ "en-gb": "XML" }) }
+], We = (e = I) => {
+  const r = [];
+  for (const t of ve) {
+    const n = L(t.labels, e);
+    r.push({ id: t.id, label: n ?? t.id });
+  }
+  return r;
+}, Ee = [
+  { id: `
+`, labels: c({ "en-gb": "Newline" }) },
+  { id: "\r", labels: c({ "en-gb": "Carriage Return" }) },
+  { id: `\r
+`, labels: c({ "en-gb": "Carriage Return/Newline" }) }
 ], Xe = (e = I) => {
   const r = [];
   for (const t of Ee) {
@@ -757,19 +768,6 @@ const c = (e) => new Map(Object.entries(e)), L = (e, r, t = I) => {
   }
   return r;
 }, xe = [
-  { id: `
-`, labels: c({ "en-gb": "Newline" }) },
-  { id: "\r", labels: c({ "en-gb": "Carriage Return" }) },
-  { id: `\r
-`, labels: c({ "en-gb": "Carriage Return/Newline" }) }
-], Je = (e = I) => {
-  const r = [];
-  for (const t of xe) {
-    const n = L(t.labels, e);
-    r.push({ id: t.id, label: n ?? t.id });
-  }
-  return r;
-}, Se = [
   { id: ":", labels: c({ "en-gb": "Colon" }) },
   { id: ",", labels: c({ "en-gb": "Comma" }) },
   { id: "!", labels: c({ "en-gb": "Exclamation Mark" }) },
@@ -781,9 +779,9 @@ const c = (e) => new Map(Object.entries(e)), L = (e, r, t = I) => {
   { id: "_", labels: c({ "en-gb": "Underscore" }) },
   { id: "0x1F", labels: c({ "en-gb": "Unit Separator" }) },
   { id: "|", labels: c({ "en-gb": "Vertical Bar" }) }
-], qe = (e = I) => {
+], Je = (e = I) => {
   const r = [];
-  for (const t of Se) {
+  for (const t of xe) {
     const n = L(t.labels, e);
     r.push({ id: t.id, label: n ?? t.id });
   }
@@ -792,36 +790,36 @@ const c = (e) => new Map(Object.entries(e)), L = (e, r, t = I) => {
 export {
   Ce as APIError,
   w as ApplicationError,
-  Ie as CONNECTOR_DESTINATION_OPERATIONS,
-  Me as CONNECTOR_SOURCE_OPERATIONS,
+  we as CONNECTOR_DESTINATION_OPERATIONS,
+  Ie as CONNECTOR_SOURCE_OPERATIONS,
   I as DEFAULT_LOCALE_CODE,
-  Ne as EngineError,
+  Me as EngineError,
   z as FetchError,
-  Re as OperationalError,
-  ye as VueError,
-  Ae as WindowPromiseRejectionError,
-  je as WindowRuntimeError,
-  Te as buildFetchError,
-  De as componentConfigSchema,
-  $e as concatenateSerialisedErrorMessages,
-  we as connectorConfigSchema,
+  Ae as OperationalError,
+  be as VueError,
+  je as WindowPromiseRejectionError,
+  Ne as WindowRuntimeError,
+  Re as buildFetchError,
+  Se as componentConfigSchema,
+  Te as concatenateSerialisedErrorMessages,
+  De as connectorConfigSchema,
   Oe as contextConfigSchema,
-  Ge as convertODataTypeIdToUsageTypeId,
-  ze as extractExtensionFromPath,
-  Pe as extractNameFromPath,
+  Be as convertODataTypeIdToUsageTypeId,
+  Pe as extractExtensionFromPath,
+  Ge as extractNameFromPath,
   m as formatNumberAsDecimalNumber,
-  Ke as formatNumberAsDuration,
-  Ve as formatNumberAsSize,
-  He as formatNumberAsStorageSize,
+  He as formatNumberAsDuration,
+  ze as formatNumberAsSize,
+  Ve as formatNumberAsStorageSize,
   N as formatNumberAsWholeNumber,
   ke as getComponentStatus,
-  Xe as getDataFormats,
-  Je as getRecordDelimiters,
-  qe as getValueDelimiters,
-  We as lookupMimeTypeForExtension,
-  Fe as normalizeToError,
-  _e as presenterConfigSchema,
-  Le as serialiseError,
-  Ue as useCytoscapeJS,
-  Be as useDataTable
+  We as getDataFormats,
+  Xe as getRecordDelimiters,
+  Je as getValueDelimiters,
+  Ke as lookupMimeTypeForExtension,
+  $e as normalizeToError,
+  Le as presenterConfigSchema,
+  Fe as serialiseError,
+  _e as useCytoscapeJS,
+  Ue as useDataTable
 };

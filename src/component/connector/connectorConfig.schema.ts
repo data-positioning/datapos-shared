@@ -8,11 +8,14 @@ import { array, boolean, literal, nullable, number, object, optional, record, st
 /** Dependencies - Framework. */
 import { literalUnion, localisedStringSchema, moduleConfigCoreFields } from '@/component/componentConfig.schema';
 
-/** Schemas -  */
-export const connectorModuleCategoryIdSchema = literalUnion(['application', 'curatedDataset', 'database', 'fileStore'] as const);
+/** Schema Literal Unions - Connector authentication method identifier. */
+const connectorAuthMethodIdSchema = literalUnion(['apiKey', 'disabled', 'oAuth2', 'none'] as const);
 
-/** Schemas - Connector operations. */
-export const connectorOperationSchema = literalUnion([
+/** Schema Literal Unions - Connector category identifier. */
+export const connectorCategoryIdSchema = literalUnion(['application', 'curatedDataset', 'database', 'fileStore'] as const);
+
+/** Schema Literal Unions - Connector operation name. */
+export const connectorOperationNameSchema = literalUnion([
     'abortOperation',
     'authenticateConnection',
     'createObject',
@@ -24,19 +27,15 @@ export const connectorOperationSchema = literalUnion([
     'listNodes',
     'previewObject',
     'removeRecords',
+    'retrieveChunks',
     'retrieveRecords',
     'upsertRecords'
 ] as const);
+
+/** Schema Literal Unions - Connector usage identifier. */
 export const connectorUsageIdSchema = literalUnion(['bidirectional', 'destination', 'source', 'unknown'] as const);
-const connectorAuthMethodIdSchema = literalUnion(['apiKey', 'disabled', 'oAuth2', 'none'] as const);
 
-/** Schemas - Connector category. */
-const connectorCategorySchema = object({
-    id: string(),
-    label: string()
-});
-
-/** Schemas - Connector implementation. */
+/** Schema Objects - Connector implementation. */
 export const connectorImplementationSchema = object({
     authMethodId: connectorAuthMethodIdSchema,
     activeConnectionCount: optional(number()),
@@ -47,14 +46,14 @@ export const connectorImplementationSchema = object({
     params: optional(array(record(string(), string())))
 });
 
-/** Schemas - Connector configuration. */
+/** Schema Objects - Connector configuration. */
 export const connectorConfigSchema = object({
     ...moduleConfigCoreFields,
     typeId: literal('connector'),
-    category: nullable(connectorCategorySchema),
-    categoryId: connectorModuleCategoryIdSchema,
+    category: nullable(object({ id: string(), label: string() })),
+    categoryId: connectorCategoryIdSchema,
     implementations: record(string(), connectorImplementationSchema),
-    operations: array(connectorOperationSchema),
+    operations: array(connectorOperationNameSchema),
     usageId: connectorUsageIdSchema,
     vendorAccountURL: nullable(string()),
     vendorDocumentationURL: nullable(string()),
