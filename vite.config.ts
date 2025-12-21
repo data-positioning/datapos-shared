@@ -26,7 +26,9 @@ export default defineConfig({
                 index: fileURLToPath(new URL('src/index.ts', import.meta.url)), // Absolute entry path.
                 utilities: fileURLToPath(new URL('src/utilities/index.ts', import.meta.url))
             },
-            fileName: (format, entryName) => `${config.id}.${entryName}.${format}.js`, // Bundle name derived from config identifier and format.
+            fileName: (format, entryName) => {
+                return entryName === 'index' ? `${config.id}.${format}.js` : `${config.id}-${entryName}.${format}.js`; // Bundle name derived from config identifier and format.
+            },
             formats: ['es'] // Only emit native ES modules.
         },
         rollupOptions: {
