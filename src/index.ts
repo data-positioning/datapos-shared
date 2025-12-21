@@ -198,9 +198,9 @@ export { useDataTable } from '@/composables/useDataTable';
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 
 /** Utilities */
-export { convertODataTypeIdToUsageTypeId } from '@/utilities';
-export { extractExtensionFromPath, extractNameFromPath } from '@/utilities';
-export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/utilities';
+// export { convertODataTypeIdToUsageTypeId } from '@/utilities';
+// export { extractExtensionFromPath, extractNameFromPath } from '@/utilities';
+// export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/utilities';
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from '@/component/dataView';
 export { getComponentStatus } from '@/component';
-export { lookupMimeTypeForExtension } from '@/utilities';
+// export { lookupMimeTypeForExtension } from '@/utilities';

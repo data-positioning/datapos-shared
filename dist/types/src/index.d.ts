@@ -64,9 +64,5 @@ export { useDataTable } from './composables/useDataTable';
 /** Constants */
 export declare const DEFAULT_LOCALE_CODE: LocaleCode;
 /** Utilities */
-export { convertODataTypeIdToUsageTypeId } from './utilities';
-export { extractExtensionFromPath, extractNameFromPath } from './utilities';
-export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from './utilities';
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from './component/dataView';
 export { getComponentStatus } from './component';
-export { lookupMimeTypeForExtension } from './utilities';
