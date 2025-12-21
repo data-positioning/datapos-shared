@@ -1,6 +1,5 @@
 /**
- * Context schema.
- * Drafted by Copilot.
+ * Context schema (drafted by Copilot).
  */
 
 /** Dependencies - Vendor. */

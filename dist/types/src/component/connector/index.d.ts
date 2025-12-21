@@ -2,18 +2,19 @@ import { parse as csvParse } from 'csv-parse/browser/esm';
 import { parse as dateFnsParse } from 'date-fns';
 import { InferOutput } from 'valibot';
 import { nanoid } from 'nanoid';
-import { connectorConfigSchema } from './connectorConfig.schema';
-import { LocalisedString } from '../../index';
+import { Component } from '..';
 import { buildFetchError, OperationalError } from '../../errors';
-import { Component, ModuleConfig } from '..';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
+import { connectorConfigSchema, connectorImplementationSchema, connectorModuleCategoryIdSchema, connectorOperationSchema, connectorUsageIdSchema } from './connectorConfig.schema';
 import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
 import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../utilities';
-type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
-export type ConnectorOperation = 'abortOperation' | 'authenticateConnection' | 'createObject' | 'describeConnection' | 'dropObject' | 'findObject' | 'getRecord' | 'listNodes' | 'previewObject' | 'removeRecords' | 'retrieveRecords' | 'upsertRecords';
-export type ConnectorUsageId = 'bidirectional' | 'destination' | 'source' | 'unknown';
+export type ConnectorModuleCategoryId = InferOutput<typeof connectorModuleCategoryIdSchema>;
+export type ConnectorOperation = InferOutput<typeof connectorOperationSchema>;
+export type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
+/** Constants  */
 export declare const CONNECTOR_DESTINATION_OPERATIONS: string[];
 export declare const CONNECTOR_SOURCE_OPERATIONS: string[];
+/** Interfaces/Types - Connector. */
 export interface Connector extends Component {
     abortController?: AbortController;
     readonly config: ConnectorConfig;
@@ -25,7 +26,7 @@ export interface Connector extends Component {
     describeConnection?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>;
     dropObject?(connector: Connector, settings: DropSettings): Promise<void>;
     findObject?(connector: Connector, findSettings: FindSettings): Promise<FindResult>;
-    getReader?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult>;
+    getReadableStream?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult>;
     getRecord?(connector: Connector, getSettings: GetRecordSettings): Promise<GetRecordResult>;
     listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>;
     previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>;
@@ -34,30 +35,11 @@ export interface Connector extends Component {
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
 export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
-export interface ConnectorConfig1 extends ModuleConfig {
-    category: ConnectorCategory | null;
-    categoryId: ConnectorModuleCategoryId;
-    implementations: Record<string, ConnectorImplementation>;
-    operations: ConnectorOperation[];
-    typeId: 'connector';
-    usageId: ConnectorUsageId;
-    vendorAccountURL: string | null;
-    vendorDocumentationURL: string | null;
-    vendorHomeURL: string | null;
-}
 export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & {
     label: string;
     description: string;
 };
-export interface ConnectorImplementation {
-    activeConnectionCount?: number;
-    canDescribe?: boolean;
-    id?: string;
-    authMethodId: 'apiKey' | 'disabled' | 'oAuth2' | 'none';
-    label?: LocalisedString;
-    maxConnectionCount?: number;
-    params?: Record<string, string>[];
-}
+export type ConnectorImplementation = InferOutput<typeof connectorImplementationSchema>;
 export interface ConnectorTools {
     csvParse: typeof csvParse;
     dataPos: {
@@ -171,10 +153,6 @@ export interface UpsertSettings extends ConnectorOperationSettings {
 export interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
-}
-interface ConnectorCategory {
-    id: string;
-    label: string;
 }
 /** Exposures */
 export { connectorConfigSchema } from './connectorConfig.schema';

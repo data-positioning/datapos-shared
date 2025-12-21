@@ -1,6 +1,5 @@
 /**
- * Presenter schema.
- * Drafted by Copilot.
+ * Presenter schema (drafted by Copilot).
  */
 
 /** Dependencies - Vendor. */

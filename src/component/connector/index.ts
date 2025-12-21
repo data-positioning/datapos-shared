@@ -2,41 +2,54 @@
  * Connector composables, constants, errors, types/interfaces and utilities.
  */
 
-// Dependencies - Vendor.
+/** Dependencies - Vendor. */
 import type { parse as csvParse } from 'csv-parse/browser/esm';
 import type { parse as dateFnsParse } from 'date-fns';
 import type { InferOutput } from 'valibot';
 import type { nanoid } from 'nanoid'; // TODO: Check package.json if removed, currently both peer and dev dependency.
 
-// Dependencies - Framework.
-import type { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
+/** Dependencies - Framework. */
+import type { Component } from '@/component';
 import { DEFAULT_LOCALE_CODE } from '@/index';
 import type { LocalisedString } from '@/index';
 import type { buildFetchError, OperationalError } from '@/errors';
-import type { Component, ModuleConfig } from '@/component';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
+import type {
+    connectorConfigSchema,
+    connectorImplementationSchema,
+    connectorModuleCategoryIdSchema,
+    connectorOperationSchema,
+    connectorUsageIdSchema
+} from '@/component/connector/connectorConfig.schema';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/dataView';
 import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
 
-type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
-export type ConnectorOperation =
-    | 'abortOperation'
-    | 'authenticateConnection'
-    | 'createObject'
-    | 'describeConnection'
-    | 'dropObject'
-    | 'findObject'
-    | 'getRecord'
-    | 'listNodes'
-    | 'previewObject'
-    | 'removeRecords'
-    | 'retrieveRecords'
-    | 'upsertRecords';
-export type ConnectorUsageId = 'bidirectional' | 'destination' | 'source' | 'unknown';
+// type ConnectorModuleCategoryId = 'application' | 'curatedDataset' | 'database' | 'fileStore';
+export type ConnectorModuleCategoryId = InferOutput<typeof connectorModuleCategoryIdSchema>;
+
+// export type ConnectorOperation =
+//     | 'abortOperation'
+//     | 'authenticateConnection'
+//     | 'createObject'
+//     | 'describeConnection'
+//     | 'dropObject'
+//     | 'findObject'
+//     | 'getRecord'
+//     | 'listNodes'
+//     | 'previewObject'
+//     | 'removeRecords'
+//     | 'retrieveRecords'
+//     | 'upsertRecords';
+export type ConnectorOperation = InferOutput<typeof connectorOperationSchema>;
+
+// export type ConnectorUsageId = 'bidirectional' | 'destination' | 'source' | 'unknown';
+export type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
+
+/** Constants  */
 export const CONNECTOR_DESTINATION_OPERATIONS = ['createObject', 'dropObject', 'removeRecords', 'upsertRecords'];
 export const CONNECTOR_SOURCE_OPERATIONS = ['findObject', 'getRecord', 'listNodes', 'previewObject', 'retrieveRecords'];
 
-// Interfaces - Connector.
+/** Interfaces/Types - Connector. */
 export interface Connector extends Component {
     abortController?: AbortController;
     readonly config: ConnectorConfig;
@@ -48,7 +61,7 @@ export interface Connector extends Component {
     describeConnection?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
     dropObject?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
     findObject?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
-    getReader?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult>; // Get a reader that can retrieve all records from an object for a specified connection.
+    getReadableStream?(connector: Connector, getSettings: GetReaderSettings): Promise<GetReaderResult>; // Get a reader that can retrieve all records from an object for a specified connection.
     getRecord?(connector: Connector, getSettings: GetRecordSettings): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
     listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List nodes in a folder for a specified connection.
     previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
@@ -63,27 +76,29 @@ export interface Connector extends Component {
 }
 
 export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
-export interface ConnectorConfig1 extends ModuleConfig {
-    category: ConnectorCategory | null;
-    categoryId: ConnectorModuleCategoryId;
-    implementations: Record<string, ConnectorImplementation>;
-    operations: ConnectorOperation[];
-    typeId: 'connector';
-    usageId: ConnectorUsageId;
-    vendorAccountURL: string | null;
-    vendorDocumentationURL: string | null;
-    vendorHomeURL: string | null;
-}
+// export interface ConnectorConfig1 extends ModuleConfig {
+//     category: ConnectorCategory | null;
+//     categoryId: ConnectorModuleCategoryId;
+//     implementations: Record<string, ConnectorImplementation>;
+//     operations: ConnectorOperation[];
+//     typeId: 'connector';
+//     usageId: ConnectorUsageId;
+//     vendorAccountURL: string | null;
+//     vendorDocumentationURL: string | null;
+//     vendorHomeURL: string | null;
+// }
 export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
-export interface ConnectorImplementation {
-    activeConnectionCount?: number;
-    canDescribe?: boolean;
-    id?: string;
-    authMethodId: 'apiKey' | 'disabled' | 'oAuth2' | 'none';
-    label?: LocalisedString;
-    maxConnectionCount?: number;
-    params?: Record<string, string>[];
-}
+export type ConnectorImplementation = InferOutput<typeof connectorImplementationSchema>;
+// export interface ConnectorImplementation {
+//     activeConnectionCount?: number;
+//     canDescribe?: boolean;
+//     id?: string;
+//     authMethodId: 'apiKey' | 'disabled' | 'oAuth2' | 'none';
+//     label?: LocalisedString;
+//     maxConnectionCount?: number;
+//     params?: Record<string, string>[];
+// }
+
 export interface ConnectorTools {
     csvParse: typeof csvParse;
     dataPos: {

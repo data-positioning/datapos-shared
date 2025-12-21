@@ -1,6 +1,5 @@
 /**
- * Component schema.
- * Drafted by Copilot.
+ * Component schema (drafted by Copilot).
  */
 
 /** Dependencies - Vendor. */

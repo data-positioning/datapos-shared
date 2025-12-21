@@ -1,7 +1,10 @@
-# Common Git ignore rules for PUBLISHED Data Positioning repositories.
+# Common git ignore configuration for PUBLISHED Data Positioning projects.
 dependency-check-bin
 dist-scripts
 node_modules
+rust/*/pkg
+rust/*/target
+rust/target
 .env
 .npmrc
 **/.DS_Store
