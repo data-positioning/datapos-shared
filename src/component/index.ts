@@ -6,7 +6,7 @@
 import type { InferOutput } from 'valibot';
 
 // Dependencies - Framework.
-import { DEFAULT_LOCALE_CODE } from '@/index';
+import { DEFAULT_LOCALE_CODE } from '@/locales';
 import type {
     componentConfigSchema,
     componentStatusColorIdSchema,
@@ -14,7 +14,7 @@ import type {
     componentStatusSchema,
     componentTypeIdSchema
 } from '@/component/componentConfig.schema';
-import type { LocaleCode, LocalisedString } from '@/index';
+import type { LocaleCode, LocalisedString } from '@/locales';
 
 // Types/Interfaces/Operations - Component.
 export interface Component {

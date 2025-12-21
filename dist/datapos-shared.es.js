@@ -1,3 +1,4 @@
+const D = "en-gb";
 let j;
 // @__NO_SIDE_EFFECTS__
 function H(e) {
@@ -131,11 +132,11 @@ function B(e) {
   };
 }
 // @__NO_SIDE_EFFECTS__
-function D(e, r) {
+function w(e, r) {
   return {
     kind: "schema",
     type: "literal",
-    reference: D,
+    reference: w,
     expects: /* @__PURE__ */ U(e),
     async: !1,
     literal: e,
@@ -374,7 +375,7 @@ function G(e, r) {
     }
   };
 }
-const v = (e) => /* @__PURE__ */ G(e.map((r) => /* @__PURE__ */ D(r))), te = /* @__PURE__ */ b({
+const v = (e) => /* @__PURE__ */ G(e.map((r) => /* @__PURE__ */ w(r))), te = /* @__PURE__ */ b({
   "en-au": /* @__PURE__ */ l(),
   "en-gb": /* @__PURE__ */ l(),
   "en-us": /* @__PURE__ */ l(),
@@ -451,7 +452,7 @@ const oe = /* @__PURE__ */ b({
 }), E = (e) => {
   const r = Object.entries(e).filter((t) => typeof t[1] == "string");
   return new Map(r);
-}, ie = (e, r, t = I) => {
+}, ie = (e, r, t = D) => {
   const n = e.get(r);
   if (n !== void 0) return n;
   if (t !== r)
@@ -466,7 +467,7 @@ const oe = /* @__PURE__ */ b({
   { id: "releaseCandidate", color: "green", labels: E({ "en-gb": "release-candidate" }) },
   { id: "unavailable", color: "other", labels: E({ "en-gb": "unavailable" }) },
   { id: "underReview", color: "other", labels: E({ "en-gb": "under-review" }) }
-], ke = (e, r = I) => {
+], ke = (e, r = D) => {
   const t = ae.find((n) => n.id === e);
   if (t) {
     const n = ie(t.labels, r);
@@ -498,7 +499,7 @@ const oe = /* @__PURE__ */ b({
   params: /* @__PURE__ */ f(/* @__PURE__ */ x(/* @__PURE__ */ R(/* @__PURE__ */ l(), /* @__PURE__ */ l())))
 }), De = /* @__PURE__ */ b({
   ...$,
-  typeId: /* @__PURE__ */ D("connector"),
+  typeId: /* @__PURE__ */ w("connector"),
   category: /* @__PURE__ */ y(/* @__PURE__ */ b({ id: /* @__PURE__ */ l(), label: /* @__PURE__ */ l() })),
   categoryId: ce,
   implementations: /* @__PURE__ */ R(/* @__PURE__ */ l(), de),
@@ -514,12 +515,12 @@ const oe = /* @__PURE__ */ b({
 O({ "en-gb": "Application" }), O({ "en-gb": "Curated Dataset" }), O({ "en-gb": "Database" }), O({ "en-gb": "File Store" });
 const fe = v(["list"]), me = /* @__PURE__ */ b({
   ...T,
-  typeId: /* @__PURE__ */ D("contextModelGroup"),
+  typeId: /* @__PURE__ */ w("contextModelGroup"),
   modelRefs: /* @__PURE__ */ x(P),
   order: /* @__PURE__ */ k()
 }), Oe = /* @__PURE__ */ b({
   ...$,
-  typeId: /* @__PURE__ */ D("context"),
+  typeId: /* @__PURE__ */ w("context"),
   models: /* @__PURE__ */ x(me),
   operations: /* @__PURE__ */ x(fe)
 });
@@ -529,40 +530,40 @@ class F extends Error {
     super(r, n), this.name = "DataPosError", this.locator = t;
   }
 }
-class w extends F {
+class I extends F {
   constructor(r, t, n) {
     super(r, t, n), this.name = "ApplicationError";
   }
 }
-class Ce extends w {
+class Ce extends I {
   constructor(r, t, n) {
     super(r, t, n), this.name = "APIError";
   }
 }
-class Me extends w {
+class Me extends I {
   constructor(r, t, n) {
     super(r, t, n), this.name = "EngineError";
   }
 }
-class z extends w {
+class z extends I {
   body;
   constructor(r, t, n, s) {
     super(r, t, s), this.name = "FetchError", this.body = n;
   }
 }
-class be extends w {
+class be extends I {
   componentName;
   info;
   constructor(r, t, n, s, o) {
     super(r, t, o), this.name = "VueHandledError", this.info = n, this.componentName = s;
   }
 }
-class Ne extends w {
+class Ne extends I {
   constructor(r, t, n) {
     super(r, t, n), this.name = "WindowHandledRuntimeError";
   }
 }
-class je extends w {
+class je extends I {
   constructor(r, t, n) {
     super(r, t, n), this.name = "WindowHandledPromiseRejectionError";
   }
@@ -615,7 +616,7 @@ function Fe(e) {
 }
 const ye = v(["list", "render", "setColorMode"]), Le = /* @__PURE__ */ b({
   ...$,
-  typeId: /* @__PURE__ */ D("presenter"),
+  typeId: /* @__PURE__ */ w("presenter"),
   presentations: /* @__PURE__ */ x(P),
   operations: /* @__PURE__ */ x(ye)
 });
@@ -734,7 +735,7 @@ function Ke(e) {
       return "application/octet-stream";
   }
 }
-const c = (e) => new Map(Object.entries(e)), L = (e, r, t = I) => {
+const c = (e) => new Map(Object.entries(e)), L = (e, r, t = D) => {
   const n = e.get(r);
   if (n !== void 0) return n;
   if (t !== r)
@@ -747,7 +748,7 @@ const c = (e) => new Map(Object.entries(e)), L = (e, r, t = I) => {
   { id: "xls", labels: c({ "en-gb": "XLS" }) },
   { id: "xlsx", labels: c({ "en-gb": "XLSX" }) },
   { id: "xml", labels: c({ "en-gb": "XML" }) }
-], We = (e = I) => {
+], We = (e = D) => {
   const r = [];
   for (const t of ve) {
     const n = L(t.labels, e);
@@ -760,7 +761,7 @@ const c = (e) => new Map(Object.entries(e)), L = (e, r, t = I) => {
   { id: "\r", labels: c({ "en-gb": "Carriage Return" }) },
   { id: `\r
 `, labels: c({ "en-gb": "Carriage Return/Newline" }) }
-], Xe = (e = I) => {
+], Xe = (e = D) => {
   const r = [];
   for (const t of Ee) {
     const n = L(t.labels, e);
@@ -779,20 +780,20 @@ const c = (e) => new Map(Object.entries(e)), L = (e, r, t = I) => {
   { id: "_", labels: c({ "en-gb": "Underscore" }) },
   { id: "0x1F", labels: c({ "en-gb": "Unit Separator" }) },
   { id: "|", labels: c({ "en-gb": "Vertical Bar" }) }
-], Je = (e = I) => {
+], Je = (e = D) => {
   const r = [];
   for (const t of xe) {
     const n = L(t.labels, e);
     r.push({ id: t.id, label: n ?? t.id });
   }
   return r;
-}, I = "en-gb";
+};
 export {
   Ce as APIError,
-  w as ApplicationError,
+  I as ApplicationError,
   we as CONNECTOR_DESTINATION_OPERATIONS,
   Ie as CONNECTOR_SOURCE_OPERATIONS,
-  I as DEFAULT_LOCALE_CODE,
+  D as DEFAULT_LOCALE_CODE,
   Me as EngineError,
   z as FetchError,
   Ae as OperationalError,

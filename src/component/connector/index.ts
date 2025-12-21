@@ -10,8 +10,8 @@ import type { nanoid } from 'nanoid'; // TODO: Check package.json if removed, cu
 
 /** Dependencies - Framework. */
 import type { Component } from '@/component';
-import { DEFAULT_LOCALE_CODE } from '@/index';
-import type { LocalisedString } from '@/index';
+import { DEFAULT_LOCALE_CODE } from '@/locales';
+import type { LocalisedString } from '@/locales';
 import type { buildFetchError, OperationalError } from '@/errors';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
 import type {

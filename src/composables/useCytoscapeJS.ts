@@ -1,7 +1,7 @@
 // Dependencies - Vendor.
 
 // Dependencies - Framework.
-import type { PresentationView, PresentationVisualContentConfig } from '@/index';
+import type { PresentationView, PresentationVisualContentConfig } from '@/component/presenter/presentation';
 
 // Types/Interfaces - Cytoscape.js view.
 export interface CytoscapeJSView extends PresentationView {

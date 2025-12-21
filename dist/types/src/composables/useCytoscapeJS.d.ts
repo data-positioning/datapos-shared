@@ -1,4 +1,4 @@
-import { PresentationView, PresentationVisualContentConfig } from '../index';
+import { PresentationView, PresentationVisualContentConfig } from '../component/presenter/presentation';
 export interface CytoscapeJSView extends PresentationView {
     diagram: unknown;
 }

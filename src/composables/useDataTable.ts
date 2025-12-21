@@ -1,7 +1,7 @@
 // Dependencies - Vendor.
 
 // Dependencies - Framework.
-import type { PresentationVisualContentConfig } from '@/index';
+import type { PresentationVisualContentConfig } from '@/component/presenter/presentation';
 
 // Composables - Use data table.
 export function useDataTable(): { render: (contentConfig: PresentationVisualContentConfig, element: HTMLElement) => void } {
