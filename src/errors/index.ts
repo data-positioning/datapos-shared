@@ -5,12 +5,8 @@
 /** Constants */
 const FETCH_ERROR_BODY_LIMIT = 2048;
 
-/**
- * Serializable representation of an error and its cause chain.
- * @category Interfaces
- * @remarks
- * Used for logging, reporting, and transport across process
- * or network boundaries.
+/** Serializable representation of an error and its cause chain.
+ * Used for logging, reporting, and transport across process or network boundaries.
  */
 interface SerialisedError {
     /** HTTP response body (Fetch errors only). */ body?: string;
@@ -22,15 +18,12 @@ interface SerialisedError {
     /** Stack trace, if available. */ stack?: string;
 }
 
-/**
- * Base class for all Data Positioning errors.
- * @category Errors
- * @remarks
- * All errors include a `locator` identifying the logical
- * source of the error (module, feature, or operation).
+/** Base class for all Data Positioning errors.
+ * All errors include a `locator` identifying the logical source of the error (module, feature, or operation).
  */
 class DataPosError extends Error {
-    readonly locator: string;
+    readonly locator: string; /** Logical source of the error. */
+
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, options);
         this.name = new.target.name;
@@ -38,45 +31,25 @@ class DataPosError extends Error {
     }
 }
 
-/**
- * Represents application-level failures.
- * @category Errors
- * @remarks
- * Used for errors originating from application logic,
- * not external systems.
+/** Represents application-level failures.
+ * Used for errors originating from application logic, not external systems.
  */
-class ApplicationError extends DataPosError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
-        super(message, locator, options);
-        this.name = new.target.name;
-    }
-}
+class ApplicationError extends DataPosError {}
 
-/**
- * Represents API-related failures.
- * @category Errors
- * @remarks
- * Typically thrown when backend requests fail or return
- * invalid responses.
+/** Represents API-related failures.
+ * Typically thrown when backend requests fail or return invalid responses.
  */
-class APIError extends ApplicationError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
-        super(message, locator, options);
-        this.name = new.target.name;
-    }
-}
+class APIError extends ApplicationError {}
 
-/** Classes - Engine Error */
-class EngineError extends ApplicationError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
-        super(message, locator, options);
-        this.name = new.target.name;
-    }
-}
+/** Represents engine or core processing failures. */
+class EngineError extends ApplicationError {}
 
-/** Classes - Fetch error. */
+/** Represents failures during HTTP requests.
+ * Includes a sanitized snapshot of the response body for diagnostic purposes.
+ */
 class FetchError extends ApplicationError {
-    readonly body?: string;
+    readonly body?: string; /** Sanitized HTTP response body. */
+
     constructor(message: string, locator: string, body?: string | null, options?: ErrorOptions) {
         super(message, locator, options);
         this.name = new.target.name;
@@ -84,18 +57,16 @@ class FetchError extends ApplicationError {
     }
 }
 
-/** Classes - Operational error. */
-class OperationalError extends DataPosError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
-        super(message, locator, options);
-        this.name = new.target.name;
-    }
-}
+/** Represents operational failures not caused by application logic. */
+class OperationalError extends DataPosError {}
 
-/** Classes - Vue handled error. */
+/** Represents Vue errors that have been explicitly handled.
+ * Used when capturing Vue error handler output with additional component context.
+ */
 class VueHandledError extends ApplicationError {
-    readonly componentName?: string;
-    readonly info: string;
+    readonly componentName?: string; /** Vue component name, if available. */
+    readonly info: string; /** Vue error info string. */
+
     constructor(message: string, locator: string, info: string, componentName?: string, options?: ErrorOptions) {
         super(message, locator, options);
         this.name = new.target.name;
@@ -104,28 +75,14 @@ class VueHandledError extends ApplicationError {
     }
 }
 
-/** Classes - Window handled runtime error. */
-class WindowHandledRuntimeError extends ApplicationError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
-        super(message, locator, options);
-        this.name = new.target.name;
-    }
-}
+/** Represents handled window runtime errors. */
+class WindowHandledRuntimeError extends ApplicationError {}
 
-/** Classes - Window handled promise rejection error. */
-class WindowHandledPromiseRejectionError extends ApplicationError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
-        super(message, locator, options);
-        this.name = new.target.name;
-    }
-}
+/** Represents handled window promise rejection errors. */
+class WindowHandledPromiseRejectionError extends ApplicationError {}
 
-/**
- * Builds a {@link FetchError} from an HTTP response.
- * @category Utilities
- * @remarks
- * The response body is eagerly read so it can be included
- * in error logs even after the response stream is closed.
+/** Builds a {@link FetchError} from an HTTP response.
+ * The response body is eagerly read so it can be included in error logs even after the response stream is closed.
  */
 async function buildFetchError(response: { status: number; statusText: string; text: () => Promise<string> }, message: string, locator: string): Promise<FetchError> {
     const responseStatusStuff = ` - ${response.statusText}`;
@@ -140,20 +97,15 @@ async function buildFetchError(response: { status: number; statusText: string; t
     return new FetchError(fetchMessage, locator, bodyText);
 }
 
-/** Utilities - Concatenate serialised error messages. */
+/** Concatenates serialized error messages into a single string. */
 function concatenateSerialisedErrorMessages(serialisedErrors: SerialisedError[]): string {
     return serialisedErrors.map((serialisedError) => serialisedError.message).join(' ');
 }
 
-/**
- * Normalizes an unknown thrown value into an {@link Error}.
- * @category Utilities
- * @param value - Any value caught in a `catch` block.
- * @returns A guaranteed {@link Error} instance.
- * @remarks
- * This function guarantees an Error instance and should be
- * used at error boundaries (e.g. `catch` blocks).
- */ function normalizeToError(value: unknown): Error {
+/** Normalizes an unknown thrown value into an {@link Error}.
+ * This function should be used at error boundaries to guarantee consistent error handling.
+ */
+function normalizeToError(value: unknown): Error {
     if (value instanceof Error) return value;
     if (typeof value === 'string') return new Error(value);
     if (typeof value === 'number' || typeof value === 'boolean' || typeof value === 'bigint') return new Error(String(value));
@@ -168,22 +120,19 @@ function concatenateSerialisedErrorMessages(serialisedErrors: SerialisedError[])
     return new Error('Unknown error');
 }
 
-/**
- * Serializes an error and its cause chain into a flat structure.
- * @category Utilities
- * @param error - Error or arbitrary thrown value.
- * @returns Ordered list of serialized errors.
- * @remarks
+/** Serializes an error and its cause chain into a flat structure.
  * - Errors are ordered from outermost to root cause.
  * - Cycles in the cause chain are safely ignored.
  * - Messages are normalized to end with punctuation.
- */ function serialiseError(error?: unknown): SerialisedError[] {
+ */
+function serialiseError(error?: unknown): SerialisedError[] {
     const seenCauses = new Set();
     const serialisedErrors: SerialisedError[] = [];
     let cause = error;
-    // Process causes as long as there is one that has not previously been seen. Checking for previously seen is to protect against infinite loops.
+
     while (cause != null && !seenCauses.has(cause)) {
         seenCauses.add(cause);
+
         let serialisedError: SerialisedError;
         if (cause instanceof FetchError) {
             serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
@@ -202,13 +151,13 @@ function concatenateSerialisedErrorMessages(serialisedErrors: SerialisedError[])
             serialisedError = { locator: '', message: buildFallbackMessage(cause), name: 'Error' };
             cause = undefined;
         }
-        if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.'; // Terminate with "." if message does not already end in "...", ".", "!" or "?"."
+        if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.';
         serialisedErrors.push(serialisedError);
     }
     return serialisedErrors;
 }
 
-/** Helpers - Build fallback message. */
+/** Builds a fallback message for non-Error throwables. */
 function buildFallbackMessage(cause: unknown): string {
     let fallbackMessage: string;
     try {
@@ -218,23 +167,18 @@ function buildFallbackMessage(cause: unknown): string {
         else if (typeof cause === 'bigint') fallbackMessage = cause.toString();
         else fallbackMessage = 'Unknown error';
     }
+
     if (fallbackMessage === '') fallbackMessage = 'Unknown error';
     return fallbackMessage;
 }
 
-/**
- * Sanitizes a fetch error response body.
- *
- * @category Helpers
- * @remarks
- * Limits body size to avoid excessive log payloads.
- */
+/** Sanitizes a fetch error response body. Limits body size to avoid excessive log payloads. */
 function sanitizeFetchErrorBody(body?: string): string | undefined {
     if (body == null || body === '') return undefined;
     return body.length > FETCH_ERROR_BODY_LIMIT ? `${body.slice(0, FETCH_ERROR_BODY_LIMIT)}... [truncated]` : body;
 }
 
-/** Exposures */
+/** Exports */
 export type { SerialisedError };
 export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError };
