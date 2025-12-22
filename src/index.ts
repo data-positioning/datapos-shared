@@ -146,10 +146,10 @@ export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineCo
 export type { SerialisedError } from '@/errors';
 
 /** Errors */
-export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from '@/errors';
+// export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError } from '@/errors';
 
 /** Utilities */
-export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
+// export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
 
 //#endregion
 

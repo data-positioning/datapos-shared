@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.343",
+    "version": "0.3.344",
     "description": "A library containing common constants, types and utilities used across all Data Positioning projects.",
     "license": "MIT",
     "author": "Jonathan Terrell <terrell.jm@gmail.com>",
@@ -20,6 +20,10 @@
         ".": {
             "import": "./dist/datapos-shared.es.js",
             "types": "./dist/types/src/index.d.ts"
+        },
+        "./errors": {
+            "import": "./dist/datapos-shared-errors.es.js",
+            "types": "./dist/types/src/errors/index.d.ts"
         },
         "./utilities": {
             "import": "./dist/datapos-shared-utilities.es.js",
