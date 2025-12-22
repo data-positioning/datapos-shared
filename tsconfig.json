@@ -31,5 +31,5 @@
         "tsBuildInfoFile": "./node_modules/.cache/tsconfig.tsbuildinfo",
         "useDefineForClassFields": true
     },
-    "include": ["src/**/*", "vite.config.*", "vitest.config.*", "tests/**/*.ts"]
+    "include": ["src/**/*.ts", "tests/**/*.ts", "vite.config.*", "vitest.config.*"]
 }
