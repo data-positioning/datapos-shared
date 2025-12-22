@@ -1,6 +1,6 @@
 {
     "name": "@datapos/datapos-shared",
-    "version": "0.3.355",
+    "version": "0.3.356",
     "description": "A library containing common constants, types and utilities used across all Data Positioning projects.",
     "license": "MIT",
     "author": "Jonathan Terrell <terrell.jm@gmail.com>",
@@ -70,6 +70,7 @@
         "sonda": "^0.10.1",
         "type-fest": "^5.3.1",
         "typedoc": "^0.28.15",
+        "typedoc-github-theme": "^0.3.1",
         "typedoc-material-theme": "^1.4.1",
         "typescript": "^5.9.3",
         "valibot": "^1.2.0",
@@ -87,7 +88,10 @@
         "sync": "node -e \"import('@datapos/datapos-development').then(m => m.syncProjectWithGitHub())\"",
         "test": "node -e \"import('@datapos/datapos-development').then(m => m.testProject())\"",
         "update": "node -e \"import('@datapos/datapos-development').then(m => m.updateDataPosDependencies(['development', 'eslint']))\"",
-        "_readmeToPDF": "md-to-pdf README.md"
+        "_readmeToPDF": "md-to-pdf README.md",
+        "_td": "npx typedoc --options docs/typedoc.json",
+        "_td:github": "npx typedoc --options docs/typedoc.json --plugin typedoc-github-theme",
+        "_td:material": "npx typedoc --options docs/typedoc.json  --plugin typedoc-material-theme --themeColor '#cb9820'"
     },
     "engines": {
         "node": ">=22.0.0",

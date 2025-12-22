@@ -1,7 +1,0 @@
-{
-    "$schema": "https://typedoc.org/schema.json",
-    "customCss": "./typedoc.css",
-    "entryPoints": ["./src/index.ts", "./src/connector/index.ts", "./src/errors/index.ts"],
-    "includeHierarchySummary": false,
-    "out": "docs"
-}
