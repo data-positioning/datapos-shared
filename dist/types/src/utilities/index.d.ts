@@ -1,5 +1,5 @@
 /**
- * Application utilities.
+ * Utilities.
  */
 export declare function convertODataTypeIdToUsageTypeId(oDataTypeId: string): string;
 export declare function extractNameFromPath(itemPath: string): string | undefined;

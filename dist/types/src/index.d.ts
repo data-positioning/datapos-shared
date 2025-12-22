@@ -46,9 +46,7 @@ export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineCo
 /** Interfaces/Types */
 export type { SerialisedError } from './errors';
 /** Errors */
-export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueError, WindowRuntimeError, WindowPromiseRejectionError } from './errors';
 /** Utilities */
-export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from './errors';
 /** Interfaces/Types - Event query. */
 export type { EventQueryConfig, EventQueryLocalisedConfig } from './component/eventQuery';
 /** Interfaces/Types */

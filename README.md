@@ -20,6 +20,8 @@ npm install @datapos/datapos-shared
 
 This package provides constants, errors, types/interfaces and utilities used by Data Positioning modules.
 
+[Documentation](https://data-positioning.github.io/datapos-shared/docs/index.html)
+
 ### Modules
 
 The Data Positioning solution consists of the following modules. All modules, except `App`, extend the base type `Module`.
