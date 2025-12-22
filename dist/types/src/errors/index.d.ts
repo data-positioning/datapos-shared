@@ -5,13 +5,13 @@
  * Used for logging, reporting, and transport across process or network boundaries.
  */
 interface SerialisedError {
-    /** HTTP response body (Fetch errors only). */ body?: string;
-    /** Vue component name (Vue errors only). */ componentName?: string;
-    /** Vue error info string. */ info?: string;
+    /** HTTP response body (Fetch errors only). */ body: string | undefined;
+    /** Vue component name (Vue errors only). */ componentName: string | undefined;
+    /** Vue error info string. */ info: string | undefined;
     /** Logical source of the error. */ locator: string;
     /** Human-readable error message. */ message: string;
     /** Error class or type name. */ name: string;
-    /** Stack trace, if available. */ stack?: string;
+    /** Stack trace, if available. */ stack: string | undefined;
 }
 /** Base class for all Data Positioning errors.
  * All errors include a `locator` identifying the logical source of the error (module, feature, or operation).
@@ -37,7 +37,7 @@ declare class EngineError extends ApplicationError {
  * Includes a sanitized snapshot of the response body for diagnostic purposes.
  */
 declare class FetchError extends ApplicationError {
-    readonly body?: string; /** Sanitized HTTP response body. */
+    readonly body: string | undefined; /** Sanitized HTTP response body. */
     constructor(message: string, locator: string, body?: string | null, options?: ErrorOptions);
 }
 /** Represents operational failures not caused by application logic. */
@@ -47,7 +47,7 @@ declare class OperationalError extends DataPosError {
  * Used when capturing Vue error handler output with additional component context.
  */
 declare class VueHandledError extends ApplicationError {
-    readonly componentName?: string; /** Vue component name, if available. */
+    readonly componentName: string | undefined; /** Vue component name, if available. */
     readonly info: string; /** Vue error info string. */
     constructor(message: string, locator: string, info: string, componentName?: string, options?: ErrorOptions);
 }
