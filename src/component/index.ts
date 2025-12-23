@@ -21,14 +21,14 @@ interface Component {
     readonly config: ComponentConfig;
 }
 
-// Types/Interfaces/Operations - Component configuration.
+/** Component configuration. */
 type ComponentConfig = InferOutput<typeof componentConfigSchema>;
 type ComponentStatus = InferOutput<typeof componentStatusSchema>;
 type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
 type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
 type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
 
-// Types/Interfaces/Operations - Component reference.
+/** Component reference. */
 interface ComponentReference {
     id: string;
     label: Partial<LocalisedString>;
@@ -39,24 +39,10 @@ interface ComponentReference {
     path: string;
 }
 
-// Types/Interfaces/Operations - Component status.
-// interface ComponentStatus {
-//     id: string;
-//     color: ComponentStatusColorId;
-//     label: string;
-// }
-// type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
+//#region Component Status
+
 type LocaleLabelMap = ReadonlyMap<string, string>;
-const createLocaleLabelMap = (labels: Partial<LocalisedString>): LocaleLabelMap => {
-    const filteredEntries = Object.entries(labels).filter((entry): entry is [string, string] => typeof entry[1] === 'string');
-    return new Map(filteredEntries);
-};
-const resolveLocaleLabel = (labels: LocaleLabelMap, localeId: LocaleCode, fallbackLocaleId = DEFAULT_LOCALE_CODE): string | undefined => {
-    const localizedLabel = labels.get(localeId);
-    if (localizedLabel !== undefined) return localizedLabel;
-    if (fallbackLocaleId === localeId) return undefined;
-    return labels.get(fallbackLocaleId);
-};
+
 interface ComponentStatusConfig {
     id: string;
     color: ComponentStatusColorId;
@@ -73,43 +59,30 @@ const componentStatuses: ComponentStatusConfig[] = [
     { id: 'unavailable', color: 'other', labels: createLocaleLabelMap({ 'en-gb': 'unavailable' }) },
     { id: 'underReview', color: 'other', labels: createLocaleLabelMap({ 'en-gb': 'under-review' }) }
 ];
-const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LOCALE_CODE): ComponentStatus => {
+
+function createLocaleLabelMap(labels: Partial<LocalisedString>): LocaleLabelMap {
+    const filteredEntries = Object.entries(labels).filter((entry): entry is [string, string] => typeof entry[1] === 'string');
+    return new Map(filteredEntries);
+}
+
+function getComponentStatus(id: string, localeId: LocaleCode = DEFAULT_LOCALE_CODE): ComponentStatus {
+    console.log(1111, componentStatuses);
     const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
     if (componentStatus) {
         const resolvedLabel = resolveLocaleLabel(componentStatus.labels, localeId);
         return { id: componentStatus.id, color: componentStatus.color, label: resolvedLabel ?? componentStatus.id };
     }
     return { id, color: 'other', label: id };
-};
+}
 
-//
-//  type ComponentStatusColorId = 'amber' | 'green' | 'red' | 'other';
+function resolveLocaleLabel(labels: LocaleLabelMap, localeId: LocaleCode, fallbackLocaleId = DEFAULT_LOCALE_CODE): string | undefined {
+    const localizedLabel = labels.get(localeId);
+    if (localizedLabel != null) return localizedLabel;
+    if (fallbackLocaleId === localeId) return undefined;
+    return labels.get(fallbackLocaleId);
+}
 
-// Types/Interfaces/Operations - Component type identifier.
-// type ComponentTypeId =
-//     | 'app'
-//     | 'connector'
-//     | 'connectorConnection'
-//     | 'context'
-//     | 'contextModelGroup'
-//     | 'contextModel'
-//     | 'contextModelDimensionGroup'
-//     | 'contextModelDimension'
-//     | 'contextModelDimensionHierarchy'
-//     | 'contextModelEntityGroup'
-//     | 'contextModelEntity'
-//     | 'contextModelEntityDataItem'
-//     | 'contextModelEntityEvent'
-//     | 'contextModelEntityPrimaryMeasure'
-//     | 'contextModelSecondaryMeasureGroup'
-//     | 'contextModelSecondaryMeasure'
-//     | 'dataView'
-//     | 'dimension'
-//     | 'engine'
-//     | 'eventQuery'
-//     | 'presenter'
-//     | 'presenterPresentation'
-//     | 'tool';
+//#endregion
 
 /** Exports */
 export { getComponentStatus };

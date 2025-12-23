@@ -5,11 +5,13 @@ import { LocaleCode, LocalisedString } from '../index';
 interface Component {
     readonly config: ComponentConfig;
 }
+/** Component configuration. */
 type ComponentConfig = InferOutput<typeof componentConfigSchema>;
 type ComponentStatus = InferOutput<typeof componentStatusSchema>;
 type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
 type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
 type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
+/** Component reference. */
 interface ComponentReference {
     id: string;
     label: Partial<LocalisedString>;
@@ -19,7 +21,7 @@ interface ComponentReference {
     order: number;
     path: string;
 }
-declare const getComponentStatus: (id: string, localeId?: LocaleCode) => ComponentStatus;
+declare function getComponentStatus(id: string, localeId?: LocaleCode): ComponentStatus;
 /** Exports */
 export { getComponentStatus };
 export { componentConfigSchema } from './componentConfig.schema';
