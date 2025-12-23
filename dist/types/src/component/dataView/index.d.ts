@@ -28,7 +28,7 @@ export interface DataViewPreviewConfig {
     dataFormatId: DataFormatId;
     duration: number;
     encodingConfidenceLevel: number | undefined;
-    encodingId?: string;
+    encodingId: string | undefined;
     errorMessage?: string;
     hasHeaders: boolean | undefined;
     recordDelimiterId?: RecordDelimiterId;
