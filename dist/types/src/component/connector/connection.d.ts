@@ -75,4 +75,4 @@ interface Encoding {
     confidenceLevel: number | undefined;
 }
 /** Exports. */
-export type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig, Encoding };
+export type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig, Encoding, UsageTypeId };

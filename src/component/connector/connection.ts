@@ -110,4 +110,4 @@ interface Encoding {
 }
 
 /** Exports. */
-export type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig, Encoding };
+export type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig, Encoding, UsageTypeId };
