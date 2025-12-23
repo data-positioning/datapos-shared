@@ -1,6 +1,6 @@
 import { DEFAULT_LOCALE_CODE as a } from "./datapos-shared.es.js";
-import { componentConfigSchema as s } from "./datapos-shared.es.js";
-const r = [
+import { componentConfigSchema as d } from "./datapos-shared.es.js";
+const n = [
   { id: "alpha", color: "red", labels: { "en-gb": "alpha" } },
   { id: "beta", color: "amber", labels: { "en-gb": "beta" } },
   { id: "generalAvailability", color: "green", labels: { "en-gb": "" } },
@@ -11,16 +11,15 @@ const r = [
   { id: "unavailable", color: "other", labels: { "en-gb": "unavailable" } },
   { id: "underReview", color: "other", labels: { "en-gb": "under-review" } }
 ];
-function b(l, n = a) {
-  console.log(1111, r);
-  const e = r.find((o) => o.id === l);
+function b(l, r = a) {
+  const e = n.find((o) => o.id === l);
   if (e) {
-    const o = e.labels[n] ?? e.labels[a] ?? e.id;
+    const o = e.labels[r] ?? e.labels[a] ?? e.id;
     return { id: e.id, color: e.color, label: o };
   }
   return { id: l, color: "other", label: l };
 }
 export {
-  s as componentConfigSchema,
+  d as componentConfigSchema,
   b as getComponentStatus
 };
