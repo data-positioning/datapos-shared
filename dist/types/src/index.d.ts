@@ -8,8 +8,6 @@ export type LocalisedString = Record<LocaleCode, string>;
 export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId, ComponentStatusColorId } from './component';
 /** Schemas - Component */
 export { componentConfigSchema } from './component';
-/** Interfaces/Types Component - Connector */
-export type { AuditContentResult, AuditContentSettings, Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings, CreateSettings, DropSettings, FindResult, FindSettings, GetReadableStreamResult, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, InitialiseSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings } from './component/connector';
 /** Schemas - Connector  */
 export { connectorConfigSchema } from './component/connector/connectorConfig.schema';
 /** Interfaces/Types - Context. */
@@ -38,7 +36,6 @@ export type { DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfi
 /** Interfaces/Types - Dimension. */
 export type { DimensionConfig, DimensionLocalisedConfig } from './component/dimension';
 /** Interfaces/Types - Engine. */
-export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineConfig, EngineWorker, TestSettings } from './engine';
 /** Interfaces/Types */
 export type { SerialisedError } from './errors';
 /** Errors */

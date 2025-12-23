@@ -1,32 +1,30 @@
 import { ConnectionConfig } from '../component/connector/connection';
-import { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, InitialiseSettings, ListResult, RetrieveRecordsResult } from '../component/connector';
-import { Component, ModuleConfig } from '../component';
+import { ToolConfig } from '../component/tool';
+import { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, ListResult, RetrieveRecordsResult } from '../component/connector';
 import { ContextCallbackData, ContextConfig, ContextOperationSettings } from '../component/context';
-import { DataViewPreviewConfig, EncodingConfig } from '../component/dataView';
-export interface EngineConfig extends ModuleConfig {
-    typeId: 'engine';
+import { DataViewPreviewConfig } from '../component/dataView';
+interface EngineInitialiseSettings {
+    connectorStorageURLPrefix: string;
+    toolConfigs: ToolConfig[];
 }
-type InitialiseEngine = (settings: InitialiseSettings) => Promise<void>;
+type InitialiseEngine = (settings: EngineInitialiseSettings) => Promise<void>;
 type ProcessConnectorRequest = (id: string, connectionConfig: ConnectionConfig, settings: ConnectorOperationSettings, callback?: (callbackData: ContextCallbackData) => void) => Promise<ConnectorInterfaceResult>;
-export type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
+type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
 type ProcessContextRequest = (id: string, contextConfig: ContextConfig, settings: ContextOperationSettings, callback?: (callbackData: ConnectorCallbackData) => void) => Promise<ContextInterfaceResult>;
-export type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
+type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
 type ProcessTestRequest = (settings: TestSettings) => Promise<Record<string, unknown>>;
-export interface TestSettings {
+interface TestSettings {
     action?: string;
     delimiter?: string;
     forceFallback?: boolean;
     hasHeaders?: boolean;
     readable: ReadableStream<Uint8Array>;
 }
-export interface Engine extends Component {
-    getEncodingConfigs: (localeId: string) => EncodingConfig[];
-    invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;
-}
-export interface EngineWorker {
+interface EngineWorker {
     initialise: InitialiseEngine;
     processConnectorRequest: ProcessConnectorRequest;
     processContextRequest: ProcessContextRequest;
     processTestRequest: ProcessTestRequest;
 }
-export {};
+/** Exports. */
+export type { EngineWorker, EngineInitialiseSettings };

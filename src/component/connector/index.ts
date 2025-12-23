@@ -75,12 +75,6 @@ interface GetReadableStreamSettings extends ConnectorOperationSettings {
 
 //#region Settings & Results
 
-// Types/Interfaces/Operations - Initialise settings.
-interface InitialiseSettings {
-    connectorStorageURLPrefix: string;
-    toolConfigs: ToolConfig[];
-}
-
 // Types/Interfaces/Operations - Connector operation settings.
 interface ConnectorOperationSettings {
     accountId?: string;
@@ -266,7 +260,6 @@ export type {
     GetReadableStreamSettings,
     GetRecordResult,
     GetRecordSettings,
-    InitialiseSettings,
     ListResult,
     ListSettings,
     PreviewResult,

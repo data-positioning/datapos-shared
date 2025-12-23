@@ -44,10 +44,6 @@ interface GetReadableStreamSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
 }
-interface InitialiseSettings {
-    connectorStorageURLPrefix: string;
-    toolConfigs: ToolConfig[];
-}
 interface ConnectorOperationSettings {
     accountId?: string;
     appCheckToken?: string;
@@ -158,5 +154,5 @@ interface ConnectorCallbackData {
 /** Exports. */
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings };
-export type { AuditContentResult, AuditContentSettings, CreateSettings, DropSettings, FindResult, FindSettings, GetReadableStreamResult, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, InitialiseSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksResult, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
+export type { AuditContentResult, AuditContentSettings, CreateSettings, DropSettings, FindResult, FindSettings, GetReadableStreamResult, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksResult, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
 export { connectorConfigSchema } from './connectorConfig.schema';

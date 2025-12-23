@@ -18,36 +18,35 @@ export { componentConfigSchema } from '@/component';
 
 //#region Connector --------------------
 
-/** Interfaces/Types Component - Connector */
-export type {
-    AuditContentResult,
-    AuditContentSettings,
-    Connector,
-    ConnectorCallbackData,
-    ConnectorConfig,
-    ConnectorLocalisedConfig,
-    ConnectorOperationSettings,
-    CreateSettings,
-    DropSettings,
-    FindResult,
-    FindSettings,
-    GetReadableStreamResult,
-    GetReadableStreamSettings,
-    GetRecordResult,
-    GetRecordSettings,
-    InitialiseSettings,
-    ListResult,
-    ListSettings,
-    PreviewResult,
-    PreviewSettings,
-    RemoveSettings,
-    RetrieveChunksSettings,
-    RetrieveChunksSummary,
-    RetrieveRecordsResult,
-    RetrieveRecordsSettings,
-    RetrieveRecordsSummary,
-    UpsertSettings
-} from '@/component/connector';
+// /** Interfaces/Types Component - Connector */
+// export type {
+//     AuditContentResult,
+//     AuditContentSettings,
+//     Connector,
+//     ConnectorCallbackData,
+//     ConnectorConfig,
+//     ConnectorLocalisedConfig,
+//     ConnectorOperationSettings,
+//     CreateSettings,
+//     DropSettings,
+//     FindResult,
+//     FindSettings,
+//     GetReadableStreamResult,
+//     GetReadableStreamSettings,
+//     GetRecordResult,
+//     GetRecordSettings,
+//     ListResult,
+//     ListSettings,
+//     PreviewResult,
+//     PreviewSettings,
+//     RemoveSettings,
+//     RetrieveChunksSettings,
+//     RetrieveChunksSummary,
+//     RetrieveRecordsResult,
+//     RetrieveRecordsSettings,
+//     RetrieveRecordsSummary,
+//     UpsertSettings
+// } from '@/component/connector';
 
 // /** Interfaces/Types - Connection */
 // export type {
@@ -131,7 +130,7 @@ export type {
 export type { DimensionConfig, DimensionLocalisedConfig } from '@/component/dimension';
 
 /** Interfaces/Types - Engine. */
-export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineConfig, EngineWorker, TestSettings } from '@/engine';
+// export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineConfig, EngineWorker, TestSettings } from '@/engine';
 
 //#region Error
 
