@@ -1,13 +1,14 @@
 /**
- * Connector schema (drafted by Copilot).
+ * Connector configuration schema.
+ *
+ * Defines the configuration metadata for a connector. Used for validation
+ * of connector manifests and capability discovery at runtime.
  */
-/** Schema Literal Unions - Connector category identifier. */
-export declare const connectorCategoryIdSchema: import('valibot').UnionSchema<readonly [import('valibot').LiteralSchema<"application", undefined>, import('valibot').LiteralSchema<"curatedDataset", undefined>, import('valibot').LiteralSchema<"database", undefined>, import('valibot').LiteralSchema<"fileStore", undefined>], undefined>;
-/** Schema Literal Unions - Connector operation name. */
-export declare const connectorOperationNameSchema: import('valibot').UnionSchema<readonly [import('valibot').LiteralSchema<"abortOperation", undefined>, import('valibot').LiteralSchema<"authenticateConnection", undefined>, import('valibot').LiteralSchema<"createObject", undefined>, import('valibot').LiteralSchema<"describeConnection", undefined>, import('valibot').LiteralSchema<"dropObject", undefined>, import('valibot').LiteralSchema<"findObject", undefined>, import('valibot').LiteralSchema<"getReadableStream", undefined>, import('valibot').LiteralSchema<"getRecord", undefined>, import('valibot').LiteralSchema<"listNodes", undefined>, import('valibot').LiteralSchema<"previewObject", undefined>, import('valibot').LiteralSchema<"removeRecords", undefined>, import('valibot').LiteralSchema<"retrieveChunks", undefined>, import('valibot').LiteralSchema<"retrieveRecords", undefined>, import('valibot').LiteralSchema<"upsertRecords", undefined>], undefined>;
-/** Schema Literal Unions - Connector usage identifier. */
-export declare const connectorUsageIdSchema: import('valibot').UnionSchema<readonly [import('valibot').LiteralSchema<"bidirectional", undefined>, import('valibot').LiteralSchema<"destination", undefined>, import('valibot').LiteralSchema<"source", undefined>, import('valibot').LiteralSchema<"unknown", undefined>], undefined>;
-/** Schema Objects - Connector implementation. */
+/** Authentication method identifiers supported by a connector implementation. */
+export declare const connectorAuthMethodIdSchema: import('valibot').UnionSchema<readonly [import('valibot').LiteralSchema<"apiKey", undefined>, import('valibot').LiteralSchema<"disabled", undefined>, import('valibot').LiteralSchema<"oAuth2", undefined>, import('valibot').LiteralSchema<"none", undefined>], undefined>;
+/** A connector implementation variant. A single connector may expose multiple
+ * implementations differing by auth method, limits, or vendor-specific behavior.
+ */
 export declare const connectorImplementationSchema: import('valibot').ObjectSchema<{
     readonly authMethodId: import('valibot').UnionSchema<readonly [import('valibot').LiteralSchema<"apiKey", undefined>, import('valibot').LiteralSchema<"disabled", undefined>, import('valibot').LiteralSchema<"oAuth2", undefined>, import('valibot').LiteralSchema<"none", undefined>], undefined>;
     readonly activeConnectionCount: import('valibot').OptionalSchema<import('valibot').NumberSchema<undefined>, undefined>;
@@ -22,7 +23,13 @@ export declare const connectorImplementationSchema: import('valibot').ObjectSche
     readonly maxConnectionCount: import('valibot').OptionalSchema<import('valibot').NumberSchema<undefined>, undefined>;
     readonly params: import('valibot').OptionalSchema<import('valibot').ArraySchema<import('valibot').RecordSchema<import('valibot').StringSchema<undefined>, import('valibot').StringSchema<undefined>, undefined>, undefined>, undefined>;
 }, undefined>;
-/** Schema Objects - Connector configuration. */
+/** Category identifiers used for grouping and filtering connectors. */
+export declare const connectorCategoryIdSchema: import('valibot').UnionSchema<readonly [import('valibot').LiteralSchema<"application", undefined>, import('valibot').LiteralSchema<"curatedDataset", undefined>, import('valibot').LiteralSchema<"database", undefined>, import('valibot').LiteralSchema<"fileStore", undefined>], undefined>;
+/** Operation names a connector may support. */
+export declare const connectorOperationNameSchema: import('valibot').UnionSchema<readonly [import('valibot').LiteralSchema<"abortOperation", undefined>, import('valibot').LiteralSchema<"authenticateConnection", undefined>, import('valibot').LiteralSchema<"createObject", undefined>, import('valibot').LiteralSchema<"describeConnection", undefined>, import('valibot').LiteralSchema<"dropObject", undefined>, import('valibot').LiteralSchema<"findObject", undefined>, import('valibot').LiteralSchema<"getReadableStream", undefined>, import('valibot').LiteralSchema<"getRecord", undefined>, import('valibot').LiteralSchema<"listNodes", undefined>, import('valibot').LiteralSchema<"previewObject", undefined>, import('valibot').LiteralSchema<"removeRecords", undefined>, import('valibot').LiteralSchema<"retrieveChunks", undefined>, import('valibot').LiteralSchema<"retrieveRecords", undefined>, import('valibot').LiteralSchema<"upsertRecords", undefined>], undefined>;
+/** Connector data pipeline usage identifiers. */
+export declare const connectorUsageIdSchema: import('valibot').UnionSchema<readonly [import('valibot').LiteralSchema<"bidirectional", undefined>, import('valibot').LiteralSchema<"destination", undefined>, import('valibot').LiteralSchema<"source", undefined>, import('valibot').LiteralSchema<"unknown", undefined>], undefined>;
+/** Top-level connector configuration object. */
 export declare const connectorConfigSchema: import('valibot').ObjectSchema<{
     readonly typeId: import('valibot').LiteralSchema<"connector", undefined>;
     readonly category: import('valibot').NullableSchema<import('valibot').ObjectSchema<{

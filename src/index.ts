@@ -18,9 +18,6 @@ export { componentConfigSchema } from '@/component';
 
 //#region Connector --------------------
 
-/** Constants - Connector */
-export { CONNECTOR_DESTINATION_OPERATIONS, CONNECTOR_SOURCE_OPERATIONS } from '@/component/connector';
-
 /** Interfaces/Types Component - Connector */
 export type {
     AuditContentResult,
@@ -28,12 +25,8 @@ export type {
     Connector,
     ConnectorCallbackData,
     ConnectorConfig,
-    ConnectorImplementation,
     ConnectorLocalisedConfig,
-    ConnectorOperationName,
     ConnectorOperationSettings,
-    ConnectorTools,
-    ConnectorUsageId,
     CreateSettings,
     DropSettings,
     FindResult,

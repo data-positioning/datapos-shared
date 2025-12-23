@@ -1,20 +1,36 @@
 /**
- * Connector schema (drafted by Copilot).
+ * Connector configuration schema.
+ *
+ * Defines the configuration metadata for a connector. Used for validation
+ * of connector manifests and capability discovery at runtime.
  */
 
-/** Dependencies - Vendor. */
+/** Vendor dependencies */
 import { array, boolean, literal, nullable, number, object, optional, record, string } from 'valibot';
 
-/** Dependencies - Framework. */
+/** Framework dependencies. */
 import { literalUnion, localisedStringSchema, moduleConfigCoreFields } from '@/component/componentConfig.schema';
 
-/** Schema Literal Unions - Connector authentication method identifier. */
-const connectorAuthMethodIdSchema = literalUnion(['apiKey', 'disabled', 'oAuth2', 'none'] as const);
+/** Authentication method identifiers supported by a connector implementation. */
+export const connectorAuthMethodIdSchema = literalUnion(['apiKey', 'disabled', 'oAuth2', 'none'] as const);
 
-/** Schema Literal Unions - Connector category identifier. */
+/** A connector implementation variant. A single connector may expose multiple
+ * implementations differing by auth method, limits, or vendor-specific behavior.
+ */
+export const connectorImplementationSchema = object({
+    authMethodId: connectorAuthMethodIdSchema,
+    activeConnectionCount: optional(number()),
+    canDescribe: optional(boolean()),
+    id: optional(string()),
+    label: optional(localisedStringSchema),
+    maxConnectionCount: optional(number()),
+    params: optional(array(record(string(), string())))
+});
+
+/** Category identifiers used for grouping and filtering connectors. */
 export const connectorCategoryIdSchema = literalUnion(['application', 'curatedDataset', 'database', 'fileStore'] as const);
 
-/** Schema Literal Unions - Connector operation name. */
+/** Operation names a connector may support. */
 export const connectorOperationNameSchema = literalUnion([
     'abortOperation',
     'authenticateConnection',
@@ -32,21 +48,10 @@ export const connectorOperationNameSchema = literalUnion([
     'upsertRecords'
 ] as const);
 
-/** Schema Literal Unions - Connector usage identifier. */
+/** Connector data pipeline usage identifiers. */
 export const connectorUsageIdSchema = literalUnion(['bidirectional', 'destination', 'source', 'unknown'] as const);
 
-/** Schema Objects - Connector implementation. */
-export const connectorImplementationSchema = object({
-    authMethodId: connectorAuthMethodIdSchema,
-    activeConnectionCount: optional(number()),
-    canDescribe: optional(boolean()),
-    id: optional(string()),
-    label: optional(localisedStringSchema),
-    maxConnectionCount: optional(number()),
-    params: optional(array(record(string(), string())))
-});
-
-/** Schema Objects - Connector configuration. */
+/** Top-level connector configuration object. */
 export const connectorConfigSchema = object({
     ...moduleConfigCoreFields,
     typeId: literal('connector'),

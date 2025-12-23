@@ -1,33 +1,26 @@
-import { parse as csvParse } from 'csv-parse/browser/esm';
-import { parse as dateFnsParse } from 'date-fns';
 import { InferOutput } from 'valibot';
-import { nanoid } from 'nanoid';
 import { Component } from '..';
-import { buildFetchError, OperationalError } from '../../errors';
+import { connectorConfigSchema } from './connectorConfig.schema';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
-import { connectorCategoryIdSchema, connectorConfigSchema, connectorImplementationSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
 import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
-import { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '../../utilities';
-/** Interfaces/Types - Connector category identifier. */
-export type ConnectorCategoryId = InferOutput<typeof connectorCategoryIdSchema>;
-/** Interfaces/Types - Connector operation name. */
-export type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
-/** Interfaces/Types - Connector usage identifier. */
-export type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
-/** Interfaces/Types - Connector implementation. */
-export type ConnectorImplementation = InferOutput<typeof connectorImplementationSchema>;
-/** Interfaces/Types - Connector configuration. */
-export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
-export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & {
+import { ToolConfig } from '../../index';
+/** Authentication method identifiers supported by a connector implementation. */
+/** Connector implementation. */
+/** Category identifiers used for grouping and filtering connectors. */
+/** Operation names a connector may support. */
+/** Connector data pipeline usage identifiers. */
+/** Connector configuration. */
+type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
+type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & {
     label: string;
     description: string;
 };
-/** Interfaces/Types - Connector. */
-export interface Connector extends Component {
+/** Connector runtime interface. */
+interface Connector extends Component {
     abortController?: AbortController;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
-    readonly tools: ConnectorTools;
+    readonly toolConfigs: ToolConfig[];
     abortOperation?(connector: Connector): void;
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
     createObject?(connector: Connector, settings: CreateSettings): Promise<void>;
@@ -43,23 +36,6 @@ export interface Connector extends Component {
     retrieveRecords?(connector: Connector, settings: RetrieveRecordsSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
-export interface ConnectorTools {
-    csvParse: typeof csvParse;
-    dataPos: {
-        buildFetchError: typeof buildFetchError;
-        extractExtensionFromPath: typeof extractExtensionFromPath;
-        extractNameFromPath: typeof extractNameFromPath;
-        lookupMimeTypeForExtension: typeof lookupMimeTypeForExtension;
-        OperationalError: typeof OperationalError;
-    };
-    dateFns: {
-        parse: typeof dateFnsParse;
-    };
-    nanoid: typeof nanoid;
-}
-/** Constants  */
-export declare const CONNECTOR_DESTINATION_OPERATIONS: string[];
-export declare const CONNECTOR_SOURCE_OPERATIONS: string[];
 export interface InitialiseSettings {
     connectorStorageURLPrefix: string;
 }
@@ -174,5 +150,6 @@ export interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
-/** Exposures */
+/** Exports */
+export type { Connector, ConnectorConfig, ConnectorLocalisedConfig };
 export { connectorConfigSchema } from './connectorConfig.schema';

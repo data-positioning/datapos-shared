@@ -2,50 +2,41 @@
  * Connector composables, constants, errors, types/interfaces and utilities.
  */
 
-/** Dependencies - Vendor. */
-import type { parse as csvParse } from 'csv-parse/browser/esm';
-import type { parse as dateFnsParse } from 'date-fns';
+/** Vendor dependencies. */
 import type { InferOutput } from 'valibot';
-import type { nanoid } from 'nanoid'; // TODO: Check package.json if removed, currently both peer and dev dependency.
 
-/** Dependencies - Framework. */
+/** Framework dependencies. */
 import type { Component } from '@/component';
-import { DEFAULT_LOCALE_CODE } from '@/index';
-import type { LocalisedString } from '@/index';
-import type { buildFetchError, OperationalError } from '@/errors';
+import type { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
-import type {
-    connectorCategoryIdSchema,
-    connectorConfigSchema,
-    connectorImplementationSchema,
-    connectorOperationNameSchema,
-    connectorUsageIdSchema
-} from '@/component/connector/connectorConfig.schema';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/dataView';
-import type { extractExtensionFromPath, extractNameFromPath, lookupMimeTypeForExtension } from '@/utilities';
+import { DEFAULT_LOCALE_CODE, type LocalisedString, type ToolConfig } from '@/index';
 
-/** Interfaces/Types - Connector category identifier. */
-export type ConnectorCategoryId = InferOutput<typeof connectorCategoryIdSchema>;
+/** Authentication method identifiers supported by a connector implementation. */
+// type AuthMethodId = InferOutput<typeof connectorAuthMethodIdSchema>;
 
-/** Interfaces/Types - Connector operation name. */
-export type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
+/** Connector implementation. */
+// type ConnectorImplementation = InferOutput<typeof connectorImplementationSchema>;
 
-/** Interfaces/Types - Connector usage identifier. */
-export type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
+/** Category identifiers used for grouping and filtering connectors. */
+// type ConnectorCategoryId = InferOutput<typeof connectorCategoryIdSchema>;
 
-/** Interfaces/Types - Connector implementation. */
-export type ConnectorImplementation = InferOutput<typeof connectorImplementationSchema>;
+/** Operation names a connector may support. */
+// type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
 
-/** Interfaces/Types - Connector configuration. */
-export type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
-export type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
+/** Connector data pipeline usage identifiers. */
+// type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
 
-/** Interfaces/Types - Connector. */
-export interface Connector extends Component {
+/** Connector configuration. */
+type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
+type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
+
+/** Connector runtime interface. */
+interface Connector extends Component {
     abortController?: AbortController;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
-    readonly tools: ConnectorTools;
+    readonly toolConfigs: ToolConfig[];
     abortOperation?(connector: Connector): void; // Abort the active long running operation for a specified connection.
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection.
     createObject?(connector: Connector, settings: CreateSettings): Promise<void>; // Create an object for a specified connection.
@@ -72,22 +63,7 @@ export interface Connector extends Component {
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
 
-export interface ConnectorTools {
-    csvParse: typeof csvParse;
-    dataPos: {
-        buildFetchError: typeof buildFetchError;
-        extractExtensionFromPath: typeof extractExtensionFromPath;
-        extractNameFromPath: typeof extractNameFromPath;
-        lookupMimeTypeForExtension: typeof lookupMimeTypeForExtension;
-        OperationalError: typeof OperationalError;
-    };
-    dateFns: { parse: typeof dateFnsParse };
-    nanoid: typeof nanoid;
-}
-
-/** Constants  */
-export const CONNECTOR_DESTINATION_OPERATIONS = ['createObject', 'dropObject', 'removeRecords', 'upsertRecords'];
-export const CONNECTOR_SOURCE_OPERATIONS = ['findObject', 'getRecord', 'listNodes', 'previewObject', 'retrieveRecords'];
+//#region Settings & Results
 
 // Types/Interfaces/Operations - Initialise settings.
 export interface InitialiseSettings {
@@ -268,5 +244,8 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
     return { id, label: id };
 };
 
-/** Exposures */
+//#endregion
+
+/** Exports */
+export type { Connector, ConnectorConfig, ConnectorLocalisedConfig };
 export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
