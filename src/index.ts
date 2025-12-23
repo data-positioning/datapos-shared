@@ -51,14 +51,14 @@ export type {
 
 /** Interfaces/Types - Connection */
 export type {
-    ConnectionAuthorizationConfig,
-    ConnectionColumnConfig,
+    // ConnectionAuthorizationConfig,
+    // ConnectionColumnConfig,
     ConnectionConfig,
-    ConnectionNodeConfig,
-    DPAFileSystemFileHandle,
-    Encoding,
-    StorageTypeId,
-    UsageTypeId
+    ConnectionNodeConfig
+    // DPAFileSystemFileHandle,
+    // Encoding,
+    // StorageTypeId,
+    // UsageTypeId
 } from '@/component/connector/connection';
 
 /** Schemas - Connector  */

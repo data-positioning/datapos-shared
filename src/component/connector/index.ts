@@ -33,7 +33,7 @@ type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> &
 
 /** Connector runtime interface. */
 interface Connector extends Component {
-    abortController?: AbortController;
+    abortController: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
     readonly toolConfigs: ToolConfig[];

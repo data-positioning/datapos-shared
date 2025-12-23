@@ -11,7 +11,7 @@ export { componentConfigSchema } from './component';
 /** Interfaces/Types Component - Connector */
 export type { AuditContentResult, AuditContentSettings, Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings, CreateSettings, DropSettings, FindResult, FindSettings, GetReadableStreamResult, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, InitialiseSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings } from './component/connector';
 /** Interfaces/Types - Connection */
-export type { ConnectionAuthorizationConfig, ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, DPAFileSystemFileHandle, Encoding, StorageTypeId, UsageTypeId } from './component/connector/connection';
+export type { ConnectionConfig, ConnectionNodeConfig } from './component/connector/connection';
 /** Schemas - Connector  */
 export { connectorConfigSchema } from './component/connector/connectorConfig.schema';
 /** Interfaces/Types - Context. */
