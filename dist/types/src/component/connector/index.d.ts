@@ -156,7 +156,7 @@ interface ConnectorCallbackData {
     properties: Record<string, unknown>;
 }
 /** Load tool for connector. */
-declare function loadToolForConnector<T>(connector: Connector, toolId: string): Promise<T>;
+declare function loadToolForConnector<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T>;
 /** Exports. */
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings };

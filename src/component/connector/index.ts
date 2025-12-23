@@ -252,10 +252,10 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
 //#endregion
 
 /** Load tool for connector. */
-async function loadToolForConnector<T>(connector: Connector, toolId: string): Promise<T> {
-    console.log('loadToolForConnector', connector, toolId);
+async function loadToolForConnector<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T> {
+    console.log('loadToolForConnector', toolConfigs, toolId);
     const toolName = `datapos-tool-${toolId}`;
-    const toolModuleConfig = connector.toolConfigs.find((config) => config.id === toolName);
+    const toolModuleConfig = toolConfigs.find((config) => config.id === toolName);
     if (!toolModuleConfig) throw new Error(`Connector could not load unknown tool '${toolId}'.`);
 
     const url = `https://engine-eu.datapos.app/tools/${toolId}_v${toolModuleConfig.version}/${toolName}.es.js`;

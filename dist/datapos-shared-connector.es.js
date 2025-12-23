@@ -4,14 +4,14 @@ const n = (e) => {
   return new Map(o);
 };
 n({ "en-gb": "Application" }), n({ "en-gb": "Curated Dataset" }), n({ "en-gb": "Database" }), n({ "en-gb": "File Store" });
-async function c(e, o) {
+async function i(e, o) {
   console.log("loadToolForConnector", e, o);
-  const t = `datapos-tool-${o}`, a = e.toolConfigs.find((s) => s.id === t);
+  const t = `datapos-tool-${o}`, a = e.find((r) => r.id === t);
   if (!a) throw new Error(`Connector could not load unknown tool '${o}'.`);
   const l = await import(`https://engine-eu.datapos.app/tools/${o}_v${a.version}/${t}.es.js`);
   return new l.Tool();
 }
 export {
   b as connectorConfigSchema,
-  c as loadToolForConnector
+  i as loadToolForConnector
 };
