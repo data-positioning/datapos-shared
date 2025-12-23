@@ -7,14 +7,7 @@ import type { InferOutput } from 'valibot';
 
 /** Framework dependencies. */
 import { DEFAULT_LOCALE_CODE } from '@/index';
-import type {
-    componentConfigSchema,
-    componentReferenceSchema,
-    componentStatusColorIdSchema,
-    componentStatusIdSchema,
-    componentStatusSchema,
-    componentTypeIdSchema
-} from '@/component/componentConfig.schema';
+import type { componentConfigSchema, componentStatusColorIdSchema, componentStatusSchema } from '@/component/componentConfig.schema';
 import type { LocaleCode, LocalisedString } from '@/index';
 
 /** Component. */
@@ -22,15 +15,11 @@ interface Component {
     readonly config: ComponentConfig;
 }
 
-/** */
 type ComponentConfig = InferOutput<typeof componentConfigSchema>;
-// type ComponentReference = InferOutput<typeof componentReferenceSchema>;
-type ComponentStatus = InferOutput<typeof componentStatusSchema>;
-type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
-// type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
-// type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
 
-//#region Component Status
+type ComponentStatus = InferOutput<typeof componentStatusSchema>;
+
+type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
 
 const componentStatuses: { id: string; color: ComponentStatusColorId; labels: Partial<LocalisedString> }[] = [
     { id: 'alpha', color: 'red', labels: { 'en-gb': 'alpha' } },
@@ -54,11 +43,8 @@ function getComponentStatus(id: string, localeId: LocaleCode = DEFAULT_LOCALE_CO
     return { id, color: 'other', label: id };
 }
 
-//#endregion
-
 /** Exports */
 export { getComponentStatus };
 export { componentConfigSchema } from '@/component/componentConfig.schema';
-// export type { Component, ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId };
 export type { Component, ComponentConfig };
 export type { ModuleConfig, ModuleTypeId } from '@/component/module';
