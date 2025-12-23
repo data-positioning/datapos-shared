@@ -63,6 +63,15 @@ interface Connector extends Component {
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
 
+/** Get readable stream result and settings. */
+interface GetReadableStreamResult {
+    readable?: ReadableStream<unknown>;
+}
+interface GetReadableStreamSettings extends ConnectorOperationSettings {
+    id: string;
+    path: string;
+}
+
 //#region Settings & Results
 
 // Types/Interfaces/Operations - Initialise settings.
@@ -114,15 +123,6 @@ interface FindSettings extends ConnectorOperationSettings {
 }
 interface FindResult {
     folderPath?: string;
-}
-
-// Types/Interfaces/Operations - Get readable stream.
-interface GetReadableStreamSettings extends ConnectorOperationSettings {
-    id: string;
-    path: string;
-}
-interface GetReadableStreamResult {
-    readable?: ReadableStream<unknown>;
 }
 
 // Types/Interfaces/Operations - Get record (object).
@@ -251,6 +251,18 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
 
 //#endregion
 
+/** Load tool for connector. */
+async function loadToolForConnector<T>(connector: Connector, toolId: string): Promise<T> {
+    const toolName = `datapos-tool-${toolId}`;
+    const toolModuleConfig = connector.toolConfigs.find((config) => config.id === toolName);
+    if (!toolModuleConfig) throw new Error(`Connector could not load unknown tool '${toolId}'.`);
+
+    const url = `https://engine-eu.datapos.app/tools/${toolId}_v${toolModuleConfig.version}/${toolName}.es.js`;
+    const toolModule = (await import(/* @vite-ignore */ url)) as { Tool: new () => T };
+    const toolInstance = new toolModule.Tool();
+    return toolInstance;
+}
+
 /** Exports. */
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from '@/component/connector/connection';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings };
@@ -279,4 +291,5 @@ export type {
     RetrieveRecordsSummary,
     UpsertSettings
 };
+export { loadToolForConnector };
 export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';

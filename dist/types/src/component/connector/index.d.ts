@@ -36,6 +36,14 @@ interface Connector extends Component {
     retrieveRecords?(connector: Connector, settings: RetrieveRecordsSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
+/** Get readable stream result and settings. */
+interface GetReadableStreamResult {
+    readable?: ReadableStream<unknown>;
+}
+interface GetReadableStreamSettings extends ConnectorOperationSettings {
+    id: string;
+    path: string;
+}
 interface InitialiseSettings {
     connectorStorageURLPrefix: string;
     toolConfigs: ToolConfig[];
@@ -72,13 +80,6 @@ interface FindSettings extends ConnectorOperationSettings {
 }
 interface FindResult {
     folderPath?: string;
-}
-interface GetReadableStreamSettings extends ConnectorOperationSettings {
-    id: string;
-    path: string;
-}
-interface GetReadableStreamResult {
-    readable?: ReadableStream<unknown>;
 }
 interface GetRecordSettings extends ConnectorOperationSettings {
     id: string;
@@ -154,8 +155,11 @@ interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
+/** Load tool for connector. */
+declare function loadToolForConnector<T>(connector: Connector, toolId: string): Promise<T>;
 /** Exports. */
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings };
 export type { AuditContentResult, AuditContentSettings, CreateSettings, DropSettings, FindResult, FindSettings, GetReadableStreamResult, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, InitialiseSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksResult, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
+export { loadToolForConnector };
 export { connectorConfigSchema } from './connectorConfig.schema';
