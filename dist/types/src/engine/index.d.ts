@@ -32,4 +32,4 @@ interface EngineWorker {
     processTestRequest: ProcessTestRequest;
 }
 /** Exports. */
-export type { ConnectorInterfaceResult, ContextInterfaceResult, EngineInterface, EngineWorker, EngineInitialiseSettings, ProcessTestRequest, TestSettings };
+export type { ConnectorInterfaceResult, ContextInterfaceResult, EngineInterface, EngineWorker, EngineInitialiseSettings, TestSettings };
