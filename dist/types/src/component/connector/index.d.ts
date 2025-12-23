@@ -1,9 +1,9 @@
 import { InferOutput } from 'valibot';
 import { Component } from '..';
 import { connectorConfigSchema } from './connectorConfig.schema';
+import { ToolConfig } from '../tool';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
 import { DataViewContentAuditConfig, ValueDelimiterId } from '../dataView';
-import { ToolConfig } from '../../index';
 /** Authentication method identifiers supported by a connector implementation. */
 /** Connector implementation. */
 /** Category identifiers used for grouping and filtering connectors. */
@@ -155,11 +155,8 @@ interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
-/** Load tool for connector. */
-declare function loadToolForConnector<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T>;
 /** Exports. */
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings };
 export type { AuditContentResult, AuditContentSettings, CreateSettings, DropSettings, FindResult, FindSettings, GetReadableStreamResult, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, InitialiseSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksResult, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
-export { loadToolForConnector };
 export { connectorConfigSchema } from './connectorConfig.schema';

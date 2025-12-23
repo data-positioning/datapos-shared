@@ -1,17 +1,9 @@
-import { connectorConfigSchema as b } from "./datapos-shared.es.js";
-const n = (e) => {
-  const o = Object.entries(e).filter((t) => typeof t[1] == "string");
-  return new Map(o);
+import { connectorConfigSchema as r } from "./datapos-shared.es.js";
+const e = (a) => {
+  const t = Object.entries(a).filter((n) => typeof n[1] == "string");
+  return new Map(t);
 };
-n({ "en-gb": "Application" }), n({ "en-gb": "Curated Dataset" }), n({ "en-gb": "Database" }), n({ "en-gb": "File Store" });
-async function i(e, o) {
-  console.log("loadToolForConnector", e, o);
-  const t = `datapos-tool-${o}`, a = e.find((r) => r.id === t);
-  if (!a) throw new Error(`Connector could not load unknown tool '${o}'.`);
-  const l = await import(`https://engine-eu.datapos.app/tools/${o}_v${a.version}/${t}.es.js`);
-  return new l.Tool();
-}
+e({ "en-gb": "Application" }), e({ "en-gb": "Curated Dataset" }), e({ "en-gb": "Database" }), e({ "en-gb": "File Store" });
 export {
-  b as connectorConfigSchema,
-  i as loadToolForConnector
+  r as connectorConfigSchema
 };

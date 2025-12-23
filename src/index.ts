@@ -179,7 +179,7 @@ export type {
 
 //#region Tool
 
-export type { ToolConfig } from '@/component/tool';
+// export type { ToolConfig } from '@/component/tool';
 
 //#endregion
 

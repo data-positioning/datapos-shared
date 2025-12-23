@@ -8,9 +8,10 @@ import type { InferOutput } from 'valibot';
 /** Framework dependencies. */
 import type { Component } from '@/component';
 import type { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
+import type { ToolConfig } from '@/component/tool';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/dataView';
-import { DEFAULT_LOCALE_CODE, type LocalisedString, type ToolConfig } from '@/index';
+import { DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
 
 /** Authentication method identifiers supported by a connector implementation. */
 // type AuthMethodId = InferOutput<typeof connectorAuthMethodIdSchema>;
@@ -251,19 +252,6 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
 
 //#endregion
 
-/** Load tool for connector. */
-async function loadToolForConnector<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T> {
-    console.log('loadToolForConnector', toolConfigs, toolId);
-    const toolName = `datapos-tool-${toolId}`;
-    const toolModuleConfig = toolConfigs.find((config) => config.id === toolName);
-    if (!toolModuleConfig) throw new Error(`Connector could not load unknown tool '${toolId}'.`);
-
-    const url = `https://engine-eu.datapos.app/tools/${toolId}_v${toolModuleConfig.version}/${toolName}.es.js`;
-    const toolModule = (await import(/* @vite-ignore */ url)) as { Tool: new () => T };
-    const toolInstance = new toolModule.Tool();
-    return toolInstance;
-}
-
 /** Exports. */
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from '@/component/connector/connection';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings };
@@ -292,5 +280,5 @@ export type {
     RetrieveRecordsSummary,
     UpsertSettings
 };
-export { loadToolForConnector };
+
 export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
