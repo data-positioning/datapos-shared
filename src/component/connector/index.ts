@@ -253,6 +253,7 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
 
 /** Load tool for connector. */
 async function loadToolForConnector<T>(connector: Connector, toolId: string): Promise<T> {
+    console.log('loadToolForConnector', connector, toolId);
     const toolName = `datapos-tool-${toolId}`;
     const toolModuleConfig = connector.toolConfigs.find((config) => config.id === toolName);
     if (!toolModuleConfig) throw new Error(`Connector could not load unknown tool '${toolId}'.`);
