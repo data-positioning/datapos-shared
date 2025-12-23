@@ -24,11 +24,11 @@ interface Component {
 
 /** */
 type ComponentConfig = InferOutput<typeof componentConfigSchema>;
-type ComponentReference = InferOutput<typeof componentReferenceSchema>;
+// type ComponentReference = InferOutput<typeof componentReferenceSchema>;
 type ComponentStatus = InferOutput<typeof componentStatusSchema>;
 type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
-type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
-type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
+// type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
+// type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
 
 //#region Component Status
 
@@ -59,5 +59,6 @@ function getComponentStatus(id: string, localeId: LocaleCode = DEFAULT_LOCALE_CO
 /** Exports */
 export { getComponentStatus };
 export { componentConfigSchema } from '@/component/componentConfig.schema';
-export type { Component, ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId };
+// export type { Component, ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId };
+export type { Component, ComponentConfig };
 export type { ModuleConfig, ModuleTypeId } from '@/component/module';

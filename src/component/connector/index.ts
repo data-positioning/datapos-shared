@@ -9,8 +9,8 @@ import type { InferOutput } from 'valibot';
 import type { Component } from '@/component';
 import type { connectorConfigSchema } from '~/src/component/connector/connectorConfig.schema';
 import type { ToolConfig } from '@/component/tool';
+import type { ValueDelimiterId } from '@/component/dataView';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '~/src/component/connector/connection';
-import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/dataView';
 import { DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
 
 /** Authentication method identifiers supported by a connector implementation. */
@@ -64,6 +64,19 @@ interface Connector extends Component {
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
 
+// Types/Interfaces/Operations - Connector callback data.
+interface ConnectorCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
+
+// Types/Interfaces/Operations - Connector operation settings.
+interface ConnectorOperationSettings {
+    accountId?: string;
+    appCheckToken?: string;
+    sessionAccessToken?: string;
+}
+
 /** Get readable stream result and settings. */
 interface GetReadableStreamResult {
     readable?: ReadableStream<unknown>;
@@ -74,13 +87,6 @@ interface GetReadableStreamSettings extends ConnectorOperationSettings {
 }
 
 //#region Settings & Results
-
-// Types/Interfaces/Operations - Connector operation settings.
-interface ConnectorOperationSettings {
-    accountId?: string;
-    appCheckToken?: string;
-    sessionAccessToken?: string;
-}
 
 // Types/Interfaces/Operations - Create (object).
 interface CreateSettings extends ConnectorOperationSettings {
@@ -192,38 +198,37 @@ interface UpsertSettings extends ConnectorOperationSettings {
     path: string;
 }
 
-// Types/Interfaces/Operations - Connector callback data.
-interface ConnectorCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
-}
+//#endregion
+
+// #region Connector Category
 
 /** Types/Interfaces/Operations - Connector category. */
 interface ConnectorCategory {
     id: string;
     label: string;
 }
+
 type LocaleLabelMap = ReadonlyMap<string, string>;
+
 const createLocaleLabelMap = (labels: Partial<LocalisedString>): LocaleLabelMap => {
     const entries = Object.entries(labels).filter((entry): entry is [string, string] => typeof entry[1] === 'string');
     return new Map(entries);
 };
+
+const connectorCategories: { id: string; labels: LocaleLabelMap }[] = [
+    { id: 'application', labels: createLocaleLabelMap({ 'en-gb': 'Application' }) },
+    { id: 'curatedDataset', labels: createLocaleLabelMap({ 'en-gb': 'Curated Dataset' }) },
+    { id: 'database', labels: createLocaleLabelMap({ 'en-gb': 'Database' }) },
+    { id: 'fileStore', labels: createLocaleLabelMap({ 'en-gb': 'File Store' }) }
+];
+
 const resolveLocaleLabel = (labels: LocaleLabelMap, localeId: string, fallbackLocaleId = DEFAULT_LOCALE_CODE): string | undefined => {
     const localizedLabel = labels.get(localeId);
     if (localizedLabel !== undefined) return localizedLabel;
     if (fallbackLocaleId === localeId) return undefined;
     return labels.get(fallbackLocaleId);
 };
-interface ConnectorCategoryConfig {
-    id: string;
-    labels: LocaleLabelMap;
-}
-const connectorCategories: ConnectorCategoryConfig[] = [
-    { id: 'application', labels: createLocaleLabelMap({ 'en-gb': 'Application' }) },
-    { id: 'curatedDataset', labels: createLocaleLabelMap({ 'en-gb': 'Curated Dataset' }) },
-    { id: 'database', labels: createLocaleLabelMap({ 'en-gb': 'Database' }) },
-    { id: 'fileStore', labels: createLocaleLabelMap({ 'en-gb': 'File Store' }) }
-];
+
 const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): ConnectorCategory => {
     const connectorCategory = connectorCategories.find((connectorCategory) => connectorCategory.id === id);
     if (connectorCategory) {
@@ -236,6 +241,7 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
 //#endregion
 
 /** Exports. */
+export { getConnectorCategory };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from '~/src/component/connector/connection';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings };
 export type {

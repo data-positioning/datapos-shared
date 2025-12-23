@@ -2,8 +2,8 @@ import { InferOutput } from 'valibot';
 import { Component } from '..';
 import { connectorConfigSchema } from './connectorConfig.schema';
 import { ToolConfig } from '../tool';
-import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
 import { ValueDelimiterId } from '../dataView';
+import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
 /** Authentication method identifiers supported by a connector implementation. */
 /** Connector implementation. */
 /** Category identifiers used for grouping and filtering connectors. */
@@ -36,6 +36,15 @@ interface Connector extends Component {
     retrieveRecords?(connector: Connector, settings: RetrieveRecordsSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
+interface ConnectorCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
+interface ConnectorOperationSettings {
+    accountId?: string;
+    appCheckToken?: string;
+    sessionAccessToken?: string;
+}
 /** Get readable stream result and settings. */
 interface GetReadableStreamResult {
     readable?: ReadableStream<unknown>;
@@ -43,11 +52,6 @@ interface GetReadableStreamResult {
 interface GetReadableStreamSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
-}
-interface ConnectorOperationSettings {
-    accountId?: string;
-    appCheckToken?: string;
-    sessionAccessToken?: string;
 }
 interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
@@ -138,11 +142,14 @@ interface UpsertSettings extends ConnectorOperationSettings {
     records: Record<string, unknown>[];
     path: string;
 }
-interface ConnectorCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
+/** Types/Interfaces/Operations - Connector category. */
+interface ConnectorCategory {
+    id: string;
+    label: string;
 }
+declare const getConnectorCategory: (id: string, localeId?: import('../../index').LocaleCode) => ConnectorCategory;
 /** Exports. */
+export { getConnectorCategory };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings };
 export type { CreateSettings, DropSettings, FindResult, FindSettings, GetReadableStreamResult, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksResult, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
