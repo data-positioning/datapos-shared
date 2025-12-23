@@ -72,7 +72,7 @@ type StorageTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'date
 type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
 interface Encoding {
     id: string;
-    confidenceLevel?: number;
+    confidenceLevel: number | undefined;
 }
 /** Exports. */
 export type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig, Encoding };

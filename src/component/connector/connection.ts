@@ -106,7 +106,7 @@ type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'mome
 // Types/Interfaces - Encoding
 interface Encoding {
     id: string;
-    confidenceLevel?: number;
+    confidenceLevel: number | undefined;
 }
 
 /** Exports. */
