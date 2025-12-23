@@ -1,8 +1,9 @@
 import { ConnectionConfig } from '../component/connector/connection';
 import { ToolConfig } from '../component/tool';
 import { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, ListResult, RetrieveRecordsResult } from '../component/connector';
+import { Component } from '../component';
 import { ContextCallbackData, ContextConfig, ContextOperationSettings } from '../component/context';
-import { DataViewPreviewConfig } from '../component/dataView';
+import { DataViewPreviewConfig, EncodingConfig } from '../component/dataView';
 interface EngineInitialiseSettings {
     connectorStorageURLPrefix: string;
     toolConfigs: ToolConfig[];
@@ -20,6 +21,10 @@ interface TestSettings {
     hasHeaders?: boolean;
     readable: ReadableStream<Uint8Array>;
 }
+interface EngineInterface extends Component {
+    getEncodingConfigs: (localeId: string) => EncodingConfig[];
+    invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;
+}
 interface EngineWorker {
     initialise: InitialiseEngine;
     processConnectorRequest: ProcessConnectorRequest;
@@ -27,4 +32,4 @@ interface EngineWorker {
     processTestRequest: ProcessTestRequest;
 }
 /** Exports. */
-export type { EngineWorker, EngineInitialiseSettings };
+export type { EngineInterface, EngineWorker, EngineInitialiseSettings };

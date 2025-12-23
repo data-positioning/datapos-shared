@@ -49,7 +49,7 @@ interface TestSettings {
     readable: ReadableStream<Uint8Array>;
 }
 
-interface Engine extends Component {
+interface EngineInterface extends Component {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;
 }
@@ -62,4 +62,4 @@ interface EngineWorker {
 }
 
 /** Exports. */
-export type { EngineWorker, EngineInitialiseSettings };
+export type { EngineInterface, EngineWorker, EngineInitialiseSettings };
