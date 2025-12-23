@@ -1,5 +1,26 @@
-import { a, g as e } from "./index-shYsk_2c.js";
+import { DEFAULT_LOCALE_CODE as a } from "./datapos-shared.es.js";
+import { componentConfigSchema as s } from "./datapos-shared.es.js";
+const r = [
+  { id: "alpha", color: "red", labels: { "en-gb": "alpha" } },
+  { id: "beta", color: "amber", labels: { "en-gb": "beta" } },
+  { id: "generalAvailability", color: "green", labels: { "en-gb": "" } },
+  { id: "notApplicable", color: "green", labels: { "en-gb": "not-applicable" } },
+  { id: "preAlpha", color: "red", labels: { "en-gb": "pre-alpha" } },
+  { id: "proposed", color: "other", labels: { "en-gb": "proposed" } },
+  { id: "releaseCandidate", color: "green", labels: { "en-gb": "release-candidate" } },
+  { id: "unavailable", color: "other", labels: { "en-gb": "unavailable" } },
+  { id: "underReview", color: "other", labels: { "en-gb": "under-review" } }
+];
+function b(l, n = a) {
+  console.log(1111, r);
+  const e = r.find((o) => o.id === l);
+  if (e) {
+    const o = e.labels[n] ?? e.labels[a] ?? e.id;
+    return { id: e.id, color: e.color, label: o };
+  }
+  return { id: l, color: "other", label: l };
+}
 export {
-  a as componentConfigSchema,
-  e as getComponentStatus
+  s as componentConfigSchema,
+  b as getComponentStatus
 };

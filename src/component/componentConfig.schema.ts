@@ -2,30 +2,31 @@
  * Component schema (drafted by Copilot).
  */
 
-/** Dependencies - Vendor. */
+/** Vendor dependencies. */
 import { literal, nullable, number, object, optional, string, union } from 'valibot';
 import type { LiteralSchema, UnionSchema } from 'valibot';
 
 type LiteralUnionSchema<T extends readonly string[]> = UnionSchema<{ [K in keyof T]: LiteralSchema<T[K], undefined> }, undefined>;
 
-export const literalUnion = <const T extends readonly string[]>(values: T): LiteralUnionSchema<T> => union(values.map((value) => literal(value))) as LiteralUnionSchema<T>;
+const literalUnion = <const T extends readonly string[]>(values: T): LiteralUnionSchema<T> => union(values.map((value) => literal(value))) as LiteralUnionSchema<T>;
 
-export const localisedStringSchema = object({
+const localisedStringSchema = object({
     'en-au': string(),
     'en-gb': string(),
     'en-us': string(),
     'es-es': string()
 });
 
-export const partialLocalisedStringSchema = object({
+const partialLocalisedStringSchema = object({
     'en-au': optional(string()),
     'en-gb': optional(string()),
     'en-us': optional(string()),
     'es-es': optional(string())
 });
 
-export const componentStatusColorIdSchema = literalUnion(['amber', 'green', 'red', 'other'] as const);
-export const componentStatusIdSchema = literalUnion([
+const componentStatusColorIdSchema = literalUnion(['amber', 'green', 'red', 'other'] as const);
+
+const componentStatusIdSchema = literalUnion([
     'alpha',
     'beta',
     'generalAvailability',
@@ -36,7 +37,8 @@ export const componentStatusIdSchema = literalUnion([
     'unavailable',
     'underReview'
 ] as const);
-export const componentTypeIdSchema = literalUnion([
+
+const componentTypeIdSchema = literalUnion([
     'app',
     'connector',
     'connectorConnection',
@@ -62,13 +64,13 @@ export const componentTypeIdSchema = literalUnion([
     'tool'
 ] as const);
 
-export const componentStatusSchema = object({
+const componentStatusSchema = object({
     id: string(),
     color: componentStatusColorIdSchema,
     label: string()
 });
 
-export const componentConfigCoreFields = {
+const componentConfigCoreFields = {
     id: string(),
     label: partialLocalisedStringSchema,
     description: partialLocalisedStringSchema,
@@ -80,12 +82,12 @@ export const componentConfigCoreFields = {
     statusId: componentStatusIdSchema
 } as const;
 
-export const componentConfigSchema = object({
+const componentConfigSchema = object({
     ...componentConfigCoreFields,
     typeId: componentTypeIdSchema
 });
 
-export const componentReferenceSchema = object({
+const componentReferenceSchema = object({
     id: string(),
     label: partialLocalisedStringSchema,
     description: partialLocalisedStringSchema,
@@ -94,3 +96,17 @@ export const componentReferenceSchema = object({
     order: number(),
     path: string()
 });
+
+/** Exports. */
+export {
+    componentConfigCoreFields,
+    componentConfigSchema,
+    componentReferenceSchema,
+    componentStatusColorIdSchema,
+    componentStatusIdSchema,
+    componentStatusSchema,
+    componentTypeIdSchema,
+    literalUnion,
+    localisedStringSchema,
+    partialLocalisedStringSchema
+};

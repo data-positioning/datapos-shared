@@ -1,26 +1,17 @@
 import { InferOutput } from 'valibot';
-import { componentConfigSchema, componentStatusColorIdSchema, componentStatusIdSchema, componentStatusSchema, componentTypeIdSchema } from './componentConfig.schema';
-import { LocaleCode, LocalisedString } from '../index';
+import { componentConfigSchema, componentReferenceSchema, componentStatusColorIdSchema, componentStatusIdSchema, componentStatusSchema, componentTypeIdSchema } from './componentConfig.schema';
+import { LocaleCode } from '../index';
 /** Component. */
 interface Component {
     readonly config: ComponentConfig;
 }
-/** Component configuration. */
+/** */
 type ComponentConfig = InferOutput<typeof componentConfigSchema>;
+type ComponentReference = InferOutput<typeof componentReferenceSchema>;
 type ComponentStatus = InferOutput<typeof componentStatusSchema>;
 type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
 type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
 type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
-/** Component reference. */
-interface ComponentReference {
-    id: string;
-    label: Partial<LocalisedString>;
-    description: Partial<LocalisedString>;
-    icon: string | null;
-    iconDark: string | null;
-    order: number;
-    path: string;
-}
 declare function getComponentStatus(id: string, localeId?: LocaleCode): ComponentStatus;
 /** Exports */
 export { getComponentStatus };
