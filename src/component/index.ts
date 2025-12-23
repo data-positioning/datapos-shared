@@ -112,6 +112,7 @@ const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LOCALE_CO
 //     | 'tool';
 
 /** Exports */
-export type { Component, ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId };
+export { getComponentStatus };
 export { componentConfigSchema } from '@/component/componentConfig.schema';
+export type { Component, ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId };
 export type { ModuleConfig, ModuleTypeId } from '@/component/module';

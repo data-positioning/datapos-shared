@@ -1,4 +1,5 @@
-import { componentConfigSchema as m } from "./datapos-shared.es.js";
+import { a, g as e } from "./index-Duq-Z9YV.js";
 export {
-  m as componentConfigSchema
+  a as componentConfigSchema,
+  e as getComponentStatus
 };

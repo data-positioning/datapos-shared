@@ -1,6 +1,6 @@
 import { InferOutput } from 'valibot';
 import { componentConfigSchema, componentStatusColorIdSchema, componentStatusIdSchema, componentStatusSchema, componentTypeIdSchema } from './componentConfig.schema';
-import { LocalisedString } from '../index';
+import { LocaleCode, LocalisedString } from '../index';
 /** Component. */
 interface Component {
     readonly config: ComponentConfig;
@@ -19,7 +19,9 @@ interface ComponentReference {
     order: number;
     path: string;
 }
+declare const getComponentStatus: (id: string, localeId?: LocaleCode) => ComponentStatus;
 /** Exports */
-export type { Component, ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId };
+export { getComponentStatus };
 export { componentConfigSchema } from './componentConfig.schema';
+export type { Component, ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId };
 export type { ModuleConfig, ModuleTypeId } from './module';
