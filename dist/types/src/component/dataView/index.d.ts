@@ -27,7 +27,7 @@ export interface DataViewPreviewConfig {
     columnConfigs: ConnectionColumnConfig[];
     dataFormatId: DataFormatId;
     duration: number;
-    encodingConfidenceLevel?: number;
+    encodingConfidenceLevel: number | undefined;
     encodingId?: string;
     errorMessage?: string;
     hasHeaders?: boolean;
