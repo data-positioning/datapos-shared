@@ -1,6 +1,7 @@
 import { ComponentConfig } from '..';
 import { ConnectorConfig } from '.';
-export interface ConnectionAuthorizationConfig {
+/** Connection authorisation configuration. */
+interface ConnectionAuthorisationConfig {
     accessToken: string;
     accountId: string;
     expiresAt: number;
@@ -10,13 +11,15 @@ export interface ConnectionAuthorizationConfig {
     tokenType: string;
     uid: string;
 }
-export interface ConnectionConfig extends ComponentConfig {
-    authorisation: Record<string, ConnectionAuthorizationConfig>;
+/** Connection configuration. */
+interface ConnectionConfig extends ComponentConfig {
+    authorisation: Record<string, ConnectionAuthorisationConfig>;
     connectorConfig: ConnectorConfig;
     lastVerifiedAt: number;
     notation?: string;
 }
-export interface ConnectionNodeConfig {
+/** Connection node configuration. */
+interface ConnectionNodeConfig {
     childCount?: number;
     columnsConfigs?: ConnectionColumnConfig[];
     extension?: string;
@@ -32,15 +35,16 @@ export interface ConnectionNodeConfig {
     size?: number;
     typeId: ConnectionNodeTypeId;
 }
-export type ConnectionNodeTypeId = 'folder' | 'object';
-export interface ConnectionDescription {
+type ConnectionNodeTypeId = 'folder' | 'object';
+/** Connection description. */
+interface ConnectionDescription {
     objects: {
         id: string;
         label: Record<string, string>;
         columns: ConnectionColumnConfig[];
     }[];
 }
-export interface ConnectionColumnConfig {
+interface ConnectionColumnConfig {
     invalidValueCount?: number;
     invalidValues?: string[];
     isIgnored?: boolean;
@@ -60,13 +64,11 @@ export interface ConnectionColumnConfig {
     validValues?: Record<string, string>;
     voidValueCount?: number;
 }
-export interface DPAFileSystemFileHandle {
+interface DPAFileSystemFileHandle {
     readonly kind: 'file';
     getFile(): Promise<File>;
 }
-export type StorageTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'dateTimeOffset' | 'decimal' | 'double' | 'int8' | 'int16' | 'int32' | 'int64' | 'object' | 'single' | 'string' | 'time' | 'unknown';
-export type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
-export interface Encoding {
-    id: string;
-    confidenceLevel?: number;
-}
+type StorageTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'dateTimeOffset' | 'decimal' | 'double' | 'int8' | 'int16' | 'int32' | 'int64' | 'object' | 'single' | 'string' | 'time' | 'unknown';
+type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
+/** Exports. */
+export type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig };

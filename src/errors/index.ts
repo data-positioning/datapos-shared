@@ -186,7 +186,7 @@ function sanitizeFetchErrorBody(body?: string): string | undefined {
     return body.length > FETCH_ERROR_BODY_LIMIT ? `${body.slice(0, FETCH_ERROR_BODY_LIMIT)}... [truncated]` : body;
 }
 
-/** Exports */
+/** Exports. */
 export type { SerialisedError };
 export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError };

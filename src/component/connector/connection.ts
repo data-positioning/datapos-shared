@@ -2,12 +2,12 @@
  * Connection composables, constants, errors, types/interfaces and utilities.
  */
 
-// Dependencies - Framework
+/** Framework dependencies. */
 import type { ComponentConfig } from '@/component';
 import type { ConnectorConfig } from '@/component/connector';
 
-// Types/Interfaces - Connection Configuration
-export interface ConnectionAuthorizationConfig {
+/** Connection authorisation configuration. */
+interface ConnectionAuthorisationConfig {
     accessToken: string; // Dropbox.
     accountId: string; // Dropbox.
     expiresAt: number; // Dropbox.
@@ -17,15 +17,17 @@ export interface ConnectionAuthorizationConfig {
     tokenType: string; // Dropbox.
     uid: string; // Dropbox.
 }
-export interface ConnectionConfig extends ComponentConfig {
-    authorisation: Record<string, ConnectionAuthorizationConfig>;
+
+/** Connection configuration. */
+interface ConnectionConfig extends ComponentConfig {
+    authorisation: Record<string, ConnectionAuthorisationConfig>;
     connectorConfig: ConnectorConfig;
     lastVerifiedAt: number;
     notation?: string;
 }
 
-// Types/Interfaces - Connection Node Configuration
-export interface ConnectionNodeConfig {
+/** Connection node configuration. */
+interface ConnectionNodeConfig {
     childCount?: number;
     columnsConfigs?: ConnectionColumnConfig[];
     extension?: string;
@@ -43,15 +45,19 @@ export interface ConnectionNodeConfig {
 }
 
 // Types/Interfaces - Connection Node Type Identifier
-export type ConnectionNodeTypeId = 'folder' | 'object';
+type ConnectionNodeTypeId = 'folder' | 'object';
 
-// Types/Interfaces - Configuration Description
-export interface ConnectionDescription {
-    objects: { id: string; label: Record<string, string>; columns: ConnectionColumnConfig[] }[];
+/** Connection description. */
+interface ConnectionDescription {
+    objects: {
+        id: string;
+        label: Record<string, string>;
+        columns: ConnectionColumnConfig[];
+    }[];
 }
 
 // Types/Interfaces - Column Configuration
-export interface ConnectionColumnConfig {
+interface ConnectionColumnConfig {
     invalidValueCount?: number;
     invalidValues?: string[];
     isIgnored?: boolean;
@@ -73,11 +79,11 @@ export interface ConnectionColumnConfig {
 }
 
 // Types/Interfaces - Basic
-export interface DPAFileSystemFileHandle {
+interface DPAFileSystemFileHandle {
     readonly kind: 'file';
     getFile(): Promise<File>;
 }
-export type StorageTypeId =
+type StorageTypeId =
     | 'binary'
     | 'boolean'
     | 'byte'
@@ -95,10 +101,13 @@ export type StorageTypeId =
     | 'string'
     | 'time'
     | 'unknown';
-export type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
+type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
 
 // Types/Interfaces - Encoding
-export interface Encoding {
+interface Encoding {
     id: string;
     confidenceLevel?: number;
 }
+
+/** Exports. */
+export type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig };

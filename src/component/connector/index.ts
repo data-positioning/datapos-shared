@@ -246,6 +246,7 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
 
 //#endregion
 
-/** Exports */
+/** Exports. */
+export type { ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 export type { Connector, ConnectorConfig, ConnectorLocalisedConfig };
 export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';

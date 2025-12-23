@@ -150,6 +150,7 @@ export interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
-/** Exports */
+/** Exports. */
+export type { ConnectionConfig, ConnectionNodeConfig } from './connection';
 export type { Connector, ConnectorConfig, ConnectorLocalisedConfig };
 export { connectorConfigSchema } from './connectorConfig.schema';

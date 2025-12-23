@@ -77,7 +77,7 @@ declare function normalizeToError(value: unknown): Error;
  * - Messages are normalized to end with punctuation.
  */
 declare function serialiseError(error?: unknown): SerialisedError[];
-/** Exports */
+/** Exports. */
 export type { SerialisedError };
 export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
 export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError };
