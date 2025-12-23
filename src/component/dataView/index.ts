@@ -38,7 +38,7 @@ export interface DataViewPreviewConfig {
     encodingConfidenceLevel: number | undefined;
     encodingId?: string;
     errorMessage?: string;
-    hasHeaders?: boolean;
+    hasHeaders: boolean | undefined;
     // linesToSkipBeforeHeader?: number;
     // linesToSkipAfterHeader?: number;
     // linesToSkipAtEnd?: number;

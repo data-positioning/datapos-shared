@@ -30,7 +30,7 @@ export interface DataViewPreviewConfig {
     encodingConfidenceLevel: number | undefined;
     encodingId?: string;
     errorMessage?: string;
-    hasHeaders?: boolean;
+    hasHeaders: boolean | undefined;
     recordDelimiterId?: RecordDelimiterId;
     records: {
         isValid: boolean;
