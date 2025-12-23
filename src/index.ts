@@ -49,17 +49,17 @@ export type {
     UpsertSettings
 } from '@/component/connector';
 
-/** Interfaces/Types - Connection */
-export type {
-    // ConnectionAuthorizationConfig,
-    // ConnectionColumnConfig,
-    ConnectionConfig,
-    ConnectionNodeConfig
-    // DPAFileSystemFileHandle,
-    // Encoding,
-    // StorageTypeId,
-    // UsageTypeId
-} from '@/component/connector/connection';
+// /** Interfaces/Types - Connection */
+// export type {
+//     // ConnectionAuthorizationConfig,
+//     // ConnectionColumnConfig,
+//     // ConnectionConfig,
+//     // ConnectionNodeConfig
+//     // DPAFileSystemFileHandle,
+//     // Encoding,
+//     // StorageTypeId,
+//     // UsageTypeId
+// } from '@/component/connector/connection';
 
 /** Schemas - Connector  */
 export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';

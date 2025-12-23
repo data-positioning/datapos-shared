@@ -70,5 +70,9 @@ interface DPAFileSystemFileHandle {
 }
 type StorageTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'dateTimeOffset' | 'decimal' | 'double' | 'int8' | 'int16' | 'int32' | 'int64' | 'object' | 'single' | 'string' | 'time' | 'unknown';
 type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
+interface Encoding {
+    id: string;
+    confidenceLevel?: number;
+}
 /** Exports. */
-export type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig };
+export type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig, Encoding };
