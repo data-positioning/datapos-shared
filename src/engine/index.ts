@@ -49,7 +49,7 @@ interface TestSettings {
     readable: ReadableStream<Uint8Array>;
 }
 
-interface EngineInterface extends Component {
+interface EngineInterface {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;
 }

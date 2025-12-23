@@ -1,7 +1,6 @@
 import { ConnectionConfig } from '../component/connector/connection';
 import { ToolConfig } from '../component/tool';
 import { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, ListResult, RetrieveRecordsResult } from '../component/connector';
-import { Component } from '../component';
 import { ContextCallbackData, ContextConfig, ContextOperationSettings } from '../component/context';
 import { DataViewPreviewConfig, EncodingConfig } from '../component/dataView';
 interface EngineInitialiseSettings {
@@ -21,7 +20,7 @@ interface TestSettings {
     hasHeaders?: boolean;
     readable: ReadableStream<Uint8Array>;
 }
-interface EngineInterface extends Component {
+interface EngineInterface {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorker;
 }
