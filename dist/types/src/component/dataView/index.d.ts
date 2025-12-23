@@ -34,7 +34,7 @@ export interface DataViewPreviewConfig {
     recordDelimiterId?: RecordDelimiterId;
     records: {
         isValid: boolean;
-        value: ParsedValue;
+        value: ParsedValue | undefined;
     }[][];
     size: number;
     text: string;
