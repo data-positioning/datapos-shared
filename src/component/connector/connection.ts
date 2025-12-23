@@ -30,7 +30,7 @@ interface ConnectionConfig extends ComponentConfig {
 interface ConnectionNodeConfig {
     childCount?: number;
     columnsConfigs?: ConnectionColumnConfig[];
-    extension?: string;
+    extension: string | undefined;
     folderPath: string;
     handle?: DPAFileSystemFileHandle;
     id: string;
