@@ -9,7 +9,8 @@
 import { array, boolean, literal, nullable, number, object, optional, record, string } from 'valibot';
 
 /** Framework dependencies. */
-import { literalUnion, localisedStringSchema, moduleConfigCoreFields } from '@/component/componentConfig.schema';
+import { literalUnion, localisedStringSchema } from '@/component/componentConfig.schema';
+import { moduleConfigCoreFields } from '@/component/moduleConfig.schema';
 
 /** Authentication method identifiers supported by a connector implementation. */
 export const connectorAuthMethodIdSchema = literalUnion(['apiKey', 'disabled', 'oAuth2', 'none'] as const);

@@ -7,9 +7,9 @@ import type { InferOutput } from 'valibot';
 
 /** Framework dependencies. */
 import type { Component } from '@/component';
-import type { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
+import type { connectorConfigSchema } from '~/src/component/connector/connectorConfig.schema';
 import type { ToolConfig } from '@/component/tool';
-import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
+import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '~/src/component/connector/connection';
 import type { DataViewContentAuditConfig, ValueDelimiterId } from '@/component/dataView';
 import { DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
 
@@ -80,17 +80,6 @@ interface ConnectorOperationSettings {
     accountId?: string;
     appCheckToken?: string;
     sessionAccessToken?: string;
-}
-
-// Types/Interfaces/Operations - Audit Content (object).
-interface AuditContentSettings extends ConnectorOperationSettings {
-    chunkSize?: number;
-    encodingId: string;
-    path: string;
-    valueDelimiterId: ValueDelimiterId;
-}
-interface AuditContentResult {
-    contentAuditConfig: DataViewContentAuditConfig;
 }
 
 // Types/Interfaces/Operations - Create (object).
@@ -247,11 +236,9 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
 //#endregion
 
 /** Exports. */
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from '@/component/connector/connection';
+export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from '~/src/component/connector/connection';
 export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings };
 export type {
-    AuditContentResult,
-    AuditContentSettings,
     CreateSettings,
     DropSettings,
     FindResult,
@@ -274,4 +261,4 @@ export type {
     UpsertSettings
 };
 
-export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
+export { connectorConfigSchema } from '~/src/component/connector/connectorConfig.schema';

@@ -1,11 +1,11 @@
 /**
- * Component composables, constants, errors, types/interfaces and utilities.
+ * Component.
  */
 
-// Dependencies - Vendor.
+/** Vendor dependencies. */
 import type { InferOutput } from 'valibot';
 
-// Dependencies - Framework.
+/** Framework dependencies. */
 import { DEFAULT_LOCALE_CODE } from '@/index';
 import type {
     componentConfigSchema,
@@ -16,32 +16,20 @@ import type {
 } from '@/component/componentConfig.schema';
 import type { LocaleCode, LocalisedString } from '@/index';
 
-// Types/Interfaces/Operations - Component.
-export interface Component {
+/** Component. */
+interface Component {
     readonly config: ComponentConfig;
 }
 
 // Types/Interfaces/Operations - Component configuration.
-export type ComponentConfig = InferOutput<typeof componentConfigSchema>;
-export type ComponentStatus = InferOutput<typeof componentStatusSchema>;
-export type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
-export type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
-export type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
-// export interface ComponentConfig1 {
-//     id: string;
-//     label: Partial<LocalisedString>;
-//     description: Partial<LocalisedString>;
-//     firstCreatedAt?: number;
-//     icon: string | null;
-//     iconDark: string | null;
-//     lastUpdatedAt: number | null;
-//     status: ComponentStatus | null;
-//     statusId: ComponentStatusId;
-//     typeId: ComponentTypeId;
-// }
+type ComponentConfig = InferOutput<typeof componentConfigSchema>;
+type ComponentStatus = InferOutput<typeof componentStatusSchema>;
+type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
+type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
+type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
 
 // Types/Interfaces/Operations - Component reference.
-export interface ComponentReference {
+interface ComponentReference {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
@@ -52,12 +40,12 @@ export interface ComponentReference {
 }
 
 // Types/Interfaces/Operations - Component status.
-// export interface ComponentStatus {
+// interface ComponentStatus {
 //     id: string;
 //     color: ComponentStatusColorId;
 //     label: string;
 // }
-// export type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
+// type ComponentStatusId = 'alpha' | 'beta' | 'generalAvailability' | 'notApplicable' | 'preAlpha' | 'proposed' | 'releaseCandidate' | 'unavailable' | 'underReview';
 type LocaleLabelMap = ReadonlyMap<string, string>;
 const createLocaleLabelMap = (labels: Partial<LocalisedString>): LocaleLabelMap => {
     const filteredEntries = Object.entries(labels).filter((entry): entry is [string, string] => typeof entry[1] === 'string');
@@ -85,7 +73,7 @@ const componentStatuses: ComponentStatusConfig[] = [
     { id: 'unavailable', color: 'other', labels: createLocaleLabelMap({ 'en-gb': 'unavailable' }) },
     { id: 'underReview', color: 'other', labels: createLocaleLabelMap({ 'en-gb': 'under-review' }) }
 ];
-export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LOCALE_CODE): ComponentStatus => {
+const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LOCALE_CODE): ComponentStatus => {
     const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
     if (componentStatus) {
         const resolvedLabel = resolveLocaleLabel(componentStatus.labels, localeId);
@@ -95,10 +83,10 @@ export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LO
 };
 
 //
-// export type ComponentStatusColorId = 'amber' | 'green' | 'red' | 'other';
+//  type ComponentStatusColorId = 'amber' | 'green' | 'red' | 'other';
 
 // Types/Interfaces/Operations - Component type identifier.
-// export type ComponentTypeId =
+// type ComponentTypeId =
 //     | 'app'
 //     | 'connector'
 //     | 'connectorConnection'
@@ -123,14 +111,7 @@ export const getComponentStatus = (id: string, localeId: LocaleCode = DEFAULT_LO
 //     | 'presenterPresentation'
 //     | 'tool';
 
-// Types/Interfaces/Operations - Module configuration.
-export interface ModuleConfig extends ComponentConfig {
-    typeId: ModuleTypeId;
-    version: string;
-}
-
-// Types/Interfaces/Operations - Module type identifier.
-export type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'presenter' | 'tool';
-
-/** Exposures */
+/** Exports */
+export type { Component, ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId };
 export { componentConfigSchema } from '@/component/componentConfig.schema';
+export type { ModuleConfig, ModuleTypeId } from '@/component/module';

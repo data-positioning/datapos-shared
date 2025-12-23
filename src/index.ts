@@ -9,7 +9,8 @@ export type LocalisedString = Record<LocaleCode, string>;
 //#region Component --------------------
 
 /** Interfaces/Types - Component */
-export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId, ComponentStatusColorId } from '@/component';
+// export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId } from '@/component';
+// export type { ModuleConfig, ModuleTypeId } from '@/component/module';
 
 /** Schemas - Component */
 export { componentConfigSchema } from '@/component';
@@ -61,7 +62,7 @@ export { componentConfigSchema } from '@/component';
 // } from '@/component/connector/connection';
 
 /** Schemas - Connector  */
-export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
+export { connectorConfigSchema } from '~/src/component/connector/connectorConfig.schema';
 
 //#endregion
 
@@ -194,5 +195,5 @@ export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 // export { extractExtensionFromPath, extractNameFromPath } from '@/utilities';
 // export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/utilities';
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from '@/component/dataView';
-export { getComponentStatus } from '@/component';
+// export { getComponentStatus } from '@/component';
 // export { lookupMimeTypeForExtension } from '@/utilities';

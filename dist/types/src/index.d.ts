@@ -5,7 +5,6 @@
 export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 /** Interfaces/Types - Component */
-export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ModuleConfig, ModuleTypeId, ComponentStatusColorId } from './component';
 /** Schemas - Component */
 export { componentConfigSchema } from './component';
 /** Schemas - Connector  */
@@ -55,4 +54,3 @@ export { useDataTable } from './composables/useDataTable';
 export declare const DEFAULT_LOCALE_CODE: LocaleCode;
 /** Utilities */
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from './component/dataView';
-export { getComponentStatus } from './component';

@@ -5,7 +5,8 @@
 export { presenterConfigSchema } from '@/component/presenter/presenterConfig.schema';
 
 // Dependencies - Framework.
-import type { Component, ComponentReference, ModuleConfig } from '@/component';
+import type { ModuleConfig } from '@/component/module';
+import type { Component, ComponentReference } from '@/component';
 
 // Types/Interfaces - Presenter.
 export interface Presenter extends Component {

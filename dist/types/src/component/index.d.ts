@@ -1,15 +1,16 @@
 import { InferOutput } from 'valibot';
 import { componentConfigSchema, componentStatusColorIdSchema, componentStatusIdSchema, componentStatusSchema, componentTypeIdSchema } from './componentConfig.schema';
-import { LocaleCode, LocalisedString } from '../index';
-export interface Component {
+import { LocalisedString } from '../index';
+/** Component. */
+interface Component {
     readonly config: ComponentConfig;
 }
-export type ComponentConfig = InferOutput<typeof componentConfigSchema>;
-export type ComponentStatus = InferOutput<typeof componentStatusSchema>;
-export type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
-export type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
-export type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
-export interface ComponentReference {
+type ComponentConfig = InferOutput<typeof componentConfigSchema>;
+type ComponentStatus = InferOutput<typeof componentStatusSchema>;
+type ComponentStatusColorId = InferOutput<typeof componentStatusColorIdSchema>;
+type ComponentStatusId = InferOutput<typeof componentStatusIdSchema>;
+type ComponentTypeId = InferOutput<typeof componentTypeIdSchema>;
+interface ComponentReference {
     id: string;
     label: Partial<LocalisedString>;
     description: Partial<LocalisedString>;
@@ -18,11 +19,7 @@ export interface ComponentReference {
     order: number;
     path: string;
 }
-export declare const getComponentStatus: (id: string, localeId?: LocaleCode) => ComponentStatus;
-export interface ModuleConfig extends ComponentConfig {
-    typeId: ModuleTypeId;
-    version: string;
-}
-export type ModuleTypeId = 'app' | 'engine' | 'connector' | 'context' | 'presenter' | 'tool';
-/** Exposures */
+/** Exports */
+export type { Component, ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId };
 export { componentConfigSchema } from './componentConfig.schema';
+export type { ModuleConfig, ModuleTypeId } from './module';

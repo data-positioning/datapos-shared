@@ -8,7 +8,8 @@ import type { InferOutput } from 'valibot';
 // Dependencies - Framework.
 import type { contextConfigSchema } from '@/component/context/contextConfig.schema';
 import type { LocalisedString } from '@/index';
-import type { Component, ComponentConfig, ComponentReference, ModuleConfig } from '@/component';
+import type { ModuleConfig } from '@/component/module';
+import type { Component, ComponentConfig, ComponentReference } from '@/component';
 
 // Types/Interfaces/Operations - Context.
 export interface Context extends Component {

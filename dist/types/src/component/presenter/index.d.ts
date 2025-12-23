@@ -1,4 +1,5 @@
-import { Component, ComponentReference, ModuleConfig } from '..';
+import { ModuleConfig } from '../module';
+import { Component, ComponentReference } from '..';
 /**
  * Presenter composables, constants, errors, types/interfaces and utilities.
  */

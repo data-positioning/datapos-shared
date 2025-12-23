@@ -2,12 +2,12 @@
  * Engine composables, constants, errors, types/interfaces and utilities.
  */
 
-import type { ConnectionConfig } from '@/component/connector/connection';
+import type { ConnectionConfig } from '~/src/component/connector/connection';
+import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
-import type { AuditContentResult, ConnectorCallbackData, ConnectorOperationSettings, ListResult, RetrieveRecordsResult } from '@/component/connector';
-import type { Component, ModuleConfig } from '@/component';
+import type { ConnectorCallbackData, ConnectorOperationSettings, ListResult, RetrieveRecordsResult } from '~/src/component/connector';
 import type { ContextCallbackData, ContextConfig, ContextOperationSettings } from '@/component/context';
-import type { DataViewPreviewConfig, EncodingConfig } from '@/component/dataView';
+import type { DataViewContentAuditConfig, DataViewPreviewConfig, EncodingConfig, ValueDelimiterId } from '@/component/dataView';
 
 // Types/Interfaces/Operations - Engine module configuration.
 interface EngineConfig extends ModuleConfig {
@@ -28,6 +28,17 @@ type ProcessConnectorRequest = (
     settings: ConnectorOperationSettings,
     callback?: (callbackData: ContextCallbackData) => void
 ) => Promise<ConnectorInterfaceResult>;
+
+// Types/Interfaces/Operations - Audit Content (object).
+interface AuditContentSettings extends ConnectorOperationSettings {
+    chunkSize?: number;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
+}
+interface AuditContentResult {
+    contentAuditConfig: DataViewContentAuditConfig;
+}
 
 type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
 
@@ -62,4 +73,4 @@ interface EngineWorker {
 }
 
 /** Exports. */
-export type { ConnectorInterfaceResult, ContextInterfaceResult, EngineInterface, EngineWorker, EngineInitialiseSettings, TestSettings };
+export type { AuditContentSettings, AuditContentResult, ConnectorInterfaceResult, ContextInterfaceResult, EngineInterface, EngineWorker, EngineInitialiseSettings, TestSettings };

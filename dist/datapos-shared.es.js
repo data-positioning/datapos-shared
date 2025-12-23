@@ -15,13 +15,13 @@ function N(n) {
 }
 let T;
 // @__NO_SIDE_EFFECTS__
-function z(n) {
+function V(n) {
   return T?.get(n);
 }
-let V;
+let z;
 // @__NO_SIDE_EFFECTS__
 function X(n, t) {
-  return V?.get(n)?.get(t);
+  return z?.get(n)?.get(t);
 }
 // @__NO_SIDE_EFFECTS__
 function _(n) {
@@ -42,7 +42,7 @@ function g(n, t, e, r, o) {
     lang: r.lang,
     abortEarly: r.abortEarly,
     abortPipeEarly: r.abortPipeEarly
-  }, p = n.kind === "schema", d = o?.message ?? n.message ?? /* @__PURE__ */ X(n.reference, l.lang) ?? (p ? /* @__PURE__ */ z(l.lang) : null) ?? r.message ?? /* @__PURE__ */ N(l.lang);
+  }, p = n.kind === "schema", d = o?.message ?? n.message ?? /* @__PURE__ */ X(n.reference, l.lang) ?? (p ? /* @__PURE__ */ V(l.lang) : null) ?? r.message ?? /* @__PURE__ */ N(l.lang);
   d !== void 0 && (l.message = typeof d == "function" ? d(l) : d), p && (e.typed = !1), e.issues ? e.issues.push(l) : e.issues = [l];
 }
 // @__NO_SIDE_EFFECTS__
@@ -73,11 +73,11 @@ function j(n, t, e) {
   return typeof n.default == "function" ? n.default(t, e) : n.default;
 }
 // @__NO_SIDE_EFFECTS__
-function S(n, t) {
+function x(n, t) {
   return {
     kind: "schema",
     type: "array",
-    reference: S,
+    reference: x,
     expects: "Array",
     async: !1,
     item: n,
@@ -131,11 +131,11 @@ function w(n) {
   };
 }
 // @__NO_SIDE_EFFECTS__
-function k(n, t) {
+function C(n, t) {
   return {
     kind: "schema",
     type: "literal",
-    reference: k,
+    reference: C,
     expects: /* @__PURE__ */ _(n),
     async: !1,
     literal: n,
@@ -167,11 +167,11 @@ function y(n, t) {
   };
 }
 // @__NO_SIDE_EFFECTS__
-function C(n) {
+function k(n) {
   return {
     kind: "schema",
     type: "number",
-    reference: C,
+    reference: k,
     expects: "number",
     async: !1,
     message: n,
@@ -285,8 +285,8 @@ function I(n, t, e) {
               key: i,
               value: c
             };
-            for (const x of l.issues)
-              x.path = [d], r.issues?.push(x);
+            for (const S of l.issues)
+              S.path = [d], r.issues?.push(S);
             if (r.issues || (r.issues = l.issues), o.abortEarly) {
               r.typed = !1;
               break;
@@ -301,8 +301,8 @@ function I(n, t, e) {
               key: i,
               value: c
             };
-            for (const x of p.issues)
-              x.path ? x.path.unshift(d) : x.path = [d], r.issues?.push(x);
+            for (const S of p.issues)
+              S.path ? S.path.unshift(d) : S.path = [d], r.issues?.push(S);
             if (r.issues || (r.issues = p.issues), o.abortEarly) {
               r.typed = !1;
               break;
@@ -374,12 +374,12 @@ function P(n, t) {
     }
   };
 }
-const m = (n) => /* @__PURE__ */ P(n.map((t) => /* @__PURE__ */ k(t))), J = /* @__PURE__ */ f({
+const m = (n) => /* @__PURE__ */ P(n.map((t) => /* @__PURE__ */ C(t))), J = /* @__PURE__ */ f({
   "en-au": /* @__PURE__ */ a(),
   "en-gb": /* @__PURE__ */ a(),
   "en-us": /* @__PURE__ */ a(),
   "es-es": /* @__PURE__ */ a()
-}), D = /* @__PURE__ */ f({
+}), E = /* @__PURE__ */ f({
   "en-au": /* @__PURE__ */ b(/* @__PURE__ */ a()),
   "en-gb": /* @__PURE__ */ b(/* @__PURE__ */ a()),
   "en-us": /* @__PURE__ */ b(/* @__PURE__ */ a()),
@@ -418,70 +418,49 @@ const m = (n) => /* @__PURE__ */ P(n.map((t) => /* @__PURE__ */ k(t))), J = /* @
   "presenter",
   "presenterPresentation",
   "tool"
-]);
-m(["app", "engine", "connector", "context", "presenter", "tool"]);
-const Y = /* @__PURE__ */ f({
+]), Y = /* @__PURE__ */ f({
   id: /* @__PURE__ */ a(),
   color: B,
   label: /* @__PURE__ */ a()
-}), L = {
+}), O = {
   id: /* @__PURE__ */ a(),
-  label: D,
-  description: D,
-  firstCreatedAt: /* @__PURE__ */ b(/* @__PURE__ */ C()),
+  label: E,
+  description: E,
+  firstCreatedAt: /* @__PURE__ */ b(/* @__PURE__ */ k()),
   icon: /* @__PURE__ */ y(/* @__PURE__ */ a()),
   iconDark: /* @__PURE__ */ y(/* @__PURE__ */ a()),
-  lastUpdatedAt: /* @__PURE__ */ y(/* @__PURE__ */ C()),
+  lastUpdatedAt: /* @__PURE__ */ y(/* @__PURE__ */ k()),
   status: /* @__PURE__ */ y(Y),
   statusId: Q
-}, be = /* @__PURE__ */ f({
-  ...L,
+}, pe = /* @__PURE__ */ f({
+  ...O,
   typeId: W
-}), O = {
-  ...L,
-  version: /* @__PURE__ */ a()
-}, U = /* @__PURE__ */ f({
+}), U = /* @__PURE__ */ f({
   id: /* @__PURE__ */ a(),
-  label: D,
-  description: D,
+  label: E,
+  description: E,
   icon: /* @__PURE__ */ y(/* @__PURE__ */ a()),
   iconDark: /* @__PURE__ */ y(/* @__PURE__ */ a()),
-  order: /* @__PURE__ */ C(),
+  order: /* @__PURE__ */ k(),
   path: /* @__PURE__ */ a()
 }), v = (n) => {
   const t = Object.entries(n).filter((e) => typeof e[1] == "string");
   return new Map(t);
-}, Z = (n, t, e = E) => {
-  const r = n.get(t);
-  if (r !== void 0) return r;
-  if (e !== t)
-    return n.get(e);
-}, $ = [
-  { id: "alpha", color: "red", labels: v({ "en-gb": "alpha" }) },
-  { id: "beta", color: "amber", labels: v({ "en-gb": "beta" }) },
-  { id: "generalAvailability", color: "green", labels: v({ "en-gb": "" }) },
-  { id: "notApplicable", color: "green", labels: v({ "en-gb": "not-applicable" }) },
-  { id: "preAlpha", color: "red", labels: v({ "en-gb": "pre-alpha" }) },
-  { id: "proposed", color: "other", labels: v({ "en-gb": "proposed" }) },
-  { id: "releaseCandidate", color: "green", labels: v({ "en-gb": "release-candidate" }) },
-  { id: "unavailable", color: "other", labels: v({ "en-gb": "unavailable" }) },
-  { id: "underReview", color: "other", labels: v({ "en-gb": "under-review" }) }
-], fe = (n, t = E) => {
-  const e = $.find((r) => r.id === n);
-  if (e) {
-    const r = Z(e.labels, t);
-    return { id: e.id, color: e.color, label: r ?? e.id };
-  }
-  return { id: n, color: "other", label: n };
-}, ee = m(["apiKey", "disabled", "oAuth2", "none"]), ne = /* @__PURE__ */ f({
-  authMethodId: ee,
-  activeConnectionCount: /* @__PURE__ */ b(/* @__PURE__ */ C()),
+};
+v({ "en-gb": "alpha" }), v({ "en-gb": "beta" }), v({ "en-gb": "" }), v({ "en-gb": "not-applicable" }), v({ "en-gb": "pre-alpha" }), v({ "en-gb": "proposed" }), v({ "en-gb": "release-candidate" }), v({ "en-gb": "unavailable" }), v({ "en-gb": "under-review" });
+m(["app", "engine", "connector", "context", "presenter", "tool"]);
+const A = {
+  ...O,
+  version: /* @__PURE__ */ a()
+}, Z = m(["apiKey", "disabled", "oAuth2", "none"]), $ = /* @__PURE__ */ f({
+  authMethodId: Z,
+  activeConnectionCount: /* @__PURE__ */ b(/* @__PURE__ */ k()),
   canDescribe: /* @__PURE__ */ b(/* @__PURE__ */ w()),
   id: /* @__PURE__ */ b(/* @__PURE__ */ a()),
   label: /* @__PURE__ */ b(J),
-  maxConnectionCount: /* @__PURE__ */ b(/* @__PURE__ */ C()),
-  params: /* @__PURE__ */ b(/* @__PURE__ */ S(/* @__PURE__ */ I(/* @__PURE__ */ a(), /* @__PURE__ */ a())))
-}), te = m(["application", "curatedDataset", "database", "fileStore"]), re = m([
+  maxConnectionCount: /* @__PURE__ */ b(/* @__PURE__ */ k()),
+  params: /* @__PURE__ */ b(/* @__PURE__ */ x(/* @__PURE__ */ I(/* @__PURE__ */ a(), /* @__PURE__ */ a())))
+}), ee = m(["application", "curatedDataset", "database", "fileStore"]), ne = m([
   "abortOperation",
   "authenticateConnection",
   "createObject",
@@ -496,51 +475,51 @@ const Y = /* @__PURE__ */ f({
   "retrieveChunks",
   "retrieveRecords",
   "upsertRecords"
-]), se = m(["bidirectional", "destination", "source", "unknown"]), ye = /* @__PURE__ */ f({
-  ...O,
-  typeId: /* @__PURE__ */ k("connector"),
+]), te = m(["bidirectional", "destination", "source", "unknown"]), de = /* @__PURE__ */ f({
+  ...A,
+  typeId: /* @__PURE__ */ C("connector"),
   category: /* @__PURE__ */ y(/* @__PURE__ */ f({ id: /* @__PURE__ */ a(), label: /* @__PURE__ */ a() })),
-  categoryId: te,
-  implementations: /* @__PURE__ */ I(/* @__PURE__ */ a(), ne),
-  operations: /* @__PURE__ */ S(re),
-  usageId: se,
+  categoryId: ee,
+  implementations: /* @__PURE__ */ I(/* @__PURE__ */ a(), $),
+  operations: /* @__PURE__ */ x(ne),
+  usageId: te,
   vendorAccountURL: /* @__PURE__ */ y(/* @__PURE__ */ a()),
   vendorDocumentationURL: /* @__PURE__ */ y(/* @__PURE__ */ a()),
   vendorHomeURL: /* @__PURE__ */ y(/* @__PURE__ */ a())
-}), oe = m(["list"]), ie = /* @__PURE__ */ f({
-  ...L,
-  typeId: /* @__PURE__ */ k("contextModelGroup"),
-  modelRefs: /* @__PURE__ */ S(U),
-  order: /* @__PURE__ */ C()
-}), ge = /* @__PURE__ */ f({
+}), re = m(["list"]), se = /* @__PURE__ */ f({
   ...O,
-  typeId: /* @__PURE__ */ k("context"),
-  models: /* @__PURE__ */ S(ie),
-  operations: /* @__PURE__ */ S(oe)
-}), le = m(["list", "render", "setColorMode"]), he = /* @__PURE__ */ f({
-  ...O,
-  typeId: /* @__PURE__ */ k("presenter"),
-  presentations: /* @__PURE__ */ S(U),
-  operations: /* @__PURE__ */ S(le)
+  typeId: /* @__PURE__ */ C("contextModelGroup"),
+  modelRefs: /* @__PURE__ */ x(U),
+  order: /* @__PURE__ */ k()
+}), be = /* @__PURE__ */ f({
+  ...A,
+  typeId: /* @__PURE__ */ C("context"),
+  models: /* @__PURE__ */ x(se),
+  operations: /* @__PURE__ */ x(re)
+}), oe = m(["list", "render", "setColorMode"]), fe = /* @__PURE__ */ f({
+  ...A,
+  typeId: /* @__PURE__ */ C("presenter"),
+  presentations: /* @__PURE__ */ x(U),
+  operations: /* @__PURE__ */ x(oe)
 });
-function me() {
-  return { render: ae };
+function ye() {
+  return { render: ie };
 }
-function ae(n, t, e) {
+function ie(n, t, e) {
   e.textContent = "Cytoscape.js diagram goes here...";
 }
-function ve() {
-  return { render: ue };
+function ge() {
+  return { render: le };
 }
-function ue(n, t) {
+function le(n, t) {
   console.log(1111, n), console.log(2222, t), console.log(3333, t.childNodes), console.log(4444, t.children);
 }
-const u = (n) => new Map(Object.entries(n)), A = (n, t, e = E) => {
+const u = (n) => new Map(Object.entries(n)), L = (n, t, e = D) => {
   const r = n.get(t);
   if (r !== void 0) return r;
   if (e !== t)
     return n.get(e);
-}, ce = [
+}, ae = [
   { id: "dtv", labels: u({ "en-gb": "Delimited Text" }) },
   { id: "e/e", labels: u({ "en-gb": "Entity/Event" }) },
   { id: "jsonArray", labels: u({ "en-gb": "JSON Array" }) },
@@ -548,27 +527,27 @@ const u = (n) => new Map(Object.entries(n)), A = (n, t, e = E) => {
   { id: "xls", labels: u({ "en-gb": "XLS" }) },
   { id: "xlsx", labels: u({ "en-gb": "XLSX" }) },
   { id: "xml", labels: u({ "en-gb": "XML" }) }
-], Se = (n = E) => {
+], he = (n = D) => {
   const t = [];
-  for (const e of ce) {
-    const r = A(e.labels, n);
+  for (const e of ae) {
+    const r = L(e.labels, n);
     t.push({ id: e.id, label: r ?? e.id });
   }
   return t;
-}, pe = [
+}, ue = [
   { id: `
 `, labels: u({ "en-gb": "Newline" }) },
   { id: "\r", labels: u({ "en-gb": "Carriage Return" }) },
   { id: `\r
 `, labels: u({ "en-gb": "Carriage Return/Newline" }) }
-], xe = (n = E) => {
+], me = (n = D) => {
   const t = [];
-  for (const e of pe) {
-    const r = A(e.labels, n);
+  for (const e of ue) {
+    const r = L(e.labels, n);
     t.push({ id: e.id, label: r ?? e.id });
   }
   return t;
-}, de = [
+}, ce = [
   { id: ":", labels: u({ "en-gb": "Colon" }) },
   { id: ",", labels: u({ "en-gb": "Comma" }) },
   { id: "!", labels: u({ "en-gb": "Exclamation Mark" }) },
@@ -580,24 +559,23 @@ const u = (n) => new Map(Object.entries(n)), A = (n, t, e = E) => {
   { id: "_", labels: u({ "en-gb": "Underscore" }) },
   { id: "0x1F", labels: u({ "en-gb": "Unit Separator" }) },
   { id: "|", labels: u({ "en-gb": "Vertical Bar" }) }
-], Ce = (n = E) => {
+], ve = (n = D) => {
   const t = [];
-  for (const e of de) {
-    const r = A(e.labels, n);
+  for (const e of ce) {
+    const r = L(e.labels, n);
     t.push({ id: e.id, label: r ?? e.id });
   }
   return t;
-}, E = "en-gb";
+}, D = "en-gb";
 export {
-  E as DEFAULT_LOCALE_CODE,
-  be as componentConfigSchema,
-  ye as connectorConfigSchema,
-  ge as contextConfigSchema,
-  fe as getComponentStatus,
-  Se as getDataFormats,
-  xe as getRecordDelimiters,
-  Ce as getValueDelimiters,
-  he as presenterConfigSchema,
-  me as useCytoscapeJS,
-  ve as useDataTable
+  D as DEFAULT_LOCALE_CODE,
+  pe as componentConfigSchema,
+  de as connectorConfigSchema,
+  be as contextConfigSchema,
+  he as getDataFormats,
+  me as getRecordDelimiters,
+  ve as getValueDelimiters,
+  fe as presenterConfigSchema,
+  ye as useCytoscapeJS,
+  ge as useDataTable
 };

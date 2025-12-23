@@ -1,9 +1,9 @@
 /**
- * Module composables, constants, errors, types/interfaces and utilities.
+ * Tool.
  */
 
 /** Framework dependencies. */
-import type { ModuleConfig } from '@/component';
+import type { ModuleConfig } from '@/component/module';
 
 /** Tool configuration. */
 interface ToolConfig extends ModuleConfig {
@@ -11,7 +11,6 @@ interface ToolConfig extends ModuleConfig {
 }
 /** Load tool. */
 async function loadTool<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T> {
-    console.log('loadToolForConnector', toolConfigs, toolId);
     const toolName = `datapos-tool-${toolId}`;
     const toolModuleConfig = toolConfigs.find((config) => config.id === toolName);
     if (!toolModuleConfig) throw new Error(`Connector could not load unknown tool '${toolId}'.`);
@@ -22,4 +21,6 @@ async function loadTool<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T
     return toolInstance;
 }
 
-export { loadTool, type ToolConfig };
+/** Exports. */
+export { loadTool };
+export type { ToolConfig };

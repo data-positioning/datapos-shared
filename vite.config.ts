@@ -24,6 +24,7 @@ export default defineConfig({
         lib: {
             entry: {
                 index: fileURLToPath(new URL('src/index.ts', import.meta.url)), // Absolute entry path.
+                component: fileURLToPath(new URL('src/component/index.ts', import.meta.url)),
                 connector: fileURLToPath(new URL('src/component/connector/index.ts', import.meta.url)),
                 engine: fileURLToPath(new URL('src/engine/index.ts', import.meta.url)),
                 errors: fileURLToPath(new URL('src/errors/index.ts', import.meta.url)),

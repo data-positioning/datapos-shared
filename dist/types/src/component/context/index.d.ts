@@ -1,7 +1,8 @@
 import { InferOutput } from 'valibot';
 import { contextConfigSchema } from './contextConfig.schema';
 import { LocalisedString } from '../../index';
-import { Component, ComponentConfig, ComponentReference, ModuleConfig } from '..';
+import { ModuleConfig } from '../module';
+import { Component, ComponentConfig, ComponentReference } from '..';
 export interface Context extends Component {
     readonly config: ContextConfig;
     list(settings?: ContextListSettings): Promise<ContextListResult>;

@@ -6,7 +6,8 @@
 import { array, literal, number, object } from 'valibot';
 
 /** Dependencies - Framework. */
-import { componentConfigCoreFields, componentReferenceSchema, literalUnion, moduleConfigCoreFields } from '@/component/componentConfig.schema';
+import { moduleConfigCoreFields } from '@/component/moduleConfig.schema';
+import { componentConfigCoreFields, componentReferenceSchema, literalUnion } from '@/component/componentConfig.schema';
 
 const contextOperationSchema = literalUnion(['list'] as const);
 

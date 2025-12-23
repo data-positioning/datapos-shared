@@ -61,7 +61,6 @@ export const componentTypeIdSchema = literalUnion([
     'presenterPresentation',
     'tool'
 ] as const);
-export const moduleTypeIdSchema = literalUnion(['app', 'engine', 'connector', 'context', 'presenter', 'tool'] as const);
 
 export const componentStatusSchema = object({
     id: string(),
@@ -84,16 +83,6 @@ export const componentConfigCoreFields = {
 export const componentConfigSchema = object({
     ...componentConfigCoreFields,
     typeId: componentTypeIdSchema
-});
-
-export const moduleConfigCoreFields = {
-    ...componentConfigCoreFields,
-    version: string()
-} as const;
-
-export const moduleConfigSchema = object({
-    ...moduleConfigCoreFields,
-    typeId: moduleTypeIdSchema
 });
 
 export const componentReferenceSchema = object({
