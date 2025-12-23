@@ -36,97 +36,101 @@ interface Connector extends Component {
     retrieveRecords?(connector: Connector, settings: RetrieveRecordsSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>;
 }
-export interface InitialiseSettings {
+interface InitialiseSettings {
     connectorStorageURLPrefix: string;
+    toolConfigs: ToolConfig[];
 }
-export interface ConnectorOperationSettings {
+interface ConnectorOperationSettings {
     accountId?: string;
     appCheckToken?: string;
     sessionAccessToken?: string;
 }
-export interface AuditContentSettings extends ConnectorOperationSettings {
+interface AuditContentSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
-export interface AuditContentResult {
+interface AuditContentResult {
     contentAuditConfig: DataViewContentAuditConfig;
 }
-export interface CreateSettings extends ConnectorOperationSettings {
+interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
     path: string;
     structure: string;
 }
-export type DescribeSettings = ConnectorOperationSettings;
-export interface DescribeResult {
+type DescribeSettings = ConnectorOperationSettings;
+interface DescribeResult {
     description: ConnectionDescription;
 }
-export interface DropSettings extends ConnectorOperationSettings {
+interface DropSettings extends ConnectorOperationSettings {
     path: string;
 }
-export interface FindSettings extends ConnectorOperationSettings {
+interface FindSettings extends ConnectorOperationSettings {
     containerName?: string;
     objectName: string;
 }
-export interface FindResult {
+interface FindResult {
     folderPath?: string;
 }
-export interface GetReadableStreamSettings extends ConnectorOperationSettings {
+interface GetReadableStreamSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
 }
-export interface GetReadableStreamResult {
+interface GetReadableStreamResult {
     readable?: ReadableStream<unknown>;
 }
-export interface GetRecordSettings extends ConnectorOperationSettings {
+interface GetRecordSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
 }
-export interface GetRecordResult {
+interface GetRecordResult {
     record?: string[] | Record<string, unknown>;
 }
-export interface ListSettings extends ConnectorOperationSettings {
+interface ListSettings extends ConnectorOperationSettings {
     folderPath: string;
     limit?: number;
     offset?: number;
     totalCount?: number;
 }
-export interface ListResult {
+interface ListResult {
     cursor: string | number | undefined;
     connectionNodeConfigs: ConnectionNodeConfig[];
     isMore: boolean;
     totalCount: number;
 }
-export interface PreviewSettings extends ConnectorOperationSettings {
+interface PreviewSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     extension?: string;
     path: string;
 }
-export interface PreviewResult {
+interface PreviewResult {
     data: Record<string, unknown>[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
 }
-export interface RemoveSettings extends ConnectorOperationSettings {
+interface RemoveSettings extends ConnectorOperationSettings {
     keys: string[];
     path: string;
 }
-export interface RetrieveChunksSettings extends ConnectorOperationSettings {
+interface RetrieveChunksSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
-export interface RetrieveRecordsSettings extends ConnectorOperationSettings {
+interface RetrieveRecordsSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
-export interface RetrieveRecordsResult {
+interface RetrieveChunksResult {
     records: (string[] | Record<string, unknown>)[];
 }
-export interface RetrieveChunksSummary {
+interface RetrieveRecordsResult {
+    records: (string[] | Record<string, unknown>)[];
+}
+interface RetrieveChunksSummary {
     byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;
@@ -134,7 +138,7 @@ export interface RetrieveChunksSummary {
     lineCount: number;
     recordCount: number;
 }
-export interface RetrieveRecordsSummary {
+interface RetrieveRecordsSummary {
     byteCount: number;
     commentLineCount: number;
     emptyLineCount: number;
@@ -142,15 +146,12 @@ export interface RetrieveRecordsSummary {
     lineCount: number;
     recordCount: number;
 }
-export interface UpsertSettings extends ConnectorOperationSettings {
+interface UpsertSettings extends ConnectorOperationSettings {
     records: Record<string, unknown>[];
     path: string;
-}
-export interface ConnectorCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
 }
 /** Exports. */
 export type { ConnectionConfig, ConnectionNodeConfig } from './connection';
 export type { Connector, ConnectorConfig, ConnectorLocalisedConfig };
+export type { AuditContentResult, AuditContentSettings, CreateSettings, DropSettings, FindResult, FindSettings, GetReadableStreamResult, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, InitialiseSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksResult, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary };
 export { connectorConfigSchema } from './connectorConfig.schema';
