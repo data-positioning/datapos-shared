@@ -1,6 +1,6 @@
 import { ConnectionConfig } from '../component/connector/connection';
 import { ToolConfig } from '../component/tool';
-import { ConnectorCallbackData, ConnectorOperationSettings, ListResult, RetrieveRecordsResult } from '../component/connector';
+import { ConnectorOperationSettings, ListResult, RetrieveRecordsResult } from '../component/connector';
 import { ContextCallbackData, ContextConfig, ContextOperationSettings } from '../component/context';
 import { DataViewContentAuditConfig, DataViewPreviewConfig, EncodingConfig, ValueDelimiterId } from '../component/dataView';
 interface EngineInitialiseSettings {
@@ -19,6 +19,11 @@ interface AuditContentResult {
     contentAuditConfig: DataViewContentAuditConfig;
 }
 type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
+/** Connector callback data. */
+interface ConnectorCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
 type ProcessContextRequest = (id: string, contextConfig: ContextConfig, settings: ContextOperationSettings, callback?: (callbackData: ConnectorCallbackData) => void) => Promise<ContextInterfaceResult>;
 type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
 type ProcessTestRequest = (settings: TestSettings) => Promise<Record<string, unknown>>;
@@ -40,4 +45,4 @@ interface EngineWorker {
     processTestRequest: ProcessTestRequest;
 }
 /** Exports. */
-export type { AuditContentSettings, AuditContentResult, ConnectorInterfaceResult, ContextInterfaceResult, EngineInterface, EngineWorker, EngineInitialiseSettings, TestSettings };
+export type { AuditContentSettings, AuditContentResult, ConnectorCallbackData, ConnectorInterfaceResult, ContextInterfaceResult, EngineInterface, EngineWorker, EngineInitialiseSettings, TestSettings };

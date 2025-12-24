@@ -33,54 +33,51 @@ type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
 type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
 
 /** Connector runtime interface. */
-interface Connector extends Component {
+interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly connectionConfig: ConnectionConfig;
     readonly toolConfigs: ToolConfig[];
-    abortOperation?(connector: Connector): void; // Abort the active long running operation for a specified connection.
+    abortOperation?(connector: ConnectorInterface): void; // Abort the active long running operation for a specified connection.
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection.
-    createObject?(connector: Connector, settings: CreateSettings): Promise<void>; // Create an object for a specified connection.
-    describeConnection?(connector: Connector, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
-    dropObject?(connector: Connector, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
-    findObject?(connector: Connector, findSettings: FindSettings): Promise<FindResult>; // Find an object for a specified connection.
-    getReadableStream?(connector: Connector, getSettings: GetReadableStreamSettings): Promise<GetReadableStreamResult>; // Get a reader that can retrieve all records from an object for a specified connection.
-    getRecord?(connector: Connector, getSettings: GetRecordSettings): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
-    listNodes?(connector: Connector, settings: ListSettings): Promise<ListResult>; // List nodes in a folder for a specified connection.
-    previewObject?(connector: Connector, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
-    removeRecords?(connector: Connector, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
+    createObject?(connector: ConnectorInterface, settings: CreateSettings): Promise<void>; // Create an object for a specified connection.
+    describeConnection?(connector: ConnectorInterface, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
+    dropObject?(connector: ConnectorInterface, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
+    findObject?(connector: ConnectorInterface, settings: FindObjectSettings): Promise<string | undefined>; // Find an object for a specified connection.
+    getReadableStream?(connector: ConnectorInterface, settings: GetReadableStreamSettings): Promise<ReadableStream<Uint8Array<ArrayBuffer>>>; // Get a reader that can retrieve all records from an object for a specified connection.
+    getRecord?(connector: ConnectorInterface, settings: GetRecordSettings): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
+    listNodes?(connector: ConnectorInterface, settings: ListSettings): Promise<ListResult>; // List nodes in a folder for a specified connection.
+    previewObject?(connector: ConnectorInterface, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
+    removeRecords?(connector: ConnectorInterface, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
     retrieveChunks?(
-        connector: Connector,
+        connector: ConnectorInterface,
         settings: RetrieveChunksSettings,
         chunk: (records: (string[] | Record<string, unknown>)[]) => void,
         complete: (result: RetrieveChunksSummary) => void
     ): Promise<void>; // Retrieve all chunks from an object for a specified connection.
     retrieveRecords?(
-        connector: Connector,
+        connector: ConnectorInterface,
         settings: RetrieveRecordsSettings,
         chunk: (records: (string[] | Record<string, unknown>)[]) => void,
         complete: (result: RetrieveRecordsSummary) => void
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
-    upsertRecords?(connector: Connector, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
+    upsertRecords?(connector: ConnectorInterface, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
 
-// Types/Interfaces/Operations - Connector callback data.
-interface ConnectorCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
-}
-
-// Types/Interfaces/Operations - Connector operation settings.
+/** Connector operation settings. */
 interface ConnectorOperationSettings {
     accountId?: string;
     appCheckToken?: string;
     sessionAccessToken?: string;
 }
 
-/** Get readable stream result and settings. */
-interface GetReadableStreamResult {
-    readable?: ReadableStream<unknown>;
+/** Get find object settings. */
+interface FindObjectSettings extends ConnectorOperationSettings {
+    containerName?: string;
+    objectName: string;
 }
+
+/** Get readable stream settings. */
 interface GetReadableStreamSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
@@ -104,15 +101,6 @@ interface DescribeResult {
 // Types/Interfaces/Operations - Drop (object).
 interface DropSettings extends ConnectorOperationSettings {
     path: string;
-}
-
-// Types/Interfaces/Operations - Find (object).
-interface FindSettings extends ConnectorOperationSettings {
-    containerName?: string;
-    objectName: string;
-}
-interface FindResult {
-    folderPath?: string;
 }
 
 // Types/Interfaces/Operations - Get record (object).
@@ -243,13 +231,11 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
 /** Exports. */
 export { getConnectorCategory };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from '~/src/component/connector/connection';
-export type { Connector, ConnectorCallbackData, ConnectorConfig, ConnectorLocalisedConfig, ConnectorOperationSettings };
+export type { ConnectorConfig, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationSettings };
 export type {
     CreateSettings,
     DropSettings,
-    FindResult,
-    FindSettings,
-    GetReadableStreamResult,
+    FindObjectSettings,
     GetReadableStreamSettings,
     GetRecordResult,
     GetRecordSettings,

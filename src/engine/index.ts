@@ -2,10 +2,10 @@
  * Engine composables, constants, errors, types/interfaces and utilities.
  */
 
-import type { ConnectionConfig } from '~/src/component/connector/connection';
+import type { ConnectionConfig } from '@/component/connector/connection';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
-import type { ConnectorCallbackData, ConnectorOperationSettings, ListResult, RetrieveRecordsResult } from '~/src/component/connector';
+import type { ConnectorOperationSettings, ListResult, RetrieveRecordsResult } from '@/component/connector';
 import type { ContextCallbackData, ContextConfig, ContextOperationSettings } from '@/component/context';
 import type { DataViewContentAuditConfig, DataViewPreviewConfig, EncodingConfig, ValueDelimiterId } from '@/component/dataView';
 
@@ -42,6 +42,12 @@ interface AuditContentResult {
 
 type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
 
+/** Connector callback data. */
+interface ConnectorCallbackData {
+    typeId: string;
+    properties: Record<string, unknown>;
+}
+
 type ProcessContextRequest = (
     id: string,
     contextConfig: ContextConfig,
@@ -73,4 +79,14 @@ interface EngineWorker {
 }
 
 /** Exports. */
-export type { AuditContentSettings, AuditContentResult, ConnectorInterfaceResult, ContextInterfaceResult, EngineInterface, EngineWorker, EngineInitialiseSettings, TestSettings };
+export type {
+    AuditContentSettings,
+    AuditContentResult,
+    ConnectorCallbackData,
+    ConnectorInterfaceResult,
+    ContextInterfaceResult,
+    EngineInterface,
+    EngineWorker,
+    EngineInitialiseSettings,
+    TestSettings
+};
