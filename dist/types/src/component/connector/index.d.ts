@@ -45,7 +45,7 @@ interface ConnectorOperationSettings {
 /** Get find object settings. */
 interface FindObjectSettings extends ConnectorOperationSettings {
     containerName: string | undefined;
-    objectName: string;
+    itemId: string;
 }
 /** Get readable stream settings. */
 interface GetReadableStreamSettings extends ConnectorOperationSettings {
