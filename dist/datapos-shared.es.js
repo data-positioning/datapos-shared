@@ -1,6 +1,6 @@
 let D;
 // @__NO_SIDE_EFFECTS__
-function U(n) {
+function F(n) {
   return {
     lang: n?.lang ?? D?.lang,
     message: n?.message,
@@ -8,10 +8,10 @@ function U(n) {
     abortPipeEarly: n?.abortPipeEarly ?? D?.abortPipeEarly
   };
 }
-let F;
+let U;
 // @__NO_SIDE_EFFECTS__
 function G(n) {
-  return F?.get(n);
+  return U?.get(n);
 }
 let N;
 // @__NO_SIDE_EFFECTS__
@@ -51,7 +51,7 @@ function m(n) {
     version: 1,
     vendor: "valibot",
     validate(t) {
-      return n["~run"]({ value: t }, /* @__PURE__ */ U());
+      return n["~run"]({ value: t }, /* @__PURE__ */ F());
     }
   };
 }
@@ -339,11 +339,11 @@ function A(n) {
   return t;
 }
 // @__NO_SIDE_EFFECTS__
-function w(n, t) {
+function P(n, t) {
   return {
     kind: "schema",
     type: "union",
-    reference: w,
+    reference: P,
     expects: /* @__PURE__ */ K(n.map((e) => e.expects), "|"),
     async: !1,
     options: n,
@@ -374,7 +374,7 @@ function w(n, t) {
     }
   };
 }
-const g = (n) => /* @__PURE__ */ w(n.map((t) => /* @__PURE__ */ k(t))), H = /* @__PURE__ */ y({
+const g = (n) => /* @__PURE__ */ P(n.map((t) => /* @__PURE__ */ k(t))), H = /* @__PURE__ */ y({
   "en-au": /* @__PURE__ */ a(),
   "en-gb": /* @__PURE__ */ a(),
   "en-us": /* @__PURE__ */ a(),
@@ -435,7 +435,7 @@ const g = (n) => /* @__PURE__ */ w(n.map((t) => /* @__PURE__ */ k(t))), H = /* @
 }, ce = /* @__PURE__ */ y({
   ...I,
   typeId: Q
-}), P = /* @__PURE__ */ y({
+}), w = /* @__PURE__ */ y({
   id: /* @__PURE__ */ a(),
   label: C,
   description: C,
@@ -462,7 +462,7 @@ const O = {
   "createObject",
   "describeConnection",
   "dropObject",
-  "findObject",
+  "findObjectFolderPath",
   "getReadableStream",
   "getRecord",
   "listNodes",
@@ -485,7 +485,7 @@ const O = {
 }), te = g(["list"]), se = /* @__PURE__ */ y({
   ...I,
   typeId: /* @__PURE__ */ k("contextModelGroup"),
-  modelRefs: /* @__PURE__ */ v(P),
+  modelRefs: /* @__PURE__ */ v(w),
   order: /* @__PURE__ */ S()
 }), fe = /* @__PURE__ */ y({
   ...O,
@@ -495,7 +495,7 @@ const O = {
 }), re = g(["list", "render", "setColorMode"]), de = /* @__PURE__ */ y({
   ...O,
   typeId: /* @__PURE__ */ k("presenter"),
-  presentations: /* @__PURE__ */ v(P),
+  presentations: /* @__PURE__ */ v(w),
   operations: /* @__PURE__ */ v(re)
 });
 function ye() {
