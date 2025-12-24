@@ -45,7 +45,7 @@ interface ConnectorOperationSettings {
 /** Get find object folder path settings. */
 interface FindObjectFolderPathSettings extends ConnectorOperationSettings {
     containerName: string | undefined;
-    itemId: string;
+    nodeId: string;
 }
 /** Get readable stream settings. */
 interface GetReadableStreamSettings extends ConnectorOperationSettings {
@@ -102,18 +102,6 @@ interface RetrieveChunksSettings extends ConnectorOperationSettings {
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
-interface RetrieveRecordsSettings extends ConnectorOperationSettings {
-    chunkSize?: number;
-    encodingId: string;
-    path: string;
-    valueDelimiterId: ValueDelimiterId;
-}
-interface RetrieveChunksResult {
-    records: (string[] | Record<string, unknown>)[];
-}
-interface RetrieveRecordsResult {
-    records: (string[] | Record<string, unknown>)[];
-}
 interface RetrieveChunksSummary {
     byteCount: number;
     commentLineCount: number;
@@ -121,6 +109,12 @@ interface RetrieveChunksSummary {
     invalidFieldLengthCount: number;
     lineCount: number;
     recordCount: number;
+}
+interface RetrieveRecordsSettings extends ConnectorOperationSettings {
+    chunkSize?: number;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
 }
 interface RetrieveRecordsSummary {
     byteCount: number;
@@ -144,5 +138,5 @@ declare const getConnectorCategory: (id: string, localeId?: import('../../index'
 export { getConnectorCategory };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
 export type { ConnectorConfig, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationSettings };
-export type { CreateSettings, DropSettings, FindObjectFolderPathSettings, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksResult, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsResult, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
+export type { CreateSettings, DropSettings, FindObjectFolderPathSettings, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
 export { connectorConfigSchema } from './connectorConfig.schema';

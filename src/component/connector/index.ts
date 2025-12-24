@@ -74,7 +74,7 @@ interface ConnectorOperationSettings {
 /** Get find object folder path settings. */
 interface FindObjectFolderPathSettings extends ConnectorOperationSettings {
     containerName: string | undefined;
-    itemId: string;
+    nodeId: string;
 }
 
 /** Get readable stream settings. */
@@ -150,19 +150,7 @@ interface RetrieveChunksSettings extends ConnectorOperationSettings {
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
-interface RetrieveRecordsSettings extends ConnectorOperationSettings {
-    chunkSize?: number;
-    encodingId: string;
-    path: string;
-    valueDelimiterId: ValueDelimiterId;
-}
 
-interface RetrieveChunksResult {
-    records: (string[] | Record<string, unknown>)[];
-}
-interface RetrieveRecordsResult {
-    records: (string[] | Record<string, unknown>)[];
-}
 interface RetrieveChunksSummary {
     byteCount: number;
     commentLineCount: number;
@@ -171,6 +159,14 @@ interface RetrieveChunksSummary {
     lineCount: number;
     recordCount: number;
 }
+
+interface RetrieveRecordsSettings extends ConnectorOperationSettings {
+    chunkSize?: number;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
+}
+
 interface RetrieveRecordsSummary {
     byteCount: number;
     commentLineCount: number;
@@ -244,10 +240,8 @@ export type {
     PreviewResult,
     PreviewSettings,
     RemoveSettings,
-    RetrieveChunksResult,
     RetrieveChunksSettings,
     RetrieveChunksSummary,
-    RetrieveRecordsResult,
     RetrieveRecordsSettings,
     RetrieveRecordsSummary,
     UpsertSettings
