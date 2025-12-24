@@ -3,7 +3,7 @@ import { Component } from '..';
 import { ToolConfig } from '../tool';
 import { ValueDelimiterId } from '../dataView';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
-import { connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
+import { connectorCategorySchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
 /** Authentication method identifiers supported by a connector implementation. */
 /** Connector implementation. */
 /** Category identifiers used for grouping and filtering connectors. */
@@ -31,8 +31,8 @@ interface ConnectorInterface extends Component {
     findObject?(connector: ConnectorInterface, settings: FindObjectFolderPathSettings): Promise<string | null>;
     getReadableStream?(connector: ConnectorInterface, settings: GetReadableStreamSettings): Promise<ReadableStream<Uint8Array<ArrayBuffer>>>;
     getRecord?(connector: ConnectorInterface, settings: GetRecordSettings): Promise<GetRecordResult>;
-    listNodes?(connector: ConnectorInterface, settings: ListSettings): Promise<ListResult>;
-    previewObject?(connector: ConnectorInterface, settings: PreviewSettings): Promise<PreviewResult>;
+    listNodes?(connector: ConnectorInterface, settings: ListNodesSettings): Promise<ListNodesResult>;
+    previewObject?(connector: ConnectorInterface, settings: PreviewObjectSettings): Promise<PreviewObjectResult>;
     removeRecords?(connector: ConnectorInterface, settings: RemoveSettings): Promise<void>;
     retrieveChunks?(connector: ConnectorInterface, settings: RetrieveChunksSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveChunksSummary) => void): Promise<void>;
     retrieveRecords?(connector: ConnectorInterface, settings: RetrieveRecordsSettings, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
@@ -44,7 +44,7 @@ interface ConnectorOperationSettings {
     appCheckToken?: string;
     sessionAccessToken?: string;
 }
-/** Get find object folder path settings. */
+/** Find object folder path settings. */
 interface FindObjectFolderPathSettings extends ConnectorOperationSettings {
     containerName: string | undefined;
     nodeId: string;
@@ -53,6 +53,47 @@ interface FindObjectFolderPathSettings extends ConnectorOperationSettings {
 interface GetReadableStreamSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
+}
+/** List nodes result. */
+interface ListNodesResult {
+    cursor: string | number | undefined;
+    connectionNodeConfigs: ConnectionNodeConfig[];
+    isMore: boolean;
+    totalCount: number;
+}
+/** List nodes settings. */
+interface ListNodesSettings extends ConnectorOperationSettings {
+    folderPath: string;
+    limit?: number;
+    offset?: number;
+    totalCount?: number;
+}
+/** Preview object result. */
+interface PreviewObjectResult {
+    data: Record<string, unknown>[] | Uint8Array;
+    typeId: 'jsonArray' | 'uint8Array';
+}
+/** Preview object settings. */
+interface PreviewObjectSettings extends ConnectorOperationSettings {
+    chunkSize?: number;
+    extension?: string;
+    path: string;
+}
+/** Retrieve records summary. */
+interface RetrieveRecordsSummary {
+    byteCount: number;
+    commentLineCount: number;
+    emptyLineCount: number;
+    invalidFieldLengthCount: number;
+    lineCount: number;
+    recordCount: number;
+}
+/** Retrieve records settings. */
+interface RetrieveRecordsSettings extends ConnectorOperationSettings {
+    chunkSize?: number;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
 }
 interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
@@ -73,27 +114,6 @@ interface GetRecordSettings extends ConnectorOperationSettings {
 interface GetRecordResult {
     record?: string[] | Record<string, unknown>;
 }
-interface ListSettings extends ConnectorOperationSettings {
-    folderPath: string;
-    limit?: number;
-    offset?: number;
-    totalCount?: number;
-}
-interface ListResult {
-    cursor: string | number | undefined;
-    connectionNodeConfigs: ConnectionNodeConfig[];
-    isMore: boolean;
-    totalCount: number;
-}
-interface PreviewSettings extends ConnectorOperationSettings {
-    chunkSize?: number;
-    extension?: string;
-    path: string;
-}
-interface PreviewResult {
-    data: Record<string, unknown>[] | Uint8Array;
-    typeId: 'jsonArray' | 'uint8Array';
-}
 interface RemoveSettings extends ConnectorOperationSettings {
     keys: string[];
     path: string;
@@ -112,32 +132,15 @@ interface RetrieveChunksSummary {
     lineCount: number;
     recordCount: number;
 }
-interface RetrieveRecordsSettings extends ConnectorOperationSettings {
-    chunkSize?: number;
-    encodingId: string;
-    path: string;
-    valueDelimiterId: ValueDelimiterId;
-}
-interface RetrieveRecordsSummary {
-    byteCount: number;
-    commentLineCount: number;
-    emptyLineCount: number;
-    invalidFieldLengthCount: number;
-    lineCount: number;
-    recordCount: number;
-}
 interface UpsertSettings extends ConnectorOperationSettings {
     records: Record<string, unknown>[];
     path: string;
 }
 /** Types/Interfaces/Operations - Connector category. */
-interface ConnectorCategory {
-    id: string;
-    label: string;
-}
+type ConnectorCategory = InferOutput<typeof connectorCategorySchema>;
 declare const getConnectorCategory: (id: string, localeId?: import('../../index').LocaleCode) => ConnectorCategory;
 /** Exports. */
 export { getConnectorCategory };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
-export type { ConnectorConfig, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationSettings, ConnectorUsageId, CreateSettings, DropSettings, FindObjectFolderPathSettings, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
+export type { ConnectorConfig, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationSettings, ConnectorUsageId, CreateSettings, DropSettings, FindObjectFolderPathSettings, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, ListNodesResult, ListNodesSettings, PreviewObjectResult, PreviewObjectSettings, RemoveSettings, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
 export { connectorConfigSchema } from './connectorConfig.schema';

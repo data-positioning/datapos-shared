@@ -29,10 +29,6 @@ export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId 
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './component/dataView';
 /** Interfaces/Types - Dimension. */
 export type { DimensionConfig, DimensionLocalisedConfig } from './component/dimension';
-/** Interfaces/Types */
-export type { SerialisedError } from './errors';
-/** Errors */
-/** Utilities */
 /** Interfaces/Types - Event query. */
 export type { EventQueryConfig, EventQueryLocalisedConfig } from './component/eventQuery';
 /** Interfaces/Types */

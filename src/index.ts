@@ -66,23 +66,8 @@ export type {
 /** Interfaces/Types - Dimension. */
 export type { DimensionConfig, DimensionLocalisedConfig } from '@/component/dimension';
 
-//#region Error
-
-/** Interfaces/Types */
-export type { SerialisedError } from '@/errors';
-
-/** Errors */
-// export { APIError, ApplicationError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError } from '@/errors';
-
-/** Utilities */
-// export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError } from '@/errors';
-
-//#endregion
-
 /** Interfaces/Types - Event query. */
 export type { EventQueryConfig, EventQueryLocalisedConfig } from '@/component/eventQuery';
-
-//#region Presenter Component
 
 /** Interfaces/Types */
 export { presenterConfigSchema } from '@/component/presenter';
@@ -108,14 +93,6 @@ export type {
     PresentationVisualValueTableViewConfig
 } from '@/component/presenter/presentation';
 
-//#endregion
-
-//#region Tool
-
-// export type { ToolConfig } from '@/component/tool';
-
-//#endregion
-
 /** Composables */
 export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
 export { useDataTable } from '@/composables/useDataTable';
@@ -124,9 +101,4 @@ export { useDataTable } from '@/composables/useDataTable';
 export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 
 /** Utilities */
-// export { convertODataTypeIdToUsageTypeId } from '@/utilities';
-// export { extractExtensionFromPath, extractNameFromPath } from '@/utilities';
-// export { formatNumberAsDecimalNumber, formatNumberAsDuration, formatNumberAsSize, formatNumberAsStorageSize, formatNumberAsWholeNumber } from '@/utilities';
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from '@/component/dataView';
-// export { getComponentStatus } from '@/component';
-// export { lookupMimeTypeForExtension } from '@/utilities';

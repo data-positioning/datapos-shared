@@ -10,7 +10,7 @@ import type { Component } from '@/component';
 import type { ToolConfig } from '@/component/tool';
 import type { ValueDelimiterId } from '@/component/dataView';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '~/src/component/connector/connection';
-import type { connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '~/src/component/connector/connectorConfig.schema';
+import type { connectorCategorySchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '~/src/component/connector/connectorConfig.schema';
 import { DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
 
 /** Authentication method identifiers supported by a connector implementation. */
@@ -46,8 +46,8 @@ interface ConnectorInterface extends Component {
     findObject?(connector: ConnectorInterface, settings: FindObjectFolderPathSettings): Promise<string | null>; // Find an object for a specified connection.
     getReadableStream?(connector: ConnectorInterface, settings: GetReadableStreamSettings): Promise<ReadableStream<Uint8Array<ArrayBuffer>>>; // Get a reader that can retrieve all records from an object for a specified connection.
     getRecord?(connector: ConnectorInterface, settings: GetRecordSettings): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
-    listNodes?(connector: ConnectorInterface, settings: ListSettings): Promise<ListResult>; // List nodes in a folder for a specified connection.
-    previewObject?(connector: ConnectorInterface, settings: PreviewSettings): Promise<PreviewResult>; // Preview an object for a specified connection.
+    listNodes?(connector: ConnectorInterface, settings: ListNodesSettings): Promise<ListNodesResult>; // List nodes in a folder for a specified connection.
+    previewObject?(connector: ConnectorInterface, settings: PreviewObjectSettings): Promise<PreviewObjectResult>; // Preview an object for a specified connection.
     removeRecords?(connector: ConnectorInterface, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
     retrieveChunks?(
         connector: ConnectorInterface,
@@ -71,7 +71,7 @@ interface ConnectorOperationSettings {
     sessionAccessToken?: string;
 }
 
-/** Get find object folder path settings. */
+/** Find object folder path settings. */
 interface FindObjectFolderPathSettings extends ConnectorOperationSettings {
     containerName: string | undefined;
     nodeId: string;
@@ -83,27 +83,70 @@ interface GetReadableStreamSettings extends ConnectorOperationSettings {
     path: string;
 }
 
-//#region Settings & Results
+/** List nodes result. */
+interface ListNodesResult {
+    cursor: string | number | undefined;
+    connectionNodeConfigs: ConnectionNodeConfig[];
+    isMore: boolean;
+    totalCount: number;
+}
 
-// Types/Interfaces/Operations - Create (object).
+/** List nodes settings. */
+interface ListNodesSettings extends ConnectorOperationSettings {
+    folderPath: string;
+    limit?: number;
+    offset?: number;
+    totalCount?: number;
+}
+
+/** Preview object result. */
+interface PreviewObjectResult {
+    data: Record<string, unknown>[] | Uint8Array;
+    typeId: 'jsonArray' | 'uint8Array';
+}
+
+/** Preview object settings. */
+interface PreviewObjectSettings extends ConnectorOperationSettings {
+    chunkSize?: number;
+    extension?: string;
+    path: string;
+}
+
+/** Retrieve records summary. */
+interface RetrieveRecordsSummary {
+    byteCount: number;
+    commentLineCount: number;
+    emptyLineCount: number;
+    invalidFieldLengthCount: number;
+    lineCount: number;
+    recordCount: number;
+}
+
+/** Retrieve records settings. */
+interface RetrieveRecordsSettings extends ConnectorOperationSettings {
+    chunkSize?: number;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
+}
+
+//#region PENDING
+
 interface CreateSettings extends ConnectorOperationSettings {
     accountId?: string;
     path: string;
     structure: string;
 }
 
-// Types/Interfaces/Operations - Describe (Connection).
 type DescribeSettings = ConnectorOperationSettings;
 interface DescribeResult {
     description: ConnectionDescription;
 }
 
-// Types/Interfaces/Operations - Drop (object).
 interface DropSettings extends ConnectorOperationSettings {
     path: string;
 }
 
-// Types/Interfaces/Operations - Get record (object).
 interface GetRecordSettings extends ConnectorOperationSettings {
     id: string;
     path: string;
@@ -112,38 +155,11 @@ interface GetRecordResult {
     record?: string[] | Record<string, unknown>;
 }
 
-// Types/Interfaces/Operations - List (nodes).
-interface ListSettings extends ConnectorOperationSettings {
-    folderPath: string;
-    limit?: number;
-    offset?: number;
-    totalCount?: number;
-}
-interface ListResult {
-    cursor: string | number | undefined;
-    connectionNodeConfigs: ConnectionNodeConfig[];
-    isMore: boolean;
-    totalCount: number;
-}
-
-// Types/Interfaces/Operations - Preview (object).
-interface PreviewSettings extends ConnectorOperationSettings {
-    chunkSize?: number;
-    extension?: string;
-    path: string;
-}
-interface PreviewResult {
-    data: Record<string, unknown>[] | Uint8Array;
-    typeId: 'jsonArray' | 'uint8Array';
-}
-
-// Types/Interfaces/Operations - Remove (records).
 interface RemoveSettings extends ConnectorOperationSettings {
     keys: string[];
     path: string;
 }
 
-// Types/Interfaces/Operations - Retrieve (records).
 interface RetrieveChunksSettings extends ConnectorOperationSettings {
     chunkSize?: number;
     encodingId: string;
@@ -160,23 +176,6 @@ interface RetrieveChunksSummary {
     recordCount: number;
 }
 
-interface RetrieveRecordsSettings extends ConnectorOperationSettings {
-    chunkSize?: number;
-    encodingId: string;
-    path: string;
-    valueDelimiterId: ValueDelimiterId;
-}
-
-interface RetrieveRecordsSummary {
-    byteCount: number;
-    commentLineCount: number;
-    emptyLineCount: number;
-    invalidFieldLengthCount: number;
-    lineCount: number;
-    recordCount: number;
-}
-
-// Types/Interfaces/Operations - Upsert (records).
 interface UpsertSettings extends ConnectorOperationSettings {
     records: Record<string, unknown>[];
     path: string;
@@ -184,40 +183,22 @@ interface UpsertSettings extends ConnectorOperationSettings {
 
 //#endregion
 
-// #region Connector Category
-
 /** Types/Interfaces/Operations - Connector category. */
-interface ConnectorCategory {
-    id: string;
-    label: string;
-}
+type ConnectorCategory = InferOutput<typeof connectorCategorySchema>;
 
-type LocaleLabelMap = ReadonlyMap<string, string>;
-
-const createLocaleLabelMap = (labels: Partial<LocalisedString>): LocaleLabelMap => {
-    const entries = Object.entries(labels).filter((entry): entry is [string, string] => typeof entry[1] === 'string');
-    return new Map(entries);
-};
-
-const connectorCategories: { id: string; labels: LocaleLabelMap }[] = [
-    { id: 'application', labels: createLocaleLabelMap({ 'en-gb': 'Application' }) },
-    { id: 'curatedDataset', labels: createLocaleLabelMap({ 'en-gb': 'Curated Dataset' }) },
-    { id: 'database', labels: createLocaleLabelMap({ 'en-gb': 'Database' }) },
-    { id: 'fileStore', labels: createLocaleLabelMap({ 'en-gb': 'File Store' }) }
+const connectorCategories: { id: string; labels: Partial<LocalisedString> }[] = [
+    { id: 'application', labels: { 'en-gb': 'Application' } },
+    { id: 'curatedDataset', labels: { 'en-gb': 'Curated Dataset' } },
+    { id: 'database', labels: { 'en-gb': 'Database' } },
+    { id: 'fileStore', labels: { 'en-gb': 'File Store' } }
 ];
-
-const resolveLocaleLabel = (labels: LocaleLabelMap, localeId: string, fallbackLocaleId = DEFAULT_LOCALE_CODE): string | undefined => {
-    const localizedLabel = labels.get(localeId);
-    if (localizedLabel !== undefined) return localizedLabel;
-    if (fallbackLocaleId === localeId) return undefined;
-    return labels.get(fallbackLocaleId);
-};
 
 const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): ConnectorCategory => {
     const connectorCategory = connectorCategories.find((connectorCategory) => connectorCategory.id === id);
     if (connectorCategory) {
-        const resolvedLabel = resolveLocaleLabel(connectorCategory.labels, localeId);
-        return { id: connectorCategory.id, label: resolvedLabel ?? connectorCategory.id };
+        // eslint-disable-next-line security/detect-object-injection
+        const label = connectorCategory.labels[localeId] ?? connectorCategory.labels[DEFAULT_LOCALE_CODE] ?? connectorCategory.id;
+        return { id: connectorCategory.id, label };
     }
     return { id, label: id };
 };
@@ -240,10 +221,10 @@ export type {
     GetReadableStreamSettings,
     GetRecordResult,
     GetRecordSettings,
-    ListResult,
-    ListSettings,
-    PreviewResult,
-    PreviewSettings,
+    ListNodesResult,
+    ListNodesSettings,
+    PreviewObjectResult,
+    PreviewObjectSettings,
     RemoveSettings,
     RetrieveChunksSettings,
     RetrieveChunksSummary,

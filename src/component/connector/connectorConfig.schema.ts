@@ -52,11 +52,16 @@ export const connectorOperationNameSchema = literalUnion([
 /** Connector data pipeline usage identifiers. */
 export const connectorUsageIdSchema = literalUnion(['bidirectional', 'destination', 'source', 'unknown'] as const);
 
+export const connectorCategorySchema = object({
+    id: string(),
+    label: string()
+});
+
 /** Top-level connector configuration object. */
 export const connectorConfigSchema = object({
     ...moduleConfigCoreFields,
     typeId: literal('connector'),
-    category: nullable(object({ id: string(), label: string() })),
+    category: nullable(connectorCategorySchema),
     categoryId: connectorCategoryIdSchema,
     implementations: record(string(), connectorImplementationSchema),
     operations: array(connectorOperationNameSchema),

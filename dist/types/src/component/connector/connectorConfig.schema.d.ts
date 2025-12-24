@@ -29,6 +29,10 @@ export declare const connectorCategoryIdSchema: import('valibot').UnionSchema<re
 export declare const connectorOperationNameSchema: import('valibot').UnionSchema<readonly [import('valibot').LiteralSchema<"abortOperation", undefined>, import('valibot').LiteralSchema<"authenticateConnection", undefined>, import('valibot').LiteralSchema<"createObject", undefined>, import('valibot').LiteralSchema<"describeConnection", undefined>, import('valibot').LiteralSchema<"dropObject", undefined>, import('valibot').LiteralSchema<"findObjectFolderPath", undefined>, import('valibot').LiteralSchema<"getReadableStream", undefined>, import('valibot').LiteralSchema<"getRecord", undefined>, import('valibot').LiteralSchema<"listNodes", undefined>, import('valibot').LiteralSchema<"previewObject", undefined>, import('valibot').LiteralSchema<"removeRecords", undefined>, import('valibot').LiteralSchema<"retrieveChunks", undefined>, import('valibot').LiteralSchema<"retrieveRecords", undefined>, import('valibot').LiteralSchema<"upsertRecords", undefined>], undefined>;
 /** Connector data pipeline usage identifiers. */
 export declare const connectorUsageIdSchema: import('valibot').UnionSchema<readonly [import('valibot').LiteralSchema<"bidirectional", undefined>, import('valibot').LiteralSchema<"destination", undefined>, import('valibot').LiteralSchema<"source", undefined>, import('valibot').LiteralSchema<"unknown", undefined>], undefined>;
+export declare const connectorCategorySchema: import('valibot').ObjectSchema<{
+    readonly id: import('valibot').StringSchema<undefined>;
+    readonly label: import('valibot').StringSchema<undefined>;
+}, undefined>;
 /** Top-level connector configuration object. */
 export declare const connectorConfigSchema: import('valibot').ObjectSchema<{
     readonly typeId: import('valibot').LiteralSchema<"connector", undefined>;
