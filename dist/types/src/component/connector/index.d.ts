@@ -26,7 +26,7 @@ interface ConnectorInterface extends Component {
     createObject?(connector: ConnectorInterface, settings: CreateSettings): Promise<void>;
     describeConnection?(connector: ConnectorInterface, settings: DescribeSettings): Promise<DescribeResult>;
     dropObject?(connector: ConnectorInterface, settings: DropSettings): Promise<void>;
-    findObject?(connector: ConnectorInterface, settings: FindObjectSettings): Promise<string | undefined>;
+    findObject?(connector: ConnectorInterface, settings: FindObjectSettings): Promise<string | null>;
     getReadableStream?(connector: ConnectorInterface, settings: GetReadableStreamSettings): Promise<ReadableStream<Uint8Array<ArrayBuffer>>>;
     getRecord?(connector: ConnectorInterface, settings: GetRecordSettings): Promise<GetRecordResult>;
     listNodes?(connector: ConnectorInterface, settings: ListSettings): Promise<ListResult>;
@@ -44,7 +44,7 @@ interface ConnectorOperationSettings {
 }
 /** Get find object settings. */
 interface FindObjectSettings extends ConnectorOperationSettings {
-    containerName?: string;
+    containerName: string | undefined;
     objectName: string;
 }
 /** Get readable stream settings. */
