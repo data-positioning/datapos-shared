@@ -4,11 +4,6 @@
 /** Interfaces/Types */
 export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
-/** Interfaces/Types - Component */
-/** Schemas - Component */
-export { componentConfigSchema } from './component';
-/** Schemas - Connector  */
-export { connectorConfigSchema } from './component/connector/connectorConfig.schema';
 /** Interfaces/Types - Context. */
 export { contextConfigSchema } from './component/context';
 export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextOperation, ContextCallbackData } from './component/context';
@@ -34,7 +29,6 @@ export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId 
 export type { DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './component/dataView';
 /** Interfaces/Types - Dimension. */
 export type { DimensionConfig, DimensionLocalisedConfig } from './component/dimension';
-/** Interfaces/Types - Engine. */
 /** Interfaces/Types */
 export type { SerialisedError } from './errors';
 /** Errors */

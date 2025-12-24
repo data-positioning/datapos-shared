@@ -1,14 +1,16 @@
 import { InferOutput } from 'valibot';
 import { Component } from '..';
-import { connectorConfigSchema } from './connectorConfig.schema';
 import { ToolConfig } from '../tool';
 import { ValueDelimiterId } from '../dataView';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
+import { connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
 /** Authentication method identifiers supported by a connector implementation. */
 /** Connector implementation. */
 /** Category identifiers used for grouping and filtering connectors. */
 /** Operation names a connector may support. */
+type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
 /** Connector data pipeline usage identifiers. */
+type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
 /** Connector configuration. */
 type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
 type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & {
@@ -137,6 +139,5 @@ declare const getConnectorCategory: (id: string, localeId?: import('../../index'
 /** Exports. */
 export { getConnectorCategory };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
-export type { ConnectorConfig, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationSettings };
-export type { CreateSettings, DropSettings, FindObjectFolderPathSettings, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
+export type { ConnectorConfig, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationSettings, ConnectorUsageId, CreateSettings, DropSettings, FindObjectFolderPathSettings, GetReadableStreamSettings, GetRecordResult, GetRecordSettings, ListResult, ListSettings, PreviewResult, PreviewSettings, RemoveSettings, RetrieveChunksSettings, RetrieveChunksSummary, RetrieveRecordsSettings, RetrieveRecordsSummary, UpsertSettings };
 export { connectorConfigSchema } from './connectorConfig.schema';

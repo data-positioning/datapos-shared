@@ -1,5 +1,5 @@
-import { DEFAULT_LOCALE_CODE as a } from "./datapos-shared.es.js";
-import { componentConfigSchema as d } from "./datapos-shared.es.js";
+import { D as a } from "./index-5UsJyepS.js";
+import { c as s } from "./index-5UsJyepS.js";
 const n = [
   { id: "alpha", color: "red", labels: { "en-gb": "alpha" } },
   { id: "beta", color: "amber", labels: { "en-gb": "beta" } },
@@ -20,6 +20,6 @@ function b(l, r = a) {
   return { id: l, color: "other", label: l };
 }
 export {
-  d as componentConfigSchema,
+  s as componentConfigSchema,
   b as getComponentStatus
 };

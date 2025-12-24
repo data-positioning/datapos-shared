@@ -1,20 +1,20 @@
 /**
- * Engine composables, constants, errors, types/interfaces and utilities.
+ * Engine.
  */
 
 import type { ConnectionConfig } from '@/component/connector/connection';
+import type { ConnectorOperationSettings } from '@/component/connector';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
-import type { ConnectorOperationSettings, ListResult, RetrieveRecordsResult } from '@/component/connector';
 import type { ContextCallbackData, ContextConfig, ContextOperationSettings } from '@/component/context';
-import type { DataViewContentAuditConfig, DataViewPreviewConfig, EncodingConfig, ValueDelimiterId } from '@/component/dataView';
+import type { DataViewContentAuditConfig, EncodingConfig, ValueDelimiterId } from '@/component/dataView';
 
-// Types/Interfaces/Operations - Engine module configuration.
+/** Engine configuration. */
 interface EngineConfig extends ModuleConfig {
     typeId: 'engine';
 }
 
-// Types/Interfaces/Operations - Initialise settings.
+/** Engine initialise settings. */
 interface EngineInitialiseSettings {
     connectorStorageURLPrefix: string;
     toolConfigs: ToolConfig[];
@@ -27,7 +27,7 @@ type ProcessConnectorRequest = (
     connectionConfig: ConnectionConfig,
     settings: ConnectorOperationSettings,
     callback?: (callbackData: ContextCallbackData) => void
-) => Promise<ConnectorInterfaceResult>;
+) => Promise<unknown>;
 
 // Types/Interfaces/Operations - Audit Content (object).
 interface AuditContentSettings extends ConnectorOperationSettings {
@@ -40,8 +40,6 @@ interface AuditContentResult {
     contentAuditConfig: DataViewContentAuditConfig;
 }
 
-type ConnectorInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
-
 /** Connector callback data. */
 interface ConnectorCallbackData {
     typeId: string;
@@ -53,9 +51,7 @@ type ProcessContextRequest = (
     contextConfig: ContextConfig,
     settings: ContextOperationSettings,
     callback?: (callbackData: ConnectorCallbackData) => void
-) => Promise<ContextInterfaceResult>;
-
-type ContextInterfaceResult = AuditContentResult | DataViewPreviewConfig | ListResult | RetrieveRecordsResult;
+) => Promise<unknown>;
 
 type ProcessTestRequest = (settings: TestSettings) => Promise<Record<string, unknown>>;
 interface TestSettings {
@@ -79,14 +75,4 @@ interface EngineWorker {
 }
 
 /** Exports. */
-export type {
-    AuditContentSettings,
-    AuditContentResult,
-    ConnectorCallbackData,
-    ConnectorInterfaceResult,
-    ContextInterfaceResult,
-    EngineInterface,
-    EngineWorker,
-    EngineInitialiseSettings,
-    TestSettings
-};
+export type { AuditContentSettings, AuditContentResult, ConnectorCallbackData, EngineConfig, EngineInterface, EngineWorker, EngineInitialiseSettings, TestSettings };

@@ -7,10 +7,10 @@ import type { InferOutput } from 'valibot';
 
 /** Framework dependencies. */
 import type { Component } from '@/component';
-import type { connectorConfigSchema } from '~/src/component/connector/connectorConfig.schema';
 import type { ToolConfig } from '@/component/tool';
 import type { ValueDelimiterId } from '@/component/dataView';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '~/src/component/connector/connection';
+import type { connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '~/src/component/connector/connectorConfig.schema';
 import { DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
 
 /** Authentication method identifiers supported by a connector implementation. */
@@ -23,10 +23,10 @@ import { DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
 // type ConnectorCategoryId = InferOutput<typeof connectorCategoryIdSchema>;
 
 /** Operation names a connector may support. */
-// type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
+type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
 
 /** Connector data pipeline usage identifiers. */
-// type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
+type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
 
 /** Connector configuration. */
 type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
@@ -227,8 +227,13 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
 /** Exports. */
 export { getConnectorCategory };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from '~/src/component/connector/connection';
-export type { ConnectorConfig, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationSettings };
 export type {
+    ConnectorConfig,
+    ConnectorInterface,
+    ConnectorLocalisedConfig,
+    ConnectorOperationName,
+    ConnectorOperationSettings,
+    ConnectorUsageId,
     CreateSettings,
     DropSettings,
     FindObjectFolderPathSettings,

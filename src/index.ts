@@ -6,68 +6,6 @@
 export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 export type LocalisedString = Record<LocaleCode, string>;
 
-//#region Component --------------------
-
-/** Interfaces/Types - Component */
-// export type { ComponentConfig, ComponentReference, ComponentStatus, ComponentStatusId, ComponentTypeId, ComponentStatusColorId } from '@/component';
-// export type { ModuleConfig, ModuleTypeId } from '@/component/module';
-
-/** Schemas - Component */
-export { componentConfigSchema } from '@/component';
-
-//#endregion
-
-//#region Connector --------------------
-
-// /** Interfaces/Types Component - Connector */
-// export type {
-//     AuditContentResult,
-//     AuditContentSettings,
-//     Connector,
-//     ConnectorCallbackData,
-//     ConnectorConfig,
-//     ConnectorLocalisedConfig,
-//     ConnectorOperationSettings,
-//     CreateSettings,
-//     DropSettings,
-//     FindResult,
-//     FindSettings,
-//     GetReadableStreamResult,
-//     GetReadableStreamSettings,
-//     GetRecordResult,
-//     GetRecordSettings,
-//     ListResult,
-//     ListSettings,
-//     PreviewResult,
-//     PreviewSettings,
-//     RemoveSettings,
-//     RetrieveChunksSettings,
-//     RetrieveChunksSummary,
-//     RetrieveRecordsResult,
-//     RetrieveRecordsSettings,
-//     RetrieveRecordsSummary,
-//     UpsertSettings
-// } from '@/component/connector';
-
-// /** Interfaces/Types - Connection */
-// export type {
-//     // ConnectionAuthorizationConfig,
-//     // ConnectionColumnConfig,
-//     // ConnectionConfig,
-//     // ConnectionNodeConfig
-//     // DPAFileSystemFileHandle,
-//     // Encoding,
-//     // StorageTypeId,
-//     // UsageTypeId
-// } from '@/component/connector/connection';
-
-/** Schemas - Connector  */
-export { connectorConfigSchema } from '~/src/component/connector/connectorConfig.schema';
-
-//#endregion
-
-//#region Context --------------------
-
 /** Interfaces/Types - Context. */
 export { contextConfigSchema } from '@/component/context';
 export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextOperation, ContextCallbackData } from '@/component/context';
@@ -114,8 +52,6 @@ export interface ContextOperationSettings {
     sessionAccessToken?: string;
 }
 
-//#endregion
-
 /** Interfaces/Types - Data view. */
 export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from '@/component/dataView';
 export type {
@@ -129,9 +65,6 @@ export type {
 
 /** Interfaces/Types - Dimension. */
 export type { DimensionConfig, DimensionLocalisedConfig } from '@/component/dimension';
-
-/** Interfaces/Types - Engine. */
-// export type { ConnectorInterfaceResult, ContextInterfaceResult, Engine, EngineConfig, EngineWorker, TestSettings } from '@/engine';
 
 //#region Error
 
