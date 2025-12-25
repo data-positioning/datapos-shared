@@ -44,7 +44,7 @@ interface ConnectorInterface extends Component {
     describeConnection?(connector: ConnectorInterface, options: DescribeOptions): Promise<DescribeResult>; // Describe a specified connection.
     dropObject?(connector: ConnectorInterface, options: DropOptions): Promise<void>; // Drop (delete) an object for a specified connection.
     findObject?(connector: ConnectorInterface, options: FindObjectFolderPathOptions): Promise<string | null>; // Find an object for a specified connection.
-    getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array<ArrayBuffer>>>; // Get a reader that can retrieve all records from an object for a specified connection.
+    getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array>>; // Get a reader that can retrieve all records from an object for a specified connection.
     getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
     listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>; // List nodes in a folder for a specified connection.
     previewObject?(connector: ConnectorInterface, options: PreviewObjectOptions): Promise<PreviewObjectResult>; // Preview an object for a specified connection.

@@ -29,7 +29,7 @@ interface ConnectorInterface extends Component {
     describeConnection?(connector: ConnectorInterface, options: DescribeOptions): Promise<DescribeResult>;
     dropObject?(connector: ConnectorInterface, options: DropOptions): Promise<void>;
     findObject?(connector: ConnectorInterface, options: FindObjectFolderPathOptions): Promise<string | null>;
-    getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array<ArrayBuffer>>>;
+    getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array>>;
     getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>;
     listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>;
     previewObject?(connector: ConnectorInterface, options: PreviewObjectOptions): Promise<PreviewObjectResult>;
