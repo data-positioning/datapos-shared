@@ -1,5 +1,5 @@
 import { ConnectionConfig } from '../component/connector/connection';
-import { ConnectorOperationSettings } from '../component/connector';
+import { ConnectorOperationOptions } from '../component/connector';
 import { ModuleConfig } from '../component/module';
 import { ToolConfig } from '../component/tool';
 import { ContextCallbackData, ContextConfig, ContextOperationSettings } from '../component/context';
@@ -14,8 +14,8 @@ interface EngineInitialiseSettings {
     toolConfigs: ToolConfig[];
 }
 type InitialiseEngine = (settings: EngineInitialiseSettings) => Promise<void>;
-type ProcessConnectorRequest = (id: string, connectionConfig: ConnectionConfig, settings: ConnectorOperationSettings, callback?: (callbackData: ContextCallbackData) => void) => Promise<unknown>;
-interface AuditContentSettings extends ConnectorOperationSettings {
+type ProcessConnectorRequest = (id: string, connectionConfig: ConnectionConfig, settings: ConnectorOperationOptions, callback?: (callbackData: ContextCallbackData) => void) => Promise<unknown>;
+interface AuditContentSettings extends ConnectorOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;

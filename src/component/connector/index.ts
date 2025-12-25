@@ -40,50 +40,46 @@ interface ConnectorInterface extends Component {
     readonly toolConfigs: ToolConfig[];
     abortOperation?(connector: ConnectorInterface): void; // Abort the active long running operation for a specified connection.
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection.
-    createObject?(connector: ConnectorInterface, settings: CreateSettings): Promise<void>; // Create an object for a specified connection.
-    describeConnection?(connector: ConnectorInterface, settings: DescribeSettings): Promise<DescribeResult>; // Describe a specified connection.
-    dropObject?(connector: ConnectorInterface, settings: DropSettings): Promise<void>; // Drop (delete) an object for a specified connection.
-    findObject?(connector: ConnectorInterface, settings: FindObjectFolderPathSettings): Promise<string | null>; // Find an object for a specified connection.
-    getReadableStream?(connector: ConnectorInterface, settings: GetReadableStreamSettings): Promise<ReadableStream<Uint8Array<ArrayBuffer>>>; // Get a reader that can retrieve all records from an object for a specified connection.
-    getRecord?(connector: ConnectorInterface, settings: GetRecordSettings): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
-    listNodes?(connector: ConnectorInterface, settings: ListNodesSettings): Promise<ListNodesResult>; // List nodes in a folder for a specified connection.
-    previewObject?(connector: ConnectorInterface, settings: PreviewObjectSettings): Promise<PreviewObjectResult>; // Preview an object for a specified connection.
-    removeRecords?(connector: ConnectorInterface, settings: RemoveSettings): Promise<void>; // Remove one or more records from an object for a specified connection.
-    retrieveChunks?(
-        connector: ConnectorInterface,
-        settings: RetrieveChunksSettings,
-        chunk: (records: (string[] | Record<string, unknown>)[]) => void,
-        complete: (result: RetrieveChunksSummary) => void
-    ): Promise<void>; // Retrieve all chunks from an object for a specified connection.
-    retrieveRecords?(
-        connector: ConnectorInterface,
-        settings: RetrieveRecordsSettings,
-        chunk: (records: (string[] | Record<string, unknown>)[]) => void,
-        complete: (result: RetrieveRecordsSummary) => void
-    ): Promise<void>; // Retrieve all records from an object for a specified connection.
-    upsertRecords?(connector: ConnectorInterface, settings: UpsertSettings): Promise<void>; // Upsert one or more records into an object for a specified connection.
+    createObject?(connector: ConnectorInterface, options: CreateOptions): Promise<void>; // Create an object for a specified connection.
+    describeConnection?(connector: ConnectorInterface, options: DescribeOptions): Promise<DescribeResult>; // Describe a specified connection.
+    dropObject?(connector: ConnectorInterface, options: DropOptions): Promise<void>; // Drop (delete) an object for a specified connection.
+    findObject?(connector: ConnectorInterface, options: FindObjectFolderPathOptions): Promise<string | null>; // Find an object for a specified connection.
+    getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array<ArrayBuffer>>>; // Get a reader that can retrieve all records from an object for a specified connection.
+    getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
+    listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>; // List nodes in a folder for a specified connection.
+    previewObject?(connector: ConnectorInterface, options: PreviewObjectOptions): Promise<PreviewObjectResult>; // Preview an object for a specified connection.
+    removeRecords?(connector: ConnectorInterface, options: RemoveOptions): Promise<void>; // Remove one or more records from an object for a specified connection.
+    retrieveChunks?(connector: ConnectorInterface, options: RetrieveChunksOptions): Promise<void>; // Retrieve all chunks from an object for a specified connection.
+    retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions): Promise<void>; // Retrieve all records from an object for a specified connection.
+    upsertRecords?(connector: ConnectorInterface, options: UpsertOptions): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
 
-/** Connector operation settings. */
-interface ConnectorOperationSettings {
+/** Connector operation options. */
+interface ConnectorOperationOptions {
     accountId?: string;
     appCheckToken?: string;
     sessionAccessToken?: string;
 }
 
-/** Find object folder path settings. */
-interface FindObjectFolderPathSettings extends ConnectorOperationSettings {
+/** Find object folder path options. */
+interface FindObjectFolderPathOptions extends ConnectorOperationOptions {
     containerName: string | undefined;
     nodeId: string;
 }
 
-/** Get readable stream settings. */
-interface GetReadableStreamSettings extends ConnectorOperationSettings {
+/** Get readable stream options. */
+interface GetReadableStreamOptions extends ConnectorOperationOptions {
     id: string;
     path: string;
 }
 
-/** List nodes result. */
+/** List nodes options and result. */
+interface ListNodesOptions extends ConnectorOperationOptions {
+    folderPath: string;
+    limit?: number;
+    offset?: number;
+    totalCount?: number;
+}
 interface ListNodesResult {
     cursor: string | number | undefined;
     connectionNodeConfigs: ConnectionNodeConfig[];
@@ -91,28 +87,26 @@ interface ListNodesResult {
     totalCount: number;
 }
 
-/** List nodes settings. */
-interface ListNodesSettings extends ConnectorOperationSettings {
-    folderPath: string;
-    limit?: number;
-    offset?: number;
-    totalCount?: number;
+/** Preview object options and result. */
+interface PreviewObjectOptions extends ConnectorOperationOptions {
+    chunkSize?: number;
+    extension?: string;
+    path: string;
 }
-
-/** Preview object result. */
 interface PreviewObjectResult {
     data: Record<string, unknown>[] | Uint8Array;
     typeId: 'jsonArray' | 'uint8Array';
 }
 
-/** Preview object settings. */
-interface PreviewObjectSettings extends ConnectorOperationSettings {
+/** Retrieve records options and summary. */
+interface RetrieveRecordsOptions extends ConnectorOperationOptions {
     chunkSize?: number;
-    extension?: string;
+    encodingId: string;
     path: string;
+    valueDelimiterId: ValueDelimiterId;
+    chunk: (records: (string[] | Record<string, unknown>)[]) => void;
+    complete: (result: RetrieveRecordsSummary) => void;
 }
-
-/** Retrieve records summary. */
 interface RetrieveRecordsSummary {
     byteCount: number;
     commentLineCount: number;
@@ -122,32 +116,24 @@ interface RetrieveRecordsSummary {
     recordCount: number;
 }
 
-/** Retrieve records settings. */
-interface RetrieveRecordsSettings extends ConnectorOperationSettings {
-    chunkSize?: number;
-    encodingId: string;
-    path: string;
-    valueDelimiterId: ValueDelimiterId;
-}
-
 //#region PENDING
 
-interface CreateSettings extends ConnectorOperationSettings {
+interface CreateOptions extends ConnectorOperationOptions {
     accountId?: string;
     path: string;
     structure: string;
 }
 
-type DescribeSettings = ConnectorOperationSettings;
+type DescribeOptions = ConnectorOperationOptions;
 interface DescribeResult {
     description: ConnectionDescription;
 }
 
-interface DropSettings extends ConnectorOperationSettings {
+interface DropOptions extends ConnectorOperationOptions {
     path: string;
 }
 
-interface GetRecordSettings extends ConnectorOperationSettings {
+interface GetRecordOptions extends ConnectorOperationOptions {
     id: string;
     path: string;
 }
@@ -155,16 +141,18 @@ interface GetRecordResult {
     record?: string[] | Record<string, unknown>;
 }
 
-interface RemoveSettings extends ConnectorOperationSettings {
+interface RemoveOptions extends ConnectorOperationOptions {
     keys: string[];
     path: string;
 }
 
-interface RetrieveChunksSettings extends ConnectorOperationSettings {
+interface RetrieveChunksOptions extends ConnectorOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
+    chunk: (records: (string[] | Record<string, unknown>)[]) => void;
+    complete: (result: RetrieveChunksSummary) => void;
 }
 
 interface RetrieveChunksSummary {
@@ -176,7 +164,7 @@ interface RetrieveChunksSummary {
     recordCount: number;
 }
 
-interface UpsertSettings extends ConnectorOperationSettings {
+interface UpsertOptions extends ConnectorOperationOptions {
     records: Record<string, unknown>[];
     path: string;
 }
@@ -213,24 +201,24 @@ export type {
     ConnectorInterface,
     ConnectorLocalisedConfig,
     ConnectorOperationName,
-    ConnectorOperationSettings,
+    ConnectorOperationOptions,
     ConnectorUsageId,
-    CreateSettings,
-    DropSettings,
-    FindObjectFolderPathSettings,
-    GetReadableStreamSettings,
+    CreateOptions,
+    DropOptions,
+    FindObjectFolderPathOptions,
+    GetReadableStreamOptions,
     GetRecordResult,
-    GetRecordSettings,
+    GetRecordOptions,
     ListNodesResult,
-    ListNodesSettings,
+    ListNodesOptions,
     PreviewObjectResult,
-    PreviewObjectSettings,
-    RemoveSettings,
-    RetrieveChunksSettings,
+    PreviewObjectOptions,
+    RemoveOptions,
+    RetrieveChunksOptions,
     RetrieveChunksSummary,
-    RetrieveRecordsSettings,
+    RetrieveRecordsOptions,
     RetrieveRecordsSummary,
-    UpsertSettings
+    UpsertOptions
 };
 
 export { connectorConfigSchema } from '~/src/component/connector/connectorConfig.schema';

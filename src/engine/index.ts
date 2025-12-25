@@ -3,7 +3,7 @@
  */
 
 import type { ConnectionConfig } from '@/component/connector/connection';
-import type { ConnectorOperationSettings } from '@/component/connector';
+import type { ConnectorOperationOptions } from '@/component/connector';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
 import type { ContextCallbackData, ContextConfig, ContextOperationSettings } from '@/component/context';
@@ -25,12 +25,12 @@ type InitialiseEngine = (settings: EngineInitialiseSettings) => Promise<void>;
 type ProcessConnectorRequest = (
     id: string,
     connectionConfig: ConnectionConfig,
-    settings: ConnectorOperationSettings,
+    settings: ConnectorOperationOptions,
     callback?: (callbackData: ContextCallbackData) => void
 ) => Promise<unknown>;
 
 // Types/Interfaces/Operations - Audit Content (object).
-interface AuditContentSettings extends ConnectorOperationSettings {
+interface AuditContentSettings extends ConnectorOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;
