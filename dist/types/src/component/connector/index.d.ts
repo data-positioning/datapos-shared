@@ -83,8 +83,6 @@ interface RetrieveRecordsOptions extends ConnectorOperationOptions {
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
-    chunk: (records: (string[] | Record<string, unknown>)[]) => void;
-    complete: (result: RetrieveRecordsSummary) => void;
 }
 interface RetrieveRecordsSummary {
     byteCount: number;
@@ -122,8 +120,6 @@ interface RetrieveChunksOptions extends ConnectorOperationOptions {
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
-    chunk: (records: (string[] | Record<string, unknown>)[]) => void;
-    complete: (result: RetrieveChunksSummary) => void;
 }
 interface RetrieveChunksSummary {
     byteCount: number;
