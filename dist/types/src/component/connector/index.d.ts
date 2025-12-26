@@ -33,8 +33,8 @@ interface ConnectorInterface extends Component {
     getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>;
     listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>;
     previewObject?(connector: ConnectorInterface, options: PreviewObjectOptions): Promise<PreviewObjectResult>;
-    removeRecords?(connector: ConnectorInterface, options: RemoveOptions): Promise<void>;
-    retrieveChunks?(connector: ConnectorInterface, options: RetrieveChunksOptions): Promise<void>;
+    removeRecords?(connector: ConnectorInterface, options: RemoveOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveChunksSummary) => void): Promise<void>;
+    retrieveChunks?(connector: ConnectorInterface, options: RetrieveChunksOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveChunksSummary) => void): Promise<void>;
     retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions): Promise<void>;
     upsertRecords?(connector: ConnectorInterface, options: UpsertOptions): Promise<void>;
 }

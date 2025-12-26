@@ -48,8 +48,18 @@ interface ConnectorInterface extends Component {
     getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
     listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>; // List nodes in a folder for a specified connection.
     previewObject?(connector: ConnectorInterface, options: PreviewObjectOptions): Promise<PreviewObjectResult>; // Preview an object for a specified connection.
-    removeRecords?(connector: ConnectorInterface, options: RemoveOptions): Promise<void>; // Remove one or more records from an object for a specified connection.
-    retrieveChunks?(connector: ConnectorInterface, options: RetrieveChunksOptions): Promise<void>; // Retrieve all chunks from an object for a specified connection.
+    removeRecords?(
+        connector: ConnectorInterface,
+        options: RemoveOptions,
+        chunk: (records: (string[] | Record<string, unknown>)[]) => void,
+        complete: (result: RetrieveChunksSummary) => void
+    ): Promise<void>; // Remove one or more records from an object for a specified connection.
+    retrieveChunks?(
+        connector: ConnectorInterface,
+        options: RetrieveChunksOptions,
+        chunk: (records: (string[] | Record<string, unknown>)[]) => void,
+        complete: (result: RetrieveChunksSummary) => void
+    ): Promise<void>; // Retrieve all chunks from an object for a specified connection.
     retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: ConnectorInterface, options: UpsertOptions): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
