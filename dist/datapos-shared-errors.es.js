@@ -31,9 +31,9 @@ class m extends a {
 }
 class w extends a {
 }
-class b extends a {
+class h extends a {
 }
-async function h(e, o, t) {
+async function b(e, o, t) {
   const r = ` - ${e.statusText}`, n = `${o} Response status '${e.status}${e.statusText ? r : ""}' received.`;
   let s;
   try {
@@ -45,6 +45,12 @@ async function h(e, o, t) {
 }
 function k(e) {
   return e.map((o) => o.message).join(" ");
+}
+function x(e) {
+  try {
+    e();
+  } catch {
+  }
 }
 function l(e) {
   if (e instanceof Error) return e;
@@ -59,7 +65,7 @@ function l(e) {
     }
   return new Error("Unknown error");
 }
-function x(e) {
+function R(e) {
   const o = /* @__PURE__ */ new Set(), t = [];
   let r = e;
   for (; r != null && !o.has(r); ) {
@@ -108,10 +114,11 @@ export {
   c as FetchError,
   y as OperationalError,
   m as VueHandledError,
-  b as WindowHandledPromiseRejectionError,
+  h as WindowHandledPromiseRejectionError,
   w as WindowHandledRuntimeError,
-  h as buildFetchError,
+  b as buildFetchError,
   k as concatenateSerialisedErrorMessages,
+  x as ignoreErrors,
   l as normalizeToError,
-  x as serialiseError
+  R as serialiseError
 };

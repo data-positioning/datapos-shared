@@ -102,6 +102,15 @@ function concatenateSerialisedErrorMessages(serialisedErrors: SerialisedError[])
     return serialisedErrors.map((serialisedError) => serialisedError.message).join(' ');
 }
 
+/** Ignore best-effort cleanup errors to keep teardown noise-free. */
+function ignoreErrors(action: () => void): void {
+    try {
+        action();
+    } catch {
+        /* Intentionally ignore errors. */
+    }
+}
+
 /** Normalizes an unknown thrown value into an {@link Error}.
  * This function should be used at error boundaries to guarantee consistent error handling.
  */
@@ -189,4 +198,4 @@ function sanitizeFetchErrorBody(body?: string): string | undefined {
 /** Exports. */
 export type { SerialisedError };
 export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
-export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError };
+export { buildFetchError, concatenateSerialisedErrorMessages, ignoreErrors, normalizeToError, serialiseError };

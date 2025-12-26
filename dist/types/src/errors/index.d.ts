@@ -67,6 +67,8 @@ declare function buildFetchError(response: {
 }, message: string, locator: string): Promise<FetchError>;
 /** Concatenates serialized error messages into a single string. */
 declare function concatenateSerialisedErrorMessages(serialisedErrors: SerialisedError[]): string;
+/** Ignore best-effort cleanup errors to keep teardown noise-free. */
+declare function ignoreErrors(action: () => void): void;
 /** Normalizes an unknown thrown value into an {@link Error}.
  * This function should be used at error boundaries to guarantee consistent error handling.
  */
@@ -80,4 +82,4 @@ declare function serialiseError(error?: unknown): SerialisedError[];
 /** Exports. */
 export type { SerialisedError };
 export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
-export { buildFetchError, concatenateSerialisedErrorMessages, normalizeToError, serialiseError };
+export { buildFetchError, concatenateSerialisedErrorMessages, ignoreErrors, normalizeToError, serialiseError };
