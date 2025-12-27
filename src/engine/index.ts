@@ -45,8 +45,8 @@ interface EngineWorkerInitialiseOptions {
 
 //#region ----- Engine. -----
 
-/** Engine API. */
-interface EngineAPI {
+/** Engine Shared. */
+interface EngineShared {
     determineFileType: (id: string) => string;
 }
 
@@ -87,9 +87,9 @@ export type {
     AuditObjectContentOptions,
     AuditObjectContentResult,
     ConnectorCallbackData,
-    EngineAPI,
     EngineConfig,
     EngineRuntimeInterface,
+    EngineShared,
     EngineWorkerInitialiseOptions,
     EngineWorkerInterface,
     TestSettings

@@ -21,8 +21,8 @@ interface EngineWorkerInitialiseOptions {
     connectorStorageURLPrefix: string;
     toolConfigs: ToolConfig[];
 }
-/** Engine API. */
-interface EngineAPI {
+/** Engine Shared. */
+interface EngineShared {
     determineFileType: (id: string) => string;
 }
 /** Engine configuration. */
@@ -52,4 +52,4 @@ interface TestSettings {
     readable: ReadableStream<Uint8Array>;
 }
 /** Exports. */
-export type { AuditObjectContentOptions, AuditObjectContentResult, ConnectorCallbackData, EngineAPI, EngineConfig, EngineRuntimeInterface, EngineWorkerInitialiseOptions, EngineWorkerInterface, TestSettings };
+export type { AuditObjectContentOptions, AuditObjectContentResult, ConnectorCallbackData, EngineConfig, EngineRuntimeInterface, EngineShared, EngineWorkerInitialiseOptions, EngineWorkerInterface, TestSettings };
