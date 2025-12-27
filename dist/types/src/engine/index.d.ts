@@ -21,7 +21,7 @@ interface EngineWorkerInitialiseOptions {
     connectorStorageURLPrefix: string;
     toolConfigs: ToolConfig[];
 }
-/** Engine interface. */
+/** Engine API. */
 interface EngineAPI {
     determineFileType: (id: string) => string;
 }

@@ -45,7 +45,7 @@ interface EngineWorkerInitialiseOptions {
 
 //#region ----- Engine. -----
 
-/** Engine interface. */
+/** Engine API. */
 interface EngineAPI {
     determineFileType: (id: string) => string;
 }
