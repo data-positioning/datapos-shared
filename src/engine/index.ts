@@ -46,8 +46,8 @@ interface EngineWorkerInitialiseOptions {
 //#region ----- Engine. -----
 
 /** Engine interface. */
-interface EngineInterface {
-    previewObject(engine: EngineInterface, connectionConfig: ConnectionConfig, options: PreviewObjectOptions): Promise<{ error: unknown } | { result: DataViewPreviewConfig }>;
+interface EngineAPI {
+    determineFileType: (id: string) => string;
 }
 
 /** Engine configuration. */
@@ -87,8 +87,8 @@ export type {
     AuditObjectContentOptions,
     AuditObjectContentResult,
     ConnectorCallbackData,
+    EngineAPI,
     EngineConfig,
-    EngineInterface,
     EngineRuntimeInterface,
     EngineWorkerInitialiseOptions,
     EngineWorkerInterface,

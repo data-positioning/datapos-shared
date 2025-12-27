@@ -1,9 +1,9 @@
 import { ConnectionConfig } from '../component/connector/connection';
-import { ConnectorOperationOptions, PreviewObjectOptions } from '../component/connector';
+import { ConnectorOperationOptions } from '../component/connector';
 import { ModuleConfig } from '../component/module';
 import { ToolConfig } from '../component/tool';
 import { ContextCallbackData, ContextConfig, ContextOperationOptions } from '../component/context';
-import { DataViewContentAuditConfig, DataViewPreviewConfig, EncodingConfig, ValueDelimiterId } from '../component/dataView';
+import { DataViewContentAuditConfig, EncodingConfig, ValueDelimiterId } from '../component/dataView';
 /** Engine runtime interface. */
 interface EngineRuntimeInterface {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
@@ -22,12 +22,8 @@ interface EngineWorkerInitialiseOptions {
     toolConfigs: ToolConfig[];
 }
 /** Engine interface. */
-interface EngineInterface {
-    previewObject(engine: EngineInterface, connectionConfig: ConnectionConfig, options: PreviewObjectOptions): Promise<{
-        error: unknown;
-    } | {
-        result: DataViewPreviewConfig;
-    }>;
+interface EngineAPI {
+    determineFileType: (id: string) => string;
 }
 /** Engine configuration. */
 interface EngineConfig extends ModuleConfig {
@@ -56,4 +52,4 @@ interface TestSettings {
     readable: ReadableStream<Uint8Array>;
 }
 /** Exports. */
-export type { AuditObjectContentOptions, AuditObjectContentResult, ConnectorCallbackData, EngineConfig, EngineInterface, EngineRuntimeInterface, EngineWorkerInitialiseOptions, EngineWorkerInterface, TestSettings };
+export type { AuditObjectContentOptions, AuditObjectContentResult, ConnectorCallbackData, EngineAPI, EngineConfig, EngineRuntimeInterface, EngineWorkerInitialiseOptions, EngineWorkerInterface, TestSettings };
