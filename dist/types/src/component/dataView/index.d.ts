@@ -54,20 +54,20 @@ interface DataFormat {
     id: string;
     label: string;
 }
-export declare const getDataFormat: (id: string, localeId?: import('../../index').LocaleCode) => DataFormat;
-export declare const getDataFormats: (localeId?: import('../../index').LocaleCode) => DataFormat[];
+export declare const getDataFormat: (id: string, localeId?: import('../../locale').LocaleCode) => DataFormat;
+export declare const getDataFormats: (localeId?: import('../../locale').LocaleCode) => DataFormat[];
 interface RecordDelimiter {
     id: string;
     label: string;
 }
-export declare const getRecordDelimiter: (id: string, localeId?: import('../../index').LocaleCode) => RecordDelimiter;
-export declare const getRecordDelimiters: (localeId?: import('../../index').LocaleCode) => RecordDelimiter[];
+export declare const getRecordDelimiter: (id: string, localeId?: import('../../locale').LocaleCode) => RecordDelimiter;
+export declare const getRecordDelimiters: (localeId?: import('../../locale').LocaleCode) => RecordDelimiter[];
 interface ValueDelimiter {
     id: string;
     label: string;
 }
-export declare const getValueDelimiter: (id: string, localeId?: import('../../index').LocaleCode) => ValueDelimiter;
-export declare const getValueDelimiters: (localeId?: import('../../index').LocaleCode) => ValueDelimiter[];
+export declare const getValueDelimiter: (id: string, localeId?: import('../../locale').LocaleCode) => ValueDelimiter;
+export declare const getValueDelimiters: (localeId?: import('../../locale').LocaleCode) => ValueDelimiter[];
 export type ParsedValue = bigint | boolean | number | string | null;
 export type DataFormatId = 'dtv' | 'e/e' | 'jsonArray' | 'spss' | 'xls' | 'xlsx' | 'xml';
 export type RecordDelimiterId = '\n' | '\r' | '\r\n';

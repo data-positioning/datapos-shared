@@ -7,7 +7,7 @@ import type { InferOutput } from 'valibot';
 
 // Dependencies - Framework.
 import type { contextConfigSchema } from '@/component/context/contextConfig.schema';
-import type { LocalisedString } from '@/index';
+import type { LocalisedString } from '@/locale';
 import type { ModuleConfig } from '@/component/module';
 import type { Component, ComponentConfig, ComponentReference } from '@/component';
 

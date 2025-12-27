@@ -6,9 +6,9 @@
 import type { InferOutput } from 'valibot';
 
 /** Framework dependencies. */
-import { DEFAULT_LOCALE_CODE } from '@/index';
-import type { componentConfigSchema, componentStatusColorIdSchema, componentStatusSchema } from '@/component/componentConfig.schema';
-import type { LocaleCode, LocalisedString } from '@/index';
+import { DEFAULT_LOCALE_CODE } from '@/locale';
+import type { componentConfigSchema, componentReferenceSchema, componentStatusColorIdSchema, componentStatusSchema } from '@/component/componentConfig.schema';
+import type { LocaleCode, LocalisedString } from '@/locale';
 
 /** Component. */
 interface Component {
@@ -16,6 +16,8 @@ interface Component {
 }
 
 type ComponentConfig = InferOutput<typeof componentConfigSchema>;
+
+type ComponentReference = InferOutput<typeof componentReferenceSchema>;
 
 type ComponentStatus = InferOutput<typeof componentStatusSchema>;
 
@@ -46,5 +48,5 @@ function getComponentStatus(id: string, localeId: LocaleCode = DEFAULT_LOCALE_CO
 /** Exports */
 export { getComponentStatus };
 export { componentConfigSchema } from '@/component/componentConfig.schema';
-export type { Component, ComponentConfig };
+export type { Component, ComponentConfig, ComponentReference };
 export type { ModuleConfig, ModuleTypeId } from '@/component/module';

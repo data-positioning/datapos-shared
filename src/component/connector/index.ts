@@ -1,5 +1,5 @@
 /**
- * Connector composables, constants, errors, types/interfaces and utilities.
+ * Connector constants, type declarations, and runtime utilities.
  */
 
 /** Vendor dependencies. */
@@ -7,30 +7,11 @@ import type { InferOutput } from 'valibot';
 
 /** Framework dependencies. */
 import type { Component } from '@/component';
+import { DEFAULT_LOCALE_CODE } from '@/locale';
 import type { ToolConfig } from '@/component/tool';
 import type { ValueDelimiterId } from '@/component/dataView';
 import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '~/src/component/connector/connection';
-import type { connectorCategorySchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '~/src/component/connector/connectorConfig.schema';
-import { DEFAULT_LOCALE_CODE, type LocalisedString } from '@/index';
-
-/** Authentication method identifiers supported by a connector implementation. */
-// type AuthMethodId = InferOutput<typeof connectorAuthMethodIdSchema>;
-
-/** Connector implementation. */
-// type ConnectorImplementation = InferOutput<typeof connectorImplementationSchema>;
-
-/** Category identifiers used for grouping and filtering connectors. */
-// type ConnectorCategoryId = InferOutput<typeof connectorCategoryIdSchema>;
-
-/** Operation names a connector may support. */
-type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
-
-/** Connector data pipeline usage identifiers. */
-type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
-
-/** Connector configuration. */
-type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
-type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
+import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '~/src/component/connector/connectorConfig.schema';
 
 /** Connector runtime interface. */
 interface ConnectorInterface extends Component {
@@ -63,6 +44,18 @@ interface ConnectorInterface extends Component {
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: ConnectorInterface, options: UpsertRecordsOptions): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
+
+//#region ----- Connector operation type declarations. -----
+
+/** Operation names a connector may support. */
+type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
+
+/** Connector data pipeline usage identifiers. */
+type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
+
+/** Connector configuration. */
+type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
+type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
 
 /** Connector operation options. */
 interface ConnectorOperationOptions {
@@ -170,23 +163,28 @@ interface UpsertRecordsOptions extends ConnectorOperationOptions {
     path: string;
 }
 
-//#region Utilities
+//#endregion
 
-/** Types/Interfaces/Operations - Connector category. */
-type ConnectorCategory = InferOutput<typeof connectorCategorySchema>;
+//#region ----- Connector category constants, type declarations and runtime utilities. -----
 
-const connectorCategories: { id: string; labels: Partial<LocalisedString> }[] = [
-    { id: 'application', labels: { 'en-gb': 'Application' } },
-    { id: 'curatedDataset', labels: { 'en-gb': 'Curated Dataset' } },
-    { id: 'database', labels: { 'en-gb': 'Database' } },
-    { id: 'fileStore', labels: { 'en-gb': 'File Store' } }
+/** Connector category configuration. */
+type ConnectorCategoryConfig = InferOutput<typeof connectorCategoryConfigSchema>;
+type ConnectorCategoryLocalisedConfig = Omit<ConnectorCategoryConfig, 'label'> & { label: string };
+
+/** Connector categories. */
+const CONNECTOR_CATEGORY_CONFIGS: ConnectorCategoryConfig[] = [
+    { id: 'application', label: { 'en-gb': 'Application' } },
+    { id: 'curatedDataset', label: { 'en-gb': 'Curated Dataset' } },
+    { id: 'database', label: { 'en-gb': 'Database' } },
+    { id: 'fileStore', label: { 'en-gb': 'File Store' } }
 ];
 
-const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): ConnectorCategory => {
-    const connectorCategory = connectorCategories.find((connectorCategory) => connectorCategory.id === id);
+/** Construct connector category configuration. */
+const constructConnectorCategoryConfig = (id: string, localeId = DEFAULT_LOCALE_CODE): ConnectorCategoryLocalisedConfig => {
+    const connectorCategory = CONNECTOR_CATEGORY_CONFIGS.find((connectorCategory) => connectorCategory.id === id);
     if (connectorCategory) {
         // eslint-disable-next-line security/detect-object-injection
-        const label = connectorCategory.labels[localeId] ?? connectorCategory.labels[DEFAULT_LOCALE_CODE] ?? connectorCategory.id;
+        const label = connectorCategory.label[localeId] ?? connectorCategory.label[DEFAULT_LOCALE_CODE] ?? connectorCategory.id;
         return { id: connectorCategory.id, label };
     }
     return { id, label: id };
@@ -196,7 +194,7 @@ const getConnectorCategory = (id: string, localeId = DEFAULT_LOCALE_CODE): Conne
 
 /** Exports. */
 export { connectorConfigSchema } from '~/src/component/connector/connectorConfig.schema';
-export { getConnectorCategory };
+export { constructConnectorCategoryConfig };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from '~/src/component/connector/connection';
 export type {
     ConnectorConfig,

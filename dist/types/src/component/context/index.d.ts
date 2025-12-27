@@ -1,6 +1,6 @@
 import { InferOutput } from 'valibot';
 import { contextConfigSchema } from './contextConfig.schema';
-import { LocalisedString } from '../../index';
+import { LocalisedString } from '../../locale';
 import { ModuleConfig } from '../module';
 import { Component, ComponentConfig, ComponentReference } from '..';
 export interface Context extends Component {

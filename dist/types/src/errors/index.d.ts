@@ -1,5 +1,5 @@
 /**
- * Error classes and utilities.
+ * Error constants, type declarations, classes, runtime utilities and local helpers.
  */
 /** Serializable representation of an error and its cause chain.
  * Used for logging, reporting, and transport across process or network boundaries.

@@ -1,13 +1,14 @@
-import { l as n, o as i, n as a, a as d, r as b, b as g, m as u, s as e, d as o, e as s, f as p, g as C, D as l } from "./index-5UsJyepS.js";
-const h = n(["apiKey", "disabled", "oAuth2", "none"]), S = i({
-  authMethodId: h,
+import { l as n, o as i, n as a, b as d, r as b, d as C, s as e, e as o, f as s, g as p, h as g, p as u, D as l } from "./locale-CPeRw0Am.js";
+import { m as h } from "./moduleConfig.schema-ElDY1bZx.js";
+const S = n(["apiKey", "disabled", "oAuth2", "none"]), f = i({
+  authMethodId: S,
   activeConnectionCount: o(s()),
-  canDescribe: o(C()),
+  canDescribe: o(g()),
   id: o(e()),
   label: o(p),
   maxConnectionCount: o(s()),
   params: o(d(b(e(), e())))
-}), f = n(["application", "curatedDataset", "database", "fileStore"]), y = n([
+}), O = n(["application", "curatedDataset", "database", "fileStore"]), R = n([
   "abortOperation",
   "authenticateConnection",
   "createObject",
@@ -22,34 +23,34 @@ const h = n(["apiKey", "disabled", "oAuth2", "none"]), S = i({
   "retrieveChunks",
   "retrieveRecords",
   "upsertRecords"
-]), D = n(["bidirectional", "destination", "source", "unknown"]), v = i({
+]), y = n(["bidirectional", "destination", "source", "unknown"]), D = i({
   id: e(),
-  label: e()
-}), R = i({
-  ...u,
-  typeId: g("connector"),
-  category: a(v),
-  categoryId: f,
-  implementations: b(e(), S),
-  operations: d(y),
-  usageId: D,
+  label: u
+}), L = i({
+  ...h,
+  typeId: C("connector"),
+  category: a(D),
+  categoryId: O,
+  implementations: b(e(), f),
+  operations: d(R),
+  usageId: y,
   vendorAccountURL: a(e()),
   vendorDocumentationURL: a(e()),
   vendorHomeURL: a(e())
 }), I = [
-  { id: "application", labels: { "en-gb": "Application" } },
-  { id: "curatedDataset", labels: { "en-gb": "Curated Dataset" } },
-  { id: "database", labels: { "en-gb": "Database" } },
-  { id: "fileStore", labels: { "en-gb": "File Store" } }
-], A = (c, m = l) => {
+  { id: "application", label: { "en-gb": "Application" } },
+  { id: "curatedDataset", label: { "en-gb": "Curated Dataset" } },
+  { id: "database", label: { "en-gb": "Database" } },
+  { id: "fileStore", label: { "en-gb": "File Store" } }
+], U = (c, m = l) => {
   const t = I.find((r) => r.id === c);
   if (t) {
-    const r = t.labels[m] ?? t.labels[l] ?? t.id;
+    const r = t.label[m] ?? t.label[l] ?? t.id;
     return { id: t.id, label: r };
   }
   return { id: c, label: c };
 };
 export {
-  R as connectorConfigSchema,
-  A as getConnectorCategory
+  L as connectorConfigSchema,
+  U as constructConnectorCategoryConfig
 };

@@ -10,15 +10,15 @@ import { array, boolean, literal, nullable, number, object, optional, record, st
 
 /** Framework dependencies. */
 import { moduleConfigCoreFields } from '@/component/moduleConfig.schema';
-import { literalUnion, localisedStringSchema } from '@/component/componentConfig.schema';
+import { literalUnion, localisedStringSchema, partialLocalisedStringSchema } from '@/component/componentConfig.schema';
 
 /** Authentication method identifiers supported by a connector implementation. */
-export const connectorAuthMethodIdSchema = literalUnion(['apiKey', 'disabled', 'oAuth2', 'none'] as const);
+const connectorAuthMethodIdSchema = literalUnion(['apiKey', 'disabled', 'oAuth2', 'none'] as const);
 
 /** A connector implementation variant. A single connector may expose multiple
  * implementations differing by auth method, limits, or vendor-specific behavior.
  */
-export const connectorImplementationSchema = object({
+const connectorImplementationSchema = object({
     authMethodId: connectorAuthMethodIdSchema,
     activeConnectionCount: optional(number()),
     canDescribe: optional(boolean()),
@@ -29,10 +29,10 @@ export const connectorImplementationSchema = object({
 });
 
 /** Category identifiers used for grouping and filtering connectors. */
-export const connectorCategoryIdSchema = literalUnion(['application', 'curatedDataset', 'database', 'fileStore'] as const);
+const connectorCategoryIdSchema = literalUnion(['application', 'curatedDataset', 'database', 'fileStore'] as const);
 
 /** Operation names a connector may support. */
-export const connectorOperationNameSchema = literalUnion([
+const connectorOperationNameSchema = literalUnion([
     'abortOperation',
     'authenticateConnection',
     'createObject',
@@ -50,18 +50,18 @@ export const connectorOperationNameSchema = literalUnion([
 ] as const);
 
 /** Connector data pipeline usage identifiers. */
-export const connectorUsageIdSchema = literalUnion(['bidirectional', 'destination', 'source', 'unknown'] as const);
+const connectorUsageIdSchema = literalUnion(['bidirectional', 'destination', 'source', 'unknown'] as const);
 
-export const connectorCategorySchema = object({
+const connectorCategoryConfigSchema = object({
     id: string(),
-    label: string()
+    label: partialLocalisedStringSchema
 });
 
 /** Top-level connector configuration object. */
-export const connectorConfigSchema = object({
+const connectorConfigSchema = object({
     ...moduleConfigCoreFields,
     typeId: literal('connector'),
-    category: nullable(connectorCategorySchema),
+    category: nullable(connectorCategoryConfigSchema),
     categoryId: connectorCategoryIdSchema,
     implementations: record(string(), connectorImplementationSchema),
     operations: array(connectorOperationNameSchema),
@@ -70,3 +70,6 @@ export const connectorConfigSchema = object({
     vendorDocumentationURL: nullable(string()),
     vendorHomeURL: nullable(string())
 });
+
+/** Exports. */
+export { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema };

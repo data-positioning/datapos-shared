@@ -3,8 +3,8 @@
  */
 
 /** Interfaces/Types */
-export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
-export type LocalisedString = Record<LocaleCode, string>;
+// export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
+// export type LocalisedString = Record<LocaleCode, string>;
 
 /** Interfaces/Types - Context. */
 export { contextConfigSchema } from '@/component/context';
@@ -98,7 +98,7 @@ export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscape
 export { useDataTable } from '@/composables/useDataTable';
 
 /** Constants */
-export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
+// export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 
 /** Utilities */
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from '@/component/dataView';

@@ -3,20 +3,7 @@ import { Component } from '..';
 import { ToolConfig } from '../tool';
 import { ValueDelimiterId } from '../dataView';
 import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
-import { connectorCategorySchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
-/** Authentication method identifiers supported by a connector implementation. */
-/** Connector implementation. */
-/** Category identifiers used for grouping and filtering connectors. */
-/** Operation names a connector may support. */
-type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
-/** Connector data pipeline usage identifiers. */
-type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
-/** Connector configuration. */
-type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
-type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & {
-    label: string;
-    description: string;
-};
+import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
 /** Connector runtime interface. */
 interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
@@ -38,6 +25,16 @@ interface ConnectorInterface extends Component {
     retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     upsertRecords?(connector: ConnectorInterface, options: UpsertRecordsOptions): Promise<void>;
 }
+/** Operation names a connector may support. */
+type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
+/** Connector data pipeline usage identifiers. */
+type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
+/** Connector configuration. */
+type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
+type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
 /** Connector operation options. */
 interface ConnectorOperationOptions {
     accountId?: string;
@@ -131,11 +128,15 @@ interface UpsertRecordsOptions extends ConnectorOperationOptions {
     records: Record<string, unknown>[];
     path: string;
 }
-/** Types/Interfaces/Operations - Connector category. */
-type ConnectorCategory = InferOutput<typeof connectorCategorySchema>;
-declare const getConnectorCategory: (id: string, localeId?: import('../../index').LocaleCode) => ConnectorCategory;
+/** Connector category configuration. */
+type ConnectorCategoryConfig = InferOutput<typeof connectorCategoryConfigSchema>;
+type ConnectorCategoryLocalisedConfig = Omit<ConnectorCategoryConfig, 'label'> & {
+    label: string;
+};
+/** Construct connector category configuration. */
+declare const constructConnectorCategoryConfig: (id: string, localeId?: import('../../locale').LocaleCode) => ConnectorCategoryLocalisedConfig;
 /** Exports. */
 export { connectorConfigSchema } from './connectorConfig.schema';
-export { getConnectorCategory };
+export { constructConnectorCategoryConfig };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
 export type { ConnectorConfig, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationOptions, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectResult, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };

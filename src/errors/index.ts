@@ -1,11 +1,9 @@
 /**
- * Error classes and utilities.
+ * Error constants, type declarations, classes, runtime utilities and local helpers.
  */
 
 /** Constants */
 const FETCH_ERROR_BODY_LIMIT = 2048;
-
-//#region Types --------------------
 
 /** Serializable representation of an error and its cause chain.
  * Used for logging, reporting, and transport across process or network boundaries.
@@ -20,9 +18,7 @@ interface SerialisedError {
     /** Stack trace, if available. */ stack: string | undefined;
 }
 
-//#endregion
-
-//#region Errors --------------------
+//#region ----- Error classes. ------------
 
 /** Base class for all Data Positioning errors.
  * All errors include a `locator` identifying the logical source of the error (module, feature, or operation).
@@ -89,7 +85,7 @@ class WindowHandledPromiseRejectionError extends ApplicationError {}
 
 //#endregion
 
-//#region Utilities --------------------
+//#region ----- Error runtime utilities. -----
 
 /** Builds a {@link FetchError} from an HTTP response.
  * The response body is eagerly read so it can be included in error logs even after the response stream is closed.
@@ -186,7 +182,7 @@ function serialiseError(error?: unknown): SerialisedError[] {
 
 //#endregion
 
-//#region Helpers --------------------
+//#region ----- Error local helpers. -----
 
 /** Builds a fallback message for non-Error throwables. */
 function buildFallbackMessage(cause: unknown): string {

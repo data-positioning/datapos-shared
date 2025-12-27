@@ -2,8 +2,6 @@
  * Shared composables, constants, errors, interfaces, schemas, types and utilities.
  */
 /** Interfaces/Types */
-export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
-export type LocalisedString = Record<LocaleCode, string>;
 /** Interfaces/Types - Context. */
 export { contextConfigSchema } from './component/context';
 export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextOperation, ContextCallbackData } from './component/context';
@@ -41,6 +39,5 @@ export type { PresentationCategoryId, PresentationCartesianTypeId, PresentationP
 export { type CytoscapeJSView, useCytoscapeJS } from './composables/useCytoscapeJS';
 export { useDataTable } from './composables/useDataTable';
 /** Constants */
-export declare const DEFAULT_LOCALE_CODE: LocaleCode;
 /** Utilities */
 export { getDataFormats, getRecordDelimiters, getValueDelimiters } from './component/dataView';
