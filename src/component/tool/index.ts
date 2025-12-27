@@ -17,8 +17,7 @@ async function loadTool<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T
 
     const url = `https://engine-eu.datapos.app/tools/${toolId}_v${toolModuleConfig.version}/${toolName}.es.js`;
     const toolModule = (await import(/* @vite-ignore */ url)) as { Tool: new () => T };
-    const toolInstance = new toolModule.Tool();
-    return toolInstance;
+    return new toolModule.Tool();
 }
 
 /** Exports. */
