@@ -25,7 +25,7 @@ interface ConnectorInterface extends Component {
     upsertRecords?(connector: ConnectorInterface, options: UpsertRecordsOptions): Promise<void>;
 }
 /** Class constructor that builds a ConnectorInterface. */
-type ConnectorConstructor = new (config: ConnectorConfig, toolConfigs: ToolConfig[]) => ConnectorInterface;
+type ConnectorConstructor = new (toolConfigs: ToolConfig[]) => ConnectorInterface;
 /** Operation names a connector may support. */
 type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
 /** Connector data pipeline usage identifiers. */
