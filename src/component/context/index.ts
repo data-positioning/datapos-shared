@@ -14,10 +14,10 @@ import type { Component, ComponentConfig, ComponentReference } from '@/component
 // Types/Interfaces/Operations - Context.
 export interface Context extends Component {
     readonly config: ContextConfig;
-    list?(settings?: ContextListSettings): Promise<ContextListResult>;
+    list?(context: Context, options?: ContextListOptions): Promise<ContextListResult>;
 }
 export type ContextOperationOptions = object; // TODO.
-export type ContextListSettings = object; // TODO.
+export type ContextListOptions = object; // TODO.
 export interface ContextListResult {
     models: ContextModelGroupConfig[];
 }
