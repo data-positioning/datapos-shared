@@ -5,6 +5,8 @@
 /** Constants */
 const FETCH_ERROR_BODY_LIMIT = 2048;
 
+//#region Types --------------------
+
 /** Serializable representation of an error and its cause chain.
  * Used for logging, reporting, and transport across process or network boundaries.
  */
@@ -17,6 +19,10 @@ interface SerialisedError {
     /** Error class or type name. */ name: string;
     /** Stack trace, if available. */ stack: string | undefined;
 }
+
+//#endregion
+
+//#region Errors --------------------
 
 /** Base class for all Data Positioning errors.
  * All errors include a `locator` identifying the logical source of the error (module, feature, or operation).
@@ -80,6 +86,10 @@ class WindowHandledRuntimeError extends ApplicationError {}
 
 /** Represents handled window promise rejection errors. */
 class WindowHandledPromiseRejectionError extends ApplicationError {}
+
+//#endregion
+
+//#region Utilities --------------------
 
 /** Builds a {@link FetchError} from an HTTP response.
  * The response body is eagerly read so it can be included in error logs even after the response stream is closed.
@@ -174,6 +184,10 @@ function serialiseError(error?: unknown): SerialisedError[] {
     return serialisedErrors;
 }
 
+//#endregion
+
+//#region Helpers --------------------
+
 /** Builds a fallback message for non-Error throwables. */
 function buildFallbackMessage(cause: unknown): string {
     let fallbackMessage: string;
@@ -194,6 +208,8 @@ function sanitizeFetchErrorBody(body?: string): string | undefined {
     if (body == null || body === '') return undefined;
     return body.length > FETCH_ERROR_BODY_LIMIT ? `${body.slice(0, FETCH_ERROR_BODY_LIMIT)}... [truncated]` : body;
 }
+
+//#endregion
 
 /** Exports. */
 export type { SerialisedError };
