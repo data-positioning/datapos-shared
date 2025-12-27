@@ -2,13 +2,12 @@ import { InferOutput } from 'valibot';
 import { Component } from '..';
 import { ToolConfig } from '../tool';
 import { ValueDelimiterId } from '../dataView';
-import { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from './connection';
+import { ConnectionDescription, ConnectionNodeConfig } from './connection';
 import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
 /** Connector runtime interface ans constructor. */
 interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
     readonly config: ConnectorConfig;
-    readonly connectionConfig: ConnectionConfig;
     readonly toolConfigs: ToolConfig[];
     abortOperation?(connector: ConnectorInterface): void;
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window;

@@ -10,14 +10,13 @@ import type { Component } from '@/component';
 import { DEFAULT_LOCALE_CODE } from '@/locale';
 import type { ToolConfig } from '@/component/tool';
 import type { ValueDelimiterId } from '@/component/dataView';
-import type { ConnectionConfig, ConnectionDescription, ConnectionNodeConfig } from '~/src/component/connector/connection';
+import type { ConnectionDescription, ConnectionNodeConfig } from '~/src/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '~/src/component/connector/connectorConfig.schema';
 
 /** Connector runtime interface ans constructor. */
 interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
     readonly config: ConnectorConfig;
-    readonly connectionConfig: ConnectionConfig;
     readonly toolConfigs: ToolConfig[];
     abortOperation?(connector: ConnectorInterface): void; // Abort the active long running operation for a specified connection.
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window; // Authenticate a specified connection.
