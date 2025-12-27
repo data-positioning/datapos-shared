@@ -13,7 +13,7 @@ import type { ValueDelimiterId } from '@/component/dataView';
 import type { ConnectionDescription, ConnectionNodeConfig } from '~/src/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '~/src/component/connector/connectorConfig.schema';
 
-/** Connector runtime interface ans constructor. */
+/** Connector interface an constructor. */
 interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
     readonly config: ConnectorConfig;
@@ -43,10 +43,9 @@ interface ConnectorInterface extends Component {
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: ConnectorInterface, options: UpsertRecordsOptions): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
-/** Class constructor that builds a ConnectorInterface. */
 type ConnectorConstructor = new (toolConfigs: ToolConfig[]) => ConnectorInterface;
 
-//#region ----- Connector operation type declarations. -----
+//#region ##### Connector operation type declarations. #####
 
 /** Operation names a connector may support. */
 type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
@@ -166,7 +165,7 @@ interface UpsertRecordsOptions extends ConnectorOperationOptions {
 
 //#endregion
 
-//#region ----- Connector category constants, type declarations and runtime utilities. -----
+//#region ##### Connector category constants, type declarations and runtime utilities. #####
 
 /** Connector category configuration. */
 type ConnectorCategoryConfig = InferOutput<typeof connectorCategoryConfigSchema>;

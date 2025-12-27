@@ -14,7 +14,7 @@ import type { Component, ComponentConfig, ComponentReference } from '@/component
 // Types/Interfaces/Operations - Context.
 export interface Context extends Component {
     readonly config: ContextConfig;
-    list(settings?: ContextListSettings): Promise<ContextListResult>;
+    list?(settings?: ContextListSettings): Promise<ContextListResult>;
 }
 export type ContextOperationOptions = object; // TODO.
 export type ContextListSettings = object; // TODO.

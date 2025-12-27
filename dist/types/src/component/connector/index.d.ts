@@ -4,7 +4,7 @@ import { ToolConfig } from '../tool';
 import { ValueDelimiterId } from '../dataView';
 import { ConnectionDescription, ConnectionNodeConfig } from './connection';
 import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
-/** Connector runtime interface ans constructor. */
+/** Connector interface an constructor. */
 interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
     readonly config: ConnectorConfig;
@@ -24,7 +24,6 @@ interface ConnectorInterface extends Component {
     retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     upsertRecords?(connector: ConnectorInterface, options: UpsertRecordsOptions): Promise<void>;
 }
-/** Class constructor that builds a ConnectorInterface. */
 type ConnectorConstructor = new (toolConfigs: ToolConfig[]) => ConnectorInterface;
 /** Operation names a connector may support. */
 type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;

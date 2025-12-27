@@ -5,7 +5,7 @@ import { ModuleConfig } from '../module';
 import { Component, ComponentConfig, ComponentReference } from '..';
 export interface Context extends Component {
     readonly config: ContextConfig;
-    list(settings?: ContextListSettings): Promise<ContextListResult>;
+    list?(settings?: ContextListSettings): Promise<ContextListResult>;
 }
 export type ContextOperationOptions = object;
 export type ContextListSettings = object;
