@@ -4,11 +4,11 @@
 
 /** Framework dependencies. */
 import type { ConnectionConfig } from '@/component/connector/connection';
-import type { ConnectorOperationOptions } from '@/component/connector';
+import type { ConnectorOperationOptions, PreviewObjectOptions } from '@/component/connector';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
 import type { ContextCallbackData, ContextConfig, ContextOperationOptions } from '@/component/context';
-import type { DataViewContentAuditConfig, EncodingConfig, ValueDelimiterId } from '@/component/dataView';
+import type { DataViewContentAuditConfig, DataViewPreviewConfig, EncodingConfig, ValueDelimiterId } from '@/component/dataView';
 
 //#region ----- Engine runtime. -----
 
@@ -44,6 +44,11 @@ interface EngineWorkerInitialiseOptions {
 //#endregion
 
 //#region ----- Engine. -----
+
+/** Engine interface. */
+interface EngineInterface {
+    previewObject(engine: EngineInterface, connectionConfig: ConnectionConfig, options: PreviewObjectOptions): Promise<{ error: unknown } | { result: DataViewPreviewConfig }>;
+}
 
 /** Engine configuration. */
 interface EngineConfig extends ModuleConfig {
@@ -83,6 +88,7 @@ export type {
     AuditObjectContentResult,
     ConnectorCallbackData,
     EngineConfig,
+    EngineInterface,
     EngineRuntimeInterface,
     EngineWorkerInitialiseOptions,
     EngineWorkerInterface,

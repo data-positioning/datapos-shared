@@ -18,7 +18,7 @@ interface ConnectorInterface extends Component {
     getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array>>;
     getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>;
     listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>;
-    previewObject?(connector: ConnectorInterface, options: PreviewObjectOptions): Promise<PreviewObjectResult>;
+    previewObject?(engine: EngineInterface, connector: ConnectorInterface, options: PreviewObjectOptions): Promise<PreviewObjectResult>;
     removeRecords?(connector: ConnectorInterface, options: RemoveRecordsOptions): Promise<void>;
     retrieveChunks?(connector: ConnectorInterface, options: RetrieveChunksOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: () => void): Promise<void>;
     retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
