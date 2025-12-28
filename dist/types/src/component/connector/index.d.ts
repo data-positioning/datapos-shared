@@ -87,15 +87,11 @@ interface ListNodesResult {
     isMore: boolean;
     totalCount: number;
 }
-/** Preview object options and result. */
+/** Preview object options. */
 interface PreviewObjectOptions extends ConnectorOperationOptions {
     chunkSize?: number;
     extension?: string;
     path: string;
-}
-interface PreviewObjectResult {
-    data: Record<string, unknown>[] | Uint8Array;
-    typeId: 'jsonArray' | 'uint8Array';
 }
 /** Remove records options. */
 interface RemoveRecordsOptions extends ConnectorOperationOptions {
@@ -140,4 +136,4 @@ declare const constructConnectorCategoryConfig: (id: string, localeId?: import('
 export { connectorConfigSchema } from './connectorConfig.schema';
 export { constructConnectorCategoryConfig };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
-export type { ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationOptions, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectResult, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };
+export type { ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationOptions, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };

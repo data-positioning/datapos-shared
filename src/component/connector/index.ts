@@ -117,15 +117,11 @@ interface ListNodesResult {
     totalCount: number;
 }
 
-/** Preview object options and result. */
+/** Preview object options. */
 interface PreviewObjectOptions extends ConnectorOperationOptions {
     chunkSize?: number;
     extension?: string;
     path: string;
-}
-interface PreviewObjectResult {
-    data: Record<string, unknown>[] | Uint8Array;
-    typeId: 'jsonArray' | 'uint8Array';
 }
 
 /** Remove records options. */
@@ -213,7 +209,6 @@ export type {
     GetRecordOptions,
     ListNodesResult,
     ListNodesOptions,
-    PreviewObjectResult,
     PreviewObjectOptions,
     RemoveRecordsOptions,
     RetrieveChunksOptions,
