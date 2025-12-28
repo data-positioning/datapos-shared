@@ -3,7 +3,7 @@ import { ConnectorOperationOptions } from '../component/connector';
 import { ModuleConfig } from '../component/module';
 import { ToolConfig } from '../component/tool';
 import { ContextCallbackData, ContextConfig, ContextOperationOptions } from '../component/context';
-import { DataViewContentAuditConfig, EncodingConfig, ValueDelimiterId } from '../component/dataView';
+import { DataViewContentAuditConfig, DataViewPreviewConfig, EncodingConfig, ValueDelimiterId } from '../component/dataView';
 /** Engine runtime interface. */
 interface EngineRuntimeInterface {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];
@@ -23,7 +23,7 @@ interface EngineWorkerInitialiseOptions {
 }
 /** Engine Shared. */
 interface EngineShared {
-    previewRemoteFile: (url: string, signal: AbortSignal, chunkSize?: number) => Promise<Uint8Array>;
+    previewRemoteFile: (url: string, signal: AbortSignal, chunkSize?: number) => Promise<DataViewPreviewConfig>;
 }
 /** Engine configuration. */
 interface EngineConfig extends ModuleConfig {

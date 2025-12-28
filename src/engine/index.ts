@@ -47,7 +47,7 @@ interface EngineWorkerInitialiseOptions {
 
 /** Engine Shared. */
 interface EngineShared {
-    previewRemoteFile: (url: string, signal: AbortSignal, chunkSize?: number) => Promise<Uint8Array>;
+    previewRemoteFile: (url: string, signal: AbortSignal, chunkSize?: number) => Promise<DataViewPreviewConfig>;
 }
 
 /** Engine configuration. */
