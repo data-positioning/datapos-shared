@@ -23,7 +23,7 @@ interface EngineWorkerInitialiseOptions {
 }
 /** Engine Shared. */
 interface EngineShared {
-    determineFileType: (id: string) => string;
+    previewRemoteFile: (url: string, signal: AbortSignal, chunkSize?: number) => Promise<Uint8Array>;
 }
 /** Engine configuration. */
 interface EngineConfig extends ModuleConfig {
