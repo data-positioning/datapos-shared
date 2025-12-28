@@ -10,9 +10,9 @@ import type { Component } from '@/component';
 import { DEFAULT_LOCALE_CODE } from '@/locale';
 import type { EngineShared } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
-import type { ValueDelimiterId } from '@/component/dataView';
 import type { ConnectionDescription, ConnectionNodeConfig } from '~/src/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '~/src/component/connector/connectorConfig.schema';
+import type { DataViewPreviewConfig, ValueDelimiterId } from '@/component/dataView';
 
 /** Connector interface an constructor. */
 interface ConnectorInterface extends Component {
@@ -28,7 +28,7 @@ interface ConnectorInterface extends Component {
     getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array>>; // Get a reader that can retrieve all records from an object for a specified connection.
     getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>; // Get a record for an object for a specified connection.
     listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>; // List nodes in a folder for a specified connection.
-    previewObject?(engineShared: EngineShared, connector: ConnectorInterface, options: PreviewObjectOptions): Promise<PreviewObjectResult>; // Preview an object for a specified connection.
+    previewObject?(engineShared: EngineShared, connector: ConnectorInterface, options: PreviewObjectOptions): Promise<DataViewPreviewConfig>; // Preview an object for a specified connection.
     removeRecords?(connector: ConnectorInterface, options: RemoveRecordsOptions): Promise<void>; // Remove one or more records from an object for a specified connection.
     retrieveChunks?(
         connector: ConnectorInterface,

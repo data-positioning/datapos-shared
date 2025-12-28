@@ -9,6 +9,7 @@ import type { ModuleConfig } from '@/component/module';
 interface ToolConfig extends ModuleConfig {
     typeId: 'tool';
 }
+
 /** Load tool. */
 async function loadTool<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T> {
     const toolName = `datapos-tool-${toolId}`;

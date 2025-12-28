@@ -2,9 +2,9 @@ import { InferOutput } from 'valibot';
 import { Component } from '..';
 import { EngineShared } from '../../engine';
 import { ToolConfig } from '../tool';
-import { ValueDelimiterId } from '../dataView';
 import { ConnectionDescription, ConnectionNodeConfig } from './connection';
 import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
+import { DataViewPreviewConfig, ValueDelimiterId } from '../dataView';
 /** Connector interface an constructor. */
 interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
@@ -19,7 +19,7 @@ interface ConnectorInterface extends Component {
     getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array>>;
     getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>;
     listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>;
-    previewObject?(engineShared: EngineShared, connector: ConnectorInterface, options: PreviewObjectOptions): Promise<PreviewObjectResult>;
+    previewObject?(engineShared: EngineShared, connector: ConnectorInterface, options: PreviewObjectOptions): Promise<DataViewPreviewConfig>;
     removeRecords?(connector: ConnectorInterface, options: RemoveRecordsOptions): Promise<void>;
     retrieveChunks?(connector: ConnectorInterface, options: RetrieveChunksOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: () => void): Promise<void>;
     retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
