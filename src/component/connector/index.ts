@@ -192,7 +192,7 @@ const constructConnectorCategoryConfig = (id: string, localeId = DEFAULT_LOCALE_
 /** Exports. */
 export { connectorConfigSchema } from '~/src/component/connector/connectorConfig.schema';
 export { constructConnectorCategoryConfig };
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from '~/src/component/connector/connection';
+export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, UsageTypeId } from '~/src/component/connector/connection';
 export type {
     ConnectorConfig,
     ConnectorConstructor,

@@ -103,11 +103,5 @@ type StorageTypeId =
     | 'unknown';
 type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
 
-// Types/Interfaces - Encoding
-interface Encoding {
-    id: string;
-    confidenceLevel: number | undefined;
-}
-
 /** Exports. */
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionDescription, ConnectionNodeConfig, Encoding, UsageTypeId };
+export type { ConnectionColumnConfig, ConnectionConfig, ConnectionDescription, ConnectionNodeConfig, UsageTypeId };

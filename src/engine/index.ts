@@ -4,7 +4,7 @@
 
 /** Framework dependencies. */
 import type { ConnectionConfig } from '@/component/connector/connection';
-import type { EncodingConfig } from '@/encoding';
+import type { EncodingTypeConfig } from '@/encoding';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectorOperationOptions, PreviewObjectOptions } from '@/component/connector';
@@ -15,7 +15,7 @@ import type { DataViewContentAuditConfig, DataViewPreviewConfig, ValueDelimiterI
 
 /** Engine runtime interface. */
 interface EngineRuntimeInterface {
-    getEncodingConfigs: (localeId: string) => EncodingConfig[];
+    getEncodingTypeConfigs: (localeId: string) => EncodingTypeConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorkerInterface;
 }
 

@@ -5,10 +5,16 @@
 // Data dependencies.
 import encodingConfigData from './encodingConfigs.json';
 
+/** Encoding. */
+interface Encoding {
+    id: string;
+    confidenceLevel: number | undefined;
+}
+
 /**
- * Encoding configuration.
+ * Encoding type configuration.
  */
-interface EncodingConfig {
+interface EncodingTypeConfig {
     id: string;
     groupLabel: string;
     label: string;
@@ -19,9 +25,9 @@ interface EncodingConfig {
 /**
  * Get encoding configurations.
  */
-function getEncodingConfigs(localeId = 'en'): EncodingConfig[] {
-    const encodingConfigs: EncodingConfig[] = [];
-    const encodingConfigMap = encodingConfigData as Record<string, EncodingConfig | undefined>;
+function getEncodingConfigs(localeId = 'en'): EncodingTypeConfig[] {
+    const encodingConfigs: EncodingTypeConfig[] = [];
+    const encodingConfigMap = encodingConfigData as Record<string, EncodingTypeConfig | undefined>;
     for (const [, encodingConfig] of Object.entries(encodingConfigMap)) {
         if (encodingConfig == null) continue;
         encodingConfigs.push({ ...encodingConfig, label: encodingConfig.label || encodingConfig.id });
@@ -31,4 +37,4 @@ function getEncodingConfigs(localeId = 'en'): EncodingConfig[] {
 
 // Exports.
 export { default as encodingConfigData } from './encodingConfigs.json';
-export { type EncodingConfig, getEncodingConfigs };
+export { type Encoding, type EncodingTypeConfig, getEncodingConfigs };

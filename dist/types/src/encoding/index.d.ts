@@ -1,10 +1,15 @@
 /**
  * Encoding.
  */
+/** Encoding. */
+interface Encoding {
+    id: string;
+    confidenceLevel: number | undefined;
+}
 /**
- * Encoding configuration.
+ * Encoding type configuration.
  */
-interface EncodingConfig {
+interface EncodingTypeConfig {
     id: string;
     groupLabel: string;
     label: string;
@@ -14,6 +19,6 @@ interface EncodingConfig {
 /**
  * Get encoding configurations.
  */
-declare function getEncodingConfigs(localeId?: string): EncodingConfig[];
+declare function getEncodingConfigs(localeId?: string): EncodingTypeConfig[];
 export { default as encodingConfigData } from './encodingConfigs.json';
-export { type EncodingConfig, getEncodingConfigs };
+export { type Encoding, type EncodingTypeConfig, getEncodingConfigs };

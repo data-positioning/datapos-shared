@@ -135,5 +135,5 @@ declare const constructConnectorCategoryConfig: (id: string, localeId?: import('
 /** Exports. */
 export { connectorConfigSchema } from './connectorConfig.schema';
 export { constructConnectorCategoryConfig };
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, Encoding, UsageTypeId } from './connection';
+export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, UsageTypeId } from './connection';
 export type { ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationOptions, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };
