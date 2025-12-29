@@ -34,12 +34,12 @@ export interface DataViewPreviewConfig {
     asAt: number;
     // commentPrefixId?: string;
     columnConfigs: ConnectionColumnConfig[];
-    dataFormatId: DataFormatId;
+    dataFormatId: DataFormatId | undefined;
     duration: number;
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
     errorMessage?: string;
-    fileType: FileTypeResult;
+    fileType: FileTypeResult | undefined;
     hasHeaders: boolean | undefined;
     // linesToSkipBeforeHeader?: number;
     // linesToSkipAfterHeader?: number;
