@@ -1,6 +1,5 @@
 import { InferOutput } from 'valibot';
 import { Component } from '..';
-import { EngineShared } from '../../engine';
 import { ToolConfig } from '../tool';
 import { ConnectionDescription, ConnectionNodeConfig } from './connection';
 import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
@@ -19,7 +18,7 @@ interface ConnectorInterface extends Component {
     getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array>>;
     getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>;
     listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>;
-    previewObject?(engineShared: EngineShared, connector: ConnectorInterface, options: PreviewObjectOptions): Promise<DataViewPreviewConfig>;
+    previewObject?(connector: ConnectorInterface, options: PreviewObjectOptions): Promise<DataViewPreviewConfig>;
     removeRecords?(connector: ConnectorInterface, options: RemoveRecordsOptions): Promise<void>;
     retrieveChunks?(connector: ConnectorInterface, options: RetrieveChunksOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: () => void): Promise<void>;
     retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
