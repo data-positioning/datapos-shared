@@ -181,6 +181,6 @@ export const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): ValueDelimit
 export type ParsedValue = bigint | boolean | number | string | null;
 
 // Types/Interfaces - Basic
-export type DataFormatId = 'dtv' | 'e/e' | 'jsonArray' | 'spss' | 'xls' | 'xlsx' | 'xml';
+export type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
 export type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 export type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.

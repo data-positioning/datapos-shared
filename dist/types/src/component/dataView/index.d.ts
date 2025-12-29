@@ -62,7 +62,7 @@ interface ValueDelimiter {
 export declare const getValueDelimiter: (id: string, localeId?: import('../../locale').LocaleCode) => ValueDelimiter;
 export declare const getValueDelimiters: (localeId?: import('../../locale').LocaleCode) => ValueDelimiter[];
 export type ParsedValue = bigint | boolean | number | string | null;
-export type DataFormatId = 'dtv' | 'e/e' | 'jsonArray' | 'spss' | 'xls' | 'xlsx' | 'xml';
+export type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
 export type RecordDelimiterId = '\n' | '\r' | '\r\n';
 export type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
 export {};
