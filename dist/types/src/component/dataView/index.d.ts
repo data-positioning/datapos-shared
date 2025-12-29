@@ -1,3 +1,4 @@
+import { FileTypeResult } from 'file-type';
 import { Component, ComponentConfig } from '..';
 import { ConnectionColumnConfig, ConnectionNodeConfig } from '../connector/connection';
 export type DataView = Component;
@@ -30,6 +31,7 @@ export interface DataViewPreviewConfig {
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
     errorMessage?: string;
+    fileType: FileTypeResult;
     hasHeaders: boolean | undefined;
     recordDelimiterId?: RecordDelimiterId;
     records: {

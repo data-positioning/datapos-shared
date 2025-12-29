@@ -1,5 +1,6 @@
 // Dependencies - Framework
 import { DEFAULT_LOCALE_CODE } from '@/locale';
+import type { FileTypeResult } from 'file-type';
 import type { Component, ComponentConfig } from '@/component';
 import type { ConnectionColumnConfig, ConnectionNodeConfig } from '~/src/component/connector/connection';
 
@@ -38,6 +39,7 @@ export interface DataViewPreviewConfig {
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
     errorMessage?: string;
+    fileType: FileTypeResult;
     hasHeaders: boolean | undefined;
     // linesToSkipBeforeHeader?: number;
     // linesToSkipAfterHeader?: number;
@@ -81,7 +83,7 @@ interface DataFormatConfig {
 const dataFormats: DataFormatConfig[] = [
     { id: 'dtv', labels: createLabelMap({ 'en-gb': 'Delimited Text' }) },
     { id: 'e/e', labels: createLabelMap({ 'en-gb': 'Entity/Event' }) },
-    { id: 'jsonArray', labels: createLabelMap({ 'en-gb': 'JSON Array' }) },
+    { id: 'json', labels: createLabelMap({ 'en-gb': 'JSON' }) },
     { id: 'spss', labels: createLabelMap({ 'en-gb': 'SPSS' }) },
     { id: 'xls', labels: createLabelMap({ 'en-gb': 'XLS' }) },
     { id: 'xlsx', labels: createLabelMap({ 'en-gb': 'XLSX' }) },

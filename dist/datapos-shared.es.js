@@ -1,16 +1,16 @@
-import { l as d, o as a, b as s, d as i, f as m, a as p, i as b, D as r } from "./locale-CPeRw0Am.js";
+import { l as d, o as r, b as s, d as i, f as m, a as p, i as b, D as a } from "./locale-CPeRw0Am.js";
 import { m as g } from "./moduleConfig.schema-ElDY1bZx.js";
-const u = d(["list"]), f = a({
+const u = d(["list"]), f = r({
   ...p,
   typeId: i("contextModelGroup"),
   modelRefs: s(b),
   order: m()
-}), E = a({
+}), E = r({
   ...g,
   typeId: i("context"),
   models: s(f),
   operations: s(u)
-}), C = d(["list", "render", "setColorMode"]), F = a({
+}), C = d(["list", "render", "setColorMode"]), F = r({
   ...g,
   typeId: i("presenter"),
   presentations: s(b),
@@ -28,7 +28,7 @@ function O() {
 function x(t, o) {
   console.log(1111, t), console.log(2222, o), console.log(3333, o.childNodes), console.log(4444, o.children);
 }
-const e = (t) => new Map(Object.entries(t)), c = (t, o, n = r) => {
+const e = (t) => new Map(Object.entries(t)), c = (t, o, n = a) => {
   const l = t.get(o);
   if (l !== void 0) return l;
   if (n !== o)
@@ -36,12 +36,12 @@ const e = (t) => new Map(Object.entries(t)), c = (t, o, n = r) => {
 }, h = [
   { id: "dtv", labels: e({ "en-gb": "Delimited Text" }) },
   { id: "e/e", labels: e({ "en-gb": "Entity/Event" }) },
-  { id: "jsonArray", labels: e({ "en-gb": "JSON Array" }) },
+  { id: "json", labels: e({ "en-gb": "JSON" }) },
   { id: "spss", labels: e({ "en-gb": "SPSS" }) },
   { id: "xls", labels: e({ "en-gb": "XLS" }) },
   { id: "xlsx", labels: e({ "en-gb": "XLSX" }) },
   { id: "xml", labels: e({ "en-gb": "XML" }) }
-], R = (t = r) => {
+], R = (t = a) => {
   const o = [];
   for (const n of h) {
     const l = c(n.labels, t);
@@ -54,7 +54,7 @@ const e = (t) => new Map(Object.entries(t)), c = (t, o, n = r) => {
   { id: "\r", labels: e({ "en-gb": "Carriage Return" }) },
   { id: `\r
 `, labels: e({ "en-gb": "Carriage Return/Newline" }) }
-], T = (t = r) => {
+], T = (t = a) => {
   const o = [];
   for (const n of D) {
     const l = c(n.labels, t);
@@ -73,7 +73,7 @@ const e = (t) => new Map(Object.entries(t)), c = (t, o, n = r) => {
   { id: "_", labels: e({ "en-gb": "Underscore" }) },
   { id: "0x1F", labels: e({ "en-gb": "Unit Separator" }) },
   { id: "|", labels: e({ "en-gb": "Vertical Bar" }) }
-], j = (t = r) => {
+], j = (t = a) => {
   const o = [];
   for (const n of L) {
     const l = c(n.labels, t);
