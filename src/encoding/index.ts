@@ -5,7 +5,9 @@
 // Data dependencies.
 import encodingConfigData from './encodingConfigs.json';
 
-/** Encoding. */
+/**
+ * Encoding configuration.
+ */
 interface EncodingConfig {
     id: string;
     confidenceLevel: number | undefined;
@@ -22,19 +24,19 @@ interface EncodingTypeConfig {
     isDecodable: boolean;
 }
 
+// Initialisation.
+const encodingConfigMap = encodingConfigData as Record<string, EncodingTypeConfig>;
+
 /**
  * Get encoding configurations.
  */
 function getEncodingConfigs(localeId = 'en'): EncodingTypeConfig[] {
     const encodingConfigs: EncodingTypeConfig[] = [];
-    const encodingConfigMap = encodingConfigData as Record<string, EncodingTypeConfig | undefined>;
     for (const [, encodingConfig] of Object.entries(encodingConfigMap)) {
-        if (encodingConfig == null) continue;
         encodingConfigs.push({ ...encodingConfig, label: encodingConfig.label || encodingConfig.id });
     }
     return encodingConfigs.toSorted((left, right) => left.groupLabel.localeCompare(right.groupLabel) || left.label.localeCompare(right.label));
 }
 
 // Exports.
-export { default as encodingConfigData } from './encodingConfigs.json';
-export { type EncodingConfig, type EncodingTypeConfig, getEncodingConfigs };
+export { type EncodingConfig, encodingConfigMap, type EncodingTypeConfig, getEncodingConfigs };

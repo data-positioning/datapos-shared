@@ -1,11 +1,11 @@
-const s = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDecodable: !0 }, o = { id: "big5", groupLabel: "Chinese Traditional", label: "Chinese Traditional (big5)", isDetectable: !0, isDecodable: !0 }, t = { id: "gb18030", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gb18030)", isDetectable: !0, isDecodable: !0 }, b = { id: "gbk", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gbk)", isDetectable: !1, isDecodable: !0 }, r = { id: "ibm866", groupLabel: "Cyrillic", label: "Cyrillic (ibm866)", isDetectable: !1, isDecodable: !0 }, c = { id: "latin1", groupLabel: "Western", label: "Western (latin1)", isDetectable: !1, isDecodable: !0 }, u = { id: "macintosh", groupLabel: "Western", label: "Western (macintosh)", isDetectable: !1, isDecodable: !0 }, d = { id: "shift_jis", groupLabel: "Japanese", label: "Japanese (shift_jis)", isDetectable: !0, isDecodable: !0 }, n = { id: "utf16", groupLabel: "Unicode 16", label: "Unicode 16 (utf16)", isDetectable: !1, isDecodable: !0 }, D = { id: "utf16be", groupLabel: "Unicode 16", label: "Unicode 16 (utf16be)", isDetectable: !0, isDecodable: !0 }, p = { id: "utf16le", groupLabel: "Unicode 16", label: "Unicode 16 (utf16le)", isDetectable: !0, isDecodable: !0 }, g = { id: "utf32be", groupLabel: "Unicode 32", label: "Unicode 32 (utf32be)", isDetectable: !0, isDecodable: !1 }, w = { id: "utf32le", groupLabel: "Unicode 32", label: "Unicode 32 (utf32le)", isDetectable: !0, isDecodable: !1 }, f = { id: "utf8", groupLabel: "", label: "utf8", isDetectable: !0, isDecodable: !0 }, L = {
-  ascii: s,
-  big5: o,
+const a = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDecodable: !0 }, s = { id: "big5", groupLabel: "Chinese Traditional", label: "Chinese Traditional (big5)", isDetectable: !0, isDecodable: !0 }, o = { id: "gb18030", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gb18030)", isDetectable: !0, isDecodable: !0 }, t = { id: "gbk", groupLabel: "Chinese Simplified", label: "Chinese Simplified (gbk)", isDetectable: !1, isDecodable: !0 }, b = { id: "ibm866", groupLabel: "Cyrillic", label: "Cyrillic (ibm866)", isDetectable: !1, isDecodable: !0 }, r = { id: "latin1", groupLabel: "Western", label: "Western (latin1)", isDetectable: !1, isDecodable: !0 }, c = { id: "macintosh", groupLabel: "Western", label: "Western (macintosh)", isDetectable: !1, isDecodable: !0 }, u = { id: "shift_jis", groupLabel: "Japanese", label: "Japanese (shift_jis)", isDetectable: !0, isDecodable: !0 }, d = { id: "utf16", groupLabel: "Unicode 16", label: "Unicode 16 (utf16)", isDetectable: !1, isDecodable: !0 }, n = { id: "utf16be", groupLabel: "Unicode 16", label: "Unicode 16 (utf16be)", isDetectable: !0, isDecodable: !0 }, D = { id: "utf16le", groupLabel: "Unicode 16", label: "Unicode 16 (utf16le)", isDetectable: !0, isDecodable: !0 }, p = { id: "utf32be", groupLabel: "Unicode 32", label: "Unicode 32 (utf32be)", isDetectable: !0, isDecodable: !1 }, g = { id: "utf32le", groupLabel: "Unicode 32", label: "Unicode 32 (utf32le)", isDetectable: !0, isDecodable: !1 }, w = { id: "utf8", groupLabel: "", label: "utf8", isDetectable: !0, isDecodable: !0 }, f = {
+  ascii: a,
+  big5: s,
   "euc-jp": { id: "euc-jp", groupLabel: "Japanese", label: "Japanese (euc-jp)", isDetectable: !0, isDecodable: !0 },
   "euc-kr": { id: "euc-kr", groupLabel: "Korean", label: "Korean (euc-kr)", isDetectable: !0, isDecodable: !0 },
-  gb18030: t,
-  gbk: b,
-  ibm866: r,
+  gb18030: o,
+  gbk: t,
+  ibm866: b,
   "iso-2022-cn": { id: "iso-2022-cn", groupLabel: "Japanese", label: "Japanese (iso-2022-cn)", isDetectable: !0, isDecodable: !1 },
   "iso-2022-jp": { id: "iso-2022-jp", groupLabel: "Japanese", label: "Japanese (iso-2022-jp)", isDetectable: !0, isDecodable: !0 },
   "iso-2022-kr": { id: "iso-2022-kr", groupLabel: "Korean", label: "Korean (iso-2022-kr)", isDetectable: !0, isDecodable: !1 },
@@ -26,16 +26,16 @@ const s = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDec
   "iso-8859-16": { id: "iso-8859-16", groupLabel: "Romanian", label: "Romanian (iso-8859-16)", isDetectable: !1, isDecodable: !0 },
   "kOi8-r": { id: "koi8-r", groupLabel: "Cyrillic", label: "Cyrillic (koi8-r)", isDetectable: !0, isDecodable: !0 },
   "kOi8-u": { id: "koi8-u", groupLabel: "Cyrillic", label: "Cyrillic (koi8-u)", isDetectable: !1, isDecodable: !0 },
-  latin1: c,
-  macintosh: u,
-  shift_jis: d,
+  latin1: r,
+  macintosh: c,
+  shift_jis: u,
   "tis-620": { id: "tis-620", groupLabel: "Thai", label: "Thai (tis-620)", isDetectable: !1, isDecodable: !0 },
-  utf16: n,
-  utf16be: D,
-  utf16le: p,
-  utf32be: g,
-  utf32le: w,
-  utf8: f,
+  utf16: d,
+  utf16be: n,
+  utf16le: D,
+  utf32be: p,
+  utf32le: g,
+  utf8: w,
   "windows-1250": { id: "windows-1250", groupLabel: "Central European", label: "Central European (windows-1250)", isDetectable: !0, isDecodable: !0 },
   "windows-1251": { id: "windows-1251", groupLabel: "Cyrillic", label: "Cyrillic (windows-1251)", isDetectable: !0, isDecodable: !0 },
   "windows-1252": { id: "windows-1252", groupLabel: "Western", label: "Western (windows-1252)", isDetectable: !0, isDecodable: !0 },
@@ -48,14 +48,14 @@ const s = { id: "ascii", groupLabel: "", label: "ascii", isDetectable: !1, isDec
   "windows-874": { id: "windows-874", groupLabel: "Thai", label: "Thai (windows-874)", isDetectable: !1, isDecodable: !0 },
   "x-mac-cyrillic": { id: "x-mac-cyrillic", groupLabel: "Cyrillic", label: "Cyrillic (x-mac-cyrillic)", isDetectable: !1, isDecodable: !0 },
   "x-user-defined": { id: "x-user-defined", groupLabel: "Other", label: "Other (x-user-defined)", isDetectable: !1, isDecodable: !0 }
-};
+}, L = f;
 function h(C = "en") {
-  const i = [], a = L;
-  for (const [, e] of Object.entries(a))
-    e != null && i.push({ ...e, label: e.label || e.id });
+  const i = [];
+  for (const [, e] of Object.entries(L))
+    i.push({ ...e, label: e.label || e.id });
   return i.toSorted((e, l) => e.groupLabel.localeCompare(l.groupLabel) || e.label.localeCompare(l.label));
 }
 export {
-  L as encodingConfigData,
+  L as encodingConfigMap,
   h as getEncodingConfigs
 };

@@ -1,7 +1,9 @@
 /**
  * Encoding.
  */
-/** Encoding. */
+/**
+ * Encoding configuration.
+ */
 interface EncodingConfig {
     id: string;
     confidenceLevel: number | undefined;
@@ -16,9 +18,9 @@ interface EncodingTypeConfig {
     isDetectable: boolean;
     isDecodable: boolean;
 }
+declare const encodingConfigMap: Record<string, EncodingTypeConfig>;
 /**
  * Get encoding configurations.
  */
 declare function getEncodingConfigs(localeId?: string): EncodingTypeConfig[];
-export { default as encodingConfigData } from './encodingConfigs.json';
-export { type EncodingConfig, type EncodingTypeConfig, getEncodingConfigs };
+export { type EncodingConfig, encodingConfigMap, type EncodingTypeConfig, getEncodingConfigs };
