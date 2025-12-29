@@ -4,11 +4,12 @@
 
 /** Framework dependencies. */
 import type { ConnectionConfig } from '@/component/connector/connection';
-import type { ConnectorOperationOptions, PreviewObjectOptions } from '@/component/connector';
+import type { EncodingConfig } from '@/encoding';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
+import type { ConnectorOperationOptions, PreviewObjectOptions } from '@/component/connector';
 import type { ContextCallbackData, ContextConfig, ContextOperationOptions } from '@/component/context';
-import type { DataViewContentAuditConfig, DataViewPreviewConfig, EncodingConfig, ValueDelimiterId } from '@/component/dataView';
+import type { DataViewContentAuditConfig, DataViewPreviewConfig, ValueDelimiterId } from '@/component/dataView';
 
 //#region ----- Engine runtime. -----
 

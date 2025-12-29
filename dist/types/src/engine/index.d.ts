@@ -1,9 +1,10 @@
 import { ConnectionConfig } from '../component/connector/connection';
-import { ConnectorOperationOptions } from '../component/connector';
+import { EncodingConfig } from '../encoding';
 import { ModuleConfig } from '../component/module';
 import { ToolConfig } from '../component/tool';
+import { ConnectorOperationOptions } from '../component/connector';
 import { ContextCallbackData, ContextConfig, ContextOperationOptions } from '../component/context';
-import { DataViewContentAuditConfig, DataViewPreviewConfig, EncodingConfig, ValueDelimiterId } from '../component/dataView';
+import { DataViewContentAuditConfig, DataViewPreviewConfig, ValueDelimiterId } from '../component/dataView';
 /** Engine runtime interface. */
 interface EngineRuntimeInterface {
     getEncodingConfigs: (localeId: string) => EncodingConfig[];

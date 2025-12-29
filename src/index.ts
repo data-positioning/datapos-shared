@@ -8,7 +8,7 @@
 
 /** Interfaces/Types - Context. */
 export { contextConfigSchema } from '@/component/context';
-export type { Context, ContextConfig, ContextLocalisedConfig, ContextListSettings, ContextListResult, ContextOperation, ContextCallbackData } from '@/component/context';
+export type { Context, ContextConfig, ContextLocalisedConfig, ContextListOptions, ContextListResult, ContextOperation, ContextCallbackData } from '@/component/context';
 
 /** Interfaces/Types - Context model. */
 export type { ContextModelGroupConfig, ContextModelGroupLocalisedConfig, ContextModelConfig, ContextModelLocalisedConfig } from '@/component/context';
@@ -53,7 +53,7 @@ export interface ContextOperationSettings {
 }
 
 /** Interfaces/Types - Data view. */
-export type { DataFormatId, EncodingConfig, RecordDelimiterId, ValueDelimiterId } from '@/component/dataView';
+export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from '@/component/dataView';
 export type {
     DataViewConfig,
     DataViewContentAuditConfig,

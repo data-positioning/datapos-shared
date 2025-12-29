@@ -60,15 +60,6 @@ export interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
 
-// Types/Interfaces - Encoding Config
-export interface EncodingConfig {
-    id: string;
-    groupLabel: string;
-    label: string;
-    isDetectable: boolean;
-    isDecodable: boolean;
-}
-
 type LocaleLabelMap = ReadonlyMap<string, string>;
 const createLabelMap = (labels: Record<string, string>): LocaleLabelMap => new Map(Object.entries(labels));
 const resolveLabel = (labels: LocaleLabelMap, localeId: string, fallbackLocaleId = DEFAULT_LOCALE_CODE): string | undefined => {

@@ -43,13 +43,6 @@ export interface DataViewPreviewConfig {
 export interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
-export interface EncodingConfig {
-    id: string;
-    groupLabel: string;
-    label: string;
-    isDetectable: boolean;
-    isDecodable: boolean;
-}
 interface DataFormat {
     id: string;
     label: string;
