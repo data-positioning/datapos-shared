@@ -6,7 +6,7 @@
 import encodingConfigData from './encodingConfigs.json';
 
 /** Encoding. */
-interface Encoding {
+interface EncodingConfig {
     id: string;
     confidenceLevel: number | undefined;
 }
@@ -37,4 +37,4 @@ function getEncodingConfigs(localeId = 'en'): EncodingTypeConfig[] {
 
 // Exports.
 export { default as encodingConfigData } from './encodingConfigs.json';
-export { type Encoding, type EncodingTypeConfig, getEncodingConfigs };
+export { type EncodingConfig, type EncodingTypeConfig, getEncodingConfigs };

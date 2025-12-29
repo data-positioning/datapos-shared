@@ -2,7 +2,7 @@
  * Encoding.
  */
 /** Encoding. */
-interface Encoding {
+interface EncodingConfig {
     id: string;
     confidenceLevel: number | undefined;
 }
@@ -21,4 +21,4 @@ interface EncodingTypeConfig {
  */
 declare function getEncodingConfigs(localeId?: string): EncodingTypeConfig[];
 export { default as encodingConfigData } from './encodingConfigs.json';
-export { type Encoding, type EncodingTypeConfig, getEncodingConfigs };
+export { type EncodingConfig, type EncodingTypeConfig, getEncodingConfigs };
