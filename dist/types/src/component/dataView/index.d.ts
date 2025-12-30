@@ -1,8 +1,8 @@
 import { FileTypeResult } from 'file-type';
-import { Component, ComponentConfig } from '..';
+import { ComponentConfig } from '..';
 import { ConnectionColumnConfig, ConnectionNodeConfig } from '../connector/connection';
-export type DataView = Component;
-export interface DataViewConfig extends ComponentConfig {
+/** Data view configuration. */
+interface DataViewConfig extends ComponentConfig {
     connectionId?: string;
     connectionNodeConfig?: ConnectionNodeConfig;
     previewConfig?: DataViewPreviewConfig;
@@ -61,10 +61,11 @@ interface ValueDelimiter {
     id: string;
     label: string;
 }
+export declare const ORDERED_VALUE_DELIMITER_IDS: string[];
 export declare const getValueDelimiter: (id: string, localeId?: import('../../locale').LocaleCode) => ValueDelimiter;
 export declare const getValueDelimiters: (localeId?: import('../../locale').LocaleCode) => ValueDelimiter[];
 export type ParsedValue = bigint | boolean | number | string | null;
 export type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
 export type RecordDelimiterId = '\n' | '\r' | '\r\n';
 export type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
-export {};
+export type { DataViewConfig };

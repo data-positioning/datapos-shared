@@ -1,14 +1,18 @@
-// Dependencies - Framework
+/**
+ * Data view.
+ */
+
+// Framework dependencies
 import { DEFAULT_LOCALE_CODE } from '@/locale';
 import type { FileTypeResult } from 'file-type';
 import type { Component, ComponentConfig } from '@/component';
 import type { ConnectionColumnConfig, ConnectionNodeConfig } from '~/src/component/connector/connection';
 
-// Interfaces - Data view component.
-export type DataView = Component;
+/** Data view component. */
+type DataView = Component;
 
-// Types/Interfaces - Data view configuration.
-export interface DataViewConfig extends ComponentConfig {
+/** Data view configuration. */
+interface DataViewConfig extends ComponentConfig {
     connectionId?: string;
     connectionNodeConfig?: ConnectionNodeConfig;
     previewConfig?: DataViewPreviewConfig;
@@ -161,6 +165,8 @@ const valueDelimiters: ValueDelimiterConfig[] = [
     { id: '0x1F', labels: createLabelMap({ 'en-gb': 'Unit Separator' }) },
     { id: '|', labels: createLabelMap({ 'en-gb': 'Vertical Bar' }) }
 ];
+export const ORDERED_VALUE_DELIMITER_IDS = [',', ';', '\t', '|', ' ', ':', '_', '!', '0x1F', '0x1E']; // Ordered from estimated most common to least common.
+
 export const getValueDelimiter = (id: string, localeId = DEFAULT_LOCALE_CODE): ValueDelimiter => {
     const valueDelimiter = valueDelimiters.find((valueDelimiter) => valueDelimiter.id === id);
     if (valueDelimiter) {
@@ -186,3 +192,6 @@ export type ParsedValue = bigint | boolean | number | string | null;
 export type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
 export type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 export type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
+
+// Exports.
+export type { DataViewConfig };
