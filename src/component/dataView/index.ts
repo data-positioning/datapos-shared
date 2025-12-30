@@ -165,7 +165,7 @@ const valueDelimiters: ValueDelimiterConfig[] = [
     { id: '0x1F', labels: createLabelMap({ 'en-gb': 'Unit Separator' }) },
     { id: '|', labels: createLabelMap({ 'en-gb': 'Vertical Bar' }) }
 ];
-export const ORDERED_VALUE_DELIMITER_IDS = [',', ';', '\t', '|', ' ', ':', '_', '!', '0x1F', '0x1E']; // Ordered from estimated most common to least common.
+export const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[] = [',', ';', '\t', '|', ' ', ':', '_', '!', '0x1F', '0x1E']; // Ordered from estimated most common to least common.
 
 export const getValueDelimiter = (id: string, localeId = DEFAULT_LOCALE_CODE): ValueDelimiter => {
     const valueDelimiter = valueDelimiters.find((valueDelimiter) => valueDelimiter.id === id);

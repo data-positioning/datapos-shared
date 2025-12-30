@@ -61,7 +61,7 @@ interface ValueDelimiter {
     id: string;
     label: string;
 }
-export declare const ORDERED_VALUE_DELIMITER_IDS: string[];
+export declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export declare const getValueDelimiter: (id: string, localeId?: import('../../locale').LocaleCode) => ValueDelimiter;
 export declare const getValueDelimiters: (localeId?: import('../../locale').LocaleCode) => ValueDelimiter[];
 export type ParsedValue = bigint | boolean | number | string | null;
