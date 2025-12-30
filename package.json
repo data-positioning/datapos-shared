@@ -25,6 +25,10 @@
             "import": "./dist/datapos-shared-component.es.js",
             "types": "./dist/types/src/component/index.d.ts"
         },
+        "./component/*": {
+            "import": "./dist/datapos-shared-*.es.js",
+            "types": "./dist/types/src/component/*/index.d.ts"
+        },
         "./component/connector": {
             "import": "./dist/datapos-shared-connector.es.js",
             "types": "./dist/types/src/component/connector/index.d.ts"
@@ -52,28 +56,6 @@
         "./utilities": {
             "import": "./dist/datapos-shared-utilities.es.js",
             "types": "./dist/types/src/utilities/index.d.ts"
-        }
-    },
-    "typesVersions": {
-        "*": {
-            "component": [
-                "dist/types/src/component/index.d.ts"
-            ],
-            "component/*": [
-                "dist/types/src/component/*/index.d.ts"
-            ],
-            "encoding": [
-                "dist/types/src/encoding/index.d.ts"
-            ],
-            "engine": [
-                "dist/types/src/engine/index.d.ts"
-            ],
-            "errors": [
-                "dist/types/src/errors/index.d.ts"
-            ],
-            "utilities": [
-                "dist/types/src/utilities/index.d.ts"
-            ]
         }
     },
     "sideEffects": false,
