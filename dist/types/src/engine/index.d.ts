@@ -31,7 +31,7 @@ export interface ParseResult {
     usageTypeId: UsageTypeId;
 }
 /**
- * Engine Shared.
+ * Engine shared.
  */
 interface EngineShared {
     parseRecord: (columnConfigs: ConnectionColumnConfig[], record: {

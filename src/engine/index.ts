@@ -60,7 +60,7 @@ export interface ParseResult {
 }
 
 /**
- * Engine Shared.
+ * Engine shared.
  */
 interface EngineShared {
     parseRecord: (columnConfigs: ConnectionColumnConfig[], record: { value: string | null | undefined; isQuoted: boolean }[], isPreview: boolean) => ParseResult[];
