@@ -216,4 +216,4 @@ type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' |
 
 // Exports.
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, ParsedValue, RecordDelimiterId, ValueDelimiterId };
+export type { DataFormatId, DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, ParsedValue, RecordDelimiterId, ValueDelimiterId };
