@@ -215,4 +215,5 @@ type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value 
 type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 
 // Exports.
+export { ORDERED_VALUE_DELIMITER_IDS };
 export type { DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, ParsedValue, ValueDelimiterId };

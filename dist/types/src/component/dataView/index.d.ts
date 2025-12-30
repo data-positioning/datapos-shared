@@ -52,6 +52,7 @@ interface DataViewPreviewConfig {
 interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
+declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 /**
  * Parsed value.
  */
@@ -68,4 +69,5 @@ interface ParseResult {
 type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
 type RecordDelimiterId = '\n' | '\r' | '\r\n';
 type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
+export { ORDERED_VALUE_DELIMITER_IDS };
 export type { DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, ParsedValue, ValueDelimiterId };
