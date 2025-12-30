@@ -2,7 +2,7 @@
  * Connector constants, type declarations, and runtime utilities.
  */
 
-/** Vendor dependencies. */
+// Vendor dependencies.
 import type { InferOutput } from 'valibot';
 
 // Framework dependencies.
@@ -15,7 +15,7 @@ import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOpe
 import type { DataViewPreviewConfig, ValueDelimiterId } from '@/component/dataView';
 
 /**
- * Connector interface an constructor.
+ * Connector interface and constructor.
  */
 interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
@@ -48,55 +48,76 @@ interface ConnectorInterface extends Component {
 }
 type ConnectorConstructor = new (engineShared: EngineShared, toolConfigs: ToolConfig[]) => ConnectorInterface;
 
-//#region ##### Connector operation type declarations. #####
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Connector operation type declarations.
 
-/** Operation names a connector may support. */
+/**
+ * Operation names a connector may support.
+ */
 type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
 
-/** Connector data pipeline usage identifiers. */
+/**
+ * Connector data pipeline usage identifiers.
+ */
 type ConnectorUsageId = InferOutput<typeof connectorUsageIdSchema>;
 
-/** Connector configuration. */
+/**
+ * Connector configuration.
+ */
 type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
 type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
 
-/** Connector operation options. */
+/**
+ * Connector operation options.
+ */
 interface ConnectorOperationOptions {
     accountId?: string;
     appCheckToken?: string;
     sessionAccessToken?: string;
 }
 
-/** Create object options. */
+/**
+ * Create object options.
+ */
 interface CreateObjectOptions extends ConnectorOperationOptions {
     path: string;
     structure: string;
 }
 
-/** Describe connection options and result. */
+/**
+ * Describe connection options and result.
+ */
 type DescribeConnectionOptions = ConnectorOperationOptions;
 interface DescribeConnectionResult {
     description: ConnectionDescription;
 }
 
-/** Drop object options. */
+/**
+ * Drop object options.
+ */
 interface DropObjectOptions extends ConnectorOperationOptions {
     path: string;
 }
 
-/** Find object folder path options. */
+/**
+ * Find object folder path options.
+ */
 interface FindObjectFolderPathOptions extends ConnectorOperationOptions {
     containerName: string | undefined;
     nodeId: string;
 }
 
-/** Get readable stream options. */
+/**
+ * Get readable stream options.
+ */
 interface GetReadableStreamOptions extends ConnectorOperationOptions {
     id: string;
     path: string;
 }
 
-/** Get record options and result. */
+/**
+ * Get record options and result.
+ */
 interface GetRecordOptions extends ConnectorOperationOptions {
     id: string;
     path: string;
@@ -105,7 +126,9 @@ interface GetRecordResult {
     record?: string[] | Record<string, unknown>;
 }
 
-/** List nodes options and result. */
+/**
+ * List nodes options and result.
+ */
 interface ListNodesOptions extends ConnectorOperationOptions {
     folderPath: string;
     limit?: number;
@@ -119,20 +142,26 @@ interface ListNodesResult {
     totalCount: number;
 }
 
-/** Preview object options. */
+/**
+ * Preview object options.
+ */
 interface PreviewObjectOptions extends ConnectorOperationOptions {
     chunkSize?: number;
     extension?: string;
     path: string;
 }
 
-/** Remove records options. */
+/**
+ * Remove records options.
+ */
 interface RemoveRecordsOptions extends ConnectorOperationOptions {
     keys: string[];
     path: string;
 }
 
-/** Retrieve chunks options. */
+/**
+ * Retrieve chunks options.
+ */
 interface RetrieveChunksOptions extends ConnectorOperationOptions {
     chunkSize?: number;
     encodingId: string;
@@ -140,7 +169,9 @@ interface RetrieveChunksOptions extends ConnectorOperationOptions {
     valueDelimiterId: ValueDelimiterId;
 }
 
-/** Retrieve records options and summary. */
+/**
+ * Retrieve records options and summary.
+ */
 interface RetrieveRecordsOptions extends ConnectorOperationOptions {
     chunkSize?: number;
     encodingId: string;
@@ -156,21 +187,28 @@ interface RetrieveRecordsSummary {
     recordCount: number; // Count the number of processed records.
 }
 
-/** Upsert records options. */
+/**
+ * Upsert records options.
+ */
 interface UpsertRecordsOptions extends ConnectorOperationOptions {
     records: Record<string, unknown>[];
     path: string;
 }
 
-//#endregion
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-//#region ##### Connector category constants, type declarations and runtime utilities. #####
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Connector category constants, type declarations and runtime utilities.
 
-/** Connector category configuration. */
+/**
+ * Connector category configuration.
+ */
 type ConnectorCategoryConfig = InferOutput<typeof connectorCategoryConfigSchema>;
 type ConnectorCategoryLocalisedConfig = Omit<ConnectorCategoryConfig, 'label'> & { label: string };
 
-/** Connector categories. */
+/**
+ * Connector categories.
+ */
 const CONNECTOR_CATEGORY_CONFIGS: ConnectorCategoryConfig[] = [
     { id: 'application', label: { 'en-gb': 'Application' } },
     { id: 'curatedDataset', label: { 'en-gb': 'Curated Dataset' } },
@@ -178,7 +216,9 @@ const CONNECTOR_CATEGORY_CONFIGS: ConnectorCategoryConfig[] = [
     { id: 'fileStore', label: { 'en-gb': 'File Store' } }
 ];
 
-/** Construct connector category configuration. */
+/**
+ * Construct connector category configuration.
+ */
 const constructConnectorCategoryConfig = (id: string, localeId = DEFAULT_LOCALE_CODE): ConnectorCategoryLocalisedConfig => {
     const connectorCategory = CONNECTOR_CATEGORY_CONFIGS.find((connectorCategory) => connectorCategory.id === id);
     if (connectorCategory) {
@@ -189,9 +229,9 @@ const constructConnectorCategoryConfig = (id: string, localeId = DEFAULT_LOCALE_
     return { id, label: id };
 };
 
-//#endregion
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-/** Exports. */
+// Exports.
 export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
 export { constructConnectorCategoryConfig };
 export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, UsageTypeId } from '@/component/connector/connection';

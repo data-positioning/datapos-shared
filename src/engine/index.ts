@@ -27,7 +27,9 @@ interface EngineRuntimeInterface {
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Engine worker.
 
-/** Engine worker interface. */
+/**
+ * Engine worker interface.
+ */
 interface EngineWorkerInterface {
     initialise: (options: EngineWorkerInitialiseOptions) => Promise<void>;
     processConnectorRequest: (
@@ -51,8 +53,10 @@ interface EngineWorkerInitialiseOptions {
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Engine.
 
-// Interfaces/Types - Parse Result
-export interface ParseResult {
+/**
+ * Parse result.
+ */
+interface ParseResult {
     isValid: boolean;
     originalValue: string | null | undefined;
     parsedValue: ParsedValue;

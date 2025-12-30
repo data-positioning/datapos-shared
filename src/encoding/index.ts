@@ -28,9 +28,9 @@ interface EncodingTypeConfig {
 const encodingConfigMap = encodingConfigData as Record<string, EncodingTypeConfig>;
 
 /**
- * Get encoding configurations.
+ * Get encoding type configurations.
  */
-function getEncodingConfigs(localeId = 'en'): EncodingTypeConfig[] {
+function getEncodingTypeConfigs(localeId = 'en'): EncodingTypeConfig[] {
     const encodingConfigs: EncodingTypeConfig[] = [];
     for (const [, encodingConfig] of Object.entries(encodingConfigMap)) {
         encodingConfigs.push({ ...encodingConfig, label: encodingConfig.label || encodingConfig.id });
@@ -39,4 +39,4 @@ function getEncodingConfigs(localeId = 'en'): EncodingTypeConfig[] {
 }
 
 // Exports.
-export { type EncodingConfig, encodingConfigMap, type EncodingTypeConfig, getEncodingConfigs };
+export { type EncodingConfig, encodingConfigMap, type EncodingTypeConfig, getEncodingTypeConfigs };

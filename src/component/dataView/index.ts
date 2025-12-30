@@ -8,10 +8,14 @@ import type { FileTypeResult } from 'file-type';
 import type { Component, ComponentConfig } from '@/component';
 import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 
-/** Data view component. */
+/**
+ * Data view component.
+ */
 type DataView = Component;
 
-/** Data view configuration. */
+/**
+ * Data view configuration.
+ */
 interface DataViewConfig extends ComponentConfig {
     connectionId?: string;
     connectionNodeConfig?: ConnectionNodeConfig;
@@ -19,10 +23,12 @@ interface DataViewConfig extends ComponentConfig {
     contentAuditConfig?: DataViewContentAuditConfig;
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
 }
-export type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & { label: string; description: string };
+type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & { label: string; description: string };
 
-// Types/Interfaces - Data view content audit configuration.
-export interface DataViewContentAuditConfig {
+/**
+ * Data view content audit configuration.
+ */
+interface DataViewContentAuditConfig {
     asAt: number;
     columns: ConnectionColumnConfig[];
     commentLineCount: number;
@@ -33,8 +39,10 @@ export interface DataViewContentAuditConfig {
     recordCount: number;
 }
 
-// Types/Interfaces - Data View Preview Configuration
-export interface DataViewPreviewConfig {
+/**
+ * Data view preview configuration.
+ */
+interface DataViewPreviewConfig {
     asAt: number;
     // commentPrefixId?: string;
     columnConfigs: ConnectionColumnConfig[];
@@ -61,8 +69,10 @@ export interface DataViewPreviewConfig {
     // valueTrimMethodId?: string;
 }
 
-// Types/Interfaces - Data View Relationships Audit Configuration
-export interface DataViewRelationshipsAuditConfig {
+/**
+ * Data view relationships audit configuration.
+ */
+interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
 
@@ -75,7 +85,6 @@ const resolveLabel = (labels: LocaleLabelMap, localeId: string, fallbackLocaleId
     return labels.get(fallbackLocaleId);
 };
 
-// Utilities - Data Format
 interface DataFormat {
     id: string;
     label: string;
@@ -93,7 +102,7 @@ const dataFormats: DataFormatConfig[] = [
     { id: 'xlsx', labels: createLabelMap({ 'en-gb': 'XLSX' }) },
     { id: 'xml', labels: createLabelMap({ 'en-gb': 'XML' }) }
 ];
-export const getDataFormat = (id: string, localeId = DEFAULT_LOCALE_CODE): DataFormat => {
+const getDataFormat = (id: string, localeId = DEFAULT_LOCALE_CODE): DataFormat => {
     const dataFormat = dataFormats.find((dataFormat) => dataFormat.id === id);
     if (dataFormat) {
         const localizedLabel = resolveLabel(dataFormat.labels, localeId);
@@ -101,7 +110,7 @@ export const getDataFormat = (id: string, localeId = DEFAULT_LOCALE_CODE): DataF
     }
     return { id, label: id };
 };
-export const getDataFormats = (localeId = DEFAULT_LOCALE_CODE): DataFormat[] => {
+const getDataFormats = (localeId = DEFAULT_LOCALE_CODE): DataFormat[] => {
     const items: DataFormat[] = [];
     for (const dataFormat of dataFormats) {
         const localizedLabel = resolveLabel(dataFormat.labels, localeId);
@@ -125,7 +134,7 @@ const recordDelimiters: RecordDelimiterConfig[] = [
     { id: '\r', labels: createLabelMap({ 'en-gb': 'Carriage Return' }) },
     { id: '\r\n', labels: createLabelMap({ 'en-gb': 'Carriage Return/Newline' }) }
 ];
-export const getRecordDelimiter = (id: string, localeId = DEFAULT_LOCALE_CODE): RecordDelimiter => {
+const getRecordDelimiter = (id: string, localeId = DEFAULT_LOCALE_CODE): RecordDelimiter => {
     const recordDelimiter = recordDelimiters.find((recordDelimiter) => recordDelimiter.id === id);
     if (recordDelimiter) {
         const localizedLabel = resolveLabel(recordDelimiter.labels, localeId);
@@ -133,7 +142,7 @@ export const getRecordDelimiter = (id: string, localeId = DEFAULT_LOCALE_CODE): 
     }
     return { id, label: id };
 };
-export const getRecordDelimiters = (localeId = DEFAULT_LOCALE_CODE): RecordDelimiter[] => {
+const getRecordDelimiters = (localeId = DEFAULT_LOCALE_CODE): RecordDelimiter[] => {
     const items: RecordDelimiter[] = [];
     for (const recordDelimiter of recordDelimiters) {
         const localizedLabel = resolveLabel(recordDelimiter.labels, localeId);
@@ -165,9 +174,9 @@ const valueDelimiters: ValueDelimiterConfig[] = [
     { id: '0x1F', labels: createLabelMap({ 'en-gb': 'Unit Separator' }) },
     { id: '|', labels: createLabelMap({ 'en-gb': 'Vertical Bar' }) }
 ];
-export const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[] = [',', ';', '\t', '|', ' ', ':', '_', '!', '0x1F', '0x1E']; // Ordered from estimated most common to least common.
+const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[] = [',', ';', '\t', '|', ' ', ':', '_', '!', '0x1F', '0x1E']; // Ordered from estimated most common to least common.
 
-export const getValueDelimiter = (id: string, localeId = DEFAULT_LOCALE_CODE): ValueDelimiter => {
+const getValueDelimiter = (id: string, localeId = DEFAULT_LOCALE_CODE): ValueDelimiter => {
     const valueDelimiter = valueDelimiters.find((valueDelimiter) => valueDelimiter.id === id);
     if (valueDelimiter) {
         const localizedLabel = resolveLabel(valueDelimiter.labels, localeId);
@@ -175,7 +184,7 @@ export const getValueDelimiter = (id: string, localeId = DEFAULT_LOCALE_CODE): V
     }
     return { id, label: id };
 };
-export const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): ValueDelimiter[] => {
+const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): ValueDelimiter[] => {
     const items: ValueDelimiter[] = [];
     for (const valueDelimiter of valueDelimiters) {
         const localizedLabel = resolveLabel(valueDelimiter.labels, localeId);
@@ -186,12 +195,12 @@ export const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): ValueDelimit
 };
 
 // Types/Interfaces - Parsed Value
-export type ParsedValue = bigint | boolean | number | string | null;
+type ParsedValue = bigint | boolean | number | string | null;
 
 // Types/Interfaces - Basic
-export type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
-export type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
-export type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
+type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
+type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
+type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 
 // Exports.
-export type { DataViewConfig };
+export type { DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParsedValue, ValueDelimiterId };

@@ -48,17 +48,6 @@ export interface ContextOperationSettings {
     sessionAccessToken?: string;
 }
 
-/** Interfaces/Types - Data view. */
-export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from '@/component/dataView';
-export type {
-    DataViewConfig,
-    DataViewContentAuditConfig,
-    DataViewLocalisedConfig,
-    DataViewPreviewConfig,
-    DataViewRelationshipsAuditConfig,
-    ParsedValue
-} from '@/component/dataView';
-
 /** Interfaces/Types - Dimension. */
 export type { DimensionConfig, DimensionLocalisedConfig } from '@/component/dimension';
 
@@ -93,8 +82,16 @@ export type {
 export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
 export { useDataTable } from '@/composables/useDataTable';
 
-/** Constants */
-// export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
+// /** Interfaces/Types - Data view. */
+// export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from '@/component/dataView';
+// export type {
+//     DataViewConfig,
+//     DataViewContentAuditConfig,
+//     DataViewLocalisedConfig,
+//     DataViewPreviewConfig,
+//     DataViewRelationshipsAuditConfig,
+//     ParsedValue
+// } from '@/component/dataView';
 
 /** Utilities */
-export { getDataFormats, getRecordDelimiters, getValueDelimiters, ORDERED_VALUE_DELIMITER_IDS } from '@/component/dataView';
+// export { getDataFormats, getRecordDelimiters, getValueDelimiters, ORDERED_VALUE_DELIMITER_IDS } from '@/component/dataView';
