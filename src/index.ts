@@ -101,4 +101,4 @@ export { useDataTable } from '@/composables/useDataTable';
 // export const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 
 /** Utilities */
-export { getDataFormats, getRecordDelimiters, getValueDelimiters } from '@/component/dataView';
+export { getDataFormats, getRecordDelimiters, getValueDelimiters, ORDERED_VALUE_DELIMITER_IDS } from '@/component/dataView';

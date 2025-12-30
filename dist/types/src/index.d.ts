@@ -40,4 +40,4 @@ export { type CytoscapeJSView, useCytoscapeJS } from './composables/useCytoscape
 export { useDataTable } from './composables/useDataTable';
 /** Constants */
 /** Utilities */
-export { getDataFormats, getRecordDelimiters, getValueDelimiters } from './component/dataView';
+export { getDataFormats, getRecordDelimiters, getValueDelimiters, ORDERED_VALUE_DELIMITER_IDS } from './component/dataView';

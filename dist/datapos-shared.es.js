@@ -5,24 +5,24 @@ const u = d(["list"]), f = r({
   typeId: i("contextModelGroup"),
   modelRefs: s(b),
   order: m()
-}), E = r({
+}), v = r({
   ...g,
   typeId: i("context"),
   models: s(f),
   operations: s(u)
-}), C = d(["list", "render", "setColorMode"]), F = r({
+}), C = d(["list", "render", "setColorMode"]), y = r({
   ...g,
   typeId: i("presenter"),
   presentations: s(b),
   operations: s(C)
 });
-function M() {
+function F() {
   return { render: S };
 }
 function S(t, o, n) {
   n.textContent = "Cytoscape.js diagram goes here...";
 }
-function O() {
+function M() {
   return { render: x };
 }
 function x(t, o) {
@@ -33,7 +33,7 @@ const e = (t) => new Map(Object.entries(t)), c = (t, o, n = a) => {
   if (l !== void 0) return l;
   if (n !== o)
     return t.get(n);
-}, h = [
+}, D = [
   { id: "dtv", labels: e({ "en-gb": "Delimited Text" }) },
   { id: "e/e", labels: e({ "en-gb": "Entity/Event" }) },
   { id: "json", labels: e({ "en-gb": "JSON" }) },
@@ -41,22 +41,22 @@ const e = (t) => new Map(Object.entries(t)), c = (t, o, n = a) => {
   { id: "xls", labels: e({ "en-gb": "XLS" }) },
   { id: "xlsx", labels: e({ "en-gb": "XLSX" }) },
   { id: "xml", labels: e({ "en-gb": "XML" }) }
-], R = (t = a) => {
+], O = (t = a) => {
   const o = [];
-  for (const n of h) {
+  for (const n of D) {
     const l = c(n.labels, t);
     o.push({ id: n.id, label: l ?? n.id });
   }
   return o;
-}, D = [
+}, E = [
   { id: `
 `, labels: e({ "en-gb": "Newline" }) },
   { id: "\r", labels: e({ "en-gb": "Carriage Return" }) },
   { id: `\r
 `, labels: e({ "en-gb": "Carriage Return/Newline" }) }
-], T = (t = a) => {
+], _ = (t = a) => {
   const o = [];
-  for (const n of D) {
+  for (const n of E) {
     const l = c(n.labels, t);
     o.push({ id: n.id, label: l ?? n.id });
   }
@@ -73,7 +73,7 @@ const e = (t) => new Map(Object.entries(t)), c = (t, o, n = a) => {
   { id: "_", labels: e({ "en-gb": "Underscore" }) },
   { id: "0x1F", labels: e({ "en-gb": "Unit Separator" }) },
   { id: "|", labels: e({ "en-gb": "Vertical Bar" }) }
-], j = (t = a) => {
+], T = [",", ";", "	", "|", " ", ":", "_", "!", "0x1F", "0x1E"], U = (t = a) => {
   const o = [];
   for (const n of L) {
     const l = c(n.labels, t);
@@ -82,11 +82,12 @@ const e = (t) => new Map(Object.entries(t)), c = (t, o, n = a) => {
   return o;
 };
 export {
-  E as contextConfigSchema,
-  R as getDataFormats,
-  T as getRecordDelimiters,
-  j as getValueDelimiters,
-  F as presenterConfigSchema,
-  M as useCytoscapeJS,
-  O as useDataTable
+  T as ORDERED_VALUE_DELIMITER_IDS,
+  v as contextConfigSchema,
+  O as getDataFormats,
+  _ as getRecordDelimiters,
+  U as getValueDelimiters,
+  y as presenterConfigSchema,
+  F as useCytoscapeJS,
+  M as useDataTable
 };
