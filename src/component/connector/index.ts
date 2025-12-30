@@ -5,15 +5,18 @@
 /** Vendor dependencies. */
 import type { InferOutput } from 'valibot';
 
-/** Framework dependencies. */
+// Framework dependencies.
 import type { Component } from '@/component';
 import { DEFAULT_LOCALE_CODE } from '@/locale';
+import type { EngineShared } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
-import type { ConnectionDescription, ConnectionNodeConfig } from '~/src/component/connector/connection';
-import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '~/src/component/connector/connectorConfig.schema';
+import type { ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
+import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '@/component/connector/connectorConfig.schema';
 import type { DataViewPreviewConfig, ValueDelimiterId } from '@/component/dataView';
 
-/** Connector interface an constructor. */
+/**
+ * Connector interface an constructor.
+ */
 interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
     readonly config: ConnectorConfig;
@@ -43,7 +46,7 @@ interface ConnectorInterface extends Component {
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: ConnectorInterface, options: UpsertRecordsOptions): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
-type ConnectorConstructor = new (toolConfigs: ToolConfig[]) => ConnectorInterface;
+type ConnectorConstructor = new (engineShared: EngineShared, toolConfigs: ToolConfig[]) => ConnectorInterface;
 
 //#region ##### Connector operation type declarations. #####
 
@@ -189,9 +192,9 @@ const constructConnectorCategoryConfig = (id: string, localeId = DEFAULT_LOCALE_
 //#endregion
 
 /** Exports. */
-export { connectorConfigSchema } from '~/src/component/connector/connectorConfig.schema';
+export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
 export { constructConnectorCategoryConfig };
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, UsageTypeId } from '~/src/component/connector/connection';
+export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, UsageTypeId } from '@/component/connector/connection';
 export type {
     ConnectorConfig,
     ConnectorConstructor,

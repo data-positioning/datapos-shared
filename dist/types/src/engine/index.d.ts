@@ -1,11 +1,13 @@
 import { ConnectionConfig } from '../component/connector/connection';
-import { ConnectorOperationOptions } from '../component/connector';
 import { EncodingTypeConfig } from '../encoding';
 import { ModuleConfig } from '../component/module';
 import { ToolConfig } from '../component/tool';
+import { ConnectionColumnConfig, ConnectorOperationOptions, UsageTypeId } from '../component/connector';
 import { ContextCallbackData, ContextConfig, ContextOperationOptions } from '../component/context';
-import { DataViewContentAuditConfig, DataViewPreviewConfig, ValueDelimiterId } from '../component/dataView';
-/** Engine runtime interface. */
+import { DataViewContentAuditConfig, ParsedValue, ValueDelimiterId } from '../component/dataView';
+/**
+ * Engine runtime interface.
+ */
 interface EngineRuntimeInterface {
     getEncodingTypeConfigs: (localeId: string) => EncodingTypeConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorkerInterface;
@@ -22,22 +24,39 @@ interface EngineWorkerInitialiseOptions {
     connectorStorageURLPrefix: string;
     toolConfigs: ToolConfig[];
 }
-/** Engine Shared. */
-interface EngineShared {
-    previewRemoteFile: (url: string, signal: AbortSignal, chunkSize?: number) => Promise<DataViewPreviewConfig>;
+export interface ParseResult {
+    isValid: boolean;
+    originalValue: string | null | undefined;
+    parsedValue: ParsedValue;
+    usageTypeId: UsageTypeId;
 }
-/** Engine configuration. */
+/**
+ * Engine Shared.
+ */
+interface EngineShared {
+    parseRecord: (columnConfigs: ConnectionColumnConfig[], record: {
+        value: string | null | undefined;
+        isQuoted: boolean;
+    }[], isPreview: boolean) => ParseResult[];
+}
+/**
+ * Engine configuration.
+ */
 interface EngineConfig extends ModuleConfig {
     typeId: 'engine';
 }
-/** Connector callback data. */
+/**
+ * Connector callback data.
+ */
 interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
-/** Audit object content options and result. */
+/**
+ * Audit object content options and result.
+ */
 interface AuditObjectContentOptions extends ConnectorOperationOptions {
-    chunkSize?: number;
+    chunkSize: number | undefined;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
@@ -52,5 +71,4 @@ interface TestSettings {
     hasHeaders?: boolean;
     readable: ReadableStream<Uint8Array>;
 }
-/** Exports. */
 export type { AuditObjectContentOptions, AuditObjectContentResult, ConnectorCallbackData, EngineConfig, EngineRuntimeInterface, EngineShared, EngineWorkerInitialiseOptions, EngineWorkerInterface, TestSettings };

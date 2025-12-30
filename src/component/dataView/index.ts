@@ -6,7 +6,7 @@
 import { DEFAULT_LOCALE_CODE } from '@/locale';
 import type { FileTypeResult } from 'file-type';
 import type { Component, ComponentConfig } from '@/component';
-import type { ConnectionColumnConfig, ConnectionNodeConfig } from '~/src/component/connector/connection';
+import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 
 /** Data view component. */
 type DataView = Component;

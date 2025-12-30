@@ -4,24 +4,28 @@
 
 // Framework dependencies.
 import type { ConnectionConfig } from '@/component/connector/connection';
-import type { ConnectorOperationOptions } from '@/component/connector';
 import type { EncodingTypeConfig } from '@/encoding';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
+import type { ConnectionColumnConfig, ConnectorOperationOptions, UsageTypeId } from '@/component/connector';
 import type { ContextCallbackData, ContextConfig, ContextOperationOptions } from '@/component/context';
-import type { DataViewContentAuditConfig, DataViewPreviewConfig, ValueDelimiterId } from '@/component/dataView';
+import type { DataViewContentAuditConfig, ParsedValue, ValueDelimiterId } from '@/component/dataView';
 
-//#region ----- Engine runtime. -----
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Engine runtime.
 
-/** Engine runtime interface. */
+/**
+ * Engine runtime interface.
+ */
 interface EngineRuntimeInterface {
     getEncodingTypeConfigs: (localeId: string) => EncodingTypeConfig[];
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorkerInterface;
 }
 
-//#endregion
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-//#region ----- Engine worker. -----
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Engine worker.
 
 /** Engine worker interface. */
 interface EngineWorkerInterface {
@@ -42,29 +46,46 @@ interface EngineWorkerInitialiseOptions {
     toolConfigs: ToolConfig[];
 }
 
-//#endregion
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-//#region ----- Engine. -----
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Engine.
 
-/** Engine Shared. */
-interface EngineShared {
-    previewRemoteFile: (url: string, signal: AbortSignal, chunkSize?: number) => Promise<DataViewPreviewConfig>;
+// Interfaces/Types - Parse Result
+export interface ParseResult {
+    isValid: boolean;
+    originalValue: string | null | undefined;
+    parsedValue: ParsedValue;
+    usageTypeId: UsageTypeId;
 }
 
-/** Engine configuration. */
+/**
+ * Engine Shared.
+ */
+interface EngineShared {
+    parseRecord: (columnConfigs: ConnectionColumnConfig[], record: { value: string | null | undefined; isQuoted: boolean }[], isPreview: boolean) => ParseResult[];
+}
+
+/**
+ * Engine configuration.
+ */
 interface EngineConfig extends ModuleConfig {
     typeId: 'engine';
 }
 
-/** Connector callback data. */
+/**
+ * Connector callback data.
+ */
 interface ConnectorCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
 
-/** Audit object content options and result. */
+/**
+ * Audit object content options and result.
+ */
 interface AuditObjectContentOptions extends ConnectorOperationOptions {
-    chunkSize?: number;
+    chunkSize: number | undefined;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
@@ -73,7 +94,7 @@ interface AuditObjectContentResult {
     contentAuditConfig: DataViewContentAuditConfig;
 }
 
-//#endregion
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 interface TestSettings {
     action?: string;
@@ -83,7 +104,7 @@ interface TestSettings {
     readable: ReadableStream<Uint8Array>;
 }
 
-/** Exports. */
+// Exports.
 export type {
     AuditObjectContentOptions,
     AuditObjectContentResult,

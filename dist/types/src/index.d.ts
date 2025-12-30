@@ -1,7 +1,6 @@
 /**
  * Shared composables, constants, errors, interfaces, schemas, types and utilities.
  */
-/** Interfaces/Types */
 /** Interfaces/Types - Context. */
 export { contextConfigSchema } from './component/context';
 export type { Context, ContextConfig, ContextLocalisedConfig, ContextListOptions, ContextListResult, ContextOperation, ContextCallbackData } from './component/context';

@@ -2,10 +2,6 @@
  * Shared composables, constants, errors, interfaces, schemas, types and utilities.
  */
 
-/** Interfaces/Types */
-// export type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
-// export type LocalisedString = Record<LocaleCode, string>;
-
 /** Interfaces/Types - Context. */
 export { contextConfigSchema } from '@/component/context';
 export type { Context, ContextConfig, ContextLocalisedConfig, ContextListOptions, ContextListResult, ContextOperation, ContextCallbackData } from '@/component/context';

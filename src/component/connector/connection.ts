@@ -4,7 +4,7 @@
 
 /** Framework dependencies. */
 import type { ComponentConfig } from '@/component';
-import type { ConnectorConfig } from '~/src/component/connector';
+import type { ConnectorConfig } from '@/component/connector';
 
 /** Connection authorisation configuration. */
 interface ConnectionAuthorisationConfig {

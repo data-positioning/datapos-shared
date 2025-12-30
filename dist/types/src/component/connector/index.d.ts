@@ -1,10 +1,13 @@
 import { InferOutput } from 'valibot';
 import { Component } from '..';
+import { EngineShared } from '../../engine';
 import { ToolConfig } from '../tool';
 import { ConnectionDescription, ConnectionNodeConfig } from './connection';
 import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
 import { DataViewPreviewConfig, ValueDelimiterId } from '../dataView';
-/** Connector interface an constructor. */
+/**
+ * Connector interface an constructor.
+ */
 interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
     readonly config: ConnectorConfig;
@@ -24,7 +27,7 @@ interface ConnectorInterface extends Component {
     retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     upsertRecords?(connector: ConnectorInterface, options: UpsertRecordsOptions): Promise<void>;
 }
-type ConnectorConstructor = new (toolConfigs: ToolConfig[]) => ConnectorInterface;
+type ConnectorConstructor = new (engineShared: EngineShared, toolConfigs: ToolConfig[]) => ConnectorInterface;
 /** Operation names a connector may support. */
 type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
 /** Connector data pipeline usage identifiers. */
