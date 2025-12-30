@@ -8,7 +8,7 @@ import type { InferOutput } from 'valibot';
 // Framework dependencies.
 import type { Component } from '@/component';
 import { DEFAULT_LOCALE_CODE } from '@/locale';
-import type { EngineShared } from '@/engine';
+import type { EngineUtilities } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '@/component/connector/connectorConfig.schema';
@@ -46,7 +46,7 @@ interface ConnectorInterface extends Component {
     ): Promise<void>; // Retrieve all records from an object for a specified connection.
     upsertRecords?(connector: ConnectorInterface, options: UpsertRecordsOptions): Promise<void>; // Upsert one or more records into an object for a specified connection.
 }
-type ConnectorConstructor = new (engineShared: EngineShared, toolConfigs: ToolConfig[]) => ConnectorInterface;
+type ConnectorConstructor = new (EngineUtilities: EngineUtilities, toolConfigs: ToolConfig[]) => ConnectorInterface;
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Connector operation type declarations.

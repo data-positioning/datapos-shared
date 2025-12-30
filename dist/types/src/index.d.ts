@@ -21,9 +21,6 @@ export interface ContextOperationSettings {
     appCheckToken?: string;
     sessionAccessToken?: string;
 }
-/** Interfaces/Types - Data view. */
-export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from './component/dataView';
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataViewRelationshipsAuditConfig, ParsedValue } from './component/dataView';
 /** Interfaces/Types - Dimension. */
 export type { DimensionConfig, DimensionLocalisedConfig } from './component/dimension';
 /** Interfaces/Types - Event query. */
@@ -37,6 +34,4 @@ export type { PresentationCategoryId, PresentationCartesianTypeId, PresentationP
 /** Composables */
 export { type CytoscapeJSView, useCytoscapeJS } from './composables/useCytoscapeJS';
 export { useDataTable } from './composables/useDataTable';
-/** Constants */
 /** Utilities */
-export { getDataFormats, getRecordDelimiters, getValueDelimiters, ORDERED_VALUE_DELIMITER_IDS } from './component/dataView';

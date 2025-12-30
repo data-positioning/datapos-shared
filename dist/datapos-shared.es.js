@@ -1,93 +1,36 @@
-import { l as d, o as r, b as s, d as i, f as m, a as p, i as b, D as a } from "./locale-CPeRw0Am.js";
-import { m as g } from "./moduleConfig.schema-ElDY1bZx.js";
-const u = d(["list"]), f = r({
-  ...p,
-  typeId: i("contextModelGroup"),
-  modelRefs: s(b),
-  order: m()
-}), v = r({
-  ...g,
-  typeId: i("context"),
-  models: s(f),
-  operations: s(u)
-}), C = d(["list", "render", "setColorMode"]), y = r({
-  ...g,
-  typeId: i("presenter"),
-  presentations: s(b),
-  operations: s(C)
+import { l as s, o as n, b as e, d as t, f as l, a as d, i as c } from "./componentConfig.schema-DInGC5Y6.js";
+import { m as a } from "./moduleConfig.schema-BJfbCrO6.js";
+const p = s(["list"]), m = n({
+  ...d,
+  typeId: t("contextModelGroup"),
+  modelRefs: e(c),
+  order: l()
+}), x = n({
+  ...a,
+  typeId: t("context"),
+  models: e(m),
+  operations: e(p)
+}), f = s(["list", "render", "setColorMode"]), y = n({
+  ...a,
+  typeId: t("presenter"),
+  presentations: e(c),
+  operations: e(f)
 });
-function F() {
-  return { render: S };
+function S() {
+  return { render: g };
 }
-function S(t, o, n) {
-  n.textContent = "Cytoscape.js diagram goes here...";
+function g(r, o, i) {
+  i.textContent = "Cytoscape.js diagram goes here...";
 }
-function M() {
-  return { render: x };
+function b() {
+  return { render: u };
 }
-function x(t, o) {
-  console.log(1111, t), console.log(2222, o), console.log(3333, o.childNodes), console.log(4444, o.children);
+function u(r, o) {
+  console.log(1111, r), console.log(2222, o), console.log(3333, o.childNodes), console.log(4444, o.children);
 }
-const e = (t) => new Map(Object.entries(t)), c = (t, o, n = a) => {
-  const l = t.get(o);
-  if (l !== void 0) return l;
-  if (n !== o)
-    return t.get(n);
-}, D = [
-  { id: "dtv", labels: e({ "en-gb": "Delimited Text" }) },
-  { id: "e/e", labels: e({ "en-gb": "Entity/Event" }) },
-  { id: "json", labels: e({ "en-gb": "JSON" }) },
-  { id: "spss", labels: e({ "en-gb": "SPSS" }) },
-  { id: "xls", labels: e({ "en-gb": "XLS" }) },
-  { id: "xlsx", labels: e({ "en-gb": "XLSX" }) },
-  { id: "xml", labels: e({ "en-gb": "XML" }) }
-], O = (t = a) => {
-  const o = [];
-  for (const n of D) {
-    const l = c(n.labels, t);
-    o.push({ id: n.id, label: l ?? n.id });
-  }
-  return o;
-}, E = [
-  { id: `
-`, labels: e({ "en-gb": "Newline" }) },
-  { id: "\r", labels: e({ "en-gb": "Carriage Return" }) },
-  { id: `\r
-`, labels: e({ "en-gb": "Carriage Return/Newline" }) }
-], _ = (t = a) => {
-  const o = [];
-  for (const n of E) {
-    const l = c(n.labels, t);
-    o.push({ id: n.id, label: l ?? n.id });
-  }
-  return o;
-}, L = [
-  { id: ":", labels: e({ "en-gb": "Colon" }) },
-  { id: ",", labels: e({ "en-gb": "Comma" }) },
-  { id: "!", labels: e({ "en-gb": "Exclamation Mark" }) },
-  // { id: '', label: { 'en-gb': 'Other' } }, // TODO: Maybe set this to a 'not printing' or special ascii character when there is a user supplied delimited, rather than ''?
-  { id: "0x1E", labels: e({ "en-gb": "Record Separator" }) },
-  { id: ";", labels: e({ "en-gb": "Semicolon" }) },
-  { id: " ", labels: e({ "en-gb": "Space" }) },
-  { id: "	", labels: e({ "en-gb": "Tab" }) },
-  { id: "_", labels: e({ "en-gb": "Underscore" }) },
-  { id: "0x1F", labels: e({ "en-gb": "Unit Separator" }) },
-  { id: "|", labels: e({ "en-gb": "Vertical Bar" }) }
-], T = [",", ";", "	", "|", " ", ":", "_", "!", "0x1F", "0x1E"], U = (t = a) => {
-  const o = [];
-  for (const n of L) {
-    const l = c(n.labels, t);
-    o.push({ id: n.id, label: l ?? n.id });
-  }
-  return o;
-};
 export {
-  T as ORDERED_VALUE_DELIMITER_IDS,
-  v as contextConfigSchema,
-  O as getDataFormats,
-  _ as getRecordDelimiters,
-  U as getValueDelimiters,
+  x as contextConfigSchema,
   y as presenterConfigSchema,
-  F as useCytoscapeJS,
-  M as useDataTable
+  S as useCytoscapeJS,
+  b as useDataTable
 };

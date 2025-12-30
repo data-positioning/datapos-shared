@@ -7,9 +7,9 @@ import type { ConnectionConfig } from '@/component/connector/connection';
 import type { EncodingTypeConfig } from '@/encoding';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
-import type { ConnectionColumnConfig, ConnectorOperationOptions, UsageTypeId } from '@/component/connector';
+import type { ConnectionColumnConfig, ConnectorOperationOptions } from '@/component/connector';
 import type { ContextCallbackData, ContextConfig, ContextOperationOptions } from '@/component/context';
-import type { DataViewContentAuditConfig, ParsedValue, ValueDelimiterId } from '@/component/dataView';
+import type { DataViewContentAuditConfig, ParseResult, ValueDelimiterId } from '@/component/dataView';
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Engine runtime.
@@ -54,19 +54,9 @@ interface EngineWorkerInitialiseOptions {
 //#region Engine.
 
 /**
- * Parse result.
- */
-interface ParseResult {
-    isValid: boolean;
-    originalValue: string | null | undefined;
-    parsedValue: ParsedValue;
-    usageTypeId: UsageTypeId;
-}
-
-/**
  * Engine shared.
  */
-interface EngineShared {
+interface EngineUtilities {
     parseRecord: (columnConfigs: ConnectionColumnConfig[], record: { value: string | null | undefined; isQuoted: boolean }[], isPreview: boolean) => ParseResult[];
 }
 
@@ -115,7 +105,7 @@ export type {
     ConnectorCallbackData,
     EngineConfig,
     EngineRuntimeInterface,
-    EngineShared,
+    EngineUtilities,
     EngineWorkerInitialiseOptions,
     EngineWorkerInterface,
     TestSettings

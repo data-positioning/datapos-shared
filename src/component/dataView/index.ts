@@ -6,12 +6,12 @@
 import { DEFAULT_LOCALE_CODE } from '@/locale';
 import type { FileTypeResult } from 'file-type';
 import type { Component, ComponentConfig } from '@/component';
-import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/component/connector/connection';
+import type { ConnectionColumnConfig, ConnectionNodeConfig, UsageTypeId } from '@/component/connector/connection';
 
 /**
- * Data view component.
+ * Data view interface.
  */
-type DataView = Component;
+type DataViewInterface = Component;
 
 /**
  * Data view configuration.
@@ -194,8 +194,20 @@ const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): ValueDelimiter[] =>
     return items;
 };
 
-// Types/Interfaces - Parsed Value
+/**
+ * Parsed value.
+ */
 type ParsedValue = bigint | boolean | number | string | null;
+
+/**
+ * Parse result.
+ */
+interface ParseResult {
+    isValid: boolean;
+    originalValue: string | null | undefined;
+    parsedValue: ParsedValue;
+    usageTypeId: UsageTypeId;
+}
 
 // Types/Interfaces - Basic
 type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
@@ -203,4 +215,4 @@ type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value 
 type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 
 // Exports.
-export type { DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParsedValue, ValueDelimiterId };
+export type { DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, ParsedValue, ValueDelimiterId };

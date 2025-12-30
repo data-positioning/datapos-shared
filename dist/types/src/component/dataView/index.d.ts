@@ -1,7 +1,9 @@
 import { FileTypeResult } from 'file-type';
 import { ComponentConfig } from '..';
-import { ConnectionColumnConfig, ConnectionNodeConfig } from '../connector/connection';
-/** Data view configuration. */
+import { ConnectionColumnConfig, ConnectionNodeConfig, UsageTypeId } from '../connector/connection';
+/**
+ * Data view configuration.
+ */
 interface DataViewConfig extends ComponentConfig {
     connectionId?: string;
     connectionNodeConfig?: ConnectionNodeConfig;
@@ -9,11 +11,10 @@ interface DataViewConfig extends ComponentConfig {
     contentAuditConfig?: DataViewContentAuditConfig;
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
 }
-export type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & {
-    label: string;
-    description: string;
-};
-export interface DataViewContentAuditConfig {
+/**
+ * Data view content audit configuration.
+ */
+interface DataViewContentAuditConfig {
     asAt: number;
     columns: ConnectionColumnConfig[];
     commentLineCount: number;
@@ -23,7 +24,10 @@ export interface DataViewContentAuditConfig {
     lineCount: number;
     recordCount: number;
 }
-export interface DataViewPreviewConfig {
+/**
+ * Data view preview configuration.
+ */
+interface DataViewPreviewConfig {
     asAt: number;
     columnConfigs: ConnectionColumnConfig[];
     dataFormatId: DataFormatId | undefined;
@@ -42,30 +46,26 @@ export interface DataViewPreviewConfig {
     text: string;
     valueDelimiterId?: ValueDelimiterId;
 }
-export interface DataViewRelationshipsAuditConfig {
+/**
+ * Data view relationships audit configuration.
+ */
+interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
-interface DataFormat {
-    id: string;
-    label: string;
+/**
+ * Parsed value.
+ */
+type ParsedValue = bigint | boolean | number | string | null;
+/**
+ * Parse result.
+ */
+interface ParseResult {
+    isValid: boolean;
+    originalValue: string | null | undefined;
+    parsedValue: ParsedValue;
+    usageTypeId: UsageTypeId;
 }
-export declare const getDataFormat: (id: string, localeId?: import('../../locale').LocaleCode) => DataFormat;
-export declare const getDataFormats: (localeId?: import('../../locale').LocaleCode) => DataFormat[];
-interface RecordDelimiter {
-    id: string;
-    label: string;
-}
-export declare const getRecordDelimiter: (id: string, localeId?: import('../../locale').LocaleCode) => RecordDelimiter;
-export declare const getRecordDelimiters: (localeId?: import('../../locale').LocaleCode) => RecordDelimiter[];
-interface ValueDelimiter {
-    id: string;
-    label: string;
-}
-export declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
-export declare const getValueDelimiter: (id: string, localeId?: import('../../locale').LocaleCode) => ValueDelimiter;
-export declare const getValueDelimiters: (localeId?: import('../../locale').LocaleCode) => ValueDelimiter[];
-export type ParsedValue = bigint | boolean | number | string | null;
-export type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
-export type RecordDelimiterId = '\n' | '\r' | '\r\n';
-export type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
-export type { DataViewConfig };
+type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
+type RecordDelimiterId = '\n' | '\r' | '\r\n';
+type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
+export type { DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, ParsedValue, ValueDelimiterId };

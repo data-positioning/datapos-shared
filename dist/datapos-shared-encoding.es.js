@@ -57,5 +57,5 @@ function h(C = "en") {
 }
 export {
   L as encodingConfigMap,
-  h as getEncodingConfigs
+  h as getEncodingTypeConfigs
 };

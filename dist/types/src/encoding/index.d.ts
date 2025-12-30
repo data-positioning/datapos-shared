@@ -20,7 +20,7 @@ interface EncodingTypeConfig {
 }
 declare const encodingConfigMap: Record<string, EncodingTypeConfig>;
 /**
- * Get encoding configurations.
+ * Get encoding type configurations.
  */
-declare function getEncodingConfigs(localeId?: string): EncodingTypeConfig[];
-export { type EncodingConfig, encodingConfigMap, type EncodingTypeConfig, getEncodingConfigs };
+declare function getEncodingTypeConfigs(localeId?: string): EncodingTypeConfig[];
+export { type EncodingConfig, encodingConfigMap, type EncodingTypeConfig, getEncodingTypeConfigs };
