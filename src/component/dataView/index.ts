@@ -59,7 +59,7 @@ interface DataViewPreviewConfig {
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
     recordDelimiterId?: RecordDelimiterId;
-    records: { isValid: boolean; value: ParsedValue | undefined }[][];
+    records: ParseResult[][];
     size: number;
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
@@ -216,4 +216,4 @@ type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' |
 
 // Exports.
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataFormatId, DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, ParsedValue, RecordDelimiterId, ValueDelimiterId };
+export type { DataFormatId, DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, RecordDelimiterId, ValueDelimiterId };

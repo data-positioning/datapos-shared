@@ -38,10 +38,7 @@ interface DataViewPreviewConfig {
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean | undefined;
     recordDelimiterId?: RecordDelimiterId;
-    records: {
-        isValid: boolean;
-        value: ParsedValue | undefined;
-    }[][];
+    records: ParseResult[][];
     size: number;
     text: string;
     valueDelimiterId?: ValueDelimiterId;
@@ -70,4 +67,4 @@ type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
 type RecordDelimiterId = '\n' | '\r' | '\r\n';
 type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataFormatId, DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, ParsedValue, RecordDelimiterId, ValueDelimiterId };
+export type { DataFormatId, DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, RecordDelimiterId, ValueDelimiterId };
