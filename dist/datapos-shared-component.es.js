@@ -1,5 +1,5 @@
 import { D as a } from "./locale-DTTQsZic.js";
-import { c as s } from "./componentConfig.schema-DInGC5Y6.js";
+import { c as s } from "./componentConfig.schema-C0C6ceb5.js";
 const n = [
   { id: "alpha", color: "red", labels: { "en-gb": "alpha" } },
   { id: "beta", color: "amber", labels: { "en-gb": "beta" } },

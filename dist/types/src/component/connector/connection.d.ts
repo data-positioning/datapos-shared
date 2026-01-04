@@ -1,13 +1,18 @@
 import { ComponentConfig } from '..';
 import { ConnectorConfig } from '.';
-/** Connection configuration. */
+import { ValueDataTypeId } from '../dataView';
+/**
+ * Connection configuration.
+ */
 interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorisationConfig>;
     connectorConfig: ConnectorConfig;
     lastVerifiedAt: number;
-    notation?: string;
+    notation: string | undefined;
 }
-/** Connection authorisation configuration. */
+/**
+ * Connection authorisation configuration.
+ */
 interface ConnectionAuthorisationConfig {
     accessToken: string;
     accountId: string;
@@ -18,7 +23,9 @@ interface ConnectionAuthorisationConfig {
     tokenType: string;
     uid: string;
 }
-/** Connection node configuration. */
+/**
+ * Connection node configuration.
+ */
 interface ConnectionNodeConfig {
     childCount?: number;
     columnsConfigs?: ConnectionColumnConfig[];
@@ -35,15 +42,27 @@ interface ConnectionNodeConfig {
     size?: number;
     typeId: ConnectionNodeTypeId;
 }
+interface DPAFileSystemFileHandle {
+    readonly kind: 'file';
+    getFile(): Promise<File>;
+}
+/**
+ * Connection node type identifier.
+ */
 type ConnectionNodeTypeId = 'folder' | 'object';
-/** Connection description. */
-interface ConnectionDescription {
+/**
+ * Connection description configuration.
+ */
+interface ConnectionDescriptionConfig {
     objects: {
         id: string;
         label: Record<string, string>;
         columns: ConnectionColumnConfig[];
     }[];
 }
+/**
+ * Connection column configuration.
+ */
 interface ConnectionColumnConfig {
     invalidValueCount?: number;
     invalidValues?: string[];
@@ -58,17 +77,11 @@ interface ConnectionColumnConfig {
     minSize?: number;
     minValue?: string;
     patterns?: Record<string, string>;
-    storageTypeId?: StorageTypeId;
-    usageTypeId?: UsageTypeId;
+    storageTypeId?: StorageDataTypeId;
+    valueDataTypeId?: ValueDataTypeId;
     validValueCount?: number;
     validValues?: Record<string, string>;
     voidValueCount?: number;
 }
-interface DPAFileSystemFileHandle {
-    readonly kind: 'file';
-    getFile(): Promise<File>;
-}
-type StorageTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'dateTimeOffset' | 'decimal' | 'double' | 'int8' | 'int16' | 'int32' | 'int64' | 'object' | 'single' | 'string' | 'time' | 'unknown';
-type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
-/** Exports. */
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionDescription, ConnectionNodeConfig, UsageTypeId };
+type StorageDataTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'dateTimeOffset' | 'decimal' | 'double' | 'int8' | 'int16' | 'int32' | 'int64' | 'object' | 'single' | 'string' | 'time' | 'unknown';
+export type { ConnectionColumnConfig, ConnectionConfig, ConnectionDescriptionConfig, ConnectionNodeConfig };

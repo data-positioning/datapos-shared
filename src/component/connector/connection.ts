@@ -1,20 +1,25 @@
 /**
- * Connection composables, constants, errors, types/interfaces and utilities.
+ * Connector connection.
  */
 
-/** Framework dependencies. */
+// Framework dependencies.
 import type { ComponentConfig } from '@/component';
 import type { ConnectorConfig } from '@/component/connector';
+import type { ValueDataTypeId } from '@/component/dataView';
 
-/** Connection configuration. */
+/**
+ * Connection configuration.
+ */
 interface ConnectionConfig extends ComponentConfig {
     authorisation: Record<string, ConnectionAuthorisationConfig>;
     connectorConfig: ConnectorConfig;
     lastVerifiedAt: number;
-    notation?: string;
+    notation: string | undefined;
 }
 
-/** Connection authorisation configuration. */
+/**
+ * Connection authorisation configuration.
+ */
 interface ConnectionAuthorisationConfig {
     accessToken: string; // Dropbox.
     accountId: string; // Dropbox.
@@ -26,7 +31,13 @@ interface ConnectionAuthorisationConfig {
     uid: string; // Dropbox.
 }
 
-/** Connection node configuration. */
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Connection node...
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+/**
+ * Connection node configuration.
+ */
 interface ConnectionNodeConfig {
     childCount?: number;
     columnsConfigs?: ConnectionColumnConfig[];
@@ -44,11 +55,26 @@ interface ConnectionNodeConfig {
     typeId: ConnectionNodeTypeId;
 }
 
-// Types/Interfaces - Connection Node Type Identifier
+interface DPAFileSystemFileHandle {
+    readonly kind: 'file';
+    getFile(): Promise<File>;
+}
+
+/**
+ * Connection node type identifier.
+ */
 type ConnectionNodeTypeId = 'folder' | 'object';
 
-/** Connection description. */
-interface ConnectionDescription {
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Connection description...
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+/**
+ * Connection description configuration.
+ */
+interface ConnectionDescriptionConfig {
     objects: {
         id: string;
         label: Record<string, string>;
@@ -56,7 +82,15 @@ interface ConnectionDescription {
     }[];
 }
 
-// Types/Interfaces - Column Configuration
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Connection column...
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+/**
+ * Connection column configuration.
+ */
 interface ConnectionColumnConfig {
     invalidValueCount?: number;
     invalidValues?: string[];
@@ -71,19 +105,14 @@ interface ConnectionColumnConfig {
     minSize?: number;
     minValue?: string;
     patterns?: Record<string, string>;
-    storageTypeId?: StorageTypeId;
-    usageTypeId?: UsageTypeId;
+    storageTypeId?: StorageDataTypeId;
+    valueDataTypeId?: ValueDataTypeId;
     validValueCount?: number;
     validValues?: Record<string, string>;
     voidValueCount?: number;
 }
 
-// Types/Interfaces - Basic
-interface DPAFileSystemFileHandle {
-    readonly kind: 'file';
-    getFile(): Promise<File>;
-}
-type StorageTypeId =
+type StorageDataTypeId =
     | 'binary'
     | 'boolean'
     | 'byte'
@@ -101,7 +130,8 @@ type StorageTypeId =
     | 'string'
     | 'time'
     | 'unknown';
-type UsageTypeId = 'boolean' | 'decimalNumber' | 'moment' | 'momentDate' | 'momentTime' | 'string' | 'unknown' | 'wholeNumber';
 
-/** Exports. */
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionDescription, ConnectionNodeConfig, UsageTypeId };
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+// Exports.
+export type { ConnectionColumnConfig, ConnectionConfig, ConnectionDescriptionConfig, ConnectionNodeConfig };

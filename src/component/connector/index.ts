@@ -10,7 +10,7 @@ import type { Component } from '@/component';
 import { DEFAULT_LOCALE_CODE } from '@/locale';
 import type { EngineUtilities } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
-import type { ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
+import type { ConnectionDescriptionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '@/component/connector/connectorConfig.schema';
 import type { DataViewPreviewConfig, RecordValueDelimiterId } from '@/component/dataView';
 
@@ -136,7 +136,7 @@ interface CreateObjectOptions extends ConnectorOperationOptions {
  */
 type DescribeConnectionOptions = ConnectorOperationOptions;
 interface DescribeConnectionResult {
-    description: ConnectionDescription;
+    descriptionConfig: ConnectionDescriptionConfig;
 }
 
 /**
@@ -301,7 +301,7 @@ const constructConnectorCategoryConfig = (id: string, localeId = DEFAULT_LOCALE_
 // Exports.
 export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
 export { constructConnectorCategoryConfig };
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, UsageTypeId } from '@/component/connector/connection';
+export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 export type {
     ConnectorConfig,
     ConnectorConstructor,

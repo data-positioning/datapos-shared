@@ -2,7 +2,7 @@ import { InferOutput } from 'valibot';
 import { Component } from '..';
 import { EngineUtilities } from '../../engine';
 import { ToolConfig } from '../tool';
-import { ConnectionDescription, ConnectionNodeConfig } from './connection';
+import { ConnectionDescriptionConfig, ConnectionNodeConfig } from './connection';
 import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
 import { DataViewPreviewConfig, RecordValueDelimiterId } from '../dataView';
 /**
@@ -109,7 +109,7 @@ interface CreateObjectOptions extends ConnectorOperationOptions {
  */
 type DescribeConnectionOptions = ConnectorOperationOptions;
 interface DescribeConnectionResult {
-    description: ConnectionDescription;
+    descriptionConfig: ConnectionDescriptionConfig;
 }
 /**
  * Drop object options.
@@ -236,5 +236,5 @@ type ConnectorCategoryLocalisedConfig = Omit<ConnectorCategoryConfig, 'label'> &
 declare const constructConnectorCategoryConfig: (id: string, localeId?: import('../../locale').LocaleCode) => ConnectorCategoryLocalisedConfig;
 export { connectorConfigSchema } from './connectorConfig.schema';
 export { constructConnectorCategoryConfig };
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig, UsageTypeId } from './connection';
+export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from './connection';
 export type { ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationOptions, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };

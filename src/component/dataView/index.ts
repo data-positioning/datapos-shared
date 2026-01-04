@@ -6,7 +6,7 @@ import type { FileTypeResult } from 'file-type';
 
 // Framework dependencies.
 import type { Component, ComponentConfig } from '@/component';
-import type { ConnectionColumnConfig, ConnectionNodeConfig, UsageTypeId } from '@/component/connector/connection';
+import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 import { createLabelMap, DEFAULT_LOCALE_CODE, type LocaleLabelMap, resolveLabel } from '@/locale';
 
 /**
@@ -246,7 +246,7 @@ interface ParseResult {
     isValid: boolean;
     originalValue: string | null | undefined;
     parsedValue: ParsedValue;
-    usageTypeId: UsageTypeId;
+    valueDataTypeId: ValueDataTypeId;
 }
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

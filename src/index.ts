@@ -78,9 +78,9 @@ export type {
     PresentationVisualValueTableViewConfig
 } from '@/component/presenter/presentation';
 
-/** Composables */
-export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
-export { useDataTable } from '@/composables/useDataTable';
+// /** Composables */
+// export { type CytoscapeJSView, useCytoscapeJS } from '@/composables/useCytoscapeJS';
+// export { useDataTable } from '@/composables/useDataTable';
 
 // /** Interfaces/Types - Data view. */
 // export type { DataFormatId, RecordDelimiterId, ValueDelimiterId } from '@/component/dataView';

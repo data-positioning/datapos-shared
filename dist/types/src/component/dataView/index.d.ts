@@ -1,6 +1,6 @@
 import { FileTypeResult } from 'file-type';
 import { Component, ComponentConfig } from '..';
-import { ConnectionColumnConfig, ConnectionNodeConfig, UsageTypeId } from '../connector/connection';
+import { ConnectionColumnConfig, ConnectionNodeConfig } from '../connector/connection';
 /**
  * Data view interface.
  */
@@ -78,7 +78,7 @@ interface ParseResult {
     isValid: boolean;
     originalValue: string | null | undefined;
     parsedValue: ParsedValue;
-    usageTypeId: UsageTypeId;
+    valueDataTypeId: ValueDataTypeId;
 }
 type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal';
 type ValueNumericTypeId = 'bigint' | 'integer' | 'decimal';

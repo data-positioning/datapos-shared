@@ -1,6 +1,6 @@
 import { D as s } from "./locale-DTTQsZic.js";
-import { l as n, o as i, n as a, b as d, r as b, d as p, s as e, e as o, f as l, g as C, h as g, p as u } from "./componentConfig.schema-DInGC5Y6.js";
-import { m as h } from "./moduleConfig.schema-BJfbCrO6.js";
+import { l as n, o as i, f as a, b as d, r as b, d as p, s as e, g as o, n as l, h as C, i as g, p as u } from "./componentConfig.schema-C0C6ceb5.js";
+import { m as h } from "./moduleConfig.schema-DNq1iU4S.js";
 const S = n(["apiKey", "disabled", "oAuth2", "none"]), f = i({
   authMethodId: S,
   activeConnectionCount: o(l()),
