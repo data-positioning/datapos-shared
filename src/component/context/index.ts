@@ -21,10 +21,6 @@ export type ContextListOptions = object; // TODO.
 export interface ContextListResult {
     models: ContextModelGroupConfig[];
 }
-export interface ContextCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
-}
 
 // Types/Interfaces/Operations - Context configuration.
 export type ContextConfig = InferOutput<typeof contextConfigSchema>;

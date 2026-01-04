@@ -214,6 +214,24 @@ type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
 type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Data...
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal';
+
+type NumericTypeId = 'bigint' | 'integer' | 'decimal';
+
+type NumericUnitsId = 'currency' | 'percentage' | 'plain';
+
+type StringTypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
+
+type TemporalTypeId = 'date' | 'dateTime' | 'time';
+
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 // Exports.
 export { ORDERED_VALUE_DELIMITER_IDS };
 export type { DataFormatId, DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, RecordDelimiterId, ValueDelimiterId };
+
+export type { DataTypeId, NumericTypeId, NumericUnitsId, StringTypeId, TemporalTypeId };

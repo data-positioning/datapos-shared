@@ -1,28 +1,55 @@
 import { LiteralSchema, UnionSchema } from 'valibot';
+/**
+ *
+ */
 type LiteralUnionSchema<T extends readonly string[]> = UnionSchema<{
     [K in keyof T]: LiteralSchema<T[K], undefined>;
 }, undefined>;
+/**
+ *
+ */
 declare const literalUnion: <const T extends readonly string[]>(values: T) => LiteralUnionSchema<T>;
+/**
+ *
+ */
 declare const localisedStringSchema: import('valibot').ObjectSchema<{
     readonly 'en-au': import('valibot').StringSchema<undefined>;
     readonly 'en-gb': import('valibot').StringSchema<undefined>;
     readonly 'en-us': import('valibot').StringSchema<undefined>;
     readonly 'es-es': import('valibot').StringSchema<undefined>;
 }, undefined>;
+/**
+ *
+ */
 declare const partialLocalisedStringSchema: import('valibot').ObjectSchema<{
     readonly 'en-au': import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;
     readonly 'en-gb': import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;
     readonly 'en-us': import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;
     readonly 'es-es': import('valibot').OptionalSchema<import('valibot').StringSchema<undefined>, undefined>;
 }, undefined>;
+/**
+ *
+ */
 declare const componentStatusColorIdSchema: LiteralUnionSchema<readonly ["amber", "green", "red", "other"]>;
+/**
+ *
+ */
 declare const componentStatusIdSchema: LiteralUnionSchema<readonly ["alpha", "beta", "generalAvailability", "notApplicable", "preAlpha", "proposed", "releaseCandidate", "unavailable", "underReview"]>;
+/**
+ *
+ */
 declare const componentTypeIdSchema: LiteralUnionSchema<readonly ["app", "connector", "connectorConnection", "context", "contextModelGroup", "contextModel", "contextModelDimensionGroup", "contextModelDimension", "contextModelDimensionHierarchy", "contextModelEntityGroup", "contextModelEntity", "contextModelEntityDataItem", "contextModelEntityEvent", "contextModelEntityPrimaryMeasure", "contextModelSecondaryMeasureGroup", "contextModelSecondaryMeasure", "dataView", "dimension", "engine", "eventQuery", "presenter", "presenterPresentation", "tool"]>;
+/**
+ *
+ */
 declare const componentStatusSchema: import('valibot').ObjectSchema<{
     readonly id: import('valibot').StringSchema<undefined>;
     readonly color: LiteralUnionSchema<readonly ["amber", "green", "red", "other"]>;
     readonly label: import('valibot').StringSchema<undefined>;
 }, undefined>;
+/**
+ *
+ */
 declare const componentConfigCoreFields: {
     readonly id: import('valibot').StringSchema<undefined>;
     readonly label: import('valibot').ObjectSchema<{
@@ -48,6 +75,9 @@ declare const componentConfigCoreFields: {
     }, undefined>, undefined>;
     readonly statusId: LiteralUnionSchema<readonly ["alpha", "beta", "generalAvailability", "notApplicable", "preAlpha", "proposed", "releaseCandidate", "unavailable", "underReview"]>;
 };
+/**
+ *
+ */
 declare const componentConfigSchema: import('valibot').ObjectSchema<{
     readonly typeId: LiteralUnionSchema<readonly ["app", "connector", "connectorConnection", "context", "contextModelGroup", "contextModel", "contextModelDimensionGroup", "contextModelDimension", "contextModelDimensionHierarchy", "contextModelEntityGroup", "contextModelEntity", "contextModelEntityDataItem", "contextModelEntityEvent", "contextModelEntityPrimaryMeasure", "contextModelSecondaryMeasureGroup", "contextModelSecondaryMeasure", "dataView", "dimension", "engine", "eventQuery", "presenter", "presenterPresentation", "tool"]>;
     readonly id: import('valibot').StringSchema<undefined>;
@@ -74,6 +104,9 @@ declare const componentConfigSchema: import('valibot').ObjectSchema<{
     }, undefined>, undefined>;
     readonly statusId: LiteralUnionSchema<readonly ["alpha", "beta", "generalAvailability", "notApplicable", "preAlpha", "proposed", "releaseCandidate", "unavailable", "underReview"]>;
 }, undefined>;
+/**
+ *
+ */
 declare const componentReferenceSchema: import('valibot').ObjectSchema<{
     readonly id: import('valibot').StringSchema<undefined>;
     readonly label: import('valibot').ObjectSchema<{
@@ -93,5 +126,4 @@ declare const componentReferenceSchema: import('valibot').ObjectSchema<{
     readonly order: import('valibot').NumberSchema<undefined>;
     readonly path: import('valibot').StringSchema<undefined>;
 }, undefined>;
-/** Exports. */
 export { componentConfigCoreFields, componentConfigSchema, componentReferenceSchema, componentStatusColorIdSchema, componentStatusIdSchema, componentStatusSchema, componentTypeIdSchema, literalUnion, localisedStringSchema, partialLocalisedStringSchema };

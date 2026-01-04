@@ -6,6 +6,14 @@
 import type { ComponentConfig } from '@/component';
 import type { ConnectorConfig } from '@/component/connector';
 
+/** Connection configuration. */
+interface ConnectionConfig extends ComponentConfig {
+    authorisation: Record<string, ConnectionAuthorisationConfig>;
+    connectorConfig: ConnectorConfig;
+    lastVerifiedAt: number;
+    notation?: string;
+}
+
 /** Connection authorisation configuration. */
 interface ConnectionAuthorisationConfig {
     accessToken: string; // Dropbox.
@@ -16,14 +24,6 @@ interface ConnectionAuthorisationConfig {
     scope: string; // Dropbox.
     tokenType: string; // Dropbox.
     uid: string; // Dropbox.
-}
-
-/** Connection configuration. */
-interface ConnectionConfig extends ComponentConfig {
-    authorisation: Record<string, ConnectionAuthorisationConfig>;
-    connectorConfig: ConnectorConfig;
-    lastVerifiedAt: number;
-    notation?: string;
 }
 
 /** Connection node configuration. */

@@ -12,10 +12,6 @@ export type ContextListOptions = object;
 export interface ContextListResult {
     models: ContextModelGroupConfig[];
 }
-export interface ContextCallbackData {
-    typeId: string;
-    properties: Record<string, unknown>;
-}
 export type ContextConfig = InferOutput<typeof contextConfigSchema>;
 export interface ContextConfig1 extends ModuleConfig {
     models: ContextModelGroupConfig[];

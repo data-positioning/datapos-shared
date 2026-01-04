@@ -1,5 +1,12 @@
 import { ComponentConfig } from '..';
 import { ConnectorConfig } from '.';
+/** Connection configuration. */
+interface ConnectionConfig extends ComponentConfig {
+    authorisation: Record<string, ConnectionAuthorisationConfig>;
+    connectorConfig: ConnectorConfig;
+    lastVerifiedAt: number;
+    notation?: string;
+}
 /** Connection authorisation configuration. */
 interface ConnectionAuthorisationConfig {
     accessToken: string;
@@ -10,13 +17,6 @@ interface ConnectionAuthorisationConfig {
     scope: string;
     tokenType: string;
     uid: string;
-}
-/** Connection configuration. */
-interface ConnectionConfig extends ComponentConfig {
-    authorisation: Record<string, ConnectionAuthorisationConfig>;
-    connectorConfig: ConnectorConfig;
-    lastVerifiedAt: number;
-    notation?: string;
 }
 /** Connection node configuration. */
 interface ConnectionNodeConfig {

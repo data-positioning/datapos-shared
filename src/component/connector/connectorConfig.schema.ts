@@ -5,10 +5,10 @@
  * of connector manifests and capability discovery at runtime.
  */
 
-/** Vendor dependencies */
+// Vendor dependencies.
 import { array, boolean, literal, nullable, number, object, optional, record, string } from 'valibot';
 
-/** Framework dependencies. */
+// Framework dependencies.
 import { moduleConfigCoreFields } from '@/component/moduleConfig.schema';
 import { literalUnion, localisedStringSchema, partialLocalisedStringSchema } from '@/component/componentConfig.schema';
 
@@ -52,6 +52,9 @@ const connectorOperationNameSchema = literalUnion([
 /** Connector data pipeline usage identifiers. */
 const connectorUsageIdSchema = literalUnion(['bidirectional', 'destination', 'source', 'unknown'] as const);
 
+/**
+ *
+ */
 const connectorCategoryConfigSchema = object({
     id: string(),
     label: partialLocalisedStringSchema
@@ -71,5 +74,5 @@ const connectorConfigSchema = object({
     vendorHomeURL: nullable(string())
 });
 
-/** Exports. */
+// Exports.
 export { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema };

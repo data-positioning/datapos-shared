@@ -2,26 +2,32 @@
  * Module configuration schema.
  */
 
-/** Vendor dependencies. */
+// Vendor dependencies.
 import { object, string } from 'valibot';
 
-/** Framework dependencies. */
+// Framework dependencies.
 import { componentConfigCoreFields, literalUnion } from './componentConfig.schema';
 
-/** */
+/**
+ *
+ */
 const moduleTypeIdSchema = literalUnion(['app', 'engine', 'connector', 'context', 'presenter', 'tool'] as const);
 
-/** */
+/**
+ *
+ */
 const moduleConfigCoreFields = {
     ...componentConfigCoreFields,
     version: string()
 } as const;
 
-/** */
+/**
+ *
+ */
 const moduleConfigSchema = object({
     ...moduleConfigCoreFields,
     typeId: moduleTypeIdSchema
 });
 
-/** Exports. */
+// Exports.
 export { moduleConfigCoreFields, moduleConfigSchema, moduleTypeIdSchema };

@@ -1,16 +1,22 @@
 /**
- * Context schema (drafted by Copilot).
+ * Context schema.
  */
 
-/** Dependencies - Vendor. */
+// Vendor dependencies.
 import { array, literal, number, object } from 'valibot';
 
-/** Dependencies - Framework. */
+// Framework dependencies.
 import { moduleConfigCoreFields } from '@/component/moduleConfig.schema';
 import { componentConfigCoreFields, componentReferenceSchema, literalUnion } from '@/component/componentConfig.schema';
 
+/**
+ *
+ */
 const contextOperationSchema = literalUnion(['list'] as const);
 
+/**
+ *
+ */
 const contextModelGroupConfigSchema = object({
     ...componentConfigCoreFields,
     typeId: literal('contextModelGroup'),
@@ -18,6 +24,7 @@ const contextModelGroupConfigSchema = object({
     order: number()
 });
 
+// Exports.
 export const contextConfigSchema = object({
     ...moduleConfigCoreFields,
     typeId: literal('context'),

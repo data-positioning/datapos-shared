@@ -3,7 +3,7 @@ import { EncodingTypeConfig } from '../encoding';
 import { ModuleConfig } from '../component/module';
 import { ToolConfig } from '../component/tool';
 import { ConnectionColumnConfig, ConnectorOperationOptions } from '../component/connector';
-import { ContextCallbackData, ContextConfig, ContextOperationOptions } from '../component/context';
+import { ContextConfig, ContextOperationOptions } from '../component/context';
 import { DataViewContentAuditConfig, ParseResult, ValueDelimiterId } from '../component/dataView';
 /**
  * Engine runtime interface.
@@ -17,8 +17,8 @@ interface EngineRuntimeInterface {
  */
 interface EngineWorkerInterface {
     initialise: (options: EngineWorkerInitialiseOptions) => Promise<void>;
-    processConnectorRequest: (id: string, connectionConfig: ConnectionConfig, options: ConnectorOperationOptions, callback?: (callbackData: ConnectorCallbackData) => void) => Promise<unknown>;
-    processContextRequest: (id: string, contextConfig: ContextConfig, options: ContextOperationOptions, callback?: (callbackData: ContextCallbackData) => void) => Promise<unknown>;
+    processConnectorRequest: (id: string, connectionConfig: ConnectionConfig, options: ConnectorOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
+    processContextRequest: (id: string, contextConfig: ContextConfig, options: ContextOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
     processTestRequest: (settings: TestSettings) => Promise<Record<string, unknown>>;
 }
 /** Engine worker initialise options. */
@@ -42,9 +42,9 @@ interface EngineConfig extends ModuleConfig {
     typeId: 'engine';
 }
 /**
- * Connector callback data.
+ * Engine callback data.
  */
-interface ConnectorCallbackData {
+interface EngineCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
@@ -67,4 +67,4 @@ interface TestSettings {
     hasHeaders?: boolean;
     readable: ReadableStream<Uint8Array>;
 }
-export type { AuditObjectContentOptions, AuditObjectContentResult, ConnectorCallbackData, EngineConfig, EngineRuntimeInterface, EngineUtilities, EngineWorkerInitialiseOptions, EngineWorkerInterface, TestSettings };
+export type { AuditObjectContentOptions, AuditObjectContentResult, EngineCallbackData, EngineConfig, EngineRuntimeInterface, EngineUtilities, EngineWorkerInitialiseOptions, EngineWorkerInterface, TestSettings };

@@ -8,11 +8,12 @@ import type { EncodingTypeConfig } from '@/encoding';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionColumnConfig, ConnectorOperationOptions } from '@/component/connector';
-import type { ContextCallbackData, ContextConfig, ContextOperationOptions } from '@/component/context';
+import type { ContextConfig, ContextOperationOptions } from '@/component/context';
 import type { DataViewContentAuditConfig, ParseResult, ValueDelimiterId } from '@/component/dataView';
 
-//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Engine runtime.
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 /**
  * Engine runtime interface.
@@ -22,10 +23,11 @@ interface EngineRuntimeInterface {
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorkerInterface;
 }
 
-//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Engine worker.
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 /**
  * Engine worker interface.
@@ -36,10 +38,10 @@ interface EngineWorkerInterface {
         id: string,
         connectionConfig: ConnectionConfig,
         options: ConnectorOperationOptions,
-        callback?: (callbackData: ConnectorCallbackData) => void
+        callback?: (callbackData: EngineCallbackData) => void
     ) => Promise<unknown>;
-    processContextRequest: (id: string, contextConfig: ContextConfig, options: ContextOperationOptions, callback?: (callbackData: ContextCallbackData) => void) => Promise<unknown>;
-    processTestRequest: (settings: TestSettings) => Promise<Record<string, unknown>>;
+    processContextRequest: (id: string, contextConfig: ContextConfig, options: ContextOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
+    processTestRequest: (settings: TestSettings) => Promise<Record<string, unknown>>; // TODO: Remove!
 }
 
 /** Engine worker initialise options. */
@@ -48,10 +50,11 @@ interface EngineWorkerInitialiseOptions {
     toolConfigs: ToolConfig[];
 }
 
-//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Engine.
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 /**
  * Engine shared.
@@ -68,9 +71,9 @@ interface EngineConfig extends ModuleConfig {
 }
 
 /**
- * Connector callback data.
+ * Engine callback data.
  */
-interface ConnectorCallbackData {
+interface EngineCallbackData {
     typeId: string;
     properties: Record<string, unknown>;
 }
@@ -88,8 +91,9 @@ interface AuditObjectContentResult {
     contentAuditConfig: DataViewContentAuditConfig;
 }
 
-//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+// TODO: Remove!
 interface TestSettings {
     action?: string;
     delimiter?: string;
@@ -102,7 +106,7 @@ interface TestSettings {
 export type {
     AuditObjectContentOptions,
     AuditObjectContentResult,
-    ConnectorCallbackData,
+    EngineCallbackData,
     EngineConfig,
     EngineRuntimeInterface,
     EngineUtilities,

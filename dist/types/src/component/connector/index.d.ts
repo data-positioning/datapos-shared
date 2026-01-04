@@ -12,21 +12,66 @@ interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly toolConfigs: ToolConfig[];
+    /**
+     * Abort the active long running operation.
+     */
     abortOperation?(connector: ConnectorInterface): void;
+    /**
+     * Authenticate a specified connection.
+     */
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
+    /**
+     * Create an object for a specified connection.
+     */
     createObject?(connector: ConnectorInterface, options: CreateObjectOptions): Promise<void>;
+    /**
+     * Describe a specified connection.
+     */
     describeConnection?(connector: ConnectorInterface, options: DescribeConnectionOptions): Promise<DescribeConnectionResult>;
+    /**
+     * Drop (delete) an object for a specified connection.
+     */
     dropObject?(connector: ConnectorInterface, options: DropObjectOptions): Promise<void>;
+    /**
+     * Find an object for a specified connection.
+     */
     findObject?(connector: ConnectorInterface, options: FindObjectFolderPathOptions): Promise<string | null>;
+    /**
+     * Get a reader that can retrieve all records from an object for a specified connection.
+     */
     getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array>>;
+    /**
+     * Get a record for an object for a specified connection.
+     */
     getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>;
+    /**
+     * List nodes in a folder for a specified connection.
+     */
     listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>;
+    /**
+     * Preview an object for a specified connection.
+     */
     previewObject?(connector: ConnectorInterface, options: PreviewObjectOptions): Promise<DataViewPreviewConfig>;
+    /**
+     * Remove one or more records from an object for a specified connection.
+     */
     removeRecords?(connector: ConnectorInterface, options: RemoveRecordsOptions): Promise<void>;
+    /**
+     * Retrieve all chunks from an object for a specified connection.
+     */
     retrieveChunks?(connector: ConnectorInterface, options: RetrieveChunksOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: () => void): Promise<void>;
+    /**
+     * Retrieve all records from an object for a specified connection.
+     */
     retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
+    /**
+     * Upsert one or more records into an object for a specified connection.
+     */
     upsertRecords?(connector: ConnectorInterface, options: UpsertRecordsOptions): Promise<void>;
 }
+/**
+ *
+ */
 type ConnectorConstructor = new (EngineUtilities: EngineUtilities, toolConfigs: ToolConfig[]) => ConnectorInterface;
 /**
  * Operation names a connector may support.
@@ -145,11 +190,30 @@ interface RetrieveRecordsOptions extends ConnectorOperationOptions {
     valueDelimiterId: ValueDelimiterId;
 }
 interface RetrieveRecordsSummary {
+    /**
+     * Number of processed bytes.
+     */
     byteCount: number;
+    /**
+     * Count the number of lines being fully commented.
+     */
     commentLineCount: number;
+    /**
+     * Count the number of processed empty lines; work only with the skip_empty_lines option or an error will be thrown
+     * if an empty line is found.
+     */
     emptyLineCount: number;
+    /**
+     * Number of lines encountered in the source dataset, start at 1 for the first line.
+     */
     lineCount: number;
+    /**
+     * Number of non uniform records when relax_column_count is true.
+     */
     nonUniformRecordCount: number;
+    /**
+     * Count the number of processed records.
+     */
     recordCount: number;
 }
 /**

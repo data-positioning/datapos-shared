@@ -1,5 +1,5 @@
 /**
- * Context schema (drafted by Copilot).
+ * Context schema.
  */
 export declare const contextConfigSchema: import('valibot').ObjectSchema<{
     readonly typeId: import('valibot').LiteralSchema<"context", undefined>;
