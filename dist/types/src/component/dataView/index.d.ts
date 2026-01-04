@@ -68,10 +68,6 @@ type RecordValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' |
  */
 declare const ORDERED_VALUE_DELIMITER_IDS: RecordValueDelimiterId[];
 /**
- * Parsed value.
- */
-type ParsedValue = bigint | boolean | number | string | null;
-/**
  * Parse result.
  */
 interface ParseResult {
@@ -80,14 +76,15 @@ interface ParseResult {
     parsedValue: ParsedValue;
     valueDataTypeId: ValueDataTypeId;
 }
-type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal';
-type ValueNumericTypeId = 'bigint' | 'integer' | 'decimal';
-type ValueNumericUnitsId = 'currency' | 'percentage' | 'plain';
-type ValueStringTypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
-type ValueTemporalTypeId = 'date' | 'dateTime' | 'time';
+/**
+ * Parsed value.
+ */
+type ParsedValue = bigint | boolean | number | string | null;
+type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+type ValueNumericSignId = 'negative' | 'zero' | 'positive' | 'unknown';
+type ValueNumericTypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
+type ValueNumericUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
+type ValueStringTypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
+type ValueTemporalTypeId = 'date' | 'dateTime' | 'time' | 'unknown';
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewInterface, DataViewConfig, DataViewLocalisedConfig };
-export type { DataViewContentAuditConfig, DataViewPreviewConfig };
-export type { ParseResult };
-export type { ObjectDataFormatId, ObjectRecordDelimiterId, RecordValueDelimiterId };
-export type { ValueDataTypeId, ValueNumericTypeId, ValueNumericUnitsId, ValueStringTypeId, ValueTemporalTypeId };
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, ObjectDataFormatId, ObjectRecordDelimiterId, ParseResult, RecordValueDelimiterId, ValueDataTypeId, ValueNumericSignId, ValueNumericTypeId, ValueNumericUnitsId, ValueStringTypeId, ValueTemporalTypeId };

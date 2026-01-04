@@ -235,11 +235,6 @@ const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): RecordValueDelimite
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 /**
- * Parsed value.
- */
-type ParsedValue = bigint | boolean | number | string | null;
-
-/**
  * Parse result.
  */
 interface ParseResult {
@@ -249,31 +244,43 @@ interface ParseResult {
     valueDataTypeId: ValueDataTypeId;
 }
 
+/**
+ * Parsed value.
+ */
+type ParsedValue = bigint | boolean | number | string | null;
+
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//#region Data...
+//#region Value...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal';
+type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 
-type ValueNumericTypeId = 'bigint' | 'integer' | 'decimal';
+type ValueNumericSignId = 'negative' | 'zero' | 'positive' | 'unknown';
+type ValueNumericTypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
+type ValueNumericUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
 
-type ValueNumericUnitsId = 'currency' | 'percentage' | 'plain';
+type ValueStringTypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
 
-type ValueStringTypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
-
-type ValueTemporalTypeId = 'date' | 'dateTime' | 'time';
+type ValueTemporalTypeId = 'date' | 'dateTime' | 'time' | 'unknown';
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 // Exports.
 export { ORDERED_VALUE_DELIMITER_IDS };
-
-export type { DataViewInterface, DataViewConfig, DataViewLocalisedConfig };
-
-export type { DataViewContentAuditConfig, DataViewPreviewConfig };
-
-export type { ParseResult };
-
-export type { ObjectDataFormatId, ObjectRecordDelimiterId, RecordValueDelimiterId };
-
-export type { ValueDataTypeId, ValueNumericTypeId, ValueNumericUnitsId, ValueStringTypeId, ValueTemporalTypeId };
+export type {
+    DataViewConfig,
+    DataViewContentAuditConfig,
+    DataViewInterface,
+    DataViewLocalisedConfig,
+    DataViewPreviewConfig,
+    ObjectDataFormatId,
+    ObjectRecordDelimiterId,
+    ParseResult,
+    RecordValueDelimiterId,
+    ValueDataTypeId,
+    ValueNumericSignId,
+    ValueNumericTypeId,
+    ValueNumericUnitsId,
+    ValueStringTypeId,
+    ValueTemporalTypeId
+};
