@@ -1,4 +1,4 @@
-import { D as s } from "./locale-DR89RW6v.js";
+import { D as s } from "./locale-DTTQsZic.js";
 import { l as n, o as i, n as a, b as d, r as b, d as p, s as e, e as o, f as l, g as C, h as g, p as u } from "./componentConfig.schema-DInGC5Y6.js";
 import { m as h } from "./moduleConfig.schema-BJfbCrO6.js";
 const S = n(["apiKey", "disabled", "oAuth2", "none"]), f = i({

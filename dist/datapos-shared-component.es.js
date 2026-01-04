@@ -1,4 +1,4 @@
-import { D as a } from "./locale-DR89RW6v.js";
+import { D as a } from "./locale-DTTQsZic.js";
 import { c as s } from "./componentConfig.schema-DInGC5Y6.js";
 const n = [
   { id: "alpha", color: "red", labels: { "en-gb": "alpha" } },

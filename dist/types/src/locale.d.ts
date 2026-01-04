@@ -1,12 +1,26 @@
 /**
  * Locale constants and type declarations.
  */
-/** Constants */
 declare const DEFAULT_LOCALE_CODE: LocaleCode;
-/** Locale codes. */
+/**
+ * Locale codes.
+ */
 type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
-/** Localised string. */
+/**
+ * Localised string.
+ */
 type LocalisedString = Record<LocaleCode, string>;
-/** Exports. */
-export { DEFAULT_LOCALE_CODE };
-export type { LocaleCode, LocalisedString };
+/**
+ *
+ */
+type LocaleLabelMap = ReadonlyMap<string, string>;
+/**
+ *
+ */
+declare const createLabelMap: (labels: Record<string, string>) => LocaleLabelMap;
+/**
+ *
+ */
+declare const resolveLabel: (labels: LocaleLabelMap, localeId: string, fallbackLocaleId?: "en-gb") => string | undefined;
+export { createLabelMap, DEFAULT_LOCALE_CODE, resolveLabel };
+export type { LocaleCode, LocaleLabelMap, LocalisedString };

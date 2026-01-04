@@ -9,7 +9,7 @@ import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionColumnConfig, ConnectorOperationOptions } from '@/component/connector';
 import type { ContextConfig, ContextOperationOptions } from '@/component/context';
-import type { DataViewContentAuditConfig, ParseResult, ValueDelimiterId } from '@/component/dataView';
+import type { DataViewContentAuditConfig, ParseResult, RecordValueDelimiterId } from '@/component/dataView';
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Engine runtime.
@@ -57,13 +57,6 @@ interface EngineWorkerInitialiseOptions {
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 /**
- * Engine shared.
- */
-interface EngineUtilities {
-    parseRecord: (columnConfigs: ConnectionColumnConfig[], record: { value: string | null | undefined; isQuoted: boolean }[], isPreview: boolean) => ParseResult[];
-}
-
-/**
  * Engine configuration.
  */
 interface EngineConfig extends ModuleConfig {
@@ -79,13 +72,20 @@ interface EngineCallbackData {
 }
 
 /**
+ * Engine utilities.
+ */
+interface EngineUtilities {
+    parseRecord: (columnConfigs: ConnectionColumnConfig[], record: { value: string | null | undefined; isQuoted: boolean }[], isPreview: boolean) => ParseResult[];
+}
+
+/**
  * Audit object content options and result.
  */
 interface AuditObjectContentOptions extends ConnectorOperationOptions {
     chunkSize: number | undefined;
     encodingId: string;
     path: string;
-    valueDelimiterId: ValueDelimiterId;
+    valueDelimiterId: RecordValueDelimiterId;
 }
 interface AuditObjectContentResult {
     contentAuditConfig: DataViewContentAuditConfig;

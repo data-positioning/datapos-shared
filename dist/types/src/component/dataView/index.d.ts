@@ -1,6 +1,10 @@
 import { FileTypeResult } from 'file-type';
-import { ComponentConfig } from '..';
+import { Component, ComponentConfig } from '..';
 import { ConnectionColumnConfig, ConnectionNodeConfig, UsageTypeId } from '../connector/connection';
+/**
+ * Data view interface.
+ */
+type DataViewInterface = Component;
 /**
  * Data view configuration.
  */
@@ -10,6 +14,32 @@ interface DataViewConfig extends ComponentConfig {
     previewConfig?: DataViewPreviewConfig;
     contentAuditConfig?: DataViewContentAuditConfig;
     relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
+}
+/**
+ * Data view localised configuration.
+ */
+type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & {
+    label: string;
+    description: string;
+};
+/**
+ * Data view preview configuration.
+ */
+interface DataViewPreviewConfig {
+    asAt: number;
+    columnConfigs: ConnectionColumnConfig[];
+    dataFormatId: ObjectDataFormatId | undefined;
+    duration: number;
+    encodingConfidenceLevel: number | undefined;
+    encodingId: string | undefined;
+    errorMessage?: string;
+    fileType: FileTypeResult | undefined;
+    hasHeaders: boolean | undefined;
+    recordDelimiterId?: ObjectRecordDelimiterId;
+    records: ParseResult[][];
+    size: number;
+    text: string;
+    valueDelimiterId?: RecordValueDelimiterId;
 }
 /**
  * Data view content audit configuration.
@@ -25,31 +55,18 @@ interface DataViewContentAuditConfig {
     recordCount: number;
 }
 /**
- * Data view preview configuration.
- */
-interface DataViewPreviewConfig {
-    asAt: number;
-    columnConfigs: ConnectionColumnConfig[];
-    dataFormatId: DataFormatId | undefined;
-    duration: number;
-    encodingConfidenceLevel: number | undefined;
-    encodingId: string | undefined;
-    errorMessage?: string;
-    fileType: FileTypeResult | undefined;
-    hasHeaders: boolean | undefined;
-    recordDelimiterId?: RecordDelimiterId;
-    records: ParseResult[][];
-    size: number;
-    text: string;
-    valueDelimiterId?: ValueDelimiterId;
-}
-/**
  * Data view relationships audit configuration.
  */
 interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
-declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
+type ObjectDataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
+type ObjectRecordDelimiterId = '\n' | '\r' | '\r\n';
+type RecordValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
+/**
+ *
+ */
+declare const ORDERED_VALUE_DELIMITER_IDS: RecordValueDelimiterId[];
 /**
  * Parsed value.
  */
@@ -63,14 +80,14 @@ interface ParseResult {
     parsedValue: ParsedValue;
     usageTypeId: UsageTypeId;
 }
-type DataFormatId = 'dtv' | 'e/e' | 'json' | 'spss' | 'xls' | 'xlsx' | 'xml';
-type RecordDelimiterId = '\n' | '\r' | '\r\n';
-type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
-type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal';
-type NumericTypeId = 'bigint' | 'integer' | 'decimal';
-type NumericUnitsId = 'currency' | 'percentage' | 'plain';
-type StringTypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
-type TemporalTypeId = 'date' | 'dateTime' | 'time';
+type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal';
+type ValueNumericTypeId = 'bigint' | 'integer' | 'decimal';
+type ValueNumericUnitsId = 'currency' | 'percentage' | 'plain';
+type ValueStringTypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
+type ValueTemporalTypeId = 'date' | 'dateTime' | 'time';
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataFormatId, DataViewContentAuditConfig, DataViewConfig, DataViewPreviewConfig, ParseResult, RecordDelimiterId, ValueDelimiterId };
-export type { DataTypeId, NumericTypeId, NumericUnitsId, StringTypeId, TemporalTypeId };
+export type { DataViewInterface, DataViewConfig, DataViewLocalisedConfig };
+export type { DataViewContentAuditConfig, DataViewPreviewConfig };
+export type { ParseResult };
+export type { ObjectDataFormatId, ObjectRecordDelimiterId, RecordValueDelimiterId };
+export type { ValueDataTypeId, ValueNumericTypeId, ValueNumericUnitsId, ValueStringTypeId, ValueTemporalTypeId };

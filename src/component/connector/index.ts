@@ -12,7 +12,7 @@ import type { EngineUtilities } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionDescription, ConnectionNodeConfig } from '@/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '@/component/connector/connectorConfig.schema';
-import type { DataViewPreviewConfig, ValueDelimiterId } from '@/component/dataView';
+import type { DataViewPreviewConfig, RecordValueDelimiterId } from '@/component/dataView';
 
 /**
  * Connector interface and constructor.
@@ -213,7 +213,7 @@ interface RetrieveChunksOptions extends ConnectorOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;
-    valueDelimiterId: ValueDelimiterId;
+    valueDelimiterId: RecordValueDelimiterId;
 }
 
 /**
@@ -223,7 +223,7 @@ interface RetrieveRecordsOptions extends ConnectorOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;
-    valueDelimiterId: ValueDelimiterId;
+    valueDelimiterId: RecordValueDelimiterId;
 }
 interface RetrieveRecordsSummary {
     /**
@@ -274,7 +274,7 @@ type ConnectorCategoryConfig = InferOutput<typeof connectorCategoryConfigSchema>
 type ConnectorCategoryLocalisedConfig = Omit<ConnectorCategoryConfig, 'label'> & { label: string };
 
 /**
- * Connector categories.
+ * Connector categories configuration.
  */
 const CONNECTOR_CATEGORY_CONFIGS: ConnectorCategoryConfig[] = [
     { id: 'application', label: { 'en-gb': 'Application' } },
