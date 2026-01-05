@@ -54,7 +54,7 @@ interface DataViewPreviewConfig {
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
     recordDelimiterId?: RecordDelimiterId;
-    records: ParseResult[][];
+    records: InferredResult[][];
     size: number;
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
@@ -100,29 +100,110 @@ interface DataViewRelationshipsAuditConfig {
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//#region Object, Record and Value...
+//#region Record and Value...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 type ObjectRecord = (NamedValueRecord | StringValueRecord | ValueRecord)[];
+
 type NamedValueRecord = Record<string, bigint | boolean | number | string | null>;
+
 type StringValueRecord = (string | null)[];
+
 type ValueRecord = (bigint | boolean | number | string | null)[];
 
+type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+
+type NumericValueSignId = 'negative' | 'zero' | 'positive';
+type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal';
+type NumericValueUnitsId = 'currency' | 'percentage' | 'plain';
+
+type StringValueSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
+
+type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time';
+
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Parsed...
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 type ParseRecord = ParseField[];
+
 interface ParseField {
     value: string | null;
     valueWasQuoted: boolean;
 }
 
-type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
-type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
-type NumericValueUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Inferred...
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type StringValueSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
+/**
+ * Inferred result.
+ */
+type InferredResult = BooleanInferenceResult | NumericInferenceResult | StringInferenceResult | TemporalInferenceResult | UnknownInferenceResult;
 
-type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time' | 'unknown';
+/**
+ * Boolean inference result.
+ */
+interface BooleanInferenceResult {
+    dataTypeId: 'boolean';
+    inputValue: boolean | string | undefined;
+    parsedValue: boolean;
+}
+
+type NumericInferenceResult = BigIntInferenceResult | NumberInferenceResult;
+
+interface BigIntInferenceResult {
+    dataTypeId: 'numeric';
+    dataSubtypeId: 'bigint';
+    format: string;
+    inputValue: bigint | string | undefined;
+    parsedValue: bigint;
+    currencySymbolId: string | undefined;
+    decimalPlaces: number;
+    signId: NumericValueSignId;
+    unitsId: NumericValueUnitsId;
+}
+
+interface NumberInferenceResult {
+    dataTypeId: 'numeric';
+    dataSubtypeId: 'integer' | 'decimal';
+    format: string;
+    inputValue: number | string | undefined;
+    parsedValue: number;
+    currencySymbolId: string | undefined;
+    decimalPlaces: number;
+    signId: NumericValueSignId;
+    unitsId: NumericValueUnitsId;
+}
+
+/**
+ * String inference result.
+ */
+interface StringInferenceResult {
+    dataTypeId: 'string';
+    dataSubtypeId: StringValueSubtypeId;
+    format: undefined;
+    inputValue: string;
+    parsedValue: string;
+}
+
+interface TemporalInferenceResult {
+    dataTypeId: 'temporal';
+    dataSubtypeId: TemporalValueSubtypeId;
+    format: string;
+    inputValue: string;
+    parsedValue: Date;
+}
+
+interface UnknownInferenceResult {
+    dataTypeId: 'unknown';
+    inputValue: string | null | undefined;
+    parsedValue: null;
+}
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -288,13 +369,18 @@ const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): ValueDelimiter[] =>
 // Exports.
 export { ORDERED_VALUE_DELIMITER_IDS };
 export type {
+    BigIntInferenceResult,
+    BooleanInferenceResult,
     DataViewConfig,
     DataViewContentAuditConfig,
     DataViewInterface,
     DataViewLocalisedConfig,
     DataViewPreviewConfig,
     DataFormatId,
+    InferredResult,
     NamedValueRecord,
+    NumberInferenceResult,
+    NumericInferenceResult,
     NumericValueSignId,
     NumericValueSubtypeId,
     NumericValueUnitsId,
@@ -302,9 +388,12 @@ export type {
     ParseField,
     ParseRecord,
     RecordDelimiterId,
+    StringInferenceResult,
     StringValueRecord,
     StringValueSubtypeId,
+    TemporalInferenceResult,
     TemporalValueSubtypeId,
+    UnknownInferenceResult,
     ValueDataTypeId,
     ValueDelimiterId,
     ValueRecord

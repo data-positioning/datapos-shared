@@ -36,7 +36,7 @@ interface DataViewPreviewConfig {
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean | undefined;
     recordDelimiterId?: RecordDelimiterId;
-    records: ParseResult[][];
+    records: InferredResult[][];
     size: number;
     text: string;
     valueDelimiterId?: ValueDelimiterId;
@@ -64,17 +64,74 @@ type ObjectRecord = (NamedValueRecord | StringValueRecord | ValueRecord)[];
 type NamedValueRecord = Record<string, bigint | boolean | number | string | null>;
 type StringValueRecord = (string | null)[];
 type ValueRecord = (bigint | boolean | number | string | null)[];
+type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+type NumericValueSignId = 'negative' | 'zero' | 'positive';
+type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal';
+type NumericValueUnitsId = 'currency' | 'percentage' | 'plain';
+type StringValueSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
+type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time';
 type ParseRecord = ParseField[];
 interface ParseField {
     value: string | null;
     valueWasQuoted: boolean;
 }
-type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
-type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
-type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
-type NumericValueUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
-type StringValueSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
-type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time' | 'unknown';
+/**
+ * Inferred result.
+ */
+type InferredResult = BooleanInferenceResult | NumericInferenceResult | StringInferenceResult | TemporalInferenceResult | UnknownInferenceResult;
+/**
+ * Boolean inference result.
+ */
+interface BooleanInferenceResult {
+    dataTypeId: 'boolean';
+    inputValue: boolean | string | undefined;
+    parsedValue: boolean;
+}
+type NumericInferenceResult = BigIntInferenceResult | NumberInferenceResult;
+interface BigIntInferenceResult {
+    dataTypeId: 'numeric';
+    dataSubtypeId: 'bigint';
+    format: string;
+    inputValue: bigint | string | undefined;
+    parsedValue: bigint;
+    currencySymbolId: string | undefined;
+    decimalPlaces: number;
+    signId: NumericValueSignId;
+    unitsId: NumericValueUnitsId;
+}
+interface NumberInferenceResult {
+    dataTypeId: 'numeric';
+    dataSubtypeId: 'integer' | 'decimal';
+    format: string;
+    inputValue: number | string | undefined;
+    parsedValue: number;
+    currencySymbolId: string | undefined;
+    decimalPlaces: number;
+    signId: NumericValueSignId;
+    unitsId: NumericValueUnitsId;
+}
+/**
+ * String inference result.
+ */
+interface StringInferenceResult {
+    dataTypeId: 'string';
+    dataSubtypeId: StringValueSubtypeId;
+    format: undefined;
+    inputValue: string;
+    parsedValue: string;
+}
+interface TemporalInferenceResult {
+    dataTypeId: 'temporal';
+    dataSubtypeId: TemporalValueSubtypeId;
+    format: string;
+    inputValue: string;
+    parsedValue: Date;
+}
+interface UnknownInferenceResult {
+    dataTypeId: 'unknown';
+    inputValue: string | null | undefined;
+    parsedValue: null;
+}
 type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
 type RecordDelimiterId = '\n' | '\r' | '\r\n';
 type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
@@ -83,4 +140,4 @@ type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' |
  */
 declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, NamedValueRecord, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, ObjectRecord, ParseField, ParseRecord, RecordDelimiterId, StringValueRecord, StringValueSubtypeId, TemporalValueSubtypeId, ValueDataTypeId, ValueDelimiterId, ValueRecord };
+export type { BigIntInferenceResult, BooleanInferenceResult, DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, InferredResult, NamedValueRecord, NumberInferenceResult, NumericInferenceResult, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, ObjectRecord, ParseField, ParseRecord, RecordDelimiterId, StringInferenceResult, StringValueRecord, StringValueSubtypeId, TemporalInferenceResult, TemporalValueSubtypeId, UnknownInferenceResult, ValueDataTypeId, ValueDelimiterId, ValueRecord };
