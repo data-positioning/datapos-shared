@@ -103,9 +103,10 @@ interface DataViewRelationshipsAuditConfig {
 //#region Object, Record and Value...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type ObjectRecord = (StringRecord | PropertyRecord)[];
-type StringRecord = string[];
-type PropertyRecord = Record<string, unknown>;
+type ObjectRecord = (NamedValueRecord | StringValueRecord | ValueRecord)[];
+type NamedValueRecord = Record<string, bigint | boolean | number | string | null>;
+type StringValueRecord = (string | null)[];
+type ValueRecord = (bigint | boolean | number | string | null)[];
 
 type ParseRecord = ParseField[];
 interface ParseField {
@@ -293,17 +294,18 @@ export type {
     DataViewLocalisedConfig,
     DataViewPreviewConfig,
     DataFormatId,
+    NamedValueRecord,
     NumericValueSignId,
     NumericValueSubtypeId,
     NumericValueUnitsId,
     ObjectRecord,
     ParseField,
     ParseRecord,
-    PropertyRecord,
     RecordDelimiterId,
-    StringRecord,
+    StringValueRecord,
     StringValueSubtypeId,
     TemporalValueSubtypeId,
     ValueDataTypeId,
-    ValueDelimiterId
+    ValueDelimiterId,
+    ValueRecord
 };

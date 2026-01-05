@@ -60,9 +60,10 @@ interface DataViewContentAuditConfig {
 interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
-type ObjectRecord = (StringRecord | PropertyRecord)[];
-type StringRecord = string[];
-type PropertyRecord = Record<string, unknown>;
+type ObjectRecord = (NamedValueRecord | StringValueRecord | ValueRecord)[];
+type NamedValueRecord = Record<string, bigint | boolean | number | string | null>;
+type StringValueRecord = (string | null)[];
+type ValueRecord = (bigint | boolean | number | string | null)[];
 type ParseRecord = ParseField[];
 interface ParseField {
     value: string | null;
@@ -82,4 +83,4 @@ type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' |
  */
 declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, ObjectRecord, ParseField, ParseRecord, PropertyRecord, RecordDelimiterId, StringRecord, StringValueSubtypeId, TemporalValueSubtypeId, ValueDataTypeId, ValueDelimiterId };
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, NamedValueRecord, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, ObjectRecord, ParseField, ParseRecord, RecordDelimiterId, StringValueRecord, StringValueSubtypeId, TemporalValueSubtypeId, ValueDataTypeId, ValueDelimiterId, ValueRecord };

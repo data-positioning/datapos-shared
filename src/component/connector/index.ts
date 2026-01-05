@@ -12,7 +12,7 @@ import type { EngineUtilities } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionDescriptionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '@/component/connector/connectorConfig.schema';
-import type { DataViewPreviewConfig, ObjectRecord, RecordValueDelimiterId } from '@/component/dataView';
+import type { DataViewPreviewConfig, ObjectRecord, ValueDelimiterId } from '@/component/dataView';
 
 /**
  * Connector interface and constructor.
@@ -203,7 +203,7 @@ interface RetrieveChunksOptions extends ConnectorOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;
-    valueDelimiterId: RecordValueDelimiterId;
+    valueDelimiterId: ValueDelimiterId;
 }
 
 /**
@@ -213,7 +213,7 @@ interface RetrieveRecordsOptions extends ConnectorOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;
-    valueDelimiterId: RecordValueDelimiterId;
+    valueDelimiterId: ValueDelimiterId;
 }
 interface RetrieveRecordsSummary {
     /**
