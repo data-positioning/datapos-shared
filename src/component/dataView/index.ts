@@ -100,6 +100,26 @@ interface DataViewRelationshipsAuditConfig {
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+//#region Object, Record and Value...
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+type ObjectRecord = (ObjectStringRecord | ObjectPropertyRecord)[];
+type ObjectStringRecord = string[];
+type ObjectPropertyRecord = Record<string, unknown>;
+
+type RecordValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+
+type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
+type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
+type NumericValueUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
+
+type StringValueSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
+
+type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time' | 'unknown';
+
+//#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+//━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Object data format...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -234,39 +254,27 @@ const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): RecordValueDelimite
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type ObjectRecord = (string[] | Record<string, unknown>)[];
+// /**
+//  * Parse result.
+//  */
+// interface ParseValueResult {
+//     dataTypeId: RecordValueDataTypeId;
+//     dataSubtypeId: NumericValueSubtypeId | StringValueSubtypeId | TemporalValueSubtypeId;
+//     format: string | undefined;
+//     inputValue: string;
+//     parsedValue: ParsedValue;
+//     isValid: boolean;
+//     signId: NumericValueSignId;
+// }
 
-/**
- * Parse result.
- */
-interface ParseValueResult {
-    dataTypeId: RecordValueDataTypeId;
-    dataSubtypeId: NumericValueSubtypeId | StringValueSubtypeId | TemporalValueSubtypeId;
-    format: string | undefined;
-    inputValue: string;
-    parsedValue: ParsedValue;
-    isValid: boolean;
-    signId: NumericValueSignId;
-}
-
-/**
- * Parsed value.
- */
-type ParsedValue = bigint | boolean | number | string | null;
+// /**
+//  * Parsed value.
+//  */
+// type ParsedValue = bigint | boolean | number | string | null;
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//#region Value...
+//#region Record Value...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
-type RecordValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
-
-type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
-type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
-type NumericValueUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
-
-type StringValueSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
-
-type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time' | 'unknown';
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -279,9 +287,10 @@ export type {
     DataViewLocalisedConfig,
     DataViewPreviewConfig,
     ObjectDataFormatId,
+    ObjectPropertyRecord,
     ObjectRecord,
     ObjectRecordDelimiterId,
-    ParseValueResult,
+    ObjectStringRecord,
     RecordValueDelimiterId,
     RecordValueDataTypeId,
     NumericValueSignId,
