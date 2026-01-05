@@ -132,6 +132,15 @@ interface UnknownInferenceResult {
     inputValue: string | null | undefined;
     parsedValue: null;
 }
+/**
+ * Schema configuration.
+ */
+interface SchemaConfig {
+    columnConfigs: ConnectionColumnConfig[];
+    recordDelimiterId: RecordDelimiterId;
+    records: InferredResult[][];
+    valueDelimiterId: ValueDelimiterId;
+}
 type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
 type RecordDelimiterId = '\n' | '\r' | '\r\n';
 type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
@@ -140,4 +149,4 @@ type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' |
  */
 declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { BigIntInferenceResult, BooleanInferenceResult, DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, InferredResult, NamedValueRecord, NumberInferenceResult, NumericInferenceResult, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, ObjectRecord, ParseField, ParseRecord, RecordDelimiterId, StringInferenceResult, StringValueRecord, StringValueSubtypeId, TemporalInferenceResult, TemporalValueSubtypeId, UnknownInferenceResult, ValueDataTypeId, ValueDelimiterId, ValueRecord };
+export type { BigIntInferenceResult, BooleanInferenceResult, DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, InferredResult, NamedValueRecord, NumberInferenceResult, NumericInferenceResult, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, ObjectRecord, ParseField, ParseRecord, RecordDelimiterId, SchemaConfig, StringInferenceResult, StringValueRecord, StringValueSubtypeId, TemporalInferenceResult, TemporalValueSubtypeId, UnknownInferenceResult, ValueDataTypeId, ValueDelimiterId, ValueRecord };
