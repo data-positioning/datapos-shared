@@ -2,7 +2,7 @@
  * Vite configuration.
  */
 
-// Dependencies - Vendor.
+// Vendor dependencies.
 import { defineConfig } from 'vite'; // Core Vite API.
 import dts from 'vite-plugin-dts'; // Emit .d.ts files alongside the bundle.
 import type { PackageJson } from 'type-fest';
@@ -10,15 +10,15 @@ import Sonda from 'sonda/vite'; // Visualize bundle results with Sonda plugin.
 import { visualizer } from 'rollup-plugin-visualizer'; // Generate bundle size report.
 import { fileURLToPath, URL } from 'node:url'; // ESM-safe path helpers.
 
-// Dependencies - Data.
+// Data dependencies.
 import config from './config.json' with { type: 'json' }; // Provide configuration identifier for naming.
 import package_ from './package.json' with { type: 'json' }; // Provide package for peer dependency detection.
 
-// Initialisation
+// Initialisation.
 const { peerDependencies } = package_ as PackageJson;
 const external = peerDependencies ? Object.keys(peerDependencies) : []; // Keep peer dependencies out of the bundle.
 
-// Exposures - Configuration.
+// Exports.
 export default defineConfig({
     build: {
         lib: {
@@ -27,43 +27,32 @@ export default defineConfig({
                 component: fileURLToPath(new URL('src/component/index.ts', import.meta.url)),
                 connector: fileURLToPath(new URL('src/component/connector/index.ts', import.meta.url)),
                 dataview: fileURLToPath(new URL('src/component/dataView/index.ts', import.meta.url)),
+                tools: fileURLToPath(new URL('src/component/tool/index.ts', import.meta.url)),
                 encoding: fileURLToPath(new URL('src/encoding/index.ts', import.meta.url)),
                 engine: fileURLToPath(new URL('src/engine/index.ts', import.meta.url)),
                 errors: fileURLToPath(new URL('src/errors/index.ts', import.meta.url)),
-                tools: fileURLToPath(new URL('src/component/tool/index.ts', import.meta.url)),
+                locale: fileURLToPath(new URL('src/locale/index.ts', import.meta.url)),
                 utilities: fileURLToPath(new URL('src/utilities/index.ts', import.meta.url))
             },
             fileName: (format, entryName) => {
-                return entryName === 'index' ? `${config.id}.${format}.js` : `${config.id}-${entryName}.${format}.js`; // Bundle name derived from config identifier and format.
+                return entryName === 'index' ? `${config.id}.${format}.js` : `${config.id}-${entryName}.${format}.js`;
             },
-            formats: ['es'] // Only emit native ES modules.
+            formats: ['es']
         },
         rollupOptions: {
             external,
             plugins: [
-                Sonda({
-                    filename: 'index', // Output file name.
-                    format: 'html', // Output file format.
-                    gzip: true, // Include gzip sizes.
-                    brotli: true, // Include brotli sizes.
-                    open: false, // Do not auto-open browser post-build.
-                    outputDir: './bundle-analysis-reports/sonda' // Output directory.
-                }), // Run Sonda analyser to generate additional bundle insights.
-                visualizer({
-                    filename: './bundle-analysis-reports/rollup-visualiser/index.html', // Output file path.
-                    open: false, // Do not auto-open browser post-build.
-                    gzipSize: true, // Include gzip sizes.
-                    brotliSize: true // Include brotli sizes.
-                })
+                Sonda({ filename: 'index', format: 'html', gzip: true, brotli: true, open: false, outputDir: './bundle-analysis-reports/sonda' }),
+                visualizer({ filename: './bundle-analysis-reports/rollup-visualiser/index.html', open: false, gzipSize: true, brotliSize: true })
             ]
         },
-        target: 'ESNext' // Emit modern JavaScript for consumers.
+        target: 'ESNext'
     },
-    plugins: [dts({ outDir: 'dist/types' })], // Generate type declarations in dist/types.
+    plugins: [dts({ outDir: 'dist/types' })],
     resolve: {
         alias: {
-            '~': fileURLToPath(new URL('./', import.meta.url)), // Base alias matching tsconfig.
-            '@': fileURLToPath(new URL('src', import.meta.url)) // Source alias matching tsconfig.
+            '~': fileURLToPath(new URL('./', import.meta.url)),
+            '@': fileURLToPath(new URL('src', import.meta.url))
         }
     }
 });

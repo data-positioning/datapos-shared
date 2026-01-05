@@ -9,7 +9,6 @@ type ComponentConfig = InferOutput<typeof componentConfigSchema>;
 type ComponentReference = InferOutput<typeof componentReferenceSchema>;
 type ComponentStatus = InferOutput<typeof componentStatusSchema>;
 declare function getComponentStatus(id: string, localeId?: LocaleCode): ComponentStatus;
-/** Exports */
 export { getComponentStatus };
 export { componentConfigSchema } from './componentConfig.schema';
 export type { Component, ComponentConfig, ComponentReference };

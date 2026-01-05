@@ -1,4 +1,4 @@
-import { D as s } from "./locale-DTTQsZic.js";
+import { DEFAULT_LOCALE_CODE as s } from "./datapos-shared-locale.es.js";
 import { l as n, o as i, f as a, b as d, r as b, d as p, s as e, g as o, n as l, h as C, i as g, p as u } from "./componentConfig.schema-C0C6ceb5.js";
 import { m as h } from "./moduleConfig.schema-DNq1iU4S.js";
 const S = n(["apiKey", "disabled", "oAuth2", "none"]), f = i({
@@ -24,13 +24,13 @@ const S = n(["apiKey", "disabled", "oAuth2", "none"]), f = i({
   "retrieveChunks",
   "retrieveRecords",
   "upsertRecords"
-]), y = n(["bidirectional", "destination", "source", "unknown"]), D = i({
+]), y = n(["bidirectional", "destination", "source", "unknown"]), I = i({
   id: e(),
   label: u
 }), U = i({
   ...h,
   typeId: p("connector"),
-  category: a(D),
+  category: a(I),
   categoryId: O,
   implementations: b(e(), f),
   operations: d(R),
@@ -38,13 +38,13 @@ const S = n(["apiKey", "disabled", "oAuth2", "none"]), f = i({
   vendorAccountURL: a(e()),
   vendorDocumentationURL: a(e()),
   vendorHomeURL: a(e())
-}), I = [
+}), v = [
   { id: "application", label: { "en-gb": "Application" } },
   { id: "curatedDataset", label: { "en-gb": "Curated Dataset" } },
   { id: "database", label: { "en-gb": "Database" } },
   { id: "fileStore", label: { "en-gb": "File Store" } }
 ], j = (c, m = s) => {
-  const t = I.find((r) => r.id === c);
+  const t = v.find((r) => r.id === c);
   if (t) {
     const r = t.label[m] ?? t.label[s] ?? t.id;
     return { id: t.id, label: r };

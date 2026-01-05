@@ -234,14 +234,19 @@ const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): RecordValueDelimite
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+type ObjectRecord = (string[] | Record<string, unknown>)[];
+
 /**
  * Parse result.
  */
-interface ParseResult {
-    isValid: boolean;
-    originalValue: string | null | undefined;
+interface ParseValueResult {
+    dataTypeId: RecordValueDataTypeId;
+    dataSubtypeId: NumericValueSubtypeId | StringValueSubtypeId | TemporalValueSubtypeId;
+    format: string | undefined;
+    inputValue: string;
     parsedValue: ParsedValue;
-    valueDataTypeId: ValueDataTypeId;
+    isValid: boolean;
+    signId: NumericValueSignId;
 }
 
 /**
@@ -253,15 +258,15 @@ type ParsedValue = bigint | boolean | number | string | null;
 //#region Value...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+type RecordValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 
-type ValueNumericSignId = 'negative' | 'zero' | 'positive' | 'unknown';
-type ValueNumericTypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
-type ValueNumericUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
+type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
+type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
+type NumericValueUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
 
-type ValueStringTypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
+type StringValueSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
 
-type ValueTemporalTypeId = 'date' | 'dateTime' | 'time' | 'unknown';
+type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time' | 'unknown';
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -274,13 +279,14 @@ export type {
     DataViewLocalisedConfig,
     DataViewPreviewConfig,
     ObjectDataFormatId,
+    ObjectRecord,
     ObjectRecordDelimiterId,
-    ParseResult,
+    ParseValueResult,
     RecordValueDelimiterId,
-    ValueDataTypeId,
-    ValueNumericSignId,
-    ValueNumericTypeId,
-    ValueNumericUnitsId,
-    ValueStringTypeId,
-    ValueTemporalTypeId
+    RecordValueDataTypeId,
+    NumericValueSignId,
+    NumericValueSubtypeId,
+    NumericValueUnitsId,
+    StringValueSubtypeId,
+    TemporalValueSubtypeId
 };

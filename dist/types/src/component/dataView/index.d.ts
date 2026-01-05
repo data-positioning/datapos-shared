@@ -67,24 +67,28 @@ type RecordValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' |
  *
  */
 declare const ORDERED_VALUE_DELIMITER_IDS: RecordValueDelimiterId[];
+type ObjectRecord = (string[] | Record<string, unknown>)[];
 /**
  * Parse result.
  */
-interface ParseResult {
-    isValid: boolean;
-    originalValue: string | null | undefined;
+interface ParseValueResult {
+    dataTypeId: RecordValueDataTypeId;
+    dataSubtypeId: NumericValueSubtypeId | StringValueSubtypeId | TemporalValueSubtypeId;
+    format: string | undefined;
+    inputValue: string;
     parsedValue: ParsedValue;
-    valueDataTypeId: ValueDataTypeId;
+    isValid: boolean;
+    signId: NumericValueSignId;
 }
 /**
  * Parsed value.
  */
 type ParsedValue = bigint | boolean | number | string | null;
-type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
-type ValueNumericSignId = 'negative' | 'zero' | 'positive' | 'unknown';
-type ValueNumericTypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
-type ValueNumericUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
-type ValueStringTypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
-type ValueTemporalTypeId = 'date' | 'dateTime' | 'time' | 'unknown';
+type RecordValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
+type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
+type NumericValueUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
+type StringValueSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
+type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time' | 'unknown';
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, ObjectDataFormatId, ObjectRecordDelimiterId, ParseResult, RecordValueDelimiterId, ValueDataTypeId, ValueNumericSignId, ValueNumericTypeId, ValueNumericUnitsId, ValueStringTypeId, ValueTemporalTypeId };
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, ObjectDataFormatId, ObjectRecord, ObjectRecordDelimiterId, ParseValueResult, RecordValueDelimiterId, RecordValueDataTypeId, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, StringValueSubtypeId, TemporalValueSubtypeId };

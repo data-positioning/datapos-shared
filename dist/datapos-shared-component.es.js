@@ -1,4 +1,4 @@
-import { D as a } from "./locale-DTTQsZic.js";
+import { DEFAULT_LOCALE_CODE as a } from "./datapos-shared-locale.es.js";
 import { c as s } from "./componentConfig.schema-C0C6ceb5.js";
 const n = [
   { id: "alpha", color: "red", labels: { "en-gb": "alpha" } },

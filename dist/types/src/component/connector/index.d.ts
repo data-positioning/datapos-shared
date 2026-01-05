@@ -4,7 +4,7 @@ import { EngineUtilities } from '../../engine';
 import { ToolConfig } from '../tool';
 import { ConnectionDescriptionConfig, ConnectionNodeConfig } from './connection';
 import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
-import { DataViewPreviewConfig, RecordValueDelimiterId } from '../dataView';
+import { DataViewPreviewConfig, ObjectRecord, RecordValueDelimiterId } from '../dataView';
 /**
  * Connector interface and constructor.
  */
@@ -15,7 +15,7 @@ interface ConnectorInterface extends Component {
     /**
      * Abort the active long running operation.
      */
-    abortOperation?(connector: ConnectorInterface): void;
+    abortOperation?(): void;
     /**
      * Authenticate a specified connection.
      */
@@ -23,56 +23,56 @@ interface ConnectorInterface extends Component {
     /**
      * Create an object for a specified connection.
      */
-    createObject?(connector: ConnectorInterface, options: CreateObjectOptions): Promise<void>;
+    createObject?(options: CreateObjectOptions): Promise<void>;
     /**
      * Describe a specified connection.
      */
-    describeConnection?(connector: ConnectorInterface, options: DescribeConnectionOptions): Promise<DescribeConnectionResult>;
+    describeConnection?(options: DescribeConnectionOptions): Promise<DescribeConnectionResult>;
     /**
      * Drop (delete) an object for a specified connection.
      */
-    dropObject?(connector: ConnectorInterface, options: DropObjectOptions): Promise<void>;
+    dropObject?(options: DropObjectOptions): Promise<void>;
     /**
      * Find an object for a specified connection.
      */
-    findObject?(connector: ConnectorInterface, options: FindObjectFolderPathOptions): Promise<string | null>;
+    findObject?(options: FindObjectFolderPathOptions): Promise<string | null>;
     /**
      * Get a reader that can retrieve all records from an object for a specified connection.
      */
-    getReadableStream?(connector: ConnectorInterface, options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array>>;
+    getReadableStream?(options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array>>;
     /**
      * Get a record for an object for a specified connection.
      */
-    getRecord?(connector: ConnectorInterface, options: GetRecordOptions): Promise<GetRecordResult>;
+    getRecord?(options: GetRecordOptions): Promise<GetRecordResult>;
     /**
      * List nodes in a folder for a specified connection.
      */
-    listNodes?(connector: ConnectorInterface, options: ListNodesOptions): Promise<ListNodesResult>;
+    listNodes?(options: ListNodesOptions): Promise<ListNodesResult>;
     /**
      * Preview an object for a specified connection.
      */
-    previewObject?(connector: ConnectorInterface, options: PreviewObjectOptions): Promise<DataViewPreviewConfig>;
+    previewObject?(options: PreviewObjectOptions): Promise<DataViewPreviewConfig>;
     /**
      * Remove one or more records from an object for a specified connection.
      */
-    removeRecords?(connector: ConnectorInterface, options: RemoveRecordsOptions): Promise<void>;
+    removeRecords?(options: RemoveRecordsOptions): Promise<void>;
     /**
      * Retrieve all chunks from an object for a specified connection.
      */
-    retrieveChunks?(connector: ConnectorInterface, options: RetrieveChunksOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: () => void): Promise<void>;
+    retrieveChunks?(options: RetrieveChunksOptions, chunk: (records: ObjectRecord[]) => void, complete: () => void): Promise<void>;
     /**
      * Retrieve all records from an object for a specified connection.
      */
-    retrieveRecords?(connector: ConnectorInterface, options: RetrieveRecordsOptions, chunk: (records: (string[] | Record<string, unknown>)[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
+    retrieveRecords?(options: RetrieveRecordsOptions, chunk: (records: ObjectRecord[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     /**
      * Upsert one or more records into an object for a specified connection.
      */
-    upsertRecords?(connector: ConnectorInterface, options: UpsertRecordsOptions): Promise<void>;
+    upsertRecords?(options: UpsertRecordsOptions): Promise<void>;
 }
 /**
  *
  */
-type ConnectorConstructor = new (EngineUtilities: EngineUtilities, toolConfigs: ToolConfig[]) => ConnectorInterface;
+type ConnectorConstructor = new (engineUtilities: EngineUtilities, toolConfigs: ToolConfig[]) => ConnectorInterface;
 /**
  * Operation names a connector may support.
  */
