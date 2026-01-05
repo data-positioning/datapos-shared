@@ -297,6 +297,7 @@ export type {
     NumericValueSubtypeId,
     NumericValueUnitsId,
     ObjectRecord,
+    ParseField,
     ParseRecord,
     PropertyRecord,
     RecordDelimiterId,

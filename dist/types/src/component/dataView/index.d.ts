@@ -82,4 +82,4 @@ type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' |
  */
 declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, ObjectRecord, ParseRecord, PropertyRecord, RecordDelimiterId, StringRecord, StringValueSubtypeId, TemporalValueSubtypeId, ValueDataTypeId, ValueDelimiterId };
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, ObjectRecord, ParseField, ParseRecord, PropertyRecord, RecordDelimiterId, StringRecord, StringValueSubtypeId, TemporalValueSubtypeId, ValueDataTypeId, ValueDelimiterId };
