@@ -4,7 +4,7 @@ import { ModuleConfig } from '../component/module';
 import { ToolConfig } from '../component/tool';
 import { ConnectionColumnConfig, ConnectorOperationOptions } from '../component/connector';
 import { ContextConfig, ContextOperationOptions } from '../component/context';
-import { DataViewContentAuditConfig, ParseResult, RecordValueDelimiterId } from '../component/dataView';
+import { DataViewContentAuditConfig, ParseResult, ValueDelimiterId } from '../component/dataView';
 /**
  * Engine runtime interface.
  */
@@ -45,7 +45,7 @@ interface EngineCallbackData {
 interface EngineUtilities {
     parseRecord: (columnConfigs: ConnectionColumnConfig[], record: {
         value: string | null | undefined;
-        isQuoted: boolean;
+        valueWasQuoted: boolean;
     }[], isPreview: boolean) => ParseResult[];
 }
 /**
@@ -55,7 +55,7 @@ interface AuditObjectContentOptions extends ConnectorOperationOptions {
     chunkSize: number | undefined;
     encodingId: string;
     path: string;
-    valueDelimiterId: RecordValueDelimiterId;
+    valueDelimiterId: ValueDelimiterId;
 }
 interface AuditObjectContentResult {
     contentAuditConfig: DataViewContentAuditConfig;

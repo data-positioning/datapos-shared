@@ -9,7 +9,7 @@ import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionColumnConfig, ConnectorOperationOptions } from '@/component/connector';
 import type { ContextConfig, ContextOperationOptions } from '@/component/context';
-import type { DataViewContentAuditConfig, ParseResult, RecordValueDelimiterId } from '@/component/dataView';
+import type { DataViewContentAuditConfig, ParseResult, ValueDelimiterId } from '@/component/dataView';
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Engine runtime.
@@ -75,7 +75,7 @@ interface EngineCallbackData {
  * Engine utilities.
  */
 interface EngineUtilities {
-    parseRecord: (columnConfigs: ConnectionColumnConfig[], record: { value: string | null | undefined; isQuoted: boolean }[], isPreview: boolean) => ParseResult[];
+    parseRecord: (columnConfigs: ConnectionColumnConfig[], record: { value: string | null | undefined; valueWasQuoted: boolean }[], isPreview: boolean) => ParseResult[];
 }
 
 /**
@@ -85,7 +85,7 @@ interface AuditObjectContentOptions extends ConnectorOperationOptions {
     chunkSize: number | undefined;
     encodingId: string;
     path: string;
-    valueDelimiterId: RecordValueDelimiterId;
+    valueDelimiterId: ValueDelimiterId;
 }
 interface AuditObjectContentResult {
     contentAuditConfig: DataViewContentAuditConfig;
