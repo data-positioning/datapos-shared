@@ -107,6 +107,8 @@ type ObjectRecord = (ObjectStringRecord | ObjectPropertyRecord)[];
 type ObjectStringRecord = string[];
 type ObjectPropertyRecord = Record<string, unknown>;
 
+type ObjectParsedRecord = { value: string | null; isQuoted: boolean }[];
+
 type RecordValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 
 type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
@@ -287,6 +289,7 @@ export type {
     DataViewLocalisedConfig,
     DataViewPreviewConfig,
     ObjectDataFormatId,
+    ObjectParsedRecord,
     ObjectPropertyRecord,
     ObjectRecord,
     ObjectRecordDelimiterId,

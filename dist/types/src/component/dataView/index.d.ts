@@ -63,6 +63,10 @@ interface DataViewRelationshipsAuditConfig {
 type ObjectRecord = (ObjectStringRecord | ObjectPropertyRecord)[];
 type ObjectStringRecord = string[];
 type ObjectPropertyRecord = Record<string, unknown>;
+type ObjectParsedRecord = {
+    value: string | null;
+    isQuoted: boolean;
+}[];
 type RecordValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
 type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
@@ -77,4 +81,4 @@ type RecordValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' |
  */
 declare const ORDERED_VALUE_DELIMITER_IDS: RecordValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, ObjectDataFormatId, ObjectPropertyRecord, ObjectRecord, ObjectRecordDelimiterId, ObjectStringRecord, RecordValueDelimiterId, RecordValueDataTypeId, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, StringValueSubtypeId, TemporalValueSubtypeId };
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, ObjectDataFormatId, ObjectParsedRecord, ObjectPropertyRecord, ObjectRecord, ObjectRecordDelimiterId, ObjectStringRecord, RecordValueDelimiterId, RecordValueDataTypeId, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, StringValueSubtypeId, TemporalValueSubtypeId };
