@@ -65,7 +65,7 @@ type ObjectStringRecord = string[];
 type ObjectPropertyRecord = Record<string, unknown>;
 type ObjectParsedRecord = {
     value: string | null;
-    isQuoted: boolean;
+    valueWasQuoted: boolean;
 }[];
 type RecordValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
