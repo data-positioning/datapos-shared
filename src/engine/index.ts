@@ -9,7 +9,7 @@ import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionColumnConfig, ConnectorOperationOptions } from '@/component/connector';
 import type { ContextConfig, ContextOperationOptions } from '@/component/context';
-import type { DataViewContentAuditConfig, ParseField, ParseResult, ValueDelimiterId } from '@/component/dataView';
+import type { DataViewContentAuditConfig, InferredResult, ParseField, ValueDelimiterId } from '@/component/dataView';
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Engine runtime.
@@ -75,7 +75,7 @@ interface EngineCallbackData {
  * Engine utilities.
  */
 interface EngineUtilities {
-    parseRecord: (columnConfigs: ConnectionColumnConfig[], record: ParseField[], isPreview: boolean) => ParseResult[];
+    parseRecord: (columnConfigs: ConnectionColumnConfig[], record: ParseField[], isPreview: boolean) => InferredResult[];
 }
 
 /**
