@@ -41,7 +41,7 @@ interface DataViewPreviewConfig {
     asAt: number;
     // commentPrefixId?: string;
     columnConfigs: ConnectionColumnConfig[];
-    dataFormatId: ObjectDataFormatId | undefined;
+    dataFormatId: DataFormatId | undefined;
     duration: number;
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
@@ -53,14 +53,14 @@ interface DataViewPreviewConfig {
     // linesToSkipAtEnd?: number;
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
-    recordDelimiterId?: ObjectRecordDelimiterId;
+    recordDelimiterId?: RecordDelimiterId;
     records: ParseResult[][];
     size: number;
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
     // skipLinesWithErrors?: boolean;
     text: string;
-    valueDelimiterId?: RecordValueDelimiterId;
+    valueDelimiterId?: ValueDelimiterId;
     // valueTrimMethodId?: string;
 }
 
@@ -103,13 +103,17 @@ interface DataViewRelationshipsAuditConfig {
 //#region Object, Record and Value...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type ObjectRecord = (ObjectStringRecord | ObjectPropertyRecord)[];
-type ObjectStringRecord = string[];
-type ObjectPropertyRecord = Record<string, unknown>;
+type ObjectRecord = (StringRecord | PropertyRecord)[];
+type StringRecord = string[];
+type PropertyRecord = Record<string, unknown>;
 
-type ObjectParsedRecord = { value: string | null; valueWasQuoted: boolean }[];
+type ParseRecord = ParseField[];
+interface ParseField {
+    value: string | null;
+    valueWasQuoted: boolean;
+}
 
-type RecordValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 
 type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
 type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
@@ -125,17 +129,17 @@ type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time' | 'unknown';
 //#region Object data format...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type ObjectDataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
+type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
 
 interface ObjectDataFormat {
-    id: ObjectDataFormatId;
+    id: DataFormatId;
     label: string;
 }
 
 /**
  * Object data formats configuration.
  */
-const OBJECT_DATA_FORMATS_CONFIG: { id: ObjectDataFormatId; labels: LocaleLabelMap }[] = [
+const DATA_FORMATS_CONFIG: { id: DataFormatId; labels: LocaleLabelMap }[] = [
     { id: 'dpe', labels: createLabelMap({ 'en-gb': 'Data Positioning Events' }) },
     { id: 'dtv', labels: createLabelMap({ 'en-gb': 'Delimited Text' }) },
     { id: 'json', labels: createLabelMap({ 'en-gb': 'JSON' }) },
@@ -144,8 +148,8 @@ const OBJECT_DATA_FORMATS_CONFIG: { id: ObjectDataFormatId; labels: LocaleLabelM
     { id: 'xml', labels: createLabelMap({ 'en-gb': 'XML' }) }
 ];
 
-function getDataFormat(id: ObjectDataFormatId, localeId = DEFAULT_LOCALE_CODE): ObjectDataFormat {
-    const dataFormat = OBJECT_DATA_FORMATS_CONFIG.find((dataFormat) => dataFormat.id === id);
+function getDataFormat(id: DataFormatId, localeId = DEFAULT_LOCALE_CODE): ObjectDataFormat {
+    const dataFormat = DATA_FORMATS_CONFIG.find((dataFormat) => dataFormat.id === id);
     if (dataFormat) {
         const localizedLabel = resolveLabel(dataFormat.labels, localeId);
         return { id: dataFormat.id, label: localizedLabel ?? dataFormat.id };
@@ -155,7 +159,7 @@ function getDataFormat(id: ObjectDataFormatId, localeId = DEFAULT_LOCALE_CODE): 
 
 function getDataFormats(localeId = DEFAULT_LOCALE_CODE): ObjectDataFormat[] {
     const items: ObjectDataFormat[] = [];
-    for (const dataFormat of OBJECT_DATA_FORMATS_CONFIG) {
+    for (const dataFormat of DATA_FORMATS_CONFIG) {
         const localizedLabel = resolveLabel(dataFormat.labels, localeId);
         items.push({ id: dataFormat.id, label: localizedLabel ?? dataFormat.id });
     }
@@ -168,24 +172,24 @@ function getDataFormats(localeId = DEFAULT_LOCALE_CODE): ObjectDataFormat[] {
 //#region Object record delimiter...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type ObjectRecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
+type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 
 interface ObjectRecordDelimiter {
-    id: ObjectRecordDelimiterId;
+    id: RecordDelimiterId;
     label: string;
 }
 
 /**
  * Object record delimiters configuration.
  */
-const OBJECT_RECORD_DELIMITERS_CONFIG: { id: ObjectRecordDelimiterId; labels: LocaleLabelMap }[] = [
+const RECORD_DELIMITERS_CONFIG: { id: RecordDelimiterId; labels: LocaleLabelMap }[] = [
     { id: '\n', labels: createLabelMap({ 'en-gb': 'Newline' }) },
     { id: '\r', labels: createLabelMap({ 'en-gb': 'Carriage Return' }) },
     { id: '\r\n', labels: createLabelMap({ 'en-gb': 'Carriage Return/Newline' }) }
 ];
 
-const getRecordDelimiter = (id: ObjectRecordDelimiterId, localeId = DEFAULT_LOCALE_CODE): ObjectRecordDelimiter => {
-    const recordDelimiter = OBJECT_RECORD_DELIMITERS_CONFIG.find((recordDelimiter) => recordDelimiter.id === id);
+const getRecordDelimiter = (id: RecordDelimiterId, localeId = DEFAULT_LOCALE_CODE): ObjectRecordDelimiter => {
+    const recordDelimiter = RECORD_DELIMITERS_CONFIG.find((recordDelimiter) => recordDelimiter.id === id);
     if (recordDelimiter) {
         const localizedLabel = resolveLabel(recordDelimiter.labels, localeId);
         return { id: recordDelimiter.id, label: localizedLabel ?? recordDelimiter.id };
@@ -195,7 +199,7 @@ const getRecordDelimiter = (id: ObjectRecordDelimiterId, localeId = DEFAULT_LOCA
 
 const getRecordDelimiters = (localeId = DEFAULT_LOCALE_CODE): ObjectRecordDelimiter[] => {
     const items: ObjectRecordDelimiter[] = [];
-    for (const recordDelimiter of OBJECT_RECORD_DELIMITERS_CONFIG) {
+    for (const recordDelimiter of RECORD_DELIMITERS_CONFIG) {
         const localizedLabel = resolveLabel(recordDelimiter.labels, localeId);
         items.push({ id: recordDelimiter.id, label: localizedLabel ?? recordDelimiter.id });
     }
@@ -208,17 +212,17 @@ const getRecordDelimiters = (localeId = DEFAULT_LOCALE_CODE): ObjectRecordDelimi
 //#region Record value delimiter...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type RecordValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
+type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
 
-interface RecordValueDelimiter {
-    id: RecordValueDelimiterId;
+interface ValueDelimiter {
+    id: ValueDelimiterId;
     label: string;
 }
 
 /**
  * Record value delimiters configuration.
  */
-const VALUE_DELIMITERS_CONFIG: { id: RecordValueDelimiterId; labels: LocaleLabelMap }[] = [
+const VALUE_DELIMITERS_CONFIG: { id: ValueDelimiterId; labels: LocaleLabelMap }[] = [
     { id: ':', labels: createLabelMap({ 'en-gb': 'Colon' }) },
     { id: ',', labels: createLabelMap({ 'en-gb': 'Comma' }) },
     { id: '!', labels: createLabelMap({ 'en-gb': 'Exclamation Mark' }) },
@@ -235,9 +239,9 @@ const VALUE_DELIMITERS_CONFIG: { id: RecordValueDelimiterId; labels: LocaleLabel
 /**
  *
  */
-const ORDERED_VALUE_DELIMITER_IDS: RecordValueDelimiterId[] = [',', ';', '\t', '|', ' ', ':', '_', '!', '0x1F', '0x1E']; // Ordered from estimated most common to least common.
+const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[] = [',', ';', '\t', '|', ' ', ':', '_', '!', '0x1F', '0x1E']; // Ordered from estimated most common to least common.
 
-const getValueDelimiter = (id: RecordValueDelimiterId, localeId = DEFAULT_LOCALE_CODE): RecordValueDelimiter => {
+const getValueDelimiter = (id: ValueDelimiterId, localeId = DEFAULT_LOCALE_CODE): ValueDelimiter => {
     const valueDelimiter = VALUE_DELIMITERS_CONFIG.find((valueDelimiter) => valueDelimiter.id === id);
     if (valueDelimiter) {
         const localizedLabel = resolveLabel(valueDelimiter.labels, localeId);
@@ -245,8 +249,8 @@ const getValueDelimiter = (id: RecordValueDelimiterId, localeId = DEFAULT_LOCALE
     }
     return { id, label: id };
 };
-const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): RecordValueDelimiter[] => {
-    const items: RecordValueDelimiter[] = [];
+const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): ValueDelimiter[] => {
+    const items: ValueDelimiter[] = [];
     for (const valueDelimiter of VALUE_DELIMITERS_CONFIG) {
         const localizedLabel = resolveLabel(valueDelimiter.labels, localeId);
         items.push({ id: valueDelimiter.id, label: localizedLabel ?? valueDelimiter.id });
@@ -288,17 +292,17 @@ export type {
     DataViewInterface,
     DataViewLocalisedConfig,
     DataViewPreviewConfig,
-    ObjectDataFormatId,
-    ObjectParsedRecord,
-    ObjectPropertyRecord,
-    ObjectRecord,
-    ObjectRecordDelimiterId,
-    ObjectStringRecord,
-    RecordValueDelimiterId,
-    RecordValueDataTypeId,
+    DataFormatId,
     NumericValueSignId,
     NumericValueSubtypeId,
     NumericValueUnitsId,
+    ObjectRecord,
+    ParseRecord,
+    PropertyRecord,
+    RecordDelimiterId,
+    StringRecord,
     StringValueSubtypeId,
-    TemporalValueSubtypeId
+    TemporalValueSubtypeId,
+    ValueDataTypeId,
+    ValueDelimiterId
 };

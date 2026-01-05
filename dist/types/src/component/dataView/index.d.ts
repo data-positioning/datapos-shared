@@ -28,18 +28,18 @@ type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & {
 interface DataViewPreviewConfig {
     asAt: number;
     columnConfigs: ConnectionColumnConfig[];
-    dataFormatId: ObjectDataFormatId | undefined;
+    dataFormatId: DataFormatId | undefined;
     duration: number;
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
     errorMessage?: string;
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean | undefined;
-    recordDelimiterId?: ObjectRecordDelimiterId;
+    recordDelimiterId?: RecordDelimiterId;
     records: ParseResult[][];
     size: number;
     text: string;
-    valueDelimiterId?: RecordValueDelimiterId;
+    valueDelimiterId?: ValueDelimiterId;
 }
 /**
  * Data view content audit configuration.
@@ -60,25 +60,26 @@ interface DataViewContentAuditConfig {
 interface DataViewRelationshipsAuditConfig {
     placeholder?: string;
 }
-type ObjectRecord = (ObjectStringRecord | ObjectPropertyRecord)[];
-type ObjectStringRecord = string[];
-type ObjectPropertyRecord = Record<string, unknown>;
-type ObjectParsedRecord = {
+type ObjectRecord = (StringRecord | PropertyRecord)[];
+type StringRecord = string[];
+type PropertyRecord = Record<string, unknown>;
+type ParseRecord = ParseField[];
+interface ParseField {
     value: string | null;
     valueWasQuoted: boolean;
-}[];
-type RecordValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+}
+type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 type NumericValueSignId = 'negative' | 'zero' | 'positive' | 'unknown';
 type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal' | 'unknown';
 type NumericValueUnitsId = 'currency' | 'percentage' | 'plain' | 'unknown';
 type StringValueSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain' | 'unknown';
 type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time' | 'unknown';
-type ObjectDataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
-type ObjectRecordDelimiterId = '\n' | '\r' | '\r\n';
-type RecordValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
+type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
+type RecordDelimiterId = '\n' | '\r' | '\r\n';
+type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
 /**
  *
  */
-declare const ORDERED_VALUE_DELIMITER_IDS: RecordValueDelimiterId[];
+declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, ObjectDataFormatId, ObjectParsedRecord, ObjectPropertyRecord, ObjectRecord, ObjectRecordDelimiterId, ObjectStringRecord, RecordValueDelimiterId, RecordValueDataTypeId, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, StringValueSubtypeId, TemporalValueSubtypeId };
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, ObjectRecord, ParseRecord, PropertyRecord, RecordDelimiterId, StringRecord, StringValueSubtypeId, TemporalValueSubtypeId, ValueDataTypeId, ValueDelimiterId };
