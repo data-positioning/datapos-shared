@@ -12,7 +12,7 @@ import type { EngineUtilities } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionDescriptionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '@/component/connector/connectorConfig.schema';
-import type { DataViewPreviewConfig, ParseRecord, ValueDelimiterId } from '@/component/dataView';
+import type { DataViewPreviewConfig, ParsingResult, ValueDelimiterId } from '@/component/dataView';
 
 /**
  * Connector interface and constructor.
@@ -68,11 +68,11 @@ interface ConnectorInterface extends Component {
     /**
      * Retrieve all chunks from an object for a specified connection.
      */
-    retrieveChunks?(options: RetrieveChunksOptions, chunk: (records: ParseRecord[]) => void, complete: () => void): Promise<void>;
+    retrieveChunks?(options: RetrieveChunksOptions, chunk: (records: ParsingResult[]) => void, complete: () => void): Promise<void>;
     /**
      * Retrieve all records from an object for a specified connection.
      */
-    retrieveRecords?(options: RetrieveRecordsOptions, chunk: (records: ParseRecord[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
+    retrieveRecords?(options: RetrieveRecordsOptions, chunk: (records: ParsingResult[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     /**
      * Upsert one or more records into an object for a specified connection.
      */

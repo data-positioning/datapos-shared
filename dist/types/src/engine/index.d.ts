@@ -4,7 +4,7 @@ import { ModuleConfig } from '../component/module';
 import { ToolConfig } from '../component/tool';
 import { ConnectionColumnConfig, ConnectorOperationOptions } from '../component/connector';
 import { ContextConfig, ContextOperationOptions } from '../component/context';
-import { DataViewContentAuditConfig, InferredResult, ParseField, ValueDelimiterId } from '../component/dataView';
+import { DataViewContentAuditConfig, InferenceResult, ParsingResult, ValueDelimiterId } from '../component/dataView';
 /**
  * Engine runtime interface.
  */
@@ -43,7 +43,7 @@ interface EngineCallbackData {
  * Engine utilities.
  */
 interface EngineUtilities {
-    parseRecord: (columnConfigs: ConnectionColumnConfig[], record: ParseField[], isPreview: boolean) => InferredResult[];
+    parseRecord: (columnConfigs: ConnectionColumnConfig[], record: ParsingResult[], isPreview: boolean) => InferenceResult[];
 }
 /**
  * Audit object content options and result.
