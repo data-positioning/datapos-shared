@@ -92,7 +92,7 @@ interface ConnectionDescriptionConfig {
  * Object column configuration.
  */
 interface ObjectColumnConfig {
-    inferenceDataTypeCounts: Record<string, number>;
+    inferenceCountsByType: Record<string, number>;
     invalidValueCount?: number;
     invalidValues?: string[];
     isIgnored?: boolean;
