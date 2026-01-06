@@ -12,7 +12,7 @@ import type { EngineUtilities } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionDescriptionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '@/component/connector/connectorConfig.schema';
-import type { DataViewPreviewConfig, ParsingRecord, StringValueRecord, ValueDelimiterId } from '@/component/dataView';
+import type { DataViewPreviewConfig, ParsingRecord, ValueDelimiterId } from '@/component/dataView';
 
 /**
  * Connector interface and constructor.
