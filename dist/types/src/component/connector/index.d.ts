@@ -4,7 +4,7 @@ import { EngineUtilities } from '../../engine';
 import { ToolConfig } from '../tool';
 import { ConnectionDescriptionConfig, ConnectionNodeConfig } from './connection';
 import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
-import { DataViewPreviewConfig, StringValueRecord, ValueDelimiterId } from '../dataView';
+import { DataViewPreviewConfig, ParsingRecord, ValueDelimiterId } from '../dataView';
 /**
  * Connector interface and constructor.
  */
@@ -63,7 +63,7 @@ interface ConnectorInterface extends Component {
     /**
      * Retrieve all records from an object for a specified connection.
      */
-    retrieveRecords?(options: RetrieveRecordsOptions, chunk: (records: StringValueRecord[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
+    retrieveRecords?(options: RetrieveRecordsOptions, chunk: (records: ParsingRecord[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
     /**
      * Upsert one or more records into an object for a specified connection.
      */
