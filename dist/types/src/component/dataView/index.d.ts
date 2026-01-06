@@ -94,7 +94,7 @@ type InferenceResult = BooleanInferenceResult | NumericInferenceResult | StringI
  */
 interface BooleanInferenceResult {
     dataTypeId: 'boolean';
-    dataSubtypeId: 'plain';
+    dataSubtypeId: undefined;
     inputValue: boolean | string | undefined;
     inferredValue: boolean;
 }
@@ -140,7 +140,7 @@ interface TemporalInferenceResult {
 }
 interface UnknownInferenceResult {
     dataTypeId: 'unknown';
-    dataSubtypeId: 'unknown';
+    dataSubtypeId: undefined;
     inputValue: string | null | undefined;
     inferredValue: null;
 }
