@@ -36,7 +36,7 @@ interface DataViewPreviewConfig {
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean | undefined;
     recordDelimiterId?: RecordDelimiterId;
-    records: InferredResult[][];
+    records: InferenceResult[][];
     size: number;
     text: string;
     valueDelimiterId?: ValueDelimiterId;
@@ -64,28 +64,27 @@ type ObjectRecord = (NamedValueRecord | StringValueRecord | ValueRecord)[];
 type NamedValueRecord = Record<string, bigint | boolean | number | string | null>;
 type StringValueRecord = (string | null)[];
 type ValueRecord = (bigint | boolean | number | string | null)[];
-type ValueDataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
-type NumericValueSignId = 'negative' | 'zero' | 'positive';
-type NumericValueSubtypeId = 'bigint' | 'integer' | 'decimal';
-type NumericValueUnitsId = 'currency' | 'percentage' | 'plain';
-type StringValueSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
-type TemporalValueSubtypeId = 'date' | 'dateTime' | 'time';
-type ParseRecord = ParseField[];
-interface ParseField {
+type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+type NumericSignId = 'negative' | 'zero' | 'positive';
+type NumericSubtypeId = 'bigint' | 'integer' | 'decimal';
+type NumericUnitsId = 'currency' | 'percentage' | 'plain';
+type StringSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
+type TemporalSubtypeId = 'date' | 'dateTime' | 'time';
+interface ParsingResult {
     value: string | null;
     valueWasQuoted: boolean;
 }
 /**
- * Inferred result.
+ * Inferred value.
  */
-type InferredResult = BooleanInferenceResult | NumericInferenceResult | StringInferenceResult | TemporalInferenceResult | UnknownInferenceResult;
+type InferenceResult = BooleanInferenceResult | NumericInferenceResult | StringInferenceResult | TemporalInferenceResult | UnknownInferenceResult;
 /**
  * Boolean inference result.
  */
 interface BooleanInferenceResult {
     dataTypeId: 'boolean';
     inputValue: boolean | string | undefined;
-    parsedValue: boolean;
+    inferredValue: boolean;
 }
 type NumericInferenceResult = BigIntInferenceResult | NumberInferenceResult;
 interface BigIntInferenceResult {
@@ -93,53 +92,44 @@ interface BigIntInferenceResult {
     dataSubtypeId: 'bigint';
     format: string;
     inputValue: bigint | string | undefined;
-    parsedValue: bigint;
+    inferredValue: bigint;
     currencySymbolId: string | undefined;
     decimalPlaces: number;
-    signId: NumericValueSignId;
-    unitsId: NumericValueUnitsId;
+    signId: NumericSignId;
+    unitsId: NumericUnitsId;
 }
 interface NumberInferenceResult {
     dataTypeId: 'numeric';
     dataSubtypeId: 'integer' | 'decimal';
     format: string;
     inputValue: number | string | undefined;
-    parsedValue: number;
+    inferredValue: number;
     currencySymbolId: string | undefined;
     decimalPlaces: number;
-    signId: NumericValueSignId;
-    unitsId: NumericValueUnitsId;
+    signId: NumericSignId;
+    unitsId: NumericUnitsId;
 }
 /**
  * String inference result.
  */
 interface StringInferenceResult {
     dataTypeId: 'string';
-    dataSubtypeId: StringValueSubtypeId;
+    dataSubtypeId: StringSubtypeId;
     format: undefined;
     inputValue: string;
-    parsedValue: string;
+    inferredValue: string;
 }
 interface TemporalInferenceResult {
     dataTypeId: 'temporal';
-    dataSubtypeId: TemporalValueSubtypeId;
+    dataSubtypeId: TemporalSubtypeId;
     format: string;
     inputValue: string;
-    parsedValue: Date;
+    inferredValue: Date;
 }
 interface UnknownInferenceResult {
     dataTypeId: 'unknown';
     inputValue: string | null | undefined;
-    parsedValue: null;
-}
-/**
- * Schema configuration.
- */
-interface SchemaConfig {
-    columnConfigs: ConnectionColumnConfig[];
-    recordDelimiterId: RecordDelimiterId;
-    records: InferredResult[][];
-    valueDelimiterId: ValueDelimiterId;
+    inferredValue: null;
 }
 type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
 type RecordDelimiterId = '\n' | '\r' | '\r\n';
@@ -149,4 +139,11 @@ type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' |
  */
 declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { BigIntInferenceResult, BooleanInferenceResult, DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, InferredResult, NamedValueRecord, NumberInferenceResult, NumericInferenceResult, NumericValueSignId, NumericValueSubtypeId, NumericValueUnitsId, ObjectRecord, ParseField, ParseRecord, RecordDelimiterId, SchemaConfig, StringInferenceResult, StringValueRecord, StringValueSubtypeId, TemporalInferenceResult, TemporalValueSubtypeId, UnknownInferenceResult, ValueDataTypeId, ValueDelimiterId, ValueRecord };
+export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, DataTypeId, NumericSubtypeId, // Numeric.
+NumericSignId, NumericUnitsId, StringSubtypeId, // String.
+TemporalSubtypeId, // Temporal.
+ObjectRecord, NamedValueRecord, StringValueRecord, ValueRecord, RecordDelimiterId, ValueDelimiterId, ParsingResult, InferenceResult, BooleanInferenceResult, // Boolean.
+NumericInferenceResult, // Numeric.
+BigIntInferenceResult, NumberInferenceResult, StringInferenceResult, // String.
+TemporalInferenceResult, // Temporal.
+UnknownInferenceResult };

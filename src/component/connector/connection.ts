@@ -5,7 +5,7 @@
 // Framework dependencies.
 import type { ComponentConfig } from '@/component';
 import type { ConnectorConfig } from '@/component/connector';
-import type { ValueDataTypeId } from '@/component/dataView';
+import type { DataTypeId } from '@/component/dataView';
 
 /**
  * Connection configuration.
@@ -106,7 +106,7 @@ interface ConnectionColumnConfig {
     minValue?: string;
     patterns?: Record<string, string>;
     storageTypeId?: StorageDataTypeId;
-    valueDataTypeId?: ValueDataTypeId;
+    DataTypeId?: DataTypeId;
     validValueCount?: number;
     validValues?: Record<string, string>;
     voidValueCount?: number;

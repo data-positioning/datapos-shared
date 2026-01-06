@@ -1,6 +1,6 @@
 import { ComponentConfig } from '..';
 import { ConnectorConfig } from '.';
-import { ValueDataTypeId } from '../dataView';
+import { DataTypeId } from '../dataView';
 /**
  * Connection configuration.
  */
@@ -78,7 +78,7 @@ interface ConnectionColumnConfig {
     minValue?: string;
     patterns?: Record<string, string>;
     storageTypeId?: StorageDataTypeId;
-    valueDataTypeId?: ValueDataTypeId;
+    DataTypeId?: DataTypeId;
     validValueCount?: number;
     validValues?: Record<string, string>;
     voidValueCount?: number;
