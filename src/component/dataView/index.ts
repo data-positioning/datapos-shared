@@ -113,8 +113,10 @@ type ValueRecord = (bigint | boolean | number | string | null)[];
 
 type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 
-type NumericSignId = 'negative' | 'zero' | 'positive';
 type NumericSubtypeId = 'bigint' | 'integer' | 'decimal';
+
+type NumericSignId = 'negative' | 'zero' | 'positive';
+
 type NumericUnitsId = 'currency' | 'percentage' | 'plain';
 
 type StringSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
@@ -127,6 +129,8 @@ type TemporalSubtypeId = 'date' | 'dateTime' | 'time';
 //#region Parsing...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+type ParsingRecord = ParsingResult[];
+
 interface ParsingResult {
     value: string | null;
     valueWasQuoted: boolean;
@@ -135,8 +139,10 @@ interface ParsingResult {
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//#region Inferred...
+//#region Inference...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+type InferenceRecord = InferenceResult[];
 
 /**
  * Inferred value.
@@ -206,7 +212,7 @@ interface UnknownInferenceResult {
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//#region Data format...
+//#region Data format identifier.
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
@@ -249,7 +255,7 @@ function getDataFormats(localeId = DEFAULT_LOCALE_CODE): ObjectDataFormat[] {
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//#region Record delimiter...
+//#region Record delimiter identifier.
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 type RecordDelimiterId = '\n' | '\r' | '\r\n'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
@@ -289,7 +295,7 @@ const getRecordDelimiters = (localeId = DEFAULT_LOCALE_CODE): ObjectRecordDelimi
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//#region Value delimiter...
+//#region Value delimiter identifier.
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|'; // TODO: We need a special value here (NOT '') for when a user specified delimiter is implemented.
@@ -343,23 +349,23 @@ const getValueDelimiters = (localeId = DEFAULT_LOCALE_CODE): ValueDelimiter[] =>
 // Exports.
 export { ORDERED_VALUE_DELIMITER_IDS };
 export type {
-    // Data view.
+    // Data view interface and configuration.
+    DataViewInterface,
     DataViewConfig,
     DataViewContentAuditConfig,
-    DataViewInterface,
     DataViewLocalisedConfig,
     DataViewPreviewConfig,
 
-    // Data format, type, subtype and characteristics.
-    DataFormatId,
-    DataTypeId,
-    NumericSubtypeId, // Numeric.
+    // Data format, types, subtypes and characteristics.
+    DataFormatId, // Data format.
+    DataTypeId, // Data type.
+    NumericSubtypeId, // Numeric subtype and characteristics.
     NumericSignId,
     NumericUnitsId,
-    StringSubtypeId, // String.
-    TemporalSubtypeId, // Temporal.
+    StringSubtypeId, // String subtype.
+    TemporalSubtypeId, // Temporal subtype.
 
-    // Records.
+    // Input records and delimiters.
     ObjectRecord,
     NamedValueRecord,
     StringValueRecord,
@@ -367,10 +373,12 @@ export type {
     RecordDelimiterId,
     ValueDelimiterId,
 
-    // Parsing.
+    // Parsing record and result.
+    ParsingRecord,
     ParsingResult,
 
-    // Inference.
+    // Inference record and results.
+    InferenceRecord,
     InferenceResult,
     BooleanInferenceResult, // Boolean.
     NumericInferenceResult, // Numeric.

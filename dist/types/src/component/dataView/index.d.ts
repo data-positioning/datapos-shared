@@ -65,15 +65,17 @@ type NamedValueRecord = Record<string, bigint | boolean | number | string | null
 type StringValueRecord = (string | null)[];
 type ValueRecord = (bigint | boolean | number | string | null)[];
 type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
-type NumericSignId = 'negative' | 'zero' | 'positive';
 type NumericSubtypeId = 'bigint' | 'integer' | 'decimal';
+type NumericSignId = 'negative' | 'zero' | 'positive';
 type NumericUnitsId = 'currency' | 'percentage' | 'plain';
 type StringSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
 type TemporalSubtypeId = 'date' | 'dateTime' | 'time';
+type ParsingRecord = ParsingResult[];
 interface ParsingResult {
     value: string | null;
     valueWasQuoted: boolean;
 }
+type InferenceRecord = InferenceResult[];
 /**
  * Inferred value.
  */
@@ -139,10 +141,12 @@ type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' |
  */
 declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewConfig, DataViewContentAuditConfig, DataViewInterface, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, DataTypeId, NumericSubtypeId, // Numeric.
-NumericSignId, NumericUnitsId, StringSubtypeId, // String.
-TemporalSubtypeId, // Temporal.
-ObjectRecord, NamedValueRecord, StringValueRecord, ValueRecord, RecordDelimiterId, ValueDelimiterId, ParsingResult, InferenceResult, BooleanInferenceResult, // Boolean.
+export type { DataViewInterface, DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, // Data format.
+DataTypeId, // Data type.
+NumericSubtypeId, // Numeric subtype and characteristics.
+NumericSignId, NumericUnitsId, StringSubtypeId, // String subtype.
+TemporalSubtypeId, // Temporal subtype.
+ObjectRecord, NamedValueRecord, StringValueRecord, ValueRecord, RecordDelimiterId, ValueDelimiterId, ParsingRecord, ParsingResult, InferenceRecord, InferenceResult, BooleanInferenceResult, // Boolean.
 NumericInferenceResult, // Numeric.
 BigIntInferenceResult, NumberInferenceResult, StringInferenceResult, // String.
 TemporalInferenceResult, // Temporal.
