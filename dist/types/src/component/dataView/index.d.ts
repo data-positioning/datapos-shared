@@ -1,6 +1,6 @@
 import { FileTypeResult } from 'file-type';
 import { Component, ComponentConfig } from '..';
-import { ConnectionColumnConfig, ConnectionNodeConfig } from '../connector/connection';
+import { ConnectionNodeConfig, ObjectColumnConfig } from '../connector/connection';
 /**
  * Data view interface.
  */
@@ -9,11 +9,11 @@ type DataViewInterface = Component;
  * Data view configuration.
  */
 interface DataViewConfig extends ComponentConfig {
-    connectionId?: string;
-    connectionNodeConfig?: ConnectionNodeConfig;
-    previewConfig?: DataViewPreviewConfig;
-    contentAuditConfig?: DataViewContentAuditConfig;
-    relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
+    connectionId: string | undefined;
+    connectionNodeConfig: ConnectionNodeConfig | undefined;
+    previewConfig: PreviewConfig | undefined;
+    contentAuditConfig: ContentAuditConfig | undefined;
+    relationshipsAuditConfig: RelationshipsAuditConfig | undefined;
 }
 /**
  * Data view localised configuration.
@@ -25,29 +25,37 @@ type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & {
 /**
  * Data view preview configuration.
  */
-interface DataViewPreviewConfig {
+interface PreviewConfig {
     asAt: number;
-    columnConfigs: ConnectionColumnConfig[];
+    commentMarkCharSeq: string | undefined;
+    columnConfigs: ObjectColumnConfig[];
     dataFormatId: DataFormatId | undefined;
     duration: number;
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
-    errorMessage?: string;
+    errorMessage: string | undefined;
     fileType: FileTypeResult | undefined;
-    hasHeaders: boolean | undefined;
-    recordDelimiterId?: RecordDelimiterId;
+    hasHeaders: boolean;
+    linesToSkipAtStart: number;
+    quoteEscapeChar: string;
+    quoteMarkCharSeq: string;
+    recordDelimiterCharSeq: RecordDelimiterId;
     parsingRecords: ParsingRecord[];
     inferenceRecords: InferenceRecord[];
     size: number;
+    skipEmptyLines: boolean;
+    skipLinesWithEmptyValues: boolean;
+    skipLinesWithErrors: boolean;
     text: string;
-    valueDelimiterId?: ValueDelimiterId;
+    valueDelimiterCharSeq: ValueDelimiterId;
+    valueTrimMethodId: string;
 }
 /**
  * Data view content audit configuration.
  */
-interface DataViewContentAuditConfig {
+interface ContentAuditConfig {
     asAt: number;
-    columns: ConnectionColumnConfig[];
+    columns: ObjectColumnConfig[];
     commentLineCount: number;
     emptyLineCount: number;
     invalidFieldLengthCount: number;
@@ -58,7 +66,7 @@ interface DataViewContentAuditConfig {
 /**
  * Data view relationships audit configuration.
  */
-interface DataViewRelationshipsAuditConfig {
+interface RelationshipsAuditConfig {
     placeholder?: string;
 }
 type ObjectRecord = (NamedValueRecord | StringValueRecord | ValueRecord)[];
@@ -142,7 +150,7 @@ type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' |
  */
 declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewInterface, DataViewConfig, DataViewContentAuditConfig, DataViewLocalisedConfig, DataViewPreviewConfig, DataFormatId, // Data format.
+export type { DataViewInterface, DataViewConfig, DataViewLocalisedConfig, PreviewConfig, ContentAuditConfig, RelationshipsAuditConfig, DataFormatId, // Data format.
 DataTypeId, // Data type.
 NumericSubtypeId, // Numeric subtype and characteristics.
 NumericSignId, NumericUnitsId, StringSubtypeId, // String subtype.

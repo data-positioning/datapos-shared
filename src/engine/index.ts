@@ -7,9 +7,9 @@ import type { ConnectionConfig } from '@/component/connector/connection';
 import type { EncodingTypeConfig } from '@/encoding';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
-import type { ConnectionColumnConfig, ConnectorOperationOptions } from '@/component/connector';
+import type { ConnectorOperationOptions, ObjectColumnConfig } from '@/component/connector';
+import type { ContentAuditConfig, InferenceRecord, ParsingRecord, ValueDelimiterId } from '@/component/dataView';
 import type { ContextConfig, ContextOperationOptions } from '@/component/context';
-import type { DataViewContentAuditConfig, InferenceRecord, ParsingRecord, ValueDelimiterId } from '@/component/dataView';
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Engine runtime.
@@ -75,7 +75,7 @@ interface EngineCallbackData {
  * Engine utilities.
  */
 interface EngineUtilities {
-    inferValues: (columnConfigs: ConnectionColumnConfig[], record: ParsingRecord, isPreview: boolean) => InferenceRecord;
+    inferValues: (columnConfigs: ObjectColumnConfig[], parsingRecord: ParsingRecord) => InferenceRecord;
 }
 
 /**
@@ -88,7 +88,7 @@ interface AuditObjectContentOptions extends ConnectorOperationOptions {
     valueDelimiterId: ValueDelimiterId;
 }
 interface AuditObjectContentResult {
-    contentAuditConfig: DataViewContentAuditConfig;
+    contentAuditConfig: ContentAuditConfig;
 }
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━

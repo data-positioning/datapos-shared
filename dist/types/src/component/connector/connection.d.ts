@@ -28,7 +28,7 @@ interface ConnectionAuthorisationConfig {
  */
 interface ConnectionNodeConfig {
     childCount?: number;
-    columnsConfigs?: ConnectionColumnConfig[];
+    columnsConfigs?: ObjectColumnConfig[];
     extension: string | undefined;
     folderPath: string;
     handle?: DPAFileSystemFileHandle;
@@ -40,7 +40,7 @@ interface ConnectionNodeConfig {
     mimeType?: string;
     name: string;
     size?: number;
-    typeId: ConnectionNodeTypeId;
+    typeId: NodeTypeId;
 }
 interface DPAFileSystemFileHandle {
     readonly kind: 'file';
@@ -49,7 +49,7 @@ interface DPAFileSystemFileHandle {
 /**
  * Connection node type identifier.
  */
-type ConnectionNodeTypeId = 'folder' | 'object';
+type NodeTypeId = 'folder' | 'object';
 /**
  * Connection description configuration.
  */
@@ -57,13 +57,13 @@ interface ConnectionDescriptionConfig {
     objects: {
         id: string;
         label: Record<string, string>;
-        columns: ConnectionColumnConfig[];
+        columns: ObjectColumnConfig[];
     }[];
 }
 /**
- * Connection column configuration.
+ * Object column configuration.
  */
-interface ConnectionColumnConfig {
+interface ObjectColumnConfig {
     invalidValueCount?: number;
     invalidValues?: string[];
     isIgnored?: boolean;
@@ -77,11 +77,11 @@ interface ConnectionColumnConfig {
     minSize?: number;
     minValue?: string;
     patterns?: Record<string, string>;
-    storageTypeId?: StorageDataTypeId;
-    DataTypeId?: DataTypeId;
+    storageTypeId?: StorageTypeId;
+    dataTypeId?: DataTypeId;
     validValueCount?: number;
     validValues?: Record<string, string>;
     voidValueCount?: number;
 }
-type StorageDataTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'dateTimeOffset' | 'decimal' | 'double' | 'int8' | 'int16' | 'int32' | 'int64' | 'object' | 'single' | 'string' | 'time' | 'unknown';
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionDescriptionConfig, ConnectionNodeConfig };
+type StorageTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'dateTimeOffset' | 'decimal' | 'double' | 'int8' | 'int16' | 'int32' | 'int64' | 'object' | 'single' | 'string' | 'time' | 'unknown';
+export type { ConnectionConfig, ConnectionDescriptionConfig, ConnectionNodeConfig, ObjectColumnConfig };

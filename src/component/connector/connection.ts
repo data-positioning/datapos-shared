@@ -1,5 +1,5 @@
 /**
- * Connector connection.
+ * Connector connection component.
  */
 
 // Framework dependencies.
@@ -40,7 +40,7 @@ interface ConnectionAuthorisationConfig {
  */
 interface ConnectionNodeConfig {
     childCount?: number;
-    columnsConfigs?: ConnectionColumnConfig[];
+    columnsConfigs?: ObjectColumnConfig[];
     extension: string | undefined;
     folderPath: string;
     handle?: DPAFileSystemFileHandle;
@@ -52,7 +52,7 @@ interface ConnectionNodeConfig {
     mimeType?: string;
     name: string;
     size?: number;
-    typeId: ConnectionNodeTypeId;
+    typeId: NodeTypeId;
 }
 
 interface DPAFileSystemFileHandle {
@@ -63,7 +63,7 @@ interface DPAFileSystemFileHandle {
 /**
  * Connection node type identifier.
  */
-type ConnectionNodeTypeId = 'folder' | 'object';
+type NodeTypeId = 'folder' | 'object';
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -78,7 +78,7 @@ interface ConnectionDescriptionConfig {
     objects: {
         id: string;
         label: Record<string, string>;
-        columns: ConnectionColumnConfig[];
+        columns: ObjectColumnConfig[];
     }[];
 }
 
@@ -89,9 +89,9 @@ interface ConnectionDescriptionConfig {
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 /**
- * Connection column configuration.
+ * Object column configuration.
  */
-interface ConnectionColumnConfig {
+interface ObjectColumnConfig {
     invalidValueCount?: number;
     invalidValues?: string[];
     isIgnored?: boolean;
@@ -105,14 +105,14 @@ interface ConnectionColumnConfig {
     minSize?: number;
     minValue?: string;
     patterns?: Record<string, string>;
-    storageTypeId?: StorageDataTypeId;
-    DataTypeId?: DataTypeId;
+    storageTypeId?: StorageTypeId;
+    dataTypeId?: DataTypeId;
     validValueCount?: number;
     validValues?: Record<string, string>;
     voidValueCount?: number;
 }
 
-type StorageDataTypeId =
+type StorageTypeId =
     | 'binary'
     | 'boolean'
     | 'byte'
@@ -134,4 +134,4 @@ type StorageDataTypeId =
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 // Exports.
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionDescriptionConfig, ConnectionNodeConfig };
+export type { ConnectionConfig, ConnectionDescriptionConfig, ConnectionNodeConfig, ObjectColumnConfig };

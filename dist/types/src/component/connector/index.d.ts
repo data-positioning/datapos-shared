@@ -4,7 +4,7 @@ import { EngineUtilities } from '../../engine';
 import { ToolConfig } from '../tool';
 import { ConnectionDescriptionConfig, ConnectionNodeConfig } from './connection';
 import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
-import { DataViewPreviewConfig, ParsingRecord, ValueDelimiterId } from '../dataView';
+import { ParsingRecord, PreviewConfig, ValueDelimiterId } from '../dataView';
 /**
  * Connector interface and constructor.
  */
@@ -51,7 +51,7 @@ interface ConnectorInterface extends Component {
     /**
      * Preview an object for a specified connection.
      */
-    previewObject?(options: PreviewObjectOptions): Promise<DataViewPreviewConfig>;
+    previewObject?(options: PreviewObjectOptions): Promise<PreviewConfig>;
     /**
      * Remove one or more records from an object for a specified connection.
      */
@@ -236,5 +236,5 @@ type ConnectorCategoryLocalisedConfig = Omit<ConnectorCategoryConfig, 'label'> &
 declare const constructConnectorCategoryConfig: (id: string, localeId?: import('../../locale').LocaleCode) => ConnectorCategoryLocalisedConfig;
 export { connectorConfigSchema } from './connectorConfig.schema';
 export { constructConnectorCategoryConfig };
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from './connection';
+export type { ConnectionConfig, ConnectionNodeConfig, ObjectColumnConfig } from './connection';
 export type { ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationOptions, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };

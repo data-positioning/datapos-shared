@@ -1,5 +1,5 @@
 /**
- * Connector constants, type declarations, and runtime utilities.
+ * Connector component.
  */
 
 // Vendor dependencies.
@@ -12,7 +12,7 @@ import type { EngineUtilities } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionDescriptionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '@/component/connector/connectorConfig.schema';
-import type { DataViewPreviewConfig, ParsingRecord, ValueDelimiterId } from '@/component/dataView';
+import type { ParsingRecord, PreviewConfig, ValueDelimiterId } from '@/component/dataView';
 
 /**
  * Connector interface and constructor.
@@ -60,7 +60,7 @@ interface ConnectorInterface extends Component {
     /**
      * Preview an object for a specified connection.
      */
-    previewObject?(options: PreviewObjectOptions): Promise<DataViewPreviewConfig>;
+    previewObject?(options: PreviewObjectOptions): Promise<PreviewConfig>;
     /**
      * Remove one or more records from an object for a specified connection.
      */
@@ -291,7 +291,7 @@ const constructConnectorCategoryConfig = (id: string, localeId = DEFAULT_LOCALE_
 // Exports.
 export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
 export { constructConnectorCategoryConfig };
-export type { ConnectionColumnConfig, ConnectionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
+export type { ConnectionConfig, ConnectionNodeConfig, ObjectColumnConfig } from '@/component/connector/connection';
 export type {
     ConnectorConfig,
     ConnectorConstructor,

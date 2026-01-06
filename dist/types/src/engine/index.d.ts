@@ -2,9 +2,9 @@ import { ConnectionConfig } from '../component/connector/connection';
 import { EncodingTypeConfig } from '../encoding';
 import { ModuleConfig } from '../component/module';
 import { ToolConfig } from '../component/tool';
-import { ConnectionColumnConfig, ConnectorOperationOptions } from '../component/connector';
+import { ConnectorOperationOptions, ObjectColumnConfig } from '../component/connector';
+import { ContentAuditConfig, InferenceRecord, ParsingRecord, ValueDelimiterId } from '../component/dataView';
 import { ContextConfig, ContextOperationOptions } from '../component/context';
-import { DataViewContentAuditConfig, InferenceRecord, ParsingRecord, ValueDelimiterId } from '../component/dataView';
 /**
  * Engine runtime interface.
  */
@@ -43,7 +43,7 @@ interface EngineCallbackData {
  * Engine utilities.
  */
 interface EngineUtilities {
-    inferValues: (columnConfigs: ConnectionColumnConfig[], record: ParsingRecord, isPreview: boolean) => InferenceRecord;
+    inferValues: (columnConfigs: ObjectColumnConfig[], parsingRecord: ParsingRecord) => InferenceRecord;
 }
 /**
  * Audit object content options and result.
@@ -55,7 +55,7 @@ interface AuditObjectContentOptions extends ConnectorOperationOptions {
     valueDelimiterId: ValueDelimiterId;
 }
 interface AuditObjectContentResult {
-    contentAuditConfig: DataViewContentAuditConfig;
+    contentAuditConfig: ContentAuditConfig;
 }
 interface TestSettings {
     action?: string;

@@ -6,7 +6,7 @@ import type { FileTypeResult } from 'file-type';
 
 // Framework dependencies.
 import type { Component, ComponentConfig } from '@/component';
-import type { ConnectionColumnConfig, ConnectionNodeConfig } from '@/component/connector/connection';
+import type { ConnectionNodeConfig, ObjectColumnConfig } from '@/component/connector/connection';
 import { createLabelMap, DEFAULT_LOCALE_CODE, type LocaleLabelMap, resolveLabel } from '@/locale';
 
 /**
@@ -18,11 +18,11 @@ type DataViewInterface = Component;
  * Data view configuration.
  */
 interface DataViewConfig extends ComponentConfig {
-    connectionId?: string;
-    connectionNodeConfig?: ConnectionNodeConfig;
-    previewConfig?: DataViewPreviewConfig;
-    contentAuditConfig?: DataViewContentAuditConfig;
-    relationshipsAuditConfig?: DataViewRelationshipsAuditConfig;
+    connectionId: string | undefined;
+    connectionNodeConfig: ConnectionNodeConfig | undefined;
+    previewConfig: PreviewConfig | undefined;
+    contentAuditConfig: ContentAuditConfig | undefined;
+    relationshipsAuditConfig: RelationshipsAuditConfig | undefined;
 }
 
 /**
@@ -37,32 +37,30 @@ type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & {
 /**
  * Data view preview configuration.
  */
-interface DataViewPreviewConfig {
+interface PreviewConfig {
     asAt: number;
-    // commentPrefixId?: string;
-    columnConfigs: ConnectionColumnConfig[];
+    commentMarkCharSeq: string | undefined;
+    columnConfigs: ObjectColumnConfig[];
     dataFormatId: DataFormatId | undefined;
     duration: number;
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
-    errorMessage?: string;
+    errorMessage: string | undefined;
     fileType: FileTypeResult | undefined;
-    hasHeaders: boolean | undefined;
-    // linesToSkipBeforeHeader?: number;
-    // linesToSkipAfterHeader?: number;
-    // linesToSkipAtEnd?: number;
-    // quoteEscapeCharacterId?: string;
-    // quoteMarkId?: string;
-    recordDelimiterId?: RecordDelimiterId;
+    hasHeaders: boolean;
+    linesToSkipAtStart: number;
+    quoteEscapeChar: string;
+    quoteMarkCharSeq: string;
+    recordDelimiterCharSeq: RecordDelimiterId;
     parsingRecords: ParsingRecord[];
     inferenceRecords: InferenceRecord[];
     size: number;
-    // skipEmptyLines?: boolean;
-    // skipLinesWithEmptyValues?: boolean;
-    // skipLinesWithErrors?: boolean;
+    skipEmptyLines: boolean;
+    skipLinesWithEmptyValues: boolean;
+    skipLinesWithErrors: boolean;
     text: string;
-    valueDelimiterId?: ValueDelimiterId;
-    // valueTrimMethodId?: string;
+    valueDelimiterCharSeq: ValueDelimiterId;
+    valueTrimMethodId: string;
 }
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -74,9 +72,9 @@ interface DataViewPreviewConfig {
 /**
  * Data view content audit configuration.
  */
-interface DataViewContentAuditConfig {
+interface ContentAuditConfig {
     asAt: number;
-    columns: ConnectionColumnConfig[];
+    columns: ObjectColumnConfig[];
     commentLineCount: number;
     emptyLineCount: number;
     invalidFieldLengthCount: number;
@@ -94,7 +92,7 @@ interface DataViewContentAuditConfig {
 /**
  * Data view relationships audit configuration.
  */
-interface DataViewRelationshipsAuditConfig {
+interface RelationshipsAuditConfig {
     placeholder?: string;
 }
 
@@ -353,9 +351,10 @@ export type {
     // Data view interface and configuration.
     DataViewInterface,
     DataViewConfig,
-    DataViewContentAuditConfig,
     DataViewLocalisedConfig,
-    DataViewPreviewConfig,
+    PreviewConfig,
+    ContentAuditConfig,
+    RelationshipsAuditConfig,
 
     // Data format, types, subtypes and characteristics.
     DataFormatId, // Data format.
