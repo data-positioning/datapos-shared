@@ -36,7 +36,7 @@ interface DataViewPreviewConfig {
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean | undefined;
     recordDelimiterId?: RecordDelimiterId;
-    records: InferenceResult[][];
+    inferenceRecords: InferenceRecord[];
     size: number;
     text: string;
     valueDelimiterId?: ValueDelimiterId;

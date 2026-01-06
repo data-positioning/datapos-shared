@@ -54,7 +54,7 @@ interface DataViewPreviewConfig {
     // quoteEscapeCharacterId?: string;
     // quoteMarkId?: string;
     recordDelimiterId?: RecordDelimiterId;
-    records: InferenceResult[][];
+    inferenceRecords: InferenceRecord[];
     size: number;
     // skipEmptyLines?: boolean;
     // skipLinesWithEmptyValues?: boolean;
