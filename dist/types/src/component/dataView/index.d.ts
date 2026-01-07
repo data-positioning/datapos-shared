@@ -27,7 +27,7 @@ type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & {
  */
 interface PreviewConfig {
     asAt: number;
-    commentMarkCharSeq: string | undefined;
+    commentMarkCharSeq?: string | undefined;
     columnConfigs: ObjectColumnConfig[];
     dataFormatId: DataFormatId | undefined;
     duration: number;
@@ -36,19 +36,19 @@ interface PreviewConfig {
     errorMessage: string | undefined;
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean;
-    linesToSkipAtStart: number;
-    quoteEscapeChar: string;
-    quoteMarkCharSeq: string;
+    linesToSkipAtStart?: number;
+    quoteEscapeChar?: string;
+    quoteMarkCharSeq?: string;
     recordDelimiterCharSeq: RecordDelimiterId;
     parsingRecords: ParsingRecord[];
     inferenceRecords: InferenceRecord[];
     size: number;
-    skipEmptyLines: boolean;
-    skipLinesWithEmptyValues: boolean;
-    skipLinesWithErrors: boolean;
+    skipEmptyLines?: boolean;
+    skipLinesWithEmptyValues?: boolean;
+    skipLinesWithErrors?: boolean;
     text: string;
     valueDelimiterCharSeq: ValueDelimiterId;
-    valueTrimMethodId: string;
+    valueTrimMethodId?: string;
 }
 /**
  * Data view content audit configuration.

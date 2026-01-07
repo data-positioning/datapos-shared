@@ -39,7 +39,7 @@ type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & {
  */
 interface PreviewConfig {
     asAt: number;
-    commentMarkCharSeq: string | undefined;
+    commentMarkCharSeq?: string | undefined; // TODO: under review.
     columnConfigs: ObjectColumnConfig[];
     dataFormatId: DataFormatId | undefined;
     duration: number;
@@ -48,19 +48,19 @@ interface PreviewConfig {
     errorMessage: string | undefined;
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean;
-    linesToSkipAtStart: number;
-    quoteEscapeChar: string;
-    quoteMarkCharSeq: string;
+    linesToSkipAtStart?: number; // TODO: under review.
+    quoteEscapeChar?: string; // TODO: under review.
+    quoteMarkCharSeq?: string; // TODO: under review.
     recordDelimiterCharSeq: RecordDelimiterId;
     parsingRecords: ParsingRecord[];
     inferenceRecords: InferenceRecord[];
     size: number;
-    skipEmptyLines: boolean;
-    skipLinesWithEmptyValues: boolean;
-    skipLinesWithErrors: boolean;
+    skipEmptyLines?: boolean; // TODO: under review.
+    skipLinesWithEmptyValues?: boolean; // TODO: under review.
+    skipLinesWithErrors?: boolean; // TODO: under review.
     text: string;
     valueDelimiterCharSeq: ValueDelimiterId;
-    valueTrimMethodId: string;
+    valueTrimMethodId?: string; // TODO: under review.
 }
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
