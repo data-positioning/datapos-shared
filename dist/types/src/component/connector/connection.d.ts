@@ -1,6 +1,6 @@
 import { ComponentConfig } from '..';
 import { ConnectorConfig } from '.';
-import { DataTypeId } from '../dataView';
+import { DataSubtypeId, DataTypeId } from '../dataView';
 /**
  * Connection configuration.
  */
@@ -64,7 +64,9 @@ interface ConnectionDescriptionConfig {
  * Object column configuration.
  */
 interface ObjectColumnConfig {
-    inferenceCountsByType: Record<string, number>;
+    dataTypeId: DataTypeId;
+    dataSubtypeId: DataSubtypeId | undefined;
+    inferenceCounts: Record<string, number>;
     invalidValueCount?: number;
     invalidValues?: string[];
     isIgnored?: boolean;
@@ -79,7 +81,6 @@ interface ObjectColumnConfig {
     minValue?: string;
     patterns?: Record<string, string>;
     storageTypeId?: StorageTypeId;
-    dataTypeId?: DataTypeId;
     validValueCount?: number;
     validValues?: Record<string, string>;
     voidValueCount?: number;

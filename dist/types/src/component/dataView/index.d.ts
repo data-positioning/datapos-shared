@@ -74,6 +74,7 @@ type NamedValueRecord = Record<string, bigint | boolean | number | string | null
 type StringValueRecord = (string | null)[];
 type ValueRecord = (bigint | boolean | number | string | null)[];
 type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
+type DataSubtypeId = NumericSubtypeId | StringSubtypeId | TemporalSubtypeId;
 type NumericSubtypeId = 'bigint' | 'integer' | 'decimal';
 type NumericSignId = 'negative' | 'zero' | 'positive';
 type NumericUnitsId = 'currency' | 'percentage' | 'plain';
@@ -154,7 +155,7 @@ declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
 export type { DataViewInterface, DataViewConfig, DataViewLocalisedConfig, PreviewConfig, ContentAuditConfig, RelationshipsAuditConfig, DataFormatId, // Data format.
 DataTypeId, // Data type.
-NumericSubtypeId, // Numeric subtype and characteristics.
+DataSubtypeId, NumericSubtypeId, // Numeric subtype and characteristics.
 NumericSignId, NumericUnitsId, StringSubtypeId, // String subtype.
 TemporalSubtypeId, // Temporal subtype.
 ObjectRecord, NamedValueRecord, StringValueRecord, ValueRecord, RecordDelimiterId, ValueDelimiterId, ParsingRecord, ParsingResult, InferenceRecord, InferenceResult, BooleanInferenceResult, // Boolean.

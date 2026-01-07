@@ -112,6 +112,8 @@ type ValueRecord = (bigint | boolean | number | string | null)[];
 
 type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 
+type DataSubtypeId = NumericSubtypeId | StringSubtypeId | TemporalSubtypeId;
+
 type NumericSubtypeId = 'bigint' | 'integer' | 'decimal';
 
 type NumericSignId = 'negative' | 'zero' | 'positive';
@@ -361,6 +363,7 @@ export type {
     // Data format, types, subtypes and characteristics.
     DataFormatId, // Data format.
     DataTypeId, // Data type.
+    DataSubtypeId,
     NumericSubtypeId, // Numeric subtype and characteristics.
     NumericSignId,
     NumericUnitsId,
