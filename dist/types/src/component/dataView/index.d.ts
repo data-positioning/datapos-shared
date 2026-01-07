@@ -33,7 +33,7 @@ interface PreviewConfig {
     duration: number;
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
-    errorMessage: string | undefined;
+    errorMessage?: string | undefined;
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean;
     linesToSkipAtStart?: number;

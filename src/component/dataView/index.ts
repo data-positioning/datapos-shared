@@ -45,7 +45,7 @@ interface PreviewConfig {
     duration: number;
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
-    errorMessage: string | undefined;
+    errorMessage?: string | undefined; // TODO: under review.
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean;
     linesToSkipAtStart?: number; // TODO: under review.
