@@ -36,19 +36,19 @@ interface PreviewConfig {
     errorMessage?: string | undefined;
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean;
-    linesToSkipAtStart?: number;
-    quoteEscapeChar?: string;
-    quoteMarkCharSeq?: string;
+    linesToSkipAtStart?: number | undefined;
+    quoteEscapeChar?: string | undefined;
+    quoteMarkCharSeq?: string | undefined;
     recordDelimiterCharSeq: RecordDelimiterId;
     parsingRecords: ParsingRecord[];
     inferenceRecords: InferenceRecord[];
     size: number;
-    skipEmptyLines?: boolean;
-    skipLinesWithEmptyValues?: boolean;
-    skipLinesWithErrors?: boolean;
+    skipEmptyLines?: boolean | undefined;
+    skipLinesWithEmptyValues?: boolean | undefined;
+    skipLinesWithErrors?: boolean | undefined;
     text: string;
     valueDelimiterCharSeq: ValueDelimiterId;
-    valueTrimMethodId?: string;
+    valueTrimMethodId?: string | undefined;
 }
 /**
  * Data view content audit configuration.

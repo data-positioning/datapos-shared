@@ -48,19 +48,19 @@ interface PreviewConfig {
     errorMessage?: string | undefined; // TODO: under review.
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean;
-    linesToSkipAtStart?: number; // TODO: under review.
-    quoteEscapeChar?: string; // TODO: under review.
-    quoteMarkCharSeq?: string; // TODO: under review.
+    linesToSkipAtStart?: number | undefined; // TODO: under review.
+    quoteEscapeChar?: string | undefined; // TODO: under review.
+    quoteMarkCharSeq?: string | undefined; // TODO: under review.
     recordDelimiterCharSeq: RecordDelimiterId;
     parsingRecords: ParsingRecord[];
     inferenceRecords: InferenceRecord[];
     size: number;
-    skipEmptyLines?: boolean; // TODO: under review.
-    skipLinesWithEmptyValues?: boolean; // TODO: under review.
-    skipLinesWithErrors?: boolean; // TODO: under review.
+    skipEmptyLines?: boolean | undefined; // TODO: under review.
+    skipLinesWithEmptyValues?: boolean | undefined; // TODO: under review.
+    skipLinesWithErrors?: boolean | undefined; // TODO: under review.
     text: string;
     valueDelimiterCharSeq: ValueDelimiterId;
-    valueTrimMethodId?: string; // TODO: under review.
+    valueTrimMethodId?: string | undefined; // TODO: under review.
 }
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
