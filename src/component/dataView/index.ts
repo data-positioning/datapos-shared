@@ -221,6 +221,7 @@ interface UnknownInferenceResult {
 
 interface TypeParsedRecordsResult {
     columnConfigs: ObjectColumnConfig[];
+    hasHeaderRow: boolean;
     typedRecords: InferenceRecord[];
 }
 

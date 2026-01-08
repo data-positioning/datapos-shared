@@ -147,6 +147,7 @@ interface UnknownInferenceResult {
 }
 interface TypeParsedRecordsResult {
     columnConfigs: ObjectColumnConfig[];
+    hasHeaderRow: boolean;
     typedRecords: InferenceRecord[];
 }
 type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml' | 'unknown';
