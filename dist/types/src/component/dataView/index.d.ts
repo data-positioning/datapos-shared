@@ -148,6 +148,10 @@ interface UnknownInferenceResult {
     inputValue: string | null | undefined;
     inferredValue: null;
 }
+interface TypeResult {
+    columnConfigs: ObjectColumnConfig[];
+    typedRecords: InferenceRecord[];
+}
 type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml' | 'unknown';
 type RecordDelimiterId = '\n' | '\r' | '\r\n';
 type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
@@ -165,4 +169,5 @@ ObjectRecord, NamedValueRecord, StringValueRecord, RecordDelimiterId, ValueDelim
 NumericInferenceResult, // Numeric.
 BigIntInferenceResult, NumberInferenceResult, StringInferenceResult, // String.
 TemporalInferenceResult, // Temporal.
-UnknownInferenceResult };
+UnknownInferenceResult, // Unknown.
+TypeResult };

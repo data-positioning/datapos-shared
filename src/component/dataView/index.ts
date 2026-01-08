@@ -147,7 +147,7 @@ interface ParsingResult {
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-//#region Inference...
+//#region Inference, cast, type...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 type InferenceRecord = InferenceResult[];
@@ -217,6 +217,11 @@ interface UnknownInferenceResult {
     dataSubtypeId: undefined;
     inputValue: string | null | undefined;
     inferredValue: null;
+}
+
+interface TypeResult {
+    columnConfigs: ObjectColumnConfig[];
+    typedRecords: InferenceRecord[];
 }
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -397,5 +402,6 @@ export type {
     NumberInferenceResult,
     StringInferenceResult, // String.
     TemporalInferenceResult, // Temporal.
-    UnknownInferenceResult // Unknown.
+    UnknownInferenceResult, // Unknown.
+    TypeResult
 };
