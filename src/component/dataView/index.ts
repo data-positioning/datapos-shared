@@ -51,7 +51,7 @@ interface PreviewConfig {
     hasHeaders: boolean | undefined;
     inferenceRecords: InferenceRecord[] | undefined;
     linesToSkipAtStart?: number | undefined; // TODO: under review.
-    parsingRecords: ParsingRecord[] | undefined;
+    parsedRecords: StringValueRecord[] | undefined;
     quoteEscapeChar?: string | undefined; // TODO: under review.
     quoteMarkId?: string | undefined; // TODO: under review.
     quoteMarkOtherCharSeq?: string | undefined; // TODO: under review.
