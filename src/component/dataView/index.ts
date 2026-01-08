@@ -56,14 +56,14 @@ interface PreviewConfig {
     quoteMarkId?: string | undefined; // TODO: under review.
     quoteMarkOtherCharSeq?: string | undefined; // TODO: under review.
     recordDelimiterId: RecordDelimiterId | undefined;
-    recordDelimiterOtherCharSeq: RecordDelimiterId | undefined; // TODO: under review.
+    recordDelimiterOtherCharSeq?: RecordDelimiterId | undefined; // TODO: under review.
     size: number | undefined;
     skipEmptyLines?: boolean | undefined; // TODO: under review.
     skipLinesWithEmptyValues?: boolean | undefined; // TODO: under review.
     skipLinesWithErrors?: boolean | undefined; // TODO: under review.
     text: string | undefined;
     valueDelimiterId: ValueDelimiterId | undefined;
-    valueDelimiterOtherCharSeq: string | undefined; // TODO: under review.
+    valueDelimiterOtherCharSeq?: string | undefined; // TODO: under review.
     valueTrimMethodId?: string | undefined; // TODO: under review.
 }
 

@@ -44,14 +44,14 @@ interface PreviewConfig {
     quoteMarkId?: string | undefined;
     quoteMarkOtherCharSeq?: string | undefined;
     recordDelimiterId: RecordDelimiterId | undefined;
-    recordDelimiterOtherCharSeq: RecordDelimiterId | undefined;
+    recordDelimiterOtherCharSeq?: RecordDelimiterId | undefined;
     size: number | undefined;
     skipEmptyLines?: boolean | undefined;
     skipLinesWithEmptyValues?: boolean | undefined;
     skipLinesWithErrors?: boolean | undefined;
     text: string | undefined;
     valueDelimiterId: ValueDelimiterId | undefined;
-    valueDelimiterOtherCharSeq: string | undefined;
+    valueDelimiterOtherCharSeq?: string | undefined;
     valueTrimMethodId?: string | undefined;
 }
 /**
