@@ -27,27 +27,31 @@ type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & {
  */
 interface PreviewConfig {
     asAt: number;
-    commentMarkCharSeq?: string | undefined;
-    columnConfigs: ObjectColumnConfig[];
-    dataFormatId: DataFormatId | undefined;
+    commentMarkId?: string | undefined;
+    commentMarkOtherCharSeq?: string | undefined;
+    columnConfigs: ObjectColumnConfig[] | undefined;
+    dataFormatId: DataFormatId;
     duration: number;
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
     errorMessage?: string | undefined;
     fileType: FileTypeResult | undefined;
-    hasHeaders: boolean;
+    hasHeaders: boolean | undefined;
+    inferenceRecords: InferenceRecord[] | undefined;
     linesToSkipAtStart?: number | undefined;
+    parsingRecords: ParsingRecord[] | undefined;
     quoteEscapeChar?: string | undefined;
-    quoteMarkCharSeq?: string | undefined;
-    recordDelimiterCharSeq: RecordDelimiterId;
-    parsingRecords: ParsingRecord[];
-    inferenceRecords: InferenceRecord[];
-    size: number;
+    quoteMarkId?: string | undefined;
+    quoteMarkOtherCharSeq?: string | undefined;
+    recordDelimiterId: RecordDelimiterId | undefined;
+    recordDelimiterOtherCharSeq: RecordDelimiterId | undefined;
+    size: number | undefined;
     skipEmptyLines?: boolean | undefined;
     skipLinesWithEmptyValues?: boolean | undefined;
     skipLinesWithErrors?: boolean | undefined;
-    text: string;
-    valueDelimiterCharSeq: ValueDelimiterId;
+    text: string | undefined;
+    valueDelimiterId: ValueDelimiterId | undefined;
+    valueDelimiterOtherCharSeq: string | undefined;
     valueTrimMethodId?: string | undefined;
 }
 /**
@@ -69,10 +73,9 @@ interface ContentAuditConfig {
 interface RelationshipsAuditConfig {
     placeholder?: string;
 }
-type ObjectRecord = (NamedValueRecord | StringValueRecord | ValueRecord)[];
+type ObjectRecord = (NamedValueRecord | StringValueRecord)[];
 type NamedValueRecord = Record<string, bigint | boolean | number | string | null>;
 type StringValueRecord = (string | null)[];
-type ValueRecord = (bigint | boolean | number | string | null)[];
 type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 type DataSubtypeId = NumericSubtypeId | StringSubtypeId | TemporalSubtypeId;
 type NumericSubtypeId = 'bigint' | 'integer' | 'decimal';
@@ -145,7 +148,7 @@ interface UnknownInferenceResult {
     inputValue: string | null | undefined;
     inferredValue: null;
 }
-type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
+type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml' | 'unknown';
 type RecordDelimiterId = '\n' | '\r' | '\r\n';
 type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
 /**
@@ -158,7 +161,7 @@ DataTypeId, // Data type.
 DataSubtypeId, NumericSubtypeId, // Numeric subtype and characteristics.
 NumericSignId, NumericUnitsId, StringSubtypeId, // String subtype.
 TemporalSubtypeId, // Temporal subtype.
-ObjectRecord, NamedValueRecord, StringValueRecord, ValueRecord, RecordDelimiterId, ValueDelimiterId, ParsingRecord, ParsingResult, InferenceRecord, InferenceResult, BooleanInferenceResult, // Boolean.
+ObjectRecord, NamedValueRecord, StringValueRecord, RecordDelimiterId, ValueDelimiterId, ParsingRecord, ParsingResult, InferenceRecord, InferenceResult, BooleanInferenceResult, // Boolean.
 NumericInferenceResult, // Numeric.
 BigIntInferenceResult, NumberInferenceResult, StringInferenceResult, // String.
 TemporalInferenceResult, // Temporal.

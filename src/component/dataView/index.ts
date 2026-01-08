@@ -39,29 +39,38 @@ type DataViewLocalisedConfig = Omit<DataViewConfig, 'label' | 'description'> & {
  */
 interface PreviewConfig {
     asAt: number;
-    commentMarkCharSeq?: string | undefined; // TODO: under review.
-    columnConfigs: ObjectColumnConfig[];
-    dataFormatId: DataFormatId | undefined;
+    commentMarkId?: string | undefined; // TODO: under review.
+    commentMarkOtherCharSeq?: string | undefined; // TODO: under review.
+    columnConfigs: ObjectColumnConfig[] | undefined;
+    dataFormatId: DataFormatId;
     duration: number;
     encodingConfidenceLevel: number | undefined;
     encodingId: string | undefined;
     errorMessage?: string | undefined; // TODO: under review.
     fileType: FileTypeResult | undefined;
-    hasHeaders: boolean;
+    hasHeaders: boolean | undefined;
+    inferenceRecords: InferenceRecord[] | undefined;
     linesToSkipAtStart?: number | undefined; // TODO: under review.
+    parsingRecords: ParsingRecord[] | undefined;
     quoteEscapeChar?: string | undefined; // TODO: under review.
-    quoteMarkCharSeq?: string | undefined; // TODO: under review.
-    recordDelimiterCharSeq: RecordDelimiterId;
-    parsingRecords: ParsingRecord[];
-    inferenceRecords: InferenceRecord[];
-    size: number;
+    quoteMarkId?: string | undefined; // TODO: under review.
+    quoteMarkOtherCharSeq?: string | undefined; // TODO: under review.
+    recordDelimiterId: RecordDelimiterId | undefined;
+    recordDelimiterOtherCharSeq: RecordDelimiterId | undefined; // TODO: under review.
+    size: number | undefined;
     skipEmptyLines?: boolean | undefined; // TODO: under review.
     skipLinesWithEmptyValues?: boolean | undefined; // TODO: under review.
     skipLinesWithErrors?: boolean | undefined; // TODO: under review.
-    text: string;
-    valueDelimiterCharSeq: ValueDelimiterId;
+    text: string | undefined;
+    valueDelimiterId: ValueDelimiterId | undefined;
+    valueDelimiterOtherCharSeq: string | undefined; // TODO: under review.
     valueTrimMethodId?: string | undefined; // TODO: under review.
 }
+
+/**
+ *
+ */
+type ValueTrimMethodId = 'both' | 'left' | 'right' | 'none';
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
@@ -102,13 +111,11 @@ interface RelationshipsAuditConfig {
 //#region Record and Value...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type ObjectRecord = (NamedValueRecord | StringValueRecord | ValueRecord)[];
+type ObjectRecord = (NamedValueRecord | StringValueRecord)[];
 
 type NamedValueRecord = Record<string, bigint | boolean | number | string | null>;
 
 type StringValueRecord = (string | null)[];
-
-type ValueRecord = (bigint | boolean | number | string | null)[];
 
 type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 
@@ -218,7 +225,7 @@ interface UnknownInferenceResult {
 //#region Data format identifier.
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml';
+type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml' | 'unknown';
 
 interface ObjectDataFormat {
     id: DataFormatId;
@@ -374,7 +381,6 @@ export type {
     ObjectRecord,
     NamedValueRecord,
     StringValueRecord,
-    ValueRecord,
     RecordDelimiterId,
     ValueDelimiterId,
 
