@@ -97,6 +97,7 @@ interface BooleanInferenceResult {
     dataTypeId: 'boolean';
     dataSubtypeId: undefined;
     inputValue: boolean | string | undefined;
+    inputValueWasQuoted: boolean;
     inferredValue: boolean;
 }
 type NumericInferenceResult = BigIntInferenceResult | NumberInferenceResult;
@@ -105,6 +106,7 @@ interface BigIntInferenceResult {
     dataSubtypeId: 'bigint';
     format: string;
     inputValue: bigint | string | undefined;
+    inputValueWasQuoted: boolean;
     inferredValue: bigint;
     currencySymbolId: string | undefined;
     decimalPlaces: number;
@@ -116,6 +118,7 @@ interface NumberInferenceResult {
     dataSubtypeId: 'integer' | 'decimal';
     format: string;
     inputValue: number | string | undefined;
+    inputValueWasQuoted: boolean;
     inferredValue: number;
     currencySymbolId: string | undefined;
     decimalPlaces: number;
@@ -130,6 +133,7 @@ interface StringInferenceResult {
     dataSubtypeId: StringSubtypeId;
     format: undefined;
     inputValue: string;
+    inputValueWasQuoted: boolean;
     inferredValue: string;
 }
 interface TemporalInferenceResult {
@@ -137,12 +141,14 @@ interface TemporalInferenceResult {
     dataSubtypeId: TemporalSubtypeId;
     format: string;
     inputValue: string;
+    inputValueWasQuoted: boolean;
     inferredValue: Date;
 }
 interface UnknownInferenceResult {
     dataTypeId: 'unknown';
     dataSubtypeId: undefined;
     inputValue: string | null | undefined;
+    inputValueWasQuoted: boolean;
     inferredValue: null;
 }
 interface TypeParsedRecordsResult {
