@@ -73,9 +73,6 @@ interface ContentAuditConfig {
 interface RelationshipsAuditConfig {
     placeholder?: string;
 }
-type ObjectRecord = (NamedValueRecord | StringValueRecord)[];
-type NamedValueRecord = Record<string, bigint | boolean | number | string | null>;
-type StringValueRecord = (string | null)[];
 type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 type DataSubtypeId = NumericSubtypeId | StringSubtypeId | TemporalSubtypeId;
 type NumericSubtypeId = 'bigint' | 'integer' | 'decimal';
@@ -165,7 +162,7 @@ DataTypeId, // Data type.
 DataSubtypeId, NumericSubtypeId, // Numeric subtype and characteristics.
 NumericSignId, NumericUnitsId, StringSubtypeId, // String subtype.
 TemporalSubtypeId, // Temporal subtype.
-ObjectRecord, NamedValueRecord, StringValueRecord, RecordDelimiterId, ValueDelimiterId, ParsingRecord, ParsingResult, InferenceRecord, InferenceResult, BooleanInferenceResult, // Boolean.
+RecordDelimiterId, ValueDelimiterId, ParsingRecord, ParsingResult, InferenceRecord, InferenceResult, BooleanInferenceResult, // Boolean.
 NumericInferenceResult, // Numeric.
 BigIntInferenceResult, NumberInferenceResult, StringInferenceResult, // String.
 TemporalInferenceResult, // Temporal.

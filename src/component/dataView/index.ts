@@ -111,11 +111,11 @@ interface RelationshipsAuditConfig {
 //#region Record and Value...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-type ObjectRecord = (NamedValueRecord | StringValueRecord)[];
+// type ObjectRecord = (NamedValueRecord | StringValueRecord)[];
 
-type NamedValueRecord = Record<string, bigint | boolean | number | string | null>;
+// type NamedValueRecord = Record<string, bigint | boolean | number | string | null>;
 
-type StringValueRecord = (string | null)[];
+// type StringValueRecord = (string | null)[];
 
 type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 
@@ -383,9 +383,9 @@ export type {
     TemporalSubtypeId, // Temporal subtype.
 
     // Input records and delimiters.
-    ObjectRecord,
-    NamedValueRecord,
-    StringValueRecord,
+    // ObjectRecord,
+    // NamedValueRecord,
+    // StringValueRecord,
     RecordDelimiterId,
     ValueDelimiterId,
 
