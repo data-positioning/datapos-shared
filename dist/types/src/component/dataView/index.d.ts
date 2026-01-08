@@ -148,7 +148,7 @@ interface UnknownInferenceResult {
     inputValue: string | null | undefined;
     inferredValue: null;
 }
-interface TypeResult {
+interface TypeParsedRecordsResult {
     columnConfigs: ObjectColumnConfig[];
     typedRecords: InferenceRecord[];
 }
@@ -170,4 +170,4 @@ NumericInferenceResult, // Numeric.
 BigIntInferenceResult, NumberInferenceResult, StringInferenceResult, // String.
 TemporalInferenceResult, // Temporal.
 UnknownInferenceResult, // Unknown.
-TypeResult };
+TypeParsedRecordsResult };

@@ -219,7 +219,7 @@ interface UnknownInferenceResult {
     inferredValue: null;
 }
 
-interface TypeResult {
+interface TypeParsedRecordsResult {
     columnConfigs: ObjectColumnConfig[];
     typedRecords: InferenceRecord[];
 }
@@ -403,5 +403,5 @@ export type {
     StringInferenceResult, // String.
     TemporalInferenceResult, // Temporal.
     UnknownInferenceResult, // Unknown.
-    TypeResult
+    TypeParsedRecordsResult
 };
