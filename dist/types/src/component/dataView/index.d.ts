@@ -39,7 +39,7 @@ interface PreviewConfig {
     hasHeaders: boolean | undefined;
     inferenceRecords: InferenceRecord[] | undefined;
     linesToSkipAtStart?: number | undefined;
-    parsedRecords: StringValueRecord[] | undefined;
+    parsedRecords: ParsingRecord[] | undefined;
     quoteEscapeChar?: string | undefined;
     quoteMarkId?: string | undefined;
     quoteMarkOtherCharSeq?: string | undefined;
