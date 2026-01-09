@@ -66,6 +66,7 @@ interface ConnectionDescriptionConfig {
 interface ObjectColumnConfig {
     dataTypeId: DataTypeId;
     dataSubtypeId: DataSubtypeId | undefined;
+    headerInferenceCounts: Record<string, number>;
     inferenceCounts: Record<string, number>;
     invalidValueCount?: number;
     invalidValues?: string[];
