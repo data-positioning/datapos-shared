@@ -5,6 +5,7 @@
 // Framework dependencies.
 import type { ComponentConfig } from '@/component';
 import type { ConnectorConfig } from '@/component/connector';
+import type { LocalisedString } from '@/locale';
 import type { DataSubtypeId, DataTypeId } from '@/component/dataView';
 
 /**
@@ -57,7 +58,7 @@ interface ConnectionDescriptionConfig {
  */
 interface ConnectionNodeConfig {
     childCount: number | undefined;
-    childNodes: ConnectionNodeConfig[] | undefined;
+    childNodes: ConnectionNodeConfig[];
     // columnsConfigs?: ObjectColumnConfig[];
     extension: string | undefined;
     folderPath: string;
@@ -99,22 +100,22 @@ interface ObjectColumnConfig {
     dataSubtypeId: DataSubtypeId | undefined;
     inferenceCounts: Record<string, number>;
     invalidValueCount: number | undefined;
-    invalidValues: string[] | undefined;
+    invalidValues: Record<string, string>;
     isIgnored: boolean | undefined;
     isRequired: boolean | undefined;
     isUnique: boolean | undefined;
-    label: Record<string, string>;
-    leadingInferenceCounts: Record<string, number> | undefined;
+    label: Partial<LocalisedString>;
+    leadingInferenceCounts: Record<string, number>;
     maxDecimals: number | undefined;
     maxSize: number | undefined;
     maxValue: string | undefined;
     minDecimals: number | undefined;
     minSize: number | undefined;
     minValue: string | undefined;
-    formats: Record<string, string> | undefined;
+    formats: Record<string, string>;
     storageTypeId: StorageTypeId | undefined;
     validValueCount: number | undefined;
-    validValues: Record<string, string> | undefined;
+    validValues: Record<string, string>;
     voidValueCount: number | undefined;
 }
 

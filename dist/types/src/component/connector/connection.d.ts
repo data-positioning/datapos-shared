@@ -1,5 +1,6 @@
 import { ComponentConfig } from '..';
 import { ConnectorConfig } from '.';
+import { LocalisedString } from '../../locale';
 import { DataSubtypeId, DataTypeId } from '../dataView';
 /**
  * Connection configuration.
@@ -38,7 +39,7 @@ interface ConnectionDescriptionConfig {
  */
 interface ConnectionNodeConfig {
     childCount: number | undefined;
-    childNodes: ConnectionNodeConfig[] | undefined;
+    childNodes: ConnectionNodeConfig[];
     extension: string | undefined;
     folderPath: string;
     handle: DPAFileSystemFileHandle | undefined;
@@ -69,22 +70,22 @@ interface ObjectColumnConfig {
     dataSubtypeId: DataSubtypeId | undefined;
     inferenceCounts: Record<string, number>;
     invalidValueCount: number | undefined;
-    invalidValues: string[] | undefined;
+    invalidValues: Record<string, string>;
     isIgnored: boolean | undefined;
     isRequired: boolean | undefined;
     isUnique: boolean | undefined;
-    label: Record<string, string>;
-    leadingInferenceCounts: Record<string, number> | undefined;
+    label: Partial<LocalisedString>;
+    leadingInferenceCounts: Record<string, number>;
     maxDecimals: number | undefined;
     maxSize: number | undefined;
     maxValue: string | undefined;
     minDecimals: number | undefined;
     minSize: number | undefined;
     minValue: string | undefined;
-    formats: Record<string, string> | undefined;
+    formats: Record<string, string>;
     storageTypeId: StorageTypeId | undefined;
     validValueCount: number | undefined;
-    validValues: Record<string, string> | undefined;
+    validValues: Record<string, string>;
     voidValueCount: number | undefined;
 }
 type StorageTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'dateTimeOffset' | 'decimal' | 'double' | 'int8' | 'int16' | 'int32' | 'int64' | 'object' | 'single' | 'string' | 'time' | 'unknown';
