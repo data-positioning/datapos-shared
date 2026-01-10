@@ -29,7 +29,7 @@ interface PreviewConfig {
     asAt: number;
     commentMarkId?: string | undefined;
     commentMarkOtherCharSeq?: string | undefined;
-    columnConfigs: ObjectColumnConfig[] | undefined;
+    columnConfigs: ObjectColumnConfig[];
     dataFormatId: DataFormatId;
     duration: number;
     encodingConfidenceLevel: number | undefined;
@@ -37,14 +37,14 @@ interface PreviewConfig {
     errorMessage?: string | undefined;
     fileType: FileTypeResult | undefined;
     hasHeaders: boolean | undefined;
-    inferenceRecords: InferenceRecord[] | undefined;
+    inferenceRecords: InferenceRecord[];
     linesToSkipAtStart?: number | undefined;
-    parsedRecords: ParsingRecord[] | undefined;
+    parsedRecords: ParsingRecord[];
     quoteEscapeChar?: string | undefined;
     quoteMarkId?: string | undefined;
     quoteMarkOtherCharSeq?: string | undefined;
     recordDelimiterId: RecordDelimiterId | undefined;
-    recordDelimiterOtherCharSeq?: RecordDelimiterId | undefined;
+    recordDelimiterOtherCharSeq?: string | undefined;
     size: number | undefined;
     skipEmptyLines?: boolean | undefined;
     skipLinesWithEmptyValues?: boolean | undefined;
@@ -52,8 +52,12 @@ interface PreviewConfig {
     text: string | undefined;
     valueDelimiterId: ValueDelimiterId | undefined;
     valueDelimiterOtherCharSeq?: string | undefined;
-    valueTrimMethodId?: string | undefined;
+    valueTrimMethodId?: ValueTrimMethodId | undefined;
 }
+/**
+ *
+ */
+type ValueTrimMethodId = 'both' | 'left' | 'right' | 'none';
 /**
  * Data view content audit configuration.
  */
@@ -71,7 +75,34 @@ interface ContentAuditConfig {
  * Data view relationships audit configuration.
  */
 interface RelationshipsAuditConfig {
-    placeholder?: string;
+    placeholder: string;
+}
+/**
+ *
+ */
+type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml' | 'unknown';
+/**
+ *
+ */
+type RecordDelimiterId = '\n' | '\r' | '\r\n';
+/**
+ *
+ */
+type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
+/**
+ *
+ */
+declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
+/**
+ *
+ */
+type ParsingRecord = ParsingResult[];
+/**
+ *
+ */
+interface ParsingResult {
+    value: string | null;
+    valueWasQuoted: boolean;
 }
 type DataTypeId = 'boolean' | 'numeric' | 'string' | 'temporal' | 'unknown';
 type DataSubtypeId = NumericSubtypeId | StringSubtypeId | TemporalSubtypeId;
@@ -80,11 +111,6 @@ type NumericSignId = 'negative' | 'zero' | 'positive';
 type NumericUnitsId = 'currency' | 'percentage' | 'plain';
 type StringSubtypeId = 'email' | 'ipv4' | 'ipv6' | 'ulid' | 'uuid' | 'url' | 'plain';
 type TemporalSubtypeId = 'date' | 'dateTime' | 'time';
-type ParsingRecord = ParsingResult[];
-interface ParsingResult {
-    value: string | null;
-    valueWasQuoted: boolean;
-}
 /**
  *
  */
@@ -107,7 +133,7 @@ type InferenceResult = BooleanInferenceResult | NumericInferenceResult | StringI
 interface BooleanInferenceResult {
     dataTypeId: 'boolean';
     dataSubtypeId: undefined;
-    inputValue: boolean | string | undefined;
+    inputValue: string;
     inputValueWasQuoted: boolean;
     inferredValue: boolean;
 }
@@ -177,20 +203,12 @@ interface UnknownInferenceResult {
     inputValueWasQuoted: boolean;
     inferredValue: null;
 }
-type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml' | 'unknown';
-type RecordDelimiterId = '\n' | '\r' | '\r\n';
-type ValueDelimiterId = '' | ':' | ',' | '!' | '0x1E' | ';' | ' ' | '\t' | '_' | '0x1F' | '|';
-/**
- *
- */
-declare const ORDERED_VALUE_DELIMITER_IDS: ValueDelimiterId[];
 export { ORDERED_VALUE_DELIMITER_IDS };
-export type { DataViewInterface, DataViewConfig, DataViewLocalisedConfig, PreviewConfig, ContentAuditConfig, RelationshipsAuditConfig, DataFormatId, // Data format.
-DataTypeId, // Data type.
+export type { DataViewInterface, DataViewConfig, DataViewLocalisedConfig, PreviewConfig, ContentAuditConfig, RelationshipsAuditConfig, DataFormatId, RecordDelimiterId, ValueDelimiterId, ParsingRecord, ParsingResult, DataTypeId, // Data type.
 DataSubtypeId, NumericSubtypeId, // Numeric subtype and characteristics.
 NumericSignId, NumericUnitsId, StringSubtypeId, // String subtype.
 TemporalSubtypeId, // Temporal subtype.
-RecordDelimiterId, ValueDelimiterId, ParsingRecord, ParsingResult, InferenceSummary, InferenceRecord, InferenceResult, BooleanInferenceResult, // Boolean.
+InferenceSummary, InferenceRecord, InferenceResult, BooleanInferenceResult, // Boolean.
 NumericInferenceResult, // Numeric.
 BigIntInferenceResult, NumberInferenceResult, StringInferenceResult, // String.
 TemporalInferenceResult, // Temporal.
