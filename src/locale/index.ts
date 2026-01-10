@@ -8,7 +8,7 @@ const DEFAULT_LOCALE_CODE: LocaleCode = 'en-gb';
 /**
  * Locale codes.
  */
-type LocaleCode = 'en-au' | 'en-gb' | 'en-us' | 'es-es';
+type LocaleCode = 'en' | 'en-au' | 'en-gb' | 'en-us' | 'es-es';
 
 /**
  * Localised string.
