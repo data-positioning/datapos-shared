@@ -7,11 +7,11 @@ import type { InferOutput } from 'valibot';
 
 // Framework dependencies.
 import type { Component } from '@/component';
-import { DEFAULT_LOCALE_CODE } from '@/locale';
 import type { EngineUtilities } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionDescriptionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '@/component/connector/connectorConfig.schema';
+import { createLabelMap, DEFAULT_LOCALE_CODE, resolveLabel } from '@/locale';
 import type { ParsingRecord, PreviewConfig, ValueDelimiterId } from '@/component/dataView';
 
 /**
@@ -279,9 +279,9 @@ const CONNECTOR_CATEGORY_CONFIGS: ConnectorCategoryConfig[] = [
 const constructConnectorCategoryConfig = (id: string, localeId = DEFAULT_LOCALE_CODE): ConnectorCategoryLocalisedConfig => {
     const connectorCategory = CONNECTOR_CATEGORY_CONFIGS.find((connectorCategory) => connectorCategory.id === id);
     if (connectorCategory) {
-        // eslint-disable-next-line security/detect-object-injection
-        const label = connectorCategory.label[localeId] ?? connectorCategory.label[DEFAULT_LOCALE_CODE] ?? connectorCategory.id;
-        return { id: connectorCategory.id, label };
+        const labelMap = createLabelMap(connectorCategory.label as Record<string, string>);
+        const localizedLabel = resolveLabel(labelMap, localeId);
+        return { id: connectorCategory.id, label: localizedLabel ?? connectorCategory.id };
     }
     return { id, label: id };
 };

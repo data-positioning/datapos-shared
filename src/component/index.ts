@@ -38,7 +38,6 @@ const componentStatuses: { id: string; color: ComponentStatusColorId; labels: Pa
 function getComponentStatus(id: string, localeId: LocaleCode = DEFAULT_LOCALE_CODE): ComponentStatus {
     const componentStatus = componentStatuses.find((componentStatus) => componentStatus.id === id);
     if (componentStatus) {
-        // eslint-disable-next-line security/detect-object-injection
         const label = componentStatus.labels[localeId] ?? componentStatus.labels[DEFAULT_LOCALE_CODE] ?? componentStatus.id;
         return { id: componentStatus.id, color: componentStatus.color, label };
     }

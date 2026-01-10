@@ -41,7 +41,7 @@ interface EngineWorkerInterface {
         callback?: (callbackData: EngineCallbackData) => void
     ) => Promise<unknown>;
     processContextRequest: (id: string, contextConfig: ContextConfig, options: ContextOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
-    processTestRequest: (settings: TestSettings) => Promise<Record<string, unknown>>; // TODO: Remove!
+    // processTestRequest: (settings: TestSettings) => Promise<Record<string, unknown>>; // TODO: Remove!
 }
 
 /** Engine worker initialise options. */
@@ -94,14 +94,14 @@ interface AuditObjectContentResult {
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-// TODO: Remove!
-interface TestSettings {
-    action?: string;
-    delimiter?: string;
-    forceFallback?: boolean;
-    hasHeaders?: boolean;
-    readable: ReadableStream<Uint8Array>;
-}
+// // TODO: Remove!
+// interface TestSettings {
+//     action?: string;
+//     delimiter?: string;
+//     forceFallback?: boolean;
+//     hasHeaders?: boolean;
+//     readable: ReadableStream<Uint8Array>;
+// }
 
 // Exports.
 export type {
@@ -112,6 +112,5 @@ export type {
     EngineRuntimeInterface,
     EngineUtilities,
     EngineWorkerInitialiseOptions,
-    EngineWorkerInterface,
-    TestSettings
+    EngineWorkerInterface
 };
