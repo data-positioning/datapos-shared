@@ -150,10 +150,22 @@ interface ParsingResult {
 //#region Inference, cast, type...
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
+/**
+ *
+ */
+interface InferenceSummary {
+    columnConfigs: ObjectColumnConfig[];
+    hasHeaderRow: boolean;
+    typedRecords: InferenceRecord[];
+}
+
+/**
+ *
+ */
 type InferenceRecord = InferenceResult[];
 
 /**
- * Inferred value.
+ *
  */
 type InferenceResult = BooleanInferenceResult | NumericInferenceResult | StringInferenceResult | TemporalInferenceResult | UnknownInferenceResult;
 
@@ -168,13 +180,19 @@ interface BooleanInferenceResult {
     inferredValue: boolean;
 }
 
+/**
+ *
+ */
 type NumericInferenceResult = BigIntInferenceResult | NumberInferenceResult;
 
+/**
+ *
+ */
 interface BigIntInferenceResult {
     dataTypeId: 'numeric';
     dataSubtypeId: 'bigint';
     format: string;
-    inputValue: bigint | string | undefined;
+    inputValue: string;
     inputValueWasQuoted: boolean;
     inferredValue: bigint;
     currencySymbolId: string | undefined;
@@ -183,11 +201,14 @@ interface BigIntInferenceResult {
     unitsId: NumericUnitsId;
 }
 
+/**
+ *
+ */
 interface NumberInferenceResult {
     dataTypeId: 'numeric';
     dataSubtypeId: 'integer' | 'decimal';
     format: string;
-    inputValue: number | string | undefined;
+    inputValue: string;
     inputValueWasQuoted: boolean;
     inferredValue: number;
     currencySymbolId: string | undefined;
@@ -202,12 +223,15 @@ interface NumberInferenceResult {
 interface StringInferenceResult {
     dataTypeId: 'string';
     dataSubtypeId: StringSubtypeId;
-    format: undefined;
+    format: string;
     inputValue: string;
     inputValueWasQuoted: boolean;
     inferredValue: string;
 }
 
+/**
+ *
+ */
 interface TemporalInferenceResult {
     dataTypeId: 'temporal';
     dataSubtypeId: TemporalSubtypeId;
@@ -217,18 +241,15 @@ interface TemporalInferenceResult {
     inferredValue: Date;
 }
 
+/**
+ *
+ */
 interface UnknownInferenceResult {
     dataTypeId: 'unknown';
     dataSubtypeId: undefined;
-    inputValue: string | null | undefined;
+    inputValue: string | null;
     inputValueWasQuoted: boolean;
     inferredValue: null;
-}
-
-interface TypeParsedRecordsResult {
-    columnConfigs: ObjectColumnConfig[];
-    hasHeaderRow: boolean;
-    typedRecords: InferenceRecord[];
 }
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -401,6 +422,7 @@ export type {
     ParsingResult,
 
     // Inference record and results.
+    InferenceSummary,
     InferenceRecord,
     InferenceResult,
     BooleanInferenceResult, // Boolean.
@@ -409,6 +431,5 @@ export type {
     NumberInferenceResult,
     StringInferenceResult, // String.
     TemporalInferenceResult, // Temporal.
-    UnknownInferenceResult, // Unknown.
-    TypeParsedRecordsResult
+    UnknownInferenceResult // Unknown.
 };

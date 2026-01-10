@@ -85,9 +85,20 @@ interface ParsingResult {
     value: string | null;
     valueWasQuoted: boolean;
 }
+/**
+ *
+ */
+interface InferenceSummary {
+    columnConfigs: ObjectColumnConfig[];
+    hasHeaderRow: boolean;
+    typedRecords: InferenceRecord[];
+}
+/**
+ *
+ */
 type InferenceRecord = InferenceResult[];
 /**
- * Inferred value.
+ *
  */
 type InferenceResult = BooleanInferenceResult | NumericInferenceResult | StringInferenceResult | TemporalInferenceResult | UnknownInferenceResult;
 /**
@@ -100,12 +111,18 @@ interface BooleanInferenceResult {
     inputValueWasQuoted: boolean;
     inferredValue: boolean;
 }
+/**
+ *
+ */
 type NumericInferenceResult = BigIntInferenceResult | NumberInferenceResult;
+/**
+ *
+ */
 interface BigIntInferenceResult {
     dataTypeId: 'numeric';
     dataSubtypeId: 'bigint';
     format: string;
-    inputValue: bigint | string | undefined;
+    inputValue: string;
     inputValueWasQuoted: boolean;
     inferredValue: bigint;
     currencySymbolId: string | undefined;
@@ -113,11 +130,14 @@ interface BigIntInferenceResult {
     signId: NumericSignId;
     unitsId: NumericUnitsId;
 }
+/**
+ *
+ */
 interface NumberInferenceResult {
     dataTypeId: 'numeric';
     dataSubtypeId: 'integer' | 'decimal';
     format: string;
-    inputValue: number | string | undefined;
+    inputValue: string;
     inputValueWasQuoted: boolean;
     inferredValue: number;
     currencySymbolId: string | undefined;
@@ -131,11 +151,14 @@ interface NumberInferenceResult {
 interface StringInferenceResult {
     dataTypeId: 'string';
     dataSubtypeId: StringSubtypeId;
-    format: undefined;
+    format: string;
     inputValue: string;
     inputValueWasQuoted: boolean;
     inferredValue: string;
 }
+/**
+ *
+ */
 interface TemporalInferenceResult {
     dataTypeId: 'temporal';
     dataSubtypeId: TemporalSubtypeId;
@@ -144,17 +167,15 @@ interface TemporalInferenceResult {
     inputValueWasQuoted: boolean;
     inferredValue: Date;
 }
+/**
+ *
+ */
 interface UnknownInferenceResult {
     dataTypeId: 'unknown';
     dataSubtypeId: undefined;
-    inputValue: string | null | undefined;
+    inputValue: string | null;
     inputValueWasQuoted: boolean;
     inferredValue: null;
-}
-interface TypeParsedRecordsResult {
-    columnConfigs: ObjectColumnConfig[];
-    hasHeaderRow: boolean;
-    typedRecords: InferenceRecord[];
 }
 type DataFormatId = 'dpe' | 'dtv' | 'json' | 'spss' | 'xlsx' | 'xml' | 'unknown';
 type RecordDelimiterId = '\n' | '\r' | '\r\n';
@@ -169,9 +190,8 @@ DataTypeId, // Data type.
 DataSubtypeId, NumericSubtypeId, // Numeric subtype and characteristics.
 NumericSignId, NumericUnitsId, StringSubtypeId, // String subtype.
 TemporalSubtypeId, // Temporal subtype.
-RecordDelimiterId, ValueDelimiterId, ParsingRecord, ParsingResult, InferenceRecord, InferenceResult, BooleanInferenceResult, // Boolean.
+RecordDelimiterId, ValueDelimiterId, ParsingRecord, ParsingResult, InferenceSummary, InferenceRecord, InferenceResult, BooleanInferenceResult, // Boolean.
 NumericInferenceResult, // Numeric.
 BigIntInferenceResult, NumberInferenceResult, StringInferenceResult, // String.
 TemporalInferenceResult, // Temporal.
-UnknownInferenceResult, // Unknown.
-TypeParsedRecordsResult };
+UnknownInferenceResult };
