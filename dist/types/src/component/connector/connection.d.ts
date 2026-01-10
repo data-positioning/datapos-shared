@@ -24,33 +24,6 @@ interface ConnectionAuthorisationConfig {
     uid: string;
 }
 /**
- * Connection node configuration.
- */
-interface ConnectionNodeConfig {
-    childCount?: number;
-    columnsConfigs?: ObjectColumnConfig[];
-    extension: string | undefined;
-    folderPath: string;
-    handle?: DPAFileSystemFileHandle;
-    id: string;
-    nodeDisplayHeight?: number;
-    nodes?: ConnectionNodeConfig[];
-    label: string;
-    lastModifiedAt?: number;
-    mimeType?: string;
-    name: string;
-    size?: number;
-    typeId: NodeTypeId;
-}
-interface DPAFileSystemFileHandle {
-    readonly kind: 'file';
-    getFile(): Promise<File>;
-}
-/**
- * Connection node type identifier.
- */
-type NodeTypeId = 'folder' | 'object';
-/**
  * Connection description configuration.
  */
 interface ConnectionDescriptionConfig {
@@ -61,30 +34,58 @@ interface ConnectionDescriptionConfig {
     }[];
 }
 /**
+ * Connection node configuration.
+ */
+interface ConnectionNodeConfig {
+    childCount: number | undefined;
+    childNodes: ConnectionNodeConfig[] | undefined;
+    extension: string | undefined;
+    folderPath: string;
+    handle: DPAFileSystemFileHandle | undefined;
+    id: string;
+    label: string;
+    lastModifiedAt: number | undefined;
+    mimeType: string | undefined;
+    name: string;
+    size: number | undefined;
+    typeId: NodeTypeId;
+}
+/**
+ *
+ */
+interface DPAFileSystemFileHandle {
+    readonly kind: 'file';
+    getFile(): Promise<File>;
+}
+/**
+ * Connection node type identifier.
+ */
+type NodeTypeId = 'folder' | 'object';
+/**
  * Object column configuration.
  */
 interface ObjectColumnConfig {
     dataTypeId: DataTypeId;
     dataSubtypeId: DataSubtypeId | undefined;
-    headerInferenceCounts: Record<string, number>;
     inferenceCounts: Record<string, number>;
-    invalidValueCount?: number;
-    invalidValues?: string[];
-    isIgnored?: boolean;
-    isRequired?: boolean;
-    isUnique?: boolean;
+    invalidValueCount: number | undefined;
+    invalidValues: string[] | undefined;
+    isIgnored: boolean | undefined;
+    isRequired: boolean | undefined;
+    isUnique: boolean | undefined;
     label: Record<string, string>;
-    maxDecimals?: number;
-    maxSize?: number;
-    maxValue?: string;
-    minDecimals?: number;
-    minSize?: number;
-    minValue?: string;
-    patterns?: Record<string, string>;
-    storageTypeId?: StorageTypeId;
-    validValueCount?: number;
-    validValues?: Record<string, string>;
-    voidValueCount?: number;
+    leadingInferenceCounts: Record<string, number> | undefined;
+    maxDecimals: number | undefined;
+    maxSize: number | undefined;
+    maxValue: string | undefined;
+    minDecimals: number | undefined;
+    minSize: number | undefined;
+    minValue: string | undefined;
+    formats: Record<string, string> | undefined;
+    storageTypeId: StorageTypeId | undefined;
+    validValueCount: number | undefined;
+    validValues: Record<string, string> | undefined;
+    voidValueCount: number | undefined;
 }
 type StorageTypeId = 'binary' | 'boolean' | 'byte' | 'date' | 'dateTime' | 'dateTimeOffset' | 'decimal' | 'double' | 'int8' | 'int16' | 'int32' | 'int64' | 'object' | 'single' | 'string' | 'time' | 'unknown';
 export type { ConnectionConfig, ConnectionDescriptionConfig, ConnectionNodeConfig, ObjectColumnConfig };
