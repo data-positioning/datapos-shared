@@ -3,7 +3,7 @@ import { EncodingTypeConfig } from '../encoding';
 import { ModuleConfig } from '../component/module';
 import { ToolConfig } from '../component/tool';
 import { ConnectorOperationOptions, ObjectColumnConfig } from '../component/connector';
-import { ContentAuditConfig, InferenceRecord, ParsingRecord, TypeParsedRecordsResult, ValueDelimiterId } from '../component/dataView';
+import { ContentAuditConfig, InferenceRecord, InferenceSummary, ParsingRecord, ValueDelimiterId } from '../component/dataView';
 import { ContextConfig, ContextOperationOptions } from '../component/context';
 /**
  * Engine runtime interface.
@@ -44,7 +44,7 @@ interface EngineCallbackData {
  */
 interface EngineUtilities {
     inferValues: (parsingRecord: ParsingRecord, columnConfigs: ObjectColumnConfig[]) => InferenceRecord;
-    typeParsedRecords: (parsedRecords: ParsingRecord[]) => TypeParsedRecordsResult;
+    inferDataTypes: (parsedRecords: ParsingRecord[]) => InferenceSummary;
 }
 /**
  * Audit object content options and result.

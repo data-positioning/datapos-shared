@@ -8,7 +8,7 @@ import type { EncodingTypeConfig } from '@/encoding';
 import type { ModuleConfig } from '@/component/module';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectorOperationOptions, ObjectColumnConfig } from '@/component/connector';
-import type { ContentAuditConfig, InferenceRecord, ParsingRecord, TypeParsedRecordsResult, ValueDelimiterId } from '@/component/dataView';
+import type { ContentAuditConfig, InferenceRecord, InferenceSummary, ParsingRecord, ValueDelimiterId } from '@/component/dataView';
 import type { ContextConfig, ContextOperationOptions } from '@/component/context';
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
@@ -76,7 +76,7 @@ interface EngineCallbackData {
  */
 interface EngineUtilities {
     inferValues: (parsingRecord: ParsingRecord, columnConfigs: ObjectColumnConfig[]) => InferenceRecord;
-    typeParsedRecords: (parsedRecords: ParsingRecord[]) => TypeParsedRecordsResult;
+    inferDataTypes: (parsedRecords: ParsingRecord[]) => InferenceSummary;
 }
 
 /**
