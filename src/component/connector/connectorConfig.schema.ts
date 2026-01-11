@@ -34,6 +34,7 @@ const connectorCategoryIdSchema = literalUnion(['application', 'curatedDataset',
 /** Operation names a connector may support. */
 const connectorOperationNameSchema = literalUnion([
     'abortOperation',
+    'auditContent',
     'authenticateConnection',
     'createObject',
     'describeConnection',
