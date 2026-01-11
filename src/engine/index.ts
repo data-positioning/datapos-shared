@@ -75,6 +75,7 @@ interface EngineCallbackData {
  * Engine utilities.
  */
 interface EngineUtilities {
+    hasReadableStreamTransferSupport(): boolean;
     inferValues: (parsingRecord: ParsingRecord, columnConfigs: ObjectColumnConfig[], leadingRecord: boolean) => InferenceRecord;
     inferDataTypes: (parsedRecords: ParsingRecord[]) => InferenceSummary;
 }
