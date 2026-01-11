@@ -42,7 +42,7 @@ interface EngineCallbackData {
  * Engine utilities.
  */
 interface EngineUtilities {
-    inferValues: (parsingRecord: ParsingRecord, columnConfigs: ObjectColumnConfig[]) => InferenceRecord;
+    inferValues: (parsingRecord: ParsingRecord, columnConfigs: ObjectColumnConfig[], leadingRecord: boolean) => InferenceRecord;
     inferDataTypes: (parsedRecords: ParsingRecord[]) => InferenceSummary;
 }
 /**
