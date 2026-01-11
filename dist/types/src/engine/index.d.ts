@@ -19,7 +19,6 @@ interface EngineWorkerInterface {
     initialise: (options: EngineWorkerInitialiseOptions) => Promise<void>;
     processConnectorRequest: (id: string, connectionConfig: ConnectionConfig, options: ConnectorOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
     processContextRequest: (id: string, contextConfig: ContextConfig, options: ContextOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
-    processTestRequest: (settings: TestSettings) => Promise<Record<string, unknown>>;
 }
 /** Engine worker initialise options. */
 interface EngineWorkerInitialiseOptions {
@@ -58,11 +57,4 @@ interface AuditObjectContentOptions extends ConnectorOperationOptions {
 interface AuditObjectContentResult {
     contentAuditConfig: ContentAuditConfig;
 }
-interface TestSettings {
-    action?: string;
-    delimiter?: string;
-    forceFallback?: boolean;
-    hasHeaders?: boolean;
-    readable: ReadableStream<Uint8Array>;
-}
-export type { AuditObjectContentOptions, AuditObjectContentResult, EngineCallbackData, EngineConfig, EngineRuntimeInterface, EngineUtilities, EngineWorkerInitialiseOptions, EngineWorkerInterface, TestSettings };
+export type { AuditObjectContentOptions, AuditObjectContentResult, EngineCallbackData, EngineConfig, EngineRuntimeInterface, EngineUtilities, EngineWorkerInitialiseOptions, EngineWorkerInterface };
