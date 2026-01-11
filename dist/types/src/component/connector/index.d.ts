@@ -17,6 +17,13 @@ interface ConnectorInterface extends Component {
      */
     abortOperation?(): void;
     /**
+     *
+     */
+    auditContent?(path: string, supportsTransferableStreams: boolean, onProgress?: (rowCount: number) => void): Promise<{
+        processedRowCount: number;
+        durationMs?: number;
+    }>;
+    /**
      * Authenticate a specified connection.
      */
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
