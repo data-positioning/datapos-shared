@@ -34,14 +34,12 @@ interface EngineRuntimeInterface {
  */
 interface EngineWorkerInterface {
     initialise: (options: EngineWorkerInitialiseOptions) => Promise<void>;
-    processConnectorRequest: (
+    processRequest: (
         id: string,
-        connectionConfig: ConnectionConfig,
-        options: ConnectorOperationOptions,
+        config: ConnectionConfig | ContextConfig | undefined,
+        options: ConnectorOperationOptions | ContextOperationOptions,
         callback?: (callbackData: EngineCallbackData) => void
     ) => Promise<unknown>;
-    processContextRequest: (id: string, contextConfig: ContextConfig, options: ContextOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
-    // processTestRequest: (settings: TestSettings) => Promise<Record<string, unknown>>; // TODO: Remove!
 }
 
 /** Engine worker initialise options. */

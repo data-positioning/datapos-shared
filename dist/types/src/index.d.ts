@@ -16,7 +16,7 @@ ContextModelEntityPrimaryMeasureLocalisedConfig } from './component/context';
 /** Interfaces/Types - Context model secondary measure. */
 export type { ContextModelSecondaryMeasureGroupConfig, ContextModelSecondaryMeasureGroupLocalisedConfig, ContextModelSecondaryMeasureConfig, ContextModelSecondaryMeasureLocalisedConfig } from './component/context';
 /** Interfaces/Types - Context Operator Settings */
-export interface ContextOperationSettings {
+export interface ContextOperationOptions {
     accountId?: string;
     appCheckToken?: string;
     sessionAccessToken?: string;
