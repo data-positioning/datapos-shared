@@ -17,7 +17,7 @@ interface EngineRuntimeInterface {
  */
 interface EngineWorkerInterface {
     initialise: (options: EngineWorkerInitialiseOptions) => Promise<void>;
-    processRequest: (id: string, config: ConnectionConfig | ContextConfig | undefined, options: ConnectorOperationOptions | ContextOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
+    processRequest: (id: string, config: ConnectionConfig | ContextConfig, options: ConnectorOperationOptions | ContextOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
 }
 /** Engine worker initialise options. */
 interface EngineWorkerInitialiseOptions {

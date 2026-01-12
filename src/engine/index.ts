@@ -36,7 +36,7 @@ interface EngineWorkerInterface {
     initialise: (options: EngineWorkerInitialiseOptions) => Promise<void>;
     processRequest: (
         id: string,
-        config: ConnectionConfig | ContextConfig | undefined,
+        config: ConnectionConfig | ContextConfig,
         options: ConnectorOperationOptions | ContextOperationOptions,
         callback?: (callbackData: EngineCallbackData) => void
     ) => Promise<unknown>;
