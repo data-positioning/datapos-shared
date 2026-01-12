@@ -79,7 +79,13 @@ declare function normalizeToError(value: unknown): Error;
  * - Messages are normalized to end with punctuation.
  */
 declare function serialiseError(error?: unknown): SerialisedError[];
+/** Unserialises an array of {@link SerialisedError} objects back into an error with a cause chain.
+ * - Reconstructs the appropriate error class based on serialized properties.
+ * - Chains errors from outermost to root cause using the `cause` option.
+ * - Returns `undefined` if the input array is empty.
+ */
+declare function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefined;
 /** Exports. */
 export type { SerialisedError };
 export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
-export { buildFetchError, concatenateSerialisedErrorMessages, ignoreErrors, normalizeToError, serialiseError };
+export { buildFetchError, concatenateSerialisedErrorMessages, ignoreErrors, normalizeToError, serialiseError, unserialiseError };

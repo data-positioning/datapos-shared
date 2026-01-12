@@ -1,124 +1,164 @@
 class i extends Error {
   locator;
   /** Logical source of the error. */
-  constructor(o, t, r) {
-    super(o, r), this.name = new.target.name, this.locator = t;
+  constructor(n, o, e) {
+    super(n, e), this.name = new.target.name, this.locator = o;
   }
 }
 class a extends i {
 }
-class g extends a {
+class d extends a {
 }
-class p extends a {
+class f extends a {
 }
 class c extends a {
   body;
   /** Sanitized HTTP response body. */
-  constructor(o, t, r, n) {
-    super(o, t, n), this.name = new.target.name, this.body = E(r ?? void 0);
+  constructor(n, o, e, t) {
+    super(n, o, t), this.name = new.target.name, this.body = b(e ?? void 0);
   }
 }
-class y extends i {
+class g extends i {
 }
-class m extends a {
+class l extends a {
   componentName;
   /** Vue component name, if available. */
   info;
   /** Vue error info string. */
-  constructor(o, t, r, n, s) {
-    super(o, t, s), this.name = new.target.name, this.info = r, this.componentName = n;
+  constructor(n, o, e, t, s) {
+    super(n, o, s), this.name = new.target.name, this.info = e, this.componentName = t;
   }
 }
-class w extends a {
+class E extends a {
 }
-class h extends a {
+class u extends a {
 }
-async function b(e, o, t) {
-  const r = ` - ${e.statusText}`, n = `${o} Response status '${e.status}${e.statusText ? r : ""}' received.`;
+async function y(r, n, o) {
+  const e = ` - ${r.statusText}`, t = `${n} Response status '${r.status}${r.statusText ? e : ""}' received.`;
   let s;
   try {
-    s = await e.text();
-  } catch (d) {
-    s = `<body unavailable: ${l(d).message}>`;
+    s = await r.text();
+  } catch (m) {
+    s = `<body unavailable: ${w(m).message}>`;
   }
-  return new c(n, t, s);
+  return new c(t, o, s);
 }
-function k(e) {
-  return e.map((o) => o.message).join(" ");
+function h(r) {
+  return r.map((n) => n.message).join(" ");
 }
-function x(e) {
+function R(r) {
   try {
-    e();
+    r();
   } catch {
   }
 }
-function l(e) {
-  if (e instanceof Error) return e;
-  if (typeof e == "string") return new Error(e);
-  if (typeof e == "number" || typeof e == "boolean" || typeof e == "bigint") return new Error(String(e));
-  if (typeof e == "symbol") return new Error(e.description ?? "Unknown error");
-  if (e != null && typeof e == "object")
+function w(r) {
+  if (r instanceof Error) return r;
+  if (typeof r == "string") return new Error(r);
+  if (typeof r == "number" || typeof r == "boolean" || typeof r == "bigint") return new Error(String(r));
+  if (typeof r == "symbol") return new Error(r.description ?? "Unknown error");
+  if (r != null && typeof r == "object")
     try {
-      return new Error(JSON.stringify(e));
+      return new Error(JSON.stringify(r));
     } catch {
       return new Error("Unknown error");
     }
   return new Error("Unknown error");
 }
-function R(e) {
-  const o = /* @__PURE__ */ new Set(), t = [];
-  let r = e;
-  for (; r != null && !o.has(r); ) {
-    o.add(r);
-    let n;
-    if (r instanceof c)
-      n = { componentName: void 0, body: r.body, info: void 0, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
-    else if (r instanceof m)
-      n = {
-        componentName: r.componentName,
+function x(r) {
+  const n = /* @__PURE__ */ new Set(), o = [];
+  let e = r;
+  for (; e != null && !n.has(e); ) {
+    n.add(e);
+    let t;
+    if (e instanceof c)
+      t = { componentName: void 0, body: e.body, info: void 0, locator: e.locator, message: e.message, name: e.name, stack: e.stack }, e = e.cause;
+    else if (e instanceof l)
+      t = {
+        componentName: e.componentName,
         body: void 0,
-        info: r.info,
-        locator: r.locator,
-        message: r.message,
-        name: r.name,
-        stack: r.stack
-      }, r = r.cause;
-    else if (r instanceof i)
-      n = { componentName: void 0, body: void 0, info: void 0, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause;
-    else if (r instanceof Error) {
-      const s = r;
-      n = { componentName: void 0, body: void 0, info: void 0, locator: "", message: s.message, name: s.name, stack: s.stack }, r = s.cause;
+        info: e.info,
+        locator: e.locator,
+        message: e.message,
+        name: e.name,
+        stack: e.stack
+      }, e = e.cause;
+    else if (e instanceof i)
+      t = { componentName: void 0, body: void 0, info: void 0, locator: e.locator, message: e.message, name: e.name, stack: e.stack }, e = e.cause;
+    else if (e instanceof Error) {
+      const s = e;
+      t = { componentName: void 0, body: void 0, info: void 0, locator: "", message: s.message, name: s.name, stack: s.stack }, e = s.cause;
     } else
-      n = { componentName: void 0, body: void 0, info: void 0, locator: "", message: f(r), name: "Error", stack: void 0 }, r = void 0;
-    /(?:\.{3}|[.!?])$/.test(n.message) || (n.message += "."), t.push(n);
+      t = { componentName: void 0, body: void 0, info: void 0, locator: "", message: p(e), name: "Error", stack: void 0 }, e = void 0;
+    /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), o.push(t);
   }
-  return t;
+  return o;
 }
-function f(e) {
-  let o;
+function v(r) {
+  if (r.length === 0) return;
+  let n;
+  for (const o of r.toReversed()) {
+    let e;
+    if (o.body !== void 0)
+      e = new c(o.message, o.locator, o.body, { cause: n });
+    else if (o.info !== void 0)
+      e = new l(o.message, o.locator, o.info, o.componentName, { cause: n });
+    else if (o.locator === "")
+      e = new Error(o.message, { cause: n }), e.name = o.name;
+    else
+      switch (o.name) {
+        case "APIError":
+          e = new d(o.message, o.locator, { cause: n });
+          break;
+        case "EngineError":
+          e = new f(o.message, o.locator, { cause: n });
+          break;
+        case "ApplicationError":
+          e = new a(o.message, o.locator, { cause: n });
+          break;
+        case "OperationalError":
+          e = new g(o.message, o.locator, { cause: n });
+          break;
+        case "WindowHandledRuntimeError":
+          e = new E(o.message, o.locator, { cause: n });
+          break;
+        case "WindowHandledPromiseRejectionError":
+          e = new u(o.message, o.locator, { cause: n });
+          break;
+        default:
+          e = new i(o.message, o.locator, { cause: n });
+          break;
+      }
+    o.stack !== void 0 && (e.stack = o.stack), n = e;
+  }
+  return n;
+}
+function p(r) {
+  let n;
   try {
-    o = JSON.stringify(e);
+    n = JSON.stringify(r);
   } catch {
-    typeof e == "symbol" ? o = e.description ?? "Unknown error" : typeof e == "bigint" ? o = e.toString() : o = "Unknown error";
+    typeof r == "symbol" ? n = r.description ?? "Unknown error" : typeof r == "bigint" ? n = r.toString() : n = "Unknown error";
   }
-  return o === "" && (o = "Unknown error"), o;
+  return n === "" && (n = "Unknown error"), n;
 }
-function E(e) {
-  if (!(e == null || e === ""))
-    return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
+function b(r) {
+  if (!(r == null || r === ""))
+    return r.length > 2048 ? `${r.slice(0, 2048)}... [truncated]` : r;
 }
 export {
-  g as APIError,
+  d as APIError,
   a as ApplicationError,
-  p as EngineError,
+  f as EngineError,
   c as FetchError,
-  y as OperationalError,
-  m as VueHandledError,
-  h as WindowHandledPromiseRejectionError,
-  w as WindowHandledRuntimeError,
-  b as buildFetchError,
-  k as concatenateSerialisedErrorMessages,
-  x as ignoreErrors,
-  l as normalizeToError,
-  R as serialiseError
+  g as OperationalError,
+  l as VueHandledError,
+  u as WindowHandledPromiseRejectionError,
+  E as WindowHandledRuntimeError,
+  y as buildFetchError,
+  h as concatenateSerialisedErrorMessages,
+  R as ignoreErrors,
+  w as normalizeToError,
+  x as serialiseError,
+  v as unserialiseError
 };

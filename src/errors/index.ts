@@ -180,6 +180,70 @@ function serialiseError(error?: unknown): SerialisedError[] {
     return serialisedErrors;
 }
 
+/** Unserialises an array of {@link SerialisedError} objects back into an error with a cause chain.
+ * - Reconstructs the appropriate error class based on serialized properties.
+ * - Chains errors from outermost to root cause using the `cause` option.
+ * - Returns `undefined` if the input array is empty.
+ */
+function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefined {
+    if (serialisedErrors.length === 0) return undefined;
+
+    // Build the error chain from root cause (end) to outermost (start)
+    let cause: Error | undefined = undefined;
+
+    for (const serialised of serialisedErrors.toReversed()) {
+        let error: Error;
+
+        // Reconstruct the appropriate error class based on available properties
+        if (serialised.body !== undefined) {
+            // FetchError
+            error = new FetchError(serialised.message, serialised.locator, serialised.body, { cause });
+        } else if (serialised.info !== undefined) {
+            // VueHandledError
+            error = new VueHandledError(serialised.message, serialised.locator, serialised.info, serialised.componentName, { cause });
+        } else if (serialised.locator === '') {
+            // Generic Error
+            error = new Error(serialised.message, { cause });
+            error.name = serialised.name;
+        } else {
+            // Determine DataPosError subclass by name
+            switch (serialised.name) {
+                case 'APIError':
+                    error = new APIError(serialised.message, serialised.locator, { cause });
+                    break;
+                case 'EngineError':
+                    error = new EngineError(serialised.message, serialised.locator, { cause });
+                    break;
+                case 'ApplicationError':
+                    error = new ApplicationError(serialised.message, serialised.locator, { cause });
+                    break;
+                case 'OperationalError':
+                    error = new OperationalError(serialised.message, serialised.locator, { cause });
+                    break;
+                case 'WindowHandledRuntimeError':
+                    error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { cause });
+                    break;
+                case 'WindowHandledPromiseRejectionError':
+                    error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { cause });
+                    break;
+                default:
+                    // Fallback to base DataPosError for unknown types with locator
+                    error = new DataPosError(serialised.message, serialised.locator, { cause });
+                    break;
+            }
+        }
+
+        // Restore stack trace if available
+        if (serialised.stack !== undefined) {
+            error.stack = serialised.stack;
+        }
+
+        cause = error;
+    }
+
+    return cause;
+}
+
 //#endregion
 
 //#region ----- Error local helpers. -----
@@ -210,4 +274,4 @@ function sanitizeFetchErrorBody(body?: string): string | undefined {
 /** Exports. */
 export type { SerialisedError };
 export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
-export { buildFetchError, concatenateSerialisedErrorMessages, ignoreErrors, normalizeToError, serialiseError };
+export { buildFetchError, concatenateSerialisedErrorMessages, ignoreErrors, normalizeToError, serialiseError, unserialiseError };
