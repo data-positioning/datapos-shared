@@ -140,7 +140,8 @@ interface AuditObjectContentOptions2 extends EngineOperationOptions {
  * Audit object content result.
  */
 interface AuditObjectContentResult2 {
-    contentAuditConfig: ContentAuditConfig;
+    processedRowCount: number;
+    durationMs: number;
 }
 
 /**
