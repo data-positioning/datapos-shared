@@ -100,7 +100,7 @@ type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> &
 /**
  * Audit object content options and result.
  */
-interface AuditObjectContentOptions extends EngineOperationOptions {
+interface AuditObjectContentOptions1 extends EngineOperationOptions {
     chunkSize: number | undefined;
     encodingId: string;
     path: string;
@@ -109,7 +109,7 @@ interface AuditObjectContentOptions extends EngineOperationOptions {
 /**
  *
  */
-interface AuditObjectContentResult {
+interface AuditObjectContentResult1 {
     contentAuditConfig: ContentAuditConfig;
 }
 /**
@@ -119,6 +119,7 @@ interface AuditObjectContentOptions2 extends EngineOperationOptions {
     chunkSize: number | undefined;
     encodingId: string;
     path: string;
+    supportsTransferableStreams: boolean;
     valueDelimiterId: ValueDelimiterId;
 }
 /**
@@ -268,4 +269,4 @@ declare const constructConnectorCategoryConfig: (id: string, localeId?: import('
 export { connectorConfigSchema } from './connectorConfig.schema';
 export { constructConnectorCategoryConfig };
 export type { ConnectionConfig, ConnectionNodeConfig, ObjectColumnConfig } from './connection';
-export type { AuditObjectContentOptions, AuditObjectContentResult, AuditObjectContentOptions2, AuditObjectContentResult2, ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };
+export type { AuditObjectContentOptions1, AuditObjectContentResult1, AuditObjectContentOptions2, AuditObjectContentResult2, ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };

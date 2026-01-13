@@ -112,7 +112,7 @@ type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> &
 /**
  * Audit object content options and result.
  */
-interface AuditObjectContentOptions extends EngineOperationOptions {
+interface AuditObjectContentOptions1 extends EngineOperationOptions {
     chunkSize: number | undefined;
     encodingId: string;
     path: string;
@@ -122,7 +122,7 @@ interface AuditObjectContentOptions extends EngineOperationOptions {
 /**
  *
  */
-interface AuditObjectContentResult {
+interface AuditObjectContentResult1 {
     contentAuditConfig: ContentAuditConfig;
 }
 
@@ -133,6 +133,7 @@ interface AuditObjectContentOptions2 extends EngineOperationOptions {
     chunkSize: number | undefined;
     encodingId: string;
     path: string;
+    supportsTransferableStreams: boolean;
     valueDelimiterId: ValueDelimiterId;
 }
 
@@ -324,8 +325,8 @@ export { connectorConfigSchema } from '@/component/connector/connectorConfig.sch
 export { constructConnectorCategoryConfig };
 export type { ConnectionConfig, ConnectionNodeConfig, ObjectColumnConfig } from '@/component/connector/connection';
 export type {
-    AuditObjectContentOptions,
-    AuditObjectContentResult,
+    AuditObjectContentOptions1,
+    AuditObjectContentResult1,
     AuditObjectContentOptions2,
     AuditObjectContentResult2,
     ConnectorConfig,
