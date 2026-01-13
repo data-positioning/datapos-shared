@@ -25,6 +25,10 @@ interface EngineWorkerInitialiseOptions {
     toolConfigs: ToolConfig[];
 }
 /**
+ *
+ */
+declare const ENGINE_OPERATION_NAMES: string[];
+/**
  * Engine configuration.
  */
 interface EngineConfig extends ModuleConfig {
@@ -54,7 +58,10 @@ interface AuditObjectContentOptions extends ConnectorOperationOptions {
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
+/**
+ *
+ */
 interface AuditObjectContentResult {
     contentAuditConfig: ContentAuditConfig;
 }
-export type { AuditObjectContentOptions, AuditObjectContentResult, EngineCallbackData, EngineConfig, EngineRuntimeInterface, EngineUtilities, EngineWorkerInitialiseOptions, EngineWorkerInterface };
+export type { AuditObjectContentOptions, AuditObjectContentResult, EngineCallbackData, EngineConfig, ENGINE_OPERATION_NAMES, EngineRuntimeInterface, EngineUtilities, EngineWorkerInitialiseOptions, EngineWorkerInterface };

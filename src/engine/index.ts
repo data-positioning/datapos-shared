@@ -55,6 +55,26 @@ interface EngineWorkerInitialiseOptions {
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 /**
+ *
+ */
+const ENGINE_OPERATION_NAMES = [
+    'abort',
+    'initialise',
+    'auditContent',
+    'auditObjectContent',
+    'createObject',
+    'dropObject',
+    'findObject',
+    'getObject',
+    'getReader',
+    'listNodes',
+    'previewObject',
+    'removeRecords',
+    'retrieveRecords',
+    'upsertRecords'
+];
+
+/**
  * Engine configuration.
  */
 interface EngineConfig extends ModuleConfig {
@@ -87,27 +107,23 @@ interface AuditObjectContentOptions extends ConnectorOperationOptions {
     path: string;
     valueDelimiterId: ValueDelimiterId;
 }
+
+/**
+ *
+ */
 interface AuditObjectContentResult {
     contentAuditConfig: ContentAuditConfig;
 }
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-// // TODO: Remove!
-// interface TestSettings {
-//     action?: string;
-//     delimiter?: string;
-//     forceFallback?: boolean;
-//     hasHeaders?: boolean;
-//     readable: ReadableStream<Uint8Array>;
-// }
-
-// Exports.
+// Exposures.
 export type {
     AuditObjectContentOptions,
     AuditObjectContentResult,
     EngineCallbackData,
     EngineConfig,
+    ENGINE_OPERATION_NAMES,
     EngineRuntimeInterface,
     EngineUtilities,
     EngineWorkerInitialiseOptions,

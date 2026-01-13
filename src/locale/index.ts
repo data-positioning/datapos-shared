@@ -35,6 +35,6 @@ const resolveLabel = (labels: LocaleLabelMap, localeId: string, fallbackLocaleId
     return labels.get(fallbackLocaleId);
 };
 
-// Exports.
+// Exposures.
 export { createLabelMap, DEFAULT_LOCALE_CODE, resolveLabel };
 export type { LocaleCode, LocaleLabelMap, LocalisedString };

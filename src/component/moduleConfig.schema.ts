@@ -29,5 +29,5 @@ const moduleConfigSchema = object({
     typeId: moduleTypeIdSchema
 });
 
-// Exports.
+// Exposures.
 export { moduleConfigCoreFields, moduleConfigSchema, moduleTypeIdSchema };

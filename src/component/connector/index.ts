@@ -292,7 +292,7 @@ const constructConnectorCategoryConfig = (id: string, localeId = DEFAULT_LOCALE_
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-// Exports.
+// Exposures.
 export { connectorConfigSchema } from '@/component/connector/connectorConfig.schema';
 export { constructConnectorCategoryConfig };
 export type { ConnectionConfig, ConnectionNodeConfig, ObjectColumnConfig } from '@/component/connector/connection';

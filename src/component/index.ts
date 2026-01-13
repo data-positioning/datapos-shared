@@ -44,7 +44,7 @@ function getComponentStatus(id: string, localeId: LocaleCode = DEFAULT_LOCALE_CO
     return { id, color: 'other', label: id };
 }
 
-// Exports.
+// Exposures.
 export { getComponentStatus };
 export { componentConfigSchema } from '@/component/componentConfig.schema';
 export type { Component, ComponentConfig, ComponentReference };

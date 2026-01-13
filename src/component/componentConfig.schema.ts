@@ -130,7 +130,7 @@ const componentReferenceSchema = object({
     path: string()
 });
 
-// Exports.
+// Exposures.
 export {
     componentConfigCoreFields,
     componentConfigSchema,

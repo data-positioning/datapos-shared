@@ -38,5 +38,5 @@ function getEncodingTypeConfigs(localeId = 'en'): EncodingTypeConfig[] {
     return encodingConfigs.toSorted((left, right) => left.groupLabel.localeCompare(right.groupLabel) || left.label.localeCompare(right.label));
 }
 
-// Exports.
+// Exposures.
 export { type EncodingConfig, encodingConfigMap, type EncodingTypeConfig, getEncodingTypeConfigs };

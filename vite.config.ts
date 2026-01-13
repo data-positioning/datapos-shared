@@ -18,7 +18,7 @@ import package_ from './package.json' with { type: 'json' }; // Provide package 
 const { peerDependencies } = package_ as PackageJson;
 const external = peerDependencies ? Object.keys(peerDependencies) : []; // Keep peer dependencies out of the bundle.
 
-// Exports.
+// Exposures.
 export default defineConfig({
     build: {
         lib: {

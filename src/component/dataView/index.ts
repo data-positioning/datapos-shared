@@ -426,7 +426,7 @@ interface UnknownInferenceResult {
 
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-// Exports.
+// Exposures.
 export { ORDERED_VALUE_DELIMITER_IDS };
 export type {
     // Data view interface and configuration.

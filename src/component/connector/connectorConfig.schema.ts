@@ -75,5 +75,5 @@ const connectorConfigSchema = object({
     vendorHomeURL: nullable(string())
 });
 
-// Exports.
+// Exposures.
 export { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema };

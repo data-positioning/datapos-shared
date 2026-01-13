@@ -24,7 +24,7 @@ const contextModelGroupConfigSchema = object({
     order: number()
 });
 
-// Exports.
+// Exposures.
 export const contextConfigSchema = object({
     ...moduleConfigCoreFields,
     typeId: literal('context'),
