@@ -64,4 +64,5 @@ interface AuditObjectContentOptions extends ConnectorOperationOptions {
 interface AuditObjectContentResult {
     contentAuditConfig: ContentAuditConfig;
 }
-export type { AuditObjectContentOptions, AuditObjectContentResult, EngineCallbackData, EngineConfig, ENGINE_OPERATION_NAMES, EngineRuntimeInterface, EngineUtilities, EngineWorkerInitialiseOptions, EngineWorkerInterface };
+export { ENGINE_OPERATION_NAMES };
+export type { AuditObjectContentOptions, AuditObjectContentResult, EngineCallbackData, EngineConfig, EngineRuntimeInterface, EngineUtilities, EngineWorkerInitialiseOptions, EngineWorkerInterface };

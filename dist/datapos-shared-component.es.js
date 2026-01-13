@@ -1,5 +1,5 @@
 import { DEFAULT_LOCALE_CODE as a } from "./datapos-shared-locale.es.js";
-import { c as s } from "./componentConfig.schema-C0C6ceb5.js";
+import { e as s } from "./componentConfig.schema-BhoHfdqq.js";
 const n = [
   { id: "alpha", color: "red", labels: { "en-gb": "alpha" } },
   { id: "beta", color: "amber", labels: { "en-gb": "beta" } },

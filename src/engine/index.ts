@@ -118,12 +118,12 @@ interface AuditObjectContentResult {
 //#endregion ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 // Exposures.
+export { ENGINE_OPERATION_NAMES };
 export type {
     AuditObjectContentOptions,
     AuditObjectContentResult,
     EngineCallbackData,
     EngineConfig,
-    ENGINE_OPERATION_NAMES,
     EngineRuntimeInterface,
     EngineUtilities,
     EngineWorkerInitialiseOptions,
