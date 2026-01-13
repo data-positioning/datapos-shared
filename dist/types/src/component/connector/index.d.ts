@@ -1,10 +1,10 @@
 import { InferOutput } from 'valibot';
 import { Component } from '..';
-import { EngineUtilities } from '../../engine';
 import { ToolConfig } from '../tool';
 import { ConnectionDescriptionConfig, ConnectionNodeConfig } from './connection';
 import { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from './connectorConfig.schema';
-import { ParsingRecord, PreviewConfig, ValueDelimiterId } from '../dataView';
+import { ContentAuditConfig, ParsingRecord, PreviewConfig, ValueDelimiterId } from '../dataView';
+import { EngineOperationOptions, EngineUtilities } from '../../engine';
 /**
  * Connector interface and constructor.
  */
@@ -23,6 +23,7 @@ interface ConnectorInterface extends Component {
         processedRowCount: number;
         durationMs?: number;
     }>;
+    auditObjectContent?(options: AuditObjectContentOptions2): Promise<AuditObjectContentResult2>;
     /**
      * Authenticate a specified connection.
      */
@@ -97,51 +98,73 @@ type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> &
     description: string;
 };
 /**
- * Connector operation options.
+ * Audit object content options and result.
  */
-interface ConnectorOperationOptions {
-    accountId?: string;
-    appCheckToken?: string;
-    sessionAccessToken?: string;
+interface AuditObjectContentOptions extends EngineOperationOptions {
+    chunkSize: number | undefined;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
+}
+/**
+ *
+ */
+interface AuditObjectContentResult {
+    contentAuditConfig: ContentAuditConfig;
+}
+/**
+ * Audit object content options.
+ */
+interface AuditObjectContentOptions2 extends EngineOperationOptions {
+    chunkSize: number | undefined;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
+}
+/**
+ * Audit object content result.
+ */
+interface AuditObjectContentResult2 {
+    contentAuditConfig: ContentAuditConfig;
 }
 /**
  * Create object options.
  */
-interface CreateObjectOptions extends ConnectorOperationOptions {
+interface CreateObjectOptions extends EngineOperationOptions {
     path: string;
     structure: string;
 }
 /**
  * Describe connection options and result.
  */
-type DescribeConnectionOptions = ConnectorOperationOptions;
+type DescribeConnectionOptions = EngineOperationOptions;
 interface DescribeConnectionResult {
     descriptionConfig: ConnectionDescriptionConfig;
 }
 /**
  * Drop object options.
  */
-interface DropObjectOptions extends ConnectorOperationOptions {
+interface DropObjectOptions extends EngineOperationOptions {
     path: string;
 }
 /**
  * Find object folder path options.
  */
-interface FindObjectFolderPathOptions extends ConnectorOperationOptions {
+interface FindObjectFolderPathOptions extends EngineOperationOptions {
     containerName: string | undefined;
     nodeId: string;
 }
 /**
  * Get readable stream options.
  */
-interface GetReadableStreamOptions extends ConnectorOperationOptions {
+interface GetReadableStreamOptions extends EngineOperationOptions {
     id: string;
     path: string;
 }
 /**
  * Get record options and result.
  */
-interface GetRecordOptions extends ConnectorOperationOptions {
+interface GetRecordOptions extends EngineOperationOptions {
     id: string;
     path: string;
 }
@@ -151,7 +174,7 @@ interface GetRecordResult {
 /**
  * List nodes options and result.
  */
-interface ListNodesOptions extends ConnectorOperationOptions {
+interface ListNodesOptions extends EngineOperationOptions {
     folderPath: string;
     limit?: number;
     offset?: number;
@@ -166,7 +189,7 @@ interface ListNodesResult {
 /**
  * Preview object options.
  */
-interface PreviewObjectOptions extends ConnectorOperationOptions {
+interface PreviewObjectOptions extends EngineOperationOptions {
     chunkSize?: number;
     extension?: string;
     path: string;
@@ -174,14 +197,14 @@ interface PreviewObjectOptions extends ConnectorOperationOptions {
 /**
  * Remove records options.
  */
-interface RemoveRecordsOptions extends ConnectorOperationOptions {
+interface RemoveRecordsOptions extends EngineOperationOptions {
     keys: string[];
     path: string;
 }
 /**
  * Retrieve chunks options.
  */
-interface RetrieveChunksOptions extends ConnectorOperationOptions {
+interface RetrieveChunksOptions extends EngineOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;
@@ -190,7 +213,7 @@ interface RetrieveChunksOptions extends ConnectorOperationOptions {
 /**
  * Retrieve records options and summary.
  */
-interface RetrieveRecordsOptions extends ConnectorOperationOptions {
+interface RetrieveRecordsOptions extends EngineOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;
@@ -226,7 +249,7 @@ interface RetrieveRecordsSummary {
 /**
  * Upsert records options.
  */
-interface UpsertRecordsOptions extends ConnectorOperationOptions {
+interface UpsertRecordsOptions extends EngineOperationOptions {
     records: Record<string, unknown>[];
     path: string;
 }
@@ -244,4 +267,4 @@ declare const constructConnectorCategoryConfig: (id: string, localeId?: import('
 export { connectorConfigSchema } from './connectorConfig.schema';
 export { constructConnectorCategoryConfig };
 export type { ConnectionConfig, ConnectionNodeConfig, ObjectColumnConfig } from './connection';
-export type { ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorOperationOptions, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };
+export type { AuditObjectContentOptions, AuditObjectContentResult, ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };

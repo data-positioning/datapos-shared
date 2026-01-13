@@ -1,10 +1,10 @@
 import { ConnectionConfig } from '../component/connector/connection';
 import { EncodingTypeConfig } from '../encoding';
 import { ModuleConfig } from '../component/module';
+import { ObjectColumnConfig } from '../component/connector';
 import { ToolConfig } from '../component/tool';
-import { ConnectorOperationOptions, ObjectColumnConfig } from '../component/connector';
-import { ContentAuditConfig, InferenceRecord, InferenceSummary, ParsingRecord, ValueDelimiterId } from '../component/dataView';
 import { ContextConfig, ContextOperationOptions } from '../component/context';
+import { InferenceRecord, InferenceSummary, ParsingRecord } from '../component/dataView';
 /**
  * Engine runtime interface.
  */
@@ -13,21 +13,27 @@ interface EngineRuntimeInterface {
     invokeWorker(errorEventCallback: (errorEvent: ErrorEvent) => void): EngineWorkerInterface;
 }
 /**
+ * Engine operation options.
+ */
+interface EngineOperationOptions {
+    accountId?: string;
+    appCheckToken?: string;
+    sessionAccessToken?: string;
+}
+/**
  * Engine worker interface.
  */
 interface EngineWorkerInterface {
     initialise: (options: EngineWorkerInitialiseOptions) => Promise<void>;
-    processRequest: (id: string, config: ConnectionConfig | ContextConfig, options: ConnectorOperationOptions | ContextOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
+    processRequest: (id: string, config: ConnectionConfig | ContextConfig, options: EngineOperationOptions | ContextOperationOptions, callback?: (callbackData: EngineCallbackData) => void) => Promise<unknown>;
 }
-/** Engine worker initialise options. */
+/**
+ * Engine worker initialise options.
+ */
 interface EngineWorkerInitialiseOptions {
     connectorStorageURLPrefix: string;
     toolConfigs: ToolConfig[];
 }
-/**
- *
- */
-declare const ENGINE_OPERATION_NAMES: string[];
 /**
  * Engine configuration.
  */
@@ -46,23 +52,7 @@ interface EngineCallbackData {
  */
 interface EngineUtilities {
     hasReadableStreamTransferSupport(): boolean;
-    inferValues: (parsingRecord: ParsingRecord, columnConfigs: ObjectColumnConfig[], leadingRecord: boolean) => InferenceRecord;
+    inferValues: (parsedRecord: ParsingRecord, columnConfigs: ObjectColumnConfig[], leadingRecord: boolean) => InferenceRecord;
     inferDataTypes: (parsedRecords: ParsingRecord[]) => InferenceSummary;
 }
-/**
- * Audit object content options and result.
- */
-interface AuditObjectContentOptions extends ConnectorOperationOptions {
-    chunkSize: number | undefined;
-    encodingId: string;
-    path: string;
-    valueDelimiterId: ValueDelimiterId;
-}
-/**
- *
- */
-interface AuditObjectContentResult {
-    contentAuditConfig: ContentAuditConfig;
-}
-export { ENGINE_OPERATION_NAMES };
-export type { AuditObjectContentOptions, AuditObjectContentResult, EngineCallbackData, EngineConfig, EngineRuntimeInterface, EngineUtilities, EngineWorkerInitialiseOptions, EngineWorkerInterface };
+export type { EngineCallbackData, EngineConfig, EngineOperationOptions, EngineRuntimeInterface, EngineUtilities, EngineWorkerInitialiseOptions, EngineWorkerInterface };

@@ -1,4 +1,4 @@
-import { l as o, s as e, c as n } from "./componentConfig.schema-BhoHfdqq.js";
+import { l as o, s as e, a as n } from "./componentConfig.schema-C0C6ceb5.js";
 o(["app", "engine", "connector", "context", "presenter", "tool"]);
 const s = {
   ...n,

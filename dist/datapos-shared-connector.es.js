@@ -1,6 +1,6 @@
 import { DEFAULT_LOCALE_CODE as p, createLabelMap as C, resolveLabel as u } from "./datapos-shared-locale.es.js";
-import { l as n, o as i, f as a, a as s, r as d, b as g, s as e, g as o, n as l, h, i as S, p as f } from "./componentConfig.schema-BhoHfdqq.js";
-import { m as O } from "./moduleConfig.schema-CzfX-j-V.js";
+import { l as n, o as i, f as a, b as s, r as d, d as g, s as e, g as o, n as l, h, i as S, p as f } from "./componentConfig.schema-C0C6ceb5.js";
+import { m as O } from "./moduleConfig.schema-DNq1iU4S.js";
 const L = n(["apiKey", "disabled", "oAuth2", "none"]), R = i({
   authMethodId: L,
   activeConnectionCount: o(l()),

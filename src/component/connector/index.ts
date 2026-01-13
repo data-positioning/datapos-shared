@@ -7,12 +7,12 @@ import type { InferOutput } from 'valibot';
 
 // Framework dependencies.
 import type { Component } from '@/component';
-import type { EngineUtilities } from '@/engine';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionDescriptionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
 import type { connectorCategoryConfigSchema, connectorConfigSchema, connectorOperationNameSchema, connectorUsageIdSchema } from '@/component/connector/connectorConfig.schema';
+import type { ContentAuditConfig, ParsingRecord, PreviewConfig, ValueDelimiterId } from '@/component/dataView';
 import { createLabelMap, DEFAULT_LOCALE_CODE, resolveLabel } from '@/locale';
-import type { ParsingRecord, PreviewConfig, ValueDelimiterId } from '@/component/dataView';
+import type { EngineOperationOptions, EngineUtilities } from '@/engine';
 
 /**
  * Connector interface and constructor.
@@ -29,6 +29,7 @@ interface ConnectorInterface extends Component {
      *
      */
     auditContent?(path: string, supportsTransferableStreams: boolean, onProgress?: (rowCount: number) => void): Promise<{ processedRowCount: number; durationMs?: number }>;
+    auditObjectContent?(options: AuditObjectContentOptions2): Promise<AuditObjectContentResult2>;
     /**
      * Authenticate a specified connection.
      */
@@ -109,18 +110,43 @@ type ConnectorConfig = InferOutput<typeof connectorConfigSchema>;
 type ConnectorLocalisedConfig = Omit<ConnectorConfig, 'label' | 'description'> & { label: string; description: string };
 
 /**
- * Connector operation options.
+ * Audit object content options and result.
  */
-interface ConnectorOperationOptions {
-    accountId?: string;
-    appCheckToken?: string;
-    sessionAccessToken?: string;
+interface AuditObjectContentOptions extends EngineOperationOptions {
+    chunkSize: number | undefined;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
+}
+
+/**
+ *
+ */
+interface AuditObjectContentResult {
+    contentAuditConfig: ContentAuditConfig;
+}
+
+/**
+ * Audit object content options.
+ */
+interface AuditObjectContentOptions2 extends EngineOperationOptions {
+    chunkSize: number | undefined;
+    encodingId: string;
+    path: string;
+    valueDelimiterId: ValueDelimiterId;
+}
+
+/**
+ * Audit object content result.
+ */
+interface AuditObjectContentResult2 {
+    contentAuditConfig: ContentAuditConfig;
 }
 
 /**
  * Create object options.
  */
-interface CreateObjectOptions extends ConnectorOperationOptions {
+interface CreateObjectOptions extends EngineOperationOptions {
     path: string;
     structure: string;
 }
@@ -128,7 +154,7 @@ interface CreateObjectOptions extends ConnectorOperationOptions {
 /**
  * Describe connection options and result.
  */
-type DescribeConnectionOptions = ConnectorOperationOptions;
+type DescribeConnectionOptions = EngineOperationOptions;
 interface DescribeConnectionResult {
     descriptionConfig: ConnectionDescriptionConfig;
 }
@@ -136,14 +162,14 @@ interface DescribeConnectionResult {
 /**
  * Drop object options.
  */
-interface DropObjectOptions extends ConnectorOperationOptions {
+interface DropObjectOptions extends EngineOperationOptions {
     path: string;
 }
 
 /**
  * Find object folder path options.
  */
-interface FindObjectFolderPathOptions extends ConnectorOperationOptions {
+interface FindObjectFolderPathOptions extends EngineOperationOptions {
     containerName: string | undefined;
     nodeId: string;
 }
@@ -151,7 +177,7 @@ interface FindObjectFolderPathOptions extends ConnectorOperationOptions {
 /**
  * Get readable stream options.
  */
-interface GetReadableStreamOptions extends ConnectorOperationOptions {
+interface GetReadableStreamOptions extends EngineOperationOptions {
     id: string;
     path: string;
 }
@@ -159,7 +185,7 @@ interface GetReadableStreamOptions extends ConnectorOperationOptions {
 /**
  * Get record options and result.
  */
-interface GetRecordOptions extends ConnectorOperationOptions {
+interface GetRecordOptions extends EngineOperationOptions {
     id: string;
     path: string;
 }
@@ -170,7 +196,7 @@ interface GetRecordResult {
 /**
  * List nodes options and result.
  */
-interface ListNodesOptions extends ConnectorOperationOptions {
+interface ListNodesOptions extends EngineOperationOptions {
     folderPath: string;
     limit?: number;
     offset?: number;
@@ -186,7 +212,7 @@ interface ListNodesResult {
 /**
  * Preview object options.
  */
-interface PreviewObjectOptions extends ConnectorOperationOptions {
+interface PreviewObjectOptions extends EngineOperationOptions {
     chunkSize?: number;
     extension?: string;
     path: string;
@@ -195,7 +221,7 @@ interface PreviewObjectOptions extends ConnectorOperationOptions {
 /**
  * Remove records options.
  */
-interface RemoveRecordsOptions extends ConnectorOperationOptions {
+interface RemoveRecordsOptions extends EngineOperationOptions {
     keys: string[];
     path: string;
 }
@@ -203,7 +229,7 @@ interface RemoveRecordsOptions extends ConnectorOperationOptions {
 /**
  * Retrieve chunks options.
  */
-interface RetrieveChunksOptions extends ConnectorOperationOptions {
+interface RetrieveChunksOptions extends EngineOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;
@@ -213,7 +239,7 @@ interface RetrieveChunksOptions extends ConnectorOperationOptions {
 /**
  * Retrieve records options and summary.
  */
-interface RetrieveRecordsOptions extends ConnectorOperationOptions {
+interface RetrieveRecordsOptions extends EngineOperationOptions {
     chunkSize?: number;
     encodingId: string;
     path: string;
@@ -250,7 +276,7 @@ interface RetrieveRecordsSummary {
 /**
  * Upsert records options.
  */
-interface UpsertRecordsOptions extends ConnectorOperationOptions {
+interface UpsertRecordsOptions extends EngineOperationOptions {
     records: Record<string, unknown>[];
     path: string;
 }
@@ -297,12 +323,13 @@ export { connectorConfigSchema } from '@/component/connector/connectorConfig.sch
 export { constructConnectorCategoryConfig };
 export type { ConnectionConfig, ConnectionNodeConfig, ObjectColumnConfig } from '@/component/connector/connection';
 export type {
+    AuditObjectContentOptions,
+    AuditObjectContentResult,
     ConnectorConfig,
     ConnectorConstructor,
     ConnectorInterface,
     ConnectorLocalisedConfig,
     ConnectorOperationName,
-    ConnectorOperationOptions,
     ConnectorUsageId,
     CreateObjectOptions,
     DropObjectOptions,
