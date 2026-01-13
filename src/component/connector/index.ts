@@ -325,6 +325,8 @@ export type { ConnectionConfig, ConnectionNodeConfig, ObjectColumnConfig } from 
 export type {
     AuditObjectContentOptions,
     AuditObjectContentResult,
+    AuditObjectContentOptions2,
+    AuditObjectContentResult2,
     ConnectorConfig,
     ConnectorConstructor,
     ConnectorInterface,
