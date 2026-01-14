@@ -28,8 +28,7 @@ interface ConnectorInterface extends Component {
     /**
      *
      */
-    auditContent?(path: string, supportsTransferableStreams: boolean, onProgress?: (rowCount: number) => void): Promise<{ processedRowCount: number; durationMs?: number }>;
-    auditObjectContent?(options: AuditObjectContentOptions2, chunk: (rowCount: number) => void): Promise<AuditObjectContentResult2>;
+    auditObjectContent?(options: AuditObjectContentOptions, chunk: (rowCount: number) => void): Promise<AuditObjectContentResult>;
     /**
      * Authenticate a specified connection.
      */
