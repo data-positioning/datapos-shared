@@ -8,6 +8,6 @@ interface ToolConfig extends ModuleConfig {
 /**
  * Load tool.
  */
-declare function loadTool<T>(toolConfigs: ToolConfig[], toolName: string): Promise<T>;
+declare function loadTool<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T>;
 export { loadTool };
 export type { ToolConfig };
