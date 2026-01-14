@@ -115,9 +115,10 @@ interface AuditObjectContentResult1 {
 /**
  * Audit object content options.
  */
-interface AuditObjectContentOptions2 extends EngineOperationOptions {
+interface AuditObjectContentOptions extends EngineOperationOptions {
     chunkSize: number | undefined;
     encodingId: string;
+    parsingToolName: string | undefined;
     path: string;
     supportsTransferableStreams: boolean;
     valueDelimiterId: ValueDelimiterId;
@@ -125,7 +126,7 @@ interface AuditObjectContentOptions2 extends EngineOperationOptions {
 /**
  * Audit object content result.
  */
-interface AuditObjectContentResult2 {
+interface AuditObjectContentResult {
     processedRowCount: number;
     durationMs: number;
 }
@@ -269,4 +270,4 @@ declare const constructConnectorCategoryConfig: (id: string, localeId?: import('
 export { connectorConfigSchema } from './connectorConfig.schema';
 export { constructConnectorCategoryConfig };
 export type { ConnectionConfig, ConnectionNodeConfig, ObjectColumnConfig } from './connection';
-export type { AuditObjectContentOptions1, AuditObjectContentResult1, AuditObjectContentOptions2, AuditObjectContentResult2, ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };
+export type { AuditObjectContentOptions1, AuditObjectContentResult1, AuditObjectContentOptions, AuditObjectContentResult, ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };
