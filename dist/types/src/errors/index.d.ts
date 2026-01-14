@@ -85,7 +85,6 @@ declare function serialiseError(error?: unknown): SerialisedError[];
  * - Returns `undefined` if the input array is empty.
  */
 declare function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefined;
-/** Exports. */
 export type { SerialisedError };
 export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
 export { buildFetchError, concatenateSerialisedErrorMessages, ignoreErrors, normalizeToError, serialiseError, unserialiseError };

@@ -1,9 +1,9 @@
-async function a(e, o) {
-  const n = `datapos-tool-${o}`, t = e.find((r) => r.id === n);
-  if (!t) throw new Error(`Connector could not load unknown tool '${o}'.`);
-  const l = await import(`https://engine-eu.datapos.app/tools/${o}_v${t.version}/${n}.es.js`);
-  return new l.Tool();
+async function e(t, o) {
+  const n = t.find((l) => l.id === o);
+  if (!n) throw new Error(`Connector could not load unknown tool '${o}'.`);
+  const r = await import(`https://engine-eu.datapos.app/tools/${o}_v${n.version}/${o}.es.js`);
+  return new r.Tool();
 }
 export {
-  a as loadTool
+  e as loadTool
 };

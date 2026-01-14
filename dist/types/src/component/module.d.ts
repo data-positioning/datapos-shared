@@ -4,5 +4,4 @@ import { moduleConfigSchema, moduleTypeIdSchema } from './moduleConfig.schema';
 type ModuleConfig = InferOutput<typeof moduleConfigSchema>;
 /** Module type identifier. */
 type ModuleTypeId = InferOutput<typeof moduleTypeIdSchema>;
-/** Exports. */
 export type { ModuleConfig, ModuleTypeId };

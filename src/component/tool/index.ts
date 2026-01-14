@@ -2,25 +2,28 @@
  * Tool.
  */
 
-/** Framework dependencies. */
+// Framework dependencies.
 import type { ModuleConfig } from '@/component/module';
 
-/** Tool configuration. */
+/**
+ * Tool configuration.
+ */
 interface ToolConfig extends ModuleConfig {
     typeId: 'tool';
 }
 
-/** Load tool. */
-async function loadTool<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T> {
-    const toolName = `datapos-tool-${toolId}`;
+/**
+ * Load tool.
+ */
+async function loadTool<T>(toolConfigs: ToolConfig[], toolName: string): Promise<T> {
     const toolModuleConfig = toolConfigs.find((config) => config.id === toolName);
-    if (!toolModuleConfig) throw new Error(`Connector could not load unknown tool '${toolId}'.`);
+    if (!toolModuleConfig) throw new Error(`Connector could not load unknown tool '${toolName}'.`);
 
-    const url = `https://engine-eu.datapos.app/tools/${toolId}_v${toolModuleConfig.version}/${toolName}.es.js`;
+    const url = `https://engine-eu.datapos.app/tools/${toolName}_v${toolModuleConfig.version}/${toolName}.es.js`;
     const toolModule = (await import(/* @vite-ignore */ url)) as { Tool: new () => T };
     return new toolModule.Tool();
 }
 
-/** Exports. */
+// Exposures.
 export { loadTool };
 export type { ToolConfig };

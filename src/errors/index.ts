@@ -271,7 +271,7 @@ function sanitizeFetchErrorBody(body?: string): string | undefined {
 
 //#endregion
 
-/** Exports. */
+// Exposures.
 export type { SerialisedError };
 export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
 export { buildFetchError, concatenateSerialisedErrorMessages, ignoreErrors, normalizeToError, serialiseError, unserialiseError };

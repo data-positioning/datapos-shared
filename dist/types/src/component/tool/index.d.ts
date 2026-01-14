@@ -1,10 +1,13 @@
 import { ModuleConfig } from '../module';
-/** Tool configuration. */
+/**
+ * Tool configuration.
+ */
 interface ToolConfig extends ModuleConfig {
     typeId: 'tool';
 }
-/** Load tool. */
-declare function loadTool<T>(toolConfigs: ToolConfig[], toolId: string): Promise<T>;
-/** Exports. */
+/**
+ * Load tool.
+ */
+declare function loadTool<T>(toolConfigs: ToolConfig[], toolName: string): Promise<T>;
 export { loadTool };
 export type { ToolConfig };

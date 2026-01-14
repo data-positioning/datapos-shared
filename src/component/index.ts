@@ -5,7 +5,7 @@
 /** Vendor dependencies. */
 import type { InferOutput } from 'valibot';
 
-/** Framework dependencies. */
+// Framework dependencies.
 import { DEFAULT_LOCALE_CODE } from '@/locale';
 import type { componentConfigSchema, componentReferenceSchema, componentStatusColorIdSchema, componentStatusSchema } from '@/component/componentConfig.schema';
 import type { LocaleCode, LocalisedString } from '@/locale';
