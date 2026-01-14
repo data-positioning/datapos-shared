@@ -11,7 +11,7 @@ const L = n(["apiKey", "disabled", "oAuth2", "none"]), R = i({
   params: o(s(d(e(), e())))
 }), v = n(["application", "curatedDataset", "database", "fileStore"]), y = n([
   "abortOperation",
-  "auditContent",
+  "auditObjectContent",
   "authenticateConnection",
   "createObject",
   "describeConnection",
