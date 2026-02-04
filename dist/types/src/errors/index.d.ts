@@ -72,7 +72,7 @@ declare function ignoreErrors(action: () => void): void;
 /** Normalizes an unknown thrown value into an {@link Error}.
  * This function should be used at error boundaries to guarantee consistent error handling.
  */
-declare function normalizeToError(value: unknown): Error;
+declare function normalizeToError(value?: unknown): Error | undefined;
 /** Serializes an error and its cause chain into a flat structure.
  * - Errors are ordered from outermost to root cause.
  * - Cycles in the cause chain are safely ignored.

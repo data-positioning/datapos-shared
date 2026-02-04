@@ -120,12 +120,13 @@ function ignoreErrors(action: () => void): void {
 /** Normalizes an unknown thrown value into an {@link Error}.
  * This function should be used at error boundaries to guarantee consistent error handling.
  */
-function normalizeToError(value: unknown): Error {
+function normalizeToError(value?: unknown): Error | undefined {
+    if (value == null) return undefined;
     if (value instanceof Error) return value;
     if (typeof value === 'string') return new Error(value);
     if (typeof value === 'number' || typeof value === 'boolean' || typeof value === 'bigint') return new Error(String(value));
     if (typeof value === 'symbol') return new Error(value.description ?? 'Unknown error');
-    if (value != null && typeof value === 'object') {
+    if (typeof value === 'object') {
         try {
             return new Error(JSON.stringify(value));
         } catch {
@@ -143,15 +144,15 @@ function normalizeToError(value: unknown): Error {
 function serialiseError(error?: unknown): SerialisedError[] {
     const seenCauses = new Set();
     const serialisedErrors: SerialisedError[] = [];
-    let cause = error;
 
-    while (cause != null && !seenCauses.has(cause)) {
+    let cause = normalizeToError(error);
+    while (cause != undefined && !seenCauses.has(cause)) {
         seenCauses.add(cause);
 
         let serialisedError: SerialisedError;
         if (cause instanceof FetchError) {
             serialisedError = { componentName: undefined, body: cause.body, info: undefined, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
-            cause = cause.cause;
+            cause = normalizeToError(cause.cause);
         } else if (cause instanceof VueHandledError) {
             serialisedError = {
                 componentName: cause.componentName,
@@ -162,17 +163,18 @@ function serialiseError(error?: unknown): SerialisedError[] {
                 name: cause.name,
                 stack: cause.stack
             };
-            cause = cause.cause;
+            cause = normalizeToError(cause.cause);
         } else if (cause instanceof DataPosError) {
             serialisedError = { componentName: undefined, body: undefined, info: undefined, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
-            cause = cause.cause;
-        } else if (cause instanceof Error) {
+            cause = normalizeToError(cause.cause);
+            // } else if (cause instanceof Error) {
+        } else {
             const error = cause;
             serialisedError = { componentName: undefined, body: undefined, info: undefined, locator: '', message: error.message, name: error.name, stack: error.stack };
-            cause = error.cause;
-        } else {
-            serialisedError = { componentName: undefined, body: undefined, info: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
-            cause = undefined;
+            cause = normalizeToError(cause.cause);
+            // } else {
+            //     serialisedError = { componentName: undefined, body: undefined, info: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
+            //     cause = undefined;
         }
         if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.';
         serialisedErrors.push(serialisedError);
