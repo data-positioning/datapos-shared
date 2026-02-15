@@ -24,7 +24,7 @@ const connectorImplementationSchema = object({
     canDescribe: optional(boolean()),
     id: optional(string()),
     label: optional(localisedStringSchema),
-    maxConnectionCount: optional(number()),
+    maxConnectionCount: nullable(number()),
     params: optional(array(record(string(), string())))
 });
 
