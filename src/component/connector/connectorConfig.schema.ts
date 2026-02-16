@@ -68,7 +68,7 @@ const connectorConfigSchema = object({
     category: nullable(connectorCategoryConfigSchema),
     categoryId: connectorCategoryIdSchema,
     implementations: record(string(), connectorImplementationSchema),
-    operations: array(connectorOperationNameSchema),
+    operations: connectorOperationNameSchema,
     usageId: connectorUsageIdSchema,
     vendorAccountURL: nullable(string()),
     vendorDocumentationURL: nullable(string()),
