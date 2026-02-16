@@ -39,7 +39,7 @@ interface ConnectorInterface extends Component {
     /**
      * Find an object for a specified connection.
      */
-    findObject?(options: FindObjectFolderPathOptions): Promise<string | null>;
+    findObject?(options: FindObjectOptions): Promise<FindObjectResult>;
     /**
      * Get a reader that can retrieve all records from an object for a specified connection.
      */
@@ -147,11 +147,15 @@ interface DropObjectOptions extends EngineOperationOptions {
     path: string;
 }
 /**
- * Find object folder path options.
+ * Find object options and result.
  */
-interface FindObjectFolderPathOptions extends EngineOperationOptions {
-    containerName: string | undefined;
+interface FindObjectOptions extends EngineOperationOptions {
+    containerId: string | undefined;
     nodeId: string;
+    object: unknown;
+}
+interface FindObjectResult {
+    folderPath: string;
 }
 /**
  * Get readable stream options.
@@ -266,4 +270,4 @@ declare const constructConnectorCategoryConfig: (id: string, localeId?: import('
 export { connectorConfigSchema } from './connectorConfig.schema';
 export { constructConnectorCategoryConfig };
 export type { ConnectionConfig, ConnectionNodeConfig, ObjectColumnConfig } from './connection';
-export type { AuditObjectContentOptions1, AuditObjectContentResult1, AuditObjectContentOptions, AuditObjectContentResult, ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectFolderPathOptions, GetReadableStreamOptions, GetRecordResult, GetRecordOptions, ListNodesResult, ListNodesOptions, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };
+export type { AuditObjectContentOptions1, AuditObjectContentResult1, AuditObjectContentOptions, AuditObjectContentResult, ConnectorConfig, ConnectorConstructor, ConnectorInterface, ConnectorLocalisedConfig, ConnectorOperationName, ConnectorUsageId, CreateObjectOptions, DropObjectOptions, FindObjectOptions, FindObjectResult, GetReadableStreamOptions, GetRecordOptions, GetRecordResult, ListNodesOptions, ListNodesResult, PreviewObjectOptions, RemoveRecordsOptions, RetrieveChunksOptions, RetrieveRecordsOptions, RetrieveRecordsSummary, UpsertRecordsOptions };

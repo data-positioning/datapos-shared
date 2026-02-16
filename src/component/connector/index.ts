@@ -48,7 +48,7 @@ interface ConnectorInterface extends Component {
     /**
      * Find an object for a specified connection.
      */
-    findObject?(options: FindObjectFolderPathOptions): Promise<string | null>;
+    findObject?(options: FindObjectOptions): Promise<FindObjectResult>;
     /**
      * Get a reader that can retrieve all records from an object for a specified connection.
      */
@@ -169,11 +169,15 @@ interface DropObjectOptions extends EngineOperationOptions {
 }
 
 /**
- * Find object folder path options.
+ * Find object options and result.
  */
-interface FindObjectFolderPathOptions extends EngineOperationOptions {
-    containerName: string | undefined;
+interface FindObjectOptions extends EngineOperationOptions {
+    containerId: string | undefined;
     nodeId: string;
+    object: unknown;
+}
+interface FindObjectResult {
+    folderPath: string;
 }
 
 /**
@@ -337,12 +341,13 @@ export type {
     ConnectorUsageId,
     CreateObjectOptions,
     DropObjectOptions,
-    FindObjectFolderPathOptions,
+    FindObjectOptions,
+    FindObjectResult,
     GetReadableStreamOptions,
-    GetRecordResult,
     GetRecordOptions,
-    ListNodesResult,
+    GetRecordResult,
     ListNodesOptions,
+    ListNodesResult,
     PreviewObjectOptions,
     RemoveRecordsOptions,
     RetrieveChunksOptions,
