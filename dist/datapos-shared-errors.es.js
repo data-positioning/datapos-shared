@@ -53,19 +53,17 @@ function y(r) {
   }
 }
 function i(r) {
-  if (r != null) {
-    if (r instanceof Error) return r;
-    if (typeof r == "string") return new Error(r);
-    if (typeof r == "number" || typeof r == "boolean" || typeof r == "bigint") return new Error(String(r));
-    if (typeof r == "symbol") return new Error(r.description ?? "Unknown error");
-    if (typeof r == "object")
-      try {
-        return new Error(JSON.stringify(r));
-      } catch {
-        return new Error("Unknown error");
-      }
-    return new Error("Unknown error");
-  }
+  if (r instanceof Error) return r;
+  if (typeof r == "string") return new Error(r);
+  if (typeof r == "number" || typeof r == "boolean" || typeof r == "bigint") return new Error(String(r));
+  if (typeof r == "symbol") return new Error(r.description ?? "Unknown error");
+  if (typeof r == "object")
+    try {
+      return new Error(JSON.stringify(r));
+    } catch {
+      return new Error("Unknown error");
+    }
+  return new Error("Unknown error");
 }
 function R(r) {
   const n = /* @__PURE__ */ new Set(), o = [];

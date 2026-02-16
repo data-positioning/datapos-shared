@@ -120,8 +120,7 @@ function ignoreErrors(action: () => void): void {
 /** Normalizes an unknown thrown value into an {@link Error}.
  * This function should be used at error boundaries to guarantee consistent error handling.
  */
-function normalizeToError(value?: unknown): Error | undefined {
-    if (value == null) return undefined;
+function normalizeToError(value: unknown): Error {
     if (value instanceof Error) return value;
     if (typeof value === 'string') return new Error(value);
     if (typeof value === 'number' || typeof value === 'boolean' || typeof value === 'bigint') return new Error(String(value));
