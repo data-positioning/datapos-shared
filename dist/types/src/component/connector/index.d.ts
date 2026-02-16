@@ -193,8 +193,8 @@ interface ListNodesResult {
  * Preview object options.
  */
 interface PreviewObjectOptions extends EngineOperationOptions {
-    chunkSize?: number;
-    extension?: string;
+    chunkSize: number | undefined;
+    extension: string | undefined;
     path: string;
 }
 /**
@@ -208,7 +208,7 @@ interface RemoveRecordsOptions extends EngineOperationOptions {
  * Retrieve chunks options.
  */
 interface RetrieveChunksOptions extends EngineOperationOptions {
-    chunkSize?: number;
+    chunkSize: number | undefined;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
@@ -217,7 +217,7 @@ interface RetrieveChunksOptions extends EngineOperationOptions {
  * Retrieve records options and summary.
  */
 interface RetrieveRecordsOptions extends EngineOperationOptions {
-    chunkSize?: number;
+    chunkSize: number | undefined;
     encodingId: string;
     path: string;
     valueDelimiterId: ValueDelimiterId;
