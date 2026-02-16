@@ -174,10 +174,10 @@ interface DropObjectOptions extends EngineOperationOptions {
 interface FindObjectOptions extends EngineOperationOptions {
     containerId: string | undefined;
     nodeId: string;
-    object: unknown;
 }
 interface FindObjectResult {
     folderPath: string;
+    object: unknown;
 }
 
 /**
