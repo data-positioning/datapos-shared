@@ -1,14 +1,14 @@
-import { DEFAULT_LOCALE_CODE as m, createLabelMap as p, resolveLabel as C } from "./datapos-shared-locale.es.js";
-import { l as n, o as i, f as t, r as s, d as u, s as e, g as o, b as g, n as l, h, i as S, p as f } from "./componentConfig.schema-C0C6ceb5.js";
+import { DEFAULT_LOCALE_CODE as p, createLabelMap as C, resolveLabel as u } from "./datapos-shared-locale.es.js";
+import { l as n, o as i, f as t, b as l, r as d, d as g, s as e, g as o, n as s, h, i as S, p as f } from "./componentConfig.schema-C0C6ceb5.js";
 import { m as O } from "./moduleConfig.schema-DNq1iU4S.js";
 const L = n(["apiKey", "disabled", "oAuth2", "none"]), R = i({
   authMethodId: L,
-  activeConnectionCount: o(l()),
+  activeConnectionCount: o(s()),
   canDescribe: o(S()),
   id: o(e()),
   label: o(h),
-  maxConnectionCount: t(l()),
-  params: o(g(s(e(), e())))
+  maxConnectionCount: t(s()),
+  params: o(l(d(e(), e())))
 }), v = n(["application", "curatedDataset", "database", "fileStore"]), y = n([
   "abortOperation",
   "auditObjectContent",
@@ -16,7 +16,7 @@ const L = n(["apiKey", "disabled", "oAuth2", "none"]), R = i({
   "createObject",
   "describeConnection",
   "dropObject",
-  "findObjectFolderPath",
+  "findObject",
   "getReadableStream",
   "getRecord",
   "listNodes",
@@ -28,13 +28,13 @@ const L = n(["apiKey", "disabled", "oAuth2", "none"]), R = i({
 ]), I = n(["bidirectional", "destination", "source", "unknown"]), D = i({
   id: e(),
   label: f
-}), F = i({
+}), N = i({
   ...O,
-  typeId: u("connector"),
+  typeId: g("connector"),
   category: t(D),
   categoryId: v,
-  implementations: s(e(), R),
-  operations: y,
+  implementations: d(e(), R),
+  operations: l(y),
   usageId: I,
   vendorAccountURL: t(e()),
   vendorDocumentationURL: t(e()),
@@ -44,15 +44,15 @@ const L = n(["apiKey", "disabled", "oAuth2", "none"]), R = i({
   { id: "curatedDataset", label: { "en-gb": "Curated Dataset" } },
   { id: "database", label: { "en-gb": "Database" } },
   { id: "fileStore", label: { "en-gb": "File Store" } }
-], N = (c, d = m) => {
+], F = (c, b = p) => {
   const a = A.find((r) => r.id === c);
   if (a) {
-    const r = p(a.label), b = C(r, d);
-    return { id: a.id, label: b ?? a.id };
+    const r = C(a.label), m = u(r, b);
+    return { id: a.id, label: m ?? a.id };
   }
   return { id: c, label: c };
 };
 export {
-  F as connectorConfigSchema,
-  N as constructConnectorCategoryConfig
+  N as connectorConfigSchema,
+  F as constructConnectorCategoryConfig
 };
