@@ -9,7 +9,7 @@ class s extends c {
 }
 class m extends s {
 }
-class f extends s {
+class u extends s {
 }
 class l extends s {
   body;
@@ -18,7 +18,7 @@ class l extends s {
     super(o, n, t), this.name = new.target.name, this.body = b(e ?? void 0);
   }
 }
-class u extends c {
+class f extends c {
 }
 class y extends s {
   componentName;
@@ -90,13 +90,13 @@ function O(r) {
           e = new m(n.message, n.locator, { cause: o });
           break;
         case "EngineError":
-          e = new f(n.message, n.locator, { cause: o });
+          e = new u(n.message, n.locator, { cause: o });
           break;
         case "ApplicationError":
           e = new s(n.message, n.locator, { cause: o });
           break;
         case "OperationalError":
-          e = new u(n.message, n.locator, { cause: o });
+          e = new f(n.message, n.locator, { cause: o });
           break;
         case "WindowHandledRuntimeError":
           e = new E(n.message, n.locator, { cause: o });
@@ -128,9 +128,9 @@ function b(r) {
 export {
   m as APIError,
   s as ApplicationError,
-  f as EngineError,
+  u as EngineError,
   l as FetchError,
-  u as OperationalError,
+  f as OperationalError,
   y as VueHandledError,
   g as WindowHandledPromiseRejectionError,
   E as WindowHandledRuntimeError,

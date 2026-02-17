@@ -143,7 +143,7 @@ function serialiseError(error?: unknown): SerialisedError[] {
     const seenCauses = new Set();
     const serialisedErrors: SerialisedError[] = [];
     let cause: Error | null = normalizeToError(error);
-    while (cause != undefined && !seenCauses.has(cause)) {
+    while (cause != null && !seenCauses.has(cause)) {
         seenCauses.add(cause);
         let serialisedError: SerialisedError;
         if (cause instanceof FetchError) {
