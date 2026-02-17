@@ -5,7 +5,7 @@ export interface SerialisedError {
     name: string;
     stack: string | undefined;
 }
-export declare class DPUError extends Error {
+declare class DPUError extends Error {
     readonly locator: string;
     constructor(message: string, locator: string, options?: ErrorOptions);
 }
@@ -51,3 +51,4 @@ export declare function serialiseError(error?: unknown): SerialisedError[];
  * - Returns `undefined` if the input array is empty.
  */
 export declare function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefined;
+export {};

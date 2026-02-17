@@ -10,8 +10,10 @@ export interface SerialisedError {
     stack: string | undefined; // Stack trace, if available
 }
 
+// Errors ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
 // Base class for all DPU errors
-export class DPUError extends Error {
+class DPUError extends Error {
     readonly locator: string; // Logical source of the error
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, options);
