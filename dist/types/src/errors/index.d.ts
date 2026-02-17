@@ -38,23 +38,6 @@ declare class FetchError extends ApplicationError {
     readonly body: string | undefined; /** Sanitized HTTP response body. */
     constructor(message: string, locator: string, body?: string | null, options?: ErrorOptions);
 }
-/** Represents operational failures not caused by application logic. */
-declare class OperationalError extends DataPosError {
-}
-/** Represents Vue errors that have been explicitly handled.
- * Used when capturing Vue error handler output with additional component context.
- */
-declare class VueHandledError extends ApplicationError {
-    readonly componentName: string | undefined; /** Vue component name, if available. */
-    readonly info: string; /** Vue error info string. */
-    constructor(message: string, locator: string, info: string, componentName?: string, options?: ErrorOptions);
-}
-/** Represents handled window runtime errors. */
-declare class WindowHandledRuntimeError extends ApplicationError {
-}
-/** Represents handled window promise rejection errors. */
-declare class WindowHandledPromiseRejectionError extends ApplicationError {
-}
 /** Builds a {@link FetchError} from an HTTP response.
  * The response body is eagerly read so it can be included in error logs even after the response stream is closed.
  */
@@ -84,5 +67,5 @@ declare function serialiseError(error?: unknown): SerialisedError[];
  */
 declare function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefined;
 export type { SerialisedError };
-export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
+export { APIError, EngineError, FetchError };
 export { buildFetchError, concatenateSerialisedErrorMessages, ignoreErrors, normalizeToError, serialiseError, unserialiseError };

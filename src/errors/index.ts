@@ -57,29 +57,29 @@ class FetchError extends ApplicationError {
     }
 }
 
-/** Represents operational failures not caused by application logic. */
-class OperationalError extends DataPosError {}
+// /** Represents operational failures not caused by application logic. */
+// class OperationalError extends DataPosError {}
 
-/** Represents Vue errors that have been explicitly handled.
- * Used when capturing Vue error handler output with additional component context.
- */
-class VueHandledError extends ApplicationError {
-    readonly componentName: string | undefined; /** Vue component name, if available. */
-    readonly info: string; /** Vue error info string. */
+// /** Represents Vue errors that have been explicitly handled.
+//  * Used when capturing Vue error handler output with additional component context.
+//  */
+// class VueHandledError extends ApplicationError {
+//     readonly componentName: string | undefined; /** Vue component name, if available. */
+//     readonly info: string; /** Vue error info string. */
 
-    constructor(message: string, locator: string, info: string, componentName?: string, options?: ErrorOptions) {
-        super(message, locator, options);
-        this.name = new.target.name;
-        this.info = info;
-        this.componentName = componentName;
-    }
-}
+//     constructor(message: string, locator: string, info: string, componentName?: string, options?: ErrorOptions) {
+//         super(message, locator, options);
+//         this.name = new.target.name;
+//         this.info = info;
+//         this.componentName = componentName;
+//     }
+// }
 
-/** Represents handled window runtime errors. */
-class WindowHandledRuntimeError extends ApplicationError {}
+// /** Represents handled window runtime errors. */
+// class WindowHandledRuntimeError extends ApplicationError {}
 
-/** Represents handled window promise rejection errors. */
-class WindowHandledPromiseRejectionError extends ApplicationError {}
+// /** Represents handled window promise rejection errors. */
+// class WindowHandledPromiseRejectionError extends ApplicationError {}
 
 //#endregion
 
@@ -174,7 +174,7 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
     if (serialisedErrors.length === 0) return undefined;
 
     // Build the error chain from root cause (end) to outermost (start)
-    let cause: Error | undefined = undefined;
+    let pendingError: Error | undefined = undefined;
 
     console.log(1111, serialisedErrors);
     for (const serialised of serialisedErrors.toReversed()) {
@@ -184,50 +184,47 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
         // Reconstruct the appropriate error class based on available properties
         if (serialised.body !== undefined) {
             // FetchError
-            error = new FetchError(serialised.message, serialised.locator, serialised.body, { cause });
+            error = new FetchError(serialised.message, serialised.locator, serialised.body, { cause: pendingError });
         } else if (serialised.locator === '') {
             // Generic Error
-            error = new Error(serialised.message, { cause });
+            error = new Error(serialised.message, { cause: pendingError });
             error.name = serialised.name;
         } else {
             // Determine DataPosError subclass by name
             switch (serialised.name) {
                 case 'APIError':
-                    error = new APIError(serialised.message, serialised.locator, { cause });
+                    error = new APIError(serialised.message, serialised.locator, { cause: pendingError });
                     break;
                 case 'EngineError':
-                    error = new EngineError(serialised.message, serialised.locator, { cause });
+                    error = new EngineError(serialised.message, serialised.locator, { cause: pendingError });
                     break;
-                case 'ApplicationError':
-                    error = new ApplicationError(serialised.message, serialised.locator, { cause });
-                    break;
-                case 'OperationalError':
-                    error = new OperationalError(serialised.message, serialised.locator, { cause });
-                    break;
+                // case 'ApplicationError':
+                //     error = new ApplicationError(serialised.message, serialised.locator, { pendingError });
+                //     break;
+                // case 'OperationalError':
+                //     error = new OperationalError(serialised.message, serialised.locator, { pendingError });
+                //     break;
                 // case 'WindowHandledRuntimeError':
-                //     error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { cause });
+                //     error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { pendingError });
                 //     break;
                 // case 'WindowHandledPromiseRejectionError':
-                //     error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { cause });
+                //     error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { pendingError });
                 //     break;
                 default:
                     // Fallback to base DataPosError for unknown types with locator
-                    error = new DataPosError(serialised.message, serialised.locator, { cause });
+                    error = new DataPosError(serialised.message, serialised.locator, { cause: pendingError });
                     break;
             }
         }
 
-        console.log(3333, error);
-
         // Restore stack trace if available
-        if (serialised.stack !== undefined) {
-            error.stack = serialised.stack;
-        }
+        if (serialised.stack !== undefined) error.stack = serialised.stack;
 
-        cause = error;
+        pendingError = error;
     }
+    console.log(3333, pendingError);
 
-    return cause;
+    return pendingError;
 }
 
 //#endregion
@@ -259,5 +256,5 @@ function sanitizeFetchErrorBody(body?: string): string | undefined {
 
 // Exposures.
 export type { SerialisedError };
-export { ApplicationError, APIError, EngineError, FetchError, OperationalError, VueHandledError, WindowHandledRuntimeError, WindowHandledPromiseRejectionError };
+export { APIError, EngineError, FetchError };
 export { buildFetchError, concatenateSerialisedErrorMessages, ignoreErrors, normalizeToError, serialiseError, unserialiseError };
