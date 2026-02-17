@@ -13,7 +13,7 @@ export interface SerialisedError {
 // Errors ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 // Base class for all DPU errors
-class DPUError extends Error {
+export class DPUError extends Error {
     readonly locator: string; // Logical source of the error
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, options);
@@ -121,11 +121,12 @@ export function serialiseError(error?: unknown): SerialisedError[] {
     while (cause != null && !seenCauses.has(cause)) {
         seenCauses.add(cause);
         let serialisedError: SerialisedError;
+        console.log('0000', cause);
         if (cause instanceof APIError) {
             serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: 'APIError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof ConnectorError) {
-            console.log(2222, cause.locator);
+            console.log(1111, cause.locator);
             serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'ConnectorError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof EngineError) {

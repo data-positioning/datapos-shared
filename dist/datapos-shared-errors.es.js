@@ -67,7 +67,7 @@ function h(e) {
   for (; r != null && !o.has(r); ) {
     o.add(r);
     let t;
-    r instanceof l ? (t = { body: r.body, locator: r.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof f ? (console.log(2222, r.locator), t = { body: void 0, locator: r.locator, message: r.message, name: "ConnectorError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof u ? (t = { body: void 0, locator: r.locator, message: r.message, name: "EngineError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof i ? (t = { body: r.body, locator: r.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof a ? (t = { body: void 0, locator: r.locator, message: r.message, name: "DPUError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof Error ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : (t = { body: void 0, locator: "", message: m(r), name: "Error", stack: void 0 }, r = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), s.push(t);
+    console.log("0000", r), r instanceof l ? (t = { body: r.body, locator: r.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof f ? (console.log(1111, r.locator), t = { body: void 0, locator: r.locator, message: r.message, name: "ConnectorError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof u ? (t = { body: void 0, locator: r.locator, message: r.message, name: "EngineError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof i ? (t = { body: r.body, locator: r.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof a ? (t = { body: void 0, locator: r.locator, message: r.message, name: "DPUError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof Error ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : (t = { body: void 0, locator: "", message: m(r), name: "Error", stack: void 0 }, r = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), s.push(t);
   }
   return s;
 }
@@ -116,6 +116,7 @@ function E(e) {
 export {
   l as APIError,
   f as ConnectorError,
+  a as DPUError,
   u as EngineError,
   i as FetchError,
   b as buildFetchError,
