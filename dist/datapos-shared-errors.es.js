@@ -8,8 +8,8 @@ class a extends Error {
 class l extends a {
   body;
   // Sanitized snapshot of the response body
-  constructor(o, s, r, n) {
-    super(o, s, n), this.name = "APIError", this.body = m(r ?? void 0);
+  constructor(o, s, r, t) {
+    super(o, s, t), this.name = "APIError", this.body = E(r ?? void 0);
   }
 }
 class u extends a {
@@ -17,29 +17,27 @@ class u extends a {
     super(o, s, r), this.name = "EngineError";
   }
 }
-class d extends a {
-  id;
-  // Connector identifier
-  constructor(o, s, r, n) {
-    super(o, s, n), this.name = "ConnectorError", this.id = r;
+class f extends a {
+  constructor(o, s, r) {
+    super(o, s, r), this.name = "ConnectorError";
   }
 }
 class i extends a {
   body;
   // Sanitized snapshot of the response body
-  constructor(o, s, r, n) {
-    super(o, s, n), this.name = "FetchError", this.body = m(r ?? void 0);
+  constructor(o, s, r, t) {
+    super(o, s, t), this.name = "FetchError", this.body = E(r ?? void 0);
   }
 }
 async function b(e, o, s) {
-  const r = ` - ${e.statusText}`, n = `${o} Response status '${e.status}${e.statusText ? r : ""}' received.`;
+  const r = ` - ${e.statusText}`, t = `${o} Response status '${e.status}${e.statusText ? r : ""}' received.`;
   let c;
   try {
     c = await e.text();
-  } catch (f) {
-    c = `<body unavailable: ${t(f).message}>`;
+  } catch (d) {
+    c = `<body unavailable: ${n(d).message}>`;
   }
-  return new i(n, s, c);
+  return new i(t, s, c);
 }
 function y(e) {
   return e.map((o) => o.message).join(" ");
@@ -50,7 +48,7 @@ function k(e) {
   } catch {
   }
 }
-function t(e) {
+function n(e) {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
   if (typeof e == "number" || typeof e == "boolean" || typeof e == "bigint") return new Error(String(e));
@@ -65,15 +63,15 @@ function t(e) {
 }
 function h(e) {
   const o = /* @__PURE__ */ new Set(), s = [];
-  let r = t(e);
+  let r = n(e);
   for (; r != null && !o.has(r); ) {
     o.add(r);
-    let n;
-    r instanceof l ? (n = { body: r.body, componentId: void 0, locator: r.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : r instanceof d ? (n = { body: void 0, componentId: r.id, locator: r.locator, message: r.message, name: "ConnectorError", stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : r instanceof u ? (n = { body: void 0, componentId: void 0, locator: r.locator, message: r.message, name: "EngineError", stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : r instanceof i ? (n = { body: r.body, componentId: void 0, locator: r.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : r instanceof a ? (n = { body: void 0, componentId: void 0, locator: r.locator, message: r.message, name: "DPUError", stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : r instanceof Error ? (n = { body: void 0, componentId: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : (n = { body: void 0, componentId: void 0, locator: "", message: E(r), name: "Error", stack: void 0 }, r = null), /(?:\.{3}|[.!?])$/.test(n.message) || (n.message += "."), s.push(n);
+    let t;
+    r instanceof l ? (t = { body: r.body, locator: r.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof f ? (t = { body: void 0, locator: r.locator, message: r.message, name: "ConnectorError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof u ? (t = { body: void 0, locator: r.locator, message: r.message, name: "EngineError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof i ? (t = { body: r.body, locator: r.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof a ? (t = { body: void 0, locator: r.locator, message: r.message, name: "DPUError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof Error ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : (t = { body: void 0, locator: "", message: m(r), name: "Error", stack: void 0 }, r = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), s.push(t);
   }
   return s;
 }
-function p(e) {
+function w(e) {
   if (e.length === 0) return;
   let o;
   for (const s of e.toReversed()) {
@@ -83,7 +81,7 @@ function p(e) {
         r = new l(s.message, s.locator, s.body, { cause: o });
         break;
       case "ConnectorError":
-        r = new d(s.message, s.locator, s.componentId, { cause: o });
+        r = new f(s.message, s.locator, { cause: o });
         break;
       case "EngineError":
         r = new u(s.message, s.locator, { cause: o });
@@ -102,7 +100,7 @@ function p(e) {
   }
   return o;
 }
-function E(e) {
+function m(e) {
   let o;
   try {
     o = JSON.stringify(e);
@@ -111,19 +109,19 @@ function E(e) {
   }
   return o === "" && (o = "Unknown error"), o;
 }
-function m(e) {
+function E(e) {
   if (!(e == null || e === ""))
     return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
 }
 export {
   l as APIError,
-  d as ConnectorError,
+  f as ConnectorError,
   u as EngineError,
   i as FetchError,
   b as buildFetchError,
   y as concatenateSerialisedErrorMessages,
   k as ignoreErrors,
-  t as normalizeToError,
+  n as normalizeToError,
   h as serialiseError,
-  p as unserialiseError
+  w as unserialiseError
 };

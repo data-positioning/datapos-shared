@@ -1,6 +1,5 @@
 export interface SerialisedError {
     body: string | undefined;
-    componentId: string | undefined;
     locator: string;
     message: string;
     name: string;
@@ -18,8 +17,7 @@ export declare class EngineError extends DPUError {
     constructor(message: string, locator: string, options?: ErrorOptions);
 }
 export declare class ConnectorError extends DPUError {
-    readonly id: string | undefined;
-    constructor(message: string, locator: string, id: string | undefined, options?: ErrorOptions);
+    constructor(message: string, locator: string, options?: ErrorOptions);
 }
 export declare class FetchError extends DPUError {
     readonly body: string | undefined;

@@ -4,7 +4,6 @@ const FETCH_ERROR_BODY_LIMIT = 2048;
 // Serializable representation of an error, used for transporting errors across worker or network boundaries
 export interface SerialisedError {
     body: string | undefined; // HTTP response body (fetch errors only)
-    componentId: string | undefined; // Connector, context and presenter errors only
     locator: string; // Logical source of the error
     message: string; // Human-readable error message
     name: string; // Error class or type name
@@ -39,17 +38,15 @@ export class EngineError extends DPUError {
     }
 }
 
-// Thrown when an connector operation fails, will include an identifier for the connector.
+// Thrown when an connector operation fails
 export class ConnectorError extends DPUError {
-    readonly id: string | undefined; // Connector identifier
-    constructor(message: string, locator: string, id: string | undefined, options?: ErrorOptions) {
+    constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
         this.name = 'ConnectorError';
-        this.id = id;
     }
 }
 
-// Thrown when an HTTP request fails, may include a sanitized snapshot of the response body for diagnostic purposes.
+// Thrown when an HTTP request fails, may include a sanitized snapshot of the response body for diagnostic purposes
 export class FetchError extends DPUError {
     readonly body: string | undefined; // Sanitized snapshot of the response body
     constructor(message: string, locator: string, body: string | undefined, options?: ErrorOptions) {
@@ -123,25 +120,25 @@ export function serialiseError(error?: unknown): SerialisedError[] {
         seenCauses.add(cause);
         let serialisedError: SerialisedError;
         if (cause instanceof APIError) {
-            serialisedError = { body: cause.body, componentId: undefined, locator: cause.locator, message: cause.message, name: 'APIError', stack: cause.stack };
+            serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: 'APIError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof ConnectorError) {
-            serialisedError = { body: undefined, componentId: cause.id, locator: cause.locator, message: cause.message, name: 'ConnectorError', stack: cause.stack };
+            serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'ConnectorError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof EngineError) {
-            serialisedError = { body: undefined, componentId: undefined, locator: cause.locator, message: cause.message, name: 'EngineError', stack: cause.stack };
+            serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'EngineError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof FetchError) {
-            serialisedError = { body: cause.body, componentId: undefined, locator: cause.locator, message: cause.message, name: 'FetchError', stack: cause.stack };
+            serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: 'FetchError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof DPUError) {
-            serialisedError = { body: undefined, componentId: undefined, locator: cause.locator, message: cause.message, name: 'DPUError', stack: cause.stack };
+            serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'DPUError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof Error) {
-            serialisedError = { body: undefined, componentId: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
+            serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else {
-            serialisedError = { body: undefined, componentId: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
+            serialisedError = { body: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
             cause = null;
         }
         if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.';
@@ -168,7 +165,7 @@ export function unserialiseError(serialisedErrors: SerialisedError[]): Error | u
                 error = new APIError(serialised.message, serialised.locator, serialised.body, { cause: rebuiltError });
                 break;
             case 'ConnectorError':
-                error = new ConnectorError(serialised.message, serialised.locator, serialised.componentId, { cause: rebuiltError });
+                error = new ConnectorError(serialised.message, serialised.locator, { cause: rebuiltError });
                 break;
             case 'EngineError':
                 error = new EngineError(serialised.message, serialised.locator, { cause: rebuiltError });
