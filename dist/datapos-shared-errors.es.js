@@ -91,10 +91,10 @@ function h(e) {
         break;
       }
       case "Error":
-        t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        console.log(7777, r), t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause);
         break;
       default:
-        t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null;
+        console.log(8888, r), t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null;
     }
     /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), o.push(t);
   }

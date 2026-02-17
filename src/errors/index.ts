@@ -153,10 +153,12 @@ export function serialiseError(error?: unknown): SerialisedError[] {
                 break;
             }
             case 'Error':
+                console.log(7777, cause);
                 serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
             default:
+                console.log(8888, cause);
                 serialisedError = { body: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
                 cause = null;
         }
