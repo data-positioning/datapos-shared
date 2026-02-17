@@ -11,7 +11,7 @@ export interface SerialisedError {
 }
 
 // Base class for all DPU errors
-class DPUError extends Error {
+export class DPUError extends Error {
     readonly locator: string; // Logical source of the error
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, options);

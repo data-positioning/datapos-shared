@@ -116,6 +116,7 @@ function E(e) {
 export {
   l as APIError,
   f as ConnectorError,
+  a as DPUError,
   u as EngineError,
   i as FetchError,
   b as buildFetchError,
