@@ -1,52 +1,52 @@
 class c extends Error {
   locator;
   /** Logical source of the error. */
-  constructor(n, o, e) {
-    super(n, e), this.name = new.target.name, this.locator = o;
+  constructor(o, n, e) {
+    super(o, e), this.name = new.target.name, this.locator = n;
   }
 }
-class a extends c {
+class s extends c {
 }
-class f extends a {
+class m extends s {
 }
-class u extends a {
+class f extends s {
 }
-class m extends a {
+class l extends s {
   body;
   /** Sanitized HTTP response body. */
-  constructor(n, o, e, s) {
-    super(n, o, s), this.name = new.target.name, this.body = p(e ?? void 0);
+  constructor(o, n, e, t) {
+    super(o, n, t), this.name = new.target.name, this.body = b(e ?? void 0);
   }
 }
-class E extends c {
+class u extends c {
 }
-class d extends a {
+class y extends s {
   componentName;
   /** Vue component name, if available. */
   info;
   /** Vue error info string. */
-  constructor(n, o, e, s, t) {
-    super(n, o, t), this.name = new.target.name, this.info = e, this.componentName = s;
+  constructor(o, n, e, t, a) {
+    super(o, n, a), this.name = new.target.name, this.info = e, this.componentName = t;
   }
 }
-class g extends a {
+class E extends s {
 }
-class w extends a {
+class g extends s {
 }
-async function k(r, n, o) {
-  const e = ` - ${r.statusText}`, s = `${n} Response status '${r.status}${r.statusText ? e : ""}' received.`;
-  let t;
+async function p(r, o, n) {
+  const e = ` - ${r.statusText}`, t = `${o} Response status '${r.status}${r.statusText ? e : ""}' received.`;
+  let a;
   try {
-    t = await r.text();
-  } catch (l) {
-    t = `<body unavailable: ${i(l).message}>`;
+    a = await r.text();
+  } catch (d) {
+    a = `<body unavailable: ${i(d).message}>`;
   }
-  return new m(s, o, t);
+  return new l(t, n, a);
 }
 function h(r) {
-  return r.map((n) => n.message).join(" ");
+  return r.map((o) => o.message).join(" ");
 }
-function y(r) {
+function R(r) {
   try {
     r();
   } catch {
@@ -65,90 +65,79 @@ function i(r) {
     }
   return new Error("Unknown error");
 }
-function R(r) {
-  const n = /* @__PURE__ */ new Set(), o = [];
-  let e = i(r);
-  for (; e != null && !n.has(e); ) {
-    n.add(e);
-    let s;
-    if (e instanceof m)
-      s = { componentName: void 0, body: e.body, info: void 0, locator: e.locator, message: e.message, name: e.name, stack: e.stack }, e = i(e.cause);
-    else if (e instanceof d)
-      s = {
-        componentName: e.componentName,
-        body: void 0,
-        info: e.info,
-        locator: e.locator,
-        message: e.message,
-        name: e.name,
-        stack: e.stack
-      }, e = i(e.cause);
-    else if (e instanceof c)
-      s = { componentName: void 0, body: void 0, info: void 0, locator: e.locator, message: e.message, name: e.name, stack: e.stack }, e = i(e.cause);
-    else {
-      const t = e;
-      s = { componentName: void 0, body: void 0, info: void 0, locator: "", message: t.message, name: t.name, stack: t.stack }, e = i(e.cause);
-    }
-    /(?:\.{3}|[.!?])$/.test(s.message) || (s.message += "."), o.push(s);
-  }
-  return o;
-}
 function x(r) {
-  if (r.length === 0) return;
-  let n;
-  for (const o of r.toReversed()) {
-    let e;
-    if (o.body !== void 0)
-      e = new m(o.message, o.locator, o.body, { cause: n });
-    else if (o.info !== void 0)
-      e = new d(o.message, o.locator, o.info, o.componentName, { cause: n });
-    else if (o.locator === "")
-      e = new Error(o.message, { cause: n }), e.name = o.name;
-    else
-      switch (o.name) {
-        case "APIError":
-          e = new f(o.message, o.locator, { cause: n });
-          break;
-        case "EngineError":
-          e = new u(o.message, o.locator, { cause: n });
-          break;
-        case "ApplicationError":
-          e = new a(o.message, o.locator, { cause: n });
-          break;
-        case "OperationalError":
-          e = new E(o.message, o.locator, { cause: n });
-          break;
-        case "WindowHandledRuntimeError":
-          e = new g(o.message, o.locator, { cause: n });
-          break;
-        case "WindowHandledPromiseRejectionError":
-          e = new w(o.message, o.locator, { cause: n });
-          break;
-        default:
-          e = new c(o.message, o.locator, { cause: n });
-          break;
-      }
-    o.stack !== void 0 && (e.stack = o.stack), n = e;
+  const o = /* @__PURE__ */ new Set(), n = [];
+  let e = i(r);
+  for (; e != null && !o.has(e); ) {
+    o.add(e);
+    let t;
+    e instanceof l ? (t = { body: e.body, locator: e.locator, message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : i(e.cause)) : e instanceof c ? (t = { body: void 0, locator: e.locator, message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : i(e.cause)) : e instanceof Error ? (t = { body: void 0, locator: "", message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : i(e.cause)) : (t = { body: void 0, locator: "", message: w(e), name: "Error", stack: void 0 }, e = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), n.push(t);
   }
   return n;
 }
-function p(r) {
+function O(r) {
+  if (r.length === 0) return;
+  let o;
+  for (const n of r.toReversed()) {
+    let e;
+    if (n.body !== void 0)
+      e = new l(n.message, n.locator, n.body, { cause: o });
+    else if (n.locator === "")
+      e = new Error(n.message, { cause: o }), e.name = n.name;
+    else
+      switch (n.name) {
+        case "APIError":
+          e = new m(n.message, n.locator, { cause: o });
+          break;
+        case "EngineError":
+          e = new f(n.message, n.locator, { cause: o });
+          break;
+        case "ApplicationError":
+          e = new s(n.message, n.locator, { cause: o });
+          break;
+        case "OperationalError":
+          e = new u(n.message, n.locator, { cause: o });
+          break;
+        case "WindowHandledRuntimeError":
+          e = new E(n.message, n.locator, { cause: o });
+          break;
+        case "WindowHandledPromiseRejectionError":
+          e = new g(n.message, n.locator, { cause: o });
+          break;
+        default:
+          e = new c(n.message, n.locator, { cause: o });
+          break;
+      }
+    n.stack !== void 0 && (e.stack = n.stack), o = e;
+  }
+  return o;
+}
+function w(r) {
+  let o;
+  try {
+    o = JSON.stringify(r);
+  } catch {
+    typeof r == "symbol" ? o = r.description ?? "Unknown error" : typeof r == "bigint" ? o = r.toString() : o = "Unknown error";
+  }
+  return o === "" && (o = "Unknown error"), o;
+}
+function b(r) {
   if (!(r == null || r === ""))
     return r.length > 2048 ? `${r.slice(0, 2048)}... [truncated]` : r;
 }
 export {
-  f as APIError,
-  a as ApplicationError,
-  u as EngineError,
-  m as FetchError,
-  E as OperationalError,
-  d as VueHandledError,
-  w as WindowHandledPromiseRejectionError,
-  g as WindowHandledRuntimeError,
-  k as buildFetchError,
+  m as APIError,
+  s as ApplicationError,
+  f as EngineError,
+  l as FetchError,
+  u as OperationalError,
+  y as VueHandledError,
+  g as WindowHandledPromiseRejectionError,
+  E as WindowHandledRuntimeError,
+  p as buildFetchError,
   h as concatenateSerialisedErrorMessages,
-  y as ignoreErrors,
+  R as ignoreErrors,
   i as normalizeToError,
-  R as serialiseError,
-  x as unserialiseError
+  x as serialiseError,
+  O as unserialiseError
 };

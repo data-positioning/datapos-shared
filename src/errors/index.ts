@@ -10,8 +10,6 @@ const FETCH_ERROR_BODY_LIMIT = 2048;
  */
 interface SerialisedError {
     /** HTTP response body (Fetch errors only). */ body: string | undefined;
-    /** Vue component name (Vue errors only). */ componentName: string | undefined;
-    /** Vue error info string. */ info: string | undefined;
     /** Logical source of the error. */ locator: string;
     /** Human-readable error message. */ message: string;
     /** Error class or type name. */ name: string;
@@ -140,40 +138,26 @@ function normalizeToError(value: unknown): Error {
  * - Cycles in the cause chain are safely ignored.
  * - Messages are normalized to end with punctuation.
  */
+// eslint-disable-next-line sonarjs/cognitive-complexity
 function serialiseError(error?: unknown): SerialisedError[] {
     const seenCauses = new Set();
     const serialisedErrors: SerialisedError[] = [];
-
-    let cause = normalizeToError(error);
+    let cause: Error | null = normalizeToError(error);
     while (cause != undefined && !seenCauses.has(cause)) {
         seenCauses.add(cause);
-
         let serialisedError: SerialisedError;
         if (cause instanceof FetchError) {
-            serialisedError = { componentName: undefined, body: cause.body, info: undefined, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
-            cause = normalizeToError(cause.cause);
-        } else if (cause instanceof VueHandledError) {
-            serialisedError = {
-                componentName: cause.componentName,
-                body: undefined,
-                info: cause.info,
-                locator: cause.locator,
-                message: cause.message,
-                name: cause.name,
-                stack: cause.stack
-            };
-            cause = normalizeToError(cause.cause);
+            serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
+            cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof DataPosError) {
-            serialisedError = { componentName: undefined, body: undefined, info: undefined, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
-            cause = normalizeToError(cause.cause);
-            // } else if (cause instanceof Error) {
+            serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
+            cause = cause.cause == null ? null : normalizeToError(cause.cause);
+        } else if (cause instanceof Error) {
+            serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
+            cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else {
-            const error = cause;
-            serialisedError = { componentName: undefined, body: undefined, info: undefined, locator: '', message: error.message, name: error.name, stack: error.stack };
-            cause = normalizeToError(cause.cause);
-            // } else {
-            //     serialisedError = { componentName: undefined, body: undefined, info: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
-            //     cause = undefined;
+            serialisedError = { body: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
+            cause = null;
         }
         if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.';
         serialisedErrors.push(serialisedError);
@@ -199,9 +183,6 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
         if (serialised.body !== undefined) {
             // FetchError
             error = new FetchError(serialised.message, serialised.locator, serialised.body, { cause });
-        } else if (serialised.info !== undefined) {
-            // VueHandledError
-            error = new VueHandledError(serialised.message, serialised.locator, serialised.info, serialised.componentName, { cause });
         } else if (serialised.locator === '') {
             // Generic Error
             error = new Error(serialised.message, { cause });

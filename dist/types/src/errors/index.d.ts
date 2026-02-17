@@ -6,8 +6,6 @@
  */
 interface SerialisedError {
     /** HTTP response body (Fetch errors only). */ body: string | undefined;
-    /** Vue component name (Vue errors only). */ componentName: string | undefined;
-    /** Vue error info string. */ info: string | undefined;
     /** Logical source of the error. */ locator: string;
     /** Human-readable error message. */ message: string;
     /** Error class or type name. */ name: string;

@@ -1,9 +1,18 @@
-/**
- * ESLint configuration.
- */
+// External dependencies
+import sonarjs from 'eslint-plugin-sonarjs';
 
-/** Dependencies - Framework. */
+// DPU framework
 import datapos from '@datapos/eslint-config-datapos';
 
-/** Exposures - Configuration. */
-export default [...datapos];
+// ESLint configuration
+export default [
+    ...datapos,
+    {
+        plugins: {
+            sonarjs
+        },
+        rules: {
+            // 'sonarjs/cognitive-complexity': ['error', 18]
+        }
+    }
+];
