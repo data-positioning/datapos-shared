@@ -5,14 +5,14 @@ class c extends Error {
     super(s, r), this.name = "DPUError", this.locator = o;
   }
 }
-class E extends c {
+class d extends c {
   body;
   // Sanitized snapshot of the response body
   constructor(s, o, r, t) {
-    super(s, o, t), this.name = "APIError", this.body = l(r ?? void 0);
+    super(s, o, t), this.name = "APIError", this.body = i(r ?? void 0);
   }
 }
-class d extends c {
+class E extends c {
   constructor(s, o, r) {
     super(s, o, r), this.name = "EngineError";
   }
@@ -22,11 +22,11 @@ class m extends c {
     super(s, o, r), this.name = "ConnectorError";
   }
 }
-class i extends c {
+class l extends c {
   body;
   // Sanitized snapshot of the response body
   constructor(s, o, r, t) {
-    super(s, o, t), this.name = "FetchError", this.body = l(r ?? void 0);
+    super(s, o, t), this.name = "FetchError", this.body = i(r ?? void 0);
   }
 }
 async function y(e, s, o) {
@@ -37,7 +37,7 @@ async function y(e, s, o) {
   } catch (u) {
     n = `<body unavailable: ${a(u).message}>`;
   }
-  return new i(t, o, n);
+  return new l(t, o, n);
 }
 function b(e) {
   return e.map((s) => s.message).join(" ");
@@ -94,7 +94,7 @@ function h(e) {
         console.log(7777, r), t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause);
         break;
       default:
-        console.log(8888, r), t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null;
+        console.log(8888, r), r.name ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause)) : (t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null);
     }
     /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), o.push(t);
   }
@@ -107,16 +107,16 @@ function p(e) {
     let r;
     switch (o.name) {
       case "APIError":
-        r = new E(o.message, o.locator, o.body, { cause: s });
+        r = new d(o.message, o.locator, o.body, { cause: s });
         break;
       case "ConnectorError":
         r = new m(o.message, o.locator, { cause: s });
         break;
       case "EngineError":
-        r = new d(o.message, o.locator, { cause: s });
+        r = new E(o.message, o.locator, { cause: s });
         break;
       case "FetchError":
-        r = new i(o.message, o.locator, o.body, { cause: s });
+        r = new l(o.message, o.locator, o.body, { cause: s });
         break;
       case "DPUError":
         r = new c(o.message, o.locator, { cause: s });
@@ -138,16 +138,16 @@ function g(e) {
   }
   return s === "" && (s = "Unknown error"), s;
 }
-function l(e) {
+function i(e) {
   if (!(e == null || e === ""))
     return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
 }
 export {
-  E as APIError,
+  d as APIError,
   m as ConnectorError,
   c as DPUError,
-  d as EngineError,
-  i as FetchError,
+  E as EngineError,
+  l as FetchError,
   y as buildFetchError,
   b as concatenateSerialisedErrorMessages,
   k as ignoreErrors,

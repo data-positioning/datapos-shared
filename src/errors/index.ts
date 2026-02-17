@@ -159,8 +159,13 @@ export function serialiseError(error?: unknown): SerialisedError[] {
                 break;
             default:
                 console.log(8888, cause);
-                serialisedError = { body: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
-                cause = null;
+                if (cause.name) {
+                    serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
+                    cause = cause.cause == null ? null : normalizeToError(cause.cause);
+                } else {
+                    serialisedError = { body: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
+                    cause = null;
+                }
         }
         if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.';
         serialisedErrors.push(serialisedError);
