@@ -152,6 +152,9 @@ function serialiseError(error?: unknown): SerialisedError[] {
         } else if (cause instanceof DataPosError) {
             serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'DataPosError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
+        } else if (cause instanceof EngineError) {
+            serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'EngineError', stack: cause.stack };
+            cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof Error) {
             serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
