@@ -1,126 +1,129 @@
-class c extends Error {
+class a extends Error {
   locator;
-  /** Logical source of the error. */
-  constructor(s, o, e) {
-    super(s, e), this.name = new.target.name, this.locator = o;
+  // Logical source of the error
+  constructor(o, s, r) {
+    super(o, r), this.name = "DPUError", this.locator = s;
   }
 }
-class i extends c {
-}
-class g extends i {
-}
-class u extends i {
-  constructor(s, o, e) {
-    super(s, o, e), this.name = "EngineError";
-  }
-}
-class l extends i {
+class l extends a {
   body;
-  /** Sanitized HTTP response body. */
-  constructor(s, o, e, t) {
-    super(s, o, t), this.name = new.target.name, this.body = d(e ?? void 0);
+  // Sanitized snapshot of the response body
+  constructor(o, s, r, n) {
+    super(o, s, n), this.name = "APIError", this.body = m(r ?? void 0);
   }
 }
-async function k(r, s, o) {
-  const e = ` - ${r.statusText}`, t = `${s} Response status '${r.status}${r.statusText ? e : ""}' received.`;
-  let a;
+class u extends a {
+  constructor(o, s, r) {
+    super(o, s, r), this.name = "EngineError";
+  }
+}
+class d extends a {
+  id;
+  // Connector identifier
+  constructor(o, s, r, n) {
+    super(o, s, n), this.name = "ConnectorError", this.id = r;
+  }
+}
+class i extends a {
+  body;
+  // Sanitized snapshot of the response body
+  constructor(o, s, r, n) {
+    super(o, s, n), this.name = "FetchError", this.body = m(r ?? void 0);
+  }
+}
+async function b(e, o, s) {
+  const r = ` - ${e.statusText}`, n = `${o} Response status '${e.status}${e.statusText ? r : ""}' received.`;
+  let c;
   try {
-    a = await r.text();
+    c = await e.text();
   } catch (f) {
-    a = `<body unavailable: ${n(f).message}>`;
+    c = `<body unavailable: ${t(f).message}>`;
   }
-  return new l(t, o, a);
+  return new i(n, s, c);
 }
-function y(r) {
-  return r.map((s) => s.message).join(" ");
+function y(e) {
+  return e.map((o) => o.message).join(" ");
 }
-function b(r) {
+function k(e) {
   try {
-    r();
+    e();
   } catch {
   }
 }
-function n(r) {
-  if (r instanceof Error) return r;
-  if (typeof r == "string") return new Error(r);
-  if (typeof r == "number" || typeof r == "boolean" || typeof r == "bigint") return new Error(String(r));
-  if (typeof r == "symbol") return new Error(r.description ?? "Unknown error");
-  if (typeof r == "object")
+function t(e) {
+  if (e instanceof Error) return e;
+  if (typeof e == "string") return new Error(e);
+  if (typeof e == "number" || typeof e == "boolean" || typeof e == "bigint") return new Error(String(e));
+  if (typeof e == "symbol") return new Error(e.description ?? "Unknown error");
+  if (typeof e == "object")
     try {
-      return new Error(JSON.stringify(r));
+      return new Error(JSON.stringify(e));
     } catch {
       return new Error("Unknown error");
     }
   return new Error("Unknown error");
 }
-function w(r) {
-  const s = /* @__PURE__ */ new Set(), o = [];
-  let e = n(r);
-  for (; e != null && !s.has(e); ) {
-    s.add(e), console.log("CAUSE STACK", e.stack);
-    let t;
-    e instanceof l ? (t = { body: e.body, locator: e.locator, message: e.message, name: "FetchError", stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : e instanceof u ? (t = { body: void 0, locator: e.locator, message: e.message, name: "EngineError", stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : e instanceof c ? (t = { body: void 0, locator: e.locator, message: e.message, name: "DataPosError", stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : e instanceof Error ? (t = { body: void 0, locator: "", message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : (t = { body: void 0, locator: "", message: E(e), name: "Error", stack: void 0 }, e = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), o.push(t);
-  }
-  return o;
-}
-function h(r) {
-  if (r.length === 0) return;
-  let s;
-  for (const o of r.toReversed()) {
-    let e;
-    if (o.body !== void 0)
-      console.log("FetchError"), e = new l(o.message, o.locator, o.body, { cause: s });
-    else if (o.locator === "")
-      console.log("Generic"), e = new Error(o.message, { cause: s }), e.name = o.name;
-    else
-      switch (o.name) {
-        case "APIError":
-          console.log("APIError"), e = new g(o.message, o.locator, { cause: s });
-          break;
-        case "EngineError":
-          e = new u(o.message, o.locator, { cause: s }), console.log("EngineError", e);
-          break;
-        // case 'ApplicationError':
-        //     error = new ApplicationError(serialised.message, serialised.locator, { rebuiltError });
-        //     break;
-        // case 'OperationalError':
-        //     error = new OperationalError(serialised.message, serialised.locator, { rebuiltError });
-        //     break;
-        // case 'WindowHandledRuntimeError':
-        //     error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { rebuiltError });
-        //     break;
-        // case 'WindowHandledPromiseRejectionError':
-        //     error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { rebuiltError });
-        //     break;
-        default:
-          console.log("Fallback"), e = new c(o.message, o.locator, { cause: s });
-          break;
-      }
-    console.log(1111, e.stack, o.stack), o.stack !== void 0 && (e.stack = o.stack), console.log(2222, e.stack, o.stack), s = e;
+function h(e) {
+  const o = /* @__PURE__ */ new Set(), s = [];
+  let r = t(e);
+  for (; r != null && !o.has(r); ) {
+    o.add(r);
+    let n;
+    r instanceof l ? (n = { body: r.body, componentId: void 0, locator: r.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : r instanceof d ? (n = { body: void 0, componentId: r.id, locator: r.locator, message: r.message, name: "ConnectorError", stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : r instanceof u ? (n = { body: void 0, componentId: void 0, locator: r.locator, message: r.message, name: "EngineError", stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : r instanceof i ? (n = { body: r.body, componentId: void 0, locator: r.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : r instanceof a ? (n = { body: void 0, componentId: void 0, locator: r.locator, message: r.message, name: "DPUError", stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : r instanceof Error ? (n = { body: void 0, componentId: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : t(r.cause)) : (n = { body: void 0, componentId: void 0, locator: "", message: E(r), name: "Error", stack: void 0 }, r = null), /(?:\.{3}|[.!?])$/.test(n.message) || (n.message += "."), s.push(n);
   }
   return s;
 }
-function E(r) {
-  let s;
-  try {
-    s = JSON.stringify(r);
-  } catch {
-    typeof r == "symbol" ? s = r.description ?? "Unknown error" : typeof r == "bigint" ? s = r.toString() : s = "Unknown error";
+function p(e) {
+  if (e.length === 0) return;
+  let o;
+  for (const s of e.toReversed()) {
+    let r;
+    switch (s.name) {
+      case "APIError":
+        r = new l(s.message, s.locator, s.body, { cause: o });
+        break;
+      case "ConnectorError":
+        r = new d(s.message, s.locator, s.componentId, { cause: o });
+        break;
+      case "EngineError":
+        r = new u(s.message, s.locator, { cause: o });
+        break;
+      case "FetchError":
+        r = new i(s.message, s.locator, s.body, { cause: o });
+        break;
+      case "DPUError":
+        r = new a(s.message, s.locator, { cause: o });
+        break;
+      default:
+        r = new Error(s.message, { cause: o }), r.name = s.name;
+        break;
+    }
+    s.stack !== void 0 && (r.stack = s.stack), o = r;
   }
-  return s === "" && (s = "Unknown error"), s;
+  return o;
 }
-function d(r) {
-  if (!(r == null || r === ""))
-    return r.length > 2048 ? `${r.slice(0, 2048)}... [truncated]` : r;
+function E(e) {
+  let o;
+  try {
+    o = JSON.stringify(e);
+  } catch {
+    typeof e == "symbol" ? o = e.description ?? "Unknown error" : typeof e == "bigint" ? o = e.toString() : o = "Unknown error";
+  }
+  return o === "" && (o = "Unknown error"), o;
+}
+function m(e) {
+  if (!(e == null || e === ""))
+    return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
 }
 export {
-  g as APIError,
+  l as APIError,
+  d as ConnectorError,
   u as EngineError,
-  l as FetchError,
-  k as buildFetchError,
+  i as FetchError,
+  b as buildFetchError,
   y as concatenateSerialisedErrorMessages,
-  b as ignoreErrors,
-  n as normalizeToError,
-  w as serialiseError,
-  h as unserialiseError
+  k as ignoreErrors,
+  t as normalizeToError,
+  h as serialiseError,
+  p as unserialiseError
 };
