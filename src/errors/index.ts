@@ -152,13 +152,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
             }
-            case 'Error':
-                console.log(7777, cause);
-                serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
-                cause = cause.cause == null ? null : normalizeToError(cause.cause);
-                break;
             default:
-                console.log(8888, cause);
                 if (cause.name) {
                     serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
                     cause = cause.cause == null ? null : normalizeToError(cause.cause);
@@ -170,7 +164,6 @@ export function serialiseError(error?: unknown): SerialisedError[] {
         if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.';
         serialisedErrors.push(serialisedError);
     }
-    console.log(4444, serialisedErrors);
     return serialisedErrors;
 }
 
@@ -204,7 +197,6 @@ export function unserialiseError(serialisedErrors: SerialisedError[]): Error | u
                 error = new DPUError(serialised.message, serialised.locator, { cause: rebuiltError });
                 break;
             default:
-                console.log(5555, serialised);
                 error = new Error(serialised.message, { cause: rebuiltError });
                 error.name = serialised.name;
                 break;

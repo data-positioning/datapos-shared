@@ -9,7 +9,7 @@ class d extends c {
   body;
   // Sanitized snapshot of the response body
   constructor(s, o, r, t) {
-    super(s, o, t), this.name = "APIError", this.body = i(r ?? void 0);
+    super(s, o, t), this.name = "APIError", this.body = l(r ?? void 0);
   }
 }
 class E extends c {
@@ -22,11 +22,11 @@ class m extends c {
     super(s, o, r), this.name = "ConnectorError";
   }
 }
-class l extends c {
+class i extends c {
   body;
   // Sanitized snapshot of the response body
   constructor(s, o, r, t) {
-    super(s, o, t), this.name = "FetchError", this.body = i(r ?? void 0);
+    super(s, o, t), this.name = "FetchError", this.body = l(r ?? void 0);
   }
 }
 async function y(e, s, o) {
@@ -37,7 +37,7 @@ async function y(e, s, o) {
   } catch (u) {
     n = `<body unavailable: ${a(u).message}>`;
   }
-  return new l(t, o, n);
+  return new i(t, o, n);
 }
 function b(e) {
   return e.map((s) => s.message).join(" ");
@@ -90,15 +90,12 @@ function h(e) {
         t = { body: void 0, locator: r.locator, message: r.message, name: "DPUError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
         break;
       }
-      case "Error":
-        console.log(7777, r), t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause);
-        break;
       default:
-        console.log(8888, r), r.name ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause)) : (t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null);
+        r.name ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause)) : (t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null);
     }
     /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), o.push(t);
   }
-  return console.log(4444, o), o;
+  return o;
 }
 function p(e) {
   if (e.length === 0) return;
@@ -116,13 +113,13 @@ function p(e) {
         r = new E(o.message, o.locator, { cause: s });
         break;
       case "FetchError":
-        r = new l(o.message, o.locator, o.body, { cause: s });
+        r = new i(o.message, o.locator, o.body, { cause: s });
         break;
       case "DPUError":
         r = new c(o.message, o.locator, { cause: s });
         break;
       default:
-        console.log(5555, o), r = new Error(o.message, { cause: s }), r.name = o.name;
+        r = new Error(o.message, { cause: s }), r.name = o.name;
         break;
     }
     o.stack !== void 0 && (r.stack = o.stack), s = r;
@@ -138,7 +135,7 @@ function g(e) {
   }
   return s === "" && (s = "Unknown error"), s;
 }
-function i(e) {
+function l(e) {
   if (!(e == null || e === ""))
     return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
 }
@@ -147,7 +144,7 @@ export {
   m as ConnectorError,
   c as DPUError,
   E as EngineError,
-  l as FetchError,
+  i as FetchError,
   y as buildFetchError,
   b as concatenateSerialisedErrorMessages,
   k as ignoreErrors,
