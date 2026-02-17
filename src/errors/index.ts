@@ -176,7 +176,9 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
     // Build the error chain from root cause (end) to outermost (start)
     let cause: Error | undefined = undefined;
 
+    console.log(1111, serialisedErrors);
     for (const serialised of serialisedErrors.toReversed()) {
+        console.log(2222, serialised);
         let error: Error;
 
         // Reconstruct the appropriate error class based on available properties
@@ -202,12 +204,12 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
                 case 'OperationalError':
                     error = new OperationalError(serialised.message, serialised.locator, { cause });
                     break;
-                case 'WindowHandledRuntimeError':
-                    error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { cause });
-                    break;
-                case 'WindowHandledPromiseRejectionError':
-                    error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { cause });
-                    break;
+                // case 'WindowHandledRuntimeError':
+                //     error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { cause });
+                //     break;
+                // case 'WindowHandledPromiseRejectionError':
+                //     error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { cause });
+                //     break;
                 default:
                     // Fallback to base DataPosError for unknown types with locator
                     error = new DataPosError(serialised.message, serialised.locator, { cause });
