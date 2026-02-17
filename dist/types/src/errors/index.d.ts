@@ -30,6 +30,7 @@ declare class APIError extends ApplicationError {
 }
 /** Represents engine or core processing failures. */
 declare class EngineError extends ApplicationError {
+    constructor(message: string, locator: string, options?: ErrorOptions);
 }
 /** Represents failures during HTTP requests.
  * Includes a sanitized snapshot of the response body for diagnostic purposes.

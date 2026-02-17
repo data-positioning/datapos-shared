@@ -10,34 +10,37 @@ class i extends c {
 class g extends i {
 }
 class u extends i {
+  constructor(s, o, e) {
+    super(s, o, e), this.name = new.target.name;
+  }
 }
 class l extends i {
   body;
   /** Sanitized HTTP response body. */
-  constructor(s, o, e, n) {
-    super(s, o, n), this.name = new.target.name, this.body = d(e ?? void 0);
+  constructor(s, o, e, t) {
+    super(s, o, t), this.name = new.target.name, this.body = d(e ?? void 0);
   }
 }
 async function y(r, s, o) {
-  const e = ` - ${r.statusText}`, n = `${s} Response status '${r.status}${r.statusText ? e : ""}' received.`;
+  const e = ` - ${r.statusText}`, t = `${s} Response status '${r.status}${r.statusText ? e : ""}' received.`;
   let a;
   try {
     a = await r.text();
   } catch (f) {
-    a = `<body unavailable: ${t(f).message}>`;
+    a = `<body unavailable: ${n(f).message}>`;
   }
-  return new l(n, o, a);
+  return new l(t, o, a);
 }
 function b(r) {
   return r.map((s) => s.message).join(" ");
 }
-function k(r) {
+function w(r) {
   try {
     r();
   } catch {
   }
 }
-function t(r) {
+function n(r) {
   if (r instanceof Error) return r;
   if (typeof r == "string") return new Error(r);
   if (typeof r == "number" || typeof r == "boolean" || typeof r == "bigint") return new Error(String(r));
@@ -50,13 +53,13 @@ function t(r) {
     }
   return new Error("Unknown error");
 }
-function w(r) {
+function k(r) {
   const s = /* @__PURE__ */ new Set(), o = [];
-  let e = t(r);
+  let e = n(r);
   for (; e != null && !s.has(e); ) {
     s.add(e);
-    let n;
-    e instanceof l ? (n = { body: e.body, locator: e.locator, message: e.message, name: "FetchError", stack: e.stack }, e = e.cause == null ? null : t(e.cause)) : e instanceof u ? (n = { body: void 0, locator: e.locator, message: e.message, name: "EngineError", stack: e.stack }, e = e.cause == null ? null : t(e.cause)) : e instanceof c ? (n = { body: void 0, locator: e.locator, message: e.message, name: "DataPosError", stack: e.stack }, e = e.cause == null ? null : t(e.cause)) : e instanceof Error ? (n = { body: void 0, locator: "", message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : t(e.cause)) : (n = { body: void 0, locator: "", message: E(e), name: "Error", stack: void 0 }, e = null), /(?:\.{3}|[.!?])$/.test(n.message) || (n.message += "."), o.push(n);
+    let t;
+    e instanceof l ? (t = { body: e.body, locator: e.locator, message: e.message, name: "FetchError", stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : e instanceof u ? (t = { body: void 0, locator: e.locator, message: e.message, name: "EngineError", stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : e instanceof c ? (t = { body: void 0, locator: e.locator, message: e.message, name: "DataPosError", stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : e instanceof Error ? (t = { body: void 0, locator: "", message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : (t = { body: void 0, locator: "", message: E(e), name: "Error", stack: void 0 }, e = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), o.push(t);
   }
   return o;
 }
@@ -116,8 +119,8 @@ export {
   l as FetchError,
   y as buildFetchError,
   b as concatenateSerialisedErrorMessages,
-  k as ignoreErrors,
-  t as normalizeToError,
-  w as serialiseError,
+  w as ignoreErrors,
+  n as normalizeToError,
+  k as serialiseError,
   h as unserialiseError
 };

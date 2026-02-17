@@ -42,7 +42,12 @@ class ApplicationError extends DataPosError {}
 class APIError extends ApplicationError {}
 
 /** Represents engine or core processing failures. */
-class EngineError extends ApplicationError {}
+class EngineError extends ApplicationError {
+    constructor(message: string, locator: string, options?: ErrorOptions) {
+        super(message, locator, options);
+        this.name = new.target.name;
+    }
+}
 
 /** Represents failures during HTTP requests.
  * Includes a sanitized snapshot of the response body for diagnostic purposes.
