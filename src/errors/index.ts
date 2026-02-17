@@ -121,7 +121,6 @@ export function serialiseError(error?: unknown): SerialisedError[] {
     while (cause != null && !seenCauses.has(cause)) {
         seenCauses.add(cause);
         let serialisedError: SerialisedError;
-        console.log('0000', cause);
         switch (cause.name) {
             case 'APIError': {
                 const typedCause = cause as APIError;
@@ -131,7 +130,6 @@ export function serialiseError(error?: unknown): SerialisedError[] {
             }
             case 'ConnectorError': {
                 const typedCause = cause as ConnectorError;
-                console.log(1111, typedCause.locator);
                 serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'ConnectorError', stack: cause.stack };
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
@@ -165,6 +163,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
         if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.';
         serialisedErrors.push(serialisedError);
     }
+    console.log(4444, serialisedErrors);
     return serialisedErrors;
 }
 
@@ -186,7 +185,6 @@ export function unserialiseError(serialisedErrors: SerialisedError[]): Error | u
                 error = new APIError(serialised.message, serialised.locator, serialised.body, { cause: rebuiltError });
                 break;
             case 'ConnectorError':
-                console.log(2222, serialised.locator);
                 error = new ConnectorError(serialised.message, serialised.locator, { cause: rebuiltError });
                 break;
             case 'EngineError':
@@ -199,6 +197,7 @@ export function unserialiseError(serialisedErrors: SerialisedError[]): Error | u
                 error = new DPUError(serialised.message, serialised.locator, { cause: rebuiltError });
                 break;
             default:
+                console.log(5555, serialised);
                 error = new Error(serialised.message, { cause: rebuiltError });
                 error.name = serialised.name;
                 break;
