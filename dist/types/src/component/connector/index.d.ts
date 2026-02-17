@@ -155,7 +155,6 @@ interface FindObjectOptions extends EngineOperationOptions {
 }
 interface FindObjectResult {
     path: string | undefined;
-    schema: unknown;
 }
 /**
  * Get readable stream options.
