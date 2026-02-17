@@ -191,23 +191,23 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
         // Reconstruct the appropriate error class based on available properties
         if (serialised.body !== undefined) {
             // FetchError
-            console.log('FetchError', serialised);
+            console.log('FetchError');
             error = new FetchError(serialised.message, serialised.locator, serialised.body, { cause: rebuiltError });
         } else if (serialised.locator === '') {
             // Generic Error
-            console.log('Generic', serialised);
+            console.log('Generic');
             error = new Error(serialised.message, { cause: rebuiltError });
             error.name = serialised.name;
         } else {
             // Determine DataPosError subclass by name
             switch (serialised.name) {
                 case 'APIError':
-                    console.log('APIError', serialised);
+                    console.log('APIError');
                     error = new APIError(serialised.message, serialised.locator, { cause: rebuiltError });
                     break;
                 case 'EngineError':
-                    console.log('EngineError', serialised);
                     error = new EngineError(serialised.message, serialised.locator, { cause: rebuiltError });
+                    console.log('EngineError', error);
                     break;
                 // case 'ApplicationError':
                 //     error = new ApplicationError(serialised.message, serialised.locator, { rebuiltError });
@@ -223,7 +223,7 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
                 //     break;
                 default:
                     // Fallback to base DataPosError for unknown types with locator
-                    console.log('Fallback', serialised);
+                    console.log('Fallback');
                     error = new DataPosError(serialised.message, serialised.locator, { cause: rebuiltError });
                     break;
             }
