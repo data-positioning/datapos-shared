@@ -1,11 +1,11 @@
-class c extends Error {
+class i extends Error {
   locator;
   /** Logical source of the error. */
-  constructor(o, n, r) {
-    super(o, r), this.name = new.target.name, this.locator = n;
+  constructor(o, n, e) {
+    super(o, e), this.name = new.target.name, this.locator = n;
   }
 }
-class s extends c {
+class s extends i {
 }
 class f extends s {
 }
@@ -14,91 +14,91 @@ class u extends s {
 class l extends s {
   body;
   /** Sanitized HTTP response body. */
-  constructor(o, n, r, t) {
-    super(o, n, t), this.name = new.target.name, this.body = E(r ?? void 0);
+  constructor(o, n, e, t) {
+    super(o, n, t), this.name = new.target.name, this.body = E(e ?? void 0);
   }
 }
-class m extends c {
+class m extends i {
 }
 class y extends s {
   componentName;
   /** Vue component name, if available. */
   info;
   /** Vue error info string. */
-  constructor(o, n, r, t, a) {
-    super(o, n, a), this.name = new.target.name, this.info = r, this.componentName = t;
+  constructor(o, n, e, t, a) {
+    super(o, n, a), this.name = new.target.name, this.info = e, this.componentName = t;
   }
 }
 class b extends s {
 }
 class k extends s {
 }
-async function p(e, o, n) {
-  const r = ` - ${e.statusText}`, t = `${o} Response status '${e.status}${e.statusText ? r : ""}' received.`;
+async function p(r, o, n) {
+  const e = ` - ${r.statusText}`, t = `${o} Response status '${r.status}${r.statusText ? e : ""}' received.`;
   let a;
   try {
-    a = await e.text();
+    a = await r.text();
   } catch (d) {
-    a = `<body unavailable: ${i(d).message}>`;
+    a = `<body unavailable: ${c(d).message}>`;
   }
   return new l(t, n, a);
 }
-function h(e) {
-  return e.map((o) => o.message).join(" ");
+function h(r) {
+  return r.map((o) => o.message).join(" ");
 }
-function x(e) {
+function x(r) {
   try {
-    e();
+    r();
   } catch {
   }
 }
-function i(e) {
-  if (e instanceof Error) return e;
-  if (typeof e == "string") return new Error(e);
-  if (typeof e == "number" || typeof e == "boolean" || typeof e == "bigint") return new Error(String(e));
-  if (typeof e == "symbol") return new Error(e.description ?? "Unknown error");
-  if (typeof e == "object")
+function c(r) {
+  if (r instanceof Error) return r;
+  if (typeof r == "string") return new Error(r);
+  if (typeof r == "number" || typeof r == "boolean" || typeof r == "bigint") return new Error(String(r));
+  if (typeof r == "symbol") return new Error(r.description ?? "Unknown error");
+  if (typeof r == "object")
     try {
-      return new Error(JSON.stringify(e));
+      return new Error(JSON.stringify(r));
     } catch {
       return new Error("Unknown error");
     }
   return new Error("Unknown error");
 }
-function R(e) {
+function R(r) {
   const o = /* @__PURE__ */ new Set(), n = [];
-  let r = i(e);
-  for (; r != null && !o.has(r); ) {
-    o.add(r);
+  let e = c(r);
+  for (; e != null && !o.has(e); ) {
+    o.add(e);
     let t;
-    r instanceof l ? (t = { body: r.body, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : i(r.cause)) : r instanceof c ? (t = { body: void 0, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : i(r.cause)) : r instanceof Error ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : i(r.cause)) : (t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), n.push(t);
+    e instanceof l ? (t = { body: e.body, locator: e.locator, message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : c(e.cause)) : e instanceof i ? (t = { body: void 0, locator: e.locator, message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : c(e.cause)) : e instanceof Error ? (t = { body: void 0, locator: "", message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : c(e.cause)) : (t = { body: void 0, locator: "", message: g(e), name: "Error", stack: void 0 }, e = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), n.push(t);
   }
   return n;
 }
-function O(e) {
-  if (e.length === 0) return;
+function O(r) {
+  if (r.length === 0) return;
   let o;
-  console.log(1111, e);
-  for (const n of e.toReversed()) {
+  console.log(1111, r);
+  for (const n of r.toReversed()) {
     console.log(2222, n);
-    let r;
+    let e;
     if (n.body !== void 0)
-      r = new l(n.message, n.locator, n.body, { cause: o });
+      e = new l(n.message, n.locator, n.body, { cause: o });
     else if (n.locator === "")
-      r = new Error(n.message, { cause: o }), r.name = n.name;
+      e = new Error(n.message, { cause: o }), e.name = n.name;
     else
       switch (n.name) {
         case "APIError":
-          r = new f(n.message, n.locator, { cause: o });
+          e = new f(n.message, n.locator, { cause: o });
           break;
         case "EngineError":
-          r = new u(n.message, n.locator, { cause: o });
+          e = new u(n.message, n.locator, { cause: o });
           break;
         case "ApplicationError":
-          r = new s(n.message, n.locator, { cause: o });
+          e = new s(n.message, n.locator, { cause: o });
           break;
         case "OperationalError":
-          r = new m(n.message, n.locator, { cause: o });
+          e = new m(n.message, n.locator, { cause: o });
           break;
         // case 'WindowHandledRuntimeError':
         //     error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { cause });
@@ -107,25 +107,25 @@ function O(e) {
         //     error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { cause });
         //     break;
         default:
-          r = new c(n.message, n.locator, { cause: o });
+          e = new i(n.message, n.locator, { cause: o });
           break;
       }
-    n.stack !== void 0 && (r.stack = n.stack), o = r;
+    console.log(3333, e), n.stack !== void 0 && (e.stack = n.stack), o = e;
   }
   return o;
 }
-function g(e) {
+function g(r) {
   let o;
   try {
-    o = JSON.stringify(e);
+    o = JSON.stringify(r);
   } catch {
-    typeof e == "symbol" ? o = e.description ?? "Unknown error" : typeof e == "bigint" ? o = e.toString() : o = "Unknown error";
+    typeof r == "symbol" ? o = r.description ?? "Unknown error" : typeof r == "bigint" ? o = r.toString() : o = "Unknown error";
   }
   return o === "" && (o = "Unknown error"), o;
 }
-function E(e) {
-  if (!(e == null || e === ""))
-    return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
+function E(r) {
+  if (!(r == null || r === ""))
+    return r.length > 2048 ? `${r.slice(0, 2048)}... [truncated]` : r;
 }
 export {
   f as APIError,
@@ -139,7 +139,7 @@ export {
   p as buildFetchError,
   h as concatenateSerialisedErrorMessages,
   x as ignoreErrors,
-  i as normalizeToError,
+  c as normalizeToError,
   R as serialiseError,
   O as unserialiseError
 };

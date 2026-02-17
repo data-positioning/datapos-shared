@@ -217,6 +217,8 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
             }
         }
 
+        console.log(3333, error);
+
         // Restore stack trace if available
         if (serialised.stack !== undefined) {
             error.stack = serialised.stack;
