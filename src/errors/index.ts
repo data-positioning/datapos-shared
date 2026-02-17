@@ -188,7 +188,6 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
     for (const serialised of serialisedErrors.toReversed()) {
         let error: Error;
 
-        console.log(1111, serialised);
         // Reconstruct the appropriate error class based on available properties
         if (serialised.body !== undefined) {
             // FetchError
@@ -231,7 +230,9 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
         }
 
         // Restore stack trace if available
+        console.log(1111, error.stack, serialised.stack);
         if (serialised.stack !== undefined) error.stack = serialised.stack;
+        console.log(2222, error.stack, serialised.stack);
 
         rebuiltError = error;
     }
