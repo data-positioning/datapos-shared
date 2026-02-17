@@ -11,25 +11,25 @@ class g extends i {
 }
 class u extends i {
   constructor(o, s, e) {
-    super(o, s, e), this.name = "EngineError";
+    super(o, s, e), this.name = new.target.name;
   }
 }
 class l extends i {
   body;
   /** Sanitized HTTP response body. */
-  constructor(o, s, e, n) {
-    super(o, s, n), this.name = new.target.name, this.body = d(e ?? void 0);
+  constructor(o, s, e, t) {
+    super(o, s, t), this.name = new.target.name, this.body = d(e ?? void 0);
   }
 }
 async function y(r, o, s) {
-  const e = ` - ${r.statusText}`, n = `${o} Response status '${r.status}${r.statusText ? e : ""}' received.`;
+  const e = ` - ${r.statusText}`, t = `${o} Response status '${r.status}${r.statusText ? e : ""}' received.`;
   let a;
   try {
     a = await r.text();
   } catch (f) {
-    a = `<body unavailable: ${t(f).message}>`;
+    a = `<body unavailable: ${n(f).message}>`;
   }
-  return new l(n, s, a);
+  return new l(t, s, a);
 }
 function b(r) {
   return r.map((o) => o.message).join(" ");
@@ -40,7 +40,7 @@ function k(r) {
   } catch {
   }
 }
-function t(r) {
+function n(r) {
   if (r instanceof Error) return r;
   if (typeof r == "string") return new Error(r);
   if (typeof r == "number" || typeof r == "boolean" || typeof r == "bigint") return new Error(String(r));
@@ -55,11 +55,11 @@ function t(r) {
 }
 function w(r) {
   const o = /* @__PURE__ */ new Set(), s = [];
-  let e = t(r);
+  let e = n(r);
   for (; e != null && !o.has(e); ) {
-    o.add(e);
-    let n;
-    e instanceof l ? (n = { body: e.body, locator: e.locator, message: e.message, name: "FetchError", stack: e.stack }, e = e.cause == null ? null : t(e.cause)) : e instanceof u ? (n = { body: void 0, locator: e.locator, message: e.message, name: "EngineError", stack: e.stack }, e = e.cause == null ? null : t(e.cause)) : e instanceof c ? (n = { body: void 0, locator: e.locator, message: e.message, name: "DataPosError", stack: e.stack }, e = e.cause == null ? null : t(e.cause)) : e instanceof Error ? (n = { body: void 0, locator: "", message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : t(e.cause)) : (n = { body: void 0, locator: "", message: E(e), name: "Error", stack: void 0 }, e = null), /(?:\.{3}|[.!?])$/.test(n.message) || (n.message += "."), s.push(n);
+    o.add(e), console.log("CAUSE STACK", e.stack);
+    let t;
+    e instanceof l ? (t = { body: e.body, locator: e.locator, message: e.message, name: "FetchError", stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : e instanceof u ? (t = { body: void 0, locator: e.locator, message: e.message, name: "EngineError", stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : e instanceof c ? (t = { body: void 0, locator: e.locator, message: e.message, name: "DataPosError", stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : e instanceof Error ? (t = { body: void 0, locator: "", message: e.message, name: e.name, stack: e.stack }, e = e.cause == null ? null : n(e.cause)) : (t = { body: void 0, locator: "", message: E(e), name: "Error", stack: void 0 }, e = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), s.push(t);
   }
   return s;
 }
@@ -120,7 +120,7 @@ export {
   y as buildFetchError,
   b as concatenateSerialisedErrorMessages,
   k as ignoreErrors,
-  t as normalizeToError,
+  n as normalizeToError,
   w as serialiseError,
   h as unserialiseError
 };

@@ -45,7 +45,7 @@ class APIError extends ApplicationError {}
 class EngineError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
-        this.name = 'EngineError';
+        this.name = new.target.name;
     }
 }
 
@@ -150,6 +150,7 @@ function serialiseError(error?: unknown): SerialisedError[] {
     let cause: Error | null = normalizeToError(error);
     while (cause != null && !seenCauses.has(cause)) {
         seenCauses.add(cause);
+        console.log('CAUSE STACK', cause.stack);
         let serialisedError: SerialisedError;
         if (cause instanceof FetchError) {
             serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: 'FetchError', stack: cause.stack };
