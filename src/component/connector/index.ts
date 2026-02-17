@@ -176,7 +176,7 @@ interface FindObjectOptions extends EngineOperationOptions {
     nodeId: string;
 }
 interface FindObjectResult {
-    path: string;
+    path: string | undefined;
     schema: unknown;
 }
 
