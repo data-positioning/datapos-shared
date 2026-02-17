@@ -125,6 +125,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
             serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: 'APIError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof ConnectorError) {
+            console.log(2222, cause.locator);
             serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'ConnectorError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof EngineError) {
@@ -167,6 +168,7 @@ export function unserialiseError(serialisedErrors: SerialisedError[]): Error | u
                 error = new APIError(serialised.message, serialised.locator, serialised.body, { cause: rebuiltError });
                 break;
             case 'ConnectorError':
+                console.log(2222, serialised.locator);
                 error = new ConnectorError(serialised.message, serialised.locator, { cause: rebuiltError });
                 break;
             case 'EngineError':
