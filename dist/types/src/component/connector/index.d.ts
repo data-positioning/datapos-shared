@@ -150,13 +150,12 @@ interface DropObjectOptions extends EngineOperationOptions {
  * Find object options and result.
  */
 interface FindObjectOptions extends EngineOperationOptions {
-    folderPath: string | undefined;
     storeId: string | undefined;
     nodeId: string;
 }
 interface FindObjectResult {
-    folderPath: string;
-    object: unknown;
+    path: string;
+    schema: unknown;
 }
 /**
  * Get readable stream options.
