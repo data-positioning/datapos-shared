@@ -11,7 +11,7 @@ class g extends i {
 }
 class u extends i {
   constructor(s, o, e) {
-    super(s, o, e), this.name = new.target.name;
+    super(s, o, e), this.name = "EngineError";
   }
 }
 class l extends i {

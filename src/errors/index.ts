@@ -45,7 +45,7 @@ class APIError extends ApplicationError {}
 class EngineError extends ApplicationError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
-        this.name = new.target.name;
+        this.name = 'EngineError';
     }
 }
 
