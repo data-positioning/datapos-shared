@@ -1,43 +1,43 @@
-class a extends Error {
+class c extends Error {
   locator;
   // Logical source of the error
   constructor(o, s, r) {
     super(o, r), this.name = "DPUError", this.locator = s;
   }
 }
-class l extends a {
+class E extends c {
   body;
   // Sanitized snapshot of the response body
   constructor(o, s, r, t) {
-    super(o, s, t), this.name = "APIError", this.body = E(r ?? void 0);
+    super(o, s, t), this.name = "APIError", this.body = l(r ?? void 0);
   }
 }
-class u extends a {
+class d extends c {
   constructor(o, s, r) {
     super(o, s, r), this.name = "EngineError";
   }
 }
-class f extends a {
+class m extends c {
   constructor(o, s, r) {
     super(o, s, r), this.name = "ConnectorError";
   }
 }
-class i extends a {
+class i extends c {
   body;
   // Sanitized snapshot of the response body
   constructor(o, s, r, t) {
-    super(o, s, t), this.name = "FetchError", this.body = E(r ?? void 0);
+    super(o, s, t), this.name = "FetchError", this.body = l(r ?? void 0);
   }
 }
 async function b(e, o, s) {
   const r = ` - ${e.statusText}`, t = `${o} Response status '${e.status}${e.statusText ? r : ""}' received.`;
-  let c;
+  let n;
   try {
-    c = await e.text();
-  } catch (d) {
-    c = `<body unavailable: ${n(d).message}>`;
+    n = await e.text();
+  } catch (u) {
+    n = `<body unavailable: ${a(u).message}>`;
   }
-  return new i(t, s, c);
+  return new i(t, s, n);
 }
 function y(e) {
   return e.map((o) => o.message).join(" ");
@@ -48,7 +48,7 @@ function k(e) {
   } catch {
   }
 }
-function n(e) {
+function a(e) {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
   if (typeof e == "number" || typeof e == "boolean" || typeof e == "bigint") return new Error(String(e));
@@ -63,34 +63,64 @@ function n(e) {
 }
 function h(e) {
   const o = /* @__PURE__ */ new Set(), s = [];
-  let r = n(e);
+  let r = a(e);
   for (; r != null && !o.has(r); ) {
     o.add(r);
     let t;
-    console.log("0000", r), r instanceof l ? (t = { body: r.body, locator: r.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof f ? (console.log(1111, r.locator), t = { body: void 0, locator: r.locator, message: r.message, name: "ConnectorError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof u ? (t = { body: void 0, locator: r.locator, message: r.message, name: "EngineError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof i ? (t = { body: r.body, locator: r.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof a ? (t = { body: void 0, locator: r.locator, message: r.message, name: "DPUError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof Error ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : (t = { body: void 0, locator: "", message: m(r), name: "Error", stack: void 0 }, r = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), s.push(t);
+    switch (console.log("0000", r), r.name) {
+      case "APIError": {
+        const n = r;
+        t = { body: n.body, locator: n.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        break;
+      }
+      case "ConnectorError": {
+        const n = r;
+        console.log(1111, n.locator), t = { body: void 0, locator: n.locator, message: r.message, name: "ConnectorError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        break;
+      }
+      case "EngineError": {
+        t = { body: void 0, locator: r.locator, message: r.message, name: "EngineError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        break;
+      }
+      case "FetchError": {
+        const n = r;
+        t = { body: n.body, locator: n.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        break;
+      }
+      case "DPUError": {
+        t = { body: void 0, locator: r.locator, message: r.message, name: "DPUError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        break;
+      }
+      case "Error":
+        t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        break;
+      default:
+        t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null;
+    }
+    /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), s.push(t);
   }
   return s;
 }
-function w(e) {
+function p(e) {
   if (e.length === 0) return;
   let o;
   for (const s of e.toReversed()) {
     let r;
     switch (s.name) {
       case "APIError":
-        r = new l(s.message, s.locator, s.body, { cause: o });
+        r = new E(s.message, s.locator, s.body, { cause: o });
         break;
       case "ConnectorError":
-        console.log(2222, s.locator), r = new f(s.message, s.locator, { cause: o });
+        console.log(2222, s.locator), r = new m(s.message, s.locator, { cause: o });
         break;
       case "EngineError":
-        r = new u(s.message, s.locator, { cause: o });
+        r = new d(s.message, s.locator, { cause: o });
         break;
       case "FetchError":
         r = new i(s.message, s.locator, s.body, { cause: o });
         break;
       case "DPUError":
-        r = new a(s.message, s.locator, { cause: o });
+        r = new c(s.message, s.locator, { cause: o });
         break;
       default:
         r = new Error(s.message, { cause: o }), r.name = s.name;
@@ -100,7 +130,7 @@ function w(e) {
   }
   return o;
 }
-function m(e) {
+function g(e) {
   let o;
   try {
     o = JSON.stringify(e);
@@ -109,20 +139,20 @@ function m(e) {
   }
   return o === "" && (o = "Unknown error"), o;
 }
-function E(e) {
+function l(e) {
   if (!(e == null || e === ""))
     return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
 }
 export {
-  l as APIError,
-  f as ConnectorError,
-  a as DPUError,
-  u as EngineError,
+  E as APIError,
+  m as ConnectorError,
+  c as DPUError,
+  d as EngineError,
   i as FetchError,
   b as buildFetchError,
   y as concatenateSerialisedErrorMessages,
   k as ignoreErrors,
-  n as normalizeToError,
+  a as normalizeToError,
   h as serialiseError,
-  w as unserialiseError
+  p as unserialiseError
 };

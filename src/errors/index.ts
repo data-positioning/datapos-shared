@@ -122,28 +122,45 @@ export function serialiseError(error?: unknown): SerialisedError[] {
         seenCauses.add(cause);
         let serialisedError: SerialisedError;
         console.log('0000', cause);
-        if (cause instanceof APIError) {
-            serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: 'APIError', stack: cause.stack };
-            cause = cause.cause == null ? null : normalizeToError(cause.cause);
-        } else if (cause instanceof ConnectorError) {
-            console.log(1111, cause.locator);
-            serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'ConnectorError', stack: cause.stack };
-            cause = cause.cause == null ? null : normalizeToError(cause.cause);
-        } else if (cause instanceof EngineError) {
-            serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'EngineError', stack: cause.stack };
-            cause = cause.cause == null ? null : normalizeToError(cause.cause);
-        } else if (cause instanceof FetchError) {
-            serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: 'FetchError', stack: cause.stack };
-            cause = cause.cause == null ? null : normalizeToError(cause.cause);
-        } else if (cause instanceof DPUError) {
-            serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'DPUError', stack: cause.stack };
-            cause = cause.cause == null ? null : normalizeToError(cause.cause);
-        } else if (cause instanceof Error) {
-            serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
-            cause = cause.cause == null ? null : normalizeToError(cause.cause);
-        } else {
-            serialisedError = { body: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
-            cause = null;
+        switch (cause.name) {
+            case 'APIError': {
+                const typedCause = cause as APIError;
+                serialisedError = { body: typedCause.body, locator: typedCause.locator, message: cause.message, name: 'APIError', stack: cause.stack };
+                cause = cause.cause == null ? null : normalizeToError(cause.cause);
+                break;
+            }
+            case 'ConnectorError': {
+                const typedCause = cause as ConnectorError;
+                console.log(1111, typedCause.locator);
+                serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'ConnectorError', stack: cause.stack };
+                cause = cause.cause == null ? null : normalizeToError(cause.cause);
+                break;
+            }
+            case 'EngineError': {
+                const typedCause = cause as EngineError;
+                serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'EngineError', stack: cause.stack };
+                cause = cause.cause == null ? null : normalizeToError(cause.cause);
+                break;
+            }
+            case 'FetchError': {
+                const typedCause = cause as FetchError;
+                serialisedError = { body: typedCause.body, locator: typedCause.locator, message: cause.message, name: 'FetchError', stack: cause.stack };
+                cause = cause.cause == null ? null : normalizeToError(cause.cause);
+                break;
+            }
+            case 'DPUError': {
+                const typedCause = cause as DPUError;
+                serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'DPUError', stack: cause.stack };
+                cause = cause.cause == null ? null : normalizeToError(cause.cause);
+                break;
+            }
+            case 'Error':
+                serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
+                cause = cause.cause == null ? null : normalizeToError(cause.cause);
+                break;
+            default:
+                serialisedError = { body: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
+                cause = null;
         }
         if (!/(?:\.{3}|[.!?])$/.test(serialisedError.message)) serialisedError.message += '.';
         serialisedErrors.push(serialisedError);
