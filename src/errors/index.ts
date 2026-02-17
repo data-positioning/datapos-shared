@@ -147,10 +147,10 @@ function serialiseError(error?: unknown): SerialisedError[] {
         seenCauses.add(cause);
         let serialisedError: SerialisedError;
         if (cause instanceof FetchError) {
-            serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
+            serialisedError = { body: cause.body, locator: cause.locator, message: cause.message, name: 'FetchError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof DataPosError) {
-            serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: cause.name, stack: cause.stack };
+            serialisedError = { body: undefined, locator: cause.locator, message: cause.message, name: 'DataPosError', stack: cause.stack };
             cause = cause.cause == null ? null : normalizeToError(cause.cause);
         } else if (cause instanceof Error) {
             serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
@@ -174,45 +174,44 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
     if (serialisedErrors.length === 0) return undefined;
 
     // Build the error chain from root cause (end) to outermost (start)
-    let pendingError: Error | undefined = undefined;
+    let rebuiltError: Error | undefined = undefined;
 
-    console.log(1111, serialisedErrors);
     for (const serialised of serialisedErrors.toReversed()) {
-        console.log(2222, serialised);
         let error: Error;
 
+        console.log(1111, serialised);
         // Reconstruct the appropriate error class based on available properties
         if (serialised.body !== undefined) {
             // FetchError
-            error = new FetchError(serialised.message, serialised.locator, serialised.body, { cause: pendingError });
+            error = new FetchError(serialised.message, serialised.locator, serialised.body, { cause: rebuiltError });
         } else if (serialised.locator === '') {
             // Generic Error
-            error = new Error(serialised.message, { cause: pendingError });
+            error = new Error(serialised.message, { cause: rebuiltError });
             error.name = serialised.name;
         } else {
             // Determine DataPosError subclass by name
             switch (serialised.name) {
                 case 'APIError':
-                    error = new APIError(serialised.message, serialised.locator, { cause: pendingError });
+                    error = new APIError(serialised.message, serialised.locator, { cause: rebuiltError });
                     break;
                 case 'EngineError':
-                    error = new EngineError(serialised.message, serialised.locator, { cause: pendingError });
+                    error = new EngineError(serialised.message, serialised.locator, { cause: rebuiltError });
                     break;
                 // case 'ApplicationError':
-                //     error = new ApplicationError(serialised.message, serialised.locator, { pendingError });
+                //     error = new ApplicationError(serialised.message, serialised.locator, { rebuiltError });
                 //     break;
                 // case 'OperationalError':
-                //     error = new OperationalError(serialised.message, serialised.locator, { pendingError });
+                //     error = new OperationalError(serialised.message, serialised.locator, { rebuiltError });
                 //     break;
                 // case 'WindowHandledRuntimeError':
-                //     error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { pendingError });
+                //     error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { rebuiltError });
                 //     break;
                 // case 'WindowHandledPromiseRejectionError':
-                //     error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { pendingError });
+                //     error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { rebuiltError });
                 //     break;
                 default:
                     // Fallback to base DataPosError for unknown types with locator
-                    error = new DataPosError(serialised.message, serialised.locator, { cause: pendingError });
+                    error = new DataPosError(serialised.message, serialised.locator, { cause: rebuiltError });
                     break;
             }
         }
@@ -220,11 +219,9 @@ function unserialiseError(serialisedErrors: SerialisedError[]): Error | undefine
         // Restore stack trace if available
         if (serialised.stack !== undefined) error.stack = serialised.stack;
 
-        pendingError = error;
+        rebuiltError = error;
     }
-    console.log(3333, pendingError);
-
-    return pendingError;
+    return rebuiltError;
 }
 
 //#endregion

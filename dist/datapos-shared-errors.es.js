@@ -1,8 +1,8 @@
 class c extends Error {
   locator;
   /** Logical source of the error. */
-  constructor(n, o, r) {
-    super(n, r), this.name = new.target.name, this.locator = o;
+  constructor(t, o, r) {
+    super(t, r), this.name = new.target.name, this.locator = o;
   }
 }
 class i extends c {
@@ -14,22 +14,22 @@ class d extends i {
 class l extends i {
   body;
   /** Sanitized HTTP response body. */
-  constructor(n, o, r, t) {
-    super(n, o, t), this.name = new.target.name, this.body = m(r ?? void 0);
+  constructor(t, o, r, s) {
+    super(t, o, s), this.name = new.target.name, this.body = g(r ?? void 0);
   }
 }
-async function y(e, n, o) {
-  const r = ` - ${e.statusText}`, t = `${n} Response status '${e.status}${e.statusText ? r : ""}' received.`;
+async function y(e, t, o) {
+  const r = ` - ${e.statusText}`, s = `${t} Response status '${e.status}${e.statusText ? r : ""}' received.`;
   let a;
   try {
     a = await e.text();
   } catch (u) {
-    a = `<body unavailable: ${s(u).message}>`;
+    a = `<body unavailable: ${n(u).message}>`;
   }
-  return new l(t, o, a);
+  return new l(s, o, a);
 }
 function w(e) {
-  return e.map((n) => n.message).join(" ");
+  return e.map((t) => t.message).join(" ");
 }
 function b(e) {
   try {
@@ -37,7 +37,7 @@ function b(e) {
   } catch {
   }
 }
-function s(e) {
+function n(e) {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
   if (typeof e == "number" || typeof e == "boolean" || typeof e == "bigint") return new Error(String(e));
@@ -51,64 +51,62 @@ function s(e) {
   return new Error("Unknown error");
 }
 function k(e) {
-  const n = /* @__PURE__ */ new Set(), o = [];
-  let r = s(e);
-  for (; r != null && !n.has(r); ) {
-    n.add(r);
-    let t;
-    r instanceof l ? (t = { body: r.body, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : s(r.cause)) : r instanceof c ? (t = { body: void 0, locator: r.locator, message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : s(r.cause)) : r instanceof Error ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : s(r.cause)) : (t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null), /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), o.push(t);
+  const t = /* @__PURE__ */ new Set(), o = [];
+  let r = n(e);
+  for (; r != null && !t.has(r); ) {
+    t.add(r);
+    let s;
+    r instanceof l ? (s = { body: r.body, locator: r.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof c ? (s = { body: void 0, locator: r.locator, message: r.message, name: "DataPosError", stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : r instanceof Error ? (s = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : (s = { body: void 0, locator: "", message: E(r), name: "Error", stack: void 0 }, r = null), /(?:\.{3}|[.!?])$/.test(s.message) || (s.message += "."), o.push(s);
   }
   return o;
 }
 function h(e) {
   if (e.length === 0) return;
-  let n;
-  console.log(1111, e);
+  let t;
   for (const o of e.toReversed()) {
-    console.log(2222, o);
     let r;
-    if (o.body !== void 0)
-      r = new l(o.message, o.locator, o.body, { cause: n });
+    if (console.log(1111, o), o.body !== void 0)
+      r = new l(o.message, o.locator, o.body, { cause: t });
     else if (o.locator === "")
-      r = new Error(o.message, { cause: n }), r.name = o.name;
+      r = new Error(o.message, { cause: t }), r.name = o.name;
     else
       switch (o.name) {
         case "APIError":
-          r = new f(o.message, o.locator, { cause: n });
+          r = new f(o.message, o.locator, { cause: t });
           break;
         case "EngineError":
-          r = new d(o.message, o.locator, { cause: n });
+          r = new d(o.message, o.locator, { cause: t });
           break;
         // case 'ApplicationError':
-        //     error = new ApplicationError(serialised.message, serialised.locator, { pendingError });
+        //     error = new ApplicationError(serialised.message, serialised.locator, { rebuiltError });
         //     break;
         // case 'OperationalError':
-        //     error = new OperationalError(serialised.message, serialised.locator, { pendingError });
+        //     error = new OperationalError(serialised.message, serialised.locator, { rebuiltError });
         //     break;
         // case 'WindowHandledRuntimeError':
-        //     error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { pendingError });
+        //     error = new WindowHandledRuntimeError(serialised.message, serialised.locator, { rebuiltError });
         //     break;
         // case 'WindowHandledPromiseRejectionError':
-        //     error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { pendingError });
+        //     error = new WindowHandledPromiseRejectionError(serialised.message, serialised.locator, { rebuiltError });
         //     break;
         default:
-          r = new c(o.message, o.locator, { cause: n });
+          r = new c(o.message, o.locator, { cause: t });
           break;
       }
-    o.stack !== void 0 && (r.stack = o.stack), n = r;
+    o.stack !== void 0 && (r.stack = o.stack), t = r;
   }
-  return console.log(3333, n), n;
+  return t;
+}
+function E(e) {
+  let t;
+  try {
+    t = JSON.stringify(e);
+  } catch {
+    typeof e == "symbol" ? t = e.description ?? "Unknown error" : typeof e == "bigint" ? t = e.toString() : t = "Unknown error";
+  }
+  return t === "" && (t = "Unknown error"), t;
 }
 function g(e) {
-  let n;
-  try {
-    n = JSON.stringify(e);
-  } catch {
-    typeof e == "symbol" ? n = e.description ?? "Unknown error" : typeof e == "bigint" ? n = e.toString() : n = "Unknown error";
-  }
-  return n === "" && (n = "Unknown error"), n;
-}
-function m(e) {
   if (!(e == null || e === ""))
     return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
 }
@@ -119,7 +117,7 @@ export {
   y as buildFetchError,
   w as concatenateSerialisedErrorMessages,
   b as ignoreErrors,
-  s as normalizeToError,
+  n as normalizeToError,
   k as serialiseError,
   h as unserialiseError
 };
