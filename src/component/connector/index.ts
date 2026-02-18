@@ -1,11 +1,7 @@
-/**
- * Connector component.
- */
-
-// Vendor dependencies.
+// External dependencies
 import type { InferOutput } from 'valibot';
 
-// Framework dependencies.
+// DPU framework
 import type { Component } from '@/component';
 import type { ToolConfig } from '@/component/tool';
 import type { ConnectionDescriptionConfig, ConnectionNodeConfig } from '@/component/connector/connection';
@@ -14,88 +10,57 @@ import type { ContentAuditConfig, ParsingRecord, PreviewConfig, ValueDelimiterId
 import { createLabelMap, DEFAULT_LOCALE_CODE, resolveLabel } from '@/locale';
 import type { EngineOperationOptions, EngineUtilities } from '@/engine';
 
-/**
- * Connector interface and constructor.
- */
-interface ConnectorInterface extends Component {
+// Connector interface
+export interface ConnectorInterface extends Component {
     abortController: AbortController | undefined;
     readonly config: ConnectorConfig;
     readonly toolConfigs: ToolConfig[];
-    /**
-     * Abort the active long running operation.
-     */
+    // Abort the active long running operation
     abortOperation?(): void;
-    /**
-     *
-     */
+    //
     auditObjectContent?(options: AuditObjectContentOptions, chunk: (rowCount: number) => void): Promise<AuditObjectContentResult>;
-    /**
-     * Authenticate a specified connection.
-     */
+    // Authenticate a specified connection
     authenticateConnection?(accountId: string, windowCenterX: number, windowCenterY: number): Window;
-    /**
-     * Create an object for a specified connection.
-     */
+    // Create an object for a specified connection
     createObject?(options: CreateObjectOptions): Promise<void>;
-    /**
-     * Describe a specified connection.
-     */
+    // Describe a specified connection
     describeConnection?(options: DescribeConnectionOptions): Promise<DescribeConnectionResult>;
-    /**
-     * Drop (delete) an object for a specified connection.
-     */
+    // Drop (delete) an object for a specified connection
     dropObject?(options: DropObjectOptions): Promise<void>;
-    /**
-     * Find an object for a specified connection.
-     */
+    // Find an object for a specified connection
     findObject?(options: FindObjectOptions): Promise<FindObjectResult>;
-    /**
-     * Get a reader that can retrieve all records from an object for a specified connection.
-     */
+    // Get a reader that can retrieve all records from an object for a specified connection
     getReadableStream?(options: GetReadableStreamOptions): Promise<ReadableStream<Uint8Array>>;
-    /**
-     * Get a record for an object for a specified connection.
-     */
+    // Get a record for an object for a specified connection
     getRecord?(options: GetRecordOptions): Promise<GetRecordResult>;
-    /**
-     * List nodes in a folder for a specified connection.
-     */
+    // List nodes in a folder for a specified connection
     listNodes?(options: ListNodesOptions): Promise<ListNodesResult>;
-    /**
-     * Preview an object for a specified connection.
-     */
+    // Preview an object for a specified connection
     previewObject?(options: PreviewObjectOptions): Promise<PreviewConfig>;
-    /**
-     * Remove one or more records from an object for a specified connection.
-     */
+    // Remove one or more records from an object for a specified connection
     removeRecords?(options: RemoveRecordsOptions): Promise<void>;
-    /**
-     * Retrieve all chunks from an object for a specified connection.
-     */
+    // Retrieve all chunks from an object for a specified connection
     retrieveChunks?(options: RetrieveChunksOptions, chunk: (data: Uint8Array) => void, complete: () => void): Promise<void>;
-    /**
-     * Retrieve all records from an object for a specified connection.
-     */
-    retrieveRecords?(options: RetrieveRecordsOptions, chunk: (records: ParsingRecord[]) => void, complete: (result: RetrieveRecordsSummary) => void): Promise<void>;
-    /**
-     * Upsert one or more records into an object for a specified connection.
-     */
+    // Retrieve all records from an object for a specified connection
+    retrieveRecords?(
+        options: RetrieveRecordsOptions,
+        chunk: (typeId: RetrievalTypeId, records: Record<string, unknown>[] | ParsingRecord[]) => void,
+        complete: (result: RetrieveRecordsSummary) => void
+    ): Promise<void>;
+    // Upsert one or more records into an object for a specified connection
     upsertRecords?(options: UpsertRecordsOptions): Promise<void>;
 }
 
-/**
- *
- */
-type ConnectorConstructor = new (engineUtilities: EngineUtilities, toolConfigs: ToolConfig[]) => ConnectorInterface;
+export type ConnectorConstructor = new (engineUtilities: EngineUtilities, toolConfigs: ToolConfig[]) => ConnectorInterface;
+
+type RetrievalTypeId = 'jsonRecordArray' | 'parsingRecordArray';
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Connector operation type declarations.
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-/**
- * Operation names a connector may support.
- */
-type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
+// Operation names a connector may support
+export type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
 
 /**
  * Connector data pipeline usage identifiers.
