@@ -1,18 +1,23 @@
 class c extends Error {
   locator;
-  // Logical source of the error
+  // Error locator 'package.module.method'
   constructor(s, o, r) {
     super(s, r), this.name = "DPUError", this.locator = o;
   }
 }
-class d extends c {
+class y extends c {
+  constructor(s, o, r) {
+    super(s, o, r), this.name = "AppError";
+  }
+}
+class E extends c {
   body;
   // Sanitized snapshot of the response body
   constructor(s, o, r, t) {
     super(s, o, t), this.name = "APIError", this.body = l(r ?? void 0);
   }
 }
-class E extends c {
+class d extends c {
   constructor(s, o, r) {
     super(s, o, r), this.name = "EngineError";
   }
@@ -24,12 +29,12 @@ class m extends c {
 }
 class i extends c {
   body;
-  // Sanitized snapshot of the response body
+  // Sanitized portion of the response body
   constructor(s, o, r, t) {
     super(s, o, t), this.name = "FetchError", this.body = l(r ?? void 0);
   }
 }
-async function y(e, s, o) {
+async function b(e, s, o) {
   const r = ` - ${e.statusText}`, t = `${s} Response status '${e.status}${e.statusText ? r : ""}' received.`;
   let n;
   try {
@@ -39,10 +44,10 @@ async function y(e, s, o) {
   }
   return new i(t, o, n);
 }
-function b(e) {
+function k(e) {
   return e.map((s) => s.message).join(" ");
 }
-function k(e) {
+function p(e) {
   try {
     e();
   } catch {
@@ -86,38 +91,40 @@ function h(e) {
         t = { body: n.body, locator: n.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
         break;
       }
-      case "DPUError": {
-        t = { body: void 0, locator: r.locator, message: r.message, name: "DPUError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
-        break;
-      }
+      // case 'DPUError': {
+      //     const typedCause = cause as DPUError;
+      //     serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'DPUError', stack: cause.stack };
+      //     cause = cause.cause == null ? null : normalizeToError(cause.cause);
+      //     break;
+      // }
       default:
-        r.name ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause)) : (t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null);
+        r.name ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause)) : (t = { body: void 0, locator: "", message: f(r), name: "Error", stack: void 0 }, r = null);
     }
     /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), o.push(t);
   }
   return o;
 }
-function p(e) {
+function w(e) {
   if (e.length === 0) return;
   let s;
   for (const o of e.toReversed()) {
     let r;
     switch (o.name) {
       case "APIError":
-        r = new d(o.message, o.locator, o.body, { cause: s });
+        r = new E(o.message, o.locator, o.body, { cause: s });
         break;
       case "ConnectorError":
         r = new m(o.message, o.locator, { cause: s });
         break;
       case "EngineError":
-        r = new E(o.message, o.locator, { cause: s });
+        r = new d(o.message, o.locator, { cause: s });
         break;
       case "FetchError":
         r = new i(o.message, o.locator, o.body, { cause: s });
         break;
-      case "DPUError":
-        r = new c(o.message, o.locator, { cause: s });
-        break;
+      // case 'DPUError':
+      //     error = new DPUError(serialised.message, serialised.locator, { cause: rebuiltError });
+      //     break;
       default:
         r = new Error(o.message, { cause: s }), r.name = o.name;
         break;
@@ -126,7 +133,7 @@ function p(e) {
   }
   return s;
 }
-function g(e) {
+function f(e) {
   let s;
   try {
     s = JSON.stringify(e);
@@ -140,15 +147,16 @@ function l(e) {
     return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
 }
 export {
-  d as APIError,
+  E as APIError,
+  y as AppError,
   m as ConnectorError,
   c as DPUError,
-  E as EngineError,
+  d as EngineError,
   i as FetchError,
-  y as buildFetchError,
-  b as concatenateSerialisedErrorMessages,
-  k as ignoreErrors,
+  b as buildFetchError,
+  k as concatenateSerialisedErrorMessages,
+  p as ignoreErrors,
   a as normalizeToError,
   h as serialiseError,
-  p as unserialiseError
+  w as unserialiseError
 };
