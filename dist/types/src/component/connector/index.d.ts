@@ -26,7 +26,7 @@ export interface ConnectorInterface extends Component {
     upsertRecords?(options: UpsertRecordsOptions): Promise<void>;
 }
 export type ConnectorConstructor = new (engineUtilities: EngineUtilities, toolConfigs: ToolConfig[]) => ConnectorInterface;
-type RetrievalTypeId = 'jsonRecordArray' | 'parsingRecordArray';
+export type RetrievalTypeId = 'jsonRecordArray' | 'parsingRecordArray';
 export type ConnectorOperationName = InferOutput<typeof connectorOperationNameSchema>;
 /**
  * Connector data pipeline usage identifiers.

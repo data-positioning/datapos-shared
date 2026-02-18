@@ -53,7 +53,7 @@ export interface ConnectorInterface extends Component {
 
 export type ConnectorConstructor = new (engineUtilities: EngineUtilities, toolConfigs: ToolConfig[]) => ConnectorInterface;
 
-type RetrievalTypeId = 'jsonRecordArray' | 'parsingRecordArray';
+export type RetrievalTypeId = 'jsonRecordArray' | 'parsingRecordArray';
 
 //━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 //#region Connector operation type declarations.
