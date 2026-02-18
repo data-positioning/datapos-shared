@@ -91,12 +91,6 @@ function h(e) {
         t = { body: n.body, locator: n.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
         break;
       }
-      // case 'DPUError': {
-      //     const typedCause = cause as DPUError;
-      //     serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'DPUError', stack: cause.stack };
-      //     cause = cause.cause == null ? null : normalizeToError(cause.cause);
-      //     break;
-      // }
       default:
         r.name ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause)) : (t = { body: void 0, locator: "", message: f(r), name: "Error", stack: void 0 }, r = null);
     }
@@ -122,9 +116,6 @@ function w(e) {
       case "FetchError":
         r = new i(o.message, o.locator, o.body, { cause: s });
         break;
-      // case 'DPUError':
-      //     error = new DPUError(serialised.message, serialised.locator, { cause: rebuiltError });
-      //     break;
       default:
         r = new Error(o.message, { cause: s }), r.name = o.name;
         break;

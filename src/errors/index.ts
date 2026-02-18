@@ -12,7 +12,7 @@ export interface SerialisedError {
 
 // Errors ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-// Base class for all DPU errors; includes a locator for the error; never throw directly
+// Base class for all DPU errors; includes a locator for the error; never thrown directly
 export class DPUError extends Error {
     readonly locator: string; // Error locator 'package.module.method'
     constructor(message: string, locator: string, options?: ErrorOptions) {
@@ -22,7 +22,7 @@ export class DPUError extends Error {
     }
 }
 
-// Thrown when an application (workbench/knowledge) error occurs
+// Thrown when an app (workbench/knowledge) error occurs
 export class AppError extends DPUError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
         super(message, locator, options);
@@ -66,7 +66,7 @@ export class FetchError extends DPUError {
     }
 }
 
-// Methods ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+// Functions ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 // Builds a fetch error from an HTTP response; includes a text copy of the response body
 export async function buildFetchError(response: { status: number; statusText: string; text: () => Promise<string> }, message: string, locator: string): Promise<FetchError> {
@@ -149,12 +149,6 @@ export function serialiseError(error?: unknown): SerialisedError[] {
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
             }
-            // case 'DPUError': {
-            //     const typedCause = cause as DPUError;
-            //     serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'DPUError', stack: cause.stack };
-            //     cause = cause.cause == null ? null : normalizeToError(cause.cause);
-            //     break;
-            // }
             default:
                 if (cause.name) {
                     serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
@@ -195,9 +189,6 @@ export function unserialiseError(serialisedErrors: SerialisedError[]): Error | u
             case 'FetchError':
                 error = new FetchError(serialised.message, serialised.locator, serialised.body, { cause: rebuiltError });
                 break;
-            // case 'DPUError':
-            //     error = new DPUError(serialised.message, serialised.locator, { cause: rebuiltError });
-            //     break;
             default:
                 error = new Error(serialised.message, { cause: rebuiltError });
                 error.name = serialised.name;
@@ -211,7 +202,7 @@ export function unserialiseError(serialisedErrors: SerialisedError[]): Error | u
 
 // Helpers ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-// Builds a fallback message for non-Error throwables
+// Builds a fallback message for non-error throwables
 function buildFallbackMessage(cause: unknown): string {
     let fallbackMessage: string;
     try {
@@ -225,7 +216,7 @@ function buildFallbackMessage(cause: unknown): string {
     return fallbackMessage;
 }
 
-// Sanitizes a response body; limits body size to avoid excessive log payloads
+// Sanitizes a response body; limits body size to avoid excessive payloads when logging
 function sanitizeResponseErrorBody(body?: string): string | undefined {
     if (body == null || body === '') return undefined;
     return body.length > RESPONSE_ERROR_BODY_LIMIT ? `${body.slice(0, RESPONSE_ERROR_BODY_LIMIT)}... [truncated]` : body;
