@@ -14,8 +14,8 @@ export interface SerialisedError {
 
 // Base class for all DPU errors; includes a locator for the error; never thrown directly
 export class DPUError extends Error {
-    readonly locator: string; // Error locator 'package.module.method'
-    constructor(message: string, locator: string, options?: ErrorOptions) {
+    readonly locator: string | undefined; // Error locator 'package.module.method'
+    constructor(message: string, locator: string | undefined, options?: ErrorOptions) {
         super(message, options);
         this.name = 'DPUError';
         this.locator = locator;

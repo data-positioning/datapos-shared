@@ -6,8 +6,8 @@ export interface SerialisedError {
     stack: string | undefined;
 }
 export declare class DPUError extends Error {
-    readonly locator: string;
-    constructor(message: string, locator: string, options?: ErrorOptions);
+    readonly locator: string | undefined;
+    constructor(message: string, locator: string | undefined, options?: ErrorOptions);
 }
 export declare class AppError extends DPUError {
     constructor(message: string, locator: string, options?: ErrorOptions);
