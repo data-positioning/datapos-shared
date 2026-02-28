@@ -24,9 +24,11 @@ export class DPUError extends Error {
 
 // Thrown when an app (workbench/knowledge) error occurs
 export class AppError extends DPUError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
+    readonly trace: SerialisedError[] | undefined;
+    constructor(message: string, locator: string, trace: SerialisedError[] | undefined, options?: ErrorOptions) {
         super(message, locator, options);
         this.name = 'AppError';
+        this.trace = trace;
     }
 }
 

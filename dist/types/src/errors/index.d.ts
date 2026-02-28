@@ -10,7 +10,8 @@ export declare class DPUError extends Error {
     constructor(message: string, locator: string, options?: ErrorOptions);
 }
 export declare class AppError extends DPUError {
-    constructor(message: string, locator: string, options?: ErrorOptions);
+    readonly trace: SerialisedError[] | undefined;
+    constructor(message: string, locator: string, trace: SerialisedError[] | undefined, options?: ErrorOptions);
 }
 export declare class APIError extends DPUError {
     readonly body: string | undefined;

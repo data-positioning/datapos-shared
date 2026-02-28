@@ -6,8 +6,9 @@ class c extends Error {
   }
 }
 class y extends c {
-  constructor(s, o, r) {
-    super(s, o, r), this.name = "AppError";
+  trace;
+  constructor(s, o, r, t) {
+    super(s, o, t), this.name = "AppError", this.trace = r;
   }
 }
 class E extends c {
