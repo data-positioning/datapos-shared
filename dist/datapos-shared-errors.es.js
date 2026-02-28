@@ -7,7 +7,7 @@ class c extends Error {
 }
 class f extends c {
   constructor(o, s, r) {
-    super(o, s, r), this.name = "AppError";
+    console.log("aaaa", o, s, r), super(o, s, r), this.name = "AppError";
   }
 }
 class E extends c {
@@ -24,7 +24,7 @@ class d extends c {
 }
 class m extends c {
   constructor(o, s, r) {
-    console.log("aaaa", o, s, r), super(o, s, r), this.name = "ConnectorError";
+    super(o, s, r), this.name = "ConnectorError";
   }
 }
 class i extends c {

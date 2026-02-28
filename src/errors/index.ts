@@ -25,6 +25,7 @@ export class DPUError extends Error {
 // Thrown when an app (workbench/knowledge) error occurs
 export class AppError extends DPUError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
+        console.log('aaaa', message, locator, options);
         super(message, locator, options);
         this.name = 'AppError';
     }
@@ -51,7 +52,6 @@ export class EngineError extends DPUError {
 // Thrown when an connector operation fails; will always be wrapped in an engine error
 export class ConnectorError extends DPUError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
-        console.log('aaaa', message, locator, options);
         super(message, locator, options);
         this.name = 'ConnectorError';
     }
