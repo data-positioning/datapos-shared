@@ -25,7 +25,6 @@ export class DPUError extends Error {
 // Thrown when an app (workbench/knowledge) error occurs
 export class AppError extends DPUError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
-        console.log('aaaa', message, locator, options);
         super(message, locator, options);
         this.name = 'AppError';
     }
@@ -121,9 +120,7 @@ export function normalizeToError(value: unknown): Error {
 export function serialiseError(error?: unknown): SerialisedError[] {
     const seenCauses = new Set();
     const serialisedErrors: SerialisedError[] = [];
-    console.log('bbbb', error.name, error.message, error.locator);
     let cause: Error | null = normalizeToError(error);
-    console.log('cccc', cause.name, cause.message, cause.locator);
     while (cause != null && !seenCauses.has(cause)) {
         seenCauses.add(cause);
         let serialisedError: SerialisedError;
@@ -136,7 +133,6 @@ export function serialiseError(error?: unknown): SerialisedError[] {
             }
             case 'AppError': {
                 const typedCause = cause as AppError;
-                console.log('dddd', typedCause.name, typedCause.message, typedCause.locator);
                 serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'AppError', stack: cause.stack };
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
