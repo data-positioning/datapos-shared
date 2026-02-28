@@ -121,12 +121,12 @@ export function normalizeToError(value: unknown): Error {
 export function serialiseError(error?: unknown): SerialisedError[] {
     const seenCauses = new Set();
     const serialisedErrors: SerialisedError[] = [];
-    console.log('bbbb', error, error.locator);
+    console.log('bbbb', error.name, error.message, error.locator);
     let cause: Error | null = normalizeToError(error);
+    console.log('cccc', cause.name, cause.message, cause.locator);
     while (cause != null && !seenCauses.has(cause)) {
         seenCauses.add(cause);
         let serialisedError: SerialisedError;
-        console.log('cccc', cause.name, cause);
         switch (cause.name) {
             case 'APIError': {
                 const typedCause = cause as APIError;

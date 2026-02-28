@@ -68,12 +68,12 @@ function a(e) {
 }
 function h(e) {
   const o = /* @__PURE__ */ new Set(), s = [];
-  console.log("bbbb", e, e.locator);
+  console.log("bbbb", e.name, e.message, e.locator);
   let r = a(e);
-  for (; r != null && !o.has(r); ) {
+  for (console.log("cccc", r.name, r.message, r.locator); r != null && !o.has(r); ) {
     o.add(r);
     let t;
-    switch (console.log("cccc", r.name, r), r.name) {
+    switch (r.name) {
       case "APIError": {
         const n = r;
         t = { body: n.body, locator: n.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
