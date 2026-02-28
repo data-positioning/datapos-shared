@@ -1,30 +1,29 @@
 export interface SerialisedError {
-    body: string | undefined;
+    data: Record<string, unknown> | undefined;
     locator: string;
     message: string;
     name: string;
     stack: string | undefined;
 }
-export declare class DPUError extends Error {
+export declare class DPUseError extends Error {
+    readonly data: Record<string, unknown> | undefined;
     readonly locator: string;
-    constructor(message: string, locator: string, options?: ErrorOptions);
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions);
 }
-export declare class AppError extends DPUError {
-    constructor(message: string, locator: string, options?: ErrorOptions);
+export declare class AppError extends DPUseError {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions);
 }
-export declare class APIError extends DPUError {
-    readonly body: string | undefined;
-    constructor(message: string, locator: string, body: string | undefined, options?: ErrorOptions);
+export declare class APIError extends DPUseError {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions);
 }
-export declare class EngineError extends DPUError {
-    constructor(message: string, locator: string, options?: ErrorOptions);
+export declare class EngineError extends DPUseError {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions);
 }
-export declare class ConnectorError extends DPUError {
-    constructor(message: string, locator: string, options?: ErrorOptions);
+export declare class ConnectorError extends DPUseError {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions);
 }
-export declare class FetchError extends DPUError {
-    readonly body: string | undefined;
-    constructor(message: string, locator: string, body: string | undefined, options?: ErrorOptions);
+export declare class FetchError extends DPUseError {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions);
 }
 export declare function buildFetchError(response: {
     status: number;

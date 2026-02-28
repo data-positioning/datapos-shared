@@ -3,7 +3,7 @@ const RESPONSE_ERROR_BODY_LIMIT = 2048;
 
 // Serializable representation of an error; used for transporting errors across api and worker boundaries
 export interface SerialisedError {
-    body: string | undefined; // HTTP response body (fetch errors only)
+    data: Record<string, unknown> | undefined;
     locator: string; // Error locator 'package.module.method'
     message: string; // Human-readable error message
     name: string; // Error class or type name
@@ -12,57 +12,55 @@ export interface SerialisedError {
 
 // Errors ━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
-// Base class for all DPU errors; includes a locator for the error; never thrown directly
-export class DPUError extends Error {
+// Base class for all DPUse  errors; includes a locator for the error; never thrown directly
+export class DPUseError extends Error {
+    readonly data: Record<string, unknown> | undefined;
     readonly locator: string; // Error locator 'package.module.method'
-    constructor(message: string, locator: string, options?: ErrorOptions) {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions) {
         super(message, options);
-        this.name = 'DPUError';
+        this.name = 'DPUseError';
+        this.data = data;
         this.locator = locator;
     }
 }
 
 // Thrown when an app (workbench/knowledge) error occurs
-export class AppError extends DPUError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
-        super(message, locator, options);
+export class AppError extends DPUseError {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions) {
+        super(message, locator, data, options);
         this.name = 'AppError';
     }
 }
 
 // Thrown when an API request fails
-export class APIError extends DPUError {
-    readonly body: string | undefined; // Sanitized snapshot of the response body
-    constructor(message: string, locator: string, body: string | undefined, options?: ErrorOptions) {
-        super(message, locator, options);
+export class APIError extends DPUseError {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions) {
+        super(message, locator, data, options);
         this.name = 'APIError';
-        this.body = sanitizeResponseErrorBody(body ?? undefined);
     }
 }
 
 // Thrown when an engine request fails
-export class EngineError extends DPUError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
-        super(message, locator, options);
+export class EngineError extends DPUseError {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions) {
+        super(message, locator, data, options);
         this.name = 'EngineError';
     }
 }
 
 // Thrown when an connector operation fails; will always be wrapped in an engine error
-export class ConnectorError extends DPUError {
-    constructor(message: string, locator: string, options?: ErrorOptions) {
-        super(message, locator, options);
+export class ConnectorError extends DPUseError {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions) {
+        super(message, locator, data, options);
         this.name = 'ConnectorError';
     }
 }
 
 // Thrown when an HTTP request fails; may include a sanitized portion of the response body for diagnostic purposes
-export class FetchError extends DPUError {
-    readonly body: string | undefined; // Sanitized portion of the response body
-    constructor(message: string, locator: string, body: string | undefined, options?: ErrorOptions) {
-        super(message, locator, options);
+export class FetchError extends DPUseError {
+    constructor(message: string, locator: string, data?: Record<string, unknown>, options?: ErrorOptions) {
+        super(message, locator, data, options);
         this.name = 'FetchError';
-        this.body = sanitizeResponseErrorBody(body ?? undefined);
     }
 }
 
@@ -79,7 +77,7 @@ export async function buildFetchError(response: { status: number; statusText: st
         const normalised = normalizeToError(error);
         bodyText = `<body unavailable: ${normalised.message}>`;
     }
-    return new FetchError(fetchMessage, locator, bodyText);
+    return new FetchError(fetchMessage, locator, { body: sanitizeResponseErrorBody(bodyText) });
 }
 
 // Concatenates serialized error messages into a single string
@@ -127,40 +125,40 @@ export function serialiseError(error?: unknown): SerialisedError[] {
         switch (cause.name) {
             case 'APIError': {
                 const typedCause = cause as APIError;
-                serialisedError = { body: typedCause.body, locator: typedCause.locator, message: cause.message, name: 'APIError', stack: cause.stack };
+                serialisedError = { data: typedCause.data, locator: typedCause.locator, message: cause.message, name: 'APIError', stack: cause.stack };
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
             }
             case 'AppError': {
                 const typedCause = cause as AppError;
-                serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'AppError', stack: cause.stack };
+                serialisedError = { data: typedCause.data, locator: typedCause.locator, message: cause.message, name: 'AppError', stack: cause.stack };
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
             }
             case 'ConnectorError': {
                 const typedCause = cause as ConnectorError;
-                serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'ConnectorError', stack: cause.stack };
+                serialisedError = { data: typedCause.data, locator: typedCause.locator, message: cause.message, name: 'ConnectorError', stack: cause.stack };
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
             }
             case 'EngineError': {
                 const typedCause = cause as EngineError;
-                serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'EngineError', stack: cause.stack };
+                serialisedError = { data: typedCause.data, locator: typedCause.locator, message: cause.message, name: 'EngineError', stack: cause.stack };
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
             }
             case 'FetchError': {
                 const typedCause = cause as FetchError;
-                serialisedError = { body: typedCause.body, locator: typedCause.locator, message: cause.message, name: 'FetchError', stack: cause.stack };
+                serialisedError = { data: typedCause.data, locator: typedCause.locator, message: cause.message, name: 'FetchError', stack: cause.stack };
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
             }
             default:
                 if (cause.name) {
-                    serialisedError = { body: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
+                    serialisedError = { data: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
                     cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 } else {
-                    serialisedError = { body: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
+                    serialisedError = { data: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
                     cause = null;
                 }
         }
@@ -184,16 +182,19 @@ export function unserialiseError(serialisedErrors: SerialisedError[]): Error | u
         // Reconstruct the appropriate error class based on available properties
         switch (serialised.name) {
             case 'APIError':
-                error = new APIError(serialised.message, serialised.locator, serialised.body, { cause: rebuiltError });
+                error = new APIError(serialised.message, serialised.locator, serialised.data, { cause: rebuiltError });
+                break;
+            case 'AppError':
+                error = new AppError(serialised.message, serialised.locator, serialised.data, { cause: rebuiltError });
                 break;
             case 'ConnectorError':
-                error = new ConnectorError(serialised.message, serialised.locator, { cause: rebuiltError });
+                error = new ConnectorError(serialised.message, serialised.locator, serialised.data, { cause: rebuiltError });
                 break;
             case 'EngineError':
-                error = new EngineError(serialised.message, serialised.locator, { cause: rebuiltError });
+                error = new EngineError(serialised.message, serialised.locator, serialised.data, { cause: rebuiltError });
                 break;
             case 'FetchError':
-                error = new FetchError(serialised.message, serialised.locator, serialised.body, { cause: rebuiltError });
+                error = new FetchError(serialised.message, serialised.locator, serialised.data, { cause: rebuiltError });
                 break;
             default:
                 error = new Error(serialised.message, { cause: rebuiltError });

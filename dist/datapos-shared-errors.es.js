@@ -1,59 +1,56 @@
 class c extends Error {
+  data;
   locator;
   // Error locator 'package.module.method'
-  constructor(s, o, r) {
-    super(s, r), this.name = "DPUError", this.locator = o;
+  constructor(s, t, r, a) {
+    super(s, a), this.name = "DPUseError", this.data = r, this.locator = t;
   }
 }
-class y extends c {
-  constructor(s, o, r) {
-    super(s, o, r), this.name = "AppError";
+class u extends c {
+  constructor(s, t, r, a) {
+    super(s, t, r, a), this.name = "AppError";
   }
 }
 class E extends c {
-  body;
-  // Sanitized snapshot of the response body
-  constructor(s, o, r, t) {
-    super(s, o, t), this.name = "APIError", this.body = l(r ?? void 0);
+  constructor(s, t, r, a) {
+    super(s, t, r, a), this.name = "APIError";
   }
 }
 class d extends c {
-  constructor(s, o, r) {
-    super(s, o, r), this.name = "EngineError";
+  constructor(s, t, r, a) {
+    super(s, t, r, a), this.name = "EngineError";
   }
 }
 class m extends c {
-  constructor(s, o, r) {
-    super(s, o, r), this.name = "ConnectorError";
+  constructor(s, t, r, a) {
+    super(s, t, r, a), this.name = "ConnectorError";
   }
 }
 class i extends c {
-  body;
-  // Sanitized portion of the response body
-  constructor(s, o, r, t) {
-    super(s, o, t), this.name = "FetchError", this.body = l(r ?? void 0);
+  constructor(s, t, r, a) {
+    super(s, t, r, a), this.name = "FetchError";
   }
 }
-async function b(e, s, o) {
-  const r = ` - ${e.statusText}`, t = `${s} Response status '${e.status}${e.statusText ? r : ""}' received.`;
-  let n;
+async function p(e, s, t) {
+  const r = ` - ${e.statusText}`, a = `${s} Response status '${e.status}${e.statusText ? r : ""}' received.`;
+  let o;
   try {
-    n = await e.text();
-  } catch (u) {
-    n = `<body unavailable: ${a(u).message}>`;
+    o = await e.text();
+  } catch (l) {
+    o = `<body unavailable: ${n(l).message}>`;
   }
-  return new i(t, o, n);
+  return new i(a, t, { body: f(o) });
 }
-function p(e) {
+function h(e) {
   return e.map((s) => s.message).join(" ");
 }
-function k(e) {
+function w(e) {
   try {
     e();
   } catch {
   }
 }
-function a(e) {
+function n(e) {
   if (e instanceof Error) return e;
   if (typeof e == "string") return new Error(e);
   if (typeof e == "number" || typeof e == "boolean" || typeof e == "bigint") return new Error(String(e));
@@ -66,65 +63,71 @@ function a(e) {
     }
   return new Error("Unknown error");
 }
-function h(e) {
-  const s = /* @__PURE__ */ new Set(), o = [];
-  let r = a(e);
+function b(e) {
+  const s = /* @__PURE__ */ new Set(), t = [];
+  let r = n(e);
   for (; r != null && !s.has(r); ) {
     s.add(r);
-    let t;
+    let a;
     switch (r.name) {
       case "APIError": {
-        const n = r;
-        t = { body: n.body, locator: n.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        const o = r;
+        a = { data: o.data, locator: o.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : n(r.cause);
         break;
       }
       case "AppError": {
-        t = { body: void 0, locator: r.locator, message: r.message, name: "AppError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        const o = r;
+        a = { data: o.data, locator: o.locator, message: r.message, name: "AppError", stack: r.stack }, r = r.cause == null ? null : n(r.cause);
         break;
       }
       case "ConnectorError": {
-        t = { body: void 0, locator: r.locator, message: r.message, name: "ConnectorError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        const o = r;
+        a = { data: o.data, locator: o.locator, message: r.message, name: "ConnectorError", stack: r.stack }, r = r.cause == null ? null : n(r.cause);
         break;
       }
       case "EngineError": {
-        t = { body: void 0, locator: r.locator, message: r.message, name: "EngineError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        const o = r;
+        a = { data: o.data, locator: o.locator, message: r.message, name: "EngineError", stack: r.stack }, r = r.cause == null ? null : n(r.cause);
         break;
       }
       case "FetchError": {
-        const n = r;
-        t = { body: n.body, locator: n.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        const o = r;
+        a = { data: o.data, locator: o.locator, message: r.message, name: "FetchError", stack: r.stack }, r = r.cause == null ? null : n(r.cause);
         break;
       }
       default:
-        r.name ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause)) : (t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null);
+        r.name ? (a = { data: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : (a = { data: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null);
     }
-    /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), o.push(t);
+    /(?:\.{3}|[.!?])$/.test(a.message) || (a.message += "."), t.push(a);
   }
-  return o;
+  return t;
 }
-function w(e) {
+function y(e) {
   if (e.length === 0) return;
   let s;
-  for (const o of e.toReversed()) {
+  for (const t of e.toReversed()) {
     let r;
-    switch (o.name) {
+    switch (t.name) {
       case "APIError":
-        r = new E(o.message, o.locator, o.body, { cause: s });
+        r = new E(t.message, t.locator, t.data, { cause: s });
+        break;
+      case "AppError":
+        r = new u(t.message, t.locator, t.data, { cause: s });
         break;
       case "ConnectorError":
-        r = new m(o.message, o.locator, { cause: s });
+        r = new m(t.message, t.locator, t.data, { cause: s });
         break;
       case "EngineError":
-        r = new d(o.message, o.locator, { cause: s });
+        r = new d(t.message, t.locator, t.data, { cause: s });
         break;
       case "FetchError":
-        r = new i(o.message, o.locator, o.body, { cause: s });
+        r = new i(t.message, t.locator, t.data, { cause: s });
         break;
       default:
-        r = new Error(o.message, { cause: s }), r.name = o.name;
+        r = new Error(t.message, { cause: s }), r.name = t.name;
         break;
     }
-    o.stack !== void 0 && (r.stack = o.stack), s = r;
+    t.stack !== void 0 && (r.stack = t.stack), s = r;
   }
   return s;
 }
@@ -137,21 +140,21 @@ function g(e) {
   }
   return s === "" && (s = "Unknown error"), s;
 }
-function l(e) {
+function f(e) {
   if (!(e == null || e === ""))
     return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
 }
 export {
   E as APIError,
-  y as AppError,
+  u as AppError,
   m as ConnectorError,
-  c as DPUError,
+  c as DPUseError,
   d as EngineError,
   i as FetchError,
-  b as buildFetchError,
-  p as concatenateSerialisedErrorMessages,
-  k as ignoreErrors,
-  a as normalizeToError,
-  h as serialiseError,
-  w as unserialiseError
+  p as buildFetchError,
+  h as concatenateSerialisedErrorMessages,
+  w as ignoreErrors,
+  n as normalizeToError,
+  b as serialiseError,
+  y as unserialiseError
 };
