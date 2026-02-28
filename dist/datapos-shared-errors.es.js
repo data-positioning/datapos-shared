@@ -1,4 +1,4 @@
-class c extends Error {
+class i extends Error {
   data;
   locator;
   // Error locator 'package.module.method'
@@ -6,45 +6,45 @@ class c extends Error {
     super(s, a), this.name = "DPUseError", this.data = r, this.locator = t;
   }
 }
-class u extends c {
+class u extends i {
   constructor(s, t, r, a) {
     super(s, t, r, a), this.name = "AppError";
   }
 }
-class E extends c {
+class E extends i {
   constructor(s, t, r, a) {
     super(s, t, r, a), this.name = "APIError";
   }
 }
-class d extends c {
+class d extends i {
   constructor(s, t, r, a) {
     super(s, t, r, a), this.name = "EngineError";
   }
 }
-class m extends c {
+class m extends i {
   constructor(s, t, r, a) {
     super(s, t, r, a), this.name = "ConnectorError";
   }
 }
-class i extends c {
+class l extends i {
   constructor(s, t, r, a) {
     super(s, t, r, a), this.name = "FetchError";
   }
 }
 async function p(e, s, t) {
   const r = ` - ${e.statusText}`, a = `${s} Response status '${e.status}${e.statusText ? r : ""}' received.`;
-  let o;
+  let c;
   try {
-    o = await e.text();
-  } catch (l) {
-    o = `<body unavailable: ${n(l).message}>`;
+    c = await e.text();
+  } catch (o) {
+    c = `<body unavailable: ${n(o).message}>`;
   }
-  return new i(a, t, { body: f(o) });
+  return new l(a, t, { body: f(c) });
 }
 function h(e) {
   return e.map((s) => s.message).join(" ");
 }
-function w(e) {
+function b(e) {
   try {
     e();
   } catch {
@@ -63,7 +63,7 @@ function n(e) {
     }
   return new Error("Unknown error");
 }
-function b(e) {
+function w(e) {
   const s = /* @__PURE__ */ new Set(), t = [];
   let r = n(e);
   for (; r != null && !s.has(r); ) {
@@ -96,7 +96,8 @@ function b(e) {
         break;
       }
       default:
-        r.name ? (a = { data: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : (a = { data: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null);
+        const c = { ...Object.fromEntries(Object.entries(e ?? {})) };
+        r.name ? (a = { data: c, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : (a = { data: c, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null);
     }
     /(?:\.{3}|[.!?])$/.test(a.message) || (a.message += "."), t.push(a);
   }
@@ -121,7 +122,7 @@ function y(e) {
         r = new d(t.message, t.locator, t.data, { cause: s });
         break;
       case "FetchError":
-        r = new i(t.message, t.locator, t.data, { cause: s });
+        r = new l(t.message, t.locator, t.data, { cause: s });
         break;
       default:
         r = new Error(t.message, { cause: s }), r.name = t.name;
@@ -148,13 +149,13 @@ export {
   E as APIError,
   u as AppError,
   m as ConnectorError,
-  c as DPUseError,
+  i as DPUseError,
   d as EngineError,
-  i as FetchError,
+  l as FetchError,
   p as buildFetchError,
   h as concatenateSerialisedErrorMessages,
-  w as ignoreErrors,
+  b as ignoreErrors,
   n as normalizeToError,
-  b as serialiseError,
+  w as serialiseError,
   y as unserialiseError
 };

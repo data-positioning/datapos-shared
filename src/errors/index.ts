@@ -154,11 +154,12 @@ export function serialiseError(error?: unknown): SerialisedError[] {
                 break;
             }
             default:
+                const xxx = { ...Object.fromEntries(Object.entries(error ?? {})) };
                 if (cause.name) {
-                    serialisedError = { data: undefined, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
+                    serialisedError = { data: xxx, locator: '', message: cause.message, name: cause.name, stack: cause.stack };
                     cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 } else {
-                    serialisedError = { data: undefined, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
+                    serialisedError = { data: xxx, locator: '', message: buildFallbackMessage(cause), name: 'Error', stack: undefined };
                     cause = null;
                 }
         }
