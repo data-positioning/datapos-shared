@@ -81,7 +81,7 @@ function h(e) {
       }
       case "AppError": {
         const n = r;
-        console.log("dddd", n), t = { body: void 0, locator: n.locator, message: r.message, name: "AppError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        console.log("dddd", n.name, n.message, n.locator), t = { body: void 0, locator: n.locator, message: r.message, name: "AppError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
         break;
       }
       case "ConnectorError": {

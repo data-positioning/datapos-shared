@@ -136,7 +136,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
             }
             case 'AppError': {
                 const typedCause = cause as AppError;
-                console.log('dddd', typedCause);
+                console.log('dddd', typedCause.name, typedCause.message, typedCause.locator);
                 serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'AppError', stack: cause.stack };
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
