@@ -96,7 +96,7 @@ function w(e) {
         break;
       }
       default:
-        const c = { ...Object.fromEntries(Object.entries(e ?? {})) };
+        const c = { ...Object.fromEntries(Object.entries(r)) };
         r.name ? (a = { data: c, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : n(r.cause)) : (a = { data: c, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null);
     }
     /(?:\.{3}|[.!?])$/.test(a.message) || (a.message += "."), t.push(a);
