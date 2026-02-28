@@ -10,14 +10,14 @@ class f extends c {
     console.log("aaaa", o, s, r), super(o, s, r), this.name = "AppError";
   }
 }
-class E extends c {
+class d extends c {
   body;
   // Sanitized snapshot of the response body
   constructor(o, s, r, t) {
     super(o, s, t), this.name = "APIError", this.body = l(r ?? void 0);
   }
 }
-class d extends c {
+class E extends c {
   constructor(o, s, r) {
     super(o, s, r), this.name = "EngineError";
   }
@@ -68,11 +68,12 @@ function a(e) {
 }
 function h(e) {
   const o = /* @__PURE__ */ new Set(), s = [];
+  console.log("bbbb", e, e.locator);
   let r = a(e);
   for (; r != null && !o.has(r); ) {
     o.add(r);
     let t;
-    switch (console.log("bbbb", r.name, r), r.name) {
+    switch (console.log("cccc", r.name, r), r.name) {
       case "APIError": {
         const n = r;
         t = { body: n.body, locator: n.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
@@ -80,7 +81,7 @@ function h(e) {
       }
       case "AppError": {
         const n = r;
-        console.log("cccc", n), t = { body: void 0, locator: n.locator, message: r.message, name: "AppError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        console.log("dddd", n), t = { body: void 0, locator: n.locator, message: r.message, name: "AppError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
         break;
       }
       case "ConnectorError": {
@@ -110,13 +111,13 @@ function w(e) {
     let r;
     switch (s.name) {
       case "APIError":
-        r = new E(s.message, s.locator, s.body, { cause: o });
+        r = new d(s.message, s.locator, s.body, { cause: o });
         break;
       case "ConnectorError":
         r = new m(s.message, s.locator, { cause: o });
         break;
       case "EngineError":
-        r = new d(s.message, s.locator, { cause: o });
+        r = new E(s.message, s.locator, { cause: o });
         break;
       case "FetchError":
         r = new i(s.message, s.locator, s.body, { cause: o });
@@ -143,11 +144,11 @@ function l(e) {
     return e.length > 2048 ? `${e.slice(0, 2048)}... [truncated]` : e;
 }
 export {
-  E as APIError,
+  d as APIError,
   f as AppError,
   m as ConnectorError,
   c as DPUError,
-  d as EngineError,
+  E as EngineError,
   i as FetchError,
   y as buildFetchError,
   k as concatenateSerialisedErrorMessages,
