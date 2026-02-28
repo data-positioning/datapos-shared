@@ -131,6 +131,12 @@ export function serialiseError(error?: unknown): SerialisedError[] {
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
             }
+            case 'AppError': {
+                const typedCause = cause as AppError;
+                serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'AppError', stack: cause.stack };
+                cause = cause.cause == null ? null : normalizeToError(cause.cause);
+                break;
+            }
             case 'ConnectorError': {
                 const typedCause = cause as ConnectorError;
                 serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'ConnectorError', stack: cause.stack };

@@ -44,10 +44,10 @@ async function b(e, s, o) {
   }
   return new i(t, o, n);
 }
-function k(e) {
+function p(e) {
   return e.map((s) => s.message).join(" ");
 }
-function p(e) {
+function k(e) {
   try {
     e();
   } catch {
@@ -78,6 +78,10 @@ function h(e) {
         t = { body: n.body, locator: n.locator, message: r.message, name: "APIError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
         break;
       }
+      case "AppError": {
+        t = { body: void 0, locator: r.locator, message: r.message, name: "AppError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
+        break;
+      }
       case "ConnectorError": {
         t = { body: void 0, locator: r.locator, message: r.message, name: "ConnectorError", stack: r.stack }, r = r.cause == null ? null : a(r.cause);
         break;
@@ -92,7 +96,7 @@ function h(e) {
         break;
       }
       default:
-        r.name ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause)) : (t = { body: void 0, locator: "", message: f(r), name: "Error", stack: void 0 }, r = null);
+        r.name ? (t = { body: void 0, locator: "", message: r.message, name: r.name, stack: r.stack }, r = r.cause == null ? null : a(r.cause)) : (t = { body: void 0, locator: "", message: g(r), name: "Error", stack: void 0 }, r = null);
     }
     /(?:\.{3}|[.!?])$/.test(t.message) || (t.message += "."), o.push(t);
   }
@@ -124,7 +128,7 @@ function w(e) {
   }
   return s;
 }
-function f(e) {
+function g(e) {
   let s;
   try {
     s = JSON.stringify(e);
@@ -145,8 +149,8 @@ export {
   d as EngineError,
   i as FetchError,
   b as buildFetchError,
-  k as concatenateSerialisedErrorMessages,
-  p as ignoreErrors,
+  p as concatenateSerialisedErrorMessages,
+  k as ignoreErrors,
   a as normalizeToError,
   h as serialiseError,
   w as unserialiseError
