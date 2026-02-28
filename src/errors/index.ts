@@ -51,6 +51,7 @@ export class EngineError extends DPUError {
 // Thrown when an connector operation fails; will always be wrapped in an engine error
 export class ConnectorError extends DPUError {
     constructor(message: string, locator: string, options?: ErrorOptions) {
+        console.log('aaaa', message, locator, options);
         super(message, locator, options);
         this.name = 'ConnectorError';
     }
@@ -124,6 +125,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
     while (cause != null && !seenCauses.has(cause)) {
         seenCauses.add(cause);
         let serialisedError: SerialisedError;
+        console.log('bbbb', cause.name, cause);
         switch (cause.name) {
             case 'APIError': {
                 const typedCause = cause as APIError;
@@ -133,6 +135,7 @@ export function serialiseError(error?: unknown): SerialisedError[] {
             }
             case 'AppError': {
                 const typedCause = cause as AppError;
+                console.log('cccc', typedCause);
                 serialisedError = { body: undefined, locator: typedCause.locator, message: cause.message, name: 'AppError', stack: cause.stack };
                 cause = cause.cause == null ? null : normalizeToError(cause.cause);
                 break;
